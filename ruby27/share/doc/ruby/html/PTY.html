@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module PTY - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-PTY-label-Example">Example</a>
+    <li><a href="#module-PTY-label-License">License</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-check">::check</a>
+    
+    <li ><a href="#method-c-getpty">::getpty</a>
+    
+    <li ><a href="#method-c-open">::open</a>
+    
+    <li ><a href="#method-c-spawn">::spawn</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-PTY">
+  <h1 id="module-PTY" class="module">
+    module PTY
+  </h1>
+
+  <section class="description">
+    
+<p>Creates and manages pseudo terminals (PTYs).  See also <a href="http://en.wikipedia.org/wiki/Pseudo_terminal">en.wikipedia.org/wiki/Pseudo_terminal</a></p>
+
+<p><a href="PTY.html"><code>PTY</code></a> allows you to allocate new terminals using <a href="PTY.html#method-c-open"><code>::open</code></a> or <a href="PTY.html#method-c-spawn"><code>::spawn</code></a> a new terminal with a specific command.</p>
+
+<h2 id="module-PTY-label-Example">Example<span><a href="#module-PTY-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>In this example we will change the buffering type in the <code>factor</code> command, assuming that factor uses stdio for stdout buffering.</p>
+
+<p>If <a href="IO.html#method-c-pipe"><code>IO.pipe</code></a> is used instead of <a href="PTY.html#method-c-open"><code>PTY.open</code></a>, this code deadlocks because factor&#39;s stdout is fully buffered.</p>
+
+<pre class="ruby"><span class="ruby-comment"># start by requiring the standard library PTY</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;pty&#39;</span>
+
+<span class="ruby-identifier">master</span>, <span class="ruby-identifier">slave</span> = <span class="ruby-constant">PTY</span>.<span class="ruby-identifier">open</span>
+<span class="ruby-identifier">read</span>, <span class="ruby-identifier">write</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">pipe</span>
+<span class="ruby-identifier">pid</span> = <span class="ruby-identifier">spawn</span>(<span class="ruby-string">&quot;factor&quot;</span>, <span class="ruby-value">:in</span><span class="ruby-operator">=&gt;</span><span class="ruby-identifier">read</span>, <span class="ruby-value">:out</span><span class="ruby-operator">=&gt;</span><span class="ruby-identifier">slave</span>)
+<span class="ruby-identifier">read</span>.<span class="ruby-identifier">close</span>     <span class="ruby-comment"># we dont need the read</span>
+<span class="ruby-identifier">slave</span>.<span class="ruby-identifier">close</span>    <span class="ruby-comment"># or the slave</span>
+
+<span class="ruby-comment"># pipe &quot;42&quot; to the factor command</span>
+<span class="ruby-identifier">write</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;42&quot;</span>
+<span class="ruby-comment"># output the response from factor</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">master</span>.<span class="ruby-identifier">gets</span> <span class="ruby-comment">#=&gt; &quot;42: 2 3 7\n&quot;</span>
+
+<span class="ruby-comment"># pipe &quot;144&quot; to factor and print out the response</span>
+<span class="ruby-identifier">write</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;144&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">master</span>.<span class="ruby-identifier">gets</span> <span class="ruby-comment">#=&gt; &quot;144: 2 2 2 2 3 3\n&quot;</span>
+<span class="ruby-identifier">write</span>.<span class="ruby-identifier">close</span> <span class="ruby-comment"># close the pipe</span>
+
+<span class="ruby-comment"># The result of read operation when pty slave is closed is platform</span>
+<span class="ruby-comment"># dependent.</span>
+<span class="ruby-identifier">ret</span> = <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">master</span>.<span class="ruby-identifier">gets</span>     <span class="ruby-comment"># FreeBSD returns nil.</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EIO</span> <span class="ruby-comment"># GNU/Linux raises EIO.</span>
+        <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ret</span> <span class="ruby-comment">#=&gt; nil</span>
+</pre>
+
+<h2 id="module-PTY-label-License">License<span><a href="#module-PTY-label-License">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>C) Copyright 1998 by Akinori Ito.
+
+This software may be redistributed freely for this purpose, in full
+or in part, provided that this entire copyright notice is included
+on any copies of this software and applications and derivations thereof.
+
+This software is provided on an &quot;as is&quot; basis, without warranty of any
+kind, either expressed or implied, as to any matter including, but not
+limited to warranty of fitness of purpose, or merchantability, or
+results obtained from use of this software.</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-check" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            check(pid, raise = false) &rarr; Process::Status or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            check(pid, true)          &rarr; nil or raises PTY::ChildExited
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Checks the status of the child process specified by <code>pid</code>. Returns <code>nil</code> if the process is still alive.</p>
+
+<p>If the process is not alive, and <code>raise</code> was true, a <a href="PTY/ChildExited.html"><code>PTY::ChildExited</code></a> exception will be raised. Otherwise it will return a <a href="Process/Status.html"><code>Process::Status</code></a> instance.</p>
+<dl class="rdoc-list note-list"><dt><code>pid</code>
+<dd>
+<p>The process id of the process to check</p>
+</dd><dt><code>raise</code>
+<dd>
+<p>If <code>true</code> and the process identified by <code>pid</code> is no longer alive a <a href="PTY/ChildExited.html"><code>PTY::ChildExited</code></a> is raised.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="check-source">
+            <pre>static VALUE
+pty_check(int argc, VALUE *argv, VALUE self)
+{
+    VALUE pid, exc;
+    rb_pid_t cpid;
+    int status;
+    const int flag =
+#ifdef WNOHANG
+        WNOHANG|
+#endif
+#ifdef WUNTRACED
+        WUNTRACED|
+#endif
+        0;
+
+    rb_scan_args(argc, argv, &quot;11&quot;, &amp;pid, &amp;exc);
+    cpid = rb_waitpid(NUM2PIDT(pid), &amp;status, flag);
+    if (cpid == -1 || cpid == 0) return Qnil;
+
+    if (!RTEST(exc)) return rb_last_status_get();
+    raise_from_check(cpid, status);
+
+    UNREACHABLE_RETURN(Qnil);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getpty" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command_line)  { |r, w, pid| ... }
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command_line)  &rarr; [r, w, pid]
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command, arguments, ...)  { |r, w, pid| ... }
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command, arguments, ...)  &rarr; [r, w, pid]
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Spawns the specified command on a newly allocated pty. You can also use the alias <a href="PTY.html#method-c-getpty"><code>::getpty</code></a>.</p>
+
+<p>The command&#39;s controlling tty is set to the slave device of the pty and its standard input/output/error is redirected to the slave device.</p>
+
+<p><code>command</code> and <code>command_line</code> are the full commands to run, given a <a href="String.html"><code>String</code></a>. Any additional <code>arguments</code> will be passed to the command.</p>
+
+<h3 id="method-c-getpty-label-Return+values">Return values<span><a href="#method-c-getpty-label-Return+values">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>In the non-block form this returns an array of size three, <code>[r, w, pid]</code>.</p>
+
+<p>In the block form these same values will be yielded to the block:</p>
+<dl class="rdoc-list note-list"><dt><code>r</code>
+<dd>
+<p>A readable <a href="IO.html"><code>IO</code></a> that contains the command&#39;s standard output and standard error</p>
+</dd><dt><code>w</code>
+<dd>
+<p>A writable <a href="IO.html"><code>IO</code></a> that is the command&#39;s standard input</p>
+</dd><dt><code>pid</code>
+<dd>
+<p>The process identifier for the command.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="getpty-source">
+            <pre>static VALUE
+pty_getpty(int argc, VALUE *argv, VALUE self)
+{
+    VALUE res;
+    struct pty_info info;
+    rb_io_t *wfptr,*rfptr;
+    VALUE rport = rb_obj_alloc(rb_cFile);
+    VALUE wport = rb_obj_alloc(rb_cFile);
+    char SlaveName[DEVICELEN];
+
+    MakeOpenFile(rport, rfptr);
+    MakeOpenFile(wport, wfptr);
+
+    establishShell(argc, argv, &amp;info, SlaveName);
+
+    rfptr-&gt;mode = rb_io_modestr_fmode(&quot;r&quot;);
+    rfptr-&gt;fd = info.fd;
+    rfptr-&gt;pathv = rb_obj_freeze(rb_str_new_cstr(SlaveName));
+
+    wfptr-&gt;mode = rb_io_modestr_fmode(&quot;w&quot;) | FMODE_SYNC;
+    wfptr-&gt;fd = rb_cloexec_dup(info.fd);
+    if (wfptr-&gt;fd == -1)
+        rb_sys_fail(&quot;dup()&quot;);
+    rb_update_max_fd(wfptr-&gt;fd);
+    wfptr-&gt;pathv = rfptr-&gt;pathv;
+
+    res = rb_ary_new2(3);
+    rb_ary_store(res,0,(VALUE)rport);
+    rb_ary_store(res,1,(VALUE)wport);
+    rb_ary_store(res,2,PIDT2NUM(info.child_pid));
+
+    if (rb_block_given_p()) {
+        rb_ensure(rb_yield, res, pty_detach_process, (VALUE)&amp;info);
+        return Qnil;
+    }
+    return res;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            open &rarr; [master_io, slave_file]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            open {|master_io, slave_file| ... } &rarr; block value
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Allocates a pty (pseudo-terminal).</p>
+
+<p>In the block form, yields two arguments <code>master_io, slave_file</code> and the value of the block is returned from <code>open</code>.</p>
+
+<p>The <a href="IO.html"><code>IO</code></a> and <a href="File.html"><code>File</code></a> are both closed after the block completes if they haven&#39;t been already closed.</p>
+
+<pre class="ruby"><span class="ruby-constant">PTY</span>.<span class="ruby-identifier">open</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">master</span>, <span class="ruby-identifier">slave</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">master</span>      <span class="ruby-comment">#=&gt; #&lt;IO:masterpty:/dev/pts/1&gt;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">slave</span>      <span class="ruby-comment">#=&gt; #&lt;File:/dev/pts/1&gt;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">slave</span>.<span class="ruby-identifier">path</span> <span class="ruby-comment">#=&gt; &quot;/dev/pts/1&quot;</span>
+}
+</pre>
+
+<p>In the non-block form, returns a two element array, <code>[master_io, slave_file]</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">master</span>, <span class="ruby-identifier">slave</span> = <span class="ruby-constant">PTY</span>.<span class="ruby-identifier">open</span>
+<span class="ruby-comment"># do something with master for IO, or the slave file</span>
+</pre>
+
+<p>The arguments in both forms are:</p>
+<dl class="rdoc-list note-list"><dt><code>master_io</code>
+<dd>
+<p>the master of the pty, as an <a href="IO.html"><code>IO</code></a>.</p>
+</dd><dt><code>slave_file</code>
+<dd>
+<p>the slave of the pty, as a <a href="File.html"><code>File</code></a>.  The path to the terminal device is available via <code>slave_file.path</code></p>
+</dd></dl>
+
+<p><a href="IO.html#method-i-raw-21"><code>IO#raw!</code></a> is usable to disable newline conversions:</p>
+
+<pre>require &#39;io/console&#39;
+PTY.open {|m, s|
+  s.raw!
+  ...
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre>static VALUE
+pty_open(VALUE klass)
+{
+    int master_fd, slave_fd;
+    char slavename[DEVICELEN];
+    VALUE master_io, slave_file;
+    rb_io_t *master_fptr, *slave_fptr;
+    VALUE assoc;
+
+    getDevice(&amp;master_fd, &amp;slave_fd, slavename, 1);
+
+    master_io = rb_obj_alloc(rb_cIO);
+    MakeOpenFile(master_io, master_fptr);
+    master_fptr-&gt;mode = FMODE_READWRITE | FMODE_SYNC | FMODE_DUPLEX;
+    master_fptr-&gt;fd = master_fd;
+    master_fptr-&gt;pathv = rb_obj_freeze(rb_sprintf(&quot;masterpty:%s&quot;, slavename));
+
+    slave_file = rb_obj_alloc(rb_cFile);
+    MakeOpenFile(slave_file, slave_fptr);
+    slave_fptr-&gt;mode = FMODE_READWRITE | FMODE_SYNC | FMODE_DUPLEX | FMODE_TTY;
+    slave_fptr-&gt;fd = slave_fd;
+    slave_fptr-&gt;pathv = rb_obj_freeze(rb_str_new_cstr(slavename));
+
+    assoc = rb_assoc_new(master_io, slave_file);
+    if (rb_block_given_p()) {
+        return rb_ensure(rb_yield, assoc, pty_close_pty, assoc);
+    }
+    return assoc;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-spawn" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command_line)  { |r, w, pid| ... }
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command_line)  &rarr; [r, w, pid]
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command, arguments, ...)  { |r, w, pid| ... }
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            spawn(command, arguments, ...)  &rarr; [r, w, pid]
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Spawns the specified command on a newly allocated pty. You can also use the alias <a href="PTY.html#method-c-getpty"><code>::getpty</code></a>.</p>
+
+<p>The command&#39;s controlling tty is set to the slave device of the pty and its standard input/output/error is redirected to the slave device.</p>
+
+<p><code>command</code> and <code>command_line</code> are the full commands to run, given a <a href="String.html"><code>String</code></a>. Any additional <code>arguments</code> will be passed to the command.</p>
+
+<h3 id="method-c-spawn-label-Return+values">Return values<span><a href="#method-c-spawn-label-Return+values">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>In the non-block form this returns an array of size three, <code>[r, w, pid]</code>.</p>
+
+<p>In the block form these same values will be yielded to the block:</p>
+<dl class="rdoc-list note-list"><dt><code>r</code>
+<dd>
+<p>A readable <a href="IO.html"><code>IO</code></a> that contains the command&#39;s standard output and standard error</p>
+</dd><dt><code>w</code>
+<dd>
+<p>A writable <a href="IO.html"><code>IO</code></a> that is the command&#39;s standard input</p>
+</dd><dt><code>pid</code>
+<dd>
+<p>The process identifier for the command.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="spawn-source">
+            <pre>static VALUE
+pty_getpty(int argc, VALUE *argv, VALUE self)
+{
+    VALUE res;
+    struct pty_info info;
+    rb_io_t *wfptr,*rfptr;
+    VALUE rport = rb_obj_alloc(rb_cFile);
+    VALUE wport = rb_obj_alloc(rb_cFile);
+    char SlaveName[DEVICELEN];
+
+    MakeOpenFile(rport, rfptr);
+    MakeOpenFile(wport, wfptr);
+
+    establishShell(argc, argv, &amp;info, SlaveName);
+
+    rfptr-&gt;mode = rb_io_modestr_fmode(&quot;r&quot;);
+    rfptr-&gt;fd = info.fd;
+    rfptr-&gt;pathv = rb_obj_freeze(rb_str_new_cstr(SlaveName));
+
+    wfptr-&gt;mode = rb_io_modestr_fmode(&quot;w&quot;) | FMODE_SYNC;
+    wfptr-&gt;fd = rb_cloexec_dup(info.fd);
+    if (wfptr-&gt;fd == -1)
+        rb_sys_fail(&quot;dup()&quot;);
+    rb_update_max_fd(wfptr-&gt;fd);
+    wfptr-&gt;pathv = rfptr-&gt;pathv;
+
+    res = rb_ary_new2(3);
+    rb_ary_store(res,0,(VALUE)rport);
+    rb_ary_store(res,1,(VALUE)wport);
+    rb_ary_store(res,2,PIDT2NUM(info.child_pid));
+
+    if (rb_block_given_p()) {
+        rb_ensure(rb_yield, res, pty_detach_process, (VALUE)&amp;info);
+        return Qnil;
+    }
+    return res;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

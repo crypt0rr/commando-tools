@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Signal - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-list">::list</a>
+    
+    <li ><a href="#method-c-signame">::signame</a>
+    
+    <li ><a href="#method-c-trap">::trap</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Signal">
+  <h1 id="module-Signal" class="module">
+    module Signal
+  </h1>
+
+  <section class="description">
+    
+<p>Many operating systems allow signals to be sent to running processes. Some signals have a defined effect on the process, while others may be trapped at the code level and acted upon. For example, your process may trap the USR1 signal and use it to toggle debugging, and may use TERM to initiate a controlled shutdown.</p>
+
+<pre class="ruby"><span class="ruby-identifier">pid</span> = <span class="ruby-identifier">fork</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;USR1&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">$debug</span> = <span class="ruby-operator">!</span><span class="ruby-identifier">$debug</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Debug now: #$debug&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;TERM&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Terminating...&quot;</span>
+    <span class="ruby-identifier">shutdown</span>()
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># . . . do some work . . .</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">detach</span>(<span class="ruby-identifier">pid</span>)
+
+<span class="ruby-comment"># Controlling program:</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">kill</span>(<span class="ruby-string">&quot;USR1&quot;</span>, <span class="ruby-identifier">pid</span>)
+<span class="ruby-comment"># ...</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">kill</span>(<span class="ruby-string">&quot;USR1&quot;</span>, <span class="ruby-identifier">pid</span>)
+<span class="ruby-comment"># ...</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">kill</span>(<span class="ruby-string">&quot;TERM&quot;</span>, <span class="ruby-identifier">pid</span>)
+</pre>
+
+<p>produces:</p>
+
+<pre class="ruby"> <span class="ruby-constant">Debug</span> <span class="ruby-value">now:</span> <span class="ruby-keyword">true</span>
+ <span class="ruby-constant">Debug</span> <span class="ruby-value">now:</span> <span class="ruby-keyword">false</span>
+<span class="ruby-constant">Terminating</span><span class="ruby-operator">...</span>
+</pre>
+
+<p>The list of available signal names and their interpretation is system dependent. <a href="Signal.html"><code>Signal</code></a> delivery semantics may also vary between systems; in particular signal delivery may not always be reliable.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-list" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            list &rarr; a_hash
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a list of signal names mapped to the corresponding underlying signal numbers.</p>
+
+<pre class="ruby"><span class="ruby-constant">Signal</span>.<span class="ruby-identifier">list</span>   <span class="ruby-comment">#=&gt; {&quot;EXIT&quot;=&gt;0, &quot;HUP&quot;=&gt;1, &quot;INT&quot;=&gt;2, &quot;QUIT&quot;=&gt;3, &quot;ILL&quot;=&gt;4, &quot;TRAP&quot;=&gt;5, &quot;IOT&quot;=&gt;6, &quot;ABRT&quot;=&gt;6, &quot;FPE&quot;=&gt;8, &quot;KILL&quot;=&gt;9, &quot;BUS&quot;=&gt;7, &quot;SEGV&quot;=&gt;11, &quot;SYS&quot;=&gt;31, &quot;PIPE&quot;=&gt;13, &quot;ALRM&quot;=&gt;14, &quot;TERM&quot;=&gt;15, &quot;URG&quot;=&gt;23, &quot;STOP&quot;=&gt;19, &quot;TSTP&quot;=&gt;20, &quot;CONT&quot;=&gt;18, &quot;CHLD&quot;=&gt;17, &quot;CLD&quot;=&gt;17, &quot;TTIN&quot;=&gt;21, &quot;TTOU&quot;=&gt;22, &quot;IO&quot;=&gt;29, &quot;XCPU&quot;=&gt;24, &quot;XFSZ&quot;=&gt;25, &quot;VTALRM&quot;=&gt;26, &quot;PROF&quot;=&gt;27, &quot;WINCH&quot;=&gt;28, &quot;USR1&quot;=&gt;10, &quot;USR2&quot;=&gt;12, &quot;PWR&quot;=&gt;30, &quot;POLL&quot;=&gt;29}</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre>static VALUE
+sig_list(VALUE _)
+{
+    VALUE h = rb_hash_new();
+    const struct signals *sigs;
+
+    FOREACH_SIGNAL(sigs, 0) {
+        rb_hash_aset(h, rb_fstring_cstr(sigs-&gt;signm), INT2FIX(sigs-&gt;signo));
+    }
+    return h;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-signame" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            signame(signo)  &rarr;  string or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Convert signal number to signal name. Returns <code>nil</code> if the signo is an invalid signal number.</p>
+
+<pre class="ruby"><span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;INT&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">signo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-constant">Signal</span>.<span class="ruby-identifier">signame</span>(<span class="ruby-identifier">signo</span>) }
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">kill</span>(<span class="ruby-string">&quot;INT&quot;</span>, <span class="ruby-value">0</span>)
+</pre>
+
+<p><em>produces:</em></p>
+
+<pre class="ruby"><span class="ruby-constant">INT</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="signame-source">
+            <pre>static VALUE
+sig_signame(VALUE recv, VALUE signo)
+{
+    const char *signame = signo2signm(NUM2INT(signo));
+    if (!signame) return Qnil;
+    return rb_str_new_cstr(signame);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-trap" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            trap( signal, command ) &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            trap( signal ) {| | block } &rarr; obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Specifies the handling of signals. The first parameter is a signal name (a string such as “SIGALRM&#39;&#39;, “SIGUSR1&#39;&#39;, and so on) or a signal number. The characters “SIG&#39;&#39; may be omitted from the signal name. The command or block specifies code to be run when the signal is raised. If the command is the string “IGNORE&#39;&#39; or “SIG_IGN&#39;&#39;, the signal will be ignored. If the command is “DEFAULT&#39;&#39; or “SIG_DFL&#39;&#39;, the Ruby&#39;s default handler will be invoked. If the command is “EXIT&#39;&#39;, the script will be terminated by the signal. If the command is “SYSTEM_DEFAULT&#39;&#39;, the operating system&#39;s default handler will be invoked. Otherwise, the given command or block will be run. The special signal name “EXIT&#39;&#39; or signal number zero will be invoked just prior to program termination. trap returns the previous handler for the given signal.</p>
+
+<pre class="ruby"><span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Terminating: #{$$}&quot;</span> })
+<span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;CLD&quot;</span>)  { <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Child died&quot;</span> }
+<span class="ruby-identifier">fork</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>
+</pre>
+
+<p>produces:</p>
+
+<pre>Terminating: 27461
+Child died
+Terminating: 27460</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="trap-source">
+            <pre>static VALUE
+sig_trap(int argc, VALUE *argv, VALUE _)
+{
+    int sig;
+    sighandler_t func;
+    VALUE cmd;
+
+    rb_check_arity(argc, 1, 2);
+
+    sig = trap_signm(argv[0]);
+    if (reserved_signal_p(sig)) {
+        const char *name = signo2signm(sig);
+        if (name)
+            rb_raise(rb_eArgError, &quot;can&#39;t trap reserved signal: SIG%s&quot;, name);
+        else
+            rb_raise(rb_eArgError, &quot;can&#39;t trap reserved signal: %d&quot;, sig);
+    }
+
+    if (argc == 1) {
+        cmd = rb_block_proc();
+        func = sighandler;
+    }
+    else {
+        cmd = argv[1];
+        func = trap_handler(&amp;cmd, sig);
+    }
+
+    return trap(sig, func, cmd);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

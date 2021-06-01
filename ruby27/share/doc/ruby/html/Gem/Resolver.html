@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Resolver - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Resolver/Molinillo/UI.html">Gem::Resolver::Molinillo::UI</a>
+  
+  
+  
+    <li><a class="include" href="Resolver/Molinillo/SpecificationProvider.html">Gem::Resolver::Molinillo::SpecificationProvider</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-compose_sets">::compose_sets</a>
+    
+    <li ><a href="#method-c-for_current_gems">::for_current_gems</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-allow_missing-3F">#allow_missing?</a>
+    
+    <li ><a href="#method-i-amount_constrained">#amount_constrained</a>
+    
+    <li ><a href="#method-i-debug-3F">#debug?</a>
+    
+    <li ><a href="#method-i-dependencies_for">#dependencies_for</a>
+    
+    <li ><a href="#method-i-name_for">#name_for</a>
+    
+    <li ><a href="#method-i-output">#output</a>
+    
+    <li ><a href="#method-i-requirement_satisfied_by-3F">#requirement_satisfied_by?</a>
+    
+    <li ><a href="#method-i-resolve">#resolve</a>
+    
+    <li ><a href="#method-i-search_for">#search_for</a>
+    
+    <li ><a href="#method-i-sort_dependencies">#sort_dependencies</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Resolver">
+  <h1 id="class-Gem::Resolver" class="class">
+    class Gem::Resolver
+  </h1>
+
+  <section class="description">
+    
+<p>Given a set of <a href="Dependency.html"><code>Gem::Dependency</code></a> objects as <code>needed</code> and a way to query the set of available specs via <code>set</code>, calculates a set of <a href="Resolver/ActivationRequest.html"><code>ActivationRequest</code></a> objects which indicate all the specs that should be activated to meet the all the requirements.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DEBUG_RESOLVER">DEBUG_RESOLVER
+        
+        <dd><p>If the <a href="Resolver.html#DEBUG_RESOLVER"><code>DEBUG_RESOLVER</code></a> environment variable is set then debugging mode is enabled for the resolver.  This will display information about the state of the resolver while a set of dependencies is being resolved.</p>
+        
+      
+        <dt id="SINGLE_POSSIBILITY_CONSTRAINT_PENALTY">SINGLE_POSSIBILITY_CONSTRAINT_PENALTY
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-development" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">development</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="Resolver/Set.html"><code>Set</code></a> to true if all development dependencies should be considered.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-development_shallow" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">development_shallow</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="Resolver/Set.html"><code>Set</code></a> to true if immediate development dependencies should be considered.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ignore_dependencies" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ignore_dependencies</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>When true, no dependencies are looked up for requested gems.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-missing" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">missing</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>List of dependencies that could not be found in the configured sources.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-skip_gems" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">skip_gems</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="../Hash.html"><code>Hash</code></a> of gems to skip resolution.  Keyed by gem name, with arrays of gem specifications as values.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-soft_missing" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">soft_missing</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>When a missing dependency, don&#39;t stop. Just go on and record what was missing.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-stats" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stats</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-compose_sets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compose_sets</span><span
+            class="method-args">(*sets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Combines <code>sets</code> into a <a href="Resolver/ComposedSet.html"><code>ComposedSet</code></a> that allows specification lookup in a uniform manner.  If one of the <code>sets</code> is itself a <a href="Resolver/ComposedSet.html"><code>ComposedSet</code></a> its sets are flattened into the result <a href="Resolver/ComposedSet.html"><code>ComposedSet</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="compose_sets-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">compose_sets</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sets</span>)
+  <span class="ruby-identifier">sets</span>.<span class="ruby-identifier">compact!</span>
+
+  <span class="ruby-identifier">sets</span> = <span class="ruby-identifier">sets</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">set</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">set</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">BestSet</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">set</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">ComposedSet</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">set</span>.<span class="ruby-identifier">sets</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">set</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">flatten</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">sets</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;one set in the composition must be non-nil&#39;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">sets</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">ComposedSet</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sets</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-for_current_gems" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">for_current_gems</span><span
+            class="method-args">(needed)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a <a href="Resolver.html"><code>Resolver</code></a> that queries only against the already installed gems for the <code>needed</code> dependencies.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="for_current_gems-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">for_current_gems</span>(<span class="ruby-identifier">needed</span>)
+  <span class="ruby-identifier">new</span> <span class="ruby-identifier">needed</span>, <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">CurrentSet</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(needed, set = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create <a href="Resolver.html"><code>Resolver</code></a> object which will resolve the tree starting with <code>needed</code> Dependency objects.</p>
+
+<p><code>set</code> is an object that provides where to look for specifications to satisfy the Dependencies. This defaults to <a href="Resolver/IndexSet.html"><code>IndexSet</code></a>, which will query rubygems.org.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">needed</span>, <span class="ruby-identifier">set</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@set</span> = <span class="ruby-identifier">set</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">IndexSet</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@needed</span> = <span class="ruby-identifier">needed</span>
+
+  <span class="ruby-ivar">@development</span>         = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@development_shallow</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@ignore_dependencies</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@missing</span>             = []
+  <span class="ruby-ivar">@skip_gems</span>           = {}
+  <span class="ruby-ivar">@soft_missing</span>        = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@stats</span>               = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">Stats</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-allow_missing-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allow_missing?</span><span
+            class="method-args">(dependency)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="allow_missing-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">allow_missing?</span>(<span class="ruby-identifier">dependency</span>)
+  <span class="ruby-ivar">@missing</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dependency</span>
+  <span class="ruby-ivar">@soft_missing</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-debug-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">debug?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="debug-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 181</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">debug?</span>
+  <span class="ruby-constant">DEBUG_RESOLVER</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dependencies_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dependencies_for</span><span
+            class="method-args">(specification)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dependencies_for-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dependencies_for</span>(<span class="ruby-identifier">specification</span>)
+  <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ignore_dependencies</span>
+  <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">specification</span>.<span class="ruby-identifier">spec</span>
+  <span class="ruby-identifier">requests</span>(<span class="ruby-identifier">spec</span>, <span class="ruby-identifier">specification</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-name_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">name_for</span><span
+            class="method-args">(dependency)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="name_for-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 269</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">name_for</span>(<span class="ruby-identifier">dependency</span>)
+  <span class="ruby-identifier">dependency</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-output" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">output</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="output-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 177</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">output</span>
+  <span class="ruby-ivar">@output</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">debug?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">$stdout</span> <span class="ruby-operator">:</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">NULL</span>, <span class="ruby-string">&#39;w&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-requirement_satisfied_by-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">requirement_satisfied_by?</span><span
+            class="method-args">(requirement, activated, spec)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="requirement_satisfied_by-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">requirement_satisfied_by?</span>(<span class="ruby-identifier">requirement</span>, <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">spec</span>)
+  <span class="ruby-identifier">requirement</span>.<span class="ruby-identifier">matches_spec?</span> <span class="ruby-identifier">spec</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-resolve" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">resolve</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Proceed with resolution! Returns an array of <a href="Resolver/ActivationRequest.html"><code>ActivationRequest</code></a> objects.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="resolve-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resolve</span>
+  <span class="ruby-identifier">locking_dg</span> = <span class="ruby-constant">Molinillo</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyGraph</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-constant">Molinillo</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-keyword">self</span>).<span class="ruby-identifier">resolve</span>(<span class="ruby-ivar">@needed</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-constant">DependencyRequest</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">d</span>, <span class="ruby-keyword">nil</span> }, <span class="ruby-identifier">locking_dg</span>).<span class="ruby-identifier">tsort</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:payload</span>).<span class="ruby-identifier">compact</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Molinillo</span><span class="ruby-operator">::</span><span class="ruby-constant">VersionConflict</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">conflict</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">conflicts</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyResolutionError</span>, <span class="ruby-constant">Conflict</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirement_trees</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">first</span>, <span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">existing</span>, <span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirement</span>)
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-ivar">@output</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-ivar">@output</span>) <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-search_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search_for</span><span
+            class="method-args">(dependency)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="search_for-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search_for</span>(<span class="ruby-identifier">dependency</span>)
+  <span class="ruby-identifier">possibles</span>, <span class="ruby-identifier">all</span> = <span class="ruby-identifier">find_possible</span>(<span class="ruby-identifier">dependency</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@soft_missing</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">possibles</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@missing</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dependency</span>
+    <span class="ruby-identifier">exc</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UnsatisfiableDependencyError</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">dependency</span>, <span class="ruby-identifier">all</span>
+    <span class="ruby-identifier">exc</span>.<span class="ruby-identifier">errors</span> = <span class="ruby-ivar">@set</span>.<span class="ruby-identifier">errors</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-identifier">exc</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">groups</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>, <span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = [] }
+
+  <span class="ruby-comment"># create groups &amp; sources in the same loop</span>
+  <span class="ruby-identifier">sources</span> = <span class="ruby-identifier">possibles</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">source</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">source</span>
+    <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">source</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">spec</span>
+    <span class="ruby-identifier">source</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">reverse</span>
+
+  <span class="ruby-identifier">activation_requests</span> = []
+
+  <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">source</span>].
+      <span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>, <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Platform</span>.<span class="ruby-identifier">local</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">platform</span> <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>] }.
+      <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-constant">ActivationRequest</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">spec</span>, <span class="ruby-identifier">dependency</span> }.
+      <span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">activation_request</span><span class="ruby-operator">|</span> <span class="ruby-identifier">activation_requests</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">activation_request</span> }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">activation_requests</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sort_dependencies" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sort_dependencies</span><span
+            class="method-args">(dependencies, activated, conflicts)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sort_dependencies-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sort_dependencies</span>(<span class="ruby-identifier">dependencies</span>, <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">conflicts</span>)
+  <span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">sort_by</span>.<span class="ruby-identifier">with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dependency</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">dependency</span>)
+    [
+      <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">payload</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>,
+      <span class="ruby-identifier">amount_constrained</span>(<span class="ruby-identifier">dependency</span>),
+      <span class="ruby-identifier">conflicts</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>,
+      <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">payload</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">search_for</span>(<span class="ruby-identifier">dependency</span>).<span class="ruby-identifier">count</span>,
+      <span class="ruby-identifier">i</span> <span class="ruby-comment"># for stable sort</span>
+    ]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-amount_constrained" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">amount_constrained</span><span
+            class="method-args">(dependency)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns an integer in (-infty, 0] a number closer to 0 means the dependency is less constraining</p>
+
+<p>dependencies w/ 0 or 1 possibilities (ignoring version requirements) are given very negative values, so they <em>always</em> sort first, before dependencies that are unconstrained</p>
+          
+          
+
+          
+          <div class="method-source-code" id="amount_constrained-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver.rb, line 300</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">amount_constrained</span>(<span class="ruby-identifier">dependency</span>)
+  <span class="ruby-ivar">@amount_constrained</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-ivar">@amount_constrained</span>[<span class="ruby-identifier">dependency</span>.<span class="ruby-identifier">name</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">name_dependency</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Dependency</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dependency</span>.<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">dependency_request_for_name</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyRequest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name_dependency</span>, <span class="ruby-identifier">dependency</span>.<span class="ruby-identifier">requester</span>)
+    <span class="ruby-identifier">all</span> = <span class="ruby-ivar">@set</span>.<span class="ruby-identifier">find_all</span>(<span class="ruby-identifier">dependency_request_for_name</span>).<span class="ruby-identifier">size</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">all</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">all</span> <span class="ruby-operator">-</span> <span class="ruby-constant">SINGLE_POSSIBILITY_CONSTRAINT_PENALTY</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">search</span> = <span class="ruby-identifier">search_for</span>(<span class="ruby-identifier">dependency</span>).<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">search</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">all</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

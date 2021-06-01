@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Queue - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-clear">#clear</a>
+    
+    <li ><a href="#method-i-close">#close</a>
+    
+    <li ><a href="#method-i-closed-3F">#closed?</a>
+    
+    <li ><a href="#method-i-deq">#deq</a>
+    
+    <li ><a href="#method-i-empty-3F">#empty?</a>
+    
+    <li ><a href="#method-i-enq">#enq</a>
+    
+    <li ><a href="#method-i-length">#length</a>
+    
+    <li ><a href="#method-i-num_waiting">#num_waiting</a>
+    
+    <li ><a href="#method-i-pop">#pop</a>
+    
+    <li ><a href="#method-i-push">#push</a>
+    
+    <li ><a href="#method-i-shift">#shift</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Queue">
+  <h1 id="class-Queue" class="class">
+    class Queue
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="Queue.html"><code>Queue</code></a> class implements multi-producer, multi-consumer queues. It is especially useful in threaded programming when information must be exchanged safely between multiple threads. The <a href="Queue.html"><code>Queue</code></a> class implements all the required locking semantics.</p>
+
+<p>The class implements FIFO type of queue. In a FIFO queue, the first tasks added are the first retrieved.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">queue</span> = <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">new</span>
+
+<span class="ruby-identifier">producer</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+     <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">rand</span>(<span class="ruby-identifier">i</span>) <span class="ruby-comment"># simulate expense</span>
+     <span class="ruby-identifier">queue</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span>
+     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{i} produced&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">consumer</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+     <span class="ruby-identifier">value</span> = <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">pop</span>
+     <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">rand</span>(<span class="ruby-identifier">i</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>) <span class="ruby-comment"># simulate expense</span>
+     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;consumed #{value}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">consumer</span>.<span class="ruby-identifier">join</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new queue instance.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rb_queue_initialize(VALUE self)
+{
+    struct rb_queue *q = queue_ptr(self);
+    RB_OBJ_WRITE(self, &amp;q-&gt;que, ary_buf_new());
+    list_head_init(queue_waitq(q));
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;&lt;</span><span
+            class="method-args">(p1)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Queue.html#method-i-push">push</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-clear" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Removes all objects from the queue.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="clear-source">
+            <pre>static VALUE
+rb_queue_clear(VALUE self)
+{
+    struct rb_queue *q = queue_ptr(self);
+
+    rb_ary_clear(check_array(self, q-&gt;que));
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Closes the queue. A closed queue cannot be re-opened.</p>
+
+<p>After the call to close completes, the following are true:</p>
+<ul><li>
+<p><code>closed?</code> will return true</p>
+</li><li>
+<p><code>close</code> will be ignored.</p>
+</li><li>
+<p>calling enq/push/&lt;&lt; will raise a <code>ClosedQueueError</code>.</p>
+</li><li>
+<p>when <code>empty?</code> is false, calling deq/pop/shift will return an object from the queue as usual.</p>
+</li><li>
+<p>when <code>empty?</code> is true, deq(false) will not suspend the thread and will return nil. deq(true) will raise a <code>ThreadError</code>.</p>
+</li></ul>
+
+<p><a href="ClosedQueueError.html"><code>ClosedQueueError</code></a> is inherited from <a href="StopIteration.html"><code>StopIteration</code></a>, so that you can break loop block.</p>
+
+<pre>Example:
+
+    q = Queue.new
+    Thread.new{
+      while e = q.deq # wait for nil to break loop
+        # ...
+      end
+    }
+    q.close</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre>static VALUE
+rb_queue_close(VALUE self)
+{
+    struct rb_queue *q = queue_ptr(self);
+
+    if (!queue_closed_p(self)) {
+        FL_SET(self, QUEUE_CLOSED);
+
+        wakeup_all(queue_waitq(q));
+    }
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-closed-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            closed?
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the queue is closed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="closed-3F-source">
+            <pre>static VALUE
+rb_queue_closed_p(VALUE self)
+{
+    return queue_closed_p(self) ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-deq" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">deq</span><span
+            class="method-args">(*args)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Queue.html#method-i-pop">pop</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-empty-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            empty?
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the queue is empty.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="empty-3F-source">
+            <pre>static VALUE
+rb_queue_empty_p(VALUE self)
+{
+    return queue_length(self, queue_ptr(self)) == 0 ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enq" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">enq</span><span
+            class="method-args">(p1)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Queue.html#method-i-push">push</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-length" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            length
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            size
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the length of the queue.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="length-source">
+            <pre>static VALUE
+rb_queue_length(VALUE self)
+{
+    return LONG2NUM(queue_length(self, queue_ptr(self)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Queue.html#method-i-size">size</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-num_waiting" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">num_waiting</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of threads waiting on the queue.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="num_waiting-source">
+            <pre>static VALUE
+rb_queue_num_waiting(VALUE self)
+{
+    struct rb_queue *q = queue_ptr(self);
+
+    return INT2NUM(q-&gt;num_waiting);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pop" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            pop(non_block=false)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            deq(non_block=false)
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            shift(non_block=false)
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves data from the queue.</p>
+
+<p>If the queue is empty, the calling thread is suspended until data is pushed onto the queue. If <code>non_block</code> is true, the thread isn&#39;t suspended, and <code>ThreadError</code> is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pop-source">
+            <pre>static VALUE
+rb_queue_pop(int argc, VALUE *argv, VALUE self)
+{
+    int should_block = queue_pop_should_block(argc, argv);
+    return queue_do_pop(self, queue_ptr(self), should_block);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Queue.html#method-i-deq">deq</a>, <a href="Queue.html#method-i-shift">shift</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-push" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            push(object)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enq(object)
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            &lt;&lt;(object)
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Pushes the given <code>object</code> to the queue.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="push-source">
+            <pre>static VALUE
+rb_queue_push(VALUE self, VALUE obj)
+{
+    return queue_do_push(self, queue_ptr(self), obj);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Queue.html#method-i-enq">enq</a>, <a href="Queue.html#method-i-3C-3C">&lt;&lt;</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-shift" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">shift</span><span
+            class="method-args">(*args)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Queue.html#method-i-pop">pop</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">size</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Queue.html#method-i-length">length</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

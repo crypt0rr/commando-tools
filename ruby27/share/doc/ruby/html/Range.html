@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Range - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Range-label-Beginless-2FEndless+Ranges">Beginless/Endless Ranges</a>
+    <li><a href="#class-Range-label-Custom+Objects+in+Ranges">Custom Objects in Ranges</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Enumerable.html">Enumerable</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-json_create">::json_create</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-25">#%</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-3D-3D-3D">#===</a>
+    
+    <li ><a href="#method-i-as_json">#as_json</a>
+    
+    <li ><a href="#method-i-begin">#begin</a>
+    
+    <li ><a href="#method-i-bsearch">#bsearch</a>
+    
+    <li ><a href="#method-i-count">#count</a>
+    
+    <li ><a href="#method-i-cover-3F">#cover?</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-end">#end</a>
+    
+    <li ><a href="#method-i-entries">#entries</a>
+    
+    <li ><a href="#method-i-eql-3F">#eql?</a>
+    
+    <li ><a href="#method-i-exclude_end-3F">#exclude_end?</a>
+    
+    <li ><a href="#method-i-first">#first</a>
+    
+    <li ><a href="#method-i-hash">#hash</a>
+    
+    <li ><a href="#method-i-include-3F">#include?</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-last">#last</a>
+    
+    <li ><a href="#method-i-max">#max</a>
+    
+    <li ><a href="#method-i-member-3F">#member?</a>
+    
+    <li ><a href="#method-i-min">#min</a>
+    
+    <li ><a href="#method-i-minmax">#minmax</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+    <li ><a href="#method-i-step">#step</a>
+    
+    <li ><a href="#method-i-to_a">#to_a</a>
+    
+    <li ><a href="#method-i-to_json">#to_json</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Range">
+  <h1 id="class-Range" class="class">
+    class Range
+  </h1>
+
+  <section class="description">
+    
+<p>A <a href="Range.html"><code>Range</code></a> represents an interval—a set of values with a beginning and an end. Ranges may be constructed using the <em>s</em><code>..</code><em>e</em> and <em>s</em><code>...</code><em>e</em> literals, or with <a href="Range.html#method-c-new"><code>Range::new</code></a>. Ranges constructed using <code>..</code> run from the beginning to the end inclusively. Those created using <code>...</code> exclude the end value. When used as an iterator, ranges return each value in the sequence.</p>
+
+<pre class="ruby">(<span class="ruby-value">-1</span><span class="ruby-operator">..</span><span class="ruby-value">-5</span>).<span class="ruby-identifier">to_a</span>      <span class="ruby-comment">#=&gt; []</span>
+(<span class="ruby-value">-5</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>).<span class="ruby-identifier">to_a</span>      <span class="ruby-comment">#=&gt; [-5, -4, -3, -2, -1]</span>
+(<span class="ruby-string">&#39;a&#39;</span><span class="ruby-operator">..</span><span class="ruby-string">&#39;e&#39;</span>).<span class="ruby-identifier">to_a</span>    <span class="ruby-comment">#=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</span>
+(<span class="ruby-string">&#39;a&#39;</span><span class="ruby-operator">...</span><span class="ruby-string">&#39;e&#39;</span>).<span class="ruby-identifier">to_a</span>   <span class="ruby-comment">#=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span>
+</pre>
+
+<h2 id="class-Range-label-Beginless-2FEndless+Ranges">Beginless/Endless Ranges<span><a href="#class-Range-label-Beginless-2FEndless+Ranges">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A “beginless range” and “endless range” represents a semi-infinite range.  Literal notation for a beginless range is:</p>
+
+<pre class="ruby">(<span class="ruby-operator">..</span><span class="ruby-value">1</span>)
+<span class="ruby-comment"># or</span>
+(<span class="ruby-operator">...</span><span class="ruby-value">1</span>)
+</pre>
+
+<p>Literal notation for an endless range is:</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span>)
+<span class="ruby-comment"># or similarly</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">...</span>)
+</pre>
+
+<p>Which is equivalent to</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-keyword">nil</span>)  <span class="ruby-comment"># or similarly (1...nil)</span>
+<span class="ruby-constant">Range</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># or Range.new(1, nil, true)</span>
+</pre>
+
+<p>Beginless/endless ranges are useful, for example, for idiomatic slicing of arrays:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">5</span>][<span class="ruby-operator">...</span><span class="ruby-value">2</span>]   <span class="ruby-comment"># =&gt; [1, 2]</span>
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">5</span>][<span class="ruby-value">2</span><span class="ruby-operator">...</span>]   <span class="ruby-comment"># =&gt; [3, 4, 5]</span>
+</pre>
+
+<p>Some implementation details:</p>
+<ul><li>
+<p><code>begin</code> of beginless range and <code>end</code> of endless range are <code>nil</code>;</p>
+</li><li>
+<p><code>each</code> of beginless range raises an exception;</p>
+</li><li>
+<p><code>each</code> of endless range enumerates infinite sequence (may be useful in combination with <a href="Enumerable.html#method-i-take_while"><code>Enumerable#take_while</code></a> or similar methods);</p>
+</li><li>
+<p><code>(1..)</code> and <code>(1...)</code> are not equal, although technically representing the same sequence.</p>
+</li></ul>
+
+<h2 id="class-Range-label-Custom+Objects+in+Ranges">Custom Objects in Ranges<span><a href="#class-Range-label-Custom+Objects+in+Ranges">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Ranges can be constructed using any objects that can be compared using the <code>&lt;=&gt;</code> operator. Methods that treat the range as a sequence (<a href="Range.html#method-i-each"><code>each</code></a> and methods inherited from <a href="Enumerable.html"><code>Enumerable</code></a>) expect the begin object to implement a <code>succ</code> method to return the next object in sequence. The <a href="Range.html#method-i-step"><code>step</code></a> and <a href="Range.html#method-i-include-3F"><code>include?</code></a> methods require the begin object to implement <code>succ</code> or to be numeric.</p>
+
+<p>In the <code>Xs</code> class below both <code>&lt;=&gt;</code> and <code>succ</code> are implemented so <code>Xs</code> can be used to construct ranges. Note that the <a href="Comparable.html"><code>Comparable</code></a> module is included so the <code>==</code> method is defined in terms of <code>&lt;=&gt;</code>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Xs</span>                <span class="ruby-comment"># represent a string of &#39;x&#39;s</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">Comparable</span>
+  <span class="ruby-identifier">attr</span> <span class="ruby-value">:length</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">n</span>)
+    <span class="ruby-ivar">@length</span> = <span class="ruby-identifier">n</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">succ</span>
+    <span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@length</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+    <span class="ruby-ivar">@length</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_s</span>
+    <span class="ruby-identifier">sprintf</span> <span class="ruby-node">&quot;%2d #{inspect}&quot;</span>, <span class="ruby-ivar">@length</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+    <span class="ruby-string">&#39;x&#39;</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@length</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>An example of using <code>Xs</code> to construct a range:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">3</span>)<span class="ruby-operator">..</span><span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">6</span>)   <span class="ruby-comment">#=&gt; xxx..xxxxxx</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">to_a</span>                     <span class="ruby-comment">#=&gt; [xxx, xxxx, xxxxx, xxxxxx]</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">member?</span>(<span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">5</span>))       <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-json_create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">json_create</span><span
+            class="method-args">(object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deserializes <a href="JSON.html"><code>JSON</code></a> string by constructing new <a href="Range.html"><code>Range</code></a> object with arguments <code>a</code> serialized by <code>to_json</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="json_create-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/range.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">json_create</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">object</span>[<span class="ruby-string">&#39;a&#39;</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(begin, end, exclude_end=false)    &rarr; rng
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Constructs a range using the given <code>begin</code> and <code>end</code>. If the <code>exclude_end</code> parameter is omitted or is <code>false</code>, the range will include the end object; otherwise, it will be excluded.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+range_initialize(int argc, VALUE *argv, VALUE range)
+{
+    VALUE beg, end, flags;
+
+    rb_scan_args(argc, argv, &quot;21&quot;, &amp;beg, &amp;end, &amp;flags);
+    range_modify(range);
+    range_init(range, beg, end, RBOOL(RTEST(flags)));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-25" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            step(n=1) {| obj | block }    &rarr; rng
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            step(n=1)                     &rarr; an_enumerator
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            step(n=1)                     &rarr; an_arithmetic_sequence
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rng % n                           &rarr; an_enumerator
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rng % n                           &rarr; an_arithmetic_sequence
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over the range, passing each <code>n</code>th element to the block. If begin and end are numeric, <code>n</code> is added for each iteration. Otherwise <a href="Range.html#method-i-step"><code>step</code></a> invokes succ to iterate through range elements.</p>
+
+<p>If no block is given, an enumerator is returned instead. Especially, the enumerator is an <a href="Enumerator/ArithmeticSequence.html"><code>Enumerator::ArithmeticSequence</code></a> if begin and end of the range are numeric.</p>
+
+<pre class="ruby"><span class="ruby-identifier">range</span> = <span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>)<span class="ruby-operator">..</span><span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">10</span>)
+<span class="ruby-identifier">range</span>.<span class="ruby-identifier">step</span>(<span class="ruby-value">2</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x</span>}
+<span class="ruby-identifier">puts</span>
+<span class="ruby-identifier">range</span>.<span class="ruby-identifier">step</span>(<span class="ruby-value">3</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x</span>}
+</pre>
+
+<p><em>produces:</em></p>
+
+<pre> 1 x
+ 3 xxx
+ 5 xxxxx
+ 7 xxxxxxx
+ 9 xxxxxxxxx
+
+ 1 x
+ 4 xxxx
+ 7 xxxxxxx
+10 xxxxxxxxxx</pre>
+
+<p>See <a href="Range.html"><code>Range</code></a> for the definition of class Xs.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="25-source">
+            <pre>static VALUE
+range_percent_step(VALUE range, VALUE step)
+{
+    return range_step(1, &amp;step, range);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rng == obj    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> only if <code>obj</code> is a <a href="Range.html"><code>Range</code></a>, has equivalent begin and end items (by comparing them with <code>==</code>), and has the same <a href="Range.html#method-i-exclude_end-3F"><code>exclude_end?</code></a> setting as the range.</p>
+
+<pre class="ruby">(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>) <span class="ruby-operator">==</span> (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>)            <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>) <span class="ruby-operator">==</span> <span class="ruby-constant">Range</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>,<span class="ruby-value">2</span>)    <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>) <span class="ruby-operator">==</span> (<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">2</span>)           <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+range_eq(VALUE range, VALUE obj)
+{
+    if (range == obj)
+        return Qtrue;
+    if (!rb_obj_is_kind_of(obj, rb_cRange))
+        return Qfalse;
+
+    return rb_exec_recursive_paired(recursive_equal, range, obj, obj);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rng === obj       &rarr;  true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>obj</code> is between begin and end of range, <code>false</code> otherwise (same as <a href="Range.html#method-i-cover-3F"><code>cover?</code></a>). Conveniently, <code>===</code> is the comparison operator used by <code>case</code> statements.</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> <span class="ruby-value">79</span>
+<span class="ruby-keyword">when</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">50</span>   <span class="ruby-keyword">then</span>   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;low&quot;</span>
+<span class="ruby-keyword">when</span> <span class="ruby-value">51</span><span class="ruby-operator">..</span><span class="ruby-value">75</span>  <span class="ruby-keyword">then</span>   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;medium&quot;</span>
+<span class="ruby-keyword">when</span> <span class="ruby-value">76</span><span class="ruby-operator">..</span><span class="ruby-value">100</span> <span class="ruby-keyword">then</span>   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;high&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># Prints &quot;high&quot;</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-string">&quot;2.6.5&quot;</span>
+<span class="ruby-keyword">when</span> <span class="ruby-operator">...</span><span class="ruby-string">&quot;2.4&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;EOL&quot;</span>
+<span class="ruby-keyword">when</span> <span class="ruby-string">&quot;2.4&quot;</span><span class="ruby-operator">...</span><span class="ruby-string">&quot;2.5&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;maintenance&quot;</span>
+<span class="ruby-keyword">when</span> <span class="ruby-string">&quot;2.5&quot;</span><span class="ruby-operator">...</span><span class="ruby-string">&quot;2.7&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;stable&quot;</span>
+<span class="ruby-keyword">when</span> <span class="ruby-string">&quot;2.7&quot;</span><span class="ruby-operator">..</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;upcoming&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># Prints &quot;stable&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-3D-source">
+            <pre>static VALUE
+range_eqq(VALUE range, VALUE val)
+{
+    VALUE ret = range_include_internal(range, val, 1);
+    if (ret != Qundef) return ret;
+    return r_cover_p(range, RANGE_BEG(range), RANGE_END(range), val);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-as_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_json</span><span
+            class="method-args">(*)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a hash, that will be turned into a <a href="JSON.html"><code>JSON</code></a> object and represent this object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="as_json-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/range.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">as_json</span>(<span class="ruby-operator">*</span>)
+  {
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">create_id</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>,
+    <span class="ruby-string">&#39;a&#39;</span>             <span class="ruby-operator">=&gt;</span> [ <span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span>, <span class="ruby-identifier">exclude_end?</span> ]
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-begin" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            begin    &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the object that defines the beginning of the range.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">begin</span>   <span class="ruby-comment">#=&gt; 1</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="begin-source">
+            <pre>static VALUE
+range_begin(VALUE range)
+{
+    return RANGE_BEG(range);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bsearch" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            bsearch {|obj| block }  &rarr; value
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>By using binary search, finds a value in range which meets the given condition in O(log n) where n is the size of the range.</p>
+
+<p>You can use this method in two use cases: a find-minimum mode and a find-any mode.  In either case, the elements of the range must be monotone (or sorted) with respect to the block.</p>
+
+<p>In find-minimum mode (this is a good choice for typical use case), the block must return true or false, and there must be a value x so that:</p>
+<ul><li>
+<p>the block returns false for any value which is less than x, and</p>
+</li><li>
+<p>the block returns true for any value which is greater than or equal to x.</p>
+</li></ul>
+
+<p>If x is within the range, this method returns the value x. Otherwise, it returns nil.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = [<span class="ruby-value">0</span>, <span class="ruby-value">4</span>, <span class="ruby-value">7</span>, <span class="ruby-value">10</span>, <span class="ruby-value">12</span>]
+(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">ary</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-value">4</span> } <span class="ruby-comment">#=&gt; 1</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">ary</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-value">6</span> } <span class="ruby-comment">#=&gt; 2</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">ary</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-value">8</span> } <span class="ruby-comment">#=&gt; 3</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">ary</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-value">100</span> } <span class="ruby-comment">#=&gt; nil</span>
+
+(<span class="ruby-value">0.0</span><span class="ruby-operator">...</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-constant">Math</span>.<span class="ruby-identifier">log</span>(<span class="ruby-identifier">x</span>) <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span> } <span class="ruby-comment">#=&gt; 1.0</span>
+</pre>
+
+<p>In find-any mode (this behaves like libc&#39;s bsearch(3)), the block must return a number, and there must be two values x and y (x &lt;= y) so that:</p>
+<ul><li>
+<p>the block returns a positive number for v if v &lt; x,</p>
+</li><li>
+<p>the block returns zero for v if x &lt;= v &lt; y, and</p>
+</li><li>
+<p>the block returns a negative number for v if y &lt;= v.</p>
+</li></ul>
+
+<p>This method returns any value which is within the intersection of the given range and x…y (if any).  If there is no value that satisfies the condition, it returns nil.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span> = [<span class="ruby-value">0</span>, <span class="ruby-value">100</span>, <span class="ruby-value">100</span>, <span class="ruby-value">100</span>, <span class="ruby-value">200</span>]
+(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-value">100</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>] } <span class="ruby-comment">#=&gt; 1, 2 or 3</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-value">300</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>] } <span class="ruby-comment">#=&gt; nil</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>).<span class="ruby-identifier">bsearch</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>  <span class="ruby-value">50</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span>] } <span class="ruby-comment">#=&gt; nil</span>
+</pre>
+
+<p>You must not mix the two modes at a time; the block must always return either true/false, or always return a number.  It is undefined which value is actually picked up at each iteration.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="bsearch-source">
+            <pre>static VALUE
+range_bsearch(VALUE range)
+{
+    VALUE beg, end, satisfied = Qnil;
+    int smaller;
+
+    /* Implementation notes:
+     * Floats are handled by mapping them to 64 bits integers.
+     * Apart from sign issues, floats and their 64 bits integer have the
+     * same order, assuming they are represented as exponent followed
+     * by the mantissa. This is true with or without implicit bit.
+     *
+     * Finding the average of two ints needs to be careful about
+     * potential overflow (since float to long can use 64 bits)
+     * as well as the fact that -1/2 can be 0 or -1 in C89.
+     *
+     * Note that -0.0 is mapped to the same int as 0.0 as we don&#39;t want
+     * (-1...0.0).bsearch to yield -0.0.
+     */
+
+#define BSEARCH(conv) \
+    do { \
+        RETURN_ENUMERATOR(range, 0, 0); \
+        if (EXCL(range)) high--; \
+        org_high = high; \
+        while (low &lt; high) { \
+            mid = ((high &lt; 0) == (low &lt; 0)) ? low + ((high - low) / 2) \
+                : (low &lt; -high) ? -((-1 - low - high)/2 + 1) : (low + high) / 2; \
+            BSEARCH_CHECK(conv(mid)); \
+            if (smaller) { \
+                high = mid; \
+            } \
+            else { \
+                low = mid + 1; \
+            } \
+        } \
+        if (low == org_high) { \
+            BSEARCH_CHECK(conv(low)); \
+            if (!smaller) return Qnil; \
+        } \
+        return satisfied; \
+    } while (0)
+
+
+    beg = RANGE_BEG(range);
+    end = RANGE_END(range);
+
+    if (FIXNUM_P(beg) &amp;&amp; FIXNUM_P(end)) {
+        long low = FIX2LONG(beg);
+        long high = FIX2LONG(end);
+        long mid, org_high;
+        BSEARCH(INT2FIX);
+    }
+#if SIZEOF_DOUBLE == 8 &amp;&amp; defined(HAVE_INT64_T)
+    else if (RB_TYPE_P(beg, T_FLOAT) || RB_TYPE_P(end, T_FLOAT)) {
+        int64_t low  = double_as_int64(NIL_P(beg) ? -HUGE_VAL : RFLOAT_VALUE(rb_Float(beg)));
+        int64_t high = double_as_int64(NIL_P(end) ?  HUGE_VAL : RFLOAT_VALUE(rb_Float(end)));
+        int64_t mid, org_high;
+        BSEARCH(int64_as_double_to_num);
+    }
+#endif
+    else if (is_integer_p(beg) &amp;&amp; is_integer_p(end)) {
+        RETURN_ENUMERATOR(range, 0, 0);
+        return bsearch_integer_range(beg, end, EXCL(range));
+    }
+    else if (is_integer_p(beg) &amp;&amp; NIL_P(end)) {
+        VALUE diff = LONG2FIX(1);
+        RETURN_ENUMERATOR(range, 0, 0);
+        while (1) {
+            VALUE mid = rb_funcall(beg, &#39;+&#39;, 1, diff);
+            BSEARCH_CHECK(mid);
+            if (smaller) {
+                return bsearch_integer_range(beg, mid, 0);
+            }
+            diff = rb_funcall(diff, &#39;*&#39;, 1, LONG2FIX(2));
+        }
+    }
+    else if (NIL_P(beg) &amp;&amp; is_integer_p(end)) {
+        VALUE diff = LONG2FIX(-1);
+        RETURN_ENUMERATOR(range, 0, 0);
+        while (1) {
+            VALUE mid = rb_funcall(end, &#39;+&#39;, 1, diff);
+            BSEARCH_CHECK(mid);
+            if (!smaller) {
+                return bsearch_integer_range(mid, end, 0);
+            }
+            diff = rb_funcall(diff, &#39;*&#39;, 1, LONG2FIX(2));
+        }
+    }
+    else {
+        rb_raise(rb_eTypeError, &quot;can&#39;t do binary search for %s&quot;, rb_obj_classname(beg));
+    }
+    return range;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-count" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            count                 &rarr; int
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            count(item)           &rarr; int
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            count { |obj| block } &rarr; int
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Identical to <a href="Enumerable.html#method-i-count"><code>Enumerable#count</code></a>, except it returns Infinity for endless ranges.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="count-source">
+            <pre>static VALUE
+range_count(int argc, VALUE *argv, VALUE range)
+{
+    if (argc != 0) {
+        /* It is odd for instance (1...).count(0) to return Infinity. Just let
+         * it loop. */
+        return rb_call_super(argc, argv);
+    }
+    else if (rb_block_given_p()) {
+        /* Likewise it is odd for instance (1...).count {|x| x == 0 } to return
+         * Infinity. Just let it loop. */
+        return rb_call_super(argc, argv);
+    }
+    else if (NIL_P(RANGE_END(range))) {
+        /* We are confident that the answer is Infinity. */
+        return DBL2NUM(HUGE_VAL);
+    }
+    else if (NIL_P(RANGE_BEG(range))) {
+        /* We are confident that the answer is Infinity. */
+        return DBL2NUM(HUGE_VAL);
+    }
+    else {
+        return rb_call_super(argc, argv);
+    }
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cover-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            cover?(obj)   &rarr;  true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            cover?(range) &rarr;  true or false
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>obj</code> is between the begin and end of the range.</p>
+
+<p>This tests <code>begin &lt;= obj &lt;= end</code> when <a href="Range.html#method-i-exclude_end-3F"><code>exclude_end?</code></a> is <code>false</code> and <code>begin &lt;= obj &lt; end</code> when <a href="Range.html#method-i-exclude_end-3F"><code>exclude_end?</code></a> is <code>true</code>.</p>
+
+<p>If called with a <a href="Range.html"><code>Range</code></a> argument, returns <code>true</code> when the given range is covered by the receiver, by comparing the begin and end values. If the argument can be treated as a sequence, this method treats it that way. In the specific case of <code>(a..b).cover?(c...d)</code> with <code>a &lt;= c &amp;&amp; b &lt; d</code>, the end of the sequence must be calculated, which may exhibit poor performance if <code>c</code> is non-numeric. Returns <code>false</code> if the begin value of the range is larger than the end value. Also returns <code>false</code> if one of the internal calls to <code>&lt;=&gt;</code> returns <code>nil</code> (indicating the objects are not comparable).</p>
+
+<pre class="ruby">(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-string">&quot;c&quot;</span>)  <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-string">&quot;5&quot;</span>)  <span class="ruby-comment">#=&gt; false</span>
+(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-string">&quot;cc&quot;</span>) <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-value">1</span>)    <span class="ruby-comment">#=&gt; false</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>)     <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">6</span>)     <span class="ruby-comment">#=&gt; false</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-value">6</span>)    <span class="ruby-comment">#=&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="cover-3F-source">
+            <pre>static VALUE
+range_cover(VALUE range, VALUE val)
+{
+    VALUE beg, end;
+
+    beg = RANGE_BEG(range);
+    end = RANGE_END(range);
+
+    if (rb_obj_is_kind_of(val, rb_cRange)) {
+        return RBOOL(r_cover_range_p(range, beg, end, val));
+    }
+    return r_cover_p(range, beg, end, val);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each {| i | block } &rarr; rng
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each                &rarr; an_enumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over the elements of range, passing each in turn to the block.</p>
+
+<p>The <code>each</code> method can only be used if the begin object of the range supports the <code>succ</code> method.  A <a href="TypeError.html"><code>TypeError</code></a> is raised if the object does not have <code>succ</code> method defined (like <a href="Float.html"><code>Float</code></a>).</p>
+
+<p>If no block is given, an enumerator is returned instead.</p>
+
+<pre class="ruby">(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">15</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">print</span> <span class="ruby-identifier">n</span>, <span class="ruby-string">&#39; &#39;</span> }
+<span class="ruby-comment"># prints: 10 11 12 13 14 15</span>
+
+(<span class="ruby-value">2.5</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">print</span> <span class="ruby-identifier">n</span>, <span class="ruby-string">&#39; &#39;</span> }
+<span class="ruby-comment"># raises: TypeError: can&#39;t iterate from Float</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre>static VALUE
+range_each(VALUE range)
+{
+    VALUE beg, end;
+    long i, lim;
+
+    RETURN_SIZED_ENUMERATOR(range, 0, 0, range_enum_size);
+
+    beg = RANGE_BEG(range);
+    end = RANGE_END(range);
+
+    if (FIXNUM_P(beg) &amp;&amp; NIL_P(end)) {
+      fixnum_endless:
+        i = FIX2LONG(beg);
+        while (FIXABLE(i)) {
+            rb_yield(LONG2FIX(i++));
+        }
+        beg = LONG2NUM(i);
+      bignum_endless:
+        for (;; beg = rb_big_plus(beg, INT2FIX(1)))
+            rb_yield(beg);
+    }
+    else if (FIXNUM_P(beg) &amp;&amp; FIXNUM_P(end)) { /* fixnums are special */
+      fixnum_loop:
+        lim = FIX2LONG(end);
+        if (!EXCL(range))
+            lim += 1;
+        for (i = FIX2LONG(beg); i &lt; lim; i++) {
+            rb_yield(LONG2FIX(i));
+        }
+    }
+    else if (RB_INTEGER_TYPE_P(beg) &amp;&amp; (NIL_P(end) || RB_INTEGER_TYPE_P(end))) {
+        if (SPECIAL_CONST_P(end) || RBIGNUM_POSITIVE_P(end)) { /* end &gt;= FIXNUM_MIN */
+            if (!FIXNUM_P(beg)) {
+                if (RBIGNUM_NEGATIVE_P(beg)) {
+                    do {
+                        rb_yield(beg);
+                    } while (!FIXNUM_P(beg = rb_big_plus(beg, INT2FIX(1))));
+                    if (NIL_P(end)) goto fixnum_endless;
+                    if (FIXNUM_P(end)) goto fixnum_loop;
+                }
+                else {
+                    if (NIL_P(end)) goto bignum_endless;
+                    if (FIXNUM_P(end)) return range;
+                }
+            }
+            if (FIXNUM_P(beg)) {
+                i = FIX2LONG(beg);
+                do {
+                    rb_yield(LONG2FIX(i));
+                } while (POSFIXABLE(++i));
+                beg = LONG2NUM(i);
+            }
+            ASSUME(!FIXNUM_P(beg));
+            ASSUME(!SPECIAL_CONST_P(end));
+        }
+        if (!FIXNUM_P(beg) &amp;&amp; RBIGNUM_SIGN(beg) == RBIGNUM_SIGN(end)) {
+            if (EXCL(range)) {
+                while (rb_big_cmp(beg, end) == INT2FIX(-1)) {
+                    rb_yield(beg);
+                    beg = rb_big_plus(beg, INT2FIX(1));
+                }
+            }
+            else {
+                VALUE c;
+                while ((c = rb_big_cmp(beg, end)) != INT2FIX(1)) {
+                    rb_yield(beg);
+                    if (c == INT2FIX(0)) break;
+                    beg = rb_big_plus(beg, INT2FIX(1));
+                }
+            }
+        }
+    }
+    else if (SYMBOL_P(beg) &amp;&amp; (NIL_P(end) || SYMBOL_P(end))) { /* symbols are special */
+        beg = rb_sym2str(beg);
+        if (NIL_P(end)) {
+            rb_str_upto_endless_each(beg, sym_each_i, 0);
+        }
+        else {
+            rb_str_upto_each(beg, rb_sym2str(end), EXCL(range), sym_each_i, 0);
+        }
+    }
+    else {
+        VALUE tmp = rb_check_string_type(beg);
+
+        if (!NIL_P(tmp)) {
+            if (!NIL_P(end)) {
+                rb_str_upto_each(tmp, end, EXCL(range), each_i, 0);
+            }
+            else {
+                rb_str_upto_endless_each(tmp, each_i, 0);
+            }
+        }
+        else {
+            if (!discrete_object_p(beg)) {
+                rb_raise(rb_eTypeError, &quot;can&#39;t iterate from %s&quot;,
+                         rb_obj_classname(beg));
+            }
+            if (!NIL_P(end))
+                range_each_func(range, each_i, 0);
+            else
+                for (;; beg = rb_funcallv(beg, id_succ, 0, 0))
+                    rb_yield(beg);
+        }
+    }
+    return range;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-end" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            end    &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the object that defines the end of the range.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">end</span>    <span class="ruby-comment">#=&gt; 10</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-value">10</span>).<span class="ruby-identifier">end</span>   <span class="ruby-comment">#=&gt; 10</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="end-source">
+            <pre>static VALUE
+range_end(VALUE range)
+{
+    return RANGE_END(range);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-entries" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            entries                &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array containing the items in the range.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">7</span>).<span class="ruby-identifier">to_a</span>  <span class="ruby-comment">#=&gt; [1, 2, 3, 4, 5, 6, 7]</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span>).<span class="ruby-identifier">to_a</span>   <span class="ruby-comment">#=&gt; RangeError: cannot convert endless range to an array</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="entries-source">
+            <pre>static VALUE
+range_to_a(VALUE range)
+{
+    if (NIL_P(RANGE_END(range))) {
+        rb_raise(rb_eRangeError, &quot;cannot convert endless range to an array&quot;);
+    }
+    return rb_call_super(0, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eql-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            eql?(obj)    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> only if <code>obj</code> is a <a href="Range.html"><code>Range</code></a>, has equivalent begin and end items (by comparing them with <code>eql?</code>), and has the same <a href="Range.html#method-i-exclude_end-3F"><code>exclude_end?</code></a> setting as the range.</p>
+
+<pre class="ruby">(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>).<span class="ruby-identifier">eql?</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>)            <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>).<span class="ruby-identifier">eql?</span>(<span class="ruby-constant">Range</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>,<span class="ruby-value">2</span>))  <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>).<span class="ruby-identifier">eql?</span>(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">2</span>)           <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="eql-3F-source">
+            <pre>static VALUE
+range_eql(VALUE range, VALUE obj)
+{
+    if (range == obj)
+        return Qtrue;
+    if (!rb_obj_is_kind_of(obj, rb_cRange))
+        return Qfalse;
+    return rb_exec_recursive_paired(recursive_eql, range, obj, obj);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-exclude_end-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            exclude_end?    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the range excludes its end value.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">exclude_end?</span>     <span class="ruby-comment">#=&gt; false</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-value">5</span>).<span class="ruby-identifier">exclude_end?</span>    <span class="ruby-comment">#=&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="exclude_end-3F-source">
+            <pre>static VALUE
+range_exclude_end_p(VALUE range)
+{
+    return EXCL(range) ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-first" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            first    &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            first(n) &rarr; an_array
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the first object in the range, or an array of the first <code>n</code> elements.</p>
+
+<pre class="ruby">(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">20</span>).<span class="ruby-identifier">first</span>     <span class="ruby-comment">#=&gt; 10</span>
+(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">20</span>).<span class="ruby-identifier">first</span>(<span class="ruby-value">3</span>)  <span class="ruby-comment">#=&gt; [10, 11, 12]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="first-source">
+            <pre>static VALUE
+range_first(int argc, VALUE *argv, VALUE range)
+{
+    VALUE n, ary[2];
+
+    if (NIL_P(RANGE_BEG(range))) {
+        rb_raise(rb_eRangeError, &quot;cannot get the first element of beginless range&quot;);
+    }
+    if (argc == 0) return RANGE_BEG(range);
+
+    rb_scan_args(argc, argv, &quot;1&quot;, &amp;n);
+    ary[0] = n;
+    ary[1] = rb_ary_new2(NUM2LONG(n));
+    rb_block_call(range, idEach, 0, 0, first_i, (VALUE)ary);
+
+    return ary[1];
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hash" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hash    &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compute a hash-code for this range. Two ranges with equal begin and end points (using <code>eql?</code>), and the same <a href="Range.html#method-i-exclude_end-3F"><code>exclude_end?</code></a> value will generate the same hash-code.</p>
+
+<p>See also <a href="Object.html#method-i-hash"><code>Object#hash</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hash-source">
+            <pre>static VALUE
+range_hash(VALUE range)
+{
+    st_index_t hash = EXCL(range);
+    VALUE v;
+
+    hash = rb_hash_start(hash);
+    v = rb_hash(RANGE_BEG(range));
+    hash = rb_hash_uint(hash, NUM2LONG(v));
+    v = rb_hash(RANGE_END(range));
+    hash = rb_hash_uint(hash, NUM2LONG(v));
+    hash = rb_hash_uint(hash, EXCL(range) &lt;&lt; 24);
+    hash = rb_hash_end(hash);
+
+    return ST2FIX(hash);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-include-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            include?(obj) &rarr;  true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>obj</code> is an element of the range, <code>false</code> otherwise.</p>
+
+<pre class="ruby">(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;g&quot;</span>)   <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;A&quot;</span>)   <span class="ruby-comment">#=&gt; false</span>
+(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;cc&quot;</span>)  <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>If you need to ensure <code>obj</code> is between <code>begin</code> and <code>end</code>, use <a href="Range.html#method-i-cover-3F"><code>cover?</code></a></p>
+
+<pre class="ruby">(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-string">&quot;cc&quot;</span>)  <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>If begin and end are numeric, <a href="Range.html#method-i-include-3F"><code>include?</code></a> behaves like <a href="Range.html#method-i-cover-3F"><code>cover?</code></a></p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-value">1.5</span>) <span class="ruby-comment"># =&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="include-3F-source">
+            <pre>static VALUE
+range_include(VALUE range, VALUE val)
+{
+    VALUE ret = range_include_internal(range, val, 0);
+    if (ret != Qundef) return ret;
+    return rb_call_super(1, &amp;val);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect  &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Convert this range object to a printable form (using <a href="Range.html#method-i-inspect"><code>inspect</code></a> to convert the begin and end objects).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+range_inspect(VALUE range)
+{
+    return rb_exec_recursive(inspect_range, range, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-last" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            last    &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            last(n) &rarr; an_array
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the last object in the range, or an array of the last <code>n</code> elements.</p>
+
+<p>Note that with no arguments <code>last</code> will return the object that defines the end of the range even if <a href="Range.html#method-i-exclude_end-3F"><code>exclude_end?</code></a> is <code>true</code>.</p>
+
+<pre class="ruby">(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">20</span>).<span class="ruby-identifier">last</span>      <span class="ruby-comment">#=&gt; 20</span>
+(<span class="ruby-value">10</span><span class="ruby-operator">...</span><span class="ruby-value">20</span>).<span class="ruby-identifier">last</span>     <span class="ruby-comment">#=&gt; 20</span>
+(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">20</span>).<span class="ruby-identifier">last</span>(<span class="ruby-value">3</span>)   <span class="ruby-comment">#=&gt; [18, 19, 20]</span>
+(<span class="ruby-value">10</span><span class="ruby-operator">...</span><span class="ruby-value">20</span>).<span class="ruby-identifier">last</span>(<span class="ruby-value">3</span>)  <span class="ruby-comment">#=&gt; [17, 18, 19]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="last-source">
+            <pre>static VALUE
+range_last(int argc, VALUE *argv, VALUE range)
+{
+    VALUE b, e;
+
+    if (NIL_P(RANGE_END(range))) {
+        rb_raise(rb_eRangeError, &quot;cannot get the last element of endless range&quot;);
+    }
+    if (argc == 0) return RANGE_END(range);
+
+    b = RANGE_BEG(range);
+    e = RANGE_END(range);
+    if (RB_INTEGER_TYPE_P(b) &amp;&amp; RB_INTEGER_TYPE_P(e) &amp;&amp;
+        RB_LIKELY(rb_method_basic_definition_p(rb_cRange, idEach))) {
+        return rb_int_range_last(argc, argv, range);
+    }
+    return rb_ary_last(argc, argv, rb_Array(range));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-max" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            max                       &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            max {| a,b | block }      &rarr; obj
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            max(n)                    &rarr; obj
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            max(n) {| a,b | block }   &rarr; obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the maximum value in the range. Returns <code>nil</code> if the begin value of the range larger than the end value. Returns <code>nil</code> if the begin value of an exclusive range is equal to the end value.</p>
+
+<p>Can be given an optional block to override the default comparison method <code>a &lt;=&gt; b</code>.</p>
+
+<pre class="ruby">(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">20</span>).<span class="ruby-identifier">max</span>    <span class="ruby-comment">#=&gt; 20</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="max-source">
+            <pre>static VALUE
+range_max(int argc, VALUE *argv, VALUE range)
+{
+    VALUE e = RANGE_END(range);
+    int nm = FIXNUM_P(e) || rb_obj_is_kind_of(e, rb_cNumeric);
+
+    if (NIL_P(RANGE_END(range))) {
+        rb_raise(rb_eRangeError, &quot;cannot get the maximum of endless range&quot;);
+    }
+
+    if (rb_block_given_p() || (EXCL(range) &amp;&amp; !nm) || argc) {
+        if (NIL_P(RANGE_BEG(range))) {
+            rb_raise(rb_eRangeError, &quot;cannot get the maximum of beginless range with custom comparison method&quot;);
+        }
+        return rb_call_super(argc, argv);
+    }
+    else {
+        struct cmp_opt_data cmp_opt = { 0, 0 };
+        VALUE b = RANGE_BEG(range);
+        int c = OPTIMIZED_CMP(b, e, cmp_opt);
+
+        if (c &gt; 0)
+            return Qnil;
+        if (EXCL(range)) {
+            if (!RB_INTEGER_TYPE_P(e)) {
+                rb_raise(rb_eTypeError, &quot;cannot exclude non Integer end value&quot;);
+            }
+            if (c == 0) return Qnil;
+            if (!RB_INTEGER_TYPE_P(b)) {
+                rb_raise(rb_eTypeError, &quot;cannot exclude end value with non Integer begin value&quot;);
+            }
+            if (FIXNUM_P(e)) {
+                return LONG2NUM(FIX2LONG(e) - 1);
+            }
+            return rb_funcall(e, &#39;-&#39;, 1, INT2FIX(1));
+        }
+        return e;
+    }
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-member-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            member?(obj)  &rarr;  true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>obj</code> is an element of the range, <code>false</code> otherwise.</p>
+
+<pre class="ruby">(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;g&quot;</span>)   <span class="ruby-comment">#=&gt; true</span>
+(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;A&quot;</span>)   <span class="ruby-comment">#=&gt; false</span>
+(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;cc&quot;</span>)  <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>If you need to ensure <code>obj</code> is between <code>begin</code> and <code>end</code>, use <a href="Range.html#method-i-cover-3F"><code>cover?</code></a></p>
+
+<pre class="ruby">(<span class="ruby-string">&quot;a&quot;</span><span class="ruby-operator">..</span><span class="ruby-string">&quot;z&quot;</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-string">&quot;cc&quot;</span>)  <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>If begin and end are numeric, <a href="Range.html#method-i-include-3F"><code>include?</code></a> behaves like <a href="Range.html#method-i-cover-3F"><code>cover?</code></a></p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-value">1.5</span>) <span class="ruby-comment"># =&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="member-3F-source">
+            <pre>static VALUE
+range_include(VALUE range, VALUE val)
+{
+    VALUE ret = range_include_internal(range, val, 0);
+    if (ret != Qundef) return ret;
+    return rb_call_super(1, &amp;val);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-min" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            min                       &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            min {| a,b | block }      &rarr; obj
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            min(n)                    &rarr; array
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            min(n) {| a,b | block }   &rarr; array
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the minimum value in the range. Returns <code>nil</code> if the begin value of the range is larger than the end value. Returns <code>nil</code> if the begin value of an exclusive range is equal to the end value.</p>
+
+<p>Can be given an optional block to override the default comparison method <code>a &lt;=&gt; b</code>.</p>
+
+<pre class="ruby">(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">20</span>).<span class="ruby-identifier">min</span>    <span class="ruby-comment">#=&gt; 10</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="min-source">
+            <pre>static VALUE
+range_min(int argc, VALUE *argv, VALUE range)
+{
+    if (NIL_P(RANGE_BEG(range))) {
+        rb_raise(rb_eRangeError, &quot;cannot get the minimum of beginless range&quot;);
+    }
+
+    if (rb_block_given_p()) {
+        if (NIL_P(RANGE_END(range))) {
+            rb_raise(rb_eRangeError, &quot;cannot get the minimum of endless range with custom comparison method&quot;);
+        }
+        return rb_call_super(argc, argv);
+    }
+    else if (argc != 0) {
+        return range_first(argc, argv, range);
+    }
+    else {
+        struct cmp_opt_data cmp_opt = { 0, 0 };
+        VALUE b = RANGE_BEG(range);
+        VALUE e = RANGE_END(range);
+        int c = NIL_P(e) ? -1 : OPTIMIZED_CMP(b, e, cmp_opt);
+
+        if (c &gt; 0 || (c == 0 &amp;&amp; EXCL(range)))
+            return Qnil;
+        return b;
+    }
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-minmax" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            minmax                       &rarr; [obj, obj]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            minmax {| a,b | block }      &rarr; [obj, obj]
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a two element array which contains the minimum and the maximum value in the range.</p>
+
+<p>Can be given an optional block to override the default comparison method <code>a &lt;=&gt; b</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="minmax-source">
+            <pre>static VALUE
+range_minmax(VALUE range)
+{
+    if (rb_block_given_p()) {
+        return rb_call_super(0, NULL);
+    }
+    return rb_assoc_new(range_min(0, NULL, range), range_max(0, NULL, range));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            size                   &rarr; num
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of elements in the range. Both the begin and the end of the <a href="Range.html"><code>Range</code></a> must be <a href="Numeric.html"><code>Numeric</code></a>, otherwise nil is returned.</p>
+
+<pre class="ruby">(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">20</span>).<span class="ruby-identifier">size</span>    <span class="ruby-comment">#=&gt; 11</span>
+(<span class="ruby-string">&#39;a&#39;</span><span class="ruby-operator">..</span><span class="ruby-string">&#39;z&#39;</span>).<span class="ruby-identifier">size</span>  <span class="ruby-comment">#=&gt; nil</span>
+(<span class="ruby-operator">-</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>).<span class="ruby-identifier">size</span> <span class="ruby-comment">#=&gt; Infinity</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre>static VALUE
+range_size(VALUE range)
+{
+    VALUE b = RANGE_BEG(range), e = RANGE_END(range);
+    if (rb_obj_is_kind_of(b, rb_cNumeric)) {
+        if (rb_obj_is_kind_of(e, rb_cNumeric)) {
+            return ruby_num_interval_step_size(b, e, INT2FIX(1), EXCL(range));
+        }
+        if (NIL_P(e)) {
+            return DBL2NUM(HUGE_VAL);
+        }
+    }
+    else if (NIL_P(b)) {
+        return DBL2NUM(HUGE_VAL);
+    }
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-step" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            step(n=1) {| obj | block }    &rarr; rng
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            step(n=1)                     &rarr; an_enumerator
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            step(n=1)                     &rarr; an_arithmetic_sequence
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rng % n                           &rarr; an_enumerator
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rng % n                           &rarr; an_arithmetic_sequence
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over the range, passing each <code>n</code>th element to the block. If begin and end are numeric, <code>n</code> is added for each iteration. Otherwise <a href="Range.html#method-i-step"><code>step</code></a> invokes succ to iterate through range elements.</p>
+
+<p>If no block is given, an enumerator is returned instead. Especially, the enumerator is an <a href="Enumerator/ArithmeticSequence.html"><code>Enumerator::ArithmeticSequence</code></a> if begin and end of the range are numeric.</p>
+
+<pre class="ruby"><span class="ruby-identifier">range</span> = <span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>)<span class="ruby-operator">..</span><span class="ruby-constant">Xs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">10</span>)
+<span class="ruby-identifier">range</span>.<span class="ruby-identifier">step</span>(<span class="ruby-value">2</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x</span>}
+<span class="ruby-identifier">puts</span>
+<span class="ruby-identifier">range</span>.<span class="ruby-identifier">step</span>(<span class="ruby-value">3</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x</span>}
+</pre>
+
+<p><em>produces:</em></p>
+
+<pre> 1 x
+ 3 xxx
+ 5 xxxxx
+ 7 xxxxxxx
+ 9 xxxxxxxxx
+
+ 1 x
+ 4 xxxx
+ 7 xxxxxxx
+10 xxxxxxxxxx</pre>
+
+<p>See <a href="Range.html"><code>Range</code></a> for the definition of class Xs.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="step-source">
+            <pre>static VALUE
+range_step(int argc, VALUE *argv, VALUE range)
+{
+    VALUE b, e, step, tmp;
+
+    b = RANGE_BEG(range);
+    e = RANGE_END(range);
+    step = (!rb_check_arity(argc, 0, 1) ? INT2FIX(1) : argv[0]);
+
+    if (!rb_block_given_p()) {
+        const VALUE b_num_p = rb_obj_is_kind_of(b, rb_cNumeric);
+        const VALUE e_num_p = rb_obj_is_kind_of(e, rb_cNumeric);
+        if ((b_num_p &amp;&amp; (NIL_P(e) || e_num_p)) || (NIL_P(b) &amp;&amp; e_num_p)) {
+            return rb_arith_seq_new(range, ID2SYM(rb_frame_this_func()), argc, argv,
+                    range_step_size, b, e, step, EXCL(range));
+        }
+
+        RETURN_SIZED_ENUMERATOR(range, argc, argv, range_step_size);
+    }
+
+    step = check_step_domain(step);
+
+    if (FIXNUM_P(b) &amp;&amp; NIL_P(e) &amp;&amp; FIXNUM_P(step)) {
+        long i = FIX2LONG(b), unit = FIX2LONG(step);
+        do {
+            rb_yield(LONG2FIX(i));
+            i += unit;          /* FIXABLE+FIXABLE never overflow */
+        } while (FIXABLE(i));
+        b = LONG2NUM(i);
+
+        for (;; b = rb_big_plus(b, step))
+            rb_yield(b);
+    }
+    else if (FIXNUM_P(b) &amp;&amp; FIXNUM_P(e) &amp;&amp; FIXNUM_P(step)) { /* fixnums are special */
+        long end = FIX2LONG(e);
+        long i, unit = FIX2LONG(step);
+
+        if (!EXCL(range))
+            end += 1;
+        i = FIX2LONG(b);
+        while (i &lt; end) {
+            rb_yield(LONG2NUM(i));
+            if (i + unit &lt; i) break;
+            i += unit;
+        }
+
+    }
+    else if (SYMBOL_P(b) &amp;&amp; (NIL_P(e) || SYMBOL_P(e))) { /* symbols are special */
+        VALUE iter[2];
+        iter[0] = INT2FIX(1);
+        iter[1] = step;
+
+        b = rb_sym2str(b);
+        if (NIL_P(e)) {
+            rb_str_upto_endless_each(b, sym_step_i, (VALUE)iter);
+        }
+        else {
+            rb_str_upto_each(b, rb_sym2str(e), EXCL(range), sym_step_i, (VALUE)iter);
+        }
+    }
+    else if (ruby_float_step(b, e, step, EXCL(range), TRUE)) {
+        /* done */
+    }
+    else if (rb_obj_is_kind_of(b, rb_cNumeric) ||
+             !NIL_P(rb_check_to_integer(b, &quot;to_int&quot;)) ||
+             !NIL_P(rb_check_to_integer(e, &quot;to_int&quot;))) {
+        ID op = EXCL(range) ? &#39;&lt;&#39; : idLE;
+        VALUE v = b;
+        int i = 0;
+
+        while (NIL_P(e) || RTEST(rb_funcall(v, op, 1, e))) {
+            rb_yield(v);
+            i++;
+            v = rb_funcall(b, &#39;+&#39;, 1, rb_funcall(INT2NUM(i), &#39;*&#39;, 1, step));
+        }
+    }
+    else {
+        tmp = rb_check_string_type(b);
+
+        if (!NIL_P(tmp)) {
+            VALUE iter[2];
+
+            b = tmp;
+            iter[0] = INT2FIX(1);
+            iter[1] = step;
+
+            if (NIL_P(e)) {
+                rb_str_upto_endless_each(b, step_i, (VALUE)iter);
+            }
+            else {
+                rb_str_upto_each(b, e, EXCL(range), step_i, (VALUE)iter);
+            }
+        }
+        else {
+            VALUE args[2];
+
+            if (!discrete_object_p(b)) {
+                rb_raise(rb_eTypeError, &quot;can&#39;t iterate from %s&quot;,
+                         rb_obj_classname(b));
+            }
+            args[0] = INT2FIX(1);
+            args[1] = step;
+            range_each_func(range, step_i, (VALUE)args);
+        }
+    }
+    return range;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_a" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_a                   &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array containing the items in the range.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">7</span>).<span class="ruby-identifier">to_a</span>  <span class="ruby-comment">#=&gt; [1, 2, 3, 4, 5, 6, 7]</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span>).<span class="ruby-identifier">to_a</span>   <span class="ruby-comment">#=&gt; RangeError: cannot convert endless range to an array</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_a-source">
+            <pre>static VALUE
+range_to_a(VALUE range)
+{
+    if (NIL_P(RANGE_END(range))) {
+        rb_raise(rb_eRangeError, &quot;cannot convert endless range to an array&quot;);
+    }
+    return rb_call_super(0, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_json</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Stores class name (<a href="Range.html"><code>Range</code></a>) with <a href="JSON.html"><code>JSON</code></a> array of arguments <code>a</code> which include <code>first</code> (integer), <code>last</code> (integer), and <code>exclude_end?</code> (boolean) as <a href="JSON.html"><code>JSON</code></a> string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_json-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/range.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">as_json</span>.<span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s   &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Convert this range object to a printable form (using <a href="Range.html#method-i-to_s"><code>to_s</code></a> to convert the begin and end objects).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+range_to_s(VALUE range)
+{
+    VALUE str, str2;
+
+    str = rb_obj_as_string(RANGE_BEG(range));
+    str2 = rb_obj_as_string(RANGE_END(range));
+    str = rb_str_dup(str);
+    rb_str_cat(str, &quot;...&quot;, EXCL(range) ? 3 : 2);
+    rb_str_append(str, str2);
+
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Racc::GrammarFileScanner - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-atom_symbol">#atom_symbol</a>
+    
+    <li ><a href="#method-i-get_quoted_re">#get_quoted_re</a>
+    
+    <li ><a href="#method-i-lineno">#lineno</a>
+    
+    <li ><a href="#method-i-literal_head-3F">#literal_head?</a>
+    
+    <li ><a href="#method-i-next_line">#next_line</a>
+    
+    <li ><a href="#method-i-read">#read</a>
+    
+    <li ><a href="#method-i-reads">#reads</a>
+    
+    <li ><a href="#method-i-scan_action">#scan_action</a>
+    
+    <li ><a href="#method-i-scan_error-21">#scan_error!</a>
+    
+    <li ><a href="#method-i-scan_quoted">#scan_quoted</a>
+    
+    <li ><a href="#method-i-skip_comment">#skip_comment</a>
+    
+    <li ><a href="#method-i-yylex">#yylex</a>
+    
+    <li ><a href="#method-i-yylex0">#yylex0</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Racc::GrammarFileScanner">
+  <h1 id="class-Racc::GrammarFileScanner" class="class">
+    class Racc::GrammarFileScanner
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="CACHE">CACHE
+        
+        <dd>
+        
+      
+        <dt id="LEFT_TO_RIGHT">LEFT_TO_RIGHT
+        
+        <dd>
+        
+      
+        <dt id="ReservedWord">ReservedWord
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-debug" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">debug</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-epilogue" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">epilogue</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(str, filename = &#39;-&#39;)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 297</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">filename</span> = <span class="ruby-string">&#39;-&#39;</span>)
+  <span class="ruby-ivar">@lines</span>  = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">b</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\n|\r\n|\r/</span>)
+  <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">filename</span>
+  <span class="ruby-ivar">@lineno</span> = <span class="ruby-value">-1</span>
+  <span class="ruby-ivar">@line_head</span>   = <span class="ruby-keyword">true</span>
+  <span class="ruby-ivar">@in_rule_blk</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@in_conv_blk</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@in_block</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@epilogue</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-ivar">@debug</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">next_line</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-lineno" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lineno</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="lineno-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 312</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lineno</span>
+  <span class="ruby-ivar">@lineno</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-yylex" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">yylex</span><span
+            class="method-args">() { |sym, tok| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="yylex-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 318</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">yylex</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@debug</span>
+    <span class="ruby-identifier">yylex0</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">yylex0</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span>, <span class="ruby-identifier">tok</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span> <span class="ruby-string">&quot;%7d %-10s %s\n&quot;</span>, <span class="ruby-identifier">lineno</span>(), <span class="ruby-identifier">sym</span>.<span class="ruby-identifier">inspect</span>, <span class="ruby-identifier">tok</span>.<span class="ruby-identifier">inspect</span>
+      <span class="ruby-keyword">yield</span> [<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">tok</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-atom_symbol" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">atom_symbol</span><span
+            class="method-args">(token)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="atom_symbol-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 398</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">atom_symbol</span>(<span class="ruby-identifier">token</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">token</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;end&#39;</span>
+    <span class="ruby-identifier">symbol</span> = <span class="ruby-value">:END</span>
+    <span class="ruby-ivar">@in_conv_blk</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@in_rule_blk</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@line_head</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@in_conv_blk</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@in_rule_blk</span>
+      <span class="ruby-identifier">symbol</span> = <span class="ruby-constant">ReservedWord</span>[<span class="ruby-identifier">token</span>] <span class="ruby-operator">||</span> <span class="ruby-value">:SYMBOL</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">symbol</span> = <span class="ruby-value">:SYMBOL</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">symbol</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:RULE</span> <span class="ruby-keyword">then</span> <span class="ruby-ivar">@in_rule_blk</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:CONV</span> <span class="ruby-keyword">then</span> <span class="ruby-ivar">@in_conv_blk</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@line_head</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">symbol</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_quoted_re" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_quoted_re</span><span
+            class="method-args">(left)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_quoted_re-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 549</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_quoted_re</span>(<span class="ruby-identifier">left</span>)
+  <span class="ruby-identifier">term</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-constant">LEFT_TO_RIGHT</span>[<span class="ruby-identifier">left</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">left</span>)
+  <span class="ruby-constant">CACHE</span>[<span class="ruby-identifier">left</span>] <span class="ruby-operator">||=</span> <span class="ruby-regexp">/\A[^#{term}\\]*(?:\\.[^\\#{term}]*)*#{term}/</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-literal_head-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">literal_head?</span><span
+            class="method-args">(pre, post)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="literal_head-3F-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 505</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">literal_head?</span>(<span class="ruby-identifier">pre</span>, <span class="ruby-identifier">post</span>)
+  (<span class="ruby-operator">!</span><span class="ruby-identifier">pre</span> <span class="ruby-operator">||</span> <span class="ruby-regexp">/[a-zA-Z_0-9]/n</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">pre</span>[<span class="ruby-value">-1</span>,<span class="ruby-value">1</span>]) <span class="ruby-operator">&amp;&amp;</span>
+      <span class="ruby-operator">!</span><span class="ruby-identifier">post</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-regexp">/\A[\s\=]/n</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">post</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-next_line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next_line</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="next_line-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 363</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">next_line</span>
+  <span class="ruby-ivar">@lineno</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@line</span> = <span class="ruby-ivar">@lines</span>[<span class="ruby-ivar">@lineno</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@line</span> <span class="ruby-keyword">or</span> <span class="ruby-regexp">/\A----/</span> <span class="ruby-operator">=~</span> <span class="ruby-ivar">@line</span>
+    <span class="ruby-ivar">@epilogue</span> = <span class="ruby-ivar">@lines</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+    <span class="ruby-ivar">@lines</span>.<span class="ruby-identifier">clear</span>
+    <span class="ruby-ivar">@line</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@in_block</span>
+      <span class="ruby-ivar">@lineno</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">scan_error!</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;unterminated %s&#39;</span>, <span class="ruby-ivar">@in_block</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@line</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/(?:\n|\r\n|\r)\z/</span>, <span class="ruby-string">&#39;&#39;</span>)
+    <span class="ruby-ivar">@line_head</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read</span><span
+            class="method-args">(len)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="read-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 510</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">read</span>(<span class="ruby-identifier">len</span>)
+  <span class="ruby-identifier">s</span> = <span class="ruby-ivar">@line</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">len</span>]
+  <span class="ruby-ivar">@line</span> = <span class="ruby-ivar">@line</span>[<span class="ruby-identifier">len</span> <span class="ruby-operator">..</span> <span class="ruby-value">-1</span>]
+  <span class="ruby-identifier">s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reads</span><span
+            class="method-args">(re)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reads-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 516</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reads</span>(<span class="ruby-identifier">re</span>)
+  <span class="ruby-identifier">m</span> = <span class="ruby-identifier">re</span>.<span class="ruby-identifier">match</span>(<span class="ruby-ivar">@line</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@line</span> = <span class="ruby-identifier">m</span>.<span class="ruby-identifier">post_match</span>
+  <span class="ruby-identifier">m</span>[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scan_action" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scan_action</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scan_action-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 429</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scan_action</span>
+  <span class="ruby-identifier">buf</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">nest</span> = <span class="ruby-value">1</span>
+  <span class="ruby-identifier">pre</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@in_block</span> = <span class="ruby-string">&#39;action&#39;</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">pre</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span> = <span class="ruby-identifier">reads</span>(<span class="ruby-regexp">/\A\s+/</span>)
+      <span class="ruby-comment"># does not set &#39;pre&#39;</span>
+      <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">s</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">until</span> <span class="ruby-ivar">@line</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span> = <span class="ruby-identifier">reads</span>(<span class="ruby-regexp">/\A[^&#39;&quot;`{}%#\/\$]+/</span>)
+        <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">s</span>)
+        <span class="ruby-keyword">next</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">ch</span> = <span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;{&#39;</span>
+        <span class="ruby-identifier">nest</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">ch</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;}&#39;</span>
+        <span class="ruby-identifier">nest</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">nest</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+          <span class="ruby-ivar">@in_block</span> = <span class="ruby-keyword">nil</span>
+          <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/[ \t\f]+\z/</span>, <span class="ruby-string">&#39;&#39;</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-identifier">buf</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">ch</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;#&#39;</span>   <span class="ruby-comment"># comment</span>
+        <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@line</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;&#39;&quot;</span>, <span class="ruby-string">&#39;&quot;&#39;</span>, <span class="ruby-string">&#39;`&#39;</span>
+        <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">ch</span>))
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;%&#39;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">literal_head?</span> <span class="ruby-identifier">pre</span>, <span class="ruby-ivar">@line</span>
+          <span class="ruby-comment"># % string, regexp, array</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ch</span>
+          <span class="ruby-keyword">case</span> <span class="ruby-identifier">ch</span> = <span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>)
+          <span class="ruby-keyword">when</span> <span class="ruby-regexp">/[qQx]/n</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>), <span class="ruby-string">&#39;%string&#39;</span>))
+          <span class="ruby-keyword">when</span> <span class="ruby-regexp">/wW/n</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>), <span class="ruby-string">&#39;%array&#39;</span>))
+          <span class="ruby-keyword">when</span> <span class="ruby-regexp">/s/n</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>), <span class="ruby-string">&#39;%symbol&#39;</span>))
+          <span class="ruby-keyword">when</span> <span class="ruby-regexp">/r/n</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>), <span class="ruby-string">&#39;%regexp&#39;</span>))
+          <span class="ruby-keyword">when</span> <span class="ruby-regexp">/[a-zA-Z0-9= ]/n</span>   <span class="ruby-comment"># does not include &quot;_&quot;</span>
+            <span class="ruby-identifier">scan_error!</span> <span class="ruby-node">&quot;unknown type of % literal &#39;%#{ch}&#39;&quot;</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">ch</span>, <span class="ruby-string">&#39;%string&#39;</span>))
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-comment"># operator</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;||op-&gt;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$raccs_print_type</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">ch</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;/&#39;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">literal_head?</span> <span class="ruby-identifier">pre</span>, <span class="ruby-ivar">@line</span>
+          <span class="ruby-comment"># regexp</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">ch</span>, <span class="ruby-string">&#39;regexp&#39;</span>))
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-comment"># operator</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;||op-&gt;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$raccs_print_type</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">ch</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;$&#39;</span>   <span class="ruby-comment"># gvar</span>
+        <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">pre</span> = <span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>))
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-string">&#39;racc: fatal: must not happen&#39;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">next_line</span>()
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&#39;racc: fatal: scan finished before parser finished&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scan_error-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scan_error!</span><span
+            class="method-args">(msg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scan_error-21-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 554</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scan_error!</span>(<span class="ruby-identifier">msg</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CompileError</span>, <span class="ruby-node">&quot;#{lineno()}: #{msg}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scan_quoted" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scan_quoted</span><span
+            class="method-args">(left, tag = &#39;string&#39;)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scan_quoted-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 522</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scan_quoted</span>(<span class="ruby-identifier">left</span>, <span class="ruby-identifier">tag</span> = <span class="ruby-string">&#39;string&#39;</span>)
+  <span class="ruby-identifier">buf</span> = <span class="ruby-identifier">left</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">buf</span> = <span class="ruby-node">&quot;||#{tag}-&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">buf</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$raccs_print_type</span>
+  <span class="ruby-identifier">re</span> = <span class="ruby-identifier">get_quoted_re</span>(<span class="ruby-identifier">left</span>)
+  <span class="ruby-identifier">sv</span>, <span class="ruby-ivar">@in_block</span> = <span class="ruby-ivar">@in_block</span>, <span class="ruby-identifier">tag</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span> = <span class="ruby-identifier">reads</span>(<span class="ruby-identifier">re</span>)
+      <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">s</span>
+      <span class="ruby-keyword">break</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@line</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">next_line</span>()
+  <span class="ruby-ivar">@in_block</span> = <span class="ruby-identifier">sv</span>
+  <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;-#{tag}||&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$raccs_print_type</span>
+  <span class="ruby-identifier">buf</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-skip_comment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skip_comment</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skip_comment-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 418</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">skip_comment</span>
+  <span class="ruby-ivar">@in_block</span> = <span class="ruby-string">&#39;comment&#39;</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">m</span> = <span class="ruby-regexp">/\*\//</span>.<span class="ruby-identifier">match</span>(<span class="ruby-ivar">@line</span>)
+    <span class="ruby-identifier">next_line</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@line</span> = <span class="ruby-identifier">m</span>.<span class="ruby-identifier">post_match</span>
+  <span class="ruby-ivar">@in_block</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-yylex0" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">yylex0</span><span
+            class="method-args">() { |atom_symbol(s), intern| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="yylex0-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammarfileparser.rb, line 331</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">yylex0</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">until</span> <span class="ruby-ivar">@line</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-ivar">@line</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\A\s+/</span>, <span class="ruby-string">&#39;&#39;</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-regexp">/\A\#/</span> <span class="ruby-operator">=~</span> <span class="ruby-ivar">@line</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-regexp">/\A\/\*/</span> <span class="ruby-operator">=~</span> <span class="ruby-ivar">@line</span>
+        <span class="ruby-identifier">skip_comment</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">s</span> = <span class="ruby-identifier">reads</span>(<span class="ruby-regexp">/\A[a-zA-Z_]\w*/</span>)
+        <span class="ruby-keyword">yield</span> [<span class="ruby-identifier">atom_symbol</span>(<span class="ruby-identifier">s</span>), <span class="ruby-identifier">s</span>.<span class="ruby-identifier">intern</span>]
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">s</span> = <span class="ruby-identifier">reads</span>(<span class="ruby-regexp">/\A\d+/</span>)
+        <span class="ruby-keyword">yield</span> [<span class="ruby-value">:DIGIT</span>, <span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_i</span>]
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">ch</span> = <span class="ruby-identifier">reads</span>(<span class="ruby-regexp">/\A./</span>)
+        <span class="ruby-keyword">case</span> <span class="ruby-identifier">ch</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;&quot;&#39;</span>, <span class="ruby-string">&quot;&#39;&quot;</span>
+          <span class="ruby-keyword">yield</span> [<span class="ruby-value">:STRING</span>, <span class="ruby-identifier">eval</span>(<span class="ruby-identifier">scan_quoted</span>(<span class="ruby-identifier">ch</span>))]
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;{&#39;</span>
+          <span class="ruby-identifier">lineno</span> = <span class="ruby-identifier">lineno</span>()
+          <span class="ruby-keyword">yield</span> [<span class="ruby-value">:ACTION</span>, <span class="ruby-constant">SourceText</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">scan_action</span>(), <span class="ruby-ivar">@filename</span>, <span class="ruby-identifier">lineno</span>)]
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;|&#39;</span>
+            <span class="ruby-ivar">@line_head</span> = <span class="ruby-keyword">false</span>
+          <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">yield</span> [<span class="ruby-identifier">ch</span>, <span class="ruby-identifier">ch</span>]
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">next_line</span>()
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

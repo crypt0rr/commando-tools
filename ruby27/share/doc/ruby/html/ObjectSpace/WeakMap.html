@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ObjectSpace::WeakMap - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../Enumerable.html">Enumerable</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-5B-5D-3D">#[]=</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-each_key">#each_key</a>
+    
+    <li ><a href="#method-i-each_pair">#each_pair</a>
+    
+    <li ><a href="#method-i-each_value">#each_value</a>
+    
+    <li ><a href="#method-i-include-3F">#include?</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-key-3F">#key?</a>
+    
+    <li ><a href="#method-i-keys">#keys</a>
+    
+    <li ><a href="#method-i-length">#length</a>
+    
+    <li ><a href="#method-i-member-3F">#member?</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+    <li ><a href="#method-i-values">#values</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ObjectSpace::WeakMap">
+  <h1 id="class-ObjectSpace::WeakMap" class="class">
+    class ObjectSpace::WeakMap
+  </h1>
+
+  <section class="description">
+    
+<p>An <a href="WeakMap.html"><code>ObjectSpace::WeakMap</code></a> object holds references to any objects, but those objects can get garbage collected.</p>
+
+<p>This class is mostly used internally by <a href="../WeakRef.html"><code>WeakRef</code></a>, please use <code>lib/weakref.rb</code> for the public interface.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves a weakly referenced object with the given key</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+wmap_aref(VALUE self, VALUE wmap)
+{
+    st_data_t data;
+    VALUE obj;
+    struct weakmap *w;
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    if (!st_lookup(w-&gt;wmap2obj, (st_data_t)wmap, &amp;data)) return Qnil;
+    obj = (VALUE)data;
+    if (!wmap_live_p(objspace, obj)) return Qnil;
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]=</span><span
+            class="method-args">(p1, p2)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a weak reference from the given key to the given value</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-3D-source">
+            <pre>static VALUE
+wmap_aset(VALUE self, VALUE wmap, VALUE orig)
+{
+    struct weakmap *w;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    if (FL_ABLE(orig)) {
+        define_final0(orig, w-&gt;final);
+    }
+    if (FL_ABLE(wmap)) {
+        define_final0(wmap, w-&gt;final);
+    }
+
+    st_update(w-&gt;obj2wmap, (st_data_t)orig, wmap_aset_update, wmap);
+    st_insert(w-&gt;wmap2obj, (st_data_t)wmap, (st_data_t)orig);
+    return nonspecial_obj_id(orig);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over keys and objects in a weakly referenced object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre>static VALUE
+wmap_each(VALUE self)
+{
+    struct weakmap *w;
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    st_foreach(w-&gt;wmap2obj, wmap_each_i, (st_data_t)objspace);
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_key</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over keys and objects in a weakly referenced object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_key-source">
+            <pre>static VALUE
+wmap_each_key(VALUE self)
+{
+    struct weakmap *w;
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    st_foreach(w-&gt;wmap2obj, wmap_each_key_i, (st_data_t)objspace);
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_pair" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_pair</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over keys and objects in a weakly referenced object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_pair-source">
+            <pre>static VALUE
+wmap_each(VALUE self)
+{
+    struct weakmap *w;
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    st_foreach(w-&gt;wmap2obj, wmap_each_i, (st_data_t)objspace);
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_value</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over keys and objects in a weakly referenced object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_value-source">
+            <pre>static VALUE
+wmap_each_value(VALUE self)
+{
+    struct weakmap *w;
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    st_foreach(w-&gt;wmap2obj, wmap_each_value_i, (st_data_t)objspace);
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-include-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">include?</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>key</code> is registered</p>
+          
+          
+
+          
+          <div class="method-source-code" id="include-3F-source">
+            <pre>static VALUE
+wmap_has_key(VALUE self, VALUE key)
+{
+    return NIL_P(wmap_aref(self, key)) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+wmap_inspect(VALUE self)
+{
+    VALUE str;
+    VALUE c = rb_class_name(CLASS_OF(self));
+    struct weakmap *w;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    str = rb_sprintf(&quot;-&lt;%&quot;PRIsVALUE&quot;:%p&quot;, c, (void *)self);
+    if (w-&gt;wmap2obj) {
+        st_foreach(w-&gt;wmap2obj, wmap_inspect_i, str);
+    }
+    RSTRING_PTR(str)[0] = &#39;#&#39;;
+    rb_str_cat2(str, &quot;&gt;&quot;);
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-key-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">key?</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>key</code> is registered</p>
+          
+          
+
+          
+          <div class="method-source-code" id="key-3F-source">
+            <pre>static VALUE
+wmap_has_key(VALUE self, VALUE key)
+{
+    return NIL_P(wmap_aref(self, key)) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-keys" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">keys</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over keys and objects in a weakly referenced object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="keys-source">
+            <pre>static VALUE
+wmap_keys(VALUE self)
+{
+    struct weakmap *w;
+    struct wmap_iter_arg args;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    args.objspace = &amp;rb_objspace;
+    args.value = rb_ary_new();
+    st_foreach(w-&gt;wmap2obj, wmap_keys_i, (st_data_t)&amp;args);
+    return args.value;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-length" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">length</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of referenced objects</p>
+          
+          
+
+          
+          <div class="method-source-code" id="length-source">
+            <pre>static VALUE
+wmap_size(VALUE self)
+{
+    struct weakmap *w;
+    st_index_t n;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    n = w-&gt;wmap2obj-&gt;num_entries;
+#if SIZEOF_ST_INDEX_T &lt;= SIZEOF_LONG
+    return ULONG2NUM(n);
+#else
+    return ULL2NUM(n);
+#endif
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-member-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">member?</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>key</code> is registered</p>
+          
+          
+
+          
+          <div class="method-source-code" id="member-3F-source">
+            <pre>static VALUE
+wmap_has_key(VALUE self, VALUE key)
+{
+    return NIL_P(wmap_aref(self, key)) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">size</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of referenced objects</p>
+          
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre>static VALUE
+wmap_size(VALUE self)
+{
+    struct weakmap *w;
+    st_index_t n;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    n = w-&gt;wmap2obj-&gt;num_entries;
+#if SIZEOF_ST_INDEX_T &lt;= SIZEOF_LONG
+    return ULONG2NUM(n);
+#else
+    return ULL2NUM(n);
+#endif
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-values" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">values</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over values and objects in a weakly referenced object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="values-source">
+            <pre>static VALUE
+wmap_values(VALUE self)
+{
+    struct weakmap *w;
+    struct wmap_iter_arg args;
+
+    TypedData_Get_Struct(self, struct weakmap, &amp;weakmap_type, w);
+    args.objspace = &amp;rb_objspace;
+    args.value = rb_ary_new();
+    st_foreach(w-&gt;wmap2obj, wmap_values_i, (st_data_t)&amp;args);
+    return args.value;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

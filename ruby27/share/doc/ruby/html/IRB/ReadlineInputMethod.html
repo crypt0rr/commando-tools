@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class IRB::ReadlineInputMethod - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="InputMethod.html">IRB::InputMethod</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../Readline.html">Readline</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-encoding">#encoding</a>
+    
+    <li ><a href="#method-i-eof-3F">#eof?</a>
+    
+    <li ><a href="#method-i-gets">#gets</a>
+    
+    <li ><a href="#method-i-line">#line</a>
+    
+    <li ><a href="#method-i-readable_after_eof-3F">#readable_after_eof?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-IRB::ReadlineInputMethod">
+  <h1 id="class-IRB::ReadlineInputMethod" class="class">
+    class IRB::ReadlineInputMethod
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new input method object using <a href="../Readline.html"><code>Readline</code></a></p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="InputMethod.html#method-c-new"><code>IRB::InputMethod::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/irb/input-method.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:encoding_system_needs</span>)
+    <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-value">:set_encoding</span>, <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">encoding_system_needs</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">override:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">super</span>
+
+  <span class="ruby-ivar">@line_no</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@line</span> = []
+  <span class="ruby-ivar">@eof</span> = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-ivar">@stdin</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">STDIN</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-value">:external_encoding</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">conf</span>[<span class="ruby-value">:LC_MESSAGES</span>].<span class="ruby-identifier">encoding</span>, <span class="ruby-value">:internal_encoding</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;-&quot;</span>)
+  <span class="ruby-ivar">@stdout</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">STDOUT</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-string">&#39;w&#39;</span>, <span class="ruby-value">:external_encoding</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">conf</span>[<span class="ruby-value">:LC_MESSAGES</span>].<span class="ruby-identifier">encoding</span>, <span class="ruby-value">:internal_encoding</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;-&quot;</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&quot;basic_word_break_characters=&quot;</span>)
+    <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">basic_word_break_characters</span> = <span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">InputCompletor</span><span class="ruby-operator">::</span><span class="ruby-constant">BASIC_WORD_BREAK_CHARACTERS</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">completion_append_character</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">completion_proc</span> = <span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">InputCompletor</span><span class="ruby-operator">::</span><span class="ruby-constant">CompletionProc</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-encoding" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encoding</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The external encoding for standard input.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="encoding-source">
+            <pre><span class="ruby-comment"># File lib/irb/input-method.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">encoding</span>
+  <span class="ruby-ivar">@stdin</span>.<span class="ruby-identifier">external_encoding</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eof-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">eof?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Whether the end of this input method has been reached, returns <code>true</code> if there is no more data to read.</p>
+
+<p>See <a href="../IO.html#method-i-eof-3F"><code>IO#eof?</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eof-3F-source">
+            <pre><span class="ruby-comment"># File lib/irb/input-method.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">eof?</span>
+  <span class="ruby-ivar">@eof</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-gets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gets</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Reads the next line from this input method.</p>
+
+<p>See <a href="../IO.html#method-i-gets"><code>IO#gets</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="gets-source">
+            <pre><span class="ruby-comment"># File lib/irb/input-method.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">gets</span>
+  <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">input</span> = <span class="ruby-ivar">@stdin</span>
+  <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">output</span> = <span class="ruby-ivar">@stdout</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">l</span> = <span class="ruby-identifier">readline</span>(<span class="ruby-ivar">@prompt</span>, <span class="ruby-keyword">false</span>)
+    <span class="ruby-constant">HISTORY</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">l</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">l</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@line</span>[<span class="ruby-ivar">@line_no</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>] = <span class="ruby-identifier">l</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@eof</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">l</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">line</span><span
+            class="method-args">(line_no)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the current line number for io.</p>
+
+<p><a href="ReadlineInputMethod.html#method-i-line"><code>line</code></a> counts the number of times <a href="ReadlineInputMethod.html#method-i-gets"><code>gets</code></a> is called.</p>
+
+<p>See <a href="../IO.html#method-i-lineno"><code>IO#lineno</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="line-source">
+            <pre><span class="ruby-comment"># File lib/irb/input-method.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">line</span>(<span class="ruby-identifier">line_no</span>)
+  <span class="ruby-ivar">@line</span>[<span class="ruby-identifier">line_no</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-readable_after_eof-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">readable_after_eof?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Whether this input method is still readable when there is no more data to read.</p>
+
+<p>See <a href="../IO.html#method-i-eof"><code>IO#eof</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="readable_after_eof-3F-source">
+            <pre><span class="ruby-comment"># File lib/irb/input-method.rb, line 182</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">readable_after_eof?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

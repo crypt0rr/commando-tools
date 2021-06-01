@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module YAML - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-YAML-label-Usage">Usage</a>
+    <li><a href="#module-YAML-label-Security">Security</a>
+    <li><a href="#module-YAML-label-History">History</a>
+    <li><a href="#module-YAML-label-More+info">More info</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-YAML">
+  <h1 id="module-YAML" class="module">
+    module YAML
+  </h1>
+
+  <section class="description">
+    
+<p>YAML Ain&#39;t Markup Language</p>
+
+<p>This module provides a Ruby interface for data serialization in YAML format.</p>
+
+<p>The YAML module is an alias of <a href="Psych.html"><code>Psych</code></a>, the YAML engine for Ruby.</p>
+
+<h2 id="module-YAML-label-Usage">Usage<span><a href="#module-YAML-label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Working with YAML can be very simple, for example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;yaml&#39;</span>
+<span class="ruby-comment"># Parse a YAML string</span>
+<span class="ruby-constant">YAML</span>.<span class="ruby-identifier">load</span>(<span class="ruby-string">&quot;--- foo&quot;</span>) <span class="ruby-comment">#=&gt; &quot;foo&quot;</span>
+
+<span class="ruby-comment"># Emit some YAML</span>
+<span class="ruby-constant">YAML</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-string">&quot;foo&quot;</span>)     <span class="ruby-comment"># =&gt; &quot;--- foo\n...\n&quot;</span>
+{ <span class="ruby-value">:a</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;b&#39;</span>}.<span class="ruby-identifier">to_yaml</span>  <span class="ruby-comment"># =&gt; &quot;---\n:a: b\n&quot;</span>
+</pre>
+
+<p>As the implementation is provided by the <a href="Psych.html"><code>Psych</code></a> library, detailed documentation can be found in that library&#39;s docs (also part of standard library).</p>
+
+<h2 id="module-YAML-label-Security">Security<span><a href="#module-YAML-label-Security">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Do not use YAML to load untrusted data. Doing so is unsafe and could allow malicious input to execute arbitrary code inside your application. Please see doc/security.rdoc for more information.</p>
+
+<h2 id="module-YAML-label-History">History<span><a href="#module-YAML-label-History">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="YAML/Syck.html"><code>Syck</code></a> was the original for YAML implementation in Ruby&#39;s standard library developed by why the lucky stiff.</p>
+
+<p>You can still use <a href="YAML/Syck.html"><code>Syck</code></a>, if you prefer, for parsing and emitting YAML, but you must install the &#39;syck&#39; gem now in order to use it.</p>
+
+<p>In older Ruby versions, ie. &lt;= 1.9, <a href="YAML/Syck.html"><code>Syck</code></a> is still provided, however it was completely removed with the release of Ruby 2.0.0.</p>
+
+<h2 id="module-YAML-label-More+info">More info<span><a href="#module-YAML-label-More+info">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>For more advanced details on the implementation see <a href="Psych.html"><code>Psych</code></a>, and also check out <a href="http://yaml.org">yaml.org</a> for spec details and other helpful information.</p>
+
+<p><a href="Psych.html"><code>Psych</code></a> is maintained by Aaron Patterson on github: <a href="https://github.com/ruby/psych">github.com/ruby/psych</a></p>
+
+<p><a href="YAML/Syck.html"><code>Syck</code></a> can also be found on github: <a href="https://github.com/ruby/syck">github.com/ruby/syck</a></p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

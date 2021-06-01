@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Settings::Mirrors - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-fetch_valid_mirror_for">#fetch_valid_mirror_for</a>
+    
+    <li ><a href="#method-i-for">#for</a>
+    
+    <li ><a href="#method-i-parse">#parse</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Settings::Mirrors">
+  <h1 id="class-Bundler::Settings::Mirrors" class="class">
+    class Bundler::Settings::Mirrors
+  </h1>
+
+  <section class="description">
+    
+<p><a href="../../Class.html"><code>Class</code></a> used to build the mirror set and then find a mirror for a given <a href="../URI.html"><code>URI</code></a></p>
+
+<p>@param prober [Prober object, nil] by default a <a href="TCPSocketProbe.html"><code>TCPSocketProbe</code></a>, this object</p>
+
+<pre>will be used to probe the mirror address to validate that the mirror replies.</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(prober = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/mirror.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">prober</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@all</span> = <span class="ruby-constant">Mirror</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@prober</span> = <span class="ruby-identifier">prober</span> <span class="ruby-operator">||</span> <span class="ruby-constant">TCPSocketProbe</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@mirrors</span> = {}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">() { |k, uri.to_s| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/bundler/mirror.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>
+  <span class="ruby-ivar">@mirrors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>.<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">for</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a mirror for the given uri.</p>
+
+<p>Depending on the uri having a valid mirror or not, it may be a</p>
+
+<pre class="ruby"><span class="ruby-identifier">mirror</span> <span class="ruby-identifier">that</span> <span class="ruby-identifier">points</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">provided</span> <span class="ruby-identifier">uri</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/mirror.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">for</span>(<span class="ruby-identifier ruby-title">uri</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@all</span>.<span class="ruby-identifier">validate!</span>(<span class="ruby-ivar">@prober</span>).<span class="ruby-identifier">valid?</span>
+    <span class="ruby-ivar">@all</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">fetch_valid_mirror_for</span>(<span class="ruby-constant">Settings</span>.<span class="ruby-identifier">normalize_uri</span>(<span class="ruby-identifier">uri</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse</span><span
+            class="method-args">(key, value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File lib/bundler/mirror.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">config</span> = <span class="ruby-constant">MirrorConfig</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">mirror</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">all?</span>
+    <span class="ruby-ivar">@all</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@mirrors</span>[<span class="ruby-identifier">config</span>.<span class="ruby-identifier">uri</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Mirror</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">config</span>.<span class="ruby-identifier">update_mirror</span>(<span class="ruby-identifier">mirror</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-fetch_valid_mirror_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_valid_mirror_for</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_valid_mirror_for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/mirror.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch_valid_mirror_for</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-identifier">downcased</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-identifier">mirror</span> = <span class="ruby-ivar">@mirrors</span>[<span class="ruby-identifier">downcased</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@mirrors</span>[<span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>(<span class="ruby-identifier">downcased</span>).<span class="ruby-identifier">host</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Mirror</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-identifier">mirror</span>.<span class="ruby-identifier">validate!</span>(<span class="ruby-ivar">@prober</span>)
+  <span class="ruby-identifier">mirror</span> = <span class="ruby-constant">Mirror</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mirror</span>.<span class="ruby-identifier">valid?</span>
+  <span class="ruby-identifier">mirror</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::ParallelInstaller - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-call">::call</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-call">#call</a>
+    
+    <li ><a href="#method-i-check_for_corrupt_lockfile">#check_for_corrupt_lockfile</a>
+    
+    <li ><a href="#method-i-do_install">#do_install</a>
+    
+    <li ><a href="#method-i-enqueue_specs">#enqueue_specs</a>
+    
+    <li ><a href="#method-i-finished_installing-3F">#finished_installing?</a>
+    
+    <li ><a href="#method-i-handle_error">#handle_error</a>
+    
+    <li ><a href="#method-i-install_serially">#install_serially</a>
+    
+    <li ><a href="#method-i-install_with_worker">#install_with_worker</a>
+    
+    <li ><a href="#method-i-process_specs">#process_specs</a>
+    
+    <li ><a href="#method-i-require_tree_for_spec">#require_tree_for_spec</a>
+    
+    <li ><a href="#method-i-worker_pool">#worker_pool</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::ParallelInstaller">
+  <h1 id="class-Bundler::ParallelInstaller" class="class">
+    class Bundler::ParallelInstaller
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-size" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">size</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-call" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">call</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="call-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>).<span class="ruby-identifier">call</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(installer, all_specs, size, standalone, force)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">installer</span>, <span class="ruby-identifier">all_specs</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">standalone</span>, <span class="ruby-identifier">force</span>)
+  <span class="ruby-ivar">@installer</span> = <span class="ruby-identifier">installer</span>
+  <span class="ruby-ivar">@size</span> = <span class="ruby-identifier">size</span>
+  <span class="ruby-ivar">@standalone</span> = <span class="ruby-identifier">standalone</span>
+  <span class="ruby-ivar">@force</span> = <span class="ruby-identifier">force</span>
+  <span class="ruby-ivar">@specs</span> = <span class="ruby-identifier">all_specs</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">SpecInstallation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">s</span>) }
+  <span class="ruby-ivar">@spec_set</span> = <span class="ruby-identifier">all_specs</span>
+  <span class="ruby-ivar">@rake</span> = <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">find</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;rake&quot;</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-call" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">call</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="call-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">call</span>
+  <span class="ruby-identifier">check_for_corrupt_lockfile</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">install_with_worker</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">install_serially</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">handle_error</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">any?</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:failed?</span>)
+  <span class="ruby-ivar">@specs</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-identifier">worker_pool</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">worker_pool</span>.<span class="ruby-identifier">stop</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-check_for_corrupt_lockfile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_for_corrupt_lockfile</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="check_for_corrupt_lockfile-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check_for_corrupt_lockfile</span>
+  <span class="ruby-identifier">missing_dependencies</span> = <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    [
+      <span class="ruby-identifier">s</span>,
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">missing_lockfile_dependencies</span>(<span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>)),
+    ]
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">empty?</span> }
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">missing_dependencies</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">warning</span> = []
+  <span class="ruby-identifier">warning</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Your lockfile was created by an old Bundler that left some things out.&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@size</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">warning</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;Because of the missing DEPENDENCIES, we can only install gems one at a time, instead of installing #{@size} at a time.&quot;</span>
+    <span class="ruby-ivar">@size</span> = <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">warning</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;You can fix this by adding the missing gems to your Gemfile, running bundle install, and then removing the gems from your Gemfile.&quot;</span>
+  <span class="ruby-identifier">warning</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;The missing gems are:&quot;</span>
+
+  <span class="ruby-identifier">missing_dependencies</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span>, <span class="ruby-identifier">missing</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">warning</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;* #{missing.map(&amp;:name).join(&quot;, &quot;)} depended upon by #{spec.name}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-identifier">warning</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-do_install" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">do_install</span><span
+            class="method-args">(spec_install, worker_num)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="do_install-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">do_install</span>(<span class="ruby-identifier">spec_install</span>, <span class="ruby-identifier">worker_num</span>)
+  <span class="ruby-constant">Plugin</span>.<span class="ruby-identifier">hook</span>(<span class="ruby-constant">Plugin</span><span class="ruby-operator">::</span><span class="ruby-constant">Events</span><span class="ruby-operator">::</span><span class="ruby-constant">GEM_BEFORE_INSTALL</span>, <span class="ruby-identifier">spec_install</span>)
+  <span class="ruby-identifier">gem_installer</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">GemInstaller</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-identifier">spec_install</span>.<span class="ruby-identifier">spec</span>, <span class="ruby-ivar">@installer</span>, <span class="ruby-ivar">@standalone</span>, <span class="ruby-identifier">worker_num</span>, <span class="ruby-ivar">@force</span>
+  )
+  <span class="ruby-identifier">success</span>, <span class="ruby-identifier">message</span> = <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">gem_installer</span>.<span class="ruby-identifier">install_from_spec</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">RuntimeError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>, <span class="ruby-node">&quot;#{e}\n\n#{require_tree_for_spec(spec_install.spec)}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">success</span>
+    <span class="ruby-identifier">spec_install</span>.<span class="ruby-identifier">state</span> = <span class="ruby-value">:installed</span>
+    <span class="ruby-identifier">spec_install</span>.<span class="ruby-identifier">post_install_message</span> = <span class="ruby-identifier">message</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">message</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">spec_install</span>.<span class="ruby-identifier">state</span> = <span class="ruby-value">:failed</span>
+    <span class="ruby-identifier">spec_install</span>.<span class="ruby-identifier">error</span> = <span class="ruby-node">&quot;#{message}\n\n#{require_tree_for_spec(spec_install.spec)}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Plugin</span>.<span class="ruby-identifier">hook</span>(<span class="ruby-constant">Plugin</span><span class="ruby-operator">::</span><span class="ruby-constant">Events</span><span class="ruby-operator">::</span><span class="ruby-constant">GEM_AFTER_INSTALL</span>, <span class="ruby-identifier">spec_install</span>)
+  <span class="ruby-identifier">spec_install</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enqueue_specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enqueue_specs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Keys in the remains hash represent uninstalled gems specs. We enqueue all gem specs that do not have any dependencies. Later we call this lambda again to install specs that depended on previously installed specifications. We continue until all specs are installed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enqueue_specs-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 218</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">enqueue_specs</span>
+  <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:ready_to_enqueue?</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@rake</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@rake</span>.<span class="ruby-identifier">installed?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@rake</span>.<span class="ruby-identifier">name</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">dependencies_installed?</span> <span class="ruby-ivar">@specs</span>
+      <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">state</span> = <span class="ruby-value">:enqueued</span>
+      <span class="ruby-identifier">worker_pool</span>.<span class="ruby-identifier">enq</span> <span class="ruby-identifier">spec</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finished_installing-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finished_installing?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="finished_installing-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 185</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">finished_installing?</span>
+  <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">all?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">failed?</span>
+    <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">installed?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_error</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="handle_error-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handle_error</span>
+  <span class="ruby-identifier">errors</span> = <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:failed?</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:error</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">exception</span> = <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">find</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">BundlerError</span>) }
+    <span class="ruby-identifier">raise</span> <span class="ruby-identifier">exception</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">InstallError</span>, <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_s</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-install_serially" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_serially</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_serially-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">install_serially</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">finished_installing?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;failed to find a spec to enqueue while installing serially&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">spec_install</span> = <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">find</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:ready_to_enqueue?</span>)
+    <span class="ruby-identifier">spec_install</span>.<span class="ruby-identifier">state</span> = <span class="ruby-value">:enqueued</span>
+    <span class="ruby-identifier">do_install</span>(<span class="ruby-identifier">spec_install</span>, <span class="ruby-value">0</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-install_with_worker" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_with_worker</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_with_worker-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">install_with_worker</span>
+  <span class="ruby-identifier">enqueue_specs</span>
+  <span class="ruby-identifier">process_specs</span> <span class="ruby-keyword">until</span> <span class="ruby-identifier">finished_installing?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-process_specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_specs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Dequeue a spec and save its post-install message and then enqueue the remaining specs. Some specs might&#39;ve had to wait til this spec was installed to be processed so the call to `enqueue_specs` is important after every dequeue.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="process_specs-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">process_specs</span>
+  <span class="ruby-identifier">worker_pool</span>.<span class="ruby-identifier">deq</span>
+  <span class="ruby-identifier">enqueue_specs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-require_tree_for_spec" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">require_tree_for_spec</span><span
+            class="method-args">(spec)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="require_tree_for_spec-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">require_tree_for_spec</span>(<span class="ruby-identifier">spec</span>)
+  <span class="ruby-identifier">tree</span> = <span class="ruby-ivar">@spec_set</span>.<span class="ruby-identifier">what_required</span>(<span class="ruby-identifier">spec</span>)
+  <span class="ruby-identifier">t</span> = <span class="ruby-constant">String</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;In #{File.basename(SharedHelpers.default_gemfile)}:\n&quot;</span>)
+  <span class="ruby-identifier">tree</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">depth</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">t</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;  &quot;</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">succ</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tree</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">s</span>
+      <span class="ruby-identifier">t</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%( was resolved to #{s.version}, which depends on)</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">t</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">%(\n)</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">t</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-worker_pool" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">worker_pool</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="worker_pool-source">
+            <pre><span class="ruby-comment"># File lib/bundler/installer/parallel_installer.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">worker_pool</span>
+  <span class="ruby-ivar">@worker_pool</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Worker</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@size</span>, <span class="ruby-string">&quot;Parallel Installer&quot;</span>, <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">spec_install</span>, <span class="ruby-identifier">worker_num</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">do_install</span>(<span class="ruby-identifier">spec_install</span>, <span class="ruby-identifier">worker_num</span>)
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

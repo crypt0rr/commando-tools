@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::S3URISigner - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-base64_uri_escape">#base64_uri_escape</a>
+    
+    <li ><a href="#method-i-create_request_pool">#create_request_pool</a>
+    
+    <li ><a href="#method-i-ec2_metadata_credentials_json">#ec2_metadata_credentials_json</a>
+    
+    <li ><a href="#method-i-ec2_metadata_request">#ec2_metadata_request</a>
+    
+    <li ><a href="#method-i-fetch_s3_config">#fetch_s3_config</a>
+    
+    <li ><a href="#method-i-generate_canonical_query_params">#generate_canonical_query_params</a>
+    
+    <li ><a href="#method-i-generate_canonical_request">#generate_canonical_request</a>
+    
+    <li ><a href="#method-i-generate_signature">#generate_signature</a>
+    
+    <li ><a href="#method-i-generate_string_to_sign">#generate_string_to_sign</a>
+    
+    <li ><a href="#method-i-sign">#sign</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::S3URISigner">
+  <h1 id="class-Gem::S3URISigner" class="class">
+    class Gem::S3URISigner
+  </h1>
+
+  <section class="description">
+    
+<p><a href="S3URISigner.html"><code>S3URISigner</code></a> implements AWS SigV4 for S3 Source to avoid a dependency on the aws-sdk-* gems More on AWS SigV4: <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html</a></p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="BASE64_URI_TRANSLATE">BASE64_URI_TRANSLATE
+        
+        <dd>
+        
+      
+        <dt id="EC2_IAM_INFO">EC2_IAM_INFO
+        
+        <dd>
+        
+      
+        <dt id="EC2_IAM_SECURITY_CREDENTIALS">EC2_IAM_SECURITY_CREDENTIALS
+        
+        <dd>
+        
+      
+        <dt id="S3Config">S3Config
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-uri" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">uri</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-ivar">@uri</span> = <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-sign" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sign</span><span
+            class="method-args">(expiration = 86400)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Signs S3 <a href="../URI.html"><code>URI</code></a> using query-params according to the reference: <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html">docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="sign-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sign</span>(<span class="ruby-identifier">expiration</span> = <span class="ruby-value">86400</span>)
+  <span class="ruby-identifier">s3_config</span> = <span class="ruby-identifier">fetch_s3_config</span>
+
+  <span class="ruby-identifier">current_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">utc</span>
+  <span class="ruby-identifier">date_time</span> = <span class="ruby-identifier">current_time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%Y%m%dT%H%m%SZ&quot;</span>)
+  <span class="ruby-identifier">date</span> = <span class="ruby-identifier">date_time</span>[<span class="ruby-value">0</span>,<span class="ruby-value">8</span>]
+
+  <span class="ruby-identifier">credential_info</span> = <span class="ruby-node">&quot;#{date}/#{s3_config.region}/s3/aws4_request&quot;</span>
+  <span class="ruby-identifier">canonical_host</span> = <span class="ruby-node">&quot;#{uri.host}.s3.#{s3_config.region}.amazonaws.com&quot;</span>
+
+  <span class="ruby-identifier">query_params</span> = <span class="ruby-identifier">generate_canonical_query_params</span>(<span class="ruby-identifier">s3_config</span>, <span class="ruby-identifier">date_time</span>, <span class="ruby-identifier">credential_info</span>, <span class="ruby-identifier">expiration</span>)
+  <span class="ruby-identifier">canonical_request</span> = <span class="ruby-identifier">generate_canonical_request</span>(<span class="ruby-identifier">canonical_host</span>, <span class="ruby-identifier">query_params</span>)
+  <span class="ruby-identifier">string_to_sign</span> = <span class="ruby-identifier">generate_string_to_sign</span>(<span class="ruby-identifier">date_time</span>, <span class="ruby-identifier">credential_info</span>, <span class="ruby-identifier">canonical_request</span>)
+  <span class="ruby-identifier">signature</span> = <span class="ruby-identifier">generate_signature</span>(<span class="ruby-identifier">s3_config</span>, <span class="ruby-identifier">date</span>, <span class="ruby-identifier">string_to_sign</span>)
+
+  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://#{canonical_host}#{uri.path}?#{query_params}&amp;X-Amz-Signature=#{signature}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-base64_uri_escape" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">base64_uri_escape</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="base64_uri_escape-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 143</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">base64_uri_escape</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[\+\/=\n]/</span>, <span class="ruby-constant">BASE64_URI_TRANSLATE</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_request_pool" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_request_pool</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_request_pool-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_request_pool</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-identifier">proxy_uri</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">proxy_uri</span>(<span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">get_proxy_from_env</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span>))
+  <span class="ruby-identifier">certs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">get_cert_files</span>
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">ConnectionPools</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">proxy_uri</span>, <span class="ruby-identifier">certs</span>).<span class="ruby-identifier">pool_for</span>(<span class="ruby-identifier">uri</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ec2_metadata_credentials_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ec2_metadata_credentials_json</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ec2_metadata_credentials_json-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ec2_metadata_credentials_json</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;net/http&#39;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rubygems/request&#39;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rubygems/request/connection_pools&#39;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;json&#39;</span>
+
+  <span class="ruby-identifier">iam_info</span> = <span class="ruby-identifier">ec2_metadata_request</span>(<span class="ruby-constant">EC2_IAM_INFO</span>)
+  <span class="ruby-comment"># Expected format: arn:aws:iam::&lt;id&gt;:instance-profile/&lt;role_name&gt;</span>
+  <span class="ruby-identifier">role_name</span> = <span class="ruby-identifier">iam_info</span>[<span class="ruby-string">&#39;InstanceProfileArn&#39;</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;/&#39;</span>).<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">ec2_metadata_request</span>(<span class="ruby-constant">EC2_IAM_SECURITY_CREDENTIALS</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">role_name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ec2_metadata_request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ec2_metadata_request</span><span
+            class="method-args">(url)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ec2_metadata_request-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ec2_metadata_request</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-ivar">@request_pool</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">create_request_pool</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-identifier">request</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Get</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@request_pool</span>)
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fetch</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">response</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPOK</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">InstanceProfileError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Unable to fetch AWS metadata from #{uri}: #{response.message} #{response.code}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_s3_config" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_s3_config</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Extracts S3 configuration for S3 bucket</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_s3_config-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch_s3_config</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">S3Config</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">user</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">password</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&quot;us-east-1&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">password</span>
+
+  <span class="ruby-identifier">s3_source</span> = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>[<span class="ruby-value">:s3_source</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>[<span class="ruby-string">&quot;s3_source&quot;</span>]
+  <span class="ruby-identifier">host</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ConfigurationError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;no s3_source key exists in .gemrc&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">s3_source</span>
+
+  <span class="ruby-identifier">auth</span> = <span class="ruby-identifier">s3_source</span>[<span class="ruby-identifier">host</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">s3_source</span>[<span class="ruby-identifier">host</span>.<span class="ruby-identifier">to_sym</span>]
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ConfigurationError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;no key for host #{host} in s3_source in .gemrc&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">auth</span>
+
+  <span class="ruby-identifier">provider</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-value">:provider</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">auth</span>[<span class="ruby-string">&quot;provider&quot;</span>]
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">provider</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;env&quot;</span>
+    <span class="ruby-identifier">id</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;AWS_ACCESS_KEY_ID&quot;</span>]
+    <span class="ruby-identifier">secret</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;AWS_SECRET_ACCESS_KEY&quot;</span>]
+    <span class="ruby-identifier">security_token</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;AWS_SESSION_TOKEN&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;instance_profile&quot;</span>
+    <span class="ruby-identifier">credentials</span> = <span class="ruby-identifier">ec2_metadata_credentials_json</span>
+    <span class="ruby-identifier">id</span> = <span class="ruby-identifier">credentials</span>[<span class="ruby-string">&quot;AccessKeyId&quot;</span>]
+    <span class="ruby-identifier">secret</span> = <span class="ruby-identifier">credentials</span>[<span class="ruby-string">&quot;SecretAccessKey&quot;</span>]
+    <span class="ruby-identifier">security_token</span> = <span class="ruby-identifier">credentials</span>[<span class="ruby-string">&quot;Token&quot;</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">id</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-value">:id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">auth</span>[<span class="ruby-string">&quot;id&quot;</span>]
+    <span class="ruby-identifier">secret</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-value">:secret</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">auth</span>[<span class="ruby-string">&quot;secret&quot;</span>]
+    <span class="ruby-identifier">security_token</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-value">:security_token</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">auth</span>[<span class="ruby-string">&quot;security_token&quot;</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ConfigurationError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;s3_source for #{host} missing id or secret&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">secret</span>
+
+  <span class="ruby-identifier">region</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-value">:region</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">auth</span>[<span class="ruby-string">&quot;region&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;us-east-1&quot;</span>
+  <span class="ruby-constant">S3Config</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">secret</span>, <span class="ruby-identifier">security_token</span>, <span class="ruby-identifier">region</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-generate_canonical_query_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_canonical_query_params</span><span
+            class="method-args">(s3_config, date_time, credential_info, expiration)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generate_canonical_query_params-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate_canonical_query_params</span>(<span class="ruby-identifier">s3_config</span>, <span class="ruby-identifier">date_time</span>, <span class="ruby-identifier">credential_info</span>, <span class="ruby-identifier">expiration</span>)
+  <span class="ruby-identifier">canonical_params</span> = {}
+  <span class="ruby-identifier">canonical_params</span>[<span class="ruby-string">&quot;X-Amz-Algorithm&quot;</span>] = <span class="ruby-string">&quot;AWS4-HMAC-SHA256&quot;</span>
+  <span class="ruby-identifier">canonical_params</span>[<span class="ruby-string">&quot;X-Amz-Credential&quot;</span>] = <span class="ruby-node">&quot;#{s3_config.access_key_id}/#{credential_info}&quot;</span>
+  <span class="ruby-identifier">canonical_params</span>[<span class="ruby-string">&quot;X-Amz-Date&quot;</span>] = <span class="ruby-identifier">date_time</span>
+  <span class="ruby-identifier">canonical_params</span>[<span class="ruby-string">&quot;X-Amz-Expires&quot;</span>] = <span class="ruby-identifier">expiration</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">canonical_params</span>[<span class="ruby-string">&quot;X-Amz-SignedHeaders&quot;</span>] = <span class="ruby-string">&quot;host&quot;</span>
+  <span class="ruby-identifier">canonical_params</span>[<span class="ruby-string">&quot;X-Amz-Security-Token&quot;</span>] = <span class="ruby-identifier">s3_config</span>.<span class="ruby-identifier">security_token</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">s3_config</span>.<span class="ruby-identifier">security_token</span>
+
+  <span class="ruby-comment"># Sorting is required to generate proper signature</span>
+  <span class="ruby-identifier">canonical_params</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">to_h</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-node">&quot;#{base64_uri_escape(key)}=#{base64_uri_escape(value)}&quot;</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;&amp;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-generate_canonical_request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_canonical_request</span><span
+            class="method-args">(canonical_host, query_params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generate_canonical_request-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate_canonical_request</span>(<span class="ruby-identifier">canonical_host</span>, <span class="ruby-identifier">query_params</span>)
+  [
+    <span class="ruby-string">&quot;GET&quot;</span>,
+    <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">path</span>,
+    <span class="ruby-identifier">query_params</span>,
+    <span class="ruby-node">&quot;host:#{canonical_host}&quot;</span>,
+    <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-comment"># empty params</span>
+    <span class="ruby-string">&quot;host&quot;</span>,
+    <span class="ruby-string">&quot;UNSIGNED-PAYLOAD&quot;</span>,
+  ].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-generate_signature" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_signature</span><span
+            class="method-args">(s3_config, date, string_to_sign)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generate_signature-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate_signature</span>(<span class="ruby-identifier">s3_config</span>, <span class="ruby-identifier">date</span>, <span class="ruby-identifier">string_to_sign</span>)
+  <span class="ruby-identifier">date_key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">HMAC</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-string">&quot;sha256&quot;</span>, <span class="ruby-string">&quot;AWS4&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">s3_config</span>.<span class="ruby-identifier">secret_access_key</span>, <span class="ruby-identifier">date</span>)
+  <span class="ruby-identifier">date_region_key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">HMAC</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-string">&quot;sha256&quot;</span>, <span class="ruby-identifier">date_key</span>, <span class="ruby-identifier">s3_config</span>.<span class="ruby-identifier">region</span>)
+  <span class="ruby-identifier">date_region_service_key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">HMAC</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-string">&quot;sha256&quot;</span>, <span class="ruby-identifier">date_region_key</span>, <span class="ruby-string">&quot;s3&quot;</span>)
+  <span class="ruby-identifier">signing_key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">HMAC</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-string">&quot;sha256&quot;</span>, <span class="ruby-identifier">date_region_service_key</span>, <span class="ruby-string">&quot;aws4_request&quot;</span>)
+  <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">HMAC</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-string">&quot;sha256&quot;</span>, <span class="ruby-identifier">signing_key</span>, <span class="ruby-identifier">string_to_sign</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-generate_string_to_sign" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_string_to_sign</span><span
+            class="method-args">(date_time, credential_info, canonical_request)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generate_string_to_sign-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/s3_uri_signer.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate_string_to_sign</span>(<span class="ruby-identifier">date_time</span>, <span class="ruby-identifier">credential_info</span>, <span class="ruby-identifier">canonical_request</span>)
+  [
+    <span class="ruby-string">&quot;AWS4-HMAC-SHA256&quot;</span>,
+    <span class="ruby-identifier">date_time</span>,
+    <span class="ruby-identifier">credential_info</span>,
+    <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">canonical_request</span>)
+  ].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

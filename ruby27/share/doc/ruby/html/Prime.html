@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Prime - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Prime-label-Example">Example</a>
+    <li><a href="#class-Prime-label-Retrieving+the+instance">Retrieving the instance</a>
+    <li><a href="#class-Prime-label-Generators">Generators</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Enumerable.html">Enumerable</a>
+  
+  
+  
+    <li><a class="include" href="Singleton.html">Singleton</a>
+  
+  
+  </ul>
+</div>
+
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="Forwardable.html">Forwardable</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-int_from_prime_division">#int_from_prime_division</a>
+    
+    <li ><a href="#method-i-prime-3F">#prime?</a>
+    
+    <li ><a href="#method-i-prime_division">#prime_division</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Prime">
+  <h1 id="class-Prime" class="class">
+    class Prime
+  </h1>
+
+  <section class="description">
+    
+<p>The set of all prime numbers.</p>
+
+<h2 id="class-Prime-label-Example">Example<span><a href="#class-Prime-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">Prime</span>.<span class="ruby-identifier">each</span>(<span class="ruby-value">100</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prime</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">prime</span>  <span class="ruby-comment">#=&gt; 2, 3, 5, 7, 11, ...., 97</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><a href="Prime.html"><code>Prime</code></a> is Enumerable:</p>
+
+<pre class="ruby"><span class="ruby-constant">Prime</span>.<span class="ruby-identifier">first</span> <span class="ruby-value">5</span> <span class="ruby-comment"># =&gt; [2, 3, 5, 7, 11]</span>
+</pre>
+
+<h2 id="class-Prime-label-Retrieving+the+instance">Retrieving the instance<span><a href="#class-Prime-label-Retrieving+the+instance">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>For convenience, each instance method of <code>Prime</code>.instance can be accessed as a class method of <code>Prime</code>.</p>
+
+<p>e.g.</p>
+
+<pre class="ruby"><span class="ruby-constant">Prime</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)  <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-constant">Prime</span>.<span class="ruby-identifier">prime?</span>(<span class="ruby-value">2</span>)           <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<h2 id="class-Prime-label-Generators">Generators<span><a href="#class-Prime-label-Generators">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A “generator” provides an implementation of enumerating pseudo-prime numbers and it remembers the position of enumeration and upper bound. Furthermore, it is an external iterator of prime enumeration which is compatible with an <a href="Enumerator.html"><code>Enumerator</code></a>.</p>
+
+<p><code>Prime</code>::<code>PseudoPrimeGenerator</code> is the base class for generators. There are few implementations of generator.</p>
+<dl class="rdoc-list label-list"><dt><code>Prime</code>::<code>EratosthenesGenerator</code>
+<dd>
+<p>Uses eratosthenes&#39; sieve.</p>
+</dd><dt><code>Prime</code>::<code>TrialDivisionGenerator</code>
+<dd>
+<p>Uses the trial division method.</p>
+</dd><dt><code>Prime</code>::<code>Generator23</code>
+<dd>
+<p>Generates all positive integers which are not divisible by either 2 or 3. This sequence is very bad as a pseudo-prime sequence. But this is faster and uses much less memory than the other generators. So, it is suitable for factorizing an integer which is not large but has many prime factors. e.g. for <a href="Prime.html#method-i-prime-3F"><code>Prime#prime?</code></a> .</p>
+</dd></dl>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="VERSION">VERSION
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">(ubound = nil, generator = EratosthenesGenerator.new, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates the given block over all prime numbers.</p>
+
+<h2 id="method-i-each-label-Parameters">Parameters<span><a href="#method-i-each-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>ubound</code>
+<dd>
+<p>Optional. An arbitrary positive number. The upper bound of enumeration. The method enumerates prime numbers infinitely if <code>ubound</code> is nil.</p>
+</dd><dt><code>generator</code>
+<dd>
+<p>Optional. An implementation of pseudo-prime generator.</p>
+</dd></dl>
+
+<h2 id="method-i-each-label-Return+value">Return value<span><a href="#method-i-each-label-Return+value">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>An evaluated value of the given block at the last time. Or an enumerator which is compatible to an <code>Enumerator</code> if no block given.</p>
+
+<h2 id="method-i-each-label-Description">Description<span><a href="#method-i-each-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Calls <code>block</code> once for each prime number, passing the prime as a parameter.</p>
+<dl class="rdoc-list note-list"><dt><code>ubound</code>
+<dd>
+<p>Upper bound of prime numbers. The iterator stops after it yields all prime numbers p &lt;= <code>ubound</code>.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/prime.rb, line 139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>(<span class="ruby-identifier">ubound</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">generator</span> = <span class="ruby-constant">EratosthenesGenerator</span>.<span class="ruby-identifier">new</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">upper_bound</span> = <span class="ruby-identifier">ubound</span>
+  <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-int_from_prime_division" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">int_from_prime_division</span><span
+            class="method-args">(pd)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Re-composes a prime factorization and returns the product.</p>
+
+<h2 id="method-i-int_from_prime_division-label-Parameters">Parameters<span><a href="#method-i-int_from_prime_division-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>pd</code>
+<dd>
+<p><a href="Array.html"><code>Array</code></a> of pairs of integers. The each internal pair consists of a prime number – a prime factor – and a natural number – an exponent.</p>
+</dd></dl>
+
+<h2 id="method-i-int_from_prime_division-label-Example">Example<span><a href="#method-i-int_from_prime_division-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>For <code>[[p_1, e_1], [p_2, e_2], ...., [p_n, e_n]]</code>, it returns:</p>
+
+<pre>p_1**e_1 * p_2**e_2 * .... * p_n**e_n.
+
+Prime.int_from_prime_division([[2,2], [3,1]])  #=&gt; 12</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="int_from_prime_division-source">
+            <pre><span class="ruby-comment"># File lib/prime.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">int_from_prime_division</span>(<span class="ruby-identifier">pd</span>)
+  <span class="ruby-identifier">pd</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">1</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, (<span class="ruby-identifier">prime</span>, <span class="ruby-identifier">index</span>)<span class="ruby-operator">|</span>
+    <span class="ruby-identifier">value</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">prime</span><span class="ruby-operator">**</span><span class="ruby-identifier">index</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prime-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prime?</span><span
+            class="method-args">(value, generator = Prime::Generator23.new)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if <code>value</code> is a prime number, else returns false.</p>
+
+<h2 id="method-i-prime-3F-label-Parameters">Parameters<span><a href="#method-i-prime-3F-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>value</code>
+<dd>
+<p>an arbitrary integer to be checked.</p>
+</dd><dt><code>generator</code>
+<dd>
+<p>optional. A pseudo-prime generator.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="prime-3F-source">
+            <pre><span class="ruby-comment"># File lib/prime.rb, line 151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prime?</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">generator</span> = <span class="ruby-constant">Prime</span><span class="ruby-operator">::</span><span class="ruby-constant">Generator23</span>.<span class="ruby-identifier">new</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Expected a prime generator, got #{generator}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:each</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Expected an integer, got #{value}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:integer?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">integer?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+  <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">num</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">q</span>,<span class="ruby-identifier">r</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">divmod</span> <span class="ruby-identifier">num</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">q</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prime_division" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prime_division</span><span
+            class="method-args">(value, generator = Prime::Generator23.new)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the factorization of <code>value</code>.</p>
+
+<h2 id="method-i-prime_division-label-Parameters">Parameters<span><a href="#method-i-prime_division-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>value</code>
+<dd>
+<p>An arbitrary integer.</p>
+</dd><dt><code>generator</code>
+<dd>
+<p>Optional. A pseudo-prime generator. <code>generator</code>.succ must return the next pseudo-prime number in the ascending order. It must generate all prime numbers, but may also generate non prime numbers too.</p>
+</dd></dl>
+
+<h3 id="method-i-prime_division-label-Exceptions">Exceptions<span><a href="#method-i-prime_division-label-Exceptions">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<dl class="rdoc-list note-list"><dt><code>ZeroDivisionError</code>
+<dd>
+<p>when <code>value</code> is zero.</p>
+</dd></dl>
+
+<h2 id="method-i-prime_division-label-Example">Example<span><a href="#method-i-prime_division-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>For an arbitrary integer:</p>
+
+<pre>n = p_1**e_1 * p_2**e_2 * .... * p_n**e_n,</pre>
+
+<p><a href="Prime.html#method-i-prime_division"><code>prime_division</code></a>(n) returns:</p>
+
+<pre>[[p_1, e_1], [p_2, e_2], ...., [p_n, e_n]].
+
+Prime.prime_division(12) #=&gt; [[2,2], [3,1]]</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="prime_division-source">
+            <pre><span class="ruby-comment"># File lib/prime.rb, line 205</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prime_division</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">generator</span> = <span class="ruby-constant">Prime</span><span class="ruby-operator">::</span><span class="ruby-constant">Generator23</span>.<span class="ruby-identifier">new</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ZeroDivisionError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-operator">-</span><span class="ruby-identifier">value</span>
+    <span class="ruby-identifier">pv</span> = [[<span class="ruby-value">-1</span>, <span class="ruby-value">1</span>]]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">pv</span> = []
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prime</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">while</span> (<span class="ruby-identifier">value1</span>, <span class="ruby-identifier">mod</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">divmod</span>(<span class="ruby-identifier">prime</span>)
+           <span class="ruby-identifier">mod</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value1</span>
+      <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">pv</span>.<span class="ruby-identifier">push</span> [<span class="ruby-identifier">prime</span>, <span class="ruby-identifier">count</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value1</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">prime</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">pv</span>.<span class="ruby-identifier">push</span> [<span class="ruby-identifier">value</span>, <span class="ruby-value">1</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">pv</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class WIN32OLE_VARIABLE - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-name">#name</a>
+    
+    <li ><a href="#method-i-ole_type">#ole_type</a>
+    
+    <li ><a href="#method-i-ole_type_detail">#ole_type_detail</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-value">#value</a>
+    
+    <li ><a href="#method-i-variable_kind">#variable_kind</a>
+    
+    <li ><a href="#method-i-varkind">#varkind</a>
+    
+    <li ><a href="#method-i-visible-3F">#visible?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-WIN32OLE_VARIABLE">
+  <h1 id="class-WIN32OLE_VARIABLE" class="class">
+    class WIN32OLE_VARIABLE
+  </h1>
+
+  <section class="description">
+    
+<p><code>WIN32OLE_VARIABLE</code> objects represent OLE variable information.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#inspect &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the OLE variable name and the value with class name.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+folevariable_inspect(VALUE self)
+{
+    VALUE v = rb_inspect(folevariable_value(self));
+    VALUE n = folevariable_name(self);
+    VALUE detail = rb_sprintf(&quot;%&quot;PRIsVALUE&quot;=%&quot;PRIsVALUE, n, v);
+    return make_inspect(&quot;WIN32OLE_VARIABLE&quot;, detail);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#name
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the name of variable.</p>
+
+<pre class="ruby"><span class="ruby-identifier">tobj</span> = <span class="ruby-constant">WIN32OLE_TYPE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Microsoft Excel 9.0 Object Library&#39;</span>, <span class="ruby-string">&#39;XlSheetType&#39;</span>)
+<span class="ruby-identifier">variables</span> = <span class="ruby-identifier">tobj</span>.<span class="ruby-identifier">variables</span>
+<span class="ruby-identifier">variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">variable</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{variable.name}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">The</span> <span class="ruby-identifier">result</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">above</span> <span class="ruby-identifier">script</span> <span class="ruby-identifier">is</span> <span class="ruby-value">following:</span>
+  <span class="ruby-identifier">xlChart</span>
+  <span class="ruby-identifier">xlDialogSheet</span>
+  <span class="ruby-identifier">xlExcel4IntlMacroSheet</span>
+  <span class="ruby-identifier">xlExcel4MacroSheet</span>
+  <span class="ruby-identifier">xlWorksheet</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="name-source">
+            <pre>static VALUE
+folevariable_name(VALUE self)
+{
+    return rb_ivar_get(self, rb_intern(&quot;name&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="WIN32OLE_VARIABLE.html#method-i-to_s">to_s</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ole_type" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#ole_type
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns OLE type string.</p>
+
+<pre>tobj = WIN32OLE_TYPE.new(&#39;Microsoft Excel 9.0 Object Library&#39;, &#39;XlSheetType&#39;)
+variables = tobj.variables
+variables.each do |variable|
+  puts &quot;#{variable.ole_type} #{variable.name}&quot;
+end
+
+The result of above script is following:
+  INT xlChart
+  INT xlDialogSheet
+  INT xlExcel4IntlMacroSheet
+  INT xlExcel4MacroSheet
+  INT xlWorksheet</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ole_type-source">
+            <pre>static VALUE
+folevariable_ole_type(VALUE self)
+{
+    struct olevariabledata *pvar;
+    TypedData_Get_Struct(self, struct olevariabledata, &amp;olevariable_datatype, pvar);
+    return ole_variable_ole_type(pvar-&gt;pTypeInfo, pvar-&gt;index);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ole_type_detail" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#ole_type_detail
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns detail information of type. The information is array of type.</p>
+
+<pre class="ruby"><span class="ruby-identifier">tobj</span> = <span class="ruby-constant">WIN32OLE_TYPE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;DirectX 7 for Visual Basic Type Library&#39;</span>, <span class="ruby-string">&#39;D3DCLIPSTATUS&#39;</span>)
+<span class="ruby-identifier">variable</span> = <span class="ruby-identifier">tobj</span>.<span class="ruby-identifier">variables</span>.<span class="ruby-identifier">find</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">variable</span><span class="ruby-operator">|</span> <span class="ruby-identifier">variable</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;lFlags&#39;</span>}
+<span class="ruby-identifier">tdetail</span>  = <span class="ruby-identifier">variable</span>.<span class="ruby-identifier">ole_type_detail</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">tdetail</span> <span class="ruby-comment"># =&gt; [&quot;USERDEFINED&quot;, &quot;CONST_D3DCLIPSTATUSFLAGS&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ole_type_detail-source">
+            <pre>static VALUE
+folevariable_ole_type_detail(VALUE self)
+{
+    struct olevariabledata *pvar;
+    TypedData_Get_Struct(self, struct olevariabledata, &amp;olevariable_datatype, pvar);
+    return ole_variable_ole_type_detail(pvar-&gt;pTypeInfo, pvar-&gt;index);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="WIN32OLE_VARIABLE.html#method-i-name">name</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-value" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#value
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns value if value is exists. If the value does not exist, this method returns nil.</p>
+
+<pre class="ruby"><span class="ruby-identifier">tobj</span> = <span class="ruby-constant">WIN32OLE_TYPE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Microsoft Excel 9.0 Object Library&#39;</span>, <span class="ruby-string">&#39;XlSheetType&#39;</span>)
+<span class="ruby-identifier">variables</span> = <span class="ruby-identifier">tobj</span>.<span class="ruby-identifier">variables</span>
+<span class="ruby-identifier">variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">variable</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{variable.name} #{variable.value}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">The</span> <span class="ruby-identifier">result</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">above</span> <span class="ruby-identifier">script</span> <span class="ruby-identifier">is</span> <span class="ruby-value">following:</span>
+  <span class="ruby-identifier">xlChart</span> = <span class="ruby-value">-4109</span>
+  <span class="ruby-identifier">xlDialogSheet</span> = <span class="ruby-value">-4116</span>
+  <span class="ruby-identifier">xlExcel4IntlMacroSheet</span> = <span class="ruby-value">4</span>
+  <span class="ruby-identifier">xlExcel4MacroSheet</span> = <span class="ruby-value">3</span>
+  <span class="ruby-identifier">xlWorksheet</span> = <span class="ruby-value">-4167</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="value-source">
+            <pre>static VALUE
+folevariable_value(VALUE self)
+{
+    struct olevariabledata *pvar;
+    TypedData_Get_Struct(self, struct olevariabledata, &amp;olevariable_datatype, pvar);
+    return ole_variable_value(pvar-&gt;pTypeInfo, pvar-&gt;index);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-variable_kind" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#variable_kind
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns variable kind string.</p>
+
+<pre>tobj = WIN32OLE_TYPE.new(&#39;Microsoft Excel 9.0 Object Library&#39;, &#39;XlSheetType&#39;)
+variables = tobj.variables
+variables.each do |variable|
+  puts &quot;#{variable.name} #{variable.variable_kind}&quot;
+end
+
+The result of above script is following:
+  xlChart CONSTANT
+  xlDialogSheet CONSTANT
+  xlExcel4IntlMacroSheet CONSTANT
+  xlExcel4MacroSheet CONSTANT
+  xlWorksheet CONSTANT</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="variable_kind-source">
+            <pre>static VALUE
+folevariable_variable_kind(VALUE self)
+{
+    struct olevariabledata *pvar;
+    TypedData_Get_Struct(self, struct olevariabledata, &amp;olevariable_datatype, pvar);
+    return ole_variable_kind(pvar-&gt;pTypeInfo, pvar-&gt;index);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-varkind" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#varkind
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number which represents variable kind.</p>
+
+<pre>tobj = WIN32OLE_TYPE.new(&#39;Microsoft Excel 9.0 Object Library&#39;, &#39;XlSheetType&#39;)
+variables = tobj.variables
+variables.each do |variable|
+  puts &quot;#{variable.name} #{variable.varkind}&quot;
+end
+
+The result of above script is following:
+   xlChart 2
+   xlDialogSheet 2
+   xlExcel4IntlMacroSheet 2
+   xlExcel4MacroSheet 2
+   xlWorksheet 2</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="varkind-source">
+            <pre>static VALUE
+folevariable_varkind(VALUE self)
+{
+    struct olevariabledata *pvar;
+    TypedData_Get_Struct(self, struct olevariabledata, &amp;olevariable_datatype, pvar);
+    return ole_variable_varkind(pvar-&gt;pTypeInfo, pvar-&gt;index);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visible-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_VARIABLE#visible?
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the variable is public.</p>
+
+<pre>tobj = WIN32OLE_TYPE.new(&#39;Microsoft Excel 9.0 Object Library&#39;, &#39;XlSheetType&#39;)
+variables = tobj.variables
+variables.each do |variable|
+  puts &quot;#{variable.name} #{variable.visible?}&quot;
+end
+
+The result of above script is following:
+  xlChart true
+  xlDialogSheet true
+  xlExcel4IntlMacroSheet true
+  xlExcel4MacroSheet true
+  xlWorksheet true</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="visible-3F-source">
+            <pre>static VALUE
+folevariable_visible(VALUE self)
+{
+    struct olevariabledata *pvar;
+    TypedData_Get_Struct(self, struct olevariabledata, &amp;olevariable_datatype, pvar);
+    return ole_variable_visible(pvar-&gt;pTypeInfo, pvar-&gt;index);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

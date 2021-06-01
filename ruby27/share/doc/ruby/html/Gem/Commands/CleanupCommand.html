@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Commands::CleanupCommand - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Command.html">Gem::Command</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-clean_gems">#clean_gems</a>
+    
+    <li ><a href="#method-i-execute">#execute</a>
+    
+    <li ><a href="#method-i-get_candidate_gems">#get_candidate_gems</a>
+    
+    <li ><a href="#method-i-get_gems_to_cleanup">#get_gems_to_cleanup</a>
+    
+    <li ><a href="#method-i-get_primary_gems">#get_primary_gems</a>
+    
+    <li ><a href="#method-i-uninstall_dep">#uninstall_dep</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Commands::CleanupCommand">
+  <h1 id="class-Gem::Commands::CleanupCommand" class="class">
+    class Gem::Commands::CleanupCommand
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../Command.html#method-c-new"><code>Gem::Command::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/cleanup_command.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;cleanup&#39;</span>,
+        <span class="ruby-string">&#39;Clean up old versions of installed gems&#39;</span>,
+        <span class="ruby-value">:force</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:install_dir</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>,
+        <span class="ruby-value">:check_dev</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-n&#39;</span>, <span class="ruby-string">&#39;-d&#39;</span>, <span class="ruby-string">&#39;--dryrun&#39;</span>,
+             <span class="ruby-string">&#39;Do not uninstall gems&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:dryrun</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-D&#39;</span>, <span class="ruby-string">&#39;--[no-]check-development&#39;</span>,
+             <span class="ruby-string">&#39;Check development dependencies while uninstalling&#39;</span>,
+             <span class="ruby-string">&#39;(default: true)&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:check_dev</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;--[no-]user-install&#39;</span>,
+             <span class="ruby-string">&#39;Cleanup in user\&#39;s home directory instead&#39;</span>,
+             <span class="ruby-string">&#39;of GEM_HOME.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:user_install</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@candidate_gems</span>  = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@default_gems</span>    = []
+  <span class="ruby-ivar">@full</span>            = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@gems_to_cleanup</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@original_home</span>   = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@original_path</span>   = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@primary_gems</span>    = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-clean_gems" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_gems</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clean_gems-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/cleanup_command.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clean_gems</span>
+  <span class="ruby-ivar">@original_home</span> = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>
+  <span class="ruby-ivar">@original_path</span> = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">path</span>
+
+  <span class="ruby-identifier">get_primary_gems</span>
+  <span class="ruby-identifier">get_candidate_gems</span>
+  <span class="ruby-identifier">get_gems_to_cleanup</span>
+
+  <span class="ruby-ivar">@full</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyList</span>.<span class="ruby-identifier">from_specs</span>
+
+  <span class="ruby-identifier">deplist</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyList</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@gems_to_cleanup</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">deplist</span>.<span class="ruby-identifier">add</span> <span class="ruby-identifier">spec</span> }
+
+  <span class="ruby-identifier">deps</span> = <span class="ruby-identifier">deplist</span>.<span class="ruby-identifier">strongly_connected_components</span>.<span class="ruby-identifier">flatten</span>
+
+  <span class="ruby-identifier">deps</span>.<span class="ruby-identifier">reverse_each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">uninstall_dep</span> <span class="ruby-identifier">spec</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">reset</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-execute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">execute</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/cleanup_command.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>
+  <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Cleaning up installed gems...&quot;</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:args</span>].<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">done</span>     = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">last_set</span> = <span class="ruby-keyword">nil</span>
+
+    <span class="ruby-keyword">until</span> <span class="ruby-identifier">done</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">clean_gems</span>
+
+      <span class="ruby-identifier">this_set</span> = <span class="ruby-ivar">@gems_to_cleanup</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span> }.<span class="ruby-identifier">sort</span>
+
+      <span class="ruby-identifier">done</span> = <span class="ruby-identifier">this_set</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">last_set</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">this_set</span>
+
+      <span class="ruby-identifier">last_set</span> = <span class="ruby-identifier">this_set</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">clean_gems</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Clean up complete&quot;</span>
+
+  <span class="ruby-identifier">verbose</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">skipped</span> = <span class="ruby-ivar">@default_gems</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span> }
+
+    <span class="ruby-node">&quot;Skipped default gems: #{skipped.join &#39;, &#39;}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_candidate_gems" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_candidate_gems</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_candidate_gems-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/cleanup_command.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_candidate_gems</span>
+  <span class="ruby-ivar">@candidate_gems</span> = <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:args</span>].<span class="ruby-identifier">empty?</span>
+                      <span class="ruby-identifier">options</span>[<span class="ruby-value">:args</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gem_name</span><span class="ruby-operator">|</span>
+                        <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">find_all_by_name</span> <span class="ruby-identifier">gem_name</span>
+                      <span class="ruby-keyword">end</span>.<span class="ruby-identifier">flatten</span>
+                    <span class="ruby-keyword">else</span>
+                      <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">to_a</span>
+                    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_gems_to_cleanup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_gems_to_cleanup</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_gems_to_cleanup-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/cleanup_command.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_gems_to_cleanup</span>
+  <span class="ruby-identifier">gems_to_cleanup</span> = <span class="ruby-ivar">@candidate_gems</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@primary_gems</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>].<span class="ruby-identifier">version</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">default_gems</span>, <span class="ruby-identifier">gems_to_cleanup</span> = <span class="ruby-identifier">gems_to_cleanup</span>.<span class="ruby-identifier">partition</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">default_gem?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">uninstall_from</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:user_install</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">user_dir</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@original_home</span>
+
+  <span class="ruby-identifier">gems_to_cleanup</span> = <span class="ruby-identifier">gems_to_cleanup</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">base_dir</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">uninstall_from</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@default_gems</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">default_gems</span>
+  <span class="ruby-ivar">@default_gems</span>.<span class="ruby-identifier">uniq!</span>
+  <span class="ruby-ivar">@gems_to_cleanup</span> = <span class="ruby-identifier">gems_to_cleanup</span>.<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_primary_gems" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_primary_gems</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_primary_gems-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/cleanup_command.rb, line 143</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_primary_gems</span>
+  <span class="ruby-ivar">@primary_gems</span> = {}
+
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@primary_gems</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span>
+       <span class="ruby-ivar">@primary_gems</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>].<span class="ruby-identifier">version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>
+      <span class="ruby-ivar">@primary_gems</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">spec</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uninstall_dep" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uninstall_dep</span><span
+            class="method-args">(spec)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="uninstall_dep-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/cleanup_command.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uninstall_dep</span>(<span class="ruby-identifier">spec</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@full</span>.<span class="ruby-identifier">ok_to_remove?</span>(<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:check_dev</span>])
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:dryrun</span>]
+    <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Dry Run Mode: Would uninstall #{spec.full_name}&quot;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Attempting to uninstall #{spec.full_name}&quot;</span>
+
+  <span class="ruby-identifier">uninstall_options</span> = {
+    <span class="ruby-value">:executables</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-value">:version</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;= #{spec.version}&quot;</span>,
+  }
+
+  <span class="ruby-identifier">uninstall_options</span>[<span class="ruby-value">:user_install</span>] = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">user_dir</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">base_dir</span>
+
+  <span class="ruby-identifier">uninstaller</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Uninstaller</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">uninstall_options</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">uninstaller</span>.<span class="ruby-identifier">uninstall</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyRemovalException</span>, <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">InstallError</span>,
+         <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">GemNotInHomeException</span>, <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">FilePermissionError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Unable to uninstall #{spec.full_name}:&quot;</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;\t#{e.class}: #{e.message}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-comment"># Restore path Gem::Uninstaller may have changed</span>
+  <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">use_paths</span> <span class="ruby-ivar">@original_home</span>, <span class="ruby-operator">*</span><span class="ruby-ivar">@original_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Gem::InstallUpdateOptions - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="SecurityOption.html">Gem::SecurityOption</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-add_install_update_options">#add_install_update_options</a>
+    
+    <li ><a href="#method-i-install_update_defaults_str">#install_update_defaults_str</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Gem::InstallUpdateOptions">
+  <h1 id="module-Gem::InstallUpdateOptions" class="module">
+    module Gem::InstallUpdateOptions
+  </h1>
+
+  <section class="description">
+    
+<p>Mixin methods for install and update options for <a href="Commands.html"><code>Gem::Commands</code></a></p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_install_update_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_install_update_options</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the install/update options to the option parser.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_install_update_options-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/install_update_options.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_install_update_options</span>
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;-i&#39;</span>, <span class="ruby-string">&#39;--install-dir DIR&#39;</span>,
+             <span class="ruby-string">&#39;Gem repository directory to get installed&#39;</span>,
+             <span class="ruby-string">&#39;gems&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:install_dir</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;-n&#39;</span>, <span class="ruby-string">&#39;--bindir DIR&#39;</span>,
+             <span class="ruby-string">&#39;Directory where executables are&#39;</span>,
+             <span class="ruby-string">&#39;located&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:bin_dir</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>,       <span class="ruby-string">&#39;--document [TYPES]&#39;</span>, <span class="ruby-constant">Array</span>,
+             <span class="ruby-string">&#39;Generate documentation for installed gems&#39;</span>,
+             <span class="ruby-string">&#39;List the documentation types you wish to&#39;</span>,
+             <span class="ruby-string">&#39;generate.  For example: rdoc,ri&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:document</span>] = <span class="ruby-keyword">case</span> <span class="ruby-identifier">value</span>
+                         <span class="ruby-keyword">when</span> <span class="ruby-keyword">nil</span>   <span class="ruby-keyword">then</span> <span class="ruby-node">%w[ri]</span>
+                         <span class="ruby-keyword">when</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">then</span> []
+                         <span class="ruby-keyword">else</span>            <span class="ruby-identifier">value</span>
+                         <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--build-root DIR&#39;</span>,
+             <span class="ruby-string">&#39;Temporary installation root. Useful for building&#39;</span>,
+             <span class="ruby-string">&#39;packages. Do not use this when installing remote gems.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:build_root</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--vendor&#39;</span>,
+             <span class="ruby-string">&#39;Install gem into the vendor directory.&#39;</span>,
+             <span class="ruby-string">&#39;Only for use by gem repackagers.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">vendor_dir</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidOption</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;your platform is not supported&#39;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vendor</span>] = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:install_dir</span>] = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">vendor_dir</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;-N&#39;</span>, <span class="ruby-string">&#39;--no-document&#39;</span>,
+             <span class="ruby-string">&#39;Disable documentation generation&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:document</span>] = []
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;-E&#39;</span>, <span class="ruby-string">&#39;--[no-]env-shebang&#39;</span>,
+             <span class="ruby-string">&quot;Rewrite the shebang line on installed&quot;</span>,
+             <span class="ruby-string">&quot;scripts to use /usr/bin/env&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:env_shebang</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;-f&#39;</span>, <span class="ruby-string">&#39;--[no-]force&#39;</span>,
+             <span class="ruby-string">&#39;Force gem to install, bypassing dependency&#39;</span>,
+             <span class="ruby-string">&#39;checks&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:force</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;-w&#39;</span>, <span class="ruby-string">&#39;--[no-]wrappers&#39;</span>,
+             <span class="ruby-string">&#39;Use bin wrappers for executables&#39;</span>,
+             <span class="ruby-string">&#39;Not available on dosish platforms&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:wrappers</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_security_option</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--ignore-dependencies&#39;</span>,
+             <span class="ruby-string">&#39;Do not install any required dependent gems&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:ignore_dependencies</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>,       <span class="ruby-string">&#39;--[no-]format-executable&#39;</span>,
+             <span class="ruby-string">&#39;Make installed executable names match Ruby.&#39;</span>,
+             <span class="ruby-string">&#39;If Ruby is ruby18, foo_exec will be&#39;</span>,
+             <span class="ruby-string">&#39;foo_exec18&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:format_executable</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>,       <span class="ruby-string">&#39;--[no-]user-install&#39;</span>,
+             <span class="ruby-string">&#39;Install in user\&#39;s home directory instead&#39;</span>,
+             <span class="ruby-string">&#39;of GEM_HOME.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:user_install</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&quot;--development&quot;</span>,
+              <span class="ruby-string">&quot;Install additional development&quot;</span>,
+              <span class="ruby-string">&quot;dependencies&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:development</span>] = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:dev_shallow</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&quot;--development-all&quot;</span>,
+              <span class="ruby-string">&quot;Install development dependencies for all&quot;</span>,
+              <span class="ruby-string">&quot;gems (including dev deps themselves)&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:development</span>] = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:dev_shallow</span>] = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&quot;--conservative&quot;</span>,
+              <span class="ruby-string">&quot;Don&#39;t attempt to upgrade gems already&quot;</span>,
+              <span class="ruby-string">&quot;meeting version requirement&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:conservative</span>] = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:minimal_deps</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&quot;--minimal-deps&quot;</span>,
+              <span class="ruby-string">&quot;Don&#39;t upgrade any dependencies that already&quot;</span>,
+              <span class="ruby-string">&quot;meet version requirements&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:minimal_deps</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&quot;--[no-]post-install-message&quot;</span>,
+              <span class="ruby-string">&quot;Print post install message&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:post_install_message</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;-g&#39;</span>, <span class="ruby-string">&#39;--file [FILE]&#39;</span>,
+             <span class="ruby-string">&#39;Read from a gem dependencies API file and&#39;</span>,
+             <span class="ruby-string">&#39;install the listed gems&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">v</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">GEM_DEP_FILES</span>.<span class="ruby-identifier">find</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">file</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">v</span>
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">v</span>
+      <span class="ruby-identifier">message</span> = <span class="ruby-identifier">v</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;(tried #{Gem::GEM_DEP_FILES.join &#39;, &#39;})&quot;</span>
+
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidArgument</span>,
+              <span class="ruby-node">&quot;cannot find gem dependencies file #{message}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:gemdeps</span>] = <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--without GROUPS&#39;</span>, <span class="ruby-constant">Array</span>,
+             <span class="ruby-string">&#39;Omit the named groups (comma separated)&#39;</span>,
+             <span class="ruby-string">&#39;when installing from a gem dependencies&#39;</span>,
+             <span class="ruby-string">&#39;file&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:without_groups</span>].<span class="ruby-identifier">concat</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">without</span><span class="ruby-operator">|</span> <span class="ruby-identifier">without</span>.<span class="ruby-identifier">intern</span> }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--default&#39;</span>,
+             <span class="ruby-string">&#39;Add the gem\&#39;s full specification to&#39;</span>,
+             <span class="ruby-string">&#39;specifications/default and extract only its bin&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:install_as_default</span>] = <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--explain&#39;</span>,
+             <span class="ruby-string">&#39;Rather than install the gems, indicate which would&#39;</span>,
+             <span class="ruby-string">&#39;be installed&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:explain</span>] = <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--[no-]lock&#39;</span>,
+             <span class="ruby-string">&#39;Create a lock file (when used with -g/--file)&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:lock</span>] = <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Install/Update&quot;</span>, <span class="ruby-string">&#39;--[no-]suggestions&#39;</span>,
+             <span class="ruby-string">&#39;Suggest alternates when gems are not found&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:suggest_alternate</span>] = <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-install_update_defaults_str" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_update_defaults_str</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Default options for the gem install command.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="install_update_defaults_str-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/install_update_options.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">install_update_defaults_str</span>
+  <span class="ruby-string">&#39;--document=rdoc,ri --wrappers&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

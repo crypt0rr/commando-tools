@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Rinda::RingServer - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../DRb/DRbUndumped.html">DRb::DRbUndumped</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-do_reply">#do_reply</a>
+    
+    <li ><a href="#method-i-do_write">#do_write</a>
+    
+    <li ><a href="#method-i-make_socket">#make_socket</a>
+    
+    <li ><a href="#method-i-reply_service">#reply_service</a>
+    
+    <li ><a href="#method-i-shutdown">#shutdown</a>
+    
+    <li ><a href="#method-i-write_services">#write_services</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Rinda::RingServer">
+  <h1 id="class-Rinda::RingServer" class="class">
+    class Rinda::RingServer
+  </h1>
+
+  <section class="description">
+    
+<p>A <a href="RingServer.html"><code>RingServer</code></a> allows a <a href="TupleSpace.html"><code>Rinda::TupleSpace</code></a> to be located via UDP broadcasts. Default service location uses the following steps:</p>
+<ol><li>
+<p>A <a href="RingServer.html"><code>RingServer</code></a> begins listening on the network broadcast UDP address.</p>
+</li><li>
+<p>A <a href="RingFinger.html"><code>RingFinger</code></a> sends a UDP packet containing the <a href="../DRb.html"><code>DRb</code></a> <a href="../URI.html"><code>URI</code></a> where it will listen for a reply.</p>
+</li><li>
+<p>The <a href="RingServer.html"><code>RingServer</code></a> receives the UDP packet and connects back to the provided <a href="../DRb.html"><code>DRb</code></a> <a href="../URI.html"><code>URI</code></a> with the <a href="../DRb.html"><code>DRb</code></a> service.</p>
+</li></ol>
+
+<p>A <a href="RingServer.html"><code>RingServer</code></a> requires a TupleSpace:</p>
+
+<pre class="ruby"><span class="ruby-identifier">ts</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">TupleSpace</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">rs</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingServer</span>.<span class="ruby-identifier">new</span>
+</pre>
+
+<p><a href="RingServer.html"><code>RingServer</code></a> can also listen on multicast addresses for announcements.  This allows multiple RingServers to run on the same host.  To use network broadcast and multicast:</p>
+
+<pre class="ruby"><span class="ruby-identifier">ts</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">TupleSpace</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">rs</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingServer</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">ts</span>, <span class="ruby-node">%w[Socket::INADDR_ANY, 239.0.0.1 ff02::1]</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(ts, addresses=[Socket::INADDR_ANY], port=Ring_PORT)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Advertises <code>ts</code> on the given <code>addresses</code> at <code>port</code>.</p>
+
+<p>If <code>addresses</code> is omitted only the UDP broadcast address is used.</p>
+
+<p><code>addresses</code> can contain multiple addresses.  If a multicast address is given in <code>addresses</code> then the <a href="RingServer.html"><code>RingServer</code></a> will listen for multicast queries.</p>
+
+<p>If you use IPv4 multicast you may need to set an address of the inbound interface which joins a multicast group.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ts</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">TupleSpace</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">rs</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ts</span>, [[<span class="ruby-string">&#39;239.0.0.1&#39;</span>, <span class="ruby-string">&#39;9.5.1.1&#39;</span>]])
+</pre>
+
+<p>You can set addresses as an <a href="../Array.html"><code>Array</code></a> <a href="../Object.html"><code>Object</code></a>.  The first element of the <a href="../Array.html"><code>Array</code></a> is a multicast address and the second is an inbound interface address.  If the second is omitted then &#39;0.0.0.0&#39; is used.</p>
+
+<p>If you use IPv6 multicast you may need to set both the local interface address and the inbound interface index:</p>
+
+<pre class="ruby"><span class="ruby-identifier">rs</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ts</span>, [[<span class="ruby-string">&#39;ff02::1&#39;</span>, <span class="ruby-string">&#39;::1&#39;</span>, <span class="ruby-value">1</span>]])
+</pre>
+
+<p>The first element is a multicast address and the second is an inbound interface address.  The third is an inbound interface index.</p>
+
+<p>At this time there is no easy way to get an interface index by name.</p>
+
+<p>If the second is omitted then &#39;::1&#39; is used. If the third is omitted then 0 (default interface) is used.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">ts</span>, <span class="ruby-identifier">addresses</span>=[<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">INADDR_ANY</span>], <span class="ruby-identifier">port</span>=<span class="ruby-constant">Ring_PORT</span>)
+  <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">port</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Integer</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">addresses</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">addresses</span>, <span class="ruby-ivar">@port</span> = [<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">INADDR_ANY</span>], <span class="ruby-identifier">addresses</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@renewer</span> = <span class="ruby-constant">Renewer</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-ivar">@ts</span> = <span class="ruby-identifier">ts</span>
+  <span class="ruby-ivar">@sockets</span> = []
+  <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Array</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">address</span>
+      <span class="ruby-identifier">make_socket</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">address</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">make_socket</span>(<span class="ruby-identifier">address</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@w_services</span> = <span class="ruby-identifier">write_services</span>
+  <span class="ruby-ivar">@r_service</span>  = <span class="ruby-identifier">reply_service</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-do_reply" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">do_reply</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pulls lookup tuples out of the <a href="TupleSpace.html"><code>TupleSpace</code></a> and sends their <a href="../DRb.html"><code>DRb</code></a> object the address of the local <a href="TupleSpace.html"><code>TupleSpace</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="do_reply-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 218</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">do_reply</span>
+  <span class="ruby-identifier">tuple</span> = <span class="ruby-ivar">@ts</span>.<span class="ruby-identifier">take</span>([<span class="ruby-value">:lookup_ring</span>, <span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@renewer</span>)
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">tuple</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@ts</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>}
+<span class="ruby-keyword">rescue</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-do_write" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">do_write</span><span
+            class="method-args">(msg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Extracts the response <a href="../URI.html"><code>URI</code></a> from <code>msg</code> and adds it to <a href="TupleSpace.html"><code>TupleSpace</code></a> where it will be picked up by <code>reply_service</code> for notification.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="do_write-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 193</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">do_write</span>(<span class="ruby-identifier">msg</span>)
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">tuple</span>, <span class="ruby-identifier">sec</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">msg</span>)
+      <span class="ruby-ivar">@ts</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">tuple</span>, <span class="ruby-identifier">sec</span>)
+    <span class="ruby-keyword">rescue</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-make_socket" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_socket</span><span
+            class="method-args">(address, interface_address=nil, multicast_interface=0)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a socket at <code>address</code></p>
+
+<p>If <code>address</code> is multicast address then <code>interface_address</code> and <code>multicast_interface</code> can be set as optional.</p>
+
+<p>A created socket is bound to <code>interface_address</code>.  If you use IPv4 multicast then the interface of <code>interface_address</code> is used as the inbound interface.  If <code>interface_address</code> is omitted or nil then &#39;0.0.0.0&#39; or &#39;::1&#39; is used.</p>
+
+<p>If you use IPv6 multicast then <code>multicast_interface</code> is used as the inbound interface.  <code>multicast_interface</code> is a network interface index. If <code>multicast_interface</code> is omitted then 0 (default interface) is used.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="make_socket-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_socket</span>(<span class="ruby-identifier">address</span>, <span class="ruby-identifier">interface_address</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">multicast_interface</span>=<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">addrinfo</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">udp</span>(<span class="ruby-identifier">address</span>, <span class="ruby-ivar">@port</span>)
+
+  <span class="ruby-identifier">socket</span> = <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">pfamily</span>, <span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">socktype</span>,
+                      <span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">protocol</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">ipv4_multicast?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">ipv6_multicast?</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-value">:SO_REUSEPORT</span>) <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">setsockopt</span>(<span class="ruby-value">:SOCKET</span>, <span class="ruby-value">:SO_REUSEPORT</span>, <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">setsockopt</span>(<span class="ruby-value">:SOCKET</span>, <span class="ruby-value">:SO_REUSEADDR</span>, <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">ipv4_multicast?</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">interface_address</span> = <span class="ruby-string">&#39;0.0.0.0&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">interface_address</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">udp</span>(<span class="ruby-identifier">interface_address</span>, <span class="ruby-ivar">@port</span>))
+
+      <span class="ruby-identifier">mreq</span> = <span class="ruby-constant">IPAddr</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">ip_address</span>).<span class="ruby-identifier">hton</span> <span class="ruby-operator">+</span>
+        <span class="ruby-constant">IPAddr</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">interface_address</span>).<span class="ruby-identifier">hton</span>
+
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">setsockopt</span>(<span class="ruby-value">:IPPROTO_IP</span>, <span class="ruby-value">:IP_ADD_MEMBERSHIP</span>, <span class="ruby-identifier">mreq</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">interface_address</span> = <span class="ruby-string">&#39;::1&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">interface_address</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">udp</span>(<span class="ruby-identifier">interface_address</span>, <span class="ruby-ivar">@port</span>))
+
+      <span class="ruby-identifier">mreq</span> = <span class="ruby-constant">IPAddr</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">addrinfo</span>.<span class="ruby-identifier">ip_address</span>).<span class="ruby-identifier">hton</span> <span class="ruby-operator">+</span>
+        [<span class="ruby-identifier">multicast_interface</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;I&#39;</span>)
+
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">setsockopt</span>(<span class="ruby-value">:IPPROTO_IPV6</span>, <span class="ruby-value">:IPV6_JOIN_GROUP</span>, <span class="ruby-identifier">mreq</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-identifier">addrinfo</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">socket</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-identifier">socket</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">socket</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-ivar">@sockets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">socket</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">socket</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reply_service" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reply_service</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a thread that notifies waiting clients from the <a href="TupleSpace.html"><code>TupleSpace</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reply_service-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 206</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reply_service</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">do_reply</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-shutdown" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">shutdown</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Shuts down the <a href="RingServer.html"><code>RingServer</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="shutdown-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">shutdown</span>
+  <span class="ruby-ivar">@renewer</span>.<span class="ruby-identifier">renew</span> = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-ivar">@w_services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">thread</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">thread</span>.<span class="ruby-identifier">kill</span>
+    <span class="ruby-identifier">thread</span>.<span class="ruby-identifier">join</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@sockets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">socket</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@r_service</span>.<span class="ruby-identifier">kill</span>
+  <span class="ruby-ivar">@r_service</span>.<span class="ruby-identifier">join</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write_services" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_services</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates threads that pick up UDP packets and passes them to <a href="RingServer.html#method-i-do_write"><code>do_write</code></a> for decoding.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="write_services-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">write_services</span>
+  <span class="ruby-ivar">@sockets</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">s</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">socket</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">recv</span>(<span class="ruby-value">1024</span>)
+        <span class="ruby-identifier">do_write</span>(<span class="ruby-identifier">msg</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

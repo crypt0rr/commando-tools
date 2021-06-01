@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module CGI::Util - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-escape">#escape</a>
+    
+    <li ><a href="#method-i-escapeElement">#escapeElement</a>
+    
+    <li ><a href="#method-i-escapeHTML">#escapeHTML</a>
+    
+    <li ><a href="#method-i-escape_element">#escape_element</a>
+    
+    <li ><a href="#method-i-escape_html">#escape_html</a>
+    
+    <li ><a href="#method-i-h">#h</a>
+    
+    <li ><a href="#method-i-pretty">#pretty</a>
+    
+    <li ><a href="#method-i-rfc1123_date">#rfc1123_date</a>
+    
+    <li ><a href="#method-i-unescape">#unescape</a>
+    
+    <li ><a href="#method-i-unescapeElement">#unescapeElement</a>
+    
+    <li ><a href="#method-i-unescapeHTML">#unescapeHTML</a>
+    
+    <li ><a href="#method-i-unescape_element">#unescape_element</a>
+    
+    <li ><a href="#method-i-unescape_html">#unescape_html</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-CGI::Util">
+  <h1 id="module-CGI::Util" class="module">
+    module CGI::Util
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="RFC822_DAYS">RFC822_DAYS
+        
+        <dd><p>Abbreviated day-of-week names specified by RFC 822</p>
+        
+      
+        <dt id="RFC822_MONTHS">RFC822_MONTHS
+        
+        <dd><p>Abbreviated month names specified by RFC 822</p>
+        
+      
+        <dt id="TABLE_FOR_ESCAPE_HTML__">TABLE_FOR_ESCAPE_HTML__
+        
+        <dd><p>The set of special characters and their escaped values</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-escape" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">escape</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>URL-encode a string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">url_encoded_string</span> = <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-string">&quot;&#39;Stop!&#39; said Fred&quot;</span>)
+   <span class="ruby-comment"># =&gt; &quot;%27Stop%21%27+said+Fred&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="escape-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">escape</span>(<span class="ruby-identifier">string</span>)
+  <span class="ruby-identifier">encoding</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+  <span class="ruby-identifier">string</span>.<span class="ruby-identifier">b</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/([^ a-zA-Z0-9_.\-~]+)/</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+    <span class="ruby-string">&#39;%&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-string">&#39;H2&#39;</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">bytesize</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;%&#39;</span>).<span class="ruby-identifier">upcase</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39; &#39;</span>, <span class="ruby-string">&#39;+&#39;</span>).<span class="ruby-identifier">force_encoding</span>(<span class="ruby-identifier">encoding</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-escapeElement" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">escapeElement</span><span
+            class="method-args">(string, *elements)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Escape only the tags of certain HTML elements in <code>string</code>.</p>
+
+<p>Takes an element or elements or array of elements.  Each element is specified by the name of the element, without angle brackets. This matches both the start and the end tag of that element. The attribute list of the open tag will also be escaped (for instance, the double-quotes surrounding attribute values).</p>
+
+<pre class="ruby"><span class="ruby-identifier">print</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeElement</span>(<span class="ruby-string">&#39;&lt;BR&gt;&lt;A HREF=&quot;url&quot;&gt;&lt;/A&gt;&#39;</span>, <span class="ruby-string">&quot;A&quot;</span>, <span class="ruby-string">&quot;IMG&quot;</span>)
+  <span class="ruby-comment"># &quot;&lt;BR&gt;&amp;lt;A HREF=&amp;quot;url&amp;quot;&amp;gt;&amp;lt;/A&amp;gt&quot;</span>
+
+<span class="ruby-identifier">print</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeElement</span>(<span class="ruby-string">&#39;&lt;BR&gt;&lt;A HREF=&quot;url&quot;&gt;&lt;/A&gt;&#39;</span>, [<span class="ruby-string">&quot;A&quot;</span>, <span class="ruby-string">&quot;IMG&quot;</span>])
+  <span class="ruby-comment"># &quot;&lt;BR&gt;&amp;lt;A HREF=&amp;quot;url&amp;quot;&amp;gt;&amp;lt;/A&amp;gt&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="escapeElement-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">escapeElement</span>(<span class="ruby-identifier">string</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">elements</span>)
+  <span class="ruby-identifier">elements</span> = <span class="ruby-identifier">elements</span>[<span class="ruby-value">0</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">elements</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Array</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&lt;\/?(?:#{elements.join(&quot;|&quot;)})(?!\w)(?:.|\n)*?&gt;/i</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeHTML</span>(<span class="ruby-node">$&amp;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">string</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Util.html#method-i-escape_element">escape_element</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-escapeHTML" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">escapeHTML</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Escape special characters in HTML, namely &#39;&amp;&quot;&lt;&gt;</p>
+
+<pre class="ruby"><span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeHTML</span>(<span class="ruby-string">&#39;Usage: foo &quot;bar&quot; &lt;baz&gt;&#39;</span>)
+   <span class="ruby-comment"># =&gt; &quot;Usage: foo &amp;quot;bar&amp;quot; &amp;lt;baz&amp;gt;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="escapeHTML-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">escapeHTML</span>(<span class="ruby-identifier">string</span>)
+  <span class="ruby-identifier">enc</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">enc</span>.<span class="ruby-identifier">ascii_compatible?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">enc</span>.<span class="ruby-identifier">dummy?</span>
+      <span class="ruby-identifier">origenc</span> = <span class="ruby-identifier">enc</span>
+      <span class="ruby-identifier">enc</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">asciicompat_encoding</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-identifier">string</span> = <span class="ruby-identifier">enc</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">b</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">table</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-constant">TABLE_FOR_ESCAPE_HTML__</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">pair</span><span class="ruby-operator">|</span><span class="ruby-identifier">pair</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span><span class="ruby-identifier">s</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>)}}]
+    <span class="ruby-identifier">string</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/#{&quot;[&#39;&amp;\&quot;&lt;&gt;]&quot;.encode(enc)}/</span>, <span class="ruby-identifier">table</span>)
+    <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encode!</span>(<span class="ruby-identifier">origenc</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">origenc</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">string</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[&#39;&amp;\&quot;&lt;&gt;]/</span>, <span class="ruby-constant">TABLE_FOR_ESCAPE_HTML__</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Util.html#method-i-escape_html">escape_html</a>, <a href="Util.html#method-i-h">h</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-escape_element" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">escape_element</span><span
+            class="method-args">(string, *elements)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Synonym for <a href="Util.html#method-i-escapeElement"><code>CGI.escapeElement(str)</code></a></p>
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Util.html#method-i-escapeElement">escapeElement</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-escape_html" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">escape_html</span><span
+            class="method-args">(string)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Synonym for <a href="Util.html#method-i-escapeHTML"><code>CGI.escapeHTML(str)</code></a></p>
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Util.html#method-i-escapeHTML">escapeHTML</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-h" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">h</span><span
+            class="method-args">(string)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Util.html#method-i-escapeHTML">escapeHTML</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-pretty" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pretty</span><span
+            class="method-args">(string, shift = &quot; &quot;)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prettify (indent) an HTML string.</p>
+
+<p><code>string</code> is the HTML string to indent.  <code>shift</code> is the indentation unit to use; it defaults to two spaces.</p>
+
+<pre class="ruby"><span class="ruby-identifier">print</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">pretty</span>(<span class="ruby-string">&quot;&lt;HTML&gt;&lt;BODY&gt;&lt;/BODY&gt;&lt;/HTML&gt;&quot;</span>)
+  <span class="ruby-comment"># &lt;HTML&gt;</span>
+  <span class="ruby-comment">#   &lt;BODY&gt;</span>
+  <span class="ruby-comment">#   &lt;/BODY&gt;</span>
+  <span class="ruby-comment"># &lt;/HTML&gt;</span>
+
+<span class="ruby-identifier">print</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">pretty</span>(<span class="ruby-string">&quot;&lt;HTML&gt;&lt;BODY&gt;&lt;/BODY&gt;&lt;/HTML&gt;&quot;</span>, <span class="ruby-string">&quot;\t&quot;</span>)
+  <span class="ruby-comment"># &lt;HTML&gt;</span>
+  <span class="ruby-comment">#         &lt;BODY&gt;</span>
+  <span class="ruby-comment">#         &lt;/BODY&gt;</span>
+  <span class="ruby-comment"># &lt;/HTML&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="pretty-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pretty</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">shift</span> = <span class="ruby-string">&quot;  &quot;</span>)
+  <span class="ruby-identifier">lines</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/(?!\A)&lt;.*?&gt;/m</span>, <span class="ruby-string">&quot;\n\\0&quot;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&lt;.*?&gt;(?!\n)/m</span>, <span class="ruby-string">&quot;\\0\n&quot;</span>)
+  <span class="ruby-identifier">end_pos</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">end_pos</span> = <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">index</span>(<span class="ruby-regexp">/^&lt;\/(\w+)/</span>, <span class="ruby-identifier">end_pos</span>)
+    <span class="ruby-identifier">element</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">start_pos</span> = <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">rindex</span>(<span class="ruby-regexp">/^\s*&lt;#{element}/i</span>, <span class="ruby-identifier">end_pos</span>)
+    <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">start_pos</span> <span class="ruby-operator">...</span> <span class="ruby-identifier">end_pos</span>] = <span class="ruby-string">&quot;__&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">start_pos</span> <span class="ruby-operator">...</span> <span class="ruby-identifier">end_pos</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\n(?!\z)/</span>, <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">shift</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;__&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^((?:#{Regexp::quote(shift)})*)__(?=&lt;\/?\w)/</span>, <span class="ruby-string">&#39;\1&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rfc1123_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rfc1123_date</span><span
+            class="method-args">(time)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Format a <code>Time</code> object as a <a href="../String.html"><code>String</code></a> using the format specified by RFC 1123.</p>
+
+<pre class="ruby"><span class="ruby-constant">CGI</span>.<span class="ruby-identifier">rfc1123_date</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>)
+  <span class="ruby-comment"># Sat, 01 Jan 2000 00:00:00 GMT</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="rfc1123_date-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rfc1123_date</span>(<span class="ruby-identifier">time</span>)
+  <span class="ruby-identifier">t</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">clone</span>.<span class="ruby-identifier">gmtime</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">format</span>(<span class="ruby-string">&quot;%s, %.2d %s %.4d %.2d:%.2d:%.2d GMT&quot;</span>,
+                <span class="ruby-constant">RFC822_DAYS</span>[<span class="ruby-identifier">t</span>.<span class="ruby-identifier">wday</span>], <span class="ruby-identifier">t</span>.<span class="ruby-identifier">day</span>, <span class="ruby-constant">RFC822_MONTHS</span>[<span class="ruby-identifier">t</span>.<span class="ruby-identifier">month</span><span class="ruby-value">-1</span>], <span class="ruby-identifier">t</span>.<span class="ruby-identifier">year</span>,
+                <span class="ruby-identifier">t</span>.<span class="ruby-identifier">hour</span>, <span class="ruby-identifier">t</span>.<span class="ruby-identifier">min</span>, <span class="ruby-identifier">t</span>.<span class="ruby-identifier">sec</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unescape" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unescape</span><span
+            class="method-args">(string,encoding=@@accept_charset)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>URL-decode a string with encoding(optional).</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span> = <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">unescape</span>(<span class="ruby-string">&quot;%27Stop%21%27+said+Fred&quot;</span>)
+   <span class="ruby-comment"># =&gt; &quot;&#39;Stop!&#39; said Fred&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="unescape-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unescape</span>(<span class="ruby-identifier">string</span>,<span class="ruby-identifier">encoding</span>=<span class="ruby-identifier">@@accept_charset</span>)
+  <span class="ruby-identifier">str</span>=<span class="ruby-identifier">string</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;+&#39;</span>, <span class="ruby-string">&#39; &#39;</span>).<span class="ruby-identifier">b</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/((?:%[0-9a-fA-F]{2})+)/</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+    [<span class="ruby-identifier">m</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;%&#39;</span>)].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;H*&#39;</span>)
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-identifier">encoding</span>)
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">valid_encoding?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">str</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unescapeElement" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unescapeElement</span><span
+            class="method-args">(string, *elements)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Undo escaping such as that done by <a href="Util.html#method-i-escapeElement"><code>CGI.escapeElement()</code></a></p>
+
+<pre class="ruby"><span class="ruby-identifier">print</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">unescapeElement</span>(
+        <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeHTML</span>(<span class="ruby-string">&#39;&lt;BR&gt;&lt;A HREF=&quot;url&quot;&gt;&lt;/A&gt;&#39;</span>), <span class="ruby-string">&quot;A&quot;</span>, <span class="ruby-string">&quot;IMG&quot;</span>)
+  <span class="ruby-comment"># &quot;&amp;lt;BR&amp;gt;&lt;A HREF=&quot;url&quot;&gt;&lt;/A&gt;&quot;</span>
+
+<span class="ruby-identifier">print</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">unescapeElement</span>(
+        <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeHTML</span>(<span class="ruby-string">&#39;&lt;BR&gt;&lt;A HREF=&quot;url&quot;&gt;&lt;/A&gt;&#39;</span>), [<span class="ruby-string">&quot;A&quot;</span>, <span class="ruby-string">&quot;IMG&quot;</span>])
+  <span class="ruby-comment"># &quot;&amp;lt;BR&amp;gt;&lt;A HREF=&quot;url&quot;&gt;&lt;/A&gt;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="unescapeElement-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unescapeElement</span>(<span class="ruby-identifier">string</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">elements</span>)
+  <span class="ruby-identifier">elements</span> = <span class="ruby-identifier">elements</span>[<span class="ruby-value">0</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">elements</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Array</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&amp;lt;\/?(?:#{elements.join(&quot;|&quot;)})(?!\w)(?:.|\n)*?&amp;gt;/i</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">unescapeHTML</span>(<span class="ruby-node">$&amp;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">string</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Util.html#method-i-unescape_element">unescape_element</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unescapeHTML" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unescapeHTML</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Unescape a string that has been HTML-escaped</p>
+
+<pre class="ruby"><span class="ruby-constant">CGI</span>.<span class="ruby-identifier">unescapeHTML</span>(<span class="ruby-string">&quot;Usage: foo &amp;quot;bar&amp;quot; &amp;lt;baz&amp;gt;&quot;</span>)
+   <span class="ruby-comment"># =&gt; &quot;Usage: foo \&quot;bar\&quot; &lt;baz&gt;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="unescapeHTML-source">
+            <pre><span class="ruby-comment"># File lib/cgi/util.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unescapeHTML</span>(<span class="ruby-identifier">string</span>)
+  <span class="ruby-identifier">enc</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">enc</span>.<span class="ruby-identifier">ascii_compatible?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">enc</span>.<span class="ruby-identifier">dummy?</span>
+      <span class="ruby-identifier">origenc</span> = <span class="ruby-identifier">enc</span>
+      <span class="ruby-identifier">enc</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">asciicompat_encoding</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-identifier">string</span> = <span class="ruby-identifier">enc</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">b</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">string</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;&amp;(apos|amp|quot|gt|lt|#[0-9]+|#x[0-9A-Fa-f]+);&#39;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>))) <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-node">$1</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">US_ASCII</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;apos&#39;</span>                <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;&#39;&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;amp&#39;</span>                 <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&amp;&#39;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;quot&#39;</span>                <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&quot;&#39;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;gt&#39;</span>                  <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&gt;&#39;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;lt&#39;</span>                  <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&lt;&#39;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A#0*(\d+)\z/</span>        <span class="ruby-keyword">then</span> <span class="ruby-node">$1</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">chr</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A#x([0-9a-f]+)\z/i</span>  <span class="ruby-keyword">then</span> <span class="ruby-node">$1</span>.<span class="ruby-identifier">hex</span>.<span class="ruby-identifier">chr</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encode!</span>(<span class="ruby-identifier">origenc</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">origenc</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">string</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">string</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;&amp;&#39;</span>
+  <span class="ruby-identifier">charlimit</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">enc</span>
+              <span class="ruby-keyword">when</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>; <span class="ruby-value">0x10ffff</span>
+              <span class="ruby-keyword">when</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_8859_1</span>; <span class="ruby-value">256</span>
+              <span class="ruby-keyword">else</span> <span class="ruby-value">128</span>
+              <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&amp;(apos|amp|quot|gt|lt|\#[0-9]+|\#[xX][0-9A-Fa-f]+);/</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">match</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">match</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;apos&#39;</span>                <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;&#39;&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;amp&#39;</span>                 <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&amp;&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;quot&#39;</span>                <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&quot;&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;gt&#39;</span>                  <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&gt;&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;lt&#39;</span>                  <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;&lt;&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A#0*(\d+)\z/</span>
+      <span class="ruby-identifier">n</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">charlimit</span>
+        <span class="ruby-identifier">n</span>.<span class="ruby-identifier">chr</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-node">&quot;&amp;##{$1};&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A#x([0-9a-f]+)\z/i</span>
+      <span class="ruby-identifier">n</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">hex</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">charlimit</span>
+        <span class="ruby-identifier">n</span>.<span class="ruby-identifier">chr</span>(<span class="ruby-identifier">enc</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-node">&quot;&amp;#x#{$1};&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-node">&quot;&amp;#{match};&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Util.html#method-i-unescape_html">unescape_html</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unescape_element" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">unescape_element</span><span
+            class="method-args">(string, *elements)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Synonym for <a href="Util.html#method-i-unescapeElement"><code>CGI.unescapeElement(str)</code></a></p>
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Util.html#method-i-unescapeElement">unescapeElement</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-unescape_html" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">unescape_html</span><span
+            class="method-args">(string)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Synonym for <a href="Util.html#method-i-unescapeHTML"><code>CGI.unescapeHTML(str)</code></a></p>
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Util.html#method-i-unescapeHTML">unescapeHTML</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

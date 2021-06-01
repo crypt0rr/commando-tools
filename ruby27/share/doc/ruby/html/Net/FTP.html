@@ -1,0 +1,2792 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Net::FTP - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Net::FTP-label-Example">Example</a>
+    <li><a href="#class-Net::FTP-label-Example+1">Example 1</a>
+    <li><a href="#class-Net::FTP-label-Example+2">Example 2</a>
+    <li><a href="#class-Net::FTP-label-Major+Methods">Major Methods</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Protocol
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">MonitorMixin</span>
+  
+  
+  
+    <li><a class="include" href="../OpenSSL.html">OpenSSL</a>
+  
+  
+  
+    <li><a class="include" href="../OpenSSL/SSL.html">OpenSSL::SSL</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-default_passive">::default_passive</a>
+    
+    <li ><a href="#method-c-default_passive-3D">::default_passive=</a>
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-open">::open</a>
+    
+    <li ><a href="#method-i-abort">#abort</a>
+    
+    <li ><a href="#method-i-acct">#acct</a>
+    
+    <li ><a href="#method-i-binary-3D">#binary=</a>
+    
+    <li ><a href="#method-i-chdir">#chdir</a>
+    
+    <li ><a href="#method-i-close">#close</a>
+    
+    <li ><a href="#method-i-closed-3F">#closed?</a>
+    
+    <li ><a href="#method-i-connect">#connect</a>
+    
+    <li ><a href="#method-i-delete">#delete</a>
+    
+    <li ><a href="#method-i-dir">#dir</a>
+    
+    <li ><a href="#method-i-features">#features</a>
+    
+    <li ><a href="#method-i-get">#get</a>
+    
+    <li ><a href="#method-i-getbinaryfile">#getbinaryfile</a>
+    
+    <li ><a href="#method-i-getdir">#getdir</a>
+    
+    <li ><a href="#method-i-gettextfile">#gettextfile</a>
+    
+    <li ><a href="#method-i-help">#help</a>
+    
+    <li ><a href="#method-i-list">#list</a>
+    
+    <li ><a href="#method-i-login">#login</a>
+    
+    <li ><a href="#method-i-ls">#ls</a>
+    
+    <li ><a href="#method-i-mdtm">#mdtm</a>
+    
+    <li ><a href="#method-i-mkdir">#mkdir</a>
+    
+    <li ><a href="#method-i-mlsd">#mlsd</a>
+    
+    <li ><a href="#method-i-mlst">#mlst</a>
+    
+    <li ><a href="#method-i-mtime">#mtime</a>
+    
+    <li ><a href="#method-i-nlst">#nlst</a>
+    
+    <li ><a href="#method-i-noop">#noop</a>
+    
+    <li ><a href="#method-i-option">#option</a>
+    
+    <li ><a href="#method-i-parse_mlsx_entry">#parse_mlsx_entry</a>
+    
+    <li ><a href="#method-i-parse_pasv_ipv4_host">#parse_pasv_ipv4_host</a>
+    
+    <li ><a href="#method-i-parse_pasv_ipv6_host">#parse_pasv_ipv6_host</a>
+    
+    <li ><a href="#method-i-parse_pasv_port">#parse_pasv_port</a>
+    
+    <li ><a href="#method-i-put">#put</a>
+    
+    <li ><a href="#method-i-putbinaryfile">#putbinaryfile</a>
+    
+    <li ><a href="#method-i-puttextfile">#puttextfile</a>
+    
+    <li ><a href="#method-i-pwd">#pwd</a>
+    
+    <li ><a href="#method-i-quit">#quit</a>
+    
+    <li ><a href="#method-i-read_timeout-3D">#read_timeout=</a>
+    
+    <li ><a href="#method-i-rename">#rename</a>
+    
+    <li ><a href="#method-i-retrbinary">#retrbinary</a>
+    
+    <li ><a href="#method-i-retrlines">#retrlines</a>
+    
+    <li ><a href="#method-i-rmdir">#rmdir</a>
+    
+    <li ><a href="#method-i-sendcmd">#sendcmd</a>
+    
+    <li ><a href="#method-i-set_socket">#set_socket</a>
+    
+    <li ><a href="#method-i-site">#site</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+    <li ><a href="#method-i-start_tls_session">#start_tls_session</a>
+    
+    <li ><a href="#method-i-status">#status</a>
+    
+    <li ><a href="#method-i-storbinary">#storbinary</a>
+    
+    <li ><a href="#method-i-storlines">#storlines</a>
+    
+    <li ><a href="#method-i-system">#system</a>
+    
+    <li ><a href="#method-i-voidcmd">#voidcmd</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Net::FTP">
+  <h1 id="class-Net::FTP" class="class">
+    class Net::FTP
+  </h1>
+
+  <section class="description">
+    
+<p>This class implements the <a href="../File.html"><code>File</code></a> Transfer Protocol.  If you have used a command-line <a href="FTP.html"><code>FTP</code></a> program, and are familiar with the commands, you will be able to use this class easily.  Some extra features are included to take advantage of Ruby&#39;s style and strengths.</p>
+
+<h2 id="class-Net::FTP-label-Example">Example<span><a href="#class-Net::FTP-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;net/ftp&#39;</span>
+</pre>
+
+<h3 id="class-Net::FTP-label-Example+1">Example 1<span><a href="#class-Net::FTP-label-Example+1">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">ftp</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">FTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;example.com&#39;</span>)
+<span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">login</span>
+<span class="ruby-identifier">files</span> = <span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-string">&#39;pub/lang/ruby/contrib&#39;</span>)
+<span class="ruby-identifier">files</span> = <span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">list</span>(<span class="ruby-string">&#39;n*&#39;</span>)
+<span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">getbinaryfile</span>(<span class="ruby-string">&#39;nif.rb-0.91.gz&#39;</span>, <span class="ruby-string">&#39;nif.gz&#39;</span>, <span class="ruby-value">1024</span>)
+<span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">close</span>
+</pre>
+
+<h3 id="class-Net::FTP-label-Example+2">Example 2<span><a href="#class-Net::FTP-label-Example+2">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">FTP</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;example.com&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ftp</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">login</span>
+  <span class="ruby-identifier">files</span> = <span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-string">&#39;pub/lang/ruby/contrib&#39;</span>)
+  <span class="ruby-identifier">files</span> = <span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">list</span>(<span class="ruby-string">&#39;n*&#39;</span>)
+  <span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">getbinaryfile</span>(<span class="ruby-string">&#39;nif.rb-0.91.gz&#39;</span>, <span class="ruby-string">&#39;nif.gz&#39;</span>, <span class="ruby-value">1024</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="class-Net::FTP-label-Major+Methods">Major Methods<span><a href="#class-Net::FTP-label-Major+Methods">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The following are the methods most likely to be useful to users:</p>
+<ul><li>
+<p><a href="FTP.html#method-c-open"><code>FTP.open</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-getbinaryfile"><code>getbinaryfile</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-gettextfile"><code>gettextfile</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-putbinaryfile"><code>putbinaryfile</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-puttextfile"><code>puttextfile</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-chdir"><code>chdir</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-nlst"><code>nlst</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-size"><code>size</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-rename"><code>rename</code></a></p>
+</li><li>
+<p><a href="FTP.html#method-i-delete"><code>delete</code></a></p>
+</li></ul>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="CASE_DEPENDENT_PARSER">CASE_DEPENDENT_PARSER
+        
+        <dd>
+        
+      
+        <dt id="CASE_INDEPENDENT_PARSER">CASE_INDEPENDENT_PARSER
+        
+        <dd>
+        
+      
+        <dt id="DECIMAL_PARSER">DECIMAL_PARSER
+        
+        <dd>
+        
+      
+        <dt id="FACT_PARSERS">FACT_PARSERS
+        
+        <dd>
+        
+      
+        <dt id="OCTAL_PARSER">OCTAL_PARSER
+        
+        <dd>
+        
+      
+        <dt id="TIME_PARSER">TIME_PARSER
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-binary" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">binary</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>When <code>true</code>, transfers are performed in binary mode.  Default: <code>true</code>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-debug_mode" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">debug_mode</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>When <code>true</code>, all traffic to and from the server is written to +$stdout+.  Default: <code>false</code>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-last_response" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">last_response</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The server&#39;s last response.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-last_response_code" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">last_response_code</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The server&#39;s last response code.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-lastresp" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">lastresp</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The server&#39;s last response code.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-open_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">open_timeout</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Number of seconds to wait for the connection to open. Any number may be used, including Floats for fractional seconds. If the <a href="FTP.html"><code>FTP</code></a> object cannot open a connection in this many seconds, it raises a <a href="OpenTimeout.html"><code>Net::OpenTimeout</code></a> exception. The default value is <code>nil</code>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-passive" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">passive</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>When <code>true</code>, the connection is in passive mode.  Default: <code>true</code>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-read_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">read_timeout</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Number of seconds to wait for one block to be read (via one read(2) call). Any number may be used, including Floats for fractional seconds. If the <a href="FTP.html"><code>FTP</code></a> object cannot read data in this many seconds, it raises a <a href="../Timeout/Error.html"><code>Timeout::Error</code></a> exception. The default value is 60 seconds.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-resume" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">resume</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Sets or retrieves the <code>resume</code> status, which decides whether incomplete transfers are resumed or restarted.  Default: <code>false</code>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ssl_handshake_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ssl_handshake_timeout</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Number of seconds to wait for the TLS handshake. Any number may be used, including Floats for fractional seconds. If the <a href="FTP.html"><code>FTP</code></a> object cannot complete the TLS handshake in this many seconds, it raises a <a href="OpenTimeout.html"><code>Net::OpenTimeout</code></a> exception. The default value is <code>nil</code>. If <code>ssl_handshake_timeout</code> is <code>nil</code>, <code>open_timeout</code> is used instead.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-welcome" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">welcome</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The server&#39;s welcome message.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-default_passive" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_passive</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>When <code>true</code>, connections are in passive mode per default. Default: <code>true</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_passive-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">default_passive</span>
+  <span class="ruby-identifier">@@default_passive</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-default_passive-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_passive=</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>When <code>true</code>, connections are in passive mode per default. Default: <code>true</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_passive-3D-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">default_passive=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">@@default_passive</span> = <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Net::FTP.new(host = nil, options = {})
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates and returns a new <code>FTP</code> object. If a <code>host</code> is given, a connection is made.</p>
+
+<p><code>options</code> is an option hash, each key of which is a symbol.</p>
+
+<p>The available options are:</p>
+<dl class="rdoc-list note-list"><dt>port
+<dd>
+<p>Port number (default value is 21)</p>
+</dd><dt>ssl
+<dd>
+<p>If <a href=":ssl">options</a> is true, then an attempt will be made to use SSL (now TLS) to connect to the server.  For this to work <a href="../OpenSSL.html"><code>OpenSSL</code></a> [OSSL] and the Ruby <a href="../OpenSSL.html"><code>OpenSSL</code></a> [RSSL] extensions need to be installed.  If <a href=":ssl">options</a> is a hash, it&#39;s passed to <a href="../OpenSSL/SSL/SSLContext.html#method-i-set_params"><code>OpenSSL::SSL::SSLContext#set_params</code></a> as parameters.</p>
+</dd><dt>private_data_connection
+<dd>
+<p>If true, TLS is used for data connections. Default: <code>true</code> when <a href=":ssl">options</a> is true.</p>
+</dd><dt>username
+<dd>
+<p>Username for login.  If <a href=":username">options</a> is the string “anonymous” and the <a href=":password">options</a> is <code>nil</code>, “anonymous@” is used as a password.</p>
+</dd><dt>password
+<dd>
+<p>Password for login.</p>
+</dd><dt>account
+<dd>
+<p>Account information for ACCT.</p>
+</dd><dt>passive
+<dd>
+<p>When <code>true</code>, the connection is in passive mode. Default: <code>true</code>.</p>
+</dd><dt><a href="FTP.html#attribute-i-open_timeout"><code>open_timeout</code></a>
+<dd>
+<p>Number of seconds to wait for the connection to open. See <a href="FTP.html#attribute-i-open_timeout"><code>Net::FTP#open_timeout</code></a> for details.  Default: <code>nil</code>.</p>
+</dd><dt><a href="FTP.html#attribute-i-read_timeout"><code>read_timeout</code></a>
+<dd>
+<p>Number of seconds to wait for one block to be read. See <a href="FTP.html#attribute-i-read_timeout"><code>Net::FTP#read_timeout</code></a> for details.  Default: <code>60</code>.</p>
+</dd><dt><a href="FTP.html#attribute-i-ssl_handshake_timeout"><code>ssl_handshake_timeout</code></a>
+<dd>
+<p>Number of seconds to wait for the TLS handshake. See <a href="FTP.html#attribute-i-ssl_handshake_timeout"><code>Net::FTP#ssl_handshake_timeout</code></a> for details.  Default: <code>nil</code>.</p>
+</dd><dt><a href="FTP.html#attribute-i-debug_mode"><code>debug_mode</code></a>
+<dd>
+<p>When <code>true</code>, all traffic to and from the server is written to +$stdout+.  Default: <code>false</code>.</p>
+</dd></dl>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">user_or_options</span> = {}, <span class="ruby-identifier">passwd</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">acct</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">super</span>()
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">options</span> = <span class="ruby-identifier">user_or_options</span>.<span class="ruby-identifier">to_hash</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span>
+    <span class="ruby-comment"># for backward compatibility</span>
+    <span class="ruby-identifier">options</span> = {}
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:username</span>] = <span class="ruby-identifier">user_or_options</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:password</span>] = <span class="ruby-identifier">passwd</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:account</span>] = <span class="ruby-identifier">acct</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@host</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:ssl</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;SSL extension not installed&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">ssl_params</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:ssl</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">?</span> {} <span class="ruby-operator">:</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:ssl</span>]
+    <span class="ruby-ivar">@ssl_context</span> = <span class="ruby-constant">SSLContext</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@ssl_context</span>.<span class="ruby-identifier">set_params</span>(<span class="ruby-identifier">ssl_params</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">VerifyCallbackProc</span>)
+      <span class="ruby-ivar">@ssl_context</span>.<span class="ruby-identifier">verify_callback</span> = <span class="ruby-constant">VerifyCallbackProc</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@ssl_context</span>.<span class="ruby-identifier">session_cache_mode</span> =
+      <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSLContext</span><span class="ruby-operator">::</span><span class="ruby-constant">SESSION_CACHE_CLIENT</span> <span class="ruby-operator">|</span>
+      <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSLContext</span><span class="ruby-operator">::</span><span class="ruby-constant">SESSION_CACHE_NO_INTERNAL_STORE</span>
+    <span class="ruby-ivar">@ssl_context</span>.<span class="ruby-identifier">session_new_cb</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">sock</span>, <span class="ruby-identifier">sess</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@ssl_session</span> = <span class="ruby-identifier">sess</span> }
+    <span class="ruby-ivar">@ssl_session</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:private_data_connection</span>].<span class="ruby-identifier">nil?</span>
+      <span class="ruby-ivar">@private_data_connection</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@private_data_connection</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:private_data_connection</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@ssl_context</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:private_data_connection</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>,
+        <span class="ruby-string">&quot;private_data_connection can be set to true only when ssl is enabled&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@private_data_connection</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@binary</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:passive</span>].<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@passive</span> = <span class="ruby-identifier">@@default_passive</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@passive</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:passive</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:debug_mode</span>].<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@debug_mode</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@debug_mode</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:debug_mode</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@resume</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@bare_sock</span> = <span class="ruby-ivar">@sock</span> = <span class="ruby-constant">NullSocket</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@logged_in</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@open_timeout</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:open_timeout</span>]
+  <span class="ruby-ivar">@ssl_handshake_timeout</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:ssl_handshake_timeout</span>]
+  <span class="ruby-ivar">@read_timeout</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:read_timeout</span>] <span class="ruby-operator">||</span> <span class="ruby-value">60</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>
+    <span class="ruby-identifier">connect</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:port</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">FTP_PORT</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:username</span>]
+      <span class="ruby-identifier">login</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:username</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:password</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:account</span>])
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open</span><span
+            class="method-args">(host, *args) { |ftp| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A synonym for <code>FTP.new</code>, but with a mandatory host parameter.</p>
+
+<p>If a block is given, it is passed the <code>FTP</code> object, which will be closed when the block finishes, or when an exception is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">FTP</span>.<span class="ruby-identifier ruby-title">open</span>(<span class="ruby-identifier">host</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">ftp</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">ftp</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-identifier">ftp</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-abort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">abort</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Aborts the previous command (ABOR command).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="abort-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">abort</span>
+  <span class="ruby-identifier">line</span> = <span class="ruby-string">&quot;ABOR&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">CRLF</span>
+  <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;put: ABOR\n&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug_mode</span>
+  <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">line</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">MSG_OOB</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">getmultiline</span>
+  <span class="ruby-keyword">unless</span> [<span class="ruby-string">&quot;426&quot;</span>, <span class="ruby-string">&quot;226&quot;</span>, <span class="ruby-string">&quot;225&quot;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">resp</span>[<span class="ruby-value">0</span>, <span class="ruby-value">3</span>])
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPProtoError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-acct" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">acct</span><span
+            class="method-args">(account)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sends the ACCT command.</p>
+
+<p>This is a less common <a href="FTP.html"><code>FTP</code></a> command, to send account information if the destination host requires it.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="acct-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 883</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">acct</span>(<span class="ruby-identifier">account</span>)
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;ACCT &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">account</span>
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-identifier">cmd</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-binary-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">binary=</span><span
+            class="method-args">(newmode)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A setter to toggle transfers in binary mode. <code>newmode</code> is either <code>true</code> or <code>false</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="binary-3D-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">binary=</span>(<span class="ruby-identifier">newmode</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">newmode</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@binary</span>
+    <span class="ruby-ivar">@binary</span> = <span class="ruby-identifier">newmode</span>
+    <span class="ruby-identifier">send_type_command</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@logged_in</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-chdir" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">chdir</span><span
+            class="method-args">(dirname)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Changes the (remote) directory.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="chdir-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">chdir</span>(<span class="ruby-identifier">dirname</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">dirname</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;..&quot;</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">voidcmd</span>(<span class="ruby-string">&quot;CDUP&quot;</span>)
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">FTPPermError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>[<span class="ruby-value">0</span>, <span class="ruby-value">3</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;500&quot;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;CWD #{dirname}&quot;</span>
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-identifier">cmd</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Closes the connection.  Further operations are impossible until you open a new connection with <a href="FTP.html#method-i-connect"><code>connect</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1344</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">close</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@sock</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">closed?</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">shutdown</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SHUT_WR</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">orig</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_timeout</span>, <span class="ruby-value">3</span>
+      <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">read</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">close</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-identifier">orig</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-closed-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">closed?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> iff the connection is closed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="closed-3F-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1360</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">closed?</span>
+  <span class="ruby-ivar">@sock</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">closed?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-connect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">connect</span><span
+            class="method-args">(host, port = FTP_PORT)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Establishes an <a href="FTP.html"><code>FTP</code></a> connection to host, optionally overriding the default port. If the environment variable <code>SOCKS_SERVER</code> is set, sets up the connection through a SOCKS proxy. Raises an exception (typically <code>Errno::ECONNREFUSED</code>) if the connection cannot be established.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="connect-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 366</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">connect</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span> = <span class="ruby-constant">FTP_PORT</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug_mode</span>
+    <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;connect: &quot;</span>, <span class="ruby-identifier">host</span>, <span class="ruby-string">&quot;, &quot;</span>, <span class="ruby-identifier">port</span>, <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@host</span> = <span class="ruby-identifier">host</span>
+    <span class="ruby-ivar">@bare_sock</span> = <span class="ruby-identifier">open_socket</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+    <span class="ruby-ivar">@sock</span> = <span class="ruby-constant">BufferedSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@bare_sock</span>, <span class="ruby-value">read_timeout:</span> <span class="ruby-ivar">@read_timeout</span>)
+    <span class="ruby-identifier">voidresp</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ssl_context</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">voidcmd</span>(<span class="ruby-string">&quot;AUTH TLS&quot;</span>)
+        <span class="ruby-identifier">ssl_sock</span> = <span class="ruby-identifier">start_tls_session</span>(<span class="ruby-ivar">@bare_sock</span>)
+        <span class="ruby-ivar">@sock</span> = <span class="ruby-constant">BufferedSSLSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ssl_sock</span>, <span class="ruby-value">read_timeout:</span> <span class="ruby-ivar">@read_timeout</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@private_data_connection</span>
+          <span class="ruby-identifier">voidcmd</span>(<span class="ruby-string">&quot;PBSZ 0&quot;</span>)
+          <span class="ruby-identifier">voidcmd</span>(<span class="ruby-string">&quot;PROT P&quot;</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSLError</span>, <span class="ruby-constant">OpenTimeout</span>
+        <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">raise</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">(filename)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes a file on the server.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-node">&quot;DELE #{filename}&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;250&quot;</span>)
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;5&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPPermError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dir" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dir</span><span
+            class="method-args">(*args)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="FTP.html#method-i-list">list</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-features" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">features</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Issues a FEAT command</p>
+
+<p>Returns an array of supported optional features</p>
+          
+          
+
+          
+          <div class="method-source-code" id="features-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1310</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">features</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-string">&quot;FEAT&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;211&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">feats</span> = []
+  <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;\n&quot;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">line</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&#39; &#39;</span>) <span class="ruby-comment"># skip status lines</span>
+
+    <span class="ruby-identifier">feats</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">feats</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get</span><span
+            class="method-args">(remotefile, localfile = File.basename(remotefile), blocksize = DEFAULT_BLOCKSIZE) { |data| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves <code>remotefile</code> in whatever mode the session is set (text or binary).  See <a href="FTP.html#method-i-gettextfile"><code>gettextfile</code></a> and <a href="FTP.html#method-i-getbinaryfile"><code>getbinaryfile</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 812</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get</span>(<span class="ruby-identifier">remotefile</span>, <span class="ruby-identifier">localfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">remotefile</span>),
+        <span class="ruby-identifier">blocksize</span> = <span class="ruby-constant">DEFAULT_BLOCKSIZE</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: data</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@binary</span>
+    <span class="ruby-identifier">getbinaryfile</span>(<span class="ruby-identifier">remotefile</span>, <span class="ruby-identifier">localfile</span>, <span class="ruby-identifier">blocksize</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">gettextfile</span>(<span class="ruby-identifier">remotefile</span>, <span class="ruby-identifier">localfile</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getbinaryfile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getbinaryfile</span><span
+            class="method-args">(remotefile, localfile = File.basename(remotefile), blocksize = DEFAULT_BLOCKSIZE) { |data| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves <code>remotefile</code> in binary mode, storing the result in <code>localfile</code>. If <code>localfile</code> is nil, returns retrieved data. If a block is supplied, it is passed the retrieved data in <code>blocksize</code> chunks.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getbinaryfile-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 751</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getbinaryfile</span>(<span class="ruby-identifier">remotefile</span>, <span class="ruby-identifier">localfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">remotefile</span>),
+                  <span class="ruby-identifier">blocksize</span> = <span class="ruby-constant">DEFAULT_BLOCKSIZE</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: data</span>
+  <span class="ruby-identifier">f</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">localfile</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@resume</span>
+      <span class="ruby-identifier">rest_offset</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">size?</span>(<span class="ruby-identifier">localfile</span>)
+      <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-string">&quot;a&quot;</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">rest_offset</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-string">&quot;w&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-constant">String</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">f</span>&amp;.<span class="ruby-identifier">binmode</span>
+    <span class="ruby-identifier">retrbinary</span>(<span class="ruby-node">&quot;RETR #{remotefile}&quot;</span>, <span class="ruby-identifier">blocksize</span>, <span class="ruby-identifier">rest_offset</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>&amp;.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">data</span>)
+      <span class="ruby-identifier">block</span>&amp;.(<span class="ruby-identifier">data</span>)
+      <span class="ruby-identifier">result</span>&amp;.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">data</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">f</span>&amp;.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getdir" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">getdir</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="FTP.html#method-i-pwd">pwd</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-gettextfile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gettextfile</span><span
+            class="method-args">(remotefile, localfile = File.basename(remotefile)) { |line| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves <code>remotefile</code> in ASCII (text) mode, storing the result in <code>localfile</code>. If <code>localfile</code> is nil, returns retrieved data. If a block is supplied, it is passed the retrieved data one line at a time.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="gettextfile-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 786</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">gettextfile</span>(<span class="ruby-identifier">remotefile</span>, <span class="ruby-identifier">localfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">remotefile</span>),
+                <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: line</span>
+  <span class="ruby-identifier">f</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">localfile</span>
+    <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-string">&quot;w&quot;</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-constant">String</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">retrlines</span>(<span class="ruby-node">&quot;RETR #{remotefile}&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span>, <span class="ruby-identifier">newline</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">l</span> = <span class="ruby-identifier">newline</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>
+      <span class="ruby-identifier">f</span>&amp;.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">l</span>)
+      <span class="ruby-identifier">block</span>&amp;.(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">newline</span>)
+      <span class="ruby-identifier">result</span>&amp;.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">l</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">f</span>&amp;.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">(arg = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Issues the HELP command.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">help</span>(<span class="ruby-identifier">arg</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;HELP&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">arg</span>
+    <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">cmd</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">arg</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">sendcmd</span>(<span class="ruby-identifier">cmd</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">list</span><span
+            class="method-args">(*args) { |line| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of file information in the directory (the output is like `ls -l`).  If a block is given, it iterates through the listing.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 907</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">list</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: line</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;LIST&quot;</span>
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{cmd} #{arg}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">lines</span> = []
+  <span class="ruby-identifier">retrlines</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block</span>
+    <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">lines</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="FTP.html#method-i-ls">ls</a>, <a href="FTP.html#method-i-dir">dir</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-login" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">login</span><span
+            class="method-args">(user = &quot;anonymous&quot;, passwd = nil, acct = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs in to the remote host.  The session must have been previously connected.  If <code>user</code> is the string “anonymous” and the <code>password</code> is <code>nil</code>, “anonymous@” is used as a password.  If the <code>acct</code> parameter is not <code>nil</code>, an <a href="FTP.html"><code>FTP</code></a> ACCT command is sent following the successful login.  Raises an exception on error (typically <code>Net::FTPPermError</code>).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="login-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 598</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">login</span>(<span class="ruby-identifier">user</span> = <span class="ruby-string">&quot;anonymous&quot;</span>, <span class="ruby-identifier">passwd</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">acct</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;anonymous&quot;</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">passwd</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">passwd</span> = <span class="ruby-string">&quot;anonymous@&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">resp</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-string">&#39;USER &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">user</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;3&quot;</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">passwd</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-string">&#39;PASS &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">passwd</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;3&quot;</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">acct</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-string">&#39;ACCT &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">acct</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;2&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@welcome</span> = <span class="ruby-identifier">resp</span>
+  <span class="ruby-identifier">send_type_command</span>
+  <span class="ruby-ivar">@logged_in</span> = <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ls" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">ls</span><span
+            class="method-args">(*args)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="FTP.html#method-i-list">list</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-mdtm" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mdtm</span><span
+            class="method-args">(filename)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the raw last modification time of the (remote) file in the format “YYYYMMDDhhmmss” (MDTM command).</p>
+
+<p>Use <code>mtime</code> if you want a parsed <a href="../Time.html"><code>Time</code></a> instance.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mdtm-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1263</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mdtm</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-node">&quot;MDTM #{filename}&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;213&quot;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_body</span>(<span class="ruby-identifier">resp</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mkdir" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mkdir</span><span
+            class="method-args">(dirname)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a remote directory.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mkdir-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mkdir</span>(<span class="ruby-identifier">dirname</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-node">&quot;MKD #{dirname}&quot;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">parse257</span>(<span class="ruby-identifier">resp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mlsd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mlsd</span><span
+            class="method-args">(pathname = nil) { |entry| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of the entries of the directory specified by <code>pathname</code>. Each entry has the facts (e.g., size, last modification time, etc.) and the pathname. If a block is given, it iterates through the listing. If <code>pathname</code> is omitted, the current directory is assumed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mlsd-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mlsd</span>(<span class="ruby-identifier">pathname</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: entry</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">pathname</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;MLSD #{pathname}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;MLSD&quot;</span>
+  <span class="ruby-identifier">entries</span> = []
+  <span class="ruby-identifier">retrlines</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">entries</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parse_mlsx_entry</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block</span>
+    <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">entries</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mlst" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mlst</span><span
+            class="method-args">(pathname = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns data (e.g., size, last modification time, entry type, etc.) about the file or directory specified by <code>pathname</code>. If <code>pathname</code> is omitted, the current directory is assumed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mlst-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1089</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mlst</span>(<span class="ruby-identifier">pathname</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">pathname</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;MLST #{pathname}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;MLST&quot;</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;250&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">line</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">lines</span>[<span class="ruby-value">1</span>]
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPProtoError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\A(250-| *)/</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">parse_mlsx_entry</span>(<span class="ruby-identifier">entry</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mtime" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mtime</span><span
+            class="method-args">(filename, local = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the last modification time of the (remote) file.  If <code>local</code> is <code>true</code>, it is returned as a local time, otherwise it&#39;s a UTC time.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mtime-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1188</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mtime</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">local</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">TIME_PARSER</span>.(<span class="ruby-identifier">mdtm</span>(<span class="ruby-identifier">filename</span>), <span class="ruby-identifier">local</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-nlst" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nlst</span><span
+            class="method-args">(dir = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of filenames in the remote directory.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="nlst-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 891</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">nlst</span>(<span class="ruby-identifier">dir</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;NLST&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">dir</span>
+    <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{cmd} #{dir}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">files</span> = []
+  <span class="ruby-identifier">retrlines</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">files</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">files</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-noop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">noop</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Issues a NOOP command.</p>
+
+<p>Does nothing except return a response.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="noop-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1293</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">noop</span>
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-string">&quot;NOOP&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">option</span><span
+            class="method-args">(name, params = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Issues an OPTS command</p>
+<ul><li>
+<p>name Should be the name of the option to set</p>
+</li><li>
+<p>params is any optional parameters to supply with the option</p>
+</li></ul>
+
+<p>example: option(&#39;UTF8&#39;, &#39;ON&#39;) =&gt; &#39;OPTS UTF8 ON&#39;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="option-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1333</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">option</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">params</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;OPTS #{name}&quot;</span>
+  <span class="ruby-identifier">cmd</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot; #{params}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>
+
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-identifier">cmd</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-put" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">put</span><span
+            class="method-args">(localfile, remotefile = File.basename(localfile), blocksize = DEFAULT_BLOCKSIZE, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Transfers <code>localfile</code> to the server in whatever mode the session is set (text or binary).  See <a href="FTP.html#method-i-puttextfile"><code>puttextfile</code></a> and <a href="FTP.html#method-i-putbinaryfile"><code>putbinaryfile</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="put-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 868</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">put</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-identifier">remotefile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">localfile</span>),
+        <span class="ruby-identifier">blocksize</span> = <span class="ruby-constant">DEFAULT_BLOCKSIZE</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@binary</span>
+    <span class="ruby-identifier">putbinaryfile</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-identifier">remotefile</span>, <span class="ruby-identifier">blocksize</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puttextfile</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-identifier">remotefile</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-putbinaryfile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">putbinaryfile</span><span
+            class="method-args">(localfile, remotefile = File.basename(localfile), blocksize = DEFAULT_BLOCKSIZE) { |data| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Transfers <code>localfile</code> to the server in binary mode, storing the result in <code>remotefile</code>. If a block is supplied, calls it, passing in the transmitted data in <code>blocksize</code> chunks.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="putbinaryfile-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 826</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">putbinaryfile</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-identifier">remotefile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">localfile</span>),
+                  <span class="ruby-identifier">blocksize</span> = <span class="ruby-constant">DEFAULT_BLOCKSIZE</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: data</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@resume</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">rest_offset</span> = <span class="ruby-identifier">size</span>(<span class="ruby-identifier">remotefile</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">FTPPermError</span>
+      <span class="ruby-identifier">rest_offset</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">rest_offset</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">localfile</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">binmode</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">rest_offset</span>
+      <span class="ruby-identifier">storbinary</span>(<span class="ruby-node">&quot;APPE #{remotefile}&quot;</span>, <span class="ruby-identifier">f</span>, <span class="ruby-identifier">blocksize</span>, <span class="ruby-identifier">rest_offset</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">storbinary</span>(<span class="ruby-node">&quot;STOR #{remotefile}&quot;</span>, <span class="ruby-identifier">f</span>, <span class="ruby-identifier">blocksize</span>, <span class="ruby-identifier">rest_offset</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-puttextfile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">puttextfile</span><span
+            class="method-args">(localfile, remotefile = File.basename(localfile)) { |line| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Transfers <code>localfile</code> to the server in ASCII (text) mode, storing the result in <code>remotefile</code>. If callback or an associated block is supplied, calls it, passing in the transmitted data one line at a time.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="puttextfile-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 855</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">puttextfile</span>(<span class="ruby-identifier">localfile</span>, <span class="ruby-identifier">remotefile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">localfile</span>), <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: line</span>
+  <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">localfile</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">storlines</span>(<span class="ruby-node">&quot;STOR #{remotefile}&quot;</span>, <span class="ruby-identifier">f</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pwd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pwd</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the current remote directory.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pwd-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1210</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pwd</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-string">&quot;PWD&quot;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">parse257</span>(<span class="ruby-identifier">resp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="FTP.html#method-i-getdir">getdir</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-quit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">quit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Exits the <a href="FTP.html"><code>FTP</code></a> session.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="quit-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1284</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">quit</span>
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-string">&quot;QUIT&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-read_timeout-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read_timeout=</span><span
+            class="method-args">(sec)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Setter for the <a href="FTP.html#attribute-i-read_timeout"><code>read_timeout</code></a> attribute.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="read_timeout-3D-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">read_timeout=</span>(<span class="ruby-identifier">sec</span>)
+  <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-identifier">sec</span>
+  <span class="ruby-ivar">@read_timeout</span> = <span class="ruby-identifier">sec</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rename" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rename</span><span
+            class="method-args">(fromname, toname)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Renames a file on the server.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rename-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rename</span>(<span class="ruby-identifier">fromname</span>, <span class="ruby-identifier">toname</span>)
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-node">&quot;RNFR #{fromname}&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;3&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-node">&quot;RNTO #{toname}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-retrbinary" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">retrbinary</span><span
+            class="method-args">(cmd, blocksize, rest_offset = nil) { |data| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Puts the connection into binary (image) mode, issues the given command, and fetches the data returned, passing it to the associated block in chunks of <code>blocksize</code> characters. Note that <code>cmd</code> is a server command (such as “RETR myfile”).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="retrbinary-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 629</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">retrbinary</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">blocksize</span>, <span class="ruby-identifier">rest_offset</span> = <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># :yield: data</span>
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">with_binary</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">conn</span> = <span class="ruby-identifier">transfercmd</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">rest_offset</span>)
+        <span class="ruby-keyword">while</span> <span class="ruby-identifier">data</span> = <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">blocksize</span>)
+          <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">data</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">shutdown</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SHUT_WR</span>)
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-value">1</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read</span>
+      <span class="ruby-keyword">ensure</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">conn</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">voidresp</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-retrlines" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">retrlines</span><span
+            class="method-args">(cmd) { |line| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Puts the connection into ASCII (text) mode, issues the given command, and passes the resulting data, one line at a time, to the associated block. If no block is given, prints the lines. Note that <code>cmd</code> is a server command (such as “RETR myfile”).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="retrlines-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 654</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">retrlines</span>(<span class="ruby-identifier">cmd</span>) <span class="ruby-comment"># :yield: line</span>
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">with_binary</span>(<span class="ruby-keyword">false</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">conn</span> = <span class="ruby-identifier">transfercmd</span>(<span class="ruby-identifier">cmd</span>)
+        <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">gets</span>
+          <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\r?\n\z/</span>, <span class="ruby-string">&quot;&quot;</span>), <span class="ruby-operator">!</span><span class="ruby-identifier">line</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/\n\z/</span>).<span class="ruby-identifier">nil?</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">shutdown</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SHUT_WR</span>)
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-value">1</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read</span>
+      <span class="ruby-keyword">ensure</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">conn</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">voidresp</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rmdir" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rmdir</span><span
+            class="method-args">(dirname)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Removes a remote directory.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rmdir-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1203</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rmdir</span>(<span class="ruby-identifier">dirname</span>)
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-node">&quot;RMD #{dirname}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sendcmd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sendcmd</span><span
+            class="method-args">(cmd)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sends a command and returns the response.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sendcmd-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 491</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sendcmd</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">putline</span>(<span class="ruby-identifier">cmd</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">getresp</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_socket" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_socket</span><span
+            class="method-args">(sock, get_greeting = true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="../Set.html"><code>Set</code></a> the socket used to connect to the <a href="FTP.html"><code>FTP</code></a> server.</p>
+
+<p>May raise FTPReplyError if <code>get_greeting</code> is false.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_socket-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 396</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_socket</span>(<span class="ruby-identifier">sock</span>, <span class="ruby-identifier">get_greeting</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@sock</span> = <span class="ruby-identifier">sock</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">get_greeting</span>
+      <span class="ruby-identifier">voidresp</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-site" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">site</span><span
+            class="method-args">(arg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Issues a SITE command.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="site-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1300</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">site</span>(<span class="ruby-identifier">arg</span>)
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;SITE &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">arg</span>
+  <span class="ruby-identifier">voidcmd</span>(<span class="ruby-identifier">cmd</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">size</span><span
+            class="method-args">(filename)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the size of the given (remote) filename.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">size</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-identifier">with_binary</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-node">&quot;SIZE #{filename}&quot;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;213&quot;</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_body</span>(<span class="ruby-identifier">resp</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-status" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">status</span><span
+            class="method-args">(pathname = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the status (STAT command).</p>
+<dl class="rdoc-list note-list"><dt>pathname
+<dd>
+<p>when stat is invoked with pathname as a parameter it acts like list but a lot faster and over the same tcp session.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="status-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1247</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">status</span>(<span class="ruby-identifier">pathname</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">line</span> = <span class="ruby-identifier">pathname</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;STAT #{pathname}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;STAT&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-regexp">/[\r\n]/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;A line must not contain CR or LF&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;put: #{line}\n&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug_mode</span>
+  <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">line</span> <span class="ruby-operator">+</span> <span class="ruby-constant">CRLF</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">MSG_OOB</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">getresp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-storbinary" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">storbinary</span><span
+            class="method-args">(cmd, file, blocksize, rest_offset = nil) { |data| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Puts the connection into binary (image) mode, issues the given server-side command (such as “STOR myfile”), and sends the contents of the file named <code>file</code> to the server. If the optional block is given, it also passes it the data, in chunks of <code>blocksize</code> characters.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="storbinary-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 679</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">storbinary</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">blocksize</span>, <span class="ruby-identifier">rest_offset</span> = <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># :yield: data</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">rest_offset</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">seek</span>(<span class="ruby-identifier">rest_offset</span>, <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">SEEK_SET</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">with_binary</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">conn</span> = <span class="ruby-identifier">transfercmd</span>(<span class="ruby-identifier">cmd</span>)
+        <span class="ruby-keyword">while</span> <span class="ruby-identifier">buf</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">blocksize</span>)
+          <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">buf</span>)
+          <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">buf</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">shutdown</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SHUT_WR</span>)
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-value">1</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read</span>
+      <span class="ruby-keyword">ensure</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">conn</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">voidresp</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EPIPE</span>
+  <span class="ruby-comment"># EPIPE, in this case, means that the data connection was unexpectedly</span>
+  <span class="ruby-comment"># terminated.  Rather than just raising EPIPE to the caller, check the</span>
+  <span class="ruby-comment"># response on the control connection.  If getresp doesn&#39;t raise a more</span>
+  <span class="ruby-comment"># appropriate exception, re-raise the original exception.</span>
+  <span class="ruby-identifier">getresp</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-storlines" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">storlines</span><span
+            class="method-args">(cmd, file) { |line| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Puts the connection into ASCII (text) mode, issues the given server-side command (such as “STOR myfile”), and sends the contents of the file named <code>file</code> to the server, one line at a time. If the optional block is given, it also passes it the lines.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="storlines-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 715</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">storlines</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">file</span>) <span class="ruby-comment"># :yield: line</span>
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">with_binary</span>(<span class="ruby-keyword">false</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">conn</span> = <span class="ruby-identifier">transfercmd</span>(<span class="ruby-identifier">cmd</span>)
+        <span class="ruby-keyword">while</span> <span class="ruby-identifier">buf</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">gets</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">buf</span>[<span class="ruby-value">-2</span>, <span class="ruby-value">2</span>] <span class="ruby-operator">!=</span> <span class="ruby-constant">CRLF</span>
+            <span class="ruby-identifier">buf</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">chomp</span> <span class="ruby-operator">+</span> <span class="ruby-constant">CRLF</span>
+          <span class="ruby-keyword">end</span>
+          <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">buf</span>)
+          <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">buf</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">shutdown</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SHUT_WR</span>)
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-value">1</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">read</span>
+      <span class="ruby-keyword">ensure</span>
+        <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">conn</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">voidresp</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EPIPE</span>
+  <span class="ruby-comment"># EPIPE, in this case, means that the data connection was unexpectedly</span>
+  <span class="ruby-comment"># terminated.  Rather than just raising EPIPE to the caller, check the</span>
+  <span class="ruby-comment"># response on the control connection.  If getresp doesn&#39;t raise a more</span>
+  <span class="ruby-comment"># appropriate exception, re-raise the original exception.</span>
+  <span class="ruby-identifier">getresp</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-system" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">system</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns system information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="system-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1219</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">system</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">sendcmd</span>(<span class="ruby-string">&quot;SYST&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resp</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;215&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPReplyError</span>, <span class="ruby-identifier">resp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_body</span>(<span class="ruby-identifier">resp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-voidcmd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">voidcmd</span><span
+            class="method-args">(cmd)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sends a command and expect a response beginning with &#39;2&#39;.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="voidcmd-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 501</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">voidcmd</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">putline</span>(<span class="ruby-identifier">cmd</span>)
+    <span class="ruby-identifier">voidresp</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-parse_mlsx_entry" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_mlsx_entry</span><span
+            class="method-args">(entry)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_mlsx_entry-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1069</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_mlsx_entry</span>(<span class="ruby-identifier">entry</span>)
+  <span class="ruby-identifier">facts</span>, <span class="ruby-identifier">pathname</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/ /</span>, <span class="ruby-value">2</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">pathname</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">FTPProtoError</span>, <span class="ruby-identifier">entry</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">MLSxEntry</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-identifier">facts</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/(.*?)=(.*?);/</span>).<span class="ruby-identifier">each_with_object</span>({}) {
+      <span class="ruby-operator">|</span>(<span class="ruby-identifier">factname</span>, <span class="ruby-identifier">value</span>), <span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">factname</span>.<span class="ruby-identifier">downcase</span>
+      <span class="ruby-identifier">h</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-constant">FACT_PARSERS</span>[<span class="ruby-identifier">name</span>].(<span class="ruby-identifier">value</span>)
+    },
+    <span class="ruby-identifier">pathname</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_pasv_ipv4_host" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_pasv_ipv4_host</span><span
+            class="method-args">(s)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_pasv_ipv4_host-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1398</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_pasv_ipv4_host</span>(<span class="ruby-identifier">s</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&quot;,&quot;</span>, <span class="ruby-string">&quot;.&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_pasv_ipv6_host" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_pasv_ipv6_host</span><span
+            class="method-args">(s)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_pasv_ipv6_host-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1403</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_pasv_ipv6_host</span>(<span class="ruby-identifier">s</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/,/</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-string">&quot;%02x&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_i</span>
+  }.<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:join</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;:&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_pasv_port" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_pasv_port</span><span
+            class="method-args">(s)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_pasv_port-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 1410</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_pasv_port</span>(<span class="ruby-identifier">s</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/,/</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_i</span>).<span class="ruby-identifier">inject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span>
+    (<span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">8</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">y</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start_tls_session" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_tls_session</span><span
+            class="method-args">(sock)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start_tls_session-source">
+            <pre><span class="ruby-comment"># File lib/net/ftp.rb, line 343</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">start_tls_session</span>(<span class="ruby-identifier">sock</span>)
+  <span class="ruby-identifier">ssl_sock</span> = <span class="ruby-constant">SSLSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sock</span>, <span class="ruby-ivar">@ssl_context</span>)
+  <span class="ruby-identifier">ssl_sock</span>.<span class="ruby-identifier">sync_close</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">ssl_sock</span>.<span class="ruby-identifier">hostname</span> = <span class="ruby-ivar">@host</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ssl_sock</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:hostname=</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ssl_session</span> <span class="ruby-operator">&amp;&amp;</span>
+      <span class="ruby-constant">Process</span>.<span class="ruby-identifier">clock_gettime</span>(<span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">CLOCK_REALTIME</span>) <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@ssl_session</span>.<span class="ruby-identifier">time</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssl_session</span>.<span class="ruby-identifier">timeout</span>
+    <span class="ruby-comment"># ProFTPD returns 425 for data connections if session is not reused.</span>
+    <span class="ruby-identifier">ssl_sock</span>.<span class="ruby-identifier">session</span> = <span class="ruby-ivar">@ssl_session</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ssl_socket_connect</span>(<span class="ruby-identifier">ssl_sock</span>, <span class="ruby-ivar">@ssl_handshake_timeout</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@open_timeout</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ssl_context</span>.<span class="ruby-identifier">verify_mode</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">VERIFY_NONE</span>
+    <span class="ruby-identifier">ssl_sock</span>.<span class="ruby-identifier">post_connection_check</span>(<span class="ruby-ivar">@host</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ssl_sock</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

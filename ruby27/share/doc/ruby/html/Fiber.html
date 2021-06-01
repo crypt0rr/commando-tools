@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Fiber - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-current">::current</a>
+    
+    <li ><a href="#method-c-yield">::yield</a>
+    
+    <li ><a href="#method-i-alive-3F">#alive?</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-raise">#raise</a>
+    
+    <li ><a href="#method-i-resume">#resume</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-transfer">#transfer</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Fiber">
+  <h1 id="class-Fiber" class="class">
+    class Fiber
+  </h1>
+
+  <section class="description">
+    
+<p>Fibers are primitives for implementing light weight cooperative concurrency in Ruby. Basically they are a means of creating code blocks that can be paused and resumed, much like threads. The main difference is that they are never preempted and that the scheduling must be done by the programmer and not the VM.</p>
+
+<p>As opposed to other stackless light weight concurrency models, each fiber comes with a stack.  This enables the fiber to be paused from deeply nested function calls within the fiber block.  See the ruby(1) manpage to configure the size of the fiber stack(s).</p>
+
+<p>When a fiber is created it will not run automatically. Rather it must be explicitly asked to run using the <a href="Fiber.html#method-i-resume"><code>Fiber#resume</code></a> method. The code running inside the fiber can give up control by calling <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a> in which case it yields control back to caller (the caller of the <a href="Fiber.html#method-i-resume"><code>Fiber#resume</code></a>).</p>
+
+<p>Upon yielding or termination the <a href="Fiber.html"><code>Fiber</code></a> returns the value of the last executed expression</p>
+
+<p>For instance:</p>
+
+<pre class="ruby"><span class="ruby-identifier">fiber</span> = <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">yield</span> <span class="ruby-value">1</span>
+  <span class="ruby-value">2</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">fiber</span>.<span class="ruby-identifier">resume</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">fiber</span>.<span class="ruby-identifier">resume</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">fiber</span>.<span class="ruby-identifier">resume</span>
+</pre>
+
+<p><em>produces</em></p>
+
+<pre>1
+2
+FiberError: dead fiber called</pre>
+
+<p>The <a href="Fiber.html#method-i-resume"><code>Fiber#resume</code></a> method accepts an arbitrary number of parameters, if it is the first call to <a href="Fiber.html#method-i-resume"><code>resume</code></a> then they will be passed as block arguments. Otherwise they will be the return value of the call to <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a></p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">fiber</span> = <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">first</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">second</span> = <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">yield</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">fiber</span>.<span class="ruby-identifier">resume</span> <span class="ruby-value">10</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">fiber</span>.<span class="ruby-identifier">resume</span> <span class="ruby-value">1_000_000</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">fiber</span>.<span class="ruby-identifier">resume</span> <span class="ruby-string">&quot;The fiber will be dead before I can cause trouble&quot;</span>
+</pre>
+
+<p><em>produces</em></p>
+
+<pre>12
+1000000
+FiberError: dead fiber called</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-current" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            current() &rarr; fiber
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the current fiber. You need to <code>require &#39;fiber&#39;</code> before using this method. If you are not running in the context of a fiber this method will return the root fiber.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="current-source">
+            <pre>static VALUE
+rb_fiber_s_current(VALUE klass)
+{
+    return rb_fiber_current();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-yield" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            yield(args, ...) &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Yields control back to the context that resumed the fiber, passing along any arguments that were passed to it. The fiber will resume processing at this point when <a href="Fiber.html#method-i-resume"><code>resume</code></a> is called next. Any arguments passed to the next <a href="Fiber.html#method-i-resume"><code>resume</code></a> will be the value that this <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a> expression evaluates to.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="yield-source">
+            <pre>static VALUE
+rb_fiber_s_yield(int argc, VALUE *argv, VALUE klass)
+{
+    return rb_fiber_yield_kw(argc, argv, PASS_KW_SPLAT);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-alive-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            alive? &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the fiber can still be resumed (or transferred to). After finishing execution of the fiber block this method will always return false. You need to <code>require &#39;fiber&#39;</code> before using this method.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="alive-3F-source">
+            <pre>VALUE
+rb_fiber_alive_p(VALUE fiber_value)
+{
+    return FIBER_TERMINATED_P(fiber_ptr(fiber_value)) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Fiber.html#method-i-to_s">to_s</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-raise" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            raise                                 &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            raise(string)                         &rarr; obj
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            raise(exception [, string [, array]]) &rarr; obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Raises an exception in the fiber at the point at which the last <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a> was called, or at the start if neither <code>resume</code> nor <code>raise</code> were called before.</p>
+
+<p>With no arguments, raises a <code>RuntimeError</code>. With a single <code>String</code> argument, raises a <code>RuntimeError</code> with the string as a message.  Otherwise, the first parameter should be the name of an <code>Exception</code> class (or an object that returns an <code>Exception</code> object when sent an <code>exception</code> message). The optional second parameter sets the message associated with the exception, and the third parameter is an array of callback information. Exceptions are caught by the <code>rescue</code> clause of <code>begin...end</code> blocks.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="raise-source">
+            <pre>static VALUE
+rb_fiber_raise(int argc, VALUE *argv, VALUE fiber)
+{
+    VALUE exc = rb_make_exception(argc, argv);
+    return rb_fiber_resume_kw(fiber, -1, &amp;exc, RB_NO_KEYWORDS);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-resume" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            resume(args, ...) &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Resumes the fiber from the point at which the last <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a> was called, or starts running it if it is the first call to <a href="Fiber.html#method-i-resume"><code>resume</code></a>. Arguments passed to resume will be the value of the <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a> expression or will be passed as block parameters to the fiber&#39;s block if this is the first <a href="Fiber.html#method-i-resume"><code>resume</code></a>.</p>
+
+<p>Alternatively, when resume is called it evaluates to the arguments passed to the next <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a> statement inside the fiber&#39;s block or to the block value if it runs to completion without any <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="resume-source">
+            <pre>static VALUE
+rb_fiber_m_resume(int argc, VALUE *argv, VALUE fiber)
+{
+    return rb_fiber_resume_kw(fiber, argc, argv, PASS_KW_SPLAT);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s   &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns fiber information string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+fiber_to_s(VALUE fiber_value)
+{
+    const rb_fiber_t *fiber = fiber_ptr(fiber_value);
+    const rb_proc_t *proc;
+    char status_info[0x20];
+
+    if (fiber-&gt;transferred) {
+        snprintf(status_info, 0x20, &quot; (%s, transferred)&quot;, fiber_status_name(fiber-&gt;status));
+    }
+    else {
+        snprintf(status_info, 0x20, &quot; (%s)&quot;, fiber_status_name(fiber-&gt;status));
+    }
+
+    if (!rb_obj_is_proc(fiber-&gt;first_proc)) {
+        VALUE str = rb_any_to_s(fiber_value);
+        strlcat(status_info, &quot;&gt;&quot;, sizeof(status_info));
+        rb_str_set_len(str, RSTRING_LEN(str)-1);
+        rb_str_cat_cstr(str, status_info);
+        return str;
+    }
+    GetProcPtr(fiber-&gt;first_proc, proc);
+    return rb_block_to_s(fiber_value, &amp;proc-&gt;block, status_info);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Fiber.html#method-i-inspect">inspect</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-transfer" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            transfer(args, ...) &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Transfer control to another fiber, resuming it from where it last stopped or starting it if it was not resumed before. The calling fiber will be suspended much like in a call to <a href="Fiber.html#method-c-yield"><code>Fiber.yield</code></a>. You need to <code>require &#39;fiber&#39;</code> before using this method.</p>
+
+<p>The fiber which receives the transfer call is treats it much like a resume call. Arguments passed to transfer are treated like those passed to resume.</p>
+
+<p>You cannot call <code>resume</code> on a fiber that has been transferred to. If you call <code>transfer</code> on a fiber, and later call <code>resume</code> on the the fiber, a <code>FiberError</code> will be raised. Once you call <code>transfer</code> on a fiber, the only way to resume processing the fiber is to call <code>transfer</code> on it again.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">fiber1</span> = <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In Fiber 1&quot;</span>
+  <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">yield</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In Fiber 1 again&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">fiber2</span> = <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In Fiber 2&quot;</span>
+  <span class="ruby-identifier">fiber1</span>.<span class="ruby-identifier">transfer</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Never see this message&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">fiber3</span> = <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In Fiber 3&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">fiber2</span>.<span class="ruby-identifier">resume</span>
+<span class="ruby-identifier">fiber3</span>.<span class="ruby-identifier">resume</span>
+<span class="ruby-identifier">fiber1</span>.<span class="ruby-identifier">resume</span> <span class="ruby-keyword">rescue</span> (<span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>)
+<span class="ruby-identifier">fiber1</span>.<span class="ruby-identifier">transfer</span>
+</pre>
+
+<p><em>produces</em></p>
+
+<pre>In Fiber 2
+In Fiber 1
+In Fiber 3
+#&lt;FiberError: cannot resume transferred Fiber&gt;
+In Fiber 1 again</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="transfer-source">
+            <pre>static VALUE
+rb_fiber_m_transfer(int argc, VALUE *argv, VALUE fiber_value)
+{
+    rb_fiber_t *fiber = fiber_ptr(fiber_value);
+    fiber-&gt;transferred = 1;
+    return fiber_switch(fiber, argc, argv, 0, PASS_KW_SPLAT);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

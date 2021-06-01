@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Thor - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Thor/Base.html">Bundler::Thor::Base</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-banner">::banner</a>
+    
+    <li ><a href="#method-c-check_unknown_options-21">::check_unknown_options!</a>
+    
+    <li ><a href="#method-c-command_help">::command_help</a>
+    
+    <li ><a href="#method-c-default_command">::default_command</a>
+    
+    <li ><a href="#method-c-default_task">::default_task</a>
+    
+    <li ><a href="#method-c-desc">::desc</a>
+    
+    <li ><a href="#method-c-disable_required_check-21">::disable_required_check!</a>
+    
+    <li ><a href="#method-c-find_command_possibilities">::find_command_possibilities</a>
+    
+    <li ><a href="#method-c-find_task_possibilities">::find_task_possibilities</a>
+    
+    <li ><a href="#method-c-help">::help</a>
+    
+    <li ><a href="#method-c-long_desc">::long_desc</a>
+    
+    <li ><a href="#method-c-map">::map</a>
+    
+    <li ><a href="#method-c-method_option">::method_option</a>
+    
+    <li ><a href="#method-c-method_options">::method_options</a>
+    
+    <li ><a href="#method-c-option">::option</a>
+    
+    <li ><a href="#method-c-options">::options</a>
+    
+    <li ><a href="#method-c-package_name">::package_name</a>
+    
+    <li ><a href="#method-c-printable_commands">::printable_commands</a>
+    
+    <li ><a href="#method-c-printable_tasks">::printable_tasks</a>
+    
+    <li ><a href="#method-c-register">::register</a>
+    
+    <li ><a href="#method-c-stop_on_unknown_option-21">::stop_on_unknown_option!</a>
+    
+    <li ><a href="#method-c-subcommand">::subcommand</a>
+    
+    <li ><a href="#method-c-subcommand_classes">::subcommand_classes</a>
+    
+    <li ><a href="#method-c-subcommand_help">::subcommand_help</a>
+    
+    <li ><a href="#method-c-subcommands">::subcommands</a>
+    
+    <li ><a href="#method-c-subtask">::subtask</a>
+    
+    <li ><a href="#method-c-subtask_help">::subtask_help</a>
+    
+    <li ><a href="#method-c-subtasks">::subtasks</a>
+    
+    <li ><a href="#method-c-task_help">::task_help</a>
+    
+    <li ><a href="#method-i-help">#help</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Thor">
+  <h1 id="class-Bundler::Thor" class="class">
+    class Bundler::Thor
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DynamicTask">DynamicTask
+        
+        <dd><p>A dynamic command that handles method missing scenarios.</p>
+        
+      
+        <dt id="HELP_MAPPINGS">HELP_MAPPINGS
+        
+        <dd><p>Shortcuts for help.</p>
+        
+      
+        <dt id="HiddenTask">HiddenTask
+        
+        <dd><p>A command that is hidden in help messages but still invocable.</p>
+        
+      
+        <dt id="TEMPLATE_EXTNAME">TEMPLATE_EXTNAME
+        
+        <dd>
+        
+      
+        <dt id="THOR_RESERVED_WORDS">THOR_RESERVED_WORDS
+        
+        <dd><p>Bundler::Thor methods that should not be overwritten by the user.</p>
+        
+      
+        <dt id="Task">Task
+        
+        <dd>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-check_unknown_options-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_unknown_options!</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Extend check unknown options to accept a hash of conditions.</p>
+
+<h3 id="method-c-check_unknown_options-21-label-Parameters">Parameters<span><a href="#method-c-check_unknown_options-21-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>options&lt;Hash&gt;: A hash containing :only and/or :except keys</p>
+          
+          
+
+          
+          <div class="method-source-code" id="check_unknown_options-21-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 255</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check_unknown_options!</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@check_unknown_options</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>
+      <span class="ruby-ivar">@check_unknown_options</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">value</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@check_unknown_options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">key</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@check_unknown_options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-command_help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">command_help</span><span
+            class="method-args">(shell, command_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prints help information for the given command.</p>
+
+<h4 id="method-c-command_help-label-Parameters">Parameters<span><a href="#method-c-command_help-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>shell&lt;Bundler::Thor::Shell&gt; command_name&lt;String&gt;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="command_help-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">command_help</span>(<span class="ruby-identifier">shell</span>, <span class="ruby-identifier">command_name</span>)
+  <span class="ruby-identifier">meth</span> = <span class="ruby-identifier">normalize_command_name</span>(<span class="ruby-identifier">command_name</span>)
+  <span class="ruby-identifier">command</span> = <span class="ruby-identifier">all_commands</span>[<span class="ruby-identifier">meth</span>]
+  <span class="ruby-identifier">handle_no_command_error</span>(<span class="ruby-identifier">meth</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">command</span>
+
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Usage:&quot;</span>
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-node">&quot;  #{banner(command).split(&quot;\n&quot;).join(&quot;\n  &quot;)}&quot;</span>
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span>
+  <span class="ruby-identifier">class_options_help</span>(<span class="ruby-identifier">shell</span>, <span class="ruby-keyword">nil</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">options</span>.<span class="ruby-identifier">values</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">long_description</span>
+    <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Description:&quot;</span>
+    <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">print_wrapped</span>(<span class="ruby-identifier">command</span>.<span class="ruby-identifier">long_description</span>, <span class="ruby-value">:indent</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">2</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">description</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-task_help">task_help</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-default_command" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_command</span><span
+            class="method-args">(meth = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the default command when thor is executed without an explicit command to be called.</p>
+
+<h4 id="method-c-default_command-label-Parameters">Parameters<span><a href="#method-c-default_command-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>meth&lt;Symbol&gt;
+<dd>
+<p>name of the default command</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="default_command-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">default_command</span>(<span class="ruby-identifier">meth</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">meth</span>
+    <span class="ruby-ivar">@default_command</span> = <span class="ruby-identifier">meth</span> <span class="ruby-operator">==</span> <span class="ruby-value">:none</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;help&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">meth</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@default_command</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">from_superclass</span>(<span class="ruby-value">:default_command</span>, <span class="ruby-string">&quot;help&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-default_task">default_task</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-default_task" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">default_task</span><span
+            class="method-args">(meth = nil)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-default_command">default_command</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-desc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">desc</span><span
+            class="method-args">(usage, description, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Defines the usage and the description of the next command.</p>
+
+<h4 id="method-c-desc-label-Parameters">Parameters<span><a href="#method-c-desc-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>usage&lt;String&gt; description&lt;String&gt; options&lt;String&gt;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="desc-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">desc</span>(<span class="ruby-identifier">usage</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:for</span>]
+    <span class="ruby-identifier">command</span> = <span class="ruby-identifier">find_and_refresh_command</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:for</span>])
+    <span class="ruby-identifier">command</span>.<span class="ruby-identifier">usage</span> = <span class="ruby-identifier">usage</span>             <span class="ruby-keyword">if</span> <span class="ruby-identifier">usage</span>
+    <span class="ruby-identifier">command</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">description</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">description</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@usage</span> = <span class="ruby-identifier">usage</span>
+    <span class="ruby-ivar">@desc</span> = <span class="ruby-identifier">description</span>
+    <span class="ruby-ivar">@hide</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:hide</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-disable_required_check-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">disable_required_check!</span><span
+            class="method-args">(*command_names)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Disable the check for required options for the given commands. This is useful if you have a command that does not need the required options to work, like help.</p>
+
+<h4 id="method-c-disable_required_check-21-label-Parameters">Parameters<span><a href="#method-c-disable_required_check-21-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt><a href="../Symbol.html"><code>Symbol</code></a> …
+<dd>
+<p>A list of commands that should be affected.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="disable_required_check-21-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 339</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">disable_required_check!</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">command_names</span>)
+  <span class="ruby-identifier">disable_required_check</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">command_names</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">(shell, subcommand = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prints help information for this class.</p>
+
+<h4 id="method-c-help-label-Parameters">Parameters<span><a href="#method-c-help-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>shell&lt;Bundler::Thor::Shell&gt;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">help</span>(<span class="ruby-identifier">shell</span>, <span class="ruby-identifier">subcommand</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">list</span> = <span class="ruby-identifier">printable_commands</span>(<span class="ruby-keyword">true</span>, <span class="ruby-identifier">subcommand</span>)
+  <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">thor_classes_in</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">list</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">printable_commands</span>(<span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">list</span>.<span class="ruby-identifier">sort!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>] }
+
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-ivar">@package_name</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@package_name</span>
+    <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-node">&quot;#{@package_name} commands:&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Commands:&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">print_table</span>(<span class="ruby-identifier">list</span>, <span class="ruby-value">:indent</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">2</span>, <span class="ruby-value">:truncate</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span>
+  <span class="ruby-identifier">class_options_help</span>(<span class="ruby-identifier">shell</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-long_desc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">long_desc</span><span
+            class="method-args">(long_description, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Defines the long description of the next command.</p>
+
+<h4 id="method-c-long_desc-label-Parameters">Parameters<span><a href="#method-c-long_desc-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>long description&lt;String&gt;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="long_desc-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">long_desc</span>(<span class="ruby-identifier">long_description</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:for</span>]
+    <span class="ruby-identifier">command</span> = <span class="ruby-identifier">find_and_refresh_command</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:for</span>])
+    <span class="ruby-identifier">command</span>.<span class="ruby-identifier">long_description</span> = <span class="ruby-identifier">long_description</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">long_description</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@long_desc</span> = <span class="ruby-identifier">long_description</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-map" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">map</span><span
+            class="method-args">(mappings = nil, **kw)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Maps an input to a command. If you define:</p>
+
+<pre class="ruby"><span class="ruby-identifier">map</span> <span class="ruby-string">&quot;-T&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;list&quot;</span>
+</pre>
+
+<p>Running:</p>
+
+<pre class="ruby"><span class="ruby-identifier">thor</span> <span class="ruby-operator">-</span><span class="ruby-constant">T</span>
+</pre>
+
+<p>Will invoke the list command.</p>
+
+<h4 id="method-c-map-label-Parameters">Parameters<span><a href="#method-c-map-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>Hash[String|Array =&gt; Symbol]
+<dd>
+<p>Maps the string or the strings in the array to the given command.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="map-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">map</span>(<span class="ruby-identifier">mappings</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">kw</span>)
+  <span class="ruby-ivar">@map</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">from_superclass</span>(<span class="ruby-value">:map</span>, {})
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">mappings</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">kw</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">mappings</span> = <span class="ruby-identifier">kw</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">mappings</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">mappings</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">kw</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">mappings</span>
+    <span class="ruby-identifier">mappings</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:each</span>)
+        <span class="ruby-identifier">key</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">subkey</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@map</span>[<span class="ruby-identifier">subkey</span>] = <span class="ruby-identifier">value</span> }
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@map</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@map</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-method_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">method_option</span><span
+            class="method-args">(name, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds an option to the set of method options. If :for is given as option, it allows you to change the options from a previous defined command.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">previous_command</span>
+  <span class="ruby-comment"># magic</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">method_option</span> <span class="ruby-value">:foo</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:bar</span>, <span class="ruby-value">:for</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:previous_command</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">next_command</span>
+  <span class="ruby-comment"># magic</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h4 id="method-c-method_option-label-Parameters">Parameters<span><a href="#method-c-method_option-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>name&lt;Symbol&gt;
+<dd>
+<p>The name of the argument.</p>
+</dd><dt>options&lt;Hash&gt;
+<dd>
+<p>Described below.</p>
+</dd></dl>
+
+<h4 id="method-c-method_option-label-Options">Options<span><a href="#method-c-method_option-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>:desc     - Description for the argument. :required - If the argument is required or not. :default  - Default value for this argument. It cannot be required and have default values. :aliases  - Aliases for this option. :type     - The type of the argument, can be :string, :hash, :array, :numeric or :boolean. :banner   - <a href="../String.html"><code>String</code></a> to show on usage notes. :hide     - If you want to hide this option from the help.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="method_option-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_option</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">scope</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:for</span>]
+    <span class="ruby-identifier">find_and_refresh_command</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:for</span>]).<span class="ruby-identifier">options</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">method_options</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">build_option</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">scope</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-option">option</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-method_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">method_options</span><span
+            class="method-args">(options = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Declares the options for the next command to be declared.</p>
+
+<h4 id="method-c-method_options-label-Parameters">Parameters<span><a href="#method-c-method_options-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>Hash[Symbol =&gt; Object]
+<dd>
+<p>The hash key is the name of the option and the value</p>
+</dd></dl>
+
+<p>is the type of the option. Can be :string, :array, :hash, :boolean, :numeric or :required (string). If you give a value, the type of the value is used.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="method_options-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_options</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@method_options</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-identifier">build_options</span>(<span class="ruby-identifier">options</span>, <span class="ruby-ivar">@method_options</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>
+  <span class="ruby-ivar">@method_options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-options">options</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-option" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">option</span><span
+            class="method-args">(name, options = {})</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-method_option">method_option</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-options" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">options</span><span
+            class="method-args">(options = nil)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-method_options">method_options</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-package_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">package_name</span><span
+            class="method-args">(name, _ = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Allows for custom “Command” package naming.</p>
+
+<h3 id="method-c-package_name-label-Parameters">Parameters<span><a href="#method-c-package_name-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>name&lt;String&gt; options&lt;Hash&gt;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="package_name-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">package_name</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">_</span> = {})
+  <span class="ruby-ivar">@package_name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-printable_commands" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">printable_commands</span><span
+            class="method-args">(all = true, subcommand = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns commands ready to be printed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="printable_commands-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 214</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">printable_commands</span>(<span class="ruby-identifier">all</span> = <span class="ruby-keyword">true</span>, <span class="ruby-identifier">subcommand</span> = <span class="ruby-keyword">false</span>)
+  (<span class="ruby-identifier">all</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">all_commands</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">commands</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">command</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">hidden?</span>
+    <span class="ruby-identifier">item</span> = []
+    <span class="ruby-identifier">item</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">banner</span>(<span class="ruby-identifier">command</span>, <span class="ruby-keyword">false</span>, <span class="ruby-identifier">subcommand</span>)
+    <span class="ruby-identifier">item</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">command</span>.<span class="ruby-identifier">description</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;# #{command.description.gsub(/\s+/m, &#39; &#39;)}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>)
+    <span class="ruby-identifier">item</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">compact</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-printable_tasks">printable_tasks</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-printable_tasks" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">printable_tasks</span><span
+            class="method-args">(all = true, subcommand = false)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-printable_commands">printable_commands</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-register" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register</span><span
+            class="method-args">(klass, subcommand_name, usage, description, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Registers another Bundler::Thor subclass as a command.</p>
+
+<h4 id="method-c-register-label-Parameters">Parameters<span><a href="#method-c-register-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>klass&lt;Class&gt;
+<dd>
+<p>Bundler::Thor subclass to register</p>
+</dd><dt>command&lt;String&gt;
+<dd>
+<p>Subcommand name to use</p>
+</dd><dt>usage&lt;String&gt;
+<dd>
+<p>Short usage for the subcommand</p>
+</dd><dt>description&lt;String&gt;
+<dd>
+<p>Description for the subcommand</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="register-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">register</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">subcommand_name</span>, <span class="ruby-identifier">usage</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">klass</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Group</span>
+    <span class="ruby-identifier">desc</span> <span class="ruby-identifier">usage</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">options</span>
+    <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">subcommand_name</span>) { <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span> <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span>) }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">desc</span> <span class="ruby-identifier">usage</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">options</span>
+    <span class="ruby-identifier">subcommand</span> <span class="ruby-identifier">subcommand_name</span>, <span class="ruby-identifier">klass</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-stop_on_unknown_option-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_on_unknown_option!</span><span
+            class="method-args">(*command_names)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Stop parsing of options as soon as an unknown option or a regular argument is encountered.  All remaining arguments are passed to the command. This is useful if you have a command that can receive arbitrary additional options, and where those additional options should not be handled by Bundler::Thor.</p>
+
+<h4 id="method-c-stop_on_unknown_option-21-label-Example">Example<span><a href="#method-c-stop_on_unknown_option-21-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>To better understand how this is useful, let&#39;s consider a command that calls an external command.  A user may want to pass arbitrary options and arguments to that command.  The command itself also accepts some options, which should be handled by Bundler::Thor.</p>
+
+<pre class="ruby"><span class="ruby-identifier">class_option</span> <span class="ruby-string">&quot;verbose&quot;</span>,  <span class="ruby-value">:type</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:boolean</span>
+<span class="ruby-identifier">stop_on_unknown_option!</span> <span class="ruby-value">:exec</span>
+<span class="ruby-identifier">check_unknown_options!</span>  <span class="ruby-value">:except</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:exec</span>
+
+<span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;exec&quot;</span>, <span class="ruby-string">&quot;Run a shell command&quot;</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exec</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;diagnostic output&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:verbose</span>]
+  <span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">exec</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Here <code>exec</code> can be called with <code>--verbose</code> to get diagnostic output, e.g.:</p>
+
+<pre>$ thor exec --verbose echo foo
+diagnostic output
+foo</pre>
+
+<p>But if <code>--verbose</code> is given after <code>echo</code>, it is passed to <code>echo</code> instead:</p>
+
+<pre>$ thor exec echo --verbose foo
+--verbose foo</pre>
+
+<h4 id="method-c-stop_on_unknown_option-21-label-Parameters">Parameters<span><a href="#method-c-stop_on_unknown_option-21-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt><a href="../Symbol.html"><code>Symbol</code></a> …
+<dd>
+<p>A list of commands that should be affected.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="stop_on_unknown_option-21-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 325</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stop_on_unknown_option!</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">command_names</span>)
+  <span class="ruby-identifier">stop_on_unknown_option</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">command_names</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-subcommand" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subcommand</span><span
+            class="method-args">(subcommand, subcommand_class)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subcommand-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 234</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">subcommand</span>(<span class="ruby-identifier">subcommand</span>, <span class="ruby-identifier">subcommand_class</span>)
+  <span class="ruby-identifier">subcommands</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">subcommand</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">subcommand_class</span>.<span class="ruby-identifier">subcommand_help</span> <span class="ruby-identifier">subcommand</span>
+  <span class="ruby-identifier">subcommand_classes</span>[<span class="ruby-identifier">subcommand</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">subcommand_class</span>
+
+  <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">subcommand</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Arguments</span>.<span class="ruby-identifier">split</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">invoke_args</span> = [<span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>, {<span class="ruby-value">:invoked_via_subcommand</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:class_options</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">options</span>}]
+    <span class="ruby-identifier">invoke_args</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-string">&quot;help&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;--help&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;-h&quot;</span>)
+    <span class="ruby-identifier">invoke</span> <span class="ruby-identifier">subcommand_class</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">invoke_args</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">subcommand_class</span>.<span class="ruby-identifier">commands</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_meth</span>, <span class="ruby-identifier">command</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">command</span>.<span class="ruby-identifier">ancestor_name</span> = <span class="ruby-identifier">subcommand</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-subtask">subtask</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-subcommand_classes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subcommand_classes</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subcommand_classes-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">subcommand_classes</span>
+  <span class="ruby-ivar">@subcommand_classes</span> <span class="ruby-operator">||=</span> {}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-subcommands" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subcommands</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subcommands-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">subcommands</span>
+  <span class="ruby-ivar">@subcommands</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">from_superclass</span>(<span class="ruby-value">:subcommands</span>, [])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-subtasks">subtasks</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-subtask" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">subtask</span><span
+            class="method-args">(subcommand, subcommand_class)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-subcommand">subcommand</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-subtasks" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">subtasks</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-subcommands">subcommands</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-task_help" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">task_help</span><span
+            class="method-args">(shell, command_name)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-command_help">command_help</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-banner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">banner</span><span
+            class="method-args">(command, namespace = nil, subcommand = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The banner for this class. You can customize it if you are invoking the thor class by another ways which is not the Bundler::Thor::Runner. It receives the command that is going to be invoked and a boolean which indicates if the namespace should be displayed as arguments.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="banner-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 407</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">banner</span>(<span class="ruby-identifier">command</span>, <span class="ruby-identifier">namespace</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">subcommand</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">$thor_runner</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">command</span>.<span class="ruby-identifier">formatted_usage</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">$thor_runner</span>, <span class="ruby-identifier">subcommand</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;\n&quot;</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">formatted_usage</span><span class="ruby-operator">|</span>
+    <span class="ruby-node">&quot;#{basename} #{formatted_usage}&quot;</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find_command_possibilities" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_command_possibilities</span><span
+            class="method-args">(meth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>this is the logic that takes the command name passed in by the user and determines whether it is an unambiguous substrings of a command or alias name.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_command_possibilities-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 484</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_command_possibilities</span>(<span class="ruby-identifier">meth</span>)
+  <span class="ruby-identifier">len</span> = <span class="ruby-identifier">meth</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">possibilities</span> = <span class="ruby-identifier">all_commands</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">map</span>).<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">meth</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">len</span>] }.<span class="ruby-identifier">sort</span>
+  <span class="ruby-identifier">unique_possibilities</span> = <span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">map</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">k</span> }.<span class="ruby-identifier">uniq</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">meth</span>)
+    [<span class="ruby-identifier">meth</span>]
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">unique_possibilities</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">unique_possibilities</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">possibilities</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-find_task_possibilities">find_task_possibilities</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find_task_possibilities" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">find_task_possibilities</span><span
+            class="method-args">(meth)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-find_command_possibilities">find_command_possibilities</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-subcommand_help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subcommand_help</span><span
+            class="method-args">(cmd)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subcommand_help-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 499</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">subcommand_help</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;help [COMMAND]&quot;</span>, <span class="ruby-string">&quot;Describe subcommands or one specific subcommand&quot;</span>
+      <span class="ruby-identifier">class_eval</span> <span class="ruby-string">&quot;
+        def help(command = nil, subcommand = true); super; end
+&quot;</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Thor.html#method-c-subtask_help">subtask_help</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-subtask_help" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">subtask_help</span><span
+            class="method-args">(cmd)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Thor.html#method-c-subcommand_help">subcommand_help</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">(command = nil, subcommand = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor.rb, line 513</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">help</span>(<span class="ruby-identifier">command</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">subcommand</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">subcommands</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">command</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">subcommand_classes</span>[<span class="ruby-identifier">command</span>].<span class="ruby-identifier">help</span>(<span class="ruby-identifier">shell</span>, <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">command_help</span>(<span class="ruby-identifier">shell</span>, <span class="ruby-identifier">command</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">help</span>(<span class="ruby-identifier">shell</span>, <span class="ruby-identifier">subcommand</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

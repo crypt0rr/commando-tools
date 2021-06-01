@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module DidYouMean - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-DidYouMean-label-Disabling+did_you_mean">Disabling <code>did_you_mean</code></a>
+    <li><a href="#module-DidYouMean-label-Getting+the+original+error+message">Getting the original error message</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-correct_error">::correct_error</a>
+    
+    <li ><a href="#method-c-formatter">::formatter</a>
+    
+    <li ><a href="#method-c-formatter-3D">::formatter=</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-DidYouMean">
+  <h1 id="module-DidYouMean" class="module">
+    module DidYouMean
+  </h1>
+
+  <section class="description">
+    
+<p>The <code>DidYouMean</code> gem adds functionality to suggest possible method/class names upon errors such as <code>NameError</code> and <code>NoMethodError</code>. In Ruby 2.3 or later, it is automatically activated during startup.</p>
+
+<p>@example</p>
+
+<pre class="ruby"><span class="ruby-identifier">methosd</span>
+<span class="ruby-comment"># =&gt; NameError: undefined local variable or method `methosd&#39; for main:Object</span>
+<span class="ruby-comment">#   Did you mean?  methods</span>
+<span class="ruby-comment">#                  method</span>
+
+<span class="ruby-constant">OBject</span>
+<span class="ruby-comment"># =&gt; NameError: uninitialized constant OBject</span>
+<span class="ruby-comment">#    Did you mean?  Object</span>
+
+<span class="ruby-ivar">@full_name</span> = <span class="ruby-string">&quot;Yuki Nishijima&quot;</span>
+<span class="ruby-identifier">first_name</span>, <span class="ruby-identifier">last_name</span> = <span class="ruby-identifier">full_name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
+<span class="ruby-comment"># =&gt; NameError: undefined local variable or method `full_name&#39; for main:Object</span>
+<span class="ruby-comment">#    Did you mean?  @full_name</span>
+
+<span class="ruby-identifier">@@full_name</span> = <span class="ruby-string">&quot;Yuki Nishijima&quot;</span>
+<span class="ruby-identifier">@@full_anme</span>
+<span class="ruby-comment"># =&gt; NameError: uninitialized class variable @@full_anme in Object</span>
+<span class="ruby-comment">#    Did you mean?  @@full_name</span>
+
+<span class="ruby-identifier">full_name</span> = <span class="ruby-string">&quot;Yuki Nishijima&quot;</span>
+<span class="ruby-identifier">full_name</span>.<span class="ruby-identifier">starts_with?</span>(<span class="ruby-string">&quot;Y&quot;</span>)
+<span class="ruby-comment"># =&gt; NoMethodError: undefined method `starts_with?&#39; for &quot;Yuki Nishijima&quot;:String</span>
+<span class="ruby-comment">#    Did you mean?  start_with?</span>
+
+<span class="ruby-identifier">hash</span> = {<span class="ruby-value">foo:</span> <span class="ruby-value">1</span>, <span class="ruby-value">bar:</span> <span class="ruby-value">2</span>, <span class="ruby-value">baz:</span> <span class="ruby-value">3</span>}
+<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-value">:fooo</span>)
+<span class="ruby-comment"># =&gt; KeyError: key not found: :fooo</span>
+<span class="ruby-comment">#    Did you mean?  :foo</span>
+</pre>
+
+<h2 id="module-DidYouMean-label-Disabling+did_you_mean">Disabling <code>did_you_mean</code><span><a href="#module-DidYouMean-label-Disabling+did_you_mean">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Occasionally, you may want to disable the <code>did_you_mean</code> gem for e.g. debugging issues in the error object itself. You can disable it entirely by specifying <code>--disable-did_you_mean</code> option to the <code>ruby</code> command:</p>
+
+<pre>$ ruby --disable-did_you_mean -e &quot;1.zeor?&quot;
+-e:1:in `&lt;main&gt;&#39;: undefined method `zeor?&#39; for 1:Integer (NameError)</pre>
+
+<p>When you do not have direct access to the <code>ruby</code> command (e.g. +rails console+, <code>irb</code>), you could applyoptions using the <code>RUBYOPT</code> environment variable:</p>
+
+<pre>$ RUBYOPT=&#39;--disable-did_you_mean&#39; irb
+irb:0&gt; 1.zeor?
+# =&gt; NoMethodError (undefined method `zeor?&#39; for 1:Integer)</pre>
+
+<h2 id="module-DidYouMean-label-Getting+the+original+error+message">Getting the original error message<span><a href="#module-DidYouMean-label-Getting+the+original+error+message">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Sometimes, you do not want to disable the gem entirely, but need to get the original error message without suggestions (e.g. testing). In this case, you could use the <code>#original_message</code> method on the error object:</p>
+
+<pre class="ruby"><span class="ruby-identifier">no_method_error</span> = <span class="ruby-keyword">begin</span>
+                    <span class="ruby-value">1</span>.<span class="ruby-identifier">zeor?</span>
+                  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">error</span>
+                    <span class="ruby-identifier">error</span>
+                  <span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">no_method_error</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-comment"># =&gt; NoMethodError (undefined method `zeor?&#39; for 1:Integer)</span>
+<span class="ruby-comment">#    Did you mean?  zero?</span>
+
+<span class="ruby-identifier">no_method_error</span>.<span class="ruby-identifier">original_message</span>
+<span class="ruby-comment"># =&gt; NoMethodError (undefined method `zeor?&#39; for 1:Integer)</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="SPELL_CHECKERS">SPELL_CHECKERS
+        
+        <dd><p>Map of error types and spell checker objects.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-correct_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">correct_error</span><span
+            class="method-args">(error_class, spell_checker)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds <code>DidYouMean</code> functionality to an error using a given spell checker</p>
+          
+          
+
+          
+          <div class="method-source-code" id="correct_error-source">
+            <pre><span class="ruby-comment"># File lib/did_you_mean.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">correct_error</span>(<span class="ruby-identifier">error_class</span>, <span class="ruby-identifier">spell_checker</span>)
+  <span class="ruby-constant">SPELL_CHECKERS</span>[<span class="ruby-identifier">error_class</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">spell_checker</span>
+  <span class="ruby-identifier">error_class</span>.<span class="ruby-identifier">prepend</span>(<span class="ruby-constant">Correctable</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">error_class</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Correctable</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-formatter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">formatter</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the currenctly set formatter. By default, it is set to <code>DidYouMean::Formatter</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="formatter-source">
+            <pre><span class="ruby-comment"># File lib/did_you_mean.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">formatter</span>
+  <span class="ruby-identifier">@@formatter</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-formatter-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">formatter=</span><span
+            class="method-args">(formatter)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Updates the primary formatter used to format the suggestions.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="formatter-3D-source">
+            <pre><span class="ruby-comment"># File lib/did_you_mean.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">formatter=</span>(<span class="ruby-identifier">formatter</span>)
+  <span class="ruby-identifier">@@formatter</span> = <span class="ruby-identifier">formatter</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

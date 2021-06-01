@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module WEBrick - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-WEBrick-label-WEB+server+toolkit.">WEB server toolkit.</a>
+    <li><a href="#module-WEBrick-label-Starting+an+HTTP+server">Starting an HTTP server</a>
+    <li><a href="#module-WEBrick-label-Custom+Behavior">Custom Behavior</a>
+    <li><a href="#module-WEBrick-label-Servlets">Servlets</a>
+    <li><a href="#module-WEBrick-label-Virtual+Hosts">Virtual Hosts</a>
+    <li><a href="#module-WEBrick-label-HTTPS">HTTPS</a>
+    <li><a href="#module-WEBrick-label-Proxy+Server">Proxy Server</a>
+    <li><a href="#module-WEBrick-label-Basic+and+Digest+authentication">Basic and Digest authentication</a>
+    <li><a href="#module-WEBrick-label-WEBrick+as+a+Production+Web+Server">WEBrick as a Production Web Server</a>
+    <li><a href="#module-WEBrick-label-Daemonizing">Daemonizing</a>
+    <li><a href="#module-WEBrick-label-Dropping+Permissions">Dropping Permissions</a>
+    <li><a href="#module-WEBrick-label-Logging">Logging</a>
+    <li><a href="#module-WEBrick-label-Log+Rotation">Log Rotation</a>
+    <li><a href="#module-WEBrick-label-Copyright">Copyright</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-WEBrick">
+  <h1 id="module-WEBrick" class="module">
+    module WEBrick
+  </h1>
+
+  <section class="description">
+    
+<h1 id="module-WEBrick-label-WEB+server+toolkit.">WEB server toolkit.<span><a href="#module-WEBrick-label-WEB+server+toolkit.">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><a href="WEBrick.html"><code>WEBrick</code></a> is an HTTP server toolkit that can be configured as an HTTPS server, a proxy server, and a virtual-host server.  <a href="WEBrick.html"><code>WEBrick</code></a> features complete logging of both server operations and HTTP access.  <a href="WEBrick.html"><code>WEBrick</code></a> supports both basic and digest authentication in addition to algorithms not in RFC 2617.</p>
+
+<p>A <a href="WEBrick.html"><code>WEBrick</code></a> server can be composed of multiple <a href="WEBrick.html"><code>WEBrick</code></a> servers or servlets to provide differing behavior on a per-host or per-path basis.  <a href="WEBrick.html"><code>WEBrick</code></a> includes servlets for handling <a href="WEBrick/CGI.html"><code>CGI</code></a> scripts, <a href="ERB.html"><code>ERB</code></a> pages, Ruby blocks and directory listings.</p>
+
+<p><a href="WEBrick.html"><code>WEBrick</code></a> also includes tools for daemonizing a process and starting a process at a higher privilege level and dropping permissions.</p>
+
+<h2 id="module-WEBrick-label-Starting+an+HTTP+server">Starting an HTTP server<span><a href="#module-WEBrick-label-Starting+an+HTTP+server">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To create a new <a href="WEBrick/HTTPServer.html"><code>WEBrick::HTTPServer</code></a> that will listen to connections on port 8000 and serve documents from the current user&#39;s public_html folder:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;webrick&#39;</span>
+
+<span class="ruby-identifier">root</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-string">&#39;~/public_html&#39;</span>
+<span class="ruby-identifier">server</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPServer</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:Port</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">8000</span>, <span class="ruby-value">:DocumentRoot</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">root</span>
+</pre>
+
+<p>To run the server you will need to provide a suitable shutdown hook as starting the server blocks the current thread:</p>
+
+<pre class="ruby"><span class="ruby-identifier">trap</span> <span class="ruby-string">&#39;INT&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">shutdown</span> <span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">server</span>.<span class="ruby-identifier">start</span>
+</pre>
+
+<h2 id="module-WEBrick-label-Custom+Behavior">Custom Behavior<span><a href="#module-WEBrick-label-Custom+Behavior">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The easiest way to have a server perform custom operations is through <a href="WEBrick/HTTPServer.html#method-i-mount_proc"><code>WEBrick::HTTPServer#mount_proc</code></a>.  The block given will be called with a <a href="WEBrick/HTTPRequest.html"><code>WEBrick::HTTPRequest</code></a> with request info and a <a href="WEBrick/HTTPResponse.html"><code>WEBrick::HTTPResponse</code></a> which must be filled in appropriately:</p>
+
+<pre class="ruby"><span class="ruby-identifier">server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> = <span class="ruby-string">&#39;Hello, world!&#39;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Remember that <code>server.mount_proc</code> must precede <code>server.start</code>.</p>
+
+<h2 id="module-WEBrick-label-Servlets">Servlets<span><a href="#module-WEBrick-label-Servlets">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Advanced custom behavior can be obtained through mounting a subclass of <a href="WEBrick/HTTPServlet/AbstractServlet.html"><code>WEBrick::HTTPServlet::AbstractServlet</code></a>.  Servlets provide more modularity when writing an HTTP server than mount_proc allows.  Here is a simple servlet:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Simple</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPServlet</span><span class="ruby-operator">::</span><span class="ruby-constant">AbstractServlet</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">do_GET</span> <span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>
+    <span class="ruby-identifier">status</span>, <span class="ruby-identifier">content_type</span>, <span class="ruby-identifier">body</span> = <span class="ruby-identifier">do_stuff_with</span> <span class="ruby-identifier">request</span>
+
+    <span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span> = <span class="ruby-value">200</span>
+    <span class="ruby-identifier">response</span>[<span class="ruby-string">&#39;Content-Type&#39;</span>] = <span class="ruby-string">&#39;text/plain&#39;</span>
+    <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> = <span class="ruby-string">&#39;Hello, World!&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>To initialize the servlet you mount it on the server:</p>
+
+<pre class="ruby"><span class="ruby-identifier">server</span>.<span class="ruby-identifier">mount</span> <span class="ruby-string">&#39;/simple&#39;</span>, <span class="ruby-constant">Simple</span>
+</pre>
+
+<p>See <a href="WEBrick/HTTPServlet/AbstractServlet.html"><code>WEBrick::HTTPServlet::AbstractServlet</code></a> for more details.</p>
+
+<h2 id="module-WEBrick-label-Virtual+Hosts">Virtual Hosts<span><a href="#module-WEBrick-label-Virtual+Hosts">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A server can act as a virtual host for multiple host names.  After creating the listening host, additional hosts that do not listen can be created and attached as virtual hosts:</p>
+
+<pre>server = WEBrick::HTTPServer.new # ...
+
+vhost = WEBrick::HTTPServer.new :ServerName =&gt; &#39;vhost.example&#39;,
+                                :DoNotListen =&gt; true, # ...
+vhost.mount &#39;/&#39;, ...
+
+server.virtual_host vhost</pre>
+
+<p>If no <code>:DocumentRoot</code> is provided and no servlets or procs are mounted on the main server it will return 404 for all URLs.</p>
+
+<h2 id="module-WEBrick-label-HTTPS">HTTPS<span><a href="#module-WEBrick-label-HTTPS">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To create an HTTPS server you only need to enable SSL and provide an SSL certificate name:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;webrick&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;webrick/https&#39;</span>
+
+<span class="ruby-identifier">cert_name</span> = [
+  <span class="ruby-node">%w[CN localhost]</span>,
+]
+
+<span class="ruby-identifier">server</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:Port</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">8000</span>,
+                                 <span class="ruby-value">:SSLEnable</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+                                 <span class="ruby-value">:SSLCertName</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">cert_name</span>)
+</pre>
+
+<p>This will start the server with a self-generated self-signed certificate. The certificate will be changed every time the server is restarted.</p>
+
+<p>To create a server with a pre-determined key and certificate you can provide them:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;webrick&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;webrick/https&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;openssl&#39;</span>
+
+<span class="ruby-identifier">cert</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Certificate</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-string">&#39;/path/to/cert.pem&#39;</span>
+<span class="ruby-identifier">pkey</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-string">&#39;/path/to/pkey.pem&#39;</span>
+
+<span class="ruby-identifier">server</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:Port</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">8000</span>,
+                                 <span class="ruby-value">:SSLEnable</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+                                 <span class="ruby-value">:SSLCertificate</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">cert</span>,
+                                 <span class="ruby-value">:SSLPrivateKey</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">pkey</span>)
+</pre>
+
+<h2 id="module-WEBrick-label-Proxy+Server">Proxy Server<span><a href="#module-WEBrick-label-Proxy+Server">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="WEBrick.html"><code>WEBrick</code></a> can act as a proxy server:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;webrick&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;webrick/httpproxy&#39;</span>
+
+<span class="ruby-identifier">proxy</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPProxyServer</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:Port</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">8000</span>
+
+<span class="ruby-identifier">trap</span> <span class="ruby-string">&#39;INT&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">shutdown</span> <span class="ruby-keyword">end</span>
+</pre>
+
+<p>See WEBrick::HTTPProxy for further details including modifying proxied responses.</p>
+
+<h2 id="module-WEBrick-label-Basic+and+Digest+authentication">Basic and <a href="Digest.html"><code>Digest</code></a> authentication<span><a href="#module-WEBrick-label-Basic+and+Digest+authentication">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="WEBrick.html"><code>WEBrick</code></a> provides both Basic and <a href="Digest.html"><code>Digest</code></a> authentication for regular and proxy servers.  See <a href="WEBrick/HTTPAuth.html"><code>WEBrick::HTTPAuth</code></a>, <a href="WEBrick/HTTPAuth/BasicAuth.html"><code>WEBrick::HTTPAuth::BasicAuth</code></a> and <a href="WEBrick/HTTPAuth/DigestAuth.html"><code>WEBrick::HTTPAuth::DigestAuth</code></a>.</p>
+
+<h2 id="module-WEBrick-label-WEBrick+as+a+Production+Web+Server"><a href="WEBrick.html"><code>WEBrick</code></a> as a Production Web Server<span><a href="#module-WEBrick-label-WEBrick+as+a+Production+Web+Server">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="WEBrick.html"><code>WEBrick</code></a> can be run as a production server for small loads.</p>
+
+<h3 id="module-WEBrick-label-Daemonizing">Daemonizing<span><a href="#module-WEBrick-label-Daemonizing">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>To start a <a href="WEBrick.html"><code>WEBrick</code></a> server as a daemon simple run <a href="WEBrick/Daemon.html#method-c-start"><code>WEBrick::Daemon.start</code></a> before starting the server.</p>
+
+<h3 id="module-WEBrick-label-Dropping+Permissions">Dropping Permissions<span><a href="#module-WEBrick-label-Dropping+Permissions">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="WEBrick.html"><code>WEBrick</code></a> can be started as one user to gain permission to bind to port 80 or 443 for serving HTTP or HTTPS traffic then can drop these permissions for regular operation.  To listen on all interfaces for HTTP traffic:</p>
+
+<pre class="ruby"><span class="ruby-identifier">sockets</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">create_listeners</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">80</span>
+</pre>
+
+<p>Then drop privileges:</p>
+
+<pre class="ruby"><span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">su</span> <span class="ruby-string">&#39;www&#39;</span>
+</pre>
+
+<p>Then create a server that does not listen by default:</p>
+
+<pre>server = WEBrick::HTTPServer.new :DoNotListen =&gt; true, # ...</pre>
+
+<p>Then overwrite the listening sockets with the port 80 sockets:</p>
+
+<pre class="ruby"><span class="ruby-identifier">server</span>.<span class="ruby-identifier">listeners</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">sockets</span>
+</pre>
+
+<h3 id="module-WEBrick-label-Logging">Logging<span><a href="#module-WEBrick-label-Logging">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="WEBrick.html"><code>WEBrick</code></a> can separately log server operations and end-user access.  For server operations:</p>
+
+<pre class="ruby"><span class="ruby-identifier">log_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-string">&#39;/var/log/webrick.log&#39;</span>, <span class="ruby-string">&#39;a+&#39;</span>
+<span class="ruby-identifier">log</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">log_file</span>
+</pre>
+
+<p>For user access logging:</p>
+
+<pre class="ruby"><span class="ruby-identifier">access_log</span> = [
+  [<span class="ruby-identifier">log_file</span>, <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessLog</span><span class="ruby-operator">::</span><span class="ruby-constant">COMBINED_LOG_FORMAT</span>],
+]
+
+<span class="ruby-identifier">server</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPServer</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:Logger</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">log</span>, <span class="ruby-value">:AccessLog</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">access_log</span>
+</pre>
+
+<p>See <a href="WEBrick/AccessLog.html"><code>WEBrick::AccessLog</code></a> for further log formats.</p>
+
+<h3 id="module-WEBrick-label-Log+Rotation"><a href="WEBrick/Log.html"><code>Log</code></a> Rotation<span><a href="#module-WEBrick-label-Log+Rotation">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>To rotate logs in <a href="WEBrick.html"><code>WEBrick</code></a> on a HUP signal (like syslogd can send), open the log file in &#39;a+&#39; mode (as above) and trap &#39;HUP&#39; to reopen the log file:</p>
+
+<pre>trap &#39;HUP&#39; do log_file.reopen &#39;/path/to/webrick.log&#39;, &#39;a+&#39;</pre>
+
+<h2 id="module-WEBrick-label-Copyright">Copyright<span><a href="#module-WEBrick-label-Copyright">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Author: IPR – Internet Programming with Ruby – writers</p>
+
+<p>Copyright © 2000 TAKAHASHI Masayoshi, GOTOU YUUZOU Copyright © 2002 Internet Programming with Ruby writers. All rights reserved.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="VERSION">VERSION
+        
+        <dd><p>The <a href="WEBrick.html"><code>WEBrick</code></a> version</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

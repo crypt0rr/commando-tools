@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Molinillo::DependencyGraph - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../../Enumerable.html">Enumerable</a>
+  
+  
+  
+    <li><a class="include" href="../../TSort.html">TSort</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-tsort">::tsort</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-add_child_vertex">#add_child_vertex</a>
+    
+    <li ><a href="#method-i-add_edge">#add_edge</a>
+    
+    <li ><a href="#method-i-add_edge_no_circular">#add_edge_no_circular</a>
+    
+    <li ><a href="#method-i-add_vertex">#add_vertex</a>
+    
+    <li ><a href="#method-i-delete_edge">#delete_edge</a>
+    
+    <li ><a href="#method-i-detach_vertex_named">#detach_vertex_named</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li class="calls-super" ><a href="#method-i-initialize_copy">#initialize_copy</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-rewind_to">#rewind_to</a>
+    
+    <li ><a href="#method-i-root_vertex_named">#root_vertex_named</a>
+    
+    <li ><a href="#method-i-set_payload">#set_payload</a>
+    
+    <li ><a href="#method-i-tag">#tag</a>
+    
+    <li ><a href="#method-i-to_dot">#to_dot</a>
+    
+    <li ><a href="#method-i-tsort_each_child">#tsort_each_child</a>
+    
+    <li ><a href="#method-i-tsort_each_node">#tsort_each_node</a>
+    
+    <li ><a href="#method-i-vertex_named">#vertex_named</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Molinillo::DependencyGraph">
+  <h1 id="class-Bundler::Molinillo::DependencyGraph" class="class">
+    class Bundler::Molinillo::DependencyGraph
+  </h1>
+
+  <section class="description">
+    
+<p>A directed acyclic graph that is tuned to hold named dependencies</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Edge">Edge
+        
+        <dd><p>A directed edge of a {DependencyGraph} @attr [Vertex] origin The origin of the directed edge @attr [Vertex] destination The destination of the directed edge @attr [Object] requirement The requirement the directed edge represents</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-log" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">log</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [Log] the op log for this graph</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-vertices" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">vertices</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [{String =&gt; Vertex}] the vertices of the dependency graph, keyed</p>
+
+<pre>by {Vertex#name}</pre>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes an empty dependency graph</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@vertices</span> = {}
+  <span class="ruby-ivar">@log</span> = <span class="ruby-constant">Log</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-tsort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort</span><span
+            class="method-args">(vertices)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Topologically sorts the given vertices. @param [Enumerable&lt;Vertex&gt;] vertices the vertices to be sorted, which must</p>
+
+<pre>all belong to the same graph.</pre>
+
+<p>@return [Array&lt;Vertex&gt;] The sorted vertices.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">tsort</span>(<span class="ruby-identifier">vertices</span>)
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">tsort</span>(
+    <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) },
+    <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">v</span>.<span class="ruby-identifier">successors</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">vertices</span>).<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">==</span><span
+            class="method-args">(other)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Boolean] whether the two dependency graphs are equal, determined</p>
+
+<pre>by a recursive traversal of each {#root_vertices} and its
+{Vertex#successors}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">==</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">equal?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">vertex</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">other_vertex</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other_vertex</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other_vertex</span>.<span class="ruby-identifier">payload</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other_vertex</span>.<span class="ruby-identifier">successors</span>.<span class="ruby-identifier">to_set</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">successors</span>.<span class="ruby-identifier">to_set</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_child_vertex" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_child_vertex</span><span
+            class="method-args">(name, payload, parent_names, requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [String] name @param [Object] payload @param [Array&lt;String&gt;] parent_names @param [Object] requirement the requirement that is requiring the child @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_child_vertex-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_child_vertex</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>, <span class="ruby-identifier">parent_names</span>, <span class="ruby-identifier">requirement</span>)
+  <span class="ruby-identifier">root</span> = <span class="ruby-operator">!</span><span class="ruby-identifier">parent_names</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-keyword">nil</span>) { <span class="ruby-keyword">true</span> }
+  <span class="ruby-identifier">vertex</span> = <span class="ruby-identifier">add_vertex</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>, <span class="ruby-identifier">root</span>)
+  <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">explicit_requirements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">requirement</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">root</span>
+  <span class="ruby-identifier">parent_names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">parent_name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">parent_vertex</span> = <span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">parent_name</span>)
+    <span class="ruby-identifier">add_edge</span>(<span class="ruby-identifier">parent_vertex</span>, <span class="ruby-identifier">vertex</span>, <span class="ruby-identifier">requirement</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">vertex</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_edge" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_edge</span><span
+            class="method-args">(origin, destination, requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds a new {Edge} to the dependency graph @param [Vertex] origin @param [Vertex] destination @param [Object] requirement the requirement that this edge represents @return [Edge] the added edge</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_edge-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_edge</span>(<span class="ruby-identifier">origin</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">requirement</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">path_to?</span>(<span class="ruby-identifier">origin</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CircularDependencyError</span>.<span class="ruby-identifier">new</span>([<span class="ruby-identifier">origin</span>, <span class="ruby-identifier">destination</span>])
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">add_edge_no_circular</span>(<span class="ruby-identifier">origin</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">requirement</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_vertex" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_vertex</span><span
+            class="method-args">(name, payload, root = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds a vertex with the given name, or updates the existing one. @param [String] name @param [Object] payload @return [Vertex] the vertex that was added to `self`</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_vertex-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_vertex</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>, <span class="ruby-identifier">root</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">add_vertex</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>, <span class="ruby-identifier">root</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_edge" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_edge</span><span
+            class="method-args">(edge)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes an {Edge} from the dependency graph @param [Edge] edge @return [Void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_edge-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 201</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_edge</span>(<span class="ruby-identifier">edge</span>)
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">delete_edge</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">edge</span>.<span class="ruby-identifier">origin</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">edge</span>.<span class="ruby-identifier">destination</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">edge</span>.<span class="ruby-identifier">requirement</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-detach_vertex_named" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">detach_vertex_named</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Detaches the {#vertex_named} `name` {Vertex} from the graph, recursively removing any non-root vertices that were orphaned in the process @param [String] name @return [Array&lt;Vertex&gt;] the vertices which have been detached</p>
+          
+          
+
+          
+          <div class="method-source-code" id="detach_vertex_named-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">detach_vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">detach_vertex_named</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">() { |v| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Enumerates through the vertices of the graph. @return [Array&lt;Vertex&gt;] The graph&#39;s vertices.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">v</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="DependencyGraph.html#method-i-tsort_each_node">tsort_each_node</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initialize_copy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_copy</span><span
+            class="method-args">(other)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes a copy of a {DependencyGraph}, ensuring that all {#vertices} are properly copied. @param [DependencyGraph] other the graph to copy.</p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="initialize_copy-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize_copy</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-ivar">@vertices</span> = {}
+  <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">log</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">traverse</span> = <span class="ruby-identifier">lambda</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">new_v</span>, <span class="ruby-identifier">old_v</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_v</span>.<span class="ruby-identifier">outgoing_edges</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">old_v</span>.<span class="ruby-identifier">outgoing_edges</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-identifier">old_v</span>.<span class="ruby-identifier">outgoing_edges</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">edge</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">destination</span> = <span class="ruby-identifier">add_vertex</span>(<span class="ruby-identifier">edge</span>.<span class="ruby-identifier">destination</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">edge</span>.<span class="ruby-identifier">destination</span>.<span class="ruby-identifier">payload</span>)
+      <span class="ruby-identifier">add_edge_no_circular</span>(<span class="ruby-identifier">new_v</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">edge</span>.<span class="ruby-identifier">requirement</span>)
+      <span class="ruby-identifier">traverse</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">destination</span>, <span class="ruby-identifier">edge</span>.<span class="ruby-identifier">destination</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">vertex</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">new_vertex</span> = <span class="ruby-identifier">add_vertex</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>, <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">root?</span>)
+    <span class="ruby-identifier">new_vertex</span>.<span class="ruby-identifier">explicit_requirements</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">explicit_requirements</span>)
+    <span class="ruby-identifier">traverse</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">new_vertex</span>, <span class="ruby-identifier">vertex</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [String] a string suitable for debugging</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+  <span class="ruby-node">&quot;#{self.class}:#{vertices.values.inspect}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rewind_to" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rewind_to</span><span
+            class="method-args">(tag)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Rewinds the graph to the state tagged as `tag` @param  [Object] tag the tag to rewind to @return [Void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rewind_to-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rewind_to</span>(<span class="ruby-identifier">tag</span>)
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">rewind_to</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">tag</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-root_vertex_named" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">root_vertex_named</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [String] name @return [Vertex,nil] the root vertex with the given name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="root_vertex_named-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 181</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">root_vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">vertex</span> = <span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">vertex</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vertex</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">root?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_payload</span><span
+            class="method-args">(name, payload)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the payload of the vertex with the given name @param [String] name the name of the vertex @param [Object] payload the payload @return [Void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_payload-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_payload</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>)
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">set_payload</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tag" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tag</span><span
+            class="method-args">(tag)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Tags the current state of the dependency as the given tag @param  [Object] tag an opaque tag for the current state of the graph @return [Void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tag-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tag</span>(<span class="ruby-identifier">tag</span>)
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">tag</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">tag</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_dot" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_dot</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Hash] options options for dot output. @return [String] Returns a dot format representation of the graph</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_dot-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_dot</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">edge_label</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:edge_label</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Unknown options: #{options.keys}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">dot_vertices</span> = []
+  <span class="ruby-identifier">dot_edges</span> = []
+  <span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">dot_vertices</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;  #{n} [label=\&quot;{#{n}|#{v.payload}}\&quot;]&quot;</span>
+    <span class="ruby-identifier">v</span>.<span class="ruby-identifier">outgoing_edges</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">label</span> = <span class="ruby-identifier">edge_label</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">edge_label</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">e</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">requirement</span>
+      <span class="ruby-identifier">dot_edges</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;  #{e.origin.name} -&gt; #{e.destination.name} [label=#{label.to_s.dump}]&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">dot_vertices</span>.<span class="ruby-identifier">uniq!</span>
+  <span class="ruby-identifier">dot_vertices</span>.<span class="ruby-identifier">sort!</span>
+  <span class="ruby-identifier">dot_edges</span>.<span class="ruby-identifier">uniq!</span>
+  <span class="ruby-identifier">dot_edges</span>.<span class="ruby-identifier">sort!</span>
+
+  <span class="ruby-identifier">dot</span> = <span class="ruby-identifier">dot_vertices</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-string">&#39;digraph G {&#39;</span>).<span class="ruby-identifier">push</span>(<span class="ruby-string">&#39;&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">dot_edges</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&#39;}&#39;</span>)
+  <span class="ruby-identifier">dot</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tsort_each_child" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort_each_child</span><span
+            class="method-args">(vertex, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@!visibility private</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort_each_child-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">vertex</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">successors</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tsort_each_node" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort_each_node</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@!visibility private</p>
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="DependencyGraph.html#method-i-each">each</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-vertex_named" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vertex_named</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [String] name @return [Vertex,nil] the vertex with the given name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="vertex_named-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">vertices</span>[<span class="ruby-identifier">name</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_edge_no_circular" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_edge_no_circular</span><span
+            class="method-args">(origin, destination, requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds a new {Edge} to the dependency graph without checking for circularity. @param (see <a href="DependencyGraph.html#method-i-add_edge"><code>add_edge</code></a>) @return (see <a href="DependencyGraph.html#method-i-add_edge"><code>add_edge</code></a>)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_edge_no_circular-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph.rb, line 219</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_edge_no_circular</span>(<span class="ruby-identifier">origin</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">requirement</span>)
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">add_edge_no_circular</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">origin</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">requirement</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

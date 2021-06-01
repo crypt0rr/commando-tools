@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Syslog - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-close">::close</a>
+    
+    <li ><a href="#method-c-facility">::facility</a>
+    
+    <li ><a href="#method-c-ident">::ident</a>
+    
+    <li ><a href="#method-c-inspect">::inspect</a>
+    
+    <li ><a href="#method-c-instance">::instance</a>
+    
+    <li ><a href="#method-c-log">::log</a>
+    
+    <li ><a href="#method-c-mask">::mask</a>
+    
+    <li ><a href="#method-c-mask-3D">::mask=</a>
+    
+    <li ><a href="#method-c-open">::open</a>
+    
+    <li ><a href="#method-c-open-21">::open!</a>
+    
+    <li ><a href="#method-c-opened-3F">::opened?</a>
+    
+    <li ><a href="#method-c-options">::options</a>
+    
+    <li ><a href="#method-c-reopen">::reopen</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Syslog">
+  <h1 id="module-Syslog" class="module">
+    module Syslog
+  </h1>
+
+  <section class="description">
+    
+<p>The syslog package provides a Ruby interface to the POSIX system logging facility.</p>
+
+<p><a href="Syslog.html"><code>Syslog</code></a> messages are typically passed to a central logging daemon. The daemon may filter them; route them into different files (usually found under /var/log); place them in SQL databases; forward them to centralized logging servers via TCP or UDP; or even alert the system administrator via email, pager or text message.</p>
+
+<p>Unlike application-level logging via <a href="Syslog/Logger.html"><code>Logger</code></a> or Log4r, syslog is designed to allow secure tamper-proof logging.</p>
+
+<p>The syslog protocol is standardized in RFC 5424.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Closes the syslog facility. Raises a runtime exception if it is not open.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre>static VALUE mSyslog_close(VALUE self)
+{
+    if (!syslog_opened) {
+        rb_raise(rb_eRuntimeError, &quot;syslog not opened&quot;);
+    }
+
+    closelog();
+
+    xfree((void *)syslog_ident);
+    syslog_ident = NULL;
+    syslog_options = syslog_facility = syslog_mask = -1;
+    syslog_opened = 0;
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-facility" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">facility</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the facility number used in the last call to open()</p>
+          
+          
+
+          
+          <div class="method-source-code" id="facility-source">
+            <pre>static VALUE mSyslog_facility(VALUE self)
+{
+    return syslog_opened ? INT2NUM(syslog_facility) : Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ident" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ident</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the identity string used in the last call to open()</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ident-source">
+            <pre>static VALUE mSyslog_ident(VALUE self)
+{
+    return syslog_opened ? rb_str_new2(syslog_ident) : Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an inspect() string summarizing the object state.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE mSyslog_inspect(VALUE self)
+{
+    Check_Type(self, T_MODULE);
+
+    if (!syslog_opened)
+        return rb_sprintf(&quot;&lt;#%&quot;PRIsVALUE&quot;: opened=false&gt;&quot;, self);
+
+    return rb_sprintf(&quot;&lt;#%&quot;PRIsVALUE&quot;: opened=true, ident=\&quot;%s\&quot;, options=%d, facility=%d, mask=%d&gt;&quot;,
+                      self,
+                      syslog_ident,
+                      syslog_options,
+                      syslog_facility,
+                      syslog_mask);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-instance" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instance</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns self, for backward compatibility.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="instance-source">
+            <pre>static VALUE mSyslog_instance(VALUE self)
+{
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-log" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            log(priority, format_string, *format_args)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Log a message with the specified priority. Example:</p>
+
+<pre class="ruby"><span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">log</span>(<span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_CRIT</span>, <span class="ruby-string">&quot;Out of disk space&quot;</span>)
+<span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">log</span>(<span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_CRIT</span>, <span class="ruby-string">&quot;User %s logged in&quot;</span>, <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;USER&#39;</span>])
+</pre>
+
+<p>The priority levels, in descending order, are:</p>
+<dl class="rdoc-list note-list"><dt>LOG_EMERG
+<dd>
+<p>System is unusable</p>
+</dd><dt>LOG_ALERT
+<dd>
+<p>Action needs to be taken immediately</p>
+</dd><dt>LOG_CRIT
+<dd>
+<p>A critical condition has occurred</p>
+</dd><dt>LOG_ERR
+<dd>
+<p>An error occurred</p>
+</dd><dt>LOG_WARNING
+<dd>
+<p><a href="Warning.html"><code>Warning</code></a> of a possible problem</p>
+</dd><dt>LOG_NOTICE
+<dd>
+<p>A normal but significant condition occurred</p>
+</dd><dt>LOG_INFO
+<dd>
+<p>Informational message</p>
+</dd><dt>LOG_DEBUG
+<dd>
+<p>Debugging information</p>
+</dd></dl>
+
+<p>Each priority level also has a shortcut method that logs with it&#39;s named priority. As an example, the two following statements would produce the same result:</p>
+
+<pre class="ruby"><span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">log</span>(<span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_ALERT</span>, <span class="ruby-string">&quot;Out of memory&quot;</span>)
+<span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">alert</span>(<span class="ruby-string">&quot;Out of memory&quot;</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="log-source">
+            <pre>static VALUE mSyslog_log(int argc, VALUE *argv, VALUE self)
+{
+    VALUE pri;
+
+    rb_check_arity(argc, 2, UNLIMITED_ARGUMENTS);
+
+    argc--;
+    pri = *argv++;
+
+    if (!FIXNUM_P(pri)) {
+        rb_raise(rb_eTypeError, &quot;type mismatch: %&quot;PRIsVALUE&quot; given&quot;, rb_obj_class(pri));
+    }
+
+    syslog_write(FIX2INT(pri), argc, argv);
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-mask" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mask</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the log priority mask in effect. The mask is not reset by opening or closing syslog.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mask-source">
+            <pre>static VALUE mSyslog_get_mask(VALUE self)
+{
+    return syslog_opened ? INT2NUM(syslog_mask) : Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-mask-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            mask=(priority_mask)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets the log priority mask. A method LOG_UPTO is defined to make it easier to set mask values. Example:</p>
+
+<pre class="ruby"><span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">mask</span> = <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_UPTO</span>(<span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_ERR</span>)
+</pre>
+
+<p>Alternatively, specific priorities can be selected and added together using binary OR. Example:</p>
+
+<pre class="ruby"><span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">mask</span> = <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_MASK</span>(<span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_ERR</span>) <span class="ruby-operator">|</span> <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_MASK</span>(<span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_CRIT</span>)
+</pre>
+
+<p>The priority mask persists through calls to open() and close().</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mask-3D-source">
+            <pre>static VALUE mSyslog_set_mask(VALUE self, VALUE mask)
+{
+    if (!syslog_opened) {
+        rb_raise(rb_eRuntimeError, &quot;must open syslog before setting log mask&quot;);
+    }
+
+    setlogmask(syslog_mask = NUM2INT(mask));
+
+    return mask;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            open(ident, options, facility) &rarr; syslog
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Open the syslog facility. Raises a runtime exception if it is already open.</p>
+
+<p>Can be called with or without a code block. If called with a block, the <a href="Syslog.html"><code>Syslog</code></a> object created is passed to the block.</p>
+
+<p>If the syslog is already open, raises a <a href="RuntimeError.html"><code>RuntimeError</code></a>.</p>
+
+<p><code>ident</code> is a <a href="String.html"><code>String</code></a> which identifies the calling program.</p>
+
+<p><code>options</code> is the logical OR of any of the following:</p>
+<dl class="rdoc-list note-list"><dt>LOG_CONS
+<dd>
+<p>If there is an error while sending to the system logger, write directly to the console instead.</p>
+</dd><dt>LOG_NDELAY
+<dd>
+<p>Open the connection now, rather than waiting for the first message to be written.</p>
+</dd><dt>LOG_NOWAIT
+<dd>
+<p>Don&#39;t wait for any child processes created while logging messages. (Has no effect on Linux.)</p>
+</dd><dt>LOG_ODELAY
+<dd>
+<p>Opposite of LOG_NDELAY; wait until a message is sent before opening the connection. (This is the default.)</p>
+</dd><dt>LOG_PERROR
+<dd>
+<p>Print the message to stderr as well as sending it to syslog. (Not in POSIX.1-2001.)</p>
+</dd><dt>LOG_PID
+<dd>
+<p>Include the current process ID with each message.</p>
+</dd></dl>
+
+<p><code>facility</code> describes the type of program opening the syslog, and is the logical OR of any of the following which are defined for the host OS:</p>
+<dl class="rdoc-list note-list"><dt>LOG_AUTH
+<dd>
+<p>Security or authorization. Deprecated, use LOG_AUTHPRIV instead.</p>
+</dd><dt>LOG_AUTHPRIV
+<dd>
+<p>Security or authorization messages which should be kept private.</p>
+</dd><dt>LOG_CONSOLE
+<dd>
+<p>System console message.</p>
+</dd><dt>LOG_CRON
+<dd>
+<p>System task scheduler (cron or at).</p>
+</dd><dt>LOG_DAEMON
+<dd>
+<p>A system daemon which has no facility value of its own.</p>
+</dd><dt>LOG_FTP
+<dd>
+<p>An FTP server.</p>
+</dd><dt>LOG_KERN
+<dd>
+<p>A kernel message (not sendable by user processes, so not of much use to Ruby, but listed here for completeness).</p>
+</dd><dt>LOG_LPR
+<dd>
+<p>Line printer subsystem.</p>
+</dd><dt>LOG_MAIL
+<dd>
+<p>Mail delivery or transport subsystem.</p>
+</dd><dt>LOG_NEWS
+<dd>
+<p>Usenet news system.</p>
+</dd><dt>LOG_NTP
+<dd>
+<p>Network <a href="Time.html"><code>Time</code></a> Protocol server.</p>
+</dd><dt>LOG_SECURITY
+<dd>
+<p>General security message.</p>
+</dd><dt>LOG_SYSLOG
+<dd>
+<p>Messages generated internally by syslog.</p>
+</dd><dt>LOG_USER
+<dd>
+<p>Generic user-level message.</p>
+</dd><dt>LOG_UUCP
+<dd>
+<p>UUCP subsystem.</p>
+</dd><dt>LOG_LOCAL0 to LOG_LOCAL7
+<dd>
+<p>Locally-defined facilities.</p>
+</dd></dl>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;webrick&quot;</span>, <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_PID</span>,
+            <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_DAEMON</span> <span class="ruby-operator">|</span> <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_LOCAL3</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre>static VALUE mSyslog_open(int argc, VALUE *argv, VALUE self)
+{
+    VALUE ident, opt, fac;
+    const char *ident_ptr;
+
+    if (syslog_opened) {
+        rb_raise(rb_eRuntimeError, &quot;syslog already open&quot;);
+    }
+
+    rb_scan_args(argc, argv, &quot;03&quot;, &amp;ident, &amp;opt, &amp;fac);
+
+    if (NIL_P(ident)) {
+        ident = rb_gv_get(&quot;$0&quot;);
+    }
+    ident_ptr = StringValueCStr(ident);
+    syslog_ident = strdup(ident_ptr);
+
+    if (NIL_P(opt)) {
+        syslog_options = LOG_PID | LOG_CONS;
+    } else {
+        syslog_options = NUM2INT(opt);
+    }
+
+    if (NIL_P(fac)) {
+        syslog_facility = LOG_USER;
+    } else {
+        syslog_facility = NUM2INT(fac);
+    }
+
+    openlog(syslog_ident, syslog_options, syslog_facility);
+
+    syslog_opened = 1;
+
+    setlogmask(syslog_mask = setlogmask(0));
+
+    /* be like File.new.open {...} */
+    if (rb_block_given_p()) {
+        rb_ensure(rb_yield, self, mSyslog_close, self);
+    }
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open-21" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            reopen(ident, options, facility) &rarr; syslog
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Closes and then reopens the syslog.</p>
+
+<p>Arguments are the same as for open().</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open-21-source">
+            <pre>static VALUE mSyslog_reopen(int argc, VALUE *argv, VALUE self)
+{
+    mSyslog_close(self);
+
+    return mSyslog_open(argc, argv, self);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-opened-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            opened?
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the syslog is open.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="opened-3F-source">
+            <pre>static VALUE mSyslog_isopen(VALUE self)
+{
+    return syslog_opened ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">options</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the options bitmask used in the last call to open()</p>
+          
+          
+
+          
+          <div class="method-source-code" id="options-source">
+            <pre>static VALUE mSyslog_options(VALUE self)
+{
+    return syslog_opened ? INT2NUM(syslog_options) : Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-reopen" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            reopen(ident, options, facility) &rarr; syslog
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Closes and then reopens the syslog.</p>
+
+<p>Arguments are the same as for open().</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reopen-source">
+            <pre>static VALUE mSyslog_reopen(int argc, VALUE *argv, VALUE self)
+{
+    mSyslog_close(self);
+
+    return mSyslog_open(argc, argv, self);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

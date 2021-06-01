@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Comparable - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-3C">#&lt;</a>
+    
+    <li ><a href="#method-i-3C-3D">#&lt;=</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-3E">#&gt;</a>
+    
+    <li ><a href="#method-i-3E-3D">#&gt;=</a>
+    
+    <li ><a href="#method-i-between-3F">#between?</a>
+    
+    <li ><a href="#method-i-clamp">#clamp</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Comparable">
+  <h1 id="module-Comparable" class="module">
+    module Comparable
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="Comparable.html"><code>Comparable</code></a> mixin is used by classes whose objects may be ordered. The class must define the <code>&lt;=&gt;</code> operator, which compares the receiver against another object, returning a value less than 0, returning 0, or returning a value greater than 0, depending on whether the receiver is less than, equal to, or greater than the other object. If the other object is not comparable then the <code>&lt;=&gt;</code> operator should return <code>nil</code>. <a href="Comparable.html"><code>Comparable</code></a> uses <code>&lt;=&gt;</code> to implement the conventional comparison operators (<code>&lt;</code>, <code>&lt;=</code>, <code>==</code>, <code>&gt;=</code>, and <code>&gt;</code>) and the method <code>between?</code>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">SizeMatters</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">Comparable</span>
+  <span class="ruby-identifier">attr</span> <span class="ruby-value">:str</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+    <span class="ruby-identifier">str</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">str</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">str</span>)
+    <span class="ruby-ivar">@str</span> = <span class="ruby-identifier">str</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+    <span class="ruby-ivar">@str</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">s1</span> = <span class="ruby-constant">SizeMatters</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Z&quot;</span>)
+<span class="ruby-identifier">s2</span> = <span class="ruby-constant">SizeMatters</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;YY&quot;</span>)
+<span class="ruby-identifier">s3</span> = <span class="ruby-constant">SizeMatters</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;XXX&quot;</span>)
+<span class="ruby-identifier">s4</span> = <span class="ruby-constant">SizeMatters</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;WWWW&quot;</span>)
+<span class="ruby-identifier">s5</span> = <span class="ruby-constant">SizeMatters</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;VVVVV&quot;</span>)
+
+<span class="ruby-identifier">s1</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">s2</span>                       <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">s4</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">s3</span>)           <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">s4</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-identifier">s3</span>, <span class="ruby-identifier">s5</span>)           <span class="ruby-comment">#=&gt; true</span>
+[ <span class="ruby-identifier">s3</span>, <span class="ruby-identifier">s2</span>, <span class="ruby-identifier">s5</span>, <span class="ruby-identifier">s4</span>, <span class="ruby-identifier">s1</span> ].<span class="ruby-identifier">sort</span>   <span class="ruby-comment">#=&gt; [Z, YY, XXX, WWWW, VVVVV]</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            obj &lt; other    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compares two objects based on the receiver&#39;s <code>&lt;=&gt;</code> method, returning true if it returns a value less than 0.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-source">
+            <pre>static VALUE
+cmp_lt(VALUE x, VALUE y)
+{
+    if (cmpint(x, y) &lt; 0) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3C-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            obj &lt;= other    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compares two objects based on the receiver&#39;s <code>&lt;=&gt;</code> method, returning true if it returns a value less than or equal to 0.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3D-source">
+            <pre>static VALUE
+cmp_le(VALUE x, VALUE y)
+{
+    if (cmpint(x, y) &lt;= 0) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            obj == other    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compares two objects based on the receiver&#39;s <code>&lt;=&gt;</code> method, returning true if it returns 0. Also returns true if <em>obj</em> and <em>other</em> are the same object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+cmp_equal(VALUE x, VALUE y)
+{
+    VALUE c;
+    if (x == y) return Qtrue;
+
+    c = rb_exec_recursive_paired_outer(cmp_eq_recursive, x, y, y);
+
+    if (NIL_P(c)) return Qfalse;
+    if (rb_cmpint(c, x, y) == 0) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3E" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            obj &gt; other    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compares two objects based on the receiver&#39;s <code>&lt;=&gt;</code> method, returning true if it returns a value greater than 0.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3E-source">
+            <pre>static VALUE
+cmp_gt(VALUE x, VALUE y)
+{
+    if (cmpint(x, y) &gt; 0) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3E-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            obj &gt;= other    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compares two objects based on the receiver&#39;s <code>&lt;=&gt;</code> method, returning true if it returns a value greater than or equal to 0.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3E-3D-source">
+            <pre>static VALUE
+cmp_ge(VALUE x, VALUE y)
+{
+    if (cmpint(x, y) &gt;= 0) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-between-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            between?(min, max)    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>false</code> if <em>obj</em> <code>&lt;=&gt;</code> <em>min</em> is less than zero or if <em>obj</em> <code>&lt;=&gt;</code> <em>max</em> is greater than zero, <code>true</code> otherwise.</p>
+
+<pre class="ruby"><span class="ruby-value">3</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-value">1</span>, <span class="ruby-value">5</span>)               <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">6</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-value">1</span>, <span class="ruby-value">5</span>)               <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-string">&#39;cat&#39;</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-string">&#39;ant&#39;</span>, <span class="ruby-string">&#39;dog&#39;</span>)   <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-string">&#39;gnu&#39;</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-string">&#39;ant&#39;</span>, <span class="ruby-string">&#39;dog&#39;</span>)   <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="between-3F-source">
+            <pre>static VALUE
+cmp_between(VALUE x, VALUE min, VALUE max)
+{
+    if (cmpint(x, min) &lt; 0) return Qfalse;
+    if (cmpint(x, max) &gt; 0) return Qfalse;
+    return Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-clamp" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            clamp(min, max) &rarr;  obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            clamp(range)    &rarr;  obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>In <code>(min, max)</code> form, returns <em>min</em> if <em>obj</em> <code>&lt;=&gt;</code> <em>min</em> is less than zero, <em>max</em> if <em>obj</em> <code>&lt;=&gt;</code> <em>max</em> is greater than zero, and <em>obj</em> otherwise.</p>
+
+<pre class="ruby"><span class="ruby-value">12</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span>, <span class="ruby-value">100</span>)         <span class="ruby-comment">#=&gt; 12</span>
+<span class="ruby-value">523</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span>, <span class="ruby-value">100</span>)        <span class="ruby-comment">#=&gt; 100</span>
+<span class="ruby-value">-3.123</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span>, <span class="ruby-value">100</span>)     <span class="ruby-comment">#=&gt; 0</span>
+
+<span class="ruby-string">&#39;d&#39;</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-string">&#39;a&#39;</span>, <span class="ruby-string">&#39;f&#39;</span>)      <span class="ruby-comment">#=&gt; &#39;d&#39;</span>
+<span class="ruby-string">&#39;z&#39;</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-string">&#39;a&#39;</span>, <span class="ruby-string">&#39;f&#39;</span>)      <span class="ruby-comment">#=&gt; &#39;f&#39;</span>
+</pre>
+
+<p>In <code>(range)</code> form, returns <em>range.begin</em> if <em>obj</em> <code>&lt;=&gt;</code> <em>range.begin</em> is less than zero, <em>range.end</em> if <em>obj</em> <code>&lt;=&gt;</code> <em>range.end</em> is greater than zero, and <em>obj</em> otherwise.</p>
+
+<pre class="ruby"><span class="ruby-value">12</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">100</span>)         <span class="ruby-comment">#=&gt; 12</span>
+<span class="ruby-value">523</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">100</span>)        <span class="ruby-comment">#=&gt; 100</span>
+<span class="ruby-value">-3.123</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">100</span>)     <span class="ruby-comment">#=&gt; 0</span>
+
+<span class="ruby-string">&#39;d&#39;</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-string">&#39;a&#39;</span><span class="ruby-operator">..</span><span class="ruby-string">&#39;f&#39;</span>)      <span class="ruby-comment">#=&gt; &#39;d&#39;</span>
+<span class="ruby-string">&#39;z&#39;</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-string">&#39;a&#39;</span><span class="ruby-operator">..</span><span class="ruby-string">&#39;f&#39;</span>)      <span class="ruby-comment">#=&gt; &#39;f&#39;</span>
+</pre>
+
+<p>If <em>range.begin</em> is <code>nil</code>, it is considered smaller than <em>obj</em>, and if <em>range.end</em> is <code>nil</code>, it is considered greater than <em>obj</em>.</p>
+
+<pre class="ruby"><span class="ruby-value">-20</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span>)           <span class="ruby-comment">#=&gt; 0</span>
+<span class="ruby-value">523</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-operator">..</span><span class="ruby-value">100</span>)         <span class="ruby-comment">#=&gt; 100</span>
+</pre>
+
+<p>When <em>range.end</em> is excluded and not <code>nil</code>, an exception is raised.</p>
+
+<pre class="ruby"><span class="ruby-value">100</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">100</span>)       <span class="ruby-comment"># ArgumentError</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="clamp-source">
+            <pre>static VALUE
+cmp_clamp(int argc, VALUE *argv, VALUE x)
+{
+    VALUE min, max;
+    int c, excl = 0;
+
+    if (rb_scan_args(argc, argv, &quot;11&quot;, &amp;min, &amp;max) == 1) {
+        VALUE range = min;
+        if (!rb_range_values(range, &amp;min, &amp;max, &amp;excl)) {
+            rb_raise(rb_eTypeError, &quot;wrong argument type %s (expected Range)&quot;,
+                     rb_builtin_class_name(range));
+        }
+        if (!NIL_P(max)) {
+            if (excl) rb_raise(rb_eArgError, &quot;cannot clamp with an exclusive range&quot;);
+            if (!NIL_P(min) &amp;&amp; cmpint(min, max) &gt; 0) goto arg_error;
+        }
+    }
+    else if (cmpint(min, max) &gt; 0) {
+      arg_error:
+        rb_raise(rb_eArgError, &quot;min argument must be smaller than max argument&quot;);
+    }
+
+    if (!NIL_P(min)) {
+        c = cmpint(x, min);
+        if (c == 0) return x;
+        if (c &lt; 0) return min;
+    }
+    if (!NIL_P(max)) {
+        c = cmpint(x, max);
+        if (c &gt; 0) return max;
+    }
+    return x;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class TCPSocket - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="IPSocket.html">IPSocket</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-gethostbyname">::gethostbyname</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-TCPSocket">
+  <h1 id="class-TCPSocket" class="class">
+    class TCPSocket
+  </h1>
+
+  <section class="description">
+    
+<p><a href="TCPSocket.html"><code>TCPSocket</code></a> represents a TCP/IP client socket.</p>
+
+<p>A simple client may look like:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;socket&#39;</span>
+
+<span class="ruby-identifier">s</span> = <span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;localhost&#39;</span>, <span class="ruby-value">2000</span>
+
+<span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gets</span> <span class="ruby-comment"># Read lines from socket</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>         <span class="ruby-comment"># and print them</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">s</span>.<span class="ruby-identifier">close</span>             <span class="ruby-comment"># close socket when done</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-gethostbyname" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            gethostbyname(hostname) &rarr; [official_hostname, alias_hostnames, address_family, *address_list]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Use <a href="Addrinfo.html#method-c-getaddrinfo"><code>Addrinfo.getaddrinfo</code></a> instead. This method is deprecated for the following reasons:</p>
+<ul><li>
+<p>The 3rd element of the result is the address family of the first address. The address families of the rest of the addresses are not returned.</p>
+</li><li>
+<p>gethostbyname() may take a long time and it may block other threads. (GVL cannot be released since gethostbyname() is not thread safe.)</p>
+</li><li>
+<p>This method uses gethostbyname() function already removed from POSIX.</p>
+</li></ul>
+
+<p>This method lookups host information by <em>hostname</em>.</p>
+
+<pre class="ruby"><span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">gethostbyname</span>(<span class="ruby-string">&quot;localhost&quot;</span>)
+<span class="ruby-comment">#=&gt; [&quot;localhost&quot;, [&quot;hal&quot;], 2, &quot;127.0.0.1&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="gethostbyname-source">
+            <pre>static VALUE
+tcp_s_gethostbyname(VALUE obj, VALUE host)
+{
+    struct rb_addrinfo *res =
+        rsock_addrinfo(host, Qnil, AF_UNSPEC, SOCK_STREAM, AI_CANONNAME);
+    return rsock_make_hostent(host, res, tcp_sockaddr);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(host, serv, *rest)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/resolv-replace.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">serv</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">rest</span>)
+  <span class="ruby-identifier">rest</span>[<span class="ruby-value">0</span>] = <span class="ruby-constant">IPSocket</span>.<span class="ruby-identifier">getaddress</span>(<span class="ruby-identifier">rest</span>[<span class="ruby-value">0</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">rest</span>[<span class="ruby-value">0</span>]
+  <span class="ruby-identifier">original_resolv_initialize</span>(<span class="ruby-constant">IPSocket</span>.<span class="ruby-identifier">getaddress</span>(<span class="ruby-identifier">host</span>), <span class="ruby-identifier">serv</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">rest</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(remote_host, remote_port, local_host=nil, local_port=nil)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Opens a TCP connection to <code>remote_host</code> on <code>remote_port</code>.  If <code>local_host</code> and <code>local_port</code> are specified, then those parameters are used on the local end to establish the connection.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+tcp_init(int argc, VALUE *argv, VALUE sock)
+{
+    VALUE remote_host, remote_serv;
+    VALUE local_host, local_serv;
+
+    rb_scan_args(argc, argv, &quot;22&quot;, &amp;remote_host, &amp;remote_serv,
+                        &amp;local_host, &amp;local_serv);
+
+    return rsock_init_inetsock(sock, remote_host, remote_serv,
+                               local_host, local_serv, INET_CLIENT);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

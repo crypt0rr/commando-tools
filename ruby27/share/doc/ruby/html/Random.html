@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Random - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Random/Formatter.html">Random::Formatter</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-bytes">::bytes</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-new_seed">::new_seed</a>
+    
+    <li ><a href="#method-c-rand">::rand</a>
+    
+    <li ><a href="#method-c-srand">::srand</a>
+    
+    <li ><a href="#method-c-urandom">::urandom</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-bytes">#bytes</a>
+    
+    <li ><a href="#method-i-rand">#rand</a>
+    
+    <li ><a href="#method-i-seed">#seed</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Random">
+  <h1 id="class-Random" class="class">
+    class Random
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Random.html"><code>Random</code></a> provides an interface to Ruby&#39;s pseudo-random number generator, or PRNG.  The PRNG produces a deterministic sequence of bits which approximate true randomness. The sequence may be represented by integers, floats, or binary strings.</p>
+
+<p>The generator may be initialized with either a system-generated or user-supplied seed value by using <a href="Random.html#method-c-srand"><code>Random.srand</code></a>.</p>
+
+<p>The class method <a href="Random.html#method-c-rand"><code>Random.rand</code></a> provides the base functionality of <a href="Kernel.html#method-i-rand"><code>Kernel.rand</code></a> along with better handling of floating point values. These are both interfaces to <a href="Random.html#DEFAULT"><code>Random::DEFAULT</code></a>, the Ruby system PRNG.</p>
+
+<p><a href="Random.html#method-c-new"><code>Random.new</code></a> will create a new PRNG with a state independent of <a href="Random.html#DEFAULT"><code>Random::DEFAULT</code></a>, allowing multiple generators with different seed values or sequence positions to exist simultaneously. <a href="Random.html"><code>Random</code></a> objects can be marshaled, allowing sequences to be saved and resumed.</p>
+
+<p>PRNGs are currently implemented as a modified Mersenne Twister with a period of 2**19937-1.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DEFAULT">DEFAULT
+        
+        <dd><p>The default Pseudorandom number generator.  Used by class methods of <a href="Random.html"><code>Random</code></a>.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-bytes" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            bytes(size) &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a random binary string. The argument <code>size</code> specifies the length of the returned string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="bytes-source">
+            <pre>static VALUE
+random_s_bytes(VALUE obj, VALUE len)
+{
+    rb_random_t *rnd = rand_start(&amp;default_rand);
+    return genrand_bytes(rnd, NUM2LONG(rb_to_int(len)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(seed = Random.new_seed) &rarr; prng
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new PRNG using <code>seed</code> to set the initial state. If <code>seed</code> is omitted, the generator is initialized with <a href="Random.html#method-c-new_seed"><code>Random.new_seed</code></a>.</p>
+
+<p>See <a href="Random.html#method-c-srand"><code>Random.srand</code></a> for more information on the use of seed values.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+random_init(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE vseed;
+    rb_random_t *rnd = get_rnd(obj);
+
+    if (rb_check_arity(argc, 0, 1) == 0) {
+        rb_check_frozen(obj);
+        vseed = random_seed(obj);
+    }
+    else {
+        vseed = argv[0];
+        rb_check_copyable(obj, vseed);
+        vseed = rb_to_int(vseed);
+    }
+    rnd-&gt;seed = rand_init(&amp;rnd-&gt;mt, vseed);
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new_seed" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new_seed &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an arbitrary seed value. This is used by <a href="Random.html#method-c-new"><code>Random.new</code></a> when no seed value is specified as an argument.</p>
+
+<pre class="ruby"><span class="ruby-constant">Random</span>.<span class="ruby-identifier">new_seed</span>  <span class="ruby-comment">#=&gt; 115032730400174366788466674494640623225</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new_seed-source">
+            <pre>static VALUE
+random_seed(VALUE _)
+{
+    VALUE v;
+    uint32_t buf[DEFAULT_SEED_CNT+1];
+    fill_random_seed(buf, DEFAULT_SEED_CNT);
+    v = make_seed_value(buf, DEFAULT_SEED_CNT);
+    explicit_bzero(buf, DEFAULT_SEED_LEN);
+    return v;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-rand" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rand &rarr; float
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rand(max) &rarr; number
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Alias of Random::DEFAULT.rand.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rand-source">
+            <pre>static VALUE
+random_s_rand(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE v = rand_random(argc, argv, Qnil, rand_start(&amp;default_rand));
+    check_random_number(v, argv);
+    return v;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-srand" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            srand(number = Random.new_seed) &rarr; old_seed
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Seeds the system pseudo-random number generator, <a href="Random.html#DEFAULT"><code>Random::DEFAULT</code></a>, with <code>number</code>.  The previous seed value is returned.</p>
+
+<p>If <code>number</code> is omitted, seeds the generator using a source of entropy provided by the operating system, if available (/dev/urandom on Unix systems or the RSA cryptographic provider on Windows), which is then combined with the time, the process id, and a sequence number.</p>
+
+<p>srand may be used to ensure repeatable sequences of pseudo-random numbers between different runs of the program. By setting the seed to a known value, programs can be made deterministic during testing.</p>
+
+<pre class="ruby"><span class="ruby-identifier">srand</span> <span class="ruby-value">1234</span>               <span class="ruby-comment"># =&gt; 268519324636777531569100071560086917274</span>
+[ <span class="ruby-identifier">rand</span>, <span class="ruby-identifier">rand</span> ]           <span class="ruby-comment"># =&gt; [0.1915194503788923, 0.6221087710398319]</span>
+[ <span class="ruby-identifier">rand</span>(<span class="ruby-value">10</span>), <span class="ruby-identifier">rand</span>(<span class="ruby-value">1000</span>) ] <span class="ruby-comment"># =&gt; [4, 664]</span>
+<span class="ruby-identifier">srand</span> <span class="ruby-value">1234</span>               <span class="ruby-comment"># =&gt; 1234</span>
+[ <span class="ruby-identifier">rand</span>, <span class="ruby-identifier">rand</span> ]           <span class="ruby-comment"># =&gt; [0.1915194503788923, 0.6221087710398319]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="srand-source">
+            <pre>static VALUE
+rb_f_srand(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE seed, old;
+    rb_random_t *r = &amp;default_rand;
+
+    if (rb_check_arity(argc, 0, 1) == 0) {
+        seed = random_seed(obj);
+    }
+    else {
+        seed = rb_to_int(argv[0]);
+    }
+    old = r-&gt;seed;
+    r-&gt;seed = rand_init(&amp;r-&gt;mt, seed);
+
+    return old;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-urandom" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            urandom(size) &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string, using platform providing features. Returned value is expected to be a cryptographically secure pseudo-random number in binary form. This method raises a <a href="RuntimeError.html"><code>RuntimeError</code></a> if the feature provided by platform failed to prepare the result.</p>
+
+<p>In 2017, Linux manpage random(7) writes that “no cryptographic primitive available today can hope to promise more than 256 bits of security”.  So it might be questionable to pass size &gt; 32 to this method.</p>
+
+<pre class="ruby"><span class="ruby-constant">Random</span>.<span class="ruby-identifier">urandom</span>(<span class="ruby-value">8</span>)  <span class="ruby-comment">#=&gt; &quot;\x78\x41\xBA\xAF\x7D\xEA\xD8\xEA&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="urandom-source">
+            <pre>static VALUE
+random_raw_seed(VALUE self, VALUE size)
+{
+    long n = NUM2ULONG(size);
+    VALUE buf = rb_str_new(0, n);
+    if (n == 0) return buf;
+    if (fill_random_bytes(RSTRING_PTR(buf), n, TRUE))
+        rb_raise(rb_eRuntimeError, &quot;failed to get urandom&quot;);
+    return buf;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            prng1 == prng2 &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the two generators have the same internal state, otherwise false.  Equivalent generators will return the same sequence of pseudo-random numbers.  Two generators will generally have the same state only if they were initialized with the same seed</p>
+
+<pre class="ruby"><span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>             <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1234</span>) <span class="ruby-operator">==</span> <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1234</span>) <span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+<p>and have the same invocation history.</p>
+
+<pre class="ruby"><span class="ruby-identifier">prng1</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1234</span>)
+<span class="ruby-identifier">prng2</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1234</span>)
+<span class="ruby-identifier">prng1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">prng2</span> <span class="ruby-comment"># =&gt; true</span>
+
+<span class="ruby-identifier">prng1</span>.<span class="ruby-identifier">rand</span>     <span class="ruby-comment"># =&gt; 0.1915194503788923</span>
+<span class="ruby-identifier">prng1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">prng2</span> <span class="ruby-comment"># =&gt; false</span>
+
+<span class="ruby-identifier">prng2</span>.<span class="ruby-identifier">rand</span>     <span class="ruby-comment"># =&gt; 0.1915194503788923</span>
+<span class="ruby-identifier">prng1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">prng2</span> <span class="ruby-comment"># =&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+random_equal(VALUE self, VALUE other)
+{
+    rb_random_t *r1, *r2;
+    if (rb_obj_class(self) != rb_obj_class(other)) return Qfalse;
+    r1 = get_rnd(self);
+    r2 = get_rnd(other);
+    if (memcmp(r1-&gt;mt.state, r2-&gt;mt.state, sizeof(r1-&gt;mt.state))) return Qfalse;
+    if ((r1-&gt;mt.next - r1-&gt;mt.state) != (r2-&gt;mt.next - r2-&gt;mt.state)) return Qfalse;
+    if (r1-&gt;mt.left != r2-&gt;mt.left) return Qfalse;
+    return rb_equal(r1-&gt;seed, r2-&gt;seed);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bytes" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            bytes(size) &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a random binary string containing <code>size</code> bytes.</p>
+
+<pre class="ruby"><span class="ruby-identifier">random_string</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">bytes</span>(<span class="ruby-value">10</span>) <span class="ruby-comment"># =&gt; &quot;\xD7:R\xAB?\x83\xCE\xFAkO&quot;</span>
+<span class="ruby-identifier">random_string</span>.<span class="ruby-identifier">size</span>                   <span class="ruby-comment"># =&gt; 10</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="bytes-source">
+            <pre>static VALUE
+random_bytes(VALUE obj, VALUE len)
+{
+    return genrand_bytes(get_rnd(obj), NUM2LONG(rb_to_int(len)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rand" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rand &rarr; float
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rand(max) &rarr; number
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>When <code>max</code> is an <a href="Integer.html"><code>Integer</code></a>, <code>rand</code> returns a random integer greater than or equal to zero and less than <code>max</code>. Unlike <a href="Kernel.html#method-i-rand"><code>Kernel.rand</code></a>, when <code>max</code> is a negative integer or zero, <code>rand</code> raises an <a href="ArgumentError.html"><code>ArgumentError</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">prng</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">prng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">100</span>)       <span class="ruby-comment"># =&gt; 42</span>
+</pre>
+
+<p>When <code>max</code> is a <a href="Float.html"><code>Float</code></a>, <code>rand</code> returns a random floating point number between 0.0 and <code>max</code>, including 0.0 and excluding <code>max</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">prng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">1.5</span>)       <span class="ruby-comment"># =&gt; 1.4600282860034115</span>
+</pre>
+
+<p>When <code>max</code> is a <a href="Range.html"><code>Range</code></a>, <code>rand</code> returns a random number where range.member?(number) == true.</p>
+
+<pre class="ruby"><span class="ruby-identifier">prng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">5</span><span class="ruby-operator">..</span><span class="ruby-value">9</span>)      <span class="ruby-comment"># =&gt; one of [5, 6, 7, 8, 9]</span>
+<span class="ruby-identifier">prng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">5</span><span class="ruby-operator">...</span><span class="ruby-value">9</span>)     <span class="ruby-comment"># =&gt; one of [5, 6, 7, 8]</span>
+<span class="ruby-identifier">prng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">5.0</span><span class="ruby-operator">..</span><span class="ruby-value">9.0</span>)  <span class="ruby-comment"># =&gt; between 5.0 and 9.0, including 9.0</span>
+<span class="ruby-identifier">prng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">5.0</span><span class="ruby-operator">...</span><span class="ruby-value">9.0</span>) <span class="ruby-comment"># =&gt; between 5.0 and 9.0, excluding 9.0</span>
+</pre>
+
+<p>Both the beginning and ending values of the range must respond to subtract (<code>-</code>) and add (<code>+</code>)methods, or rand will raise an <a href="ArgumentError.html"><code>ArgumentError</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rand-source">
+            <pre>static VALUE
+random_rand(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE v = rand_random(argc, argv, obj, get_rnd(obj));
+    check_random_number(v, argv);
+    return v;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-seed" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            seed &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the seed value used to initialize the generator. This may be used to initialize another generator with the same state at a later time, causing it to produce the same sequence of numbers.</p>
+
+<pre class="ruby"><span class="ruby-identifier">prng1</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1234</span>)
+<span class="ruby-identifier">prng1</span>.<span class="ruby-identifier">seed</span>       <span class="ruby-comment">#=&gt; 1234</span>
+<span class="ruby-identifier">prng1</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">100</span>)  <span class="ruby-comment">#=&gt; 47</span>
+
+<span class="ruby-identifier">prng2</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">prng1</span>.<span class="ruby-identifier">seed</span>)
+<span class="ruby-identifier">prng2</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">100</span>)  <span class="ruby-comment">#=&gt; 47</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="seed-source">
+            <pre>static VALUE
+random_get_seed(VALUE obj)
+{
+    return get_rnd(obj)-&gt;seed;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

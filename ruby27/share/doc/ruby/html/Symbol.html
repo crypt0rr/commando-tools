@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Symbol - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Comparable.html">Comparable</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-all_symbols">::all_symbols</a>
+    
+    <li ><a href="#method-c-json_create">::json_create</a>
+    
+    <li ><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-3D-3D-3D">#===</a>
+    
+    <li ><a href="#method-i-3D~">#=~</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-as_json">#as_json</a>
+    
+    <li ><a href="#method-i-capitalize">#capitalize</a>
+    
+    <li ><a href="#method-i-casecmp">#casecmp</a>
+    
+    <li ><a href="#method-i-casecmp-3F">#casecmp?</a>
+    
+    <li ><a href="#method-i-dclone">#dclone</a>
+    
+    <li ><a href="#method-i-downcase">#downcase</a>
+    
+    <li ><a href="#method-i-empty-3F">#empty?</a>
+    
+    <li ><a href="#method-i-encoding">#encoding</a>
+    
+    <li ><a href="#method-i-end_with-3F">#end_with?</a>
+    
+    <li ><a href="#method-i-id2name">#id2name</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-intern">#intern</a>
+    
+    <li ><a href="#method-i-length">#length</a>
+    
+    <li ><a href="#method-i-match">#match</a>
+    
+    <li ><a href="#method-i-match-3F">#match?</a>
+    
+    <li ><a href="#method-i-next">#next</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+    <li ><a href="#method-i-slice">#slice</a>
+    
+    <li ><a href="#method-i-start_with-3F">#start_with?</a>
+    
+    <li ><a href="#method-i-succ">#succ</a>
+    
+    <li ><a href="#method-i-swapcase">#swapcase</a>
+    
+    <li ><a href="#method-i-to_json">#to_json</a>
+    
+    <li ><a href="#method-i-to_proc">#to_proc</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-to_sym">#to_sym</a>
+    
+    <li ><a href="#method-i-upcase">#upcase</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Symbol">
+  <h1 id="class-Symbol" class="class">
+    class Symbol
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Symbol.html"><code>Symbol</code></a> objects represent names inside the Ruby interpreter. They are generated using the <code>:name</code> and <code>:&quot;string&quot;</code> literals syntax, and by the various <code>to_sym</code> methods. The same <a href="Symbol.html"><code>Symbol</code></a> object will be created for a given name or string for the duration of a program&#39;s execution, regardless of the context or meaning of that name. Thus if <code>Fred</code> is a constant in one context, a method in another, and a class in a third, the <a href="Symbol.html"><code>Symbol</code></a> <code>:Fred</code> will be the same object in all three contexts.</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">One</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-constant">Fred</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">$f1</span> = <span class="ruby-value">:Fred</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-keyword">module</span> <span class="ruby-constant">Two</span>
+  <span class="ruby-constant">Fred</span> = <span class="ruby-value">1</span>
+  <span class="ruby-identifier">$f2</span> = <span class="ruby-value">:Fred</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Fred</span>()
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">$f3</span> = <span class="ruby-value">:Fred</span>
+<span class="ruby-identifier">$f1</span>.<span class="ruby-identifier ruby-title">object_id</span>   <span class="ruby-comment">#=&gt; 2514190</span>
+<span class="ruby-identifier">$f2</span>.<span class="ruby-identifier">object_id</span>   <span class="ruby-comment">#=&gt; 2514190</span>
+<span class="ruby-identifier">$f3</span>.<span class="ruby-identifier">object_id</span>   <span class="ruby-comment">#=&gt; 2514190</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-all_symbols" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            all_symbols    &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of all the symbols currently in Ruby&#39;s symbol table.</p>
+
+<pre>Symbol.all_symbols.size    #=&gt; 903
+Symbol.all_symbols[1,20]   #=&gt; [:floor, :ARGV, :Binding, :symlink,
+                                :chown, :EOFError, :$;, :String,
+                                :LOCK_SH, :&quot;setuid?&quot;, :$&lt;,
+                                :default_proc, :compact, :extend,
+                                :Tms, :getwd, :$=, :ThreadGroup,
+                                :wait2, :$&gt;]</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="all_symbols-source">
+            <pre>static VALUE
+sym_all_symbols(VALUE _)
+{
+    return rb_sym_all_symbols();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-json_create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">json_create</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deserializes <a href="JSON.html"><code>JSON</code></a> string by converting the <code>string</code> value stored in the object to a <a href="Symbol.html"><code>Symbol</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="json_create-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/symbol.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">json_create</span>(<span class="ruby-identifier">o</span>)
+  <span class="ruby-identifier">o</span>[<span class="ruby-string">&#39;s&#39;</span>].<span class="ruby-identifier">to_sym</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3D-3E" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            symbol &lt;=&gt; other_symbol       &rarr; -1, 0, +1, or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compares <code>symbol</code> with <code>other_symbol</code> after calling <a href="Symbol.html#method-i-to_s"><code>to_s</code></a> on each of the symbols. Returns -1, 0, +1, or <code>nil</code> depending on whether <code>symbol</code> is less than, equal to, or greater than <code>other_symbol</code>.</p>
+
+<p><code>nil</code> is returned if the two values are incomparable.</p>
+
+<p>See String#&lt;=&gt; for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3D-3E-source">
+            <pre>static VALUE
+sym_cmp(VALUE sym, VALUE other)
+{
+    if (!SYMBOL_P(other)) {
+        return Qnil;
+    }
+    return rb_str_cmp_m(rb_sym2str(sym), rb_sym2str(other));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym == obj   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Equality—If <em>sym</em> and <em>obj</em> are exactly the same symbol, returns <code>true</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>#define sym_equal rb_obj_equal</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym == obj   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Equality—If <em>sym</em> and <em>obj</em> are exactly the same symbol, returns <code>true</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-3D-source">
+            <pre>#define sym_equal rb_obj_equal</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D~" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym =~ obj   &rarr; integer or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>sym.to_s =~ obj</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D~-source">
+            <pre>static VALUE
+sym_match(VALUE sym, VALUE other)
+{
+    return rb_str_match(rb_sym2str(sym), other);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym[idx]      &rarr; char
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym[b, n]     &rarr; string
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>sym.to_s[]</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+sym_aref(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_aref_m(argc, argv, rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-as_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_json</span><span
+            class="method-args">(*)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a hash, that will be turned into a <a href="JSON.html"><code>JSON</code></a> object and represent this object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="as_json-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/symbol.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">as_json</span>(<span class="ruby-operator">*</span>)
+  {
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">create_id</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>,
+    <span class="ruby-string">&#39;s&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">to_s</span>,
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-capitalize" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            capitalize              &rarr; symbol
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            capitalize([options])   &rarr; symbol
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.capitalize.intern</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="capitalize-source">
+            <pre>static VALUE
+sym_capitalize(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_intern(rb_str_capitalize(argc, argv, rb_sym2str(sym)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-casecmp" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            casecmp(other_symbol)   &rarr; -1, 0, +1, or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Case-insensitive version of Symbol#&lt;=&gt;. Currently, case-insensitivity only works on characters A-Z/a-z, not all of Unicode. This is different from <a href="Symbol.html#method-i-casecmp-3F"><code>Symbol#casecmp?</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-value">:aBcDeF</span>.<span class="ruby-identifier">casecmp</span>(<span class="ruby-value">:abcde</span>)     <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-value">:aBcDeF</span>.<span class="ruby-identifier">casecmp</span>(<span class="ruby-value">:abcdef</span>)    <span class="ruby-comment">#=&gt; 0</span>
+<span class="ruby-value">:aBcDeF</span>.<span class="ruby-identifier">casecmp</span>(<span class="ruby-value">:abcdefg</span>)   <span class="ruby-comment">#=&gt; -1</span>
+<span class="ruby-value">:abcdef</span>.<span class="ruby-identifier">casecmp</span>(<span class="ruby-value">:ABCDEF</span>)    <span class="ruby-comment">#=&gt; 0</span>
+</pre>
+
+<p><code>nil</code> is returned if the two symbols have incompatible encodings, or if <code>other_symbol</code> is not a symbol.</p>
+
+<pre class="ruby"><span class="ruby-value">:foo</span>.<span class="ruby-identifier">casecmp</span>(<span class="ruby-value">2</span>)   <span class="ruby-comment">#=&gt; nil</span>
+<span class="ruby-string">&quot;\u{e4 f6 fc}&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-string">&quot;ISO-8859-1&quot;</span>).<span class="ruby-identifier">to_sym</span>.<span class="ruby-identifier">casecmp</span>(<span class="ruby-value">:&quot;\u{c4 d6 dc}&quot;</span>)   <span class="ruby-comment">#=&gt; nil</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="casecmp-source">
+            <pre>static VALUE
+sym_casecmp(VALUE sym, VALUE other)
+{
+    if (!SYMBOL_P(other)) {
+        return Qnil;
+    }
+    return str_casecmp(rb_sym2str(sym), rb_sym2str(other));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-casecmp-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            casecmp?(other_symbol)   &rarr; true, false, or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <code>sym</code> and <code>other_symbol</code> are equal after Unicode case folding, <code>false</code> if they are not equal.</p>
+
+<pre class="ruby"><span class="ruby-value">:aBcDeF</span>.<span class="ruby-identifier">casecmp?</span>(<span class="ruby-value">:abcde</span>)     <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-value">:aBcDeF</span>.<span class="ruby-identifier">casecmp?</span>(<span class="ruby-value">:abcdef</span>)    <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">:aBcDeF</span>.<span class="ruby-identifier">casecmp?</span>(<span class="ruby-value">:abcdefg</span>)   <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-value">:abcdef</span>.<span class="ruby-identifier">casecmp?</span>(<span class="ruby-value">:ABCDEF</span>)    <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">:&quot;\u{e4 f6 fc}&quot;</span>.<span class="ruby-identifier">casecmp?</span>(<span class="ruby-value">:&quot;\u{c4 d6 dc}&quot;</span>)   <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p><code>nil</code> is returned if the two symbols have incompatible encodings, or if <code>other_symbol</code> is not a symbol.</p>
+
+<pre class="ruby"><span class="ruby-value">:foo</span>.<span class="ruby-identifier">casecmp?</span>(<span class="ruby-value">2</span>)   <span class="ruby-comment">#=&gt; nil</span>
+<span class="ruby-string">&quot;\u{e4 f6 fc}&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-string">&quot;ISO-8859-1&quot;</span>).<span class="ruby-identifier">to_sym</span>.<span class="ruby-identifier">casecmp?</span>(<span class="ruby-value">:&quot;\u{c4 d6 dc}&quot;</span>)   <span class="ruby-comment">#=&gt; nil</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="casecmp-3F-source">
+            <pre>static VALUE
+sym_casecmp_p(VALUE sym, VALUE other)
+{
+    if (!SYMBOL_P(other)) {
+        return Qnil;
+    }
+    return str_casecmp_p(rb_sym2str(sym), rb_sym2str(other));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dclone" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dclone</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>provides a unified <code>clone</code> operation, for <a href="REXML/XPathParser.html"><code>REXML::XPathParser</code></a> to use across multiple <a href="Object.html"><code>Object</code></a> types</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dclone-source">
+            <pre><span class="ruby-comment"># File lib/rexml/xpath_parser.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dclone</span> ; <span class="ruby-keyword">self</span> ; <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-downcase" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            downcase              &rarr; symbol
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            downcase([options])   &rarr; symbol
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.downcase.intern</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="downcase-source">
+            <pre>static VALUE
+sym_downcase(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_intern(rb_str_downcase(argc, argv, rb_sym2str(sym)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-empty-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            empty?   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns whether <em>sym</em> is :“” or not.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="empty-3F-source">
+            <pre>static VALUE
+sym_empty(VALUE sym)
+{
+    return rb_str_empty(rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-encoding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            encoding   &rarr; encoding
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the <a href="Encoding.html"><code>Encoding</code></a> object that represents the encoding of <em>sym</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="encoding-source">
+            <pre>static VALUE
+sym_encoding(VALUE sym)
+{
+    return rb_obj_encoding(rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-end_with-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            end_with?([suffixes]+)   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if <code>sym</code> ends with one of the <code>suffixes</code> given.</p>
+
+<pre class="ruby"><span class="ruby-value">:hello</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&quot;ello&quot;</span>)               <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-comment"># returns true if one of the +suffixes+ matches.</span>
+<span class="ruby-value">:hello</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&quot;heaven&quot;</span>, <span class="ruby-string">&quot;ello&quot;</span>)     <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">:hello</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&quot;heaven&quot;</span>, <span class="ruby-string">&quot;paradise&quot;</span>) <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="end_with-3F-source">
+            <pre>static VALUE
+sym_end_with(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_end_with(argc, argv, rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-id2name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            id2name   &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the name or string corresponding to <em>sym</em>.</p>
+
+<pre class="ruby"><span class="ruby-value">:fred</span>.<span class="ruby-identifier">id2name</span>   <span class="ruby-comment">#=&gt; &quot;fred&quot;</span>
+<span class="ruby-value">:ginger</span>.<span class="ruby-identifier">to_s</span>    <span class="ruby-comment">#=&gt; &quot;ginger&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="id2name-source">
+            <pre>VALUE
+rb_sym_to_s(VALUE sym)
+{
+    return str_new_shared(rb_cString, rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect    &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the representation of <em>sym</em> as a symbol literal.</p>
+
+<pre class="ruby"><span class="ruby-value">:fred</span>.<span class="ruby-identifier">inspect</span>   <span class="ruby-comment">#=&gt; &quot;:fred&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+sym_inspect(VALUE sym)
+{
+    VALUE str = rb_sym2str(sym);
+    const char *ptr;
+    long len;
+    char *dest;
+
+    if (!rb_str_symname_p(str)) {
+        str = rb_str_inspect(str);
+        len = RSTRING_LEN(str);
+        rb_str_resize(str, len + 1);
+        dest = RSTRING_PTR(str);
+        memmove(dest + 1, dest, len);
+    }
+    else {
+        rb_encoding *enc = STR_ENC_GET(str);
+        RSTRING_GETMEM(str, ptr, len);
+        str = rb_enc_str_new(0, len + 1, enc);
+        dest = RSTRING_PTR(str);
+        memcpy(dest + 1, ptr, len);
+    }
+    dest[0] = &#39;:&#39;;
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-intern" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            intern   &rarr; sym
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>In general, <code>to_sym</code> returns the <a href="Symbol.html"><code>Symbol</code></a> corresponding to an object. As <em>sym</em> is already a symbol, <code>self</code> is returned in this case.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="intern-source">
+            <pre>static VALUE
+sym_to_sym(VALUE sym)
+{
+    return sym;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-length" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            length   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.length</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="length-source">
+            <pre>static VALUE
+sym_length(VALUE sym)
+{
+    return rb_str_length(rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-match" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            match(pattern)        &rarr; matchdata or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            match(pattern, pos)   &rarr; matchdata or nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>sym.to_s.match</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="match-source">
+            <pre>static VALUE
+sym_match_m(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_match_m(argc, argv, rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-match-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            match?(pattern)        &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            match?(pattern, pos)   &rarr; true or false
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>sym.to_s.match?</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="match-3F-source">
+            <pre>static VALUE
+sym_match_m_p(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_match_m_p(argc, argv, sym);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-next" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            succ
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.succ.intern</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="next-source">
+            <pre>static VALUE
+sym_succ(VALUE sym)
+{
+    return rb_str_intern(rb_str_succ(rb_sym2str(sym)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            size     &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.length</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre>static VALUE
+sym_length(VALUE sym)
+{
+    return rb_str_length(rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-slice" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            slice(idx)      &rarr; char
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            slice(b, n)     &rarr; string
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>sym.to_s[]</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="slice-source">
+            <pre>static VALUE
+sym_aref(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_aref_m(argc, argv, rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start_with-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            start_with?([prefixes]+)   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if <code>sym</code> starts with one of the <code>prefixes</code> given. Each of the <code>prefixes</code> should be a <a href="String.html"><code>String</code></a> or a <a href="Regexp.html"><code>Regexp</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-value">:hello</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;hell&quot;</span>)               <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">:hello</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-regexp">/H/i</span>)                 <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-comment"># returns true if one of the prefixes matches.</span>
+<span class="ruby-value">:hello</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;heaven&quot;</span>, <span class="ruby-string">&quot;hell&quot;</span>)     <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">:hello</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&quot;heaven&quot;</span>, <span class="ruby-string">&quot;paradise&quot;</span>) <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="start_with-3F-source">
+            <pre>static VALUE
+sym_start_with(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_start_with(argc, argv, rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-succ" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            succ
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.succ.intern</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="succ-source">
+            <pre>static VALUE
+sym_succ(VALUE sym)
+{
+    return rb_str_intern(rb_str_succ(rb_sym2str(sym)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-swapcase" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            swapcase              &rarr; symbol
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            swapcase([options])   &rarr; symbol
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.swapcase.intern</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="swapcase-source">
+            <pre>static VALUE
+sym_swapcase(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_intern(rb_str_swapcase(argc, argv, rb_sym2str(sym)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_json</span><span
+            class="method-args">(*a)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Stores class name (<a href="Symbol.html"><code>Symbol</code></a>) with <a href="String.html"><code>String</code></a> representation of <a href="Symbol.html"><code>Symbol</code></a> as a <a href="JSON.html"><code>JSON</code></a> string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_json-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/symbol.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+  <span class="ruby-identifier">as_json</span>.<span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_proc" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a <em>Proc</em> object which responds to the given method by <em>sym</em>.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_s</span>)  <span class="ruby-comment">#=&gt; [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_proc-source">
+            <pre>VALUE
+rb_sym_to_proc(VALUE sym)
+{
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s      &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the name or string corresponding to <em>sym</em>.</p>
+
+<pre class="ruby"><span class="ruby-value">:fred</span>.<span class="ruby-identifier">id2name</span>   <span class="ruby-comment">#=&gt; &quot;fred&quot;</span>
+<span class="ruby-value">:ginger</span>.<span class="ruby-identifier">to_s</span>    <span class="ruby-comment">#=&gt; &quot;ginger&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>VALUE
+rb_sym_to_s(VALUE sym)
+{
+    return str_new_shared(rb_cString, rb_sym2str(sym));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_sym" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_sym   &rarr; sym
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>In general, <code>to_sym</code> returns the <a href="Symbol.html"><code>Symbol</code></a> corresponding to an object. As <em>sym</em> is already a symbol, <code>self</code> is returned in this case.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_sym-source">
+            <pre>static VALUE
+sym_to_sym(VALUE sym)
+{
+    return sym;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-upcase" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            upcase              &rarr; symbol
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            upcase([options])   &rarr; symbol
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Same as <code>sym.to_s.upcase.intern</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="upcase-source">
+            <pre>static VALUE
+sym_upcase(int argc, VALUE *argv, VALUE sym)
+{
+    return rb_str_intern(rb_str_upcase(argc, argv, rb_sym2str(sym)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

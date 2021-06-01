@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Bundler::Thor::Invocation - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="Invocation/ClassMethods.html">Bundler::Thor::Invocation::ClassMethods</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-current_command_chain">#current_command_chain</a>
+    
+    <li ><a href="#method-i-invoke">#invoke</a>
+    
+    <li ><a href="#method-i-invoke_with_padding">#invoke_with_padding</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Bundler::Thor::Invocation">
+  <h1 id="module-Bundler::Thor::Invocation" class="module">
+    module Bundler::Thor::Invocation
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-current_command_chain" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_command_chain</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Make the current command chain accessible with in a Bundler::Thor-(sub)command</p>
+          
+          
+
+          
+          <div class="method-source-code" id="current_command_chain-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/invocation.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_command_chain</span>
+  <span class="ruby-ivar">@_invocations</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_sym</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-invoke" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">invoke</span><span
+            class="method-args">(name = nil, *args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Receives a name and invokes it. The name can be a string (either “command” or “namespace:command”), a <a href="Command.html"><code>Bundler::Thor::Command</code></a>, a <a href="../../Class.html"><code>Class</code></a> or a Bundler::Thor instance. If the command cannot be guessed by name, it can also be supplied as second argument.</p>
+
+<p>You can also supply the arguments, options and configuration values for the command to be invoked, if none is given, the same values used to initialize the invoker are used to initialize the invoked.</p>
+
+<p>When no name is given, it will invoke the default command of the current class.</p>
+
+<h4 id="method-i-invoke-label-Examples">Examples<span><a href="#method-i-invoke-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">A</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>
+    <span class="ruby-identifier">invoke</span> <span class="ruby-value">:bar</span>
+    <span class="ruby-identifier">invoke</span> <span class="ruby-string">&quot;b:hello&quot;</span>, [<span class="ruby-string">&quot;Erik&quot;</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bar</span>
+    <span class="ruby-identifier">invoke</span> <span class="ruby-string">&quot;b:hello&quot;</span>, [<span class="ruby-string">&quot;Erik&quot;</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">B</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hello</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;hello #{name}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>You can notice that the method “foo” above invokes two commands: “bar”, which belongs to the same class and “hello” which belongs to the class B.</p>
+
+<p>By using an invocation system you ensure that a command is invoked only once. In the example above, invoking “foo” will invoke “b:hello” just once, even if it&#39;s invoked later by “bar” method.</p>
+
+<p>When class A invokes class B, all arguments used on A initialization are supplied to B. This allows lazy parse of options. Let&#39;s suppose you have some rspec commands:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Rspec</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Group</span>
+  <span class="ruby-identifier">class_option</span> <span class="ruby-value">:mock_framework</span>, <span class="ruby-value">:type</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:string</span>, <span class="ruby-value">:default</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:rr</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">invoke_mock_framework</span>
+    <span class="ruby-identifier">invoke</span> <span class="ruby-node">&quot;rspec:#{options[:mock_framework]}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>As you noticed, it invokes the given mock framework, which might have its own options:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Rspec</span><span class="ruby-operator">::</span><span class="ruby-constant">RR</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Group</span>
+  <span class="ruby-identifier">class_option</span> <span class="ruby-value">:style</span>, <span class="ruby-value">:type</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:string</span>, <span class="ruby-value">:default</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:mock</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Since it&#39;s not rspec concern to parse mock framework options, when RR is invoked all options are parsed again, so RR can extract only the options that it&#39;s going to use.</p>
+
+<p>If you want Rspec::RR to be initialized with its own set of options, you have to do that explicitly:</p>
+
+<pre class="ruby"><span class="ruby-identifier">invoke</span> <span class="ruby-string">&quot;rspec:rr&quot;</span>, [], <span class="ruby-value">:style</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:foo</span>
+</pre>
+
+<p>Besides giving an instance, you can also give a class to invoke:</p>
+
+<pre class="ruby"><span class="ruby-identifier">invoke</span> <span class="ruby-constant">Rspec</span><span class="ruby-operator">::</span><span class="ruby-constant">RR</span>, [], <span class="ruby-value">:style</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:foo</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="invoke-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/invocation.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">invoke</span>(<span class="ruby-identifier">name</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;[Bundler::Thor] Calling invoke() without argument is deprecated. Please use invoke_all instead.\n#{caller.join(&quot;\n&quot;)}&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">invoke_all</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-keyword">nil</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">command</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-identifier">config</span> = <span class="ruby-identifier">args</span>
+
+  <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">command</span> = <span class="ruby-identifier">_retrieve_class_and_command</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Missing Bundler::Thor class for invoke #{name}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">klass</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Expected Bundler::Thor class, got #{klass}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">klass</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+
+  <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-identifier">config</span> = <span class="ruby-identifier">_parse_initialization_options</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-identifier">config</span>)
+  <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:dispatch</span>, <span class="ruby-identifier">command</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-identifier">config</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">instance</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">parent_options</span> = <span class="ruby-identifier">options</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-invoke_with_padding" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">invoke_with_padding</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Invokes using shell padding.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="invoke_with_padding-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/invocation.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">invoke_with_padding</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">with_padding</span> { <span class="ruby-identifier">invoke</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

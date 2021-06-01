@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class CSV::Parser - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-add_unconverted_fields">#add_unconverted_fields</a>
+    
+    <li ><a href="#method-i-adjust_headers">#adjust_headers</a>
+    
+    <li ><a href="#method-i-build_scanner">#build_scanner</a>
+    
+    <li ><a href="#method-i-column_separator">#column_separator</a>
+    
+    <li ><a href="#method-i-detect_row_separator">#detect_row_separator</a>
+    
+    <li ><a href="#method-i-emit_row">#emit_row</a>
+    
+    <li ><a href="#method-i-field_size_limit">#field_size_limit</a>
+    
+    <li ><a href="#method-i-header_row-3F">#header_row?</a>
+    
+    <li ><a href="#method-i-headers">#headers</a>
+    
+    <li ><a href="#method-i-ignore_broken_line">#ignore_broken_line</a>
+    
+    <li ><a href="#method-i-last_line">#last_line</a>
+    
+    <li ><a href="#method-i-liberal_parsing-3F">#liberal_parsing?</a>
+    
+    <li ><a href="#method-i-line">#line</a>
+    
+    <li ><a href="#method-i-lineno">#lineno</a>
+    
+    <li ><a href="#method-i-may_quoted-3F">#may_quoted?</a>
+    
+    <li ><a href="#method-i-parse">#parse</a>
+    
+    <li ><a href="#method-i-parse_column_end">#parse_column_end</a>
+    
+    <li ><a href="#method-i-parse_column_value">#parse_column_value</a>
+    
+    <li ><a href="#method-i-parse_headers">#parse_headers</a>
+    
+    <li ><a href="#method-i-parse_no_quote">#parse_no_quote</a>
+    
+    <li ><a href="#method-i-parse_quotable_loose">#parse_quotable_loose</a>
+    
+    <li ><a href="#method-i-parse_quotable_robust">#parse_quotable_robust</a>
+    
+    <li ><a href="#method-i-parse_quoted_column_value">#parse_quoted_column_value</a>
+    
+    <li ><a href="#method-i-parse_row_end">#parse_row_end</a>
+    
+    <li ><a href="#method-i-parse_unquoted_column_value">#parse_unquoted_column_value</a>
+    
+    <li ><a href="#method-i-prepare">#prepare</a>
+    
+    <li ><a href="#method-i-prepare_backslash">#prepare_backslash</a>
+    
+    <li ><a href="#method-i-prepare_header">#prepare_header</a>
+    
+    <li ><a href="#method-i-prepare_line">#prepare_line</a>
+    
+    <li ><a href="#method-i-prepare_parser">#prepare_parser</a>
+    
+    <li ><a href="#method-i-prepare_quote_character">#prepare_quote_character</a>
+    
+    <li ><a href="#method-i-prepare_quoted">#prepare_quoted</a>
+    
+    <li ><a href="#method-i-prepare_separators">#prepare_separators</a>
+    
+    <li ><a href="#method-i-prepare_skip_lines">#prepare_skip_lines</a>
+    
+    <li ><a href="#method-i-prepare_strip">#prepare_strip</a>
+    
+    <li ><a href="#method-i-prepare_unquoted">#prepare_unquoted</a>
+    
+    <li ><a href="#method-i-prepare_variable">#prepare_variable</a>
+    
+    <li ><a href="#method-i-quote_character">#quote_character</a>
+    
+    <li ><a href="#method-i-resolve_row_separator">#resolve_row_separator</a>
+    
+    <li ><a href="#method-i-return_headers-3F">#return_headers?</a>
+    
+    <li ><a href="#method-i-row_separator">#row_separator</a>
+    
+    <li ><a href="#method-i-skip_blanks-3F">#skip_blanks?</a>
+    
+    <li ><a href="#method-i-skip_line-3F">#skip_line?</a>
+    
+    <li ><a href="#method-i-skip_lines">#skip_lines</a>
+    
+    <li ><a href="#method-i-skip_needless_lines">#skip_needless_lines</a>
+    
+    <li ><a href="#method-i-start_row">#start_row</a>
+    
+    <li ><a href="#method-i-strip_value">#strip_value</a>
+    
+    <li ><a href="#method-i-unconverted_fields-3F">#unconverted_fields?</a>
+    
+    <li ><a href="#method-i-use_headers-3F">#use_headers?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-CSV::Parser">
+  <h1 id="class-CSV::Parser" class="class">
+    class CSV::Parser
+  </h1>
+
+  <section class="description">
+    
+<p>Note: Don&#39;t use this class directly. This is an internal class.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="SCANNER_TEST">SCANNER_TEST
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(input, options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 258</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-ivar">@input</span> = <span class="ruby-identifier">input</span>
+  <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
+  <span class="ruby-ivar">@samples</span> = []
+
+  <span class="ruby-identifier">prepare</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-column_separator" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">column_separator</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="column_separator-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 266</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">column_separator</span>
+  <span class="ruby-ivar">@column_separator</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-field_size_limit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">field_size_limit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="field_size_limit-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">field_size_limit</span>
+  <span class="ruby-ivar">@field_size_limit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-header_row-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">header_row?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="header_row-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 294</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">header_row?</span>
+  <span class="ruby-ivar">@use_headers</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@headers</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-headers" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">headers</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="headers-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 290</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">headers</span>
+  <span class="ruby-ivar">@headers</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-liberal_parsing-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">liberal_parsing?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="liberal_parsing-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 306</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">liberal_parsing?</span>
+  <span class="ruby-ivar">@liberal_parsing</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">line</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="line-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 314</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">line</span>
+  <span class="ruby-identifier">last_line</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lineno" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lineno</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="lineno-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 310</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lineno</span>
+  <span class="ruby-ivar">@lineno</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse</span><span
+            class="method-args">() { |headers| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 318</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">to_enum</span>(<span class="ruby-identifier">__method__</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@return_headers</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@headers</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@raw_headers</span>
+    <span class="ruby-identifier">headers</span> = <span class="ruby-constant">Row</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@headers</span>, <span class="ruby-ivar">@raw_headers</span>, <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@unconverted_fields</span>
+      <span class="ruby-identifier">headers</span> = <span class="ruby-identifier">add_unconverted_fields</span>(<span class="ruby-identifier">headers</span>, [])
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">headers</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-ivar">@scanner</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">build_scanner</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">quote_character</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">parse_no_quote</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@need_robust_parsing</span>
+      <span class="ruby-identifier">parse_quotable_robust</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">parse_quotable_loose</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">InvalidEncoding</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@scanner</span>
+      <span class="ruby-identifier">ignore_broken_line</span>
+      <span class="ruby-identifier">lineno</span> = <span class="ruby-ivar">@lineno</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">lineno</span> = <span class="ruby-ivar">@lineno</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;Invalid byte sequence in #{@encoding}&quot;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">message</span>, <span class="ruby-identifier">lineno</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-quote_character" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">quote_character</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="quote_character-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 274</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">quote_character</span>
+  <span class="ruby-ivar">@quote_character</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-return_headers-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">return_headers?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="return_headers-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 298</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">return_headers?</span>
+  <span class="ruby-ivar">@return_headers</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-row_separator" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">row_separator</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="row_separator-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 270</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">row_separator</span>
+  <span class="ruby-ivar">@row_separator</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-skip_blanks-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skip_blanks?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skip_blanks-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 302</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">skip_blanks?</span>
+  <span class="ruby-ivar">@skip_blanks</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-skip_lines" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skip_lines</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skip_lines-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 282</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">skip_lines</span>
+  <span class="ruby-ivar">@skip_lines</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unconverted_fields-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unconverted_fields?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="unconverted_fields-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 286</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unconverted_fields?</span>
+  <span class="ruby-ivar">@unconverted_fields</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-use_headers-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">use_headers?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="use_headers-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 350</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">use_headers?</span>
+  <span class="ruby-ivar">@use_headers</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_unconverted_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_unconverted_fields</span><span
+            class="method-args">(row, fields)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This method injects an instance variable <code>unconverted_fields</code> into <code>row</code> and an accessor method for <code>row</code> called unconverted_fields().  The variable is set to the contents of <code>fields</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_unconverted_fields-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 1128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_unconverted_fields</span>(<span class="ruby-identifier">row</span>, <span class="ruby-identifier">fields</span>)
+  <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">row</span>
+    <span class="ruby-identifier">attr_reader</span> <span class="ruby-value">:unconverted_fields</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">row</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@unconverted_fields</span>, <span class="ruby-identifier">fields</span>)
+  <span class="ruby-identifier">row</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-adjust_headers" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adjust_headers</span><span
+            class="method-args">(headers)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="adjust_headers-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 682</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">adjust_headers</span>(<span class="ruby-identifier">headers</span>)
+  <span class="ruby-identifier">adjusted_headers</span> = <span class="ruby-ivar">@header_fields_converter</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-identifier">headers</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@lineno</span>)
+  <span class="ruby-identifier">adjusted_headers</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">freeze</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span>}
+  <span class="ruby-identifier">adjusted_headers</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-build_scanner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_scanner</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="build_scanner-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 726</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">build_scanner</span>
+  <span class="ruby-identifier">inputs</span> = <span class="ruby-ivar">@samples</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sample</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">UnoptimizedStringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sample</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">StringIO</span>)
+    <span class="ruby-identifier">inputs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">UnoptimizedStringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@input</span>.<span class="ruby-identifier">read</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">inputs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@input</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">chunk_size</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;CSV_PARSER_SCANNER_TEST_CHUNK_SIZE&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;1&quot;</span>
+  <span class="ruby-constant">InputsScanner</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">inputs</span>,
+                    <span class="ruby-ivar">@encoding</span>,
+                    <span class="ruby-value">chunk_size:</span> <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">chunk_size</span>, <span class="ruby-value">10</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-detect_row_separator" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">detect_row_separator</span><span
+            class="method-args">(sample, cr, lf)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="detect_row_separator-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 612</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">detect_row_separator</span>(<span class="ruby-identifier">sample</span>, <span class="ruby-identifier">cr</span>, <span class="ruby-identifier">lf</span>)
+  <span class="ruby-identifier">lf_index</span> = <span class="ruby-identifier">sample</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">lf</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">lf_index</span>
+    <span class="ruby-identifier">cr_index</span> = <span class="ruby-identifier">sample</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">lf_index</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">cr</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">cr_index</span> = <span class="ruby-identifier">sample</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">cr</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">cr_index</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">lf_index</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">cr_index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">lf_index</span>
+      <span class="ruby-identifier">cr</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">lf</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">cr_index</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">lf_index</span>
+      <span class="ruby-identifier">cr</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">lf</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">cr_index</span>
+    <span class="ruby-identifier">cr</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">lf_index</span>
+    <span class="ruby-identifier">lf</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-value">:auto</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-emit_row" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">emit_row</span><span
+            class="method-args">(row) { |row| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="emit_row-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 1099</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">emit_row</span>(<span class="ruby-identifier">row</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@lineno</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+
+  <span class="ruby-identifier">raw_row</span> = <span class="ruby-identifier">row</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@use_headers</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@headers</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-ivar">@headers</span> = <span class="ruby-identifier">adjust_headers</span>(<span class="ruby-identifier">row</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@return_headers</span>
+      <span class="ruby-identifier">row</span> = <span class="ruby-constant">Row</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@headers</span>, <span class="ruby-identifier">row</span>, <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">row</span> = <span class="ruby-constant">Row</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@headers</span>,
+                    <span class="ruby-ivar">@fields_converter</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-identifier">raw_row</span>, <span class="ruby-ivar">@headers</span>, <span class="ruby-ivar">@lineno</span>))
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># convert fields, if needed...</span>
+    <span class="ruby-identifier">row</span> = <span class="ruby-ivar">@fields_converter</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-identifier">raw_row</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@lineno</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># inject unconverted fields and accessor, if requested...</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@unconverted_fields</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:unconverted_fields</span>)
+    <span class="ruby-identifier">add_unconverted_fields</span>(<span class="ruby-identifier">row</span>, <span class="ruby-identifier">raw_row</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">row</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ignore_broken_line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ignore_broken_line</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ignore_broken_line-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 1084</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ignore_broken_line</span>
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@not_line_end</span>)
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@cr_or_lf</span>)
+  <span class="ruby-ivar">@lineno</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-last_line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">last_line</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="last_line-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 642</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">last_line</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@scanner</span>
+    <span class="ruby-ivar">@last_line</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@last_line</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-may_quoted-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">may_quoted?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="may_quoted-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 692</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">may_quoted?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">StringIO</span>)
+    <span class="ruby-identifier">pos</span> = <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">pos</span>
+    <span class="ruby-identifier">sample</span> = <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">read</span>
+    <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">seek</span>(<span class="ruby-identifier">pos</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@samples</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">sample</span> = <span class="ruby-ivar">@samples</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">sample</span>[<span class="ruby-value">0</span>, <span class="ruby-value">128</span>].<span class="ruby-identifier">index</span>(<span class="ruby-ivar">@quote_character</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_column_end" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_column_end</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_column_end-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 1036</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_column_end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@column_end</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@column_ends</span>
+
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@column_ends</span>.<span class="ruby-identifier">all?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">column_end</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">column_end</span>)}
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_back</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_column_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_column_value</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_column_value-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 938</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_column_value</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@liberal_parsing</span>
+    <span class="ruby-identifier">quoted_value</span> = <span class="ruby-identifier">parse_quoted_column_value</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">quoted_value</span>
+      <span class="ruby-identifier">unquoted_value</span> = <span class="ruby-identifier">parse_unquoted_column_value</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">unquoted_value</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@double_quote_outside_quote</span>
+          <span class="ruby-identifier">unquoted_value</span> = <span class="ruby-identifier">unquoted_value</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-ivar">@quote_character</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>,
+                                               <span class="ruby-ivar">@quote_character</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">quoted_value</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-comment"># %Q{&quot;&quot;...} case</span>
+            <span class="ruby-keyword">return</span> <span class="ruby-ivar">@quote_character</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">unquoted_value</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@quote_character</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">quoted_value</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@quote_character</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">unquoted_value</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">quoted_value</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">parse_unquoted_column_value</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@may_quoted</span>
+    <span class="ruby-identifier">parse_quoted_column_value</span> <span class="ruby-operator">||</span>
+      <span class="ruby-identifier">parse_unquoted_column_value</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">parse_unquoted_column_value</span> <span class="ruby-operator">||</span>
+      <span class="ruby-identifier">parse_quoted_column_value</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_headers" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_headers</span><span
+            class="method-args">(row)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_headers-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 675</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_headers</span>(<span class="ruby-identifier">row</span>)
+  <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">parse_line</span>(<span class="ruby-identifier">row</span>,
+                 <span class="ruby-value">col_sep:</span>    <span class="ruby-ivar">@column_separator</span>,
+                 <span class="ruby-value">row_sep:</span>    <span class="ruby-ivar">@row_separator</span>,
+                 <span class="ruby-value">quote_char:</span> <span class="ruby-ivar">@quote_character</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_no_quote" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_no_quote</span><span
+            class="method-args">(&amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_no_quote-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 797</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_no_quote</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">each_line</span>(<span class="ruby-ivar">@row_separator</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@skip_lines</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">skip_line?</span>(<span class="ruby-identifier">line</span>)
+    <span class="ruby-identifier">original_line</span> = <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">line</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">delete_suffix</span>(<span class="ruby-ivar">@row_separator</span>)
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@skip_blanks</span>
+      <span class="ruby-identifier">row</span> = []
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">line</span> = <span class="ruby-identifier">strip_value</span>(<span class="ruby-identifier">line</span>)
+      <span class="ruby-identifier">row</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-ivar">@split_column_separator</span>, <span class="ruby-value">-1</span>)
+      <span class="ruby-identifier">n_columns</span> = <span class="ruby-identifier">row</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">n_columns</span>
+        <span class="ruby-identifier">row</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@last_line</span> = <span class="ruby-identifier">original_line</span>
+    <span class="ruby-identifier">emit_row</span>(<span class="ruby-identifier">row</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_quotable_loose" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_quotable_loose</span><span
+            class="method-args">(&amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_quotable_loose-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 821</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_quotable_loose</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">each_line</span>(<span class="ruby-ivar">@row_separator</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@skip_lines</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">skip_line?</span>(<span class="ruby-identifier">line</span>)
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+      <span class="ruby-keyword">next</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">original_line</span> = <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">line</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">delete_suffix</span>(<span class="ruby-ivar">@row_separator</span>)
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@skip_blanks</span>
+        <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+        <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+        <span class="ruby-keyword">next</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">row</span> = []
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@cr</span>) <span class="ruby-keyword">or</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@lf</span>)
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_back</span>
+      <span class="ruby-ivar">@need_robust_parsing</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">parse_quotable_robust</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">row</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-ivar">@split_column_separator</span>, <span class="ruby-value">-1</span>)
+      <span class="ruby-identifier">n_columns</span> = <span class="ruby-identifier">row</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">n_columns</span>
+        <span class="ruby-identifier">column</span> = <span class="ruby-identifier">row</span>[<span class="ruby-identifier">i</span>]
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">row</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">n_quotes</span> = <span class="ruby-identifier">column</span>.<span class="ruby-identifier">count</span>(<span class="ruby-ivar">@quote_character</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">n_quotes</span>.<span class="ruby-identifier">zero?</span>
+            <span class="ruby-comment"># no quote</span>
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-keyword">and</span>
+               <span class="ruby-identifier">column</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-ivar">@quote_character</span>) <span class="ruby-keyword">and</span>
+               <span class="ruby-identifier">column</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-ivar">@quote_character</span>)
+            <span class="ruby-identifier">row</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">column</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>]
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_back</span>
+            <span class="ruby-ivar">@need_robust_parsing</span> = <span class="ruby-keyword">true</span>
+            <span class="ruby-keyword">return</span> <span class="ruby-identifier">parse_quotable_robust</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+    <span class="ruby-ivar">@last_line</span> = <span class="ruby-identifier">original_line</span>
+    <span class="ruby-identifier">emit_row</span>(<span class="ruby-identifier">row</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_quotable_robust" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_quotable_robust</span><span
+            class="method-args">(&amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_quotable_robust-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 876</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_quotable_robust</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">row</span> = []
+  <span class="ruby-identifier">skip_needless_lines</span>
+  <span class="ruby-identifier">start_row</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-ivar">@quoted_column_value</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@unquoted_column_value</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@strip_value</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@strip_value</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">parse_column_value</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@strip_value</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@strip_value</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@field_size_limit</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@field_size_limit</span>
+        <span class="ruby-identifier">ignore_broken_line</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Field size exceeded&quot;</span>, <span class="ruby-ivar">@lineno</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">parse_column_end</span>
+      <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">parse_row_end</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">emit_row</span>([], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@skip_blanks</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">value</span>
+        <span class="ruby-identifier">emit_row</span>(<span class="ruby-identifier">row</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">row</span> = []
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">skip_needless_lines</span>
+      <span class="ruby-identifier">start_row</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">eos?</span>
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">value</span>
+      <span class="ruby-identifier">emit_row</span>(<span class="ruby-identifier">row</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword">break</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quoted_column_value</span>
+        <span class="ruby-identifier">ignore_broken_line</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Any value after quoted field isn&#39;t allowed&quot;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">message</span>, <span class="ruby-ivar">@lineno</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@unquoted_column_value</span> <span class="ruby-keyword">and</span>
+            (<span class="ruby-identifier">new_line</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@cr_or_lf</span>))
+        <span class="ruby-identifier">ignore_broken_line</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Unquoted fields do not allow new line &quot;</span> <span class="ruby-operator">+</span>
+                  <span class="ruby-node">&quot;&lt;#{new_line.inspect}&gt;&quot;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">message</span>, <span class="ruby-ivar">@lineno</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">rest</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-ivar">@quote_character</span>)
+        <span class="ruby-identifier">ignore_broken_line</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Illegal quoting&quot;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">message</span>, <span class="ruby-ivar">@lineno</span>)
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">new_line</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@cr_or_lf</span>))
+        <span class="ruby-identifier">ignore_broken_line</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;New line must be &lt;#{@row_separator.inspect}&gt; &quot;</span> <span class="ruby-operator">+</span>
+                  <span class="ruby-node">&quot;not &lt;#{new_line.inspect}&gt;&quot;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">message</span>, <span class="ruby-ivar">@lineno</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">ignore_broken_line</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;TODO: Meaningful message&quot;</span>,
+                                    <span class="ruby-ivar">@lineno</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_quoted_column_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_quoted_column_value</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_quoted_column_value-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 992</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_quoted_column_value</span>
+  <span class="ruby-identifier">quotes</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@quotes</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">quotes</span>
+
+  <span class="ruby-ivar">@quoted_column_value</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">n_quotes</span> = <span class="ruby-identifier">quotes</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span>).<span class="ruby-identifier">zero?</span>
+    <span class="ruby-identifier">quotes</span>[<span class="ruby-value">0</span>, (<span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">-</span> <span class="ruby-value">2</span>) <span class="ruby-operator">/</span> <span class="ruby-value">2</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">quotes</span>[<span class="ruby-value">0</span>, (<span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) <span class="ruby-operator">/</span> <span class="ruby-value">2</span>]
+    <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">quoted_value</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@quoted_value</span>)
+      <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">quoted_value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">quoted_value</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@backslash_quote</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@escaped_backslash</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@escaped_quote</span>)
+            <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@quote_character</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@backslash_character</span>
+          <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">next</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">quotes</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@quotes</span>)
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">quotes</span>
+        <span class="ruby-identifier">ignore_broken_line</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Unclosed quoted field&quot;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformedCSVError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">message</span>, <span class="ruby-ivar">@lineno</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">n_quotes</span> = <span class="ruby-identifier">quotes</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span>) <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">quotes</span>[<span class="ruby-value">0</span>, (<span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) <span class="ruby-operator">/</span> <span class="ruby-value">2</span>]
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">quotes</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">n_quotes</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>]
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_row_end" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_row_end</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_row_end-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 1050</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_row_end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@row_end</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@row_ends</span>
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@row_ends</span>.<span class="ruby-identifier">all?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">row_end</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">row_end</span>)}
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_back</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_unquoted_column_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_unquoted_column_value</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_unquoted_column_value-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 967</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_unquoted_column_value</span>
+  <span class="ruby-identifier">value</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@unquoted_value</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>
+
+  <span class="ruby-ivar">@unquoted_column_value</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@first_column_separators</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+      <span class="ruby-identifier">is_column_end</span> = <span class="ruby-ivar">@column_ends</span>.<span class="ruby-identifier">all?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column_end</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">column_end</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_back</span>
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_column_end</span>
+      <span class="ruby-identifier">sub_separator</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@first_column_separators</span>)
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sub_separator</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sub_separator</span>
+      <span class="ruby-identifier">sub_value</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@unquoted_value</span>)
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sub_value</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sub_value</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-ivar">@backslash_quote_character</span>, <span class="ruby-ivar">@quote_character</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@backslash_quote</span>
+  <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A set of tasks to prepare the file in order to parse it</p>
+          
+          
+
+          
+          <div class="method-source-code" id="prepare-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 356</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare</span>
+  <span class="ruby-identifier">prepare_variable</span>
+  <span class="ruby-identifier">prepare_quote_character</span>
+  <span class="ruby-identifier">prepare_backslash</span>
+  <span class="ruby-identifier">prepare_skip_lines</span>
+  <span class="ruby-identifier">prepare_strip</span>
+  <span class="ruby-identifier">prepare_separators</span>
+  <span class="ruby-identifier">prepare_quoted</span>
+  <span class="ruby-identifier">prepare_unquoted</span>
+  <span class="ruby-identifier">prepare_line</span>
+  <span class="ruby-identifier">prepare_header</span>
+  <span class="ruby-identifier">prepare_parser</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_backslash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_backslash</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_backslash-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 413</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_backslash</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@backslash_quote</span>
+
+  <span class="ruby-ivar">@backslash_character</span> = <span class="ruby-string">&quot;\\&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+
+  <span class="ruby-ivar">@escaped_backslash_character</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-ivar">@backslash_character</span>)
+  <span class="ruby-ivar">@escaped_backslash</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_backslash_character</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@backslash_quote_character</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@backslash_quote_character</span> =
+      <span class="ruby-ivar">@backslash_character</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@escaped_quote_character</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_header" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_header</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_header-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 650</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_header</span>
+  <span class="ruby-ivar">@return_headers</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:return_headers</span>]
+
+  <span class="ruby-identifier">headers</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:headers</span>]
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">headers</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-ivar">@raw_headers</span> = <span class="ruby-identifier">headers</span>
+    <span class="ruby-ivar">@use_headers</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+    <span class="ruby-ivar">@raw_headers</span> = <span class="ruby-identifier">parse_headers</span>(<span class="ruby-identifier">headers</span>)
+    <span class="ruby-ivar">@use_headers</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@raw_headers</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-ivar">@use_headers</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@raw_headers</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-ivar">@use_headers</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@raw_headers</span>
+    <span class="ruby-ivar">@headers</span> = <span class="ruby-identifier">adjust_headers</span>(<span class="ruby-ivar">@raw_headers</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@headers</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_line</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_line-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 636</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_line</span>
+  <span class="ruby-ivar">@lineno</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@last_line</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@scanner</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_parser" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_parser</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_parser-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 688</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_parser</span>
+  <span class="ruby-ivar">@may_quoted</span> = <span class="ruby-identifier">may_quoted?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_quote_character" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_quote_character</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_quote_character-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 396</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_quote_character</span>
+  <span class="ruby-ivar">@quote_character</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:quote_character</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@escaped_quote_character</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-ivar">@escaped_quote</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@quote_character</span> = <span class="ruby-ivar">@quote_character</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;:quote_char has to be nil or a single character String&quot;</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">message</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@double_quote_character</span> = <span class="ruby-ivar">@quote_character</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>
+    <span class="ruby-ivar">@escaped_quote_character</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-ivar">@quote_character</span>)
+    <span class="ruby-ivar">@escaped_quote</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_quote_character</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_quoted" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_quoted</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_quoted-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 529</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_quoted</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>
+    <span class="ruby-ivar">@quotes</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_quote_character</span> <span class="ruby-operator">+</span>
+                         <span class="ruby-string">&quot;+&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+    <span class="ruby-identifier">no_quoted_values</span> = <span class="ruby-ivar">@escaped_quote_character</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@backslash_quote</span>
+      <span class="ruby-identifier">no_quoted_values</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@escaped_backslash_character</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@quoted_value</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;[^&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>) <span class="ruby-operator">+</span>
+                               <span class="ruby-identifier">no_quoted_values</span> <span class="ruby-operator">+</span>
+                               <span class="ruby-string">&quot;]+&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@escaped_strip</span>
+    <span class="ruby-ivar">@split_column_separator</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_strip</span> <span class="ruby-operator">+</span>
+                                         <span class="ruby-string">&quot;*&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>) <span class="ruby-operator">+</span>
+                                         <span class="ruby-ivar">@escaped_column_separator</span> <span class="ruby-operator">+</span>
+                                         <span class="ruby-ivar">@escaped_strip</span> <span class="ruby-operator">+</span>
+                                         <span class="ruby-string">&quot;*&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@column_separator</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot; &quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+      <span class="ruby-ivar">@split_column_separator</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_column_separator</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@split_column_separator</span> = <span class="ruby-ivar">@column_separator</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_separators" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_separators</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_separators-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 483</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_separators</span>
+  <span class="ruby-identifier">column_separator</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:column_separator</span>]
+  <span class="ruby-ivar">@column_separator</span> = <span class="ruby-identifier">column_separator</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@column_separator</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;:col_sep must be 1 or more characters: &quot;</span>
+    <span class="ruby-identifier">message</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">column_separator</span>.<span class="ruby-identifier">inspect</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">message</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@row_separator</span> =
+    <span class="ruby-identifier">resolve_row_separator</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-value">:row_separator</span>]).<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+
+  <span class="ruby-ivar">@escaped_column_separator</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-ivar">@column_separator</span>)
+  <span class="ruby-ivar">@escaped_first_column_separator</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-ivar">@column_separator</span>[<span class="ruby-value">0</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@column_separator</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@column_end</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_column_separator</span>)
+    <span class="ruby-ivar">@column_ends</span> = <span class="ruby-ivar">@column_separator</span>.<span class="ruby-identifier">each_char</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">char</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">char</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@first_column_separators</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_first_column_separator</span> <span class="ruby-operator">+</span>
+                                          <span class="ruby-string">&quot;+&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">@@string_scanner_scan_accept_string</span>
+      <span class="ruby-ivar">@column_end</span> = <span class="ruby-ivar">@column_separator</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@column_end</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_column_separator</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@column_ends</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-ivar">@first_column_separators</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">escaped_row_separator</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-ivar">@row_separator</span>)
+  <span class="ruby-ivar">@row_end</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">escaped_row_separator</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@row_separator</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@row_ends</span> = <span class="ruby-ivar">@row_separator</span>.<span class="ruby-identifier">each_char</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">char</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">char</span>))
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@row_ends</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@cr</span> = <span class="ruby-string">&quot;\r&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+  <span class="ruby-ivar">@lf</span> = <span class="ruby-string">&quot;\n&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+  <span class="ruby-ivar">@cr_or_lf</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;[\r\n]&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+  <span class="ruby-ivar">@not_line_end</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;[^\r\n]+&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_skip_lines" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_skip_lines</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_skip_lines-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 428</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_skip_lines</span>
+  <span class="ruby-identifier">skip_lines</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:skip_lines</span>]
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">skip_lines</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+    <span class="ruby-ivar">@skip_lines</span> = <span class="ruby-identifier">skip_lines</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Regexp</span>, <span class="ruby-keyword">nil</span>
+    <span class="ruby-ivar">@skip_lines</span> = <span class="ruby-identifier">skip_lines</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">skip_lines</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:match</span>)
+      <span class="ruby-identifier">message</span> =
+        <span class="ruby-node">&quot;:skip_lines has to respond to \#match: #{skip_lines.inspect}&quot;</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">message</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@skip_lines</span> = <span class="ruby-identifier">skip_lines</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_strip" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_strip</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_strip-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 445</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_strip</span>
+  <span class="ruby-ivar">@strip</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:strip</span>]
+  <span class="ruby-ivar">@escaped_strip</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@strip_value</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@strip</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-ivar">@strip</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;:strip must not be an empty String&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+      <span class="ruby-comment"># ok</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;:strip doesn&#39;t support 2 or more characters yet&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@strip</span> = <span class="ruby-ivar">@strip</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+    <span class="ruby-ivar">@escaped_strip</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-ivar">@strip</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>
+      <span class="ruby-ivar">@strip_value</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@escaped_strip</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-string">&quot;+&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@need_robust_parsing</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@strip</span>
+    <span class="ruby-identifier">strip_values</span> = <span class="ruby-string">&quot; \t\f\v&quot;</span>
+    <span class="ruby-ivar">@escaped_strip</span> = <span class="ruby-identifier">strip_values</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>
+      <span class="ruby-ivar">@strip_value</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;[#{strip_values}]+&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@need_robust_parsing</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_unquoted" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_unquoted</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_unquoted-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 556</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_unquoted</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@quote_character</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">no_unquoted_values</span> = <span class="ruby-string">&quot;\r\n&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+  <span class="ruby-identifier">no_unquoted_values</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@escaped_first_column_separator</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@liberal_parsing</span>
+    <span class="ruby-identifier">no_unquoted_values</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@escaped_quote_character</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@escaped_strip</span>
+    <span class="ruby-identifier">no_unquoted_values</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@escaped_strip</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@unquoted_value</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;[^&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>) <span class="ruby-operator">+</span>
+                               <span class="ruby-identifier">no_unquoted_values</span> <span class="ruby-operator">+</span>
+                               <span class="ruby-string">&quot;]+&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prepare_variable" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prepare_variable</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prepare_variable-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 370</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_variable</span>
+  <span class="ruby-ivar">@need_robust_parsing</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@encoding</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:encoding</span>]
+  <span class="ruby-identifier">liberal_parsing</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:liberal_parsing</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">liberal_parsing</span>
+    <span class="ruby-ivar">@liberal_parsing</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">liberal_parsing</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+      <span class="ruby-ivar">@double_quote_outside_quote</span> =
+        <span class="ruby-identifier">liberal_parsing</span>[<span class="ruby-value">:double_quote_outside_quote</span>]
+      <span class="ruby-ivar">@backslash_quote</span> = <span class="ruby-identifier">liberal_parsing</span>[<span class="ruby-value">:backslash_quote</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@double_quote_outside_quote</span> = <span class="ruby-keyword">false</span>
+      <span class="ruby-ivar">@backslash_quote</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@need_robust_parsing</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@liberal_parsing</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@backslash_quote</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@unconverted_fields</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:unconverted_fields</span>]
+  <span class="ruby-ivar">@field_size_limit</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:field_size_limit</span>]
+  <span class="ruby-ivar">@skip_blanks</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:skip_blanks</span>]
+  <span class="ruby-ivar">@fields_converter</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:fields_converter</span>]
+  <span class="ruby-ivar">@header_fields_converter</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:header_fields_converter</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-resolve_row_separator" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">resolve_row_separator</span><span
+            class="method-args">(separator)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="resolve_row_separator-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 572</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resolve_row_separator</span>(<span class="ruby-identifier">separator</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">separator</span> <span class="ruby-operator">==</span> <span class="ruby-value">:auto</span>
+    <span class="ruby-identifier">cr</span> = <span class="ruby-string">&quot;\r&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+    <span class="ruby-identifier">lf</span> = <span class="ruby-string">&quot;\n&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">StringIO</span>)
+      <span class="ruby-identifier">pos</span> = <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">pos</span>
+      <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">detect_row_separator</span>(<span class="ruby-ivar">@input</span>.<span class="ruby-identifier">read</span>, <span class="ruby-identifier">cr</span>, <span class="ruby-identifier">lf</span>)
+      <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">seek</span>(<span class="ruby-identifier">pos</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:gets</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">File</span>)
+        <span class="ruby-identifier">chunk_size</span> = <span class="ruby-value">32</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">chunk_size</span> = <span class="ruby-value">1024</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-keyword">while</span> <span class="ruby-identifier">separator</span> <span class="ruby-operator">==</span> <span class="ruby-value">:auto</span>
+          <span class="ruby-comment">#</span>
+          <span class="ruby-comment"># if we run out of data, it&#39;s probably a single line</span>
+          <span class="ruby-comment"># (ensure will set default value)</span>
+          <span class="ruby-comment">#</span>
+          <span class="ruby-keyword">break</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">sample</span> = <span class="ruby-ivar">@input</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">chunk_size</span>)
+
+          <span class="ruby-comment"># extend sample if we&#39;re unsure of the line ending</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">sample</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-identifier">cr</span>)
+            <span class="ruby-identifier">sample</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-ivar">@input</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-value">1</span>) <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>)
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-ivar">@samples</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sample</span>
+
+          <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">detect_row_separator</span>(<span class="ruby-identifier">sample</span>, <span class="ruby-identifier">cr</span>, <span class="ruby-identifier">lf</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">IOError</span>
+        <span class="ruby-comment"># do nothing:  ensure will set default</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">$INPUT_RECORD_SEPARATOR</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">separator</span> <span class="ruby-operator">==</span> <span class="ruby-value">:auto</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">separator</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-skip_line-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skip_line?</span><span
+            class="method-args">(line)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skip_line-3F-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 786</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">skip_line?</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@skip_lines</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+    <span class="ruby-identifier">line</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@skip_lines</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Regexp</span>
+    <span class="ruby-ivar">@skip_lines</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@skip_lines</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-skip_needless_lines" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skip_needless_lines</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skip_needless_lines-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 769</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">skip_needless_lines</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@skip_lines</span>
+
+  <span class="ruby-keyword">while</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+    <span class="ruby-identifier">line</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_all</span>(<span class="ruby-ivar">@not_line_end</span>) <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-ivar">@encoding</span>)
+    <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@row_separator</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parse_row_end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">skip_line?</span>(<span class="ruby-identifier">line</span>)
+      <span class="ruby-ivar">@lineno</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_back</span>
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start_row" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_row</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start_row-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 1090</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">start_row</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@last_line</span>
+    <span class="ruby-ivar">@last_line</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_drop</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">keep_start</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-strip_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">strip_value</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="strip_value-source">
+            <pre><span class="ruby-comment"># File lib/csv/parser.rb, line 1063</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">strip_value</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@strip</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@strip</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+    <span class="ruby-identifier">size</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-ivar">@strip</span>)
+      <span class="ruby-identifier">size</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>[<span class="ruby-value">1</span>, <span class="ruby-identifier">size</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-ivar">@strip</span>)
+      <span class="ruby-identifier">size</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">size</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">strip!</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

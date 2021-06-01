@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Server - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../ERB/Util.html">ERB::Util</a>
+  
+  
+  
+    <li><a class="include" href="UserInteraction.html">Gem::UserInteraction</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-run">::run</a>
+    
+    <li ><a href="#method-i-add_date">#add_date</a>
+    
+    <li ><a href="#method-i-doc_root">#doc_root</a>
+    
+    <li ><a href="#method-i-have_rdoc_4_plus-3F">#have_rdoc_4_plus?</a>
+    
+    <li ><a href="#method-i-latest_specs">#latest_specs</a>
+    
+    <li ><a href="#method-i-launch">#launch</a>
+    
+    <li ><a href="#method-i-listen">#listen</a>
+    
+    <li ><a href="#method-i-prerelease_specs">#prerelease_specs</a>
+    
+    <li ><a href="#method-i-quick">#quick</a>
+    
+    <li ><a href="#method-i-rdoc">#rdoc</a>
+    
+    <li ><a href="#method-i-root">#root</a>
+    
+    <li ><a href="#method-i-run">#run</a>
+    
+    <li ><a href="#method-i-show_rdoc_for_pattern">#show_rdoc_for_pattern</a>
+    
+    <li ><a href="#method-i-specs">#specs</a>
+    
+    <li ><a href="#method-i-uri_encode">#uri_encode</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Server">
+  <h1 id="class-Gem::Server" class="class">
+    class Gem::Server
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Server.html"><code>Gem::Server</code></a> and allows users to serve gems for consumption by `gem –remote-install`.</p>
+
+<p>gem_server starts an HTTP server on the given port and serves the following:</p>
+<ul><li>
+<p>“/” - Browsing of gem spec files for installed gems</p>
+</li><li>
+<p>“/specs.#{Gem.marshal_version}.gz” - specs name/version/platform index</p>
+</li><li>
+<p>“/latest_specs.#{Gem.marshal_version}.gz” - latest specs name/version/platform index</p>
+</li><li>
+<p>“/quick/” - Individual gemspecs</p>
+</li><li>
+<p>“/gems” - Direct access to download the installable gems</p>
+</li><li>
+<p>“/rdoc?q=” - Search for installed rdoc documentation</p>
+</li></ul>
+
+<h2 id="class-Gem::Server-label-Usage">Usage<span><a href="#class-Gem::Server-label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">gem_server</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Server</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>, <span class="ruby-value">8089</span>, <span class="ruby-keyword">false</span>
+<span class="ruby-identifier">gem_server</span>.<span class="ruby-identifier">run</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DOC_TEMPLATE">DOC_TEMPLATE
+        
+        <dd>
+        
+      
+        <dt id="RDOC_CSS">RDOC_CSS
+        
+        <dd><p>CSS is copy &amp; paste from rdoc-style.css, <a href="../RDoc.html"><code>RDoc</code></a> V1.0.1 - 20041108</p>
+        
+      
+        <dt id="RDOC_NO_DOCUMENTATION">RDOC_NO_DOCUMENTATION
+        
+        <dd>
+        
+      
+        <dt id="RDOC_SEARCH_TEMPLATE">RDOC_SEARCH_TEMPLATE
+        
+        <dd>
+        
+      
+        <dt id="SEARCH">SEARCH
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-spec_dirs" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">spec_dirs</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(gem_dirs, port, daemon, launch = nil, addresses = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 432</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">gem_dirs</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">daemon</span>, <span class="ruby-identifier">launch</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">addresses</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RDoc</span>.<span class="ruby-identifier">load_rdoc</span>
+  <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">do_not_reverse_lookup</span> = <span class="ruby-keyword">true</span>
+
+  <span class="ruby-ivar">@gem_dirs</span>  = <span class="ruby-constant">Array</span> <span class="ruby-identifier">gem_dirs</span>
+  <span class="ruby-ivar">@port</span>      = <span class="ruby-identifier">port</span>
+  <span class="ruby-ivar">@daemon</span>    = <span class="ruby-identifier">daemon</span>
+  <span class="ruby-ivar">@launch</span>    = <span class="ruby-identifier">launch</span>
+  <span class="ruby-ivar">@addresses</span> = <span class="ruby-identifier">addresses</span>
+
+  <span class="ruby-identifier">logger</span>  = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">nil</span>, <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">BasicLog</span><span class="ruby-operator">::</span><span class="ruby-constant">FATAL</span>
+  <span class="ruby-ivar">@server</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPServer</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:DoNotListen</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:Logger</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">logger</span>
+
+  <span class="ruby-ivar">@spec_dirs</span> = <span class="ruby-ivar">@gem_dirs</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gem_dir</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">gem_dir</span>, <span class="ruby-string">&#39;specifications&#39;</span> }
+  <span class="ruby-ivar">@spec_dirs</span>.<span class="ruby-identifier">reject!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec_dir</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span> <span class="ruby-identifier">spec_dir</span> }
+
+  <span class="ruby-identifier">reset_gems</span>
+
+  <span class="ruby-ivar">@have_rdoc_4_plus</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 427</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">run</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:gemdir</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:port</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:daemon</span>],
+      <span class="ruby-identifier">options</span>[<span class="ruby-value">:launch</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:addresses</span>]).<span class="ruby-identifier">run</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_date</span><span
+            class="method-args">(res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="add_date-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 453</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_date</span>(<span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;date&#39;</span>] = <span class="ruby-ivar">@spec_dirs</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec_dir</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">spec_dir</span>).<span class="ruby-identifier">mtime</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">max</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-doc_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">doc_root</span><span
+            class="method-args">(gem_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="doc_root-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 465</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">doc_root</span>(<span class="ruby-identifier">gem_name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">have_rdoc_4_plus?</span>
+    <span class="ruby-node">&quot;/doc_root/#{u gem_name}/&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-node">&quot;/doc_root/#{u gem_name}/rdoc/index.html&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-have_rdoc_4_plus-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">have_rdoc_4_plus?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="have_rdoc_4_plus-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 473</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">have_rdoc_4_plus?</span>
+  <span class="ruby-ivar">@have_rdoc_4_plus</span> <span class="ruby-operator">||=</span>
+    <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Requirement</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;&gt;= 4.0.0.preview2&#39;</span>).<span class="ruby-identifier">satisfied_by?</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RDoc</span>.<span class="ruby-identifier">rdoc_version</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-latest_specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">latest_specs</span><span
+            class="method-args">(req, res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="latest_specs-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 478</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">latest_specs</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">reset_gems</span>
+
+  <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/x-gzip&#39;</span>
+
+  <span class="ruby-identifier">add_date</span> <span class="ruby-identifier">res</span>
+
+  <span class="ruby-identifier">latest_specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">latest_specs</span>
+
+  <span class="ruby-identifier">specs</span> = <span class="ruby-identifier">latest_specs</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">platform</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">original_platform</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Platform</span><span class="ruby-operator">::</span><span class="ruby-constant">RUBY</span>
+    [<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>, <span class="ruby-identifier">platform</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span> <span class="ruby-identifier">specs</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\.gz$/</span>
+    <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">gzip</span> <span class="ruby-identifier">specs</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/x-gzip&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/octet-stream&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">request_method</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;HEAD&#39;</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-length&#39;</span>] = <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">specs</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-launch" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">launch</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="launch-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 868</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">launch</span>
+  <span class="ruby-identifier">listeners</span> = <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">listeners</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">addr</span>[<span class="ruby-value">2</span>] }
+
+  <span class="ruby-comment"># TODO: 0.0.0.0 == any, not localhost.</span>
+  <span class="ruby-identifier">host</span> = <span class="ruby-identifier">listeners</span>.<span class="ruby-identifier">any?</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;0.0.0.0&#39;</span>} <span class="ruby-operator">?</span> <span class="ruby-string">&#39;localhost&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">listeners</span>.<span class="ruby-identifier">first</span>
+
+  <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Launching browser to http://#{host}:#{@port}&quot;</span>
+
+  <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;#{@launch} http://#{host}:#{@port}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-listen" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">listen</span><span
+            class="method-args">(addresses = @addresses)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates server sockets based on the addresses option.  If no addresses were given a server socket for all interfaces is created.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="listen-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 512</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">listen</span>(<span class="ruby-identifier">addresses</span> = <span class="ruby-ivar">@addresses</span>)
+  <span class="ruby-identifier">addresses</span> = [<span class="ruby-keyword">nil</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">addresses</span>
+
+  <span class="ruby-identifier">listeners</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">listen</span> <span class="ruby-identifier">address</span>, <span class="ruby-ivar">@port</span>
+      <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">listeners</span>[<span class="ruby-identifier">listeners</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">listener</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span> = <span class="ruby-identifier">listener</span>.<span class="ruby-identifier">addr</span>.<span class="ruby-identifier">values_at</span> <span class="ruby-value">2</span>, <span class="ruby-value">1</span>
+        <span class="ruby-identifier">host</span> = <span class="ruby-node">&quot;[#{host}]&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/:/</span> <span class="ruby-comment"># we don&#39;t reverse lookup</span>
+        <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Server started at http://#{host}:#{port}&quot;</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">listeners</span> = <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">listeners</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">SystemCallError</span>
+      <span class="ruby-keyword">next</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">listeners</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Unable to start a server.&quot;</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Check for running servers or your --bind and --port arguments&quot;</span>
+    <span class="ruby-identifier">terminate_interaction</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prerelease_specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prerelease_specs</span><span
+            class="method-args">(req, res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prerelease_specs-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 539</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prerelease_specs</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">reset_gems</span>
+
+  <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/x-gzip&#39;</span>
+
+  <span class="ruby-identifier">add_date</span> <span class="ruby-identifier">res</span>
+
+  <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>.<span class="ruby-identifier">prerelease?</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">platform</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">original_platform</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Platform</span><span class="ruby-operator">::</span><span class="ruby-constant">RUBY</span>
+    [<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>, <span class="ruby-identifier">platform</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span> <span class="ruby-identifier">specs</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\.gz$/</span>
+    <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">gzip</span> <span class="ruby-identifier">specs</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/x-gzip&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/octet-stream&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">request_method</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;HEAD&#39;</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-length&#39;</span>] = <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">specs</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-quick" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">quick</span><span
+            class="method-args">(req, res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="quick-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 569</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">quick</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">reset_gems</span>
+
+  <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;text/plain&#39;</span>
+  <span class="ruby-identifier">add_date</span> <span class="ruby-identifier">res</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">request_uri</span>.<span class="ruby-identifier">path</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r|^/quick/(Marshal.#{Regexp.escape Gem.marshal_version}/)?(.*?)\.gemspec\.rz$|</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">marshal_format</span>, <span class="ruby-identifier">full_name</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
+    <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">find_all_by_full_name</span>(<span class="ruby-identifier">full_name</span>)
+
+    <span class="ruby-identifier">selector</span> = <span class="ruby-identifier">full_name</span>.<span class="ruby-identifier">inspect</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">res</span>.<span class="ruby-identifier">status</span> = <span class="ruby-value">404</span>
+      <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> = <span class="ruby-node">&quot;No gems found matching #{selector}&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">res</span>.<span class="ruby-identifier">status</span> = <span class="ruby-value">500</span>
+      <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> = <span class="ruby-node">&quot;Multiple gems found matching #{selector}&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">marshal_format</span>
+      <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/x-deflate&#39;</span>
+      <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">deflate</span>(<span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">specs</span>.<span class="ruby-identifier">first</span>))
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPStatus</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span>, <span class="ruby-node">&quot;`#{req.path}&#39; not found.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rdoc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rdoc</span><span
+            class="method-args">(req, res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Can be used for quick navigation to the rdoc documentation.  You can then define a search shortcut for your browser.  E.g. in Firefox connect &#39;shortcut:rdoc&#39; to <a href="http://localhost:8808/rdoc?q=%s">localhost:8808/rdoc?q=%s</a> template. Then you can directly open the ActionPack documentation by typing &#39;rdoc actionp&#39;. If there are multiple hits for the search term, they are presented as a list with links.</p>
+
+<p>Search algorithm aims for an intuitive search:</p>
+<ol><li>
+<p>first try to find the gems and documentation folders which name starts with the search term</p>
+</li><li>
+<p>search for entries, that <strong>contain</strong> the search term</p>
+</li><li>
+<p>show all the gems</p>
+</li></ol>
+
+<p>If there is only one search hit, user is immediately redirected to the documentation for the particular gem, otherwise a list with results is shown.</p>
+
+<h3 id="method-i-rdoc-label-Additional+trick+-+install+documentation+for+Ruby+core">Additional trick - install documentation for Ruby core<span><a href="#method-i-rdoc-label-Additional+trick+-+install+documentation+for+Ruby+core">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Note: please adjust paths accordingly use for example &#39;locate yaml.rb&#39; and &#39;gem environment&#39; to identify directories, that are specific for your local installation</p>
+<ol><li>
+<p>install Ruby sources</p>
+
+<pre>cd /usr/src
+sudo apt-get source ruby</pre>
+</li><li>
+<p>generate documentation</p>
+
+<pre>rdoc -o /usr/lib/ruby/gems/1.8/doc/core/rdoc \
+  /usr/lib/ruby/1.8 ruby1.8-1.8.7.72</pre>
+</li></ol>
+
+<p>By typing &#39;rdoc core&#39; you can now access the core documentation</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rdoc-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 730</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rdoc</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">query</span> = <span class="ruby-identifier">req</span>.<span class="ruby-identifier">query</span>[<span class="ruby-string">&#39;q&#39;</span>]
+  <span class="ruby-identifier">show_rdoc_for_pattern</span>(<span class="ruby-node">&quot;#{query}*&quot;</span>, <span class="ruby-identifier">res</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">return</span>
+  <span class="ruby-identifier">show_rdoc_for_pattern</span>(<span class="ruby-node">&quot;*#{query}*&quot;</span>, <span class="ruby-identifier">res</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">return</span>
+
+  <span class="ruby-identifier">template</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">RDOC_NO_DOCUMENTATION</span>
+
+  <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;text/html&#39;</span>
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">template</span>.<span class="ruby-identifier">result</span> <span class="ruby-identifier">binding</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">root</span><span
+            class="method-args">(req, res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="root-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 597</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">root</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">reset_gems</span>
+
+  <span class="ruby-identifier">add_date</span> <span class="ruby-identifier">res</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPStatus</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span>, <span class="ruby-node">&quot;`#{req.path}&#39; not found.&quot;</span> <span class="ruby-keyword">unless</span>
+    <span class="ruby-identifier">req</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;/&#39;</span>
+
+  <span class="ruby-identifier">specs</span> = []
+  <span class="ruby-identifier">total_file_count</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">total_file_count</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">files</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-identifier">deps</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span>
+      {
+        <span class="ruby-string">&quot;name&quot;</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>,
+        <span class="ruby-string">&quot;type&quot;</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">dep</span>.<span class="ruby-identifier">type</span>,
+        <span class="ruby-string">&quot;version&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">dep</span>.<span class="ruby-identifier">requirement</span>.<span class="ruby-identifier">to_s</span>,
+      }
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">deps</span> = <span class="ruby-identifier">deps</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">dep</span>[<span class="ruby-string">&quot;name&quot;</span>].<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">dep</span>[<span class="ruby-string">&quot;version&quot;</span>]] }
+    <span class="ruby-identifier">deps</span>.<span class="ruby-identifier">last</span>[<span class="ruby-string">&quot;is_last&quot;</span>] = <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">deps</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-comment"># executables</span>
+    <span class="ruby-identifier">executables</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">executables</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">exec</span><span class="ruby-operator">|</span> {<span class="ruby-string">&quot;executable&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">exec</span>} }
+    <span class="ruby-identifier">executables</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">executables</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">executables</span>.<span class="ruby-identifier">last</span>[<span class="ruby-string">&quot;is_last&quot;</span>] = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">executables</span>
+
+    <span class="ruby-comment"># Pre-process spec homepage for safety reasons</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">homepage_uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">homepage</span>)
+      <span class="ruby-keyword">if</span> [<span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>, <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPS</span>].<span class="ruby-identifier">member?</span> <span class="ruby-identifier">homepage_uri</span>.<span class="ruby-identifier">class</span>
+        <span class="ruby-identifier">homepage_uri</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">homepage</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">homepage_uri</span> = <span class="ruby-string">&quot;.&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidURIError</span>
+      <span class="ruby-identifier">homepage_uri</span> = <span class="ruby-string">&quot;.&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">specs</span> <span class="ruby-operator">&lt;&lt;</span> {
+      <span class="ruby-string">&quot;authors&quot;</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">authors</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>),
+      <span class="ruby-string">&quot;date&quot;</span>                <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_s</span>,
+      <span class="ruby-string">&quot;dependencies&quot;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">deps</span>,
+      <span class="ruby-string">&quot;doc_path&quot;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">doc_root</span>(<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>),
+      <span class="ruby-string">&quot;executables&quot;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">executables</span>,
+      <span class="ruby-string">&quot;only_one_executable&quot;</span> <span class="ruby-operator">=&gt;</span> (<span class="ruby-identifier">executables</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">executables</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>),
+      <span class="ruby-string">&quot;full_name&quot;</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>,
+      <span class="ruby-string">&quot;has_deps&quot;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">deps</span>.<span class="ruby-identifier">empty?</span>,
+      <span class="ruby-string">&quot;homepage&quot;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">homepage_uri</span>,
+      <span class="ruby-string">&quot;name&quot;</span>                <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>,
+      <span class="ruby-string">&quot;rdoc_installed&quot;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RDoc</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">spec</span>).<span class="ruby-identifier">rdoc_installed?</span>,
+      <span class="ruby-string">&quot;ri_installed&quot;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RDoc</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">spec</span>).<span class="ruby-identifier">ri_installed?</span>,
+      <span class="ruby-string">&quot;summary&quot;</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">summary</span>,
+      <span class="ruby-string">&quot;version&quot;</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>.<span class="ruby-identifier">to_s</span>,
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">specs</span> <span class="ruby-operator">&lt;&lt;</span> {
+    <span class="ruby-string">&quot;authors&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Chad Fowler, Rich Kilmer, Jim Weirich, Eric Hodel and others&quot;</span>,
+    <span class="ruby-string">&quot;dependencies&quot;</span> <span class="ruby-operator">=&gt;</span> [],
+    <span class="ruby-string">&quot;doc_path&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">doc_root</span>(<span class="ruby-node">&quot;rubygems-#{Gem::VERSION}&quot;</span>),
+    <span class="ruby-string">&quot;executables&quot;</span> <span class="ruby-operator">=&gt;</span> [{<span class="ruby-string">&quot;executable&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;gem&#39;</span>, <span class="ruby-string">&quot;is_last&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>}],
+    <span class="ruby-string">&quot;only_one_executable&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+    <span class="ruby-string">&quot;full_name&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;rubygems-#{Gem::VERSION}&quot;</span>,
+    <span class="ruby-string">&quot;has_deps&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-string">&quot;homepage&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://guides.rubygems.org/&quot;</span>,
+    <span class="ruby-string">&quot;name&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;rubygems&#39;</span>,
+    <span class="ruby-string">&quot;ri_installed&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+    <span class="ruby-string">&quot;summary&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;RubyGems itself&quot;</span>,
+    <span class="ruby-string">&quot;version&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">VERSION</span>,
+  }
+
+  <span class="ruby-identifier">specs</span> = <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">spec</span>[<span class="ruby-string">&quot;name&quot;</span>].<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">spec</span>[<span class="ruby-string">&quot;version&quot;</span>]] }
+  <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">last</span>[<span class="ruby-string">&quot;is_last&quot;</span>] = <span class="ruby-keyword">true</span>
+
+  <span class="ruby-comment"># tag all specs with first_name_entry</span>
+  <span class="ruby-identifier">last_spec</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">is_first</span> = <span class="ruby-identifier">last_spec</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">last_spec</span>[<span class="ruby-string">&quot;name&quot;</span>].<span class="ruby-identifier">downcase</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">spec</span>[<span class="ruby-string">&quot;name&quot;</span>].<span class="ruby-identifier">downcase</span>)
+    <span class="ruby-identifier">spec</span>[<span class="ruby-string">&quot;first_name_entry&quot;</span>] = <span class="ruby-identifier">is_first</span>
+    <span class="ruby-identifier">last_spec</span> = <span class="ruby-identifier">spec</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># create page from template</span>
+  <span class="ruby-identifier">template</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">DOC_TEMPLATE</span>)
+  <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;text/html&#39;</span>
+
+  <span class="ruby-identifier">values</span> = { <span class="ruby-string">&quot;gem_count&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-string">&quot;specs&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">specs</span>,
+             <span class="ruby-string">&quot;total_file_count&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">total_file_count</span>.<span class="ruby-identifier">to_s</span> }
+
+  <span class="ruby-comment"># suppress 1.9.3dev warning about unused variable</span>
+  <span class="ruby-identifier">values</span> = <span class="ruby-identifier">values</span>
+
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">template</span>.<span class="ruby-identifier">result</span> <span class="ruby-identifier">binding</span>
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 787</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">run</span>
+  <span class="ruby-identifier">listen</span>
+
+  <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span>.<span class="ruby-identifier">start</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@daemon</span>
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-node">&quot;/specs.#{Gem.marshal_version}&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-value">:specs</span>)
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-node">&quot;/specs.#{Gem.marshal_version}.gz&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-value">:specs</span>)
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-node">&quot;/latest_specs.#{Gem.marshal_version}&quot;</span>,
+                     <span class="ruby-identifier">method</span>(<span class="ruby-value">:latest_specs</span>)
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-node">&quot;/latest_specs.#{Gem.marshal_version}.gz&quot;</span>,
+                     <span class="ruby-identifier">method</span>(<span class="ruby-value">:latest_specs</span>)
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-node">&quot;/prerelease_specs.#{Gem.marshal_version}&quot;</span>,
+                     <span class="ruby-identifier">method</span>(<span class="ruby-value">:prerelease_specs</span>)
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-node">&quot;/prerelease_specs.#{Gem.marshal_version}.gz&quot;</span>,
+                     <span class="ruby-identifier">method</span>(<span class="ruby-value">:prerelease_specs</span>)
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-string">&quot;/quick/&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-value">:quick</span>)
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span>(<span class="ruby-string">&quot;/gem-server-rdoc-style.css&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;text/css&#39;</span>
+    <span class="ruby-identifier">add_date</span> <span class="ruby-identifier">res</span>
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">RDOC_CSS</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-string">&quot;/&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-value">:root</span>)
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount_proc</span> <span class="ruby-string">&quot;/rdoc&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-value">:rdoc</span>)
+
+  <span class="ruby-identifier">file_handlers</span> = {
+    <span class="ruby-string">&#39;/gems&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;/cache/&#39;</span>,
+  }
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">have_rdoc_4_plus?</span>
+    <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount</span> <span class="ruby-string">&#39;/doc_root&#39;</span>, <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Servlet</span>, <span class="ruby-string">&#39;/doc_root&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">file_handlers</span>[<span class="ruby-string">&#39;/doc_root&#39;</span>] = <span class="ruby-string">&#39;/doc/&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@gem_dirs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gem_dir</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file_handlers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mount_point</span>, <span class="ruby-identifier">mount_dir</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">mount</span>(<span class="ruby-identifier">mount_point</span>, <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPServlet</span><span class="ruby-operator">::</span><span class="ruby-constant">FileHandler</span>,
+                    <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">gem_dir</span>, <span class="ruby-identifier">mount_dir</span>), <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;INT&quot;</span>) { <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">shutdown</span>; <span class="ruby-identifier">exit!</span> }
+  <span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;TERM&quot;</span>) { <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">shutdown</span>; <span class="ruby-identifier">exit!</span> }
+
+  <span class="ruby-identifier">launch</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@launch</span>
+
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">start</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show_rdoc_for_pattern" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_rdoc_for_pattern</span><span
+            class="method-args">(pattern, res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true and prepares http response, if rdoc for the requested gem name pattern was found.</p>
+
+<p>The search is based on the file system content, not on the gems metadata. This allows additional documentation folders like &#39;core&#39; for the Ruby core documentation - just put it underneath the main doc folder.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="show_rdoc_for_pattern-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 756</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show_rdoc_for_pattern</span>(<span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">found_gems</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;{#{@gem_dirs.join &#39;,&#39;}}/doc/#{pattern}&quot;</span>).<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>, <span class="ruby-string">&#39;rdoc/index.html&#39;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">found_gems</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">new_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">found_gems</span>[<span class="ruby-value">0</span>])
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">status</span> = <span class="ruby-value">302</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;Location&#39;</span>] = <span class="ruby-identifier">doc_root</span> <span class="ruby-identifier">new_path</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">doc_items</span> = []
+    <span class="ruby-identifier">found_gems</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file_name</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">base_name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">file_name</span>)
+      <span class="ruby-identifier">doc_items</span> <span class="ruby-operator">&lt;&lt;</span> {
+        <span class="ruby-value">:name</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">base_name</span>,
+        <span class="ruby-value">:url</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">doc_root</span>(<span class="ruby-identifier">new_path</span>),
+        <span class="ruby-value">:summary</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;&#39;</span>
+      }
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">template</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">RDOC_SEARCH_TEMPLATE</span>)
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;text/html&#39;</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">template</span>.<span class="ruby-identifier">result</span> <span class="ruby-identifier">binding</span>
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">specs</span><span
+            class="method-args">(req, res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="specs-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 842</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">specs</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">reset_gems</span>
+
+  <span class="ruby-identifier">add_date</span> <span class="ruby-identifier">res</span>
+
+  <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">sort_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:sort_obj</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">platform</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">original_platform</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Platform</span><span class="ruby-operator">::</span><span class="ruby-constant">RUBY</span>
+    [<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>, <span class="ruby-identifier">platform</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span> <span class="ruby-identifier">specs</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\.gz$/</span>
+    <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">gzip</span> <span class="ruby-identifier">specs</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/x-gzip&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-type&#39;</span>] = <span class="ruby-string">&#39;application/octet-stream&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">request_method</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;HEAD&#39;</span>
+    <span class="ruby-identifier">res</span>[<span class="ruby-string">&#39;content-length&#39;</span>] = <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">specs</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uri_encode" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uri_encode</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="uri_encode-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/server.rb, line 459</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uri_encode</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">UNSAFE</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">match</span>.<span class="ruby-identifier">each_byte</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;%%%02X&#39;</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">ord</span>) }.<span class="ruby-identifier">join</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

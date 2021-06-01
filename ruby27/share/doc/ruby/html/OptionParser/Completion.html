@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module OptionParser::Completion - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-candidate">::candidate</a>
+    
+    <li ><a href="#method-c-regexp">::regexp</a>
+    
+    <li ><a href="#method-i-candidate">#candidate</a>
+    
+    <li ><a href="#method-i-complete">#complete</a>
+    
+    <li ><a href="#method-i-convert">#convert</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-OptionParser::Completion">
+  <h1 id="module-OptionParser::Completion" class="module">
+    module OptionParser::Completion
+  </h1>
+
+  <section class="description">
+    
+<p>Keyword completion module.  This allows partial arguments to be specified and resolved against a list of acceptable values.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-candidate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">candidate</span><span
+            class="method-args">(key, icase = false, pat = nil, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="candidate-source">
+            <pre><span class="ruby-comment"># File lib/optparse.rb, line 437</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">candidate</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">icase</span> = <span class="ruby-keyword">false</span>, <span class="ruby-identifier">pat</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">pat</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Completion</span>.<span class="ruby-identifier">regexp</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">icase</span>)
+  <span class="ruby-identifier">candidates</span> = []
+  <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    (<span class="ruby-keyword">if</span> <span class="ruby-constant">Regexp</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">k</span>
+       <span class="ruby-identifier">kn</span> = <span class="ruby-string">&quot;&quot;</span>
+       <span class="ruby-identifier">k</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">key</span>
+     <span class="ruby-keyword">else</span>
+       <span class="ruby-identifier">kn</span> = <span class="ruby-keyword">defined?</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">id2name</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">id2name</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">k</span>
+       <span class="ruby-identifier">pat</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">kn</span>
+     <span class="ruby-keyword">end</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">next</span>
+    <span class="ruby-identifier">v</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">k</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">candidates</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>, <span class="ruby-identifier">kn</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">candidates</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-regexp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">regexp</span><span
+            class="method-args">(key, icase)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="regexp-source">
+            <pre><span class="ruby-comment"># File lib/optparse.rb, line 433</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">regexp</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">icase</span>)
+  <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;\A&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\w+\b/</span>, <span class="ruby-string">&#39;\&amp;\w*&#39;</span>), <span class="ruby-identifier">icase</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-candidate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">candidate</span><span
+            class="method-args">(key, icase = false, pat = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="candidate-source">
+            <pre><span class="ruby-comment"># File lib/optparse.rb, line 454</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">candidate</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">icase</span> = <span class="ruby-keyword">false</span>, <span class="ruby-identifier">pat</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">Completion</span>.<span class="ruby-identifier">candidate</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">icase</span>, <span class="ruby-identifier">pat</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-value">:each</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-complete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">complete</span><span
+            class="method-args">(key, icase = false, pat = nil) { |key, *sw| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="complete-source">
+            <pre><span class="ruby-comment"># File lib/optparse.rb, line 459</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">complete</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">icase</span> = <span class="ruby-keyword">false</span>, <span class="ruby-identifier">pat</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">candidates</span> = <span class="ruby-identifier">candidate</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">icase</span>, <span class="ruby-identifier">pat</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-value">:each</span>)).<span class="ruby-identifier">sort_by</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>, <span class="ruby-identifier">kn</span><span class="ruby-operator">|</span> <span class="ruby-identifier">kn</span>.<span class="ruby-identifier">size</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">candidates</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">canon</span>, <span class="ruby-identifier">sw</span>, <span class="ruby-operator">*</span> = <span class="ruby-identifier">candidates</span>[<span class="ruby-value">0</span>]
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">candidates</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">canon</span>, <span class="ruby-identifier">sw</span>, <span class="ruby-identifier">cn</span> = <span class="ruby-identifier">candidates</span>.<span class="ruby-identifier">shift</span>
+    <span class="ruby-identifier">candidates</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>, <span class="ruby-identifier">kn</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sw</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">v</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">cn</span> <span class="ruby-keyword">and</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">kn</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">cn</span>.<span class="ruby-identifier">rindex</span>(<span class="ruby-identifier">kn</span>, <span class="ruby-value">0</span>)
+          <span class="ruby-identifier">canon</span>, <span class="ruby-identifier">sw</span>, <span class="ruby-identifier">cn</span> = <span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>, <span class="ruby-identifier">kn</span>
+          <span class="ruby-keyword">next</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">kn</span>.<span class="ruby-identifier">rindex</span>(<span class="ruby-identifier">cn</span>, <span class="ruby-value">0</span>)
+          <span class="ruby-keyword">next</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">throw</span> <span class="ruby-value">:ambiguous</span>, <span class="ruby-identifier">key</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">canon</span>
+    <span class="ruby-identifier">block_given?</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">key</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">sw</span>
+    <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">key</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">sw</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-convert" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert</span><span
+            class="method-args">(opt = nil, val = nil, *)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="convert-source">
+            <pre><span class="ruby-comment"># File lib/optparse.rb, line 484</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">convert</span>(<span class="ruby-identifier">opt</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">val</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">*</span>)
+  <span class="ruby-identifier">val</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

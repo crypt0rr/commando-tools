@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Commands::UninstallCommand - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Command.html">Gem::Command</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../VersionOption.html">Gem::VersionOption</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-execute">#execute</a>
+    
+    <li ><a href="#method-i-uninstall">#uninstall</a>
+    
+    <li ><a href="#method-i-uninstall_all">#uninstall_all</a>
+    
+    <li ><a href="#method-i-uninstall_gem">#uninstall_gem</a>
+    
+    <li ><a href="#method-i-uninstall_specific">#uninstall_specific</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Commands::UninstallCommand">
+  <h1 id="class-Gem::Commands::UninstallCommand" class="class">
+    class Gem::Commands::UninstallCommand
+  </h1>
+
+  <section class="description">
+    
+<p>Gem uninstaller command line tool</p>
+
+<p>See `gem help uninstall`</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../Command.html#method-c-new"><code>Gem::Command::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/uninstall_command.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;uninstall&#39;</span>, <span class="ruby-string">&#39;Uninstall gems from the local repository&#39;</span>,
+        <span class="ruby-value">:version</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Requirement</span>.<span class="ruby-identifier">default</span>, <span class="ruby-value">:user_install</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+        <span class="ruby-value">:check_dev</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:vendor</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-a&#39;</span>, <span class="ruby-string">&#39;--[no-]all&#39;</span>,
+    <span class="ruby-string">&#39;Uninstall all matching versions&#39;</span>
+  ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:all</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-I&#39;</span>, <span class="ruby-string">&#39;--[no-]ignore-dependencies&#39;</span>,
+             <span class="ruby-string">&#39;Ignore dependency requirements while&#39;</span>,
+             <span class="ruby-string">&#39;uninstalling&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:ignore</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-D&#39;</span>, <span class="ruby-string">&#39;--[no-]check-development&#39;</span>,
+             <span class="ruby-string">&#39;Check development dependencies while uninstalling&#39;</span>,
+             <span class="ruby-string">&#39;(default: false)&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:check_dev</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-x&#39;</span>, <span class="ruby-string">&#39;--[no-]executables&#39;</span>,
+               <span class="ruby-string">&#39;Uninstall applicable executables without&#39;</span>,
+               <span class="ruby-string">&#39;confirmation&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:executables</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-i&#39;</span>, <span class="ruby-string">&#39;--install-dir DIR&#39;</span>,
+             <span class="ruby-string">&#39;Directory to uninstall gem from&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:install_dir</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-n&#39;</span>, <span class="ruby-string">&#39;--bindir DIR&#39;</span>,
+             <span class="ruby-string">&#39;Directory to remove executables from&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:bin_dir</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;--[no-]user-install&#39;</span>,
+             <span class="ruby-string">&#39;Uninstall from user\&#39;s home directory&#39;</span>,
+             <span class="ruby-string">&#39;in addition to GEM_HOME.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:user_install</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;--[no-]format-executable&#39;</span>,
+             <span class="ruby-string">&#39;Assume executable names match Ruby\&#39;s prefix and suffix.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:format_executable</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;--[no-]force&#39;</span>,
+             <span class="ruby-string">&#39;Uninstall all versions of the named gems&#39;</span>,
+             <span class="ruby-string">&#39;ignoring dependencies&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:force</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;--[no-]abort-on-dependent&#39;</span>,
+             <span class="ruby-string">&#39;Prevent uninstalling gems that are&#39;</span>,
+             <span class="ruby-string">&#39;depended on by other gems.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:abort_on_dependent</span>] = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_version_option</span>
+  <span class="ruby-identifier">add_platform_option</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;--vendor&#39;</span>,
+             <span class="ruby-string">&#39;Uninstall gem from the vendor directory.&#39;</span>,
+             <span class="ruby-string">&#39;Only for use by gem repackagers.&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">vendor_dir</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidOption</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;your platform is not supported&#39;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">alert_warning</span> <span class="ruby-string">&#39;Use your OS package manager to uninstall vendor gems&#39;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vendor</span>] = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:install_dir</span>] = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">vendor_dir</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-execute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">execute</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/uninstall_command.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>
+  <span class="ruby-identifier">check_version</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:all</span>] <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:args</span>].<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">uninstall_specific</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:all</span>]
+    <span class="ruby-identifier">uninstall_all</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">uninstall_specific</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uninstall" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uninstall</span><span
+            class="method-args">(gem_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="uninstall-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/uninstall_command.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uninstall</span>(<span class="ruby-identifier">gem_name</span>)
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Uninstaller</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">gem_name</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">uninstall</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uninstall_all" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uninstall_all</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="uninstall_all-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/uninstall_command.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uninstall_all</span>
+  <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">default_gem?</span> }
+
+  <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>] = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>
+    <span class="ruby-identifier">uninstall_gem</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">alert</span> <span class="ruby-node">&quot;Uninstalled all gems in #{options[:install_dir]}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uninstall_gem" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uninstall_gem</span><span
+            class="method-args">(gem_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="uninstall_gem-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/uninstall_command.rb, line 181</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uninstall_gem</span>(<span class="ruby-identifier">gem_name</span>)
+  <span class="ruby-identifier">uninstall</span>(<span class="ruby-identifier">gem_name</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">GemNotInHomeException</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">spec</span>
+  <span class="ruby-identifier">alert</span>(<span class="ruby-node">&quot;In order to remove #{spec.name}, please execute:\n&quot;</span> <span class="ruby-operator">+</span>
+        <span class="ruby-node">&quot;\tgem uninstall #{spec.name} --install-dir=#{spec.installation_path}&quot;</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UninstallError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">spec</span>
+  <span class="ruby-identifier">alert_error</span>(<span class="ruby-node">&quot;Error: unable to successfully uninstall &#39;#{spec.name}&#39; which is &quot;</span> <span class="ruby-operator">+</span>
+        <span class="ruby-node">&quot;located at &#39;#{spec.full_gem_path}&#39;. This is most likely because&quot;</span> <span class="ruby-operator">+</span>
+        <span class="ruby-string">&quot;the current user does not have the appropriate permissions&quot;</span>)
+  <span class="ruby-identifier">terminate_interaction</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uninstall_specific" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uninstall_specific</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="uninstall_specific-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/uninstall_command.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uninstall_specific</span>
+  <span class="ruby-identifier">deplist</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyList</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">original_gem_version</span> = {}
+
+  <span class="ruby-identifier">get_all_gem_names_and_versions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">original_gem_version</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">version</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>]
+
+    <span class="ruby-identifier">gem_specs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">find_all_by_name</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">original_gem_version</span>[<span class="ruby-identifier">name</span>])
+
+    <span class="ruby-identifier">say</span>(<span class="ruby-node">&quot;Gem &#39;#{name}&#39; is not installed&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">gem_specs</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">gem_specs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">deplist</span>.<span class="ruby-identifier">add</span> <span class="ruby-identifier">spec</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">deps</span> = <span class="ruby-identifier">deplist</span>.<span class="ruby-identifier">strongly_connected_components</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">reverse</span>
+
+  <span class="ruby-identifier">gems_to_uninstall</span> = {}
+
+  <span class="ruby-identifier">deps</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">gems_to_uninstall</span>[<span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>]
+      <span class="ruby-identifier">gems_to_uninstall</span>[<span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-keyword">true</span>
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">original_gem_version</span>[<span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Requirement</span>.<span class="ruby-identifier">default</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>] = <span class="ruby-identifier">dep</span>.<span class="ruby-identifier">version</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">uninstall_gem</span>(<span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

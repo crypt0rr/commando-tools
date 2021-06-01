@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Resolver::Conflict - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-conflicting_dependencies">#conflicting_dependencies</a>
+    
+    <li ><a href="#method-i-explain">#explain</a>
+    
+    <li ><a href="#method-i-explanation">#explanation</a>
+    
+    <li ><a href="#method-i-for_spec-3F">#for_spec?</a>
+    
+    <li ><a href="#method-i-request_path">#request_path</a>
+    
+    <li ><a href="#method-i-requester">#requester</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Resolver::Conflict">
+  <h1 id="class-Gem::Resolver::Conflict" class="class">
+    class Gem::Resolver::Conflict
+  </h1>
+
+  <section class="description">
+    
+<p>Used internally to indicate that a dependency conflicted with a spec that would be activated.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-activated" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">activated</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The specification that was activated prior to the conflict</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-dependency" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">dependency</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The dependency that is in conflict with the activated gem.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(dependency, activated, failed_dep=dependency)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new resolver conflict when <code>dependency</code> is in conflict with an already <code>activated</code> specification.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver/conflict.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">dependency</span>, <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">failed_dep</span>=<span class="ruby-identifier">dependency</span>)
+  <span class="ruby-ivar">@dependency</span> = <span class="ruby-identifier">dependency</span>
+  <span class="ruby-ivar">@activated</span> = <span class="ruby-identifier">activated</span>
+  <span class="ruby-ivar">@failed_dep</span> = <span class="ruby-identifier">failed_dep</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-conflicting_dependencies" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">conflicting_dependencies</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the 2 dependency objects that conflicted</p>
+          
+          
+
+          
+          <div class="method-source-code" id="conflicting_dependencies-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver/conflict.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">conflicting_dependencies</span>
+  [<span class="ruby-ivar">@failed_dep</span>.<span class="ruby-identifier">dependency</span>, <span class="ruby-ivar">@activated</span>.<span class="ruby-identifier">request</span>.<span class="ruby-identifier">dependency</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-explain" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">explain</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A string explanation of the conflict.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="explain-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver/conflict.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">explain</span>
+  <span class="ruby-node">&quot;&lt;Conflict wanted: #{@failed_dep}, had: #{activated.spec.full_name}&gt;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-explanation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">explanation</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Explanation of the conflict used by exceptions to print useful messages</p>
+          
+          
+
+          
+          <div class="method-source-code" id="explanation-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver/conflict.rb, line 54</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">explanation</span>
+    <span class="ruby-identifier">activated</span>   = <span class="ruby-ivar">@activated</span>.<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>
+    <span class="ruby-identifier">dependency</span>  = <span class="ruby-ivar">@failed_dep</span>.<span class="ruby-identifier">dependency</span>
+    <span class="ruby-identifier">requirement</span> = <span class="ruby-identifier">dependency</span>.<span class="ruby-identifier">requirement</span>
+    <span class="ruby-identifier">alternates</span>  = <span class="ruby-identifier">dependency</span>.<span class="ruby-identifier">matching_specs</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span> }
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">alternates</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">matching</span> = <span class="ruby-identifier">&lt;&lt;-MATCHING</span>.<span class="ruby-identifier">chomp</span>
+<span class="ruby-value">
+  Gems matching %s:
+    %s
+</span><span class="ruby-identifier">      MATCHING</span>
+
+      <span class="ruby-identifier">matching</span> = <span class="ruby-identifier">matching</span> <span class="ruby-operator">%</span> [
+        <span class="ruby-identifier">dependency</span>,
+        <span class="ruby-identifier">alternates</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>),
+      ]
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">explanation</span> = <span class="ruby-identifier">&lt;&lt;-EXPLANATION</span>
+<span class="ruby-value">  Activated %s
+  which does not match conflicting dependency (%s)
+
+  Conflicting dependency chains:
+    %s
+
+  versus:
+    %s
+%s
+</span><span class="ruby-identifier">    EXPLANATION</span>
+
+    <span class="ruby-identifier">explanation</span> <span class="ruby-operator">%</span> [
+      <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">requirement</span>,
+      <span class="ruby-identifier">request_path</span>(<span class="ruby-ivar">@activated</span>).<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, depends on\n    &quot;</span>),
+      <span class="ruby-identifier">request_path</span>(<span class="ruby-ivar">@failed_dep</span>).<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, depends on\n    &quot;</span>),
+      <span class="ruby-identifier">matching</span>,
+    ]
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-for_spec-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">for_spec?</span><span
+            class="method-args">(spec)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the conflicting dependency&#39;s name matches <code>spec</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="for_spec-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver/conflict.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">for_spec?</span>(<span class="ruby-identifier">spec</span>)
+  <span class="ruby-ivar">@dependency</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-request_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">request_path</span><span
+            class="method-args">(current)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Path of activations from the <code>current</code> list.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="request_path-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver/conflict.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_path</span>(<span class="ruby-identifier">current</span>)
+  <span class="ruby-identifier">path</span> = []
+
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">current</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">current</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">ActivationRequest</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">path</span> <span class="ruby-operator">&lt;&lt;</span>
+        <span class="ruby-node">&quot;#{current.request.dependency}, #{current.spec.version} activated&quot;</span>
+
+      <span class="ruby-identifier">current</span> = <span class="ruby-identifier">current</span>.<span class="ruby-identifier">parent</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolver</span><span class="ruby-operator">::</span><span class="ruby-constant">DependencyRequest</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">path</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{current.dependency}&quot;</span>
+
+      <span class="ruby-identifier">current</span> = <span class="ruby-identifier">current</span>.<span class="ruby-identifier">requester</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>, <span class="ruby-node">&quot;[BUG] unknown request class #{current.class}&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">path</span> = [<span class="ruby-string">&#39;user request (gem command or Gemfile)&#39;</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-requester" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">requester</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the Specification that listed the dependency</p>
+          
+          
+
+          
+          <div class="method-source-code" id="requester-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/resolver/conflict.rb, line 151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">requester</span>
+  <span class="ruby-ivar">@failed_dep</span>.<span class="ruby-identifier">requester</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

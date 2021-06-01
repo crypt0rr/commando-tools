@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module DRb::DRbProtocol - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-add_protocol">::add_protocol</a>
+    
+    <li ><a href="#method-c-open">::open</a>
+    
+    <li ><a href="#method-c-open_server">::open_server</a>
+    
+    <li ><a href="#method-c-uri_option">::uri_option</a>
+    
+    <li ><a href="#method-i-add_protocol">#add_protocol</a>
+    
+    <li ><a href="#method-i-open">#open</a>
+    
+    <li ><a href="#method-i-open_server">#open_server</a>
+    
+    <li ><a href="#method-i-uri_option">#uri_option</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-DRb::DRbProtocol">
+  <h1 id="module-DRb::DRbProtocol" class="module">
+    module DRb::DRbProtocol
+  </h1>
+
+  <section class="description">
+    
+<p><a href="../Module.html"><code>Module</code></a> managing the underlying network protocol(s) used by drb.</p>
+
+<p>By default, drb uses the <a href="DRbTCPSocket.html"><code>DRbTCPSocket</code></a> protocol.  Other protocols can be defined.  A protocol must define the following class methods:</p>
+
+<pre>[open(uri, config)] Open a client connection to the server at +uri+,
+                    using configuration +config+.  Return a protocol
+                    instance for this connection.
+[open_server(uri, config)] Open a server listening at +uri+,
+                           using configuration +config+.  Return a
+                           protocol instance for this listener.
+[uri_option(uri, config)] Take a URI, possibly containing an option
+                          component (e.g. a trailing &#39;?param=val&#39;),
+                          and return a [uri, option] tuple.</pre>
+
+<p>All of these methods should raise a <a href="DRbBadScheme.html"><code>DRbBadScheme</code></a> error if the <a href="../URI.html"><code>URI</code></a> does not identify the protocol they support (e.g. “druby:” for the standard Ruby protocol).  This is how the <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module, given a <a href="../URI.html"><code>URI</code></a>, determines which protocol implementation serves that protocol.</p>
+
+<p>The protocol instance returned by <a href="DRbProtocol.html#method-i-open_server"><code>open_server</code></a> must have the following methods:</p>
+<dl class="rdoc-list label-list"><dt>accept
+<dd>
+<p>Accept a new connection to the server.  Returns a protocol instance capable of communicating with the client.</p>
+</dd><dt>close
+<dd>
+<p>Close the server connection.</p>
+</dd><dt>uri
+<dd>
+<p>Get the <a href="../URI.html"><code>URI</code></a> for this server.</p>
+</dd></dl>
+
+<p>The protocol instance returned by <a href="DRbProtocol.html#method-i-open"><code>open</code></a> must have the following methods:</p>
+<dl class="rdoc-list label-list"><dt>send_request (ref, msg_id, arg, b)
+<dd>
+<p>Send a request to <code>ref</code> with the given message id and arguments. This is most easily implemented by calling DRbMessage.send_request, providing a stream that sits on top of the current protocol.</p>
+</dd><dt>recv_reply
+<dd>
+<p>Receive a reply from the server and return it as a [success-boolean, reply-value] pair.  This is most easily implemented by calling DRb.recv_reply, providing a stream that sits on top of the current protocol.</p>
+</dd><dt>alive?
+<dd>
+<p>Is this connection still alive?</p>
+</dd><dt>close
+<dd>
+<p>Close this connection.</p>
+</dd></dl>
+
+<p>The protocol instance returned by <a href="DRbProtocol.html#method-i-open_server"><code>open_server()</code></a>.accept() must have the following methods:</p>
+<dl class="rdoc-list label-list"><dt>recv_request
+<dd>
+<p>Receive a request from the client and return a [object, message, args, block] tuple.  This is most easily implemented by calling DRbMessage.recv_request, providing a stream that sits on top of the current protocol.</p>
+</dd><dt>send_reply(succ, result)
+<dd>
+<p>Send a reply to the client.  This is most easily implemented by calling DRbMessage.send_reply, providing a stream that sits on top of the current protocol.</p>
+</dd><dt>close
+<dd>
+<p>Close this connection.</p>
+</dd></dl>
+
+<p>A new protocol is registered with the <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module using the <a href="DRbProtocol.html#method-i-add_protocol"><code>add_protocol</code></a> method.</p>
+
+<p>For examples of other protocols, see <a href="DRbUNIXSocket.html"><code>DRbUNIXSocket</code></a> in drb/unix.rb, and HTTP0 in sample/http0.rb and sample/http0serv.rb in the full drb distribution.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-add_protocol" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_protocol</span><span
+            class="method-args">(prot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add a new protocol to the <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_protocol-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 723</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_protocol</span>(<span class="ruby-identifier">prot</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">prot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open</span><span
+            class="method-args">(uri, config, first=true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Open a client connection to <code>uri</code> with the configuration <code>config</code>.</p>
+
+<p>The <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module asks each registered protocol in turn to try to open the <a href="../URI.html"><code>URI</code></a>.  Each protocol signals that it does not handle that <a href="../URI.html"><code>URI</code></a> by raising a <a href="DRbBadScheme.html"><code>DRbBadScheme</code></a> error.  If no protocol recognises the <a href="../URI.html"><code>URI</code></a>, then a <a href="DRbBadURI.html"><code>DRbBadURI</code></a> error is raised.  If a protocol accepts the <a href="../URI.html"><code>URI</code></a>, but an error occurs in opening it, a <a href="DRbConnError.html"><code>DRbConnError</code></a> is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 735</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-identifier">first</span>=<span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbBadScheme</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbConnError</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-identifier">$!</span>)
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-constant">DRbConnError</span>, <span class="ruby-node">&quot;#{uri} - #{$!.inspect}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">config</span>[<span class="ruby-value">:auto_load</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">auto_load</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">open</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DRbBadURI</span>, <span class="ruby-string">&#39;can\&#39;t parse uri:&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open_server" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open_server</span><span
+            class="method-args">(uri, config, first=true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Open a server listening for connections at <code>uri</code> with configuration <code>config</code>.</p>
+
+<p>The <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module asks each registered protocol in turn to try to open a server at the <a href="../URI.html"><code>URI</code></a>.  Each protocol signals that it does not handle that <a href="../URI.html"><code>URI</code></a> by raising a <a href="DRbBadScheme.html"><code>DRbBadScheme</code></a> error.  If no protocol recognises the <a href="../URI.html"><code>URI</code></a>, then a <a href="DRbBadURI.html"><code>DRbBadURI</code></a> error is raised.  If a protocol accepts the <a href="../URI.html"><code>URI</code></a>, but an error occurs in opening it, the underlying error is passed on to the caller.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open_server-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 763</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open_server</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-identifier">first</span>=<span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">open_server</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbBadScheme</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">config</span>[<span class="ruby-value">:auto_load</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">auto_load</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">open_server</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DRbBadURI</span>, <span class="ruby-string">&#39;can\&#39;t parse uri:&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-uri_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uri_option</span><span
+            class="method-args">(uri, config, first=true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parse <code>uri</code> into a [uri, option] pair.</p>
+
+<p>The <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module asks each registered protocol in turn to try to parse the <a href="../URI.html"><code>URI</code></a>.  Each protocol signals that it does not handle that <a href="../URI.html"><code>URI</code></a> by raising a <a href="DRbBadScheme.html"><code>DRbBadScheme</code></a> error.  If no protocol recognises the <a href="../URI.html"><code>URI</code></a>, then a <a href="DRbBadURI.html"><code>DRbBadURI</code></a> error is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="uri_option-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 784</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uri_option</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-identifier">first</span>=<span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">opt</span> = <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">uri_option</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>)
+      <span class="ruby-comment"># opt = nil if opt == &#39;&#39;</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">opt</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbBadScheme</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">config</span>[<span class="ruby-value">:auto_load</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">auto_load</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">uri_option</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DRbBadURI</span>, <span class="ruby-string">&#39;can\&#39;t parse uri:&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_protocol" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_protocol</span><span
+            class="method-args">(prot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add a new protocol to the <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_protocol-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 723</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_protocol</span>(<span class="ruby-identifier">prot</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">prot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-open" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open</span><span
+            class="method-args">(uri, config, first=true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Open a client connection to <code>uri</code> with the configuration <code>config</code>.</p>
+
+<p>The <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module asks each registered protocol in turn to try to open the <a href="../URI.html"><code>URI</code></a>.  Each protocol signals that it does not handle that <a href="../URI.html"><code>URI</code></a> by raising a <a href="DRbBadScheme.html"><code>DRbBadScheme</code></a> error.  If no protocol recognises the <a href="../URI.html"><code>URI</code></a>, then a <a href="DRbBadURI.html"><code>DRbBadURI</code></a> error is raised.  If a protocol accepts the <a href="../URI.html"><code>URI</code></a>, but an error occurs in opening it, a <a href="DRbConnError.html"><code>DRbConnError</code></a> is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 735</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-identifier">first</span>=<span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbBadScheme</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbConnError</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-identifier">$!</span>)
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-constant">DRbConnError</span>, <span class="ruby-node">&quot;#{uri} - #{$!.inspect}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">config</span>[<span class="ruby-value">:auto_load</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">auto_load</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">open</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DRbBadURI</span>, <span class="ruby-string">&#39;can\&#39;t parse uri:&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-open_server" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open_server</span><span
+            class="method-args">(uri, config, first=true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Open a server listening for connections at <code>uri</code> with configuration <code>config</code>.</p>
+
+<p>The <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module asks each registered protocol in turn to try to open a server at the <a href="../URI.html"><code>URI</code></a>.  Each protocol signals that it does not handle that <a href="../URI.html"><code>URI</code></a> by raising a <a href="DRbBadScheme.html"><code>DRbBadScheme</code></a> error.  If no protocol recognises the <a href="../URI.html"><code>URI</code></a>, then a <a href="DRbBadURI.html"><code>DRbBadURI</code></a> error is raised.  If a protocol accepts the <a href="../URI.html"><code>URI</code></a>, but an error occurs in opening it, the underlying error is passed on to the caller.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open_server-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 763</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open_server</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-identifier">first</span>=<span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">open_server</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbBadScheme</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">config</span>[<span class="ruby-value">:auto_load</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">auto_load</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">open_server</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DRbBadURI</span>, <span class="ruby-string">&#39;can\&#39;t parse uri:&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uri_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uri_option</span><span
+            class="method-args">(uri, config, first=true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parse <code>uri</code> into a [uri, option] pair.</p>
+
+<p>The <a href="DRbProtocol.html"><code>DRbProtocol</code></a> module asks each registered protocol in turn to try to parse the <a href="../URI.html"><code>URI</code></a>.  Each protocol signals that it does not handle that <a href="../URI.html"><code>URI</code></a> by raising a <a href="DRbBadScheme.html"><code>DRbBadScheme</code></a> error.  If no protocol recognises the <a href="../URI.html"><code>URI</code></a>, then a <a href="DRbBadURI.html"><code>DRbBadURI</code></a> error is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="uri_option-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 784</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uri_option</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-identifier">first</span>=<span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@protocol</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">opt</span> = <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">uri_option</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>)
+      <span class="ruby-comment"># opt = nil if opt == &#39;&#39;</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">opt</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DRbBadScheme</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">config</span>[<span class="ruby-value">:auto_load</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">auto_load</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">uri_option</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">config</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DRbBadURI</span>, <span class="ruby-string">&#39;can\&#39;t parse uri:&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

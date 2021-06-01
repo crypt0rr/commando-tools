@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Digest::Instance - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-base64digest">#base64digest</a>
+    
+    <li ><a href="#method-i-base64digest-21">#base64digest!</a>
+    
+    <li ><a href="#method-i-block_length">#block_length</a>
+    
+    <li ><a href="#method-i-bubblebabble">#bubblebabble</a>
+    
+    <li ><a href="#method-i-digest">#digest</a>
+    
+    <li ><a href="#method-i-digest-21">#digest!</a>
+    
+    <li ><a href="#method-i-digest_length">#digest_length</a>
+    
+    <li ><a href="#method-i-file">#file</a>
+    
+    <li ><a href="#method-i-finish">#finish</a>
+    
+    <li ><a href="#method-i-hexdigest">#hexdigest</a>
+    
+    <li ><a href="#method-i-hexdigest-21">#hexdigest!</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-length">#length</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-reset">#reset</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Digest::Instance">
+  <h1 id="module-Digest::Instance" class="module">
+    module Digest::Instance
+  </h1>
+
+  <section class="description">
+    
+<p>This module provides instance methods for a digest implementation object to calculate message digest values.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest_obj &lt;&lt; string &rarr; digest_obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Updates the digest using a given <em>string</em> and returns self.</p>
+
+<p>The update() method and the left-shift operator are overridden by each implementation subclass. (One should be an alias for the other)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3C-source">
+            <pre>static VALUE
+rb_digest_instance_update(VALUE self, VALUE str)
+{
+    rb_digest_instance_method_unimpl(self, &quot;update&quot;);
+
+    UNREACHABLE;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest_obj == another_digest_obj &rarr; boolean
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest_obj == string &rarr; boolean
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>If a string is given, checks whether it is equal to the hex-encoded hash value of the digest object.  If another digest instance is given, checks whether they have the same hash value.  Otherwise returns false.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+rb_digest_instance_equal(VALUE self, VALUE other)
+{
+    VALUE str1, str2;
+
+    if (rb_obj_is_kind_of(other, rb_mDigest_Instance) == Qtrue) {
+        str1 = rb_digest_instance_digest(0, 0, self);
+        str2 = rb_digest_instance_digest(0, 0, other);
+    } else {
+        str1 = rb_digest_instance_to_s(self);
+        str2 = rb_check_string_type(other);
+        if (NIL_P(str2)) return Qfalse;
+    }
+
+    /* never blindly assume that subclass methods return strings */
+    StringValue(str1);
+    StringValue(str2);
+
+    if (RSTRING_LEN(str1) == RSTRING_LEN(str2) &amp;&amp;
+        rb_str_cmp(str1, str2) == 0) {
+        return Qtrue;
+    }
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-base64digest" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">base64digest</span><span
+            class="method-args">(str = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If none is given, returns the resulting hash value of the digest in a base64 encoded form, keeping the digest&#39;s state.</p>
+
+<p>If a <code>string</code> is given, returns the hash value for the given <code>string</code> in a base64 encoded form, resetting the digest to the initial state before and after the process.</p>
+
+<p>In either case, the return value is properly padded with &#39;=&#39; and contains no line feeds.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="base64digest-source">
+            <pre><span class="ruby-comment"># File ext/digest/lib/digest.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">base64digest</span>(<span class="ruby-identifier">str</span> = <span class="ruby-keyword">nil</span>)
+  [<span class="ruby-identifier">str</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">digest</span>(<span class="ruby-identifier">str</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">digest</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;m0&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-base64digest-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">base64digest!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the resulting hash value and resets the digest to the initial state.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="base64digest-21-source">
+            <pre><span class="ruby-comment"># File ext/digest/lib/digest.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">base64digest!</span>
+  [<span class="ruby-identifier">digest!</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;m0&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-block_length" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            block_length &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the block length of the digest.</p>
+
+<p>This method is overridden by each implementation subclass.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="block_length-source">
+            <pre>static VALUE
+rb_digest_instance_block_length(VALUE self)
+{
+    rb_digest_instance_method_unimpl(self, &quot;block_length&quot;);
+
+    UNREACHABLE;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bubblebabble" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            bubblebabble &rarr; hash_string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the resulting hash value in a Bubblebabble encoded form.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="bubblebabble-source">
+            <pre>static VALUE
+rb_digest_instance_bubblebabble(VALUE self)
+{
+    return bubblebabble_str_new(rb_funcall(self, id_digest, 0));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-digest" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest(string) &rarr; string
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>If none is given, returns the resulting hash value of the digest, keeping the digest&#39;s state.</p>
+
+<p>If a <em>string</em> is given, returns the hash value for the given <em>string</em>, resetting the digest to the initial state before and after the process.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="digest-source">
+            <pre>static VALUE
+rb_digest_instance_digest(int argc, VALUE *argv, VALUE self)
+{
+    VALUE str, value;
+
+    if (rb_scan_args(argc, argv, &quot;01&quot;, &amp;str) &gt; 0) {
+        rb_funcall(self, id_reset, 0);
+        rb_funcall(self, id_update, 1, str);
+        value = rb_funcall(self, id_finish, 0);
+        rb_funcall(self, id_reset, 0);
+    } else {
+        value = rb_funcall(rb_obj_clone(self), id_finish, 0);
+    }
+
+    return value;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-digest-21" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest! &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the resulting hash value and resets the digest to the initial state.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="digest-21-source">
+            <pre>static VALUE
+rb_digest_instance_digest_bang(VALUE self)
+{
+    VALUE value = rb_funcall(self, id_finish, 0);
+    rb_funcall(self, id_reset, 0);
+
+    return value;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-digest_length" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest_length &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the length of the hash value of the digest.</p>
+
+<p>This method should be overridden by each implementation subclass. If not, digest_obj.digest().length() is returned.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="digest_length-source">
+            <pre>static VALUE
+rb_digest_instance_digest_length(VALUE self)
+{
+    /* subclasses really should redefine this method */
+    VALUE digest = rb_digest_instance_digest(0, 0, self);
+
+    /* never blindly assume that #digest() returns a string */
+    StringValue(digest);
+    return INT2NUM(RSTRING_LEN(digest));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">file</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Updates the digest with the contents of a given file <em>name</em> and returns self.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="file-source">
+            <pre><span class="ruby-comment"># File ext/digest/lib/digest.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">file</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">name</span>, <span class="ruby-string">&quot;rb&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">buf</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">16384</span>, <span class="ruby-identifier">buf</span>)
+      <span class="ruby-identifier">update</span> <span class="ruby-identifier">buf</span>
+    <span class="ruby-keyword">end</span>
+  }
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hexdigest" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hexdigest &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hexdigest(string) &rarr; string
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>If none is given, returns the resulting hash value of the digest in a hex-encoded form, keeping the digest&#39;s state.</p>
+
+<p>If a <em>string</em> is given, returns the hash value for the given <em>string</em> in a hex-encoded form, resetting the digest to the initial state before and after the process.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hexdigest-source">
+            <pre>static VALUE
+rb_digest_instance_hexdigest(int argc, VALUE *argv, VALUE self)
+{
+    VALUE str, value;
+
+    if (rb_scan_args(argc, argv, &quot;01&quot;, &amp;str) &gt; 0) {
+        rb_funcall(self, id_reset, 0);
+        rb_funcall(self, id_update, 1, str);
+        value = rb_funcall(self, id_finish, 0);
+        rb_funcall(self, id_reset, 0);
+    } else {
+        value = rb_funcall(rb_obj_clone(self), id_finish, 0);
+    }
+
+    return hexencode_str_new(value);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hexdigest-21" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hexdigest! &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the resulting hash value in a hex-encoded form and resets the digest to the initial state.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hexdigest-21-source">
+            <pre>static VALUE
+rb_digest_instance_hexdigest_bang(VALUE self)
+{
+    VALUE value = rb_funcall(self, id_finish, 0);
+    rb_funcall(self, id_reset, 0);
+
+    return hexencode_str_new(value);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a printable version of the digest object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+rb_digest_instance_inspect(VALUE self)
+{
+    VALUE str;
+    size_t digest_len = 32;     /* about this size at least */
+    const char *cname;
+
+    cname = rb_obj_classname(self);
+
+    /* #&lt;Digest::ClassName: xxxxx...xxxx&gt; */
+    str = rb_str_buf_new(2 + strlen(cname) + 2 + digest_len * 2 + 1);
+    rb_str_buf_cat2(str, &quot;#&lt;&quot;);
+    rb_str_buf_cat2(str, cname);
+    rb_str_buf_cat2(str, &quot;: &quot;);
+    rb_str_buf_append(str, rb_digest_instance_hexdigest(0, 0, self));
+    rb_str_buf_cat2(str, &quot;&gt;&quot;);
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-length" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            length &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns digest_obj.digest_length().</p>
+          
+          
+
+          
+          <div class="method-source-code" id="length-source">
+            <pre>static VALUE
+rb_digest_instance_length(VALUE self)
+{
+    return rb_funcall(self, id_digest_length, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new &rarr; another_digest_obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new, initialized copy of the digest object.  Equivalent to digest_obj.clone().reset().</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rb_digest_instance_new(VALUE self)
+{
+    VALUE clone = rb_obj_clone(self);
+    rb_funcall(clone, id_reset, 0);
+    return clone;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reset" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            reset &rarr; digest_obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Resets the digest to the initial state and returns self.</p>
+
+<p>This method is overridden by each implementation subclass.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reset-source">
+            <pre>static VALUE
+rb_digest_instance_reset(VALUE self)
+{
+    rb_digest_instance_method_unimpl(self, &quot;reset&quot;);
+
+    UNREACHABLE;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            size &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns digest_obj.digest_length().</p>
+          
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre>static VALUE
+rb_digest_instance_length(VALUE self)
+{
+    return rb_funcall(self, id_digest_length, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns digest_obj.hexdigest().</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+rb_digest_instance_to_s(VALUE self)
+{
+    return rb_funcall(self, id_hexdigest, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            update(string) &rarr; digest_obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Updates the digest using a given <em>string</em> and returns self.</p>
+
+<p>The update() method and the left-shift operator are overridden by each implementation subclass. (One should be an alias for the other)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre>static VALUE
+rb_digest_instance_update(VALUE self, VALUE str)
+{
+    rb_digest_instance_method_unimpl(self, &quot;update&quot;);
+
+    UNREACHABLE;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-finish" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            instance_eval { finish } &rarr; digest_obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Finishes the digest and returns the resulting hash value.</p>
+
+<p>This method is overridden by each implementation subclass and often made private, because some of those subclasses may leave internal data uninitialized.  Do not call this method from outside.  Use <a href="Instance.html#method-i-digest-21"><code>digest!()</code></a> instead, which ensures that internal data be reset for security reasons.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="finish-source">
+            <pre>static VALUE
+rb_digest_instance_finish(VALUE self)
+{
+    rb_digest_instance_method_unimpl(self, &quot;finish&quot;);
+
+    UNREACHABLE;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

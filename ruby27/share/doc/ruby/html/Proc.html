@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Proc - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Proc-label-Creation">Creation</a>
+    <li><a href="#class-Proc-label-Lambda+and+non-lambda+semantics">Lambda and non-lambda semantics</a>
+    <li><a href="#class-Proc-label-Conversion+of+other+objects+to+procs">Conversion of other objects to procs</a>
+    <li><a href="#class-Proc-label-Orphaned+Proc">Orphaned Proc</a>
+    <li><a href="#class-Proc-label-Numbered+parameters">Numbered parameters</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-3D-3D-3D">#===</a>
+    
+    <li ><a href="#method-i-3E-3E">#&gt;&gt;</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-arity">#arity</a>
+    
+    <li ><a href="#method-i-binding">#binding</a>
+    
+    <li ><a href="#method-i-call">#call</a>
+    
+    <li ><a href="#method-i-curry">#curry</a>
+    
+    <li ><a href="#method-i-hash">#hash</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-lambda-3F">#lambda?</a>
+    
+    <li ><a href="#method-i-parameters">#parameters</a>
+    
+    <li ><a href="#method-i-ruby2_keywords">#ruby2_keywords</a>
+    
+    <li ><a href="#method-i-source_location">#source_location</a>
+    
+    <li ><a href="#method-i-to_proc">#to_proc</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-yield">#yield</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Proc">
+  <h1 id="class-Proc" class="class">
+    class Proc
+  </h1>
+
+  <section class="description">
+    
+<p>A <code>Proc</code> object is an encapsulation of a block of code, which can be stored in a local variable, passed to a method or another <a href="Proc.html"><code>Proc</code></a>, and can be called. <a href="Proc.html"><code>Proc</code></a> is an essential concept in Ruby and a core of its functional programming features.</p>
+
+<pre class="ruby"><span class="ruby-identifier">square</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+
+<span class="ruby-identifier">square</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">3</span>)  <span class="ruby-comment">#=&gt; 9</span>
+<span class="ruby-comment"># shorthands:</span>
+<span class="ruby-identifier">square</span>.(<span class="ruby-value">3</span>)      <span class="ruby-comment">#=&gt; 9</span>
+<span class="ruby-identifier">square</span>[<span class="ruby-value">3</span>]       <span class="ruby-comment">#=&gt; 9</span>
+</pre>
+
+<p><a href="Proc.html"><code>Proc</code></a> objects are <em>closures</em>, meaning they remember and can use the entire context in which they were created.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">gen_times</span>(<span class="ruby-identifier">factor</span>)
+  <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span><span class="ruby-operator">*</span><span class="ruby-identifier">factor</span> } <span class="ruby-comment"># remembers the value of factor at the moment of creation</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">times3</span> = <span class="ruby-identifier">gen_times</span>(<span class="ruby-value">3</span>)
+<span class="ruby-identifier">times5</span> = <span class="ruby-identifier">gen_times</span>(<span class="ruby-value">5</span>)
+
+<span class="ruby-identifier">times3</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">12</span>)               <span class="ruby-comment">#=&gt; 36</span>
+<span class="ruby-identifier">times5</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">5</span>)                <span class="ruby-comment">#=&gt; 25</span>
+<span class="ruby-identifier">times3</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">times5</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">4</span>))   <span class="ruby-comment">#=&gt; 60</span>
+</pre>
+
+<h2 id="class-Proc-label-Creation">Creation<span><a href="#class-Proc-label-Creation">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>There are several methods to create a <a href="Proc.html"><code>Proc</code></a></p>
+<ul><li>
+<p>Use the <a href="Proc.html"><code>Proc</code></a> class constructor:</p>
+
+<pre class="ruby"><span class="ruby-identifier">proc1</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+</pre>
+</li><li>
+<p>Use the <a href="Kernel.html#method-i-proc"><code>Kernel#proc</code></a> method as a shorthand of <a href="Proc.html#method-c-new"><code>Proc.new</code></a>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">proc2</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+</pre>
+</li><li>
+<p>Receiving a block of code into proc argument (note the <code>&amp;</code>):</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_proc</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">proc3</span> = <span class="ruby-identifier">make_proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+</pre>
+</li><li>
+<p>Construct a proc with lambda semantics using the <a href="Kernel.html#method-i-lambda"><code>Kernel#lambda</code></a> method (see below for explanations about lambdas):</p>
+
+<pre class="ruby"><span class="ruby-identifier">lambda1</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+</pre>
+</li><li>
+<p>Use the Lambda literal syntax (also constructs a proc with lambda semantics):</p>
+
+<pre class="ruby"><span class="ruby-identifier">lambda2</span> = <span class="ruby-operator">-&gt;</span>(<span class="ruby-identifier">x</span>) { <span class="ruby-identifier">x</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+</pre>
+</li></ul>
+
+<h2 id="class-Proc-label-Lambda+and+non-lambda+semantics">Lambda and non-lambda semantics<span><a href="#class-Proc-label-Lambda+and+non-lambda+semantics">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Procs are coming in two flavors: lambda and non-lambda (regular procs). Differences are:</p>
+<ul><li>
+<p>In lambdas, <code>return</code> and <code>break</code> means exit from this lambda;</p>
+</li><li>
+<p>In non-lambda procs, <code>return</code> means exit from embracing method (and will throw <code>LocalJumpError</code> if invoked outside the method);</p>
+</li><li>
+<p>In non-lambda procs, <code>break</code> means exit from the method which the block given for. (and will throw <code>LocalJumpError</code> if invoked after the method returns);</p>
+</li><li>
+<p>In lambdas, arguments are treated in the same way as in methods: strict, with <code>ArgumentError</code> for mismatching argument number, and no additional argument processing;</p>
+</li><li>
+<p>Regular procs accept arguments more generously: missing arguments are filled with <code>nil</code>, single <a href="Array.html"><code>Array</code></a> arguments are deconstructed if the proc has multiple arguments, and there is no error raised on extra arguments.</p>
+</li></ul>
+
+<p>Examples:</p>
+
+<pre class="ruby"><span class="ruby-comment"># +return+ in non-lambda proc, +b+, exits +m2+.</span>
+<span class="ruby-comment"># (The block +{ return }+ is given for +m1+ and embraced by +m2+.)</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">return</span> }; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; []</span>
+
+<span class="ruby-comment"># +break+ in non-lambda proc, +b+, exits +m1+.</span>
+<span class="ruby-comment"># (The block +{ break }+ is given for +m1+ and embraced by +m2+.)</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">break</span> }; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; [:m2]</span>
+
+<span class="ruby-comment"># +next+ in non-lambda proc, +b+, exits the block.</span>
+<span class="ruby-comment"># (The block +{ next }+ is given for +m1+ and embraced by +m2+.)</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">next</span> }; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; [:m1, :m2]</span>
+
+<span class="ruby-comment"># Using +proc+ method changes the behavior as follows because</span>
+<span class="ruby-comment"># The block is given for +proc+ method and embraced by +m2+.</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> { <span class="ruby-keyword">return</span> }); <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; []</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> { <span class="ruby-keyword">break</span> }); <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment"># break from proc-closure (LocalJumpError)</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> { <span class="ruby-keyword">next</span> }); <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; [:m1, :m2]</span>
+
+<span class="ruby-comment"># +return+, +break+ and +next+ in the stubby lambda exits the block.</span>
+<span class="ruby-comment"># (+lambda+ method behaves same.)</span>
+<span class="ruby-comment"># (The block is given for stubby lambda syntax and embraced by +m2+.)</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-operator">-&gt;</span> { <span class="ruby-keyword">return</span> }); <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; [:m1, :m2]</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-operator">-&gt;</span> { <span class="ruby-keyword">break</span> }); <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; [:m1, :m2]</span>
+<span class="ruby-identifier">$a</span> = []; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span>; <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m1</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>() <span class="ruby-identifier">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-operator">-&gt;</span> { <span class="ruby-keyword">next</span> }); <span class="ruby-identifier">$a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:m2</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>; <span class="ruby-identifier">p</span> <span class="ruby-identifier">$a</span>
+<span class="ruby-comment">#=&gt; [:m1, :m2]</span>
+
+<span class="ruby-identifier">p</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;x=#{x}, y=#{y}&quot;</span> }
+<span class="ruby-identifier">p</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>)      <span class="ruby-comment">#=&gt; &quot;x=1, y=2&quot;</span>
+<span class="ruby-identifier">p</span>.<span class="ruby-identifier">call</span>([<span class="ruby-value">1</span>, <span class="ruby-value">2</span>])    <span class="ruby-comment">#=&gt; &quot;x=1, y=2&quot;, array deconstructed</span>
+<span class="ruby-identifier">p</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">8</span>)   <span class="ruby-comment">#=&gt; &quot;x=1, y=2&quot;, extra argument discarded</span>
+<span class="ruby-identifier">p</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)         <span class="ruby-comment">#=&gt; &quot;x=1, y=&quot;, nil substituted instead of error</span>
+
+<span class="ruby-identifier">l</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;x=#{x}, y=#{y}&quot;</span> }
+<span class="ruby-identifier">l</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>)      <span class="ruby-comment">#=&gt; &quot;x=1, y=2&quot;</span>
+<span class="ruby-identifier">l</span>.<span class="ruby-identifier">call</span>([<span class="ruby-value">1</span>, <span class="ruby-value">2</span>])    <span class="ruby-comment"># ArgumentError: wrong number of arguments (given 1, expected 2)</span>
+<span class="ruby-identifier">l</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">8</span>)   <span class="ruby-comment"># ArgumentError: wrong number of arguments (given 3, expected 2)</span>
+<span class="ruby-identifier">l</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)         <span class="ruby-comment"># ArgumentError: wrong number of arguments (given 1, expected 2)</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_return</span>
+  <span class="ruby-operator">-&gt;</span> { <span class="ruby-keyword">return</span> <span class="ruby-value">3</span> }.<span class="ruby-identifier">call</span>      <span class="ruby-comment"># just returns from lambda into method body</span>
+  <span class="ruby-identifier">proc</span> { <span class="ruby-keyword">return</span> <span class="ruby-value">4</span> }.<span class="ruby-identifier">call</span>    <span class="ruby-comment"># returns from method</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-value">5</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">test_return</span> <span class="ruby-comment"># =&gt; 4, return from proc</span>
+</pre>
+
+<p>Lambdas are useful as self-sufficient functions, in particular useful as arguments to higher-order functions, behaving exactly like Ruby methods.</p>
+
+<p>Procs are useful for implementing iterators:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test</span>
+  [[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>], [<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], [<span class="ruby-value">5</span>, <span class="ruby-value">6</span>]].<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">a</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">b</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span> }
+                            <span class="ruby-comment">#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Inside <code>map</code>, the block of code is treated as a regular (non-lambda) proc, which means that the internal arrays will be deconstructed to pairs of arguments, and <code>return</code> will exit from the method <code>test</code>. That would not be possible with a stricter lambda.</p>
+
+<p>You can tell a lambda from a regular proc by using the <a href="Proc.html#method-i-lambda-3F"><code>lambda?</code></a> instance method.</p>
+
+<p>Lambda semantics is typically preserved during the proc lifetime, including <code>&amp;</code>-deconstruction to a block of code:</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> }
+<span class="ruby-identifier">l</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> }
+[[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>], [<span class="ruby-value">3</span>, <span class="ruby-value">4</span>]].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">p</span>) <span class="ruby-comment">#=&gt; [1, 2]</span>
+[[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>], [<span class="ruby-value">3</span>, <span class="ruby-value">4</span>]].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">l</span>) <span class="ruby-comment"># ArgumentError: wrong number of arguments (given 1, expected 2)</span>
+</pre>
+
+<p>The only exception is dynamic method definition: even if defined by passing a non-lambda proc, methods still have normal semantics of argument checking.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:e</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> {})
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">e</span>(<span class="ruby-value">1</span>,<span class="ruby-value">2</span>)       <span class="ruby-comment">#=&gt; ArgumentError</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:e</span>).<span class="ruby-identifier">to_proc</span>.<span class="ruby-identifier">lambda?</span>   <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>This exception ensures that methods never have unusual argument passing conventions, and makes it easy to have wrappers defining methods that behave as usual.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">def2</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">body</span>)
+    <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">body</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">def2</span>(<span class="ruby-value">:f</span>) {}
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">f</span>(<span class="ruby-value">1</span>,<span class="ruby-value">2</span>)       <span class="ruby-comment">#=&gt; ArgumentError</span>
+</pre>
+
+<p>The wrapper <code>def2</code> receives <em>body</em> as a non-lambda proc, yet defines a method which has normal semantics.</p>
+
+<h2 id="class-Proc-label-Conversion+of+other+objects+to+procs">Conversion of other objects to procs<span><a href="#class-Proc-label-Conversion+of+other+objects+to+procs">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Any object that implements the <code>to_proc</code> method can be converted into a proc by the <code>&amp;</code> operator, and therefore con be consumed by iterators.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Greeter</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">greeting</span>)
+    <span class="ruby-ivar">@greeting</span> = <span class="ruby-identifier">greeting</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_proc</span>
+    <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{@greeting}, #{name}!&quot;</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">hi</span> = <span class="ruby-constant">Greeter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Hi&quot;</span>)
+<span class="ruby-identifier">hey</span> = <span class="ruby-constant">Greeter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Hey&quot;</span>)
+[<span class="ruby-string">&quot;Bob&quot;</span>, <span class="ruby-string">&quot;Jane&quot;</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">hi</span>)    <span class="ruby-comment">#=&gt; [&quot;Hi, Bob!&quot;, &quot;Hi, Jane!&quot;]</span>
+[<span class="ruby-string">&quot;Bob&quot;</span>, <span class="ruby-string">&quot;Jane&quot;</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">hey</span>)   <span class="ruby-comment">#=&gt; [&quot;Hey, Bob!&quot;, &quot;Hey, Jane!&quot;]</span>
+</pre>
+
+<p>Of the Ruby core classes, this method is implemented by <a href="Symbol.html"><code>Symbol</code></a>, <a href="Method.html"><code>Method</code></a>, and <a href="Hash.html"><code>Hash</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-value">:to_s</span>.<span class="ruby-identifier">to_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)           <span class="ruby-comment">#=&gt; &quot;1&quot;</span>
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_s</span>)              <span class="ruby-comment">#=&gt; [&quot;1&quot;, &quot;2&quot;]</span>
+
+<span class="ruby-identifier">method</span>(<span class="ruby-value">:puts</span>).<span class="ruby-identifier">to_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)   <span class="ruby-comment"># prints 1</span>
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-value">:puts</span>))     <span class="ruby-comment"># prints 1, 2</span>
+
+{<span class="ruby-value">test:</span> <span class="ruby-value">1</span>}.<span class="ruby-identifier">to_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">:test</span>)       <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-node">%i[test many keys]</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span>{<span class="ruby-value">test:</span> <span class="ruby-value">1</span>})  <span class="ruby-comment">#=&gt; [1, nil, nil]</span>
+</pre>
+
+<h2 id="class-Proc-label-Orphaned+Proc">Orphaned <a href="Proc.html"><code>Proc</code></a><span><a href="#class-Proc-label-Orphaned+Proc">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><code>return</code> and <code>break</code> in a block exit a method. If a <a href="Proc.html"><code>Proc</code></a> object is generated from the block and the <a href="Proc.html"><code>Proc</code></a> object survives until the method is returned, <code>return</code> and <code>break</code> cannot work. In such case, <code>return</code> and <code>break</code> raises <a href="LocalJumpError.html"><code>LocalJumpError</code></a>. A <a href="Proc.html"><code>Proc</code></a> object in such situation is called as orphaned <a href="Proc.html"><code>Proc</code></a> object.</p>
+
+<p>Note that the method to exit is different for <code>return</code> and <code>break</code>. There is a situation that orphaned for <code>break</code> but not orphaned for <code>return</code>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>(); <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">return</span> } <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span> <span class="ruby-comment"># ok</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>(); <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">break</span> } <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span> <span class="ruby-comment"># ok</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>(); <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">return</span> }.<span class="ruby-identifier">call</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span> <span class="ruby-comment"># ok</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>(); <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">break</span> }.<span class="ruby-identifier">call</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span> <span class="ruby-comment"># LocalJumpError</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>(); <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">return</span> } <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>.<span class="ruby-identifier">call</span> <span class="ruby-comment"># LocalJumpError</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span> <span class="ruby-keyword">end</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>(); <span class="ruby-identifier">m1</span> { <span class="ruby-keyword">break</span> } <span class="ruby-keyword">end</span>; <span class="ruby-identifier">m2</span>.<span class="ruby-identifier">call</span> <span class="ruby-comment"># LocalJumpError</span>
+</pre>
+
+<p>Since <code>return</code> and <code>break</code> exits the block itself in lambdas, lambdas cannot be orphaned.</p>
+
+<h2 id="class-Proc-label-Numbered+parameters">Numbered parameters<span><a href="#class-Proc-label-Numbered+parameters">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Numbered parameters are implicitly defined block parameters intended to simplify writing short blocks:</p>
+
+<pre class="ruby"><span class="ruby-comment"># Explicit parameter:</span>
+<span class="ruby-node">%w[test me please]</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">str</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">upcase</span> } <span class="ruby-comment"># prints TEST, ME, PLEASE</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> } <span class="ruby-comment"># =&gt; [1, 4, 9, 16, 25]</span>
+
+<span class="ruby-comment"># Implicit parameter:</span>
+<span class="ruby-node">%w[test me please]</span>.<span class="ruby-identifier">each</span> { <span class="ruby-identifier">puts</span> <span class="ruby-identifier">_1</span>.<span class="ruby-identifier">upcase</span> } <span class="ruby-comment"># prints TEST, ME, PLEASE</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">map</span> { <span class="ruby-identifier">_1</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> } <span class="ruby-comment"># =&gt; [1, 4, 9, 16, 25]</span>
+</pre>
+
+<p>Parameter names from <code>_1</code> to <code>_9</code> are supported:</p>
+
+<pre class="ruby">[<span class="ruby-value">10</span>, <span class="ruby-value">20</span>, <span class="ruby-value">30</span>].<span class="ruby-identifier">zip</span>([<span class="ruby-value">40</span>, <span class="ruby-value">50</span>, <span class="ruby-value">60</span>], [<span class="ruby-value">70</span>, <span class="ruby-value">80</span>, <span class="ruby-value">90</span>]).<span class="ruby-identifier">map</span> { <span class="ruby-identifier">_1</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">_2</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">_3</span> }
+<span class="ruby-comment"># =&gt; [120, 150, 180]</span>
+</pre>
+
+<p>Though, it is advised to resort to them wisely, probably limiting yourself to <code>_1</code> and <code>_2</code>, and to one-line blocks.</p>
+
+<p>Numbered parameters can&#39;t be used together with explicitly named ones:</p>
+
+<pre>[10, 20, 30].map { |x| _1**2 }
+# SyntaxError (ordinary parameter is defined)</pre>
+
+<p>To avoid conflicts, naming local variables or method arguments <code>_1</code>, <code>_2</code> and so on, causes a warning.</p>
+
+<pre class="ruby"><span class="ruby-identifier">_1</span> = <span class="ruby-string">&#39;test&#39;</span>
+<span class="ruby-comment"># warning: `_1&#39; is reserved as numbered parameter</span>
+</pre>
+
+<p>Using implicit numbered parameters affects block&#39;s arity:</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> = <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">_1</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">_2</span> }
+<span class="ruby-identifier">l</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">_1</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">_2</span> }
+<span class="ruby-identifier">p</span>.<span class="ruby-identifier">parameters</span>     <span class="ruby-comment"># =&gt; [[:opt, :_1], [:opt, :_2]]</span>
+<span class="ruby-identifier">p</span>.<span class="ruby-identifier">arity</span>          <span class="ruby-comment"># =&gt; 2</span>
+<span class="ruby-identifier">l</span>.<span class="ruby-identifier">parameters</span>     <span class="ruby-comment"># =&gt; [[:req, :_1], [:req, :_2]]</span>
+<span class="ruby-identifier">l</span>.<span class="ruby-identifier">arity</span>          <span class="ruby-comment"># =&gt; 2</span>
+</pre>
+
+<p>Blocks with numbered parameters can&#39;t be nested:</p>
+
+<pre>%w[test me].each { _1.each_char { p _1 } }
+# SyntaxError (numbered parameter is already used in outer block here)
+# %w[test me].each { _1.each_char { p _1 } }
+#                    ^~</pre>
+
+<p>Numbered parameters were introduced in Ruby 2.7.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new {|...| block } &rarr; a_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new                &rarr; a_proc
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Proc.html"><code>Proc</code></a> object, bound to the current context. <a href="Proc.html#method-c-new"><code>Proc::new</code></a> may be called without a block only within a method with an attached block, in which case that block is converted to the <a href="Proc.html"><code>Proc</code></a> object.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">proc_from</span>
+  <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">proc</span> = <span class="ruby-identifier">proc_from</span> { <span class="ruby-string">&quot;hello&quot;</span> }
+<span class="ruby-identifier">proc</span>.<span class="ruby-identifier">call</span>   <span class="ruby-comment">#=&gt; &quot;hello&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rb_proc_s_new(int argc, VALUE *argv, VALUE klass)
+{
+    VALUE block = proc_new(klass, FALSE, FALSE);
+
+    rb_obj_call_init_kw(block, argc, argv, RB_PASS_CALLED_KEYWORDS);
+    return block;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            prc &lt;&lt; g &rarr; a_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a proc that is the composition of this proc and the given <em>g</em>. The returned proc takes a variable number of arguments, calls <em>g</em> with them then calls this proc with the result.</p>
+
+<pre class="ruby"><span class="ruby-identifier">f</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">x</span> }
+<span class="ruby-identifier">g</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x</span> }
+<span class="ruby-identifier">p</span> (<span class="ruby-identifier">f</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">g</span>).<span class="ruby-identifier">call</span>(<span class="ruby-value">2</span>) <span class="ruby-comment">#=&gt; 16</span>
+</pre>
+
+<p>See <a href="Proc.html#method-i-3E-3E"><code>Proc#>></code></a> for detailed explanations.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3C-source">
+            <pre>static VALUE
+proc_compose_to_left(VALUE self, VALUE g)
+{
+    return rb_proc_compose_to_left(self, to_callable(g));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            proc === obj   &rarr; result_of_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the block with <code>obj</code> as the proc&#39;s parameter like <a href="Proc.html#method-i-call"><code>Proc#call</code></a>. This allows a proc object to be the target of a <code>when</code> clause in a case statement.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-3D-source">
+            <pre>static VALUE
+proc_call(int argc, VALUE *argv, VALUE procval)
+{
+    /* removed */
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3E-3E" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            prc &gt;&gt; g &rarr; a_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a proc that is the composition of this proc and the given <em>g</em>. The returned proc takes a variable number of arguments, calls this proc with them then calls <em>g</em> with the result.</p>
+
+<pre class="ruby"><span class="ruby-identifier">f</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">x</span> }
+<span class="ruby-identifier">g</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x</span> }
+<span class="ruby-identifier">p</span> (<span class="ruby-identifier">f</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">g</span>).<span class="ruby-identifier">call</span>(<span class="ruby-value">2</span>) <span class="ruby-comment">#=&gt; 8</span>
+</pre>
+
+<p><em>g</em> could be other <a href="Proc.html"><code>Proc</code></a>, or <a href="Method.html"><code>Method</code></a>, or any other object responding to <code>call</code> method:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Parser</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">call</span>(<span class="ruby-identifier">text</span>)
+     <span class="ruby-comment"># ...some complicated parsing logic...</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">pipeline</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:read</span>) <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-constant">Parser</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;data size: #{data.count}&quot;</span> }
+<span class="ruby-identifier">pipeline</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">&#39;data.json&#39;</span>)
+</pre>
+
+<p>See also <a href="Method.html#method-i-3E-3E"><code>Method#>></code></a> and <a href="Method.html#method-i-3C-3C"><code>Method#<<</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3E-3E-source">
+            <pre>static VALUE
+proc_compose_to_right(VALUE self, VALUE g)
+{
+    return rb_proc_compose_to_right(self, to_callable(g));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            prc[params,...]        &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the block, setting the block&#39;s parameters to the values in <em>params</em> using something close to method calling semantics. Returns the value of the last expression evaluated in the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a_proc</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">scalar</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">values</span><span class="ruby-operator">|</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span><span class="ruby-operator">*</span><span class="ruby-identifier">scalar</span> } }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)    <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>[<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]         <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>.(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)        <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">yield</span>(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)   <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+</pre>
+
+<p>Note that <code>prc.()</code> invokes <code>prc.call()</code> with the parameters given.  It&#39;s syntactic sugar to hide “call”.</p>
+
+<p>For procs created using <a href="Kernel.html#method-i-lambda"><code>lambda</code></a> or <code>-&gt;()</code> an error is generated if the wrong number of parameters are passed to the proc.  For procs created using <a href="Proc.html#method-c-new"><code>Proc.new</code></a> or <a href="Kernel.html#method-i-proc"><code>Kernel.proc</code></a>, extra parameters are silently discarded and missing parameters are set to <code>nil</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a_proc</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)   <span class="ruby-comment">#=&gt; [1, nil]</span>
+
+<span class="ruby-identifier">a_proc</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)   <span class="ruby-comment"># ArgumentError: wrong number of arguments (given 1, expected 2)</span>
+</pre>
+
+<p>See also <a href="Proc.html#method-i-lambda-3F"><code>Proc#lambda?</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+proc_call(int argc, VALUE *argv, VALUE procval)
+{
+    /* removed */
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-arity" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            arity &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of mandatory arguments. If the block is declared to take no arguments, returns 0. If the block is known to take exactly n arguments, returns n. If the block has optional arguments, returns -n-1, where n is the number of mandatory arguments, with the exception for blocks that are not lambdas and have only a finite number of optional arguments; in this latter case, returns n. Keyword arguments will be considered as a single additional argument, that argument being mandatory if any keyword argument is mandatory. A <a href="Kernel.html#method-i-proc"><code>proc</code></a> with no argument declarations is the same as a block declaring <code>||</code> as its arguments.</p>
+
+<pre class="ruby"><span class="ruby-identifier">proc</span> {}.<span class="ruby-identifier">arity</span>                  <span class="ruby-comment">#=&gt;  0</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>              <span class="ruby-comment">#=&gt;  0</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>             <span class="ruby-comment">#=&gt;  1</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>          <span class="ruby-comment">#=&gt;  2</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>       <span class="ruby-comment">#=&gt;  3</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>            <span class="ruby-comment">#=&gt; -1</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>         <span class="ruby-comment">#=&gt; -2</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">b</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>      <span class="ruby-comment">#=&gt; -3</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-value">x:</span>, <span class="ruby-value">y:</span>, <span class="ruby-value">z:</span><span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>   <span class="ruby-comment">#=&gt;  1</span>
+<span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-value">x:</span>, <span class="ruby-value">y:</span><span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>   <span class="ruby-comment">#=&gt; -2</span>
+
+<span class="ruby-identifier">proc</span>   { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>         <span class="ruby-comment">#=&gt;  0</span>
+<span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>         <span class="ruby-comment">#=&gt; -1</span>
+<span class="ruby-identifier">proc</span>   { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>      <span class="ruby-comment">#=&gt;  1</span>
+<span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>      <span class="ruby-comment">#=&gt; -2</span>
+<span class="ruby-identifier">proc</span>   { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">b</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>    <span class="ruby-comment">#=&gt;  0</span>
+<span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">b</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>    <span class="ruby-comment">#=&gt; -1</span>
+<span class="ruby-identifier">proc</span>   { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>      <span class="ruby-comment">#=&gt;  1</span>
+<span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span>      <span class="ruby-comment">#=&gt; -2</span>
+<span class="ruby-identifier">proc</span>   { <span class="ruby-operator">|</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>), <span class="ruby-identifier">c</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span> <span class="ruby-comment">#=&gt;  1</span>
+<span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>), <span class="ruby-identifier">c</span>=<span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span> <span class="ruby-comment">#=&gt; -2</span>
+<span class="ruby-identifier">proc</span>   { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-value">x:</span><span class="ruby-value">0</span>, <span class="ruby-value">y:</span><span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span> <span class="ruby-comment">#=&gt;  1</span>
+<span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-value">x:</span><span class="ruby-value">0</span>, <span class="ruby-value">y:</span><span class="ruby-value">0</span><span class="ruby-operator">|</span> }.<span class="ruby-identifier">arity</span> <span class="ruby-comment">#=&gt; -2</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="arity-source">
+            <pre>static VALUE
+proc_arity(VALUE self)
+{
+    int arity = rb_proc_arity(self);
+    return INT2FIX(arity);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-binding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            binding    &rarr; binding
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the binding associated with <em>prc</em>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fred</span>(<span class="ruby-identifier">param</span>)
+  <span class="ruby-identifier">proc</span> {}
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">b</span> = <span class="ruby-identifier">fred</span>(<span class="ruby-value">99</span>)
+<span class="ruby-identifier">eval</span>(<span class="ruby-string">&quot;param&quot;</span>, <span class="ruby-identifier">b</span>.<span class="ruby-identifier">binding</span>)   <span class="ruby-comment">#=&gt; 99</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="binding-source">
+            <pre>static VALUE
+proc_binding(VALUE self)
+{
+    VALUE bindval, binding_self = Qundef;
+    rb_binding_t *bind;
+    const rb_proc_t *proc;
+    const rb_iseq_t *iseq = NULL;
+    const struct rb_block *block;
+    const rb_env_t *env = NULL;
+
+    GetProcPtr(self, proc);
+    block = &amp;proc-&gt;block;
+
+  again:
+    switch (vm_block_type(block)) {
+      case block_type_iseq:
+        iseq = block-&gt;as.captured.code.iseq;
+        binding_self = block-&gt;as.captured.self;
+        env = VM_ENV_ENVVAL_PTR(block-&gt;as.captured.ep);
+        break;
+      case block_type_proc:
+        GetProcPtr(block-&gt;as.proc, proc);
+        block = &amp;proc-&gt;block;
+        goto again;
+      case block_type_symbol:
+        goto error;
+      case block_type_ifunc:
+        {
+            const struct vm_ifunc *ifunc = block-&gt;as.captured.code.ifunc;
+            if (IS_METHOD_PROC_IFUNC(ifunc)) {
+                VALUE method = (VALUE)ifunc-&gt;data;
+                VALUE name = rb_fstring_lit(&quot;&lt;empty_iseq&gt;&quot;);
+                rb_iseq_t *empty;
+                binding_self = method_receiver(method);
+                iseq = rb_method_iseq(method);
+                env = VM_ENV_ENVVAL_PTR(block-&gt;as.captured.ep);
+                env = env_clone(env, method_cref(method));
+                /* set empty iseq */
+                empty = rb_iseq_new(NULL, name, name, Qnil, 0, ISEQ_TYPE_TOP);
+                RB_OBJ_WRITE(env, &amp;env-&gt;iseq, empty);
+                break;
+            }
+            else {
+              error:
+                rb_raise(rb_eArgError, &quot;Can&#39;t create Binding from C level Proc&quot;);
+                return Qnil;
+            }
+        }
+    }
+
+    bindval = rb_binding_alloc(rb_cBinding);
+    GetBindingPtr(bindval, bind);
+    RB_OBJ_WRITE(bindval, &amp;bind-&gt;block.as.captured.self, binding_self);
+    RB_OBJ_WRITE(bindval, &amp;bind-&gt;block.as.captured.code.iseq, env-&gt;iseq);
+    rb_vm_block_ep_update(bindval, &amp;bind-&gt;block, env-&gt;ep);
+    RB_OBJ_WRITTEN(bindval, Qundef, VM_ENV_ENVVAL(env-&gt;ep));
+
+    if (iseq) {
+        rb_iseq_check(iseq);
+        RB_OBJ_WRITE(bindval, &amp;bind-&gt;pathobj, iseq-&gt;body-&gt;location.pathobj);
+        bind-&gt;first_lineno = FIX2INT(rb_iseq_first_lineno(iseq));
+    }
+    else {
+        RB_OBJ_WRITE(bindval, &amp;bind-&gt;pathobj,
+                     rb_iseq_pathobj_new(rb_fstring_lit(&quot;(binding)&quot;), Qnil));
+        bind-&gt;first_lineno = 1;
+    }
+
+    return bindval;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-call" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            call(params,...)   &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the block, setting the block&#39;s parameters to the values in <em>params</em> using something close to method calling semantics. Returns the value of the last expression evaluated in the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a_proc</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">scalar</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">values</span><span class="ruby-operator">|</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span><span class="ruby-operator">*</span><span class="ruby-identifier">scalar</span> } }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)    <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>[<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]         <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>.(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)        <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">yield</span>(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)   <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+</pre>
+
+<p>Note that <code>prc.()</code> invokes <code>prc.call()</code> with the parameters given.  It&#39;s syntactic sugar to hide “call”.</p>
+
+<p>For procs created using <a href="Kernel.html#method-i-lambda"><code>lambda</code></a> or <code>-&gt;()</code> an error is generated if the wrong number of parameters are passed to the proc.  For procs created using <a href="Proc.html#method-c-new"><code>Proc.new</code></a> or <a href="Kernel.html#method-i-proc"><code>Kernel.proc</code></a>, extra parameters are silently discarded and missing parameters are set to <code>nil</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a_proc</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)   <span class="ruby-comment">#=&gt; [1, nil]</span>
+
+<span class="ruby-identifier">a_proc</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)   <span class="ruby-comment"># ArgumentError: wrong number of arguments (given 1, expected 2)</span>
+</pre>
+
+<p>See also <a href="Proc.html#method-i-lambda-3F"><code>Proc#lambda?</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="call-source">
+            <pre>static VALUE
+proc_call(int argc, VALUE *argv, VALUE procval)
+{
+    /* removed */
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-curry" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            curry         &rarr; a_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            curry(arity)  &rarr; a_proc
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a curried proc. If the optional <em>arity</em> argument is given, it determines the number of arguments. A curried proc receives some arguments. If a sufficient number of arguments are supplied, it passes the supplied arguments to the original proc and returns the result. Otherwise, returns another curried proc that takes the rest of arguments.</p>
+
+<pre class="ruby"><span class="ruby-identifier">b</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">z</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">y</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">z</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>][<span class="ruby-value">2</span>][<span class="ruby-value">3</span>]           <span class="ruby-comment">#=&gt; 6</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>][<span class="ruby-value">3</span>, <span class="ruby-value">4</span>]        <span class="ruby-comment">#=&gt; 6</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">5</span>)[<span class="ruby-value">1</span>][<span class="ruby-value">2</span>][<span class="ruby-value">3</span>][<span class="ruby-value">4</span>][<span class="ruby-value">5</span>]  <span class="ruby-comment">#=&gt; 6</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">5</span>)[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>][<span class="ruby-value">3</span>, <span class="ruby-value">4</span>][<span class="ruby-value">5</span>]  <span class="ruby-comment">#=&gt; 6</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">1</span>)[<span class="ruby-value">1</span>]              <span class="ruby-comment">#=&gt; 1</span>
+
+<span class="ruby-identifier">b</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">z</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">w</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">y</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">z</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:+</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>][<span class="ruby-value">2</span>][<span class="ruby-value">3</span>]           <span class="ruby-comment">#=&gt; 6</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>][<span class="ruby-value">3</span>, <span class="ruby-value">4</span>]        <span class="ruby-comment">#=&gt; 10</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">5</span>)[<span class="ruby-value">1</span>][<span class="ruby-value">2</span>][<span class="ruby-value">3</span>][<span class="ruby-value">4</span>][<span class="ruby-value">5</span>]  <span class="ruby-comment">#=&gt; 15</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">5</span>)[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>][<span class="ruby-value">3</span>, <span class="ruby-value">4</span>][<span class="ruby-value">5</span>]  <span class="ruby-comment">#=&gt; 15</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">1</span>)[<span class="ruby-value">1</span>]              <span class="ruby-comment">#=&gt; 1</span>
+
+<span class="ruby-identifier">b</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">z</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">y</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">z</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>][<span class="ruby-value">2</span>][<span class="ruby-value">3</span>]           <span class="ruby-comment">#=&gt; 6</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>][<span class="ruby-value">3</span>, <span class="ruby-value">4</span>]        <span class="ruby-comment">#=&gt; wrong number of arguments (given 4, expected 3)</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">5</span>)                 <span class="ruby-comment">#=&gt; wrong number of arguments (given 5, expected 3)</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">1</span>)                 <span class="ruby-comment">#=&gt; wrong number of arguments (given 1, expected 3)</span>
+
+<span class="ruby-identifier">b</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">z</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">w</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">y</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">z</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:+</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>][<span class="ruby-value">2</span>][<span class="ruby-value">3</span>]           <span class="ruby-comment">#=&gt; 6</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>][<span class="ruby-value">3</span>, <span class="ruby-value">4</span>]        <span class="ruby-comment">#=&gt; 10</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">5</span>)[<span class="ruby-value">1</span>][<span class="ruby-value">2</span>][<span class="ruby-value">3</span>][<span class="ruby-value">4</span>][<span class="ruby-value">5</span>]  <span class="ruby-comment">#=&gt; 15</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">5</span>)[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>][<span class="ruby-value">3</span>, <span class="ruby-value">4</span>][<span class="ruby-value">5</span>]  <span class="ruby-comment">#=&gt; 15</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>(<span class="ruby-value">1</span>)                 <span class="ruby-comment">#=&gt; wrong number of arguments (given 1, expected 3)</span>
+
+<span class="ruby-identifier">b</span> = <span class="ruby-identifier">proc</span> { <span class="ruby-value">:foo</span> }
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">curry</span>[]                  <span class="ruby-comment">#=&gt; :foo</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="curry-source">
+            <pre>static VALUE
+proc_curry(int argc, const VALUE *argv, VALUE self)
+{
+    int sarity, max_arity, min_arity = rb_proc_min_max_arity(self, &amp;max_arity);
+    VALUE arity;
+
+    if (rb_check_arity(argc, 0, 1) == 0 || NIL_P(arity = argv[0])) {
+        arity = INT2FIX(min_arity);
+    }
+    else {
+        sarity = FIX2INT(arity);
+        if (rb_proc_lambda_p(self)) {
+            rb_check_arity(sarity, min_arity, max_arity);
+        }
+    }
+
+    return make_curry_proc(self, rb_ary_new(), arity);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hash" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hash   &rarr;  integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a hash value corresponding to proc body.</p>
+
+<p>See also <a href="Object.html#method-i-hash"><code>Object#hash</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hash-source">
+            <pre>static VALUE
+proc_hash(VALUE self)
+{
+    st_index_t hash;
+    hash = rb_hash_start(0);
+    hash = rb_hash_proc(hash, self);
+    hash = rb_hash_end(hash);
+    return ST2FIX(hash);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Proc.html#method-i-to_s">to_s</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-lambda-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            lambda? &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if a <a href="Proc.html"><code>Proc</code></a> object is lambda. <code>false</code> if non-lambda.</p>
+
+<p>The lambda-ness affects argument handling and the behavior of <code>return</code> and <code>break</code>.</p>
+
+<p>A <a href="Proc.html"><code>Proc</code></a> object generated by <code>proc</code> ignores extra arguments.</p>
+
+<pre class="ruby"><span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>)    <span class="ruby-comment">#=&gt; [1,2]</span>
+</pre>
+
+<p>It provides <code>nil</code> for missing arguments.</p>
+
+<pre class="ruby"><span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)        <span class="ruby-comment">#=&gt; [1,nil]</span>
+</pre>
+
+<p>It expands a single array argument.</p>
+
+<pre class="ruby"><span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }.<span class="ruby-identifier">call</span>([<span class="ruby-value">1</span>,<span class="ruby-value">2</span>])    <span class="ruby-comment">#=&gt; [1,2]</span>
+</pre>
+
+<p>A <a href="Proc.html"><code>Proc</code></a> object generated by <code>lambda</code> doesn&#39;t have such tricks.</p>
+
+<pre class="ruby"><span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>)  <span class="ruby-comment">#=&gt; ArgumentError</span>
+<span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)      <span class="ruby-comment">#=&gt; ArgumentError</span>
+<span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }.<span class="ruby-identifier">call</span>([<span class="ruby-value">1</span>,<span class="ruby-value">2</span>])  <span class="ruby-comment">#=&gt; ArgumentError</span>
+</pre>
+
+<p><a href="Proc.html#method-i-lambda-3F"><code>Proc#lambda?</code></a> is a predicate for the tricks. It returns <code>true</code> if no tricks apply.</p>
+
+<pre class="ruby"><span class="ruby-identifier">lambda</span> {}.<span class="ruby-identifier">lambda?</span>            <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">proc</span> {}.<span class="ruby-identifier">lambda?</span>              <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p><a href="Proc.html#method-c-new"><code>Proc.new</code></a> is the same as <code>proc</code>.</p>
+
+<pre class="ruby"><span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {}.<span class="ruby-identifier">lambda?</span>          <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p><code>lambda</code>, <code>proc</code> and <a href="Proc.html#method-c-new"><code>Proc.new</code></a> preserve the tricks of a <a href="Proc.html"><code>Proc</code></a> object given by <code>&amp;</code> argument.</p>
+
+<pre class="ruby"><span class="ruby-identifier">lambda</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">lambda</span> {}).<span class="ruby-identifier">lambda?</span>   <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">proc</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">lambda</span> {}).<span class="ruby-identifier">lambda?</span>     <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">lambda</span> {}).<span class="ruby-identifier">lambda?</span> <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-identifier">lambda</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> {}).<span class="ruby-identifier">lambda?</span>     <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">proc</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> {}).<span class="ruby-identifier">lambda?</span>       <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> {}).<span class="ruby-identifier">lambda?</span>   <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>A <a href="Proc.html"><code>Proc</code></a> object generated by <code>&amp;</code> argument has the tricks</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">n</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-identifier">b</span>.<span class="ruby-identifier">lambda?</span> <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">n</span> {}                         <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>The <code>&amp;</code> argument preserves the tricks if a <a href="Proc.html"><code>Proc</code></a> object is given by <code>&amp;</code> argument.</p>
+
+<pre class="ruby"><span class="ruby-identifier">n</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">lambda</span> {})                <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">n</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> {})                  <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">n</span>(<span class="ruby-operator">&amp;</span><span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {})              <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>A <a href="Proc.html"><code>Proc</code></a> object converted from a method has no tricks.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m</span>() <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">method</span>(<span class="ruby-value">:m</span>).<span class="ruby-identifier">to_proc</span>.<span class="ruby-identifier">lambda?</span>   <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-identifier">n</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-value">:m</span>))               <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">n</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-value">:m</span>).<span class="ruby-identifier">to_proc</span>)       <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p><code>define_method</code> is treated the same as method definition. The defined method has no tricks.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:d</span>) {}
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">d</span>(<span class="ruby-value">1</span>,<span class="ruby-value">2</span>)       <span class="ruby-comment">#=&gt; ArgumentError</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:d</span>).<span class="ruby-identifier">to_proc</span>.<span class="ruby-identifier">lambda?</span>   <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p><code>define_method</code> always defines a method without the tricks, even if a non-lambda <a href="Proc.html"><code>Proc</code></a> object is given. This is the only exception for which the tricks are not preserved.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:e</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> {})
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">e</span>(<span class="ruby-value">1</span>,<span class="ruby-value">2</span>)       <span class="ruby-comment">#=&gt; ArgumentError</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:e</span>).<span class="ruby-identifier">to_proc</span>.<span class="ruby-identifier">lambda?</span>   <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>This exception ensures that methods never have tricks and makes it easy to have wrappers to define methods that behave as usual.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">def2</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">body</span>)
+    <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">body</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">def2</span>(<span class="ruby-value">:f</span>) {}
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">f</span>(<span class="ruby-value">1</span>,<span class="ruby-value">2</span>)       <span class="ruby-comment">#=&gt; ArgumentError</span>
+</pre>
+
+<p>The wrapper <em>def2</em> defines a method which has no tricks.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lambda-3F-source">
+            <pre>VALUE
+rb_proc_lambda_p(VALUE procval)
+{
+    rb_proc_t *proc;
+    GetProcPtr(procval, proc);
+
+    return proc-&gt;is_lambda ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parameters" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            parameters  &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the parameter information of this proc.</p>
+
+<pre class="ruby"><span class="ruby-identifier">prc</span> = <span class="ruby-identifier">lambda</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>=<span class="ruby-value">42</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">other</span><span class="ruby-operator">|</span>}
+<span class="ruby-identifier">prc</span>.<span class="ruby-identifier">parameters</span>  <span class="ruby-comment">#=&gt; [[:req, :x], [:opt, :y], [:rest, :other]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="parameters-source">
+            <pre>static VALUE
+rb_proc_parameters(VALUE self)
+{
+    int is_proc;
+    const rb_iseq_t *iseq = rb_proc_get_iseq(self, &amp;is_proc);
+    if (!iseq) {
+        return rb_unnamed_parameters(rb_proc_arity(self));
+    }
+    return rb_iseq_parameters(iseq, is_proc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ruby2_keywords" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ruby2_keywords &rarr; proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Marks the proc as passing keywords through a normal argument splat. This should only be called on procs that accept an argument splat (<code>*args</code>) but not explicit keywords or a keyword splat.  It marks the proc such that if the proc is called with keyword arguments, the final hash argument is marked with a special flag such that if it is the final element of a normal argument splat to another method call, and that method call does not include explicit keywords or a keyword splat, the final element is interpreted as keywords.  In other words, keywords will be passed through the proc to other methods.</p>
+
+<p>This should only be used for procs that delegate keywords to another method, and only for backwards compatibility with Ruby versions before 2.7.</p>
+
+<p>This method will probably be removed at some point, as it exists only for backwards compatibility. As it does not exist in Ruby versions before 2.7, check that the proc responds to this method before calling it. Also, be aware that if this method is removed, the behavior of the proc will change so that it does not pass through keywords.</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">Mod</span>
+  <span class="ruby-identifier">foo</span> = <span class="ruby-operator">-&gt;</span>(<span class="ruby-identifier">meth</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;do_#{meth}&quot;</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">foo</span>.<span class="ruby-identifier">ruby2_keywords</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">foo</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:ruby2_keywords</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ruby2_keywords-source">
+            <pre>static VALUE
+proc_ruby2_keywords(VALUE procval)
+{
+    rb_proc_t *proc;
+    GetProcPtr(procval, proc);
+
+    rb_check_frozen(procval);
+
+    if (proc-&gt;is_from_method) {
+            rb_warn(&quot;Skipping set of ruby2_keywords flag for proc (proc created from method)&quot;);
+            return procval;
+    }
+
+    switch (proc-&gt;block.type) {
+      case block_type_iseq:
+        if (proc-&gt;block.as.captured.code.iseq-&gt;body-&gt;param.flags.has_rest &amp;&amp;
+                !proc-&gt;block.as.captured.code.iseq-&gt;body-&gt;param.flags.has_kw &amp;&amp;
+                !proc-&gt;block.as.captured.code.iseq-&gt;body-&gt;param.flags.has_kwrest) {
+            proc-&gt;block.as.captured.code.iseq-&gt;body-&gt;param.flags.ruby2_keywords = 1;
+        }
+        else {
+            rb_warn(&quot;Skipping set of ruby2_keywords flag for proc (proc accepts keywords or proc does not accept argument splat)&quot;);
+        }
+        break;
+      default:
+        rb_warn(&quot;Skipping set of ruby2_keywords flag for proc (proc not defined in Ruby)&quot;);
+        break;
+    }
+
+    return procval;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source_location" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            source_location  &rarr; [String, Integer]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the Ruby source filename and line number containing this proc or <code>nil</code> if this proc was not defined in Ruby (i.e. native).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="source_location-source">
+            <pre>VALUE
+rb_proc_location(VALUE self)
+{
+    return iseq_location(rb_proc_get_iseq(self, 0));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_proc" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_proc &rarr; proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Part of the protocol for converting objects to <a href="Proc.html"><code>Proc</code></a> objects. Instances of class <a href="Proc.html"><code>Proc</code></a> simply return themselves.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_proc-source">
+            <pre>static VALUE
+proc_to_proc(VALUE self)
+{
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s   &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the unique identifier for this proc, along with an indication of where the proc was defined.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+proc_to_s(VALUE self)
+{
+    const rb_proc_t *proc;
+    GetProcPtr(self, proc);
+    return rb_block_to_s(self, &amp;proc-&gt;block, proc-&gt;is_lambda ? &quot; (lambda)&quot; : NULL);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Proc.html#method-i-inspect">inspect</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-yield" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            yield(params,...)  &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the block, setting the block&#39;s parameters to the values in <em>params</em> using something close to method calling semantics. Returns the value of the last expression evaluated in the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a_proc</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">scalar</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">values</span><span class="ruby-operator">|</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span><span class="ruby-operator">*</span><span class="ruby-identifier">scalar</span> } }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)    <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>[<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]         <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>.(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)        <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">yield</span>(<span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>)   <span class="ruby-comment">#=&gt; [9, 18, 27]</span>
+</pre>
+
+<p>Note that <code>prc.()</code> invokes <code>prc.call()</code> with the parameters given.  It&#39;s syntactic sugar to hide “call”.</p>
+
+<p>For procs created using <a href="Kernel.html#method-i-lambda"><code>lambda</code></a> or <code>-&gt;()</code> an error is generated if the wrong number of parameters are passed to the proc.  For procs created using <a href="Proc.html#method-c-new"><code>Proc.new</code></a> or <a href="Kernel.html#method-i-proc"><code>Kernel.proc</code></a>, extra parameters are silently discarded and missing parameters are set to <code>nil</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a_proc</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)   <span class="ruby-comment">#=&gt; [1, nil]</span>
+
+<span class="ruby-identifier">a_proc</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>] }
+<span class="ruby-identifier">a_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>)   <span class="ruby-comment"># ArgumentError: wrong number of arguments (given 1, expected 2)</span>
+</pre>
+
+<p>See also <a href="Proc.html#method-i-lambda-3F"><code>Proc#lambda?</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="yield-source">
+            <pre>static VALUE
+proc_call(int argc, VALUE *argv, VALUE procval)
+{
+    /* removed */
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

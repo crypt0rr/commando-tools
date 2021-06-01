@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Persistent::Net::HTTP::Persistent - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../../";
+  var index_rel_prefix = "../../../../";
+</script>
+
+<script src="../../../../js/navigation.js" defer></script>
+<script src="../../../../js/search.js" defer></script>
+<script src="../../../../js/search_index.js" defer></script>
+<script src="../../../../js/searcher.js" defer></script>
+<script src="../../../../js/darkfish.js" defer></script>
+
+<link href="../../../../css/fonts.css" rel="stylesheet">
+<link href="../../../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-SSL">SSL</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Proxies">Proxies</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Headers">Headers</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Tuning">Tuning</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Segregation">Segregation</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Idle+Timeout">Idle Timeout</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Read+Timeout">Read Timeout</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Max+Requests">Max Requests</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Open+Timeout">Open Timeout</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Socket+Options">Socket Options</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Non-Idempotent+Requests">Non-Idempotent Requests</a>
+    <li><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Connection+Termination">Connection Termination</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../../../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-detect_idle_timeout">::detect_idle_timeout</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-ca_file-3D">#ca_file=</a>
+    
+    <li ><a href="#method-i-ca_path-3D">#ca_path=</a>
+    
+    <li ><a href="#method-i-can_retry-3F">#can_retry?</a>
+    
+    <li ><a href="#method-i-cert-3D">#cert=</a>
+    
+    <li ><a href="#method-i-cert_store-3D">#cert_store=</a>
+    
+    <li ><a href="#method-i-certificate-3D">#certificate=</a>
+    
+    <li ><a href="#method-i-ciphers-3D">#ciphers=</a>
+    
+    <li ><a href="#method-i-connection_for">#connection_for</a>
+    
+    <li ><a href="#method-i-error_message">#error_message</a>
+    
+    <li ><a href="#method-i-escape">#escape</a>
+    
+    <li ><a href="#method-i-expired-3F">#expired?</a>
+    
+    <li ><a href="#method-i-finish">#finish</a>
+    
+    <li ><a href="#method-i-http_version">#http_version</a>
+    
+    <li ><a href="#method-i-idempotent-3F">#idempotent?</a>
+    
+    <li ><a href="#method-i-key-3D">#key=</a>
+    
+    <li ><a href="#method-i-max_version-3D">#max_version=</a>
+    
+    <li ><a href="#method-i-min_version-3D">#min_version=</a>
+    
+    <li ><a href="#method-i-normalize_uri">#normalize_uri</a>
+    
+    <li ><a href="#method-i-private_key-3D">#private_key=</a>
+    
+    <li ><a href="#method-i-proxy-3D">#proxy=</a>
+    
+    <li ><a href="#method-i-proxy_bypass-3F">#proxy_bypass?</a>
+    
+    <li ><a href="#method-i-proxy_from_env">#proxy_from_env</a>
+    
+    <li ><a href="#method-i-reconnect">#reconnect</a>
+    
+    <li ><a href="#method-i-reconnect_ssl">#reconnect_ssl</a>
+    
+    <li ><a href="#method-i-request">#request</a>
+    
+    <li ><a href="#method-i-reset">#reset</a>
+    
+    <li ><a href="#method-i-shutdown">#shutdown</a>
+    
+    <li ><a href="#method-i-ssl">#ssl</a>
+    
+    <li ><a href="#method-i-ssl_timeout-3D">#ssl_timeout=</a>
+    
+    <li ><a href="#method-i-ssl_version-3D">#ssl_version=</a>
+    
+    <li ><a href="#method-i-start">#start</a>
+    
+    <li ><a href="#method-i-unescape">#unescape</a>
+    
+    <li ><a href="#method-i-verify_callback-3D">#verify_callback=</a>
+    
+    <li ><a href="#method-i-verify_depth-3D">#verify_depth=</a>
+    
+    <li ><a href="#method-i-verify_mode-3D">#verify_mode=</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Persistent::Net::HTTP::Persistent">
+  <h1 id="class-Bundler::Persistent::Net::HTTP::Persistent" class="class">
+    class Bundler::Persistent::Net::HTTP::Persistent
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Persistent.html"><code>Persistent</code></a> connections for <a href="../../../../Net/HTTP.html"><code>Net::HTTP</code></a></p>
+
+<p><a href="Persistent.html"><code>Bundler::Persistent::Net::HTTP::Persistent</code></a> maintains persistent connections across all the servers you wish to talk to.  For each host:port you communicate with a single persistent connection is created.</p>
+
+<p>Multiple <a href="Persistent.html"><code>Bundler::Persistent::Net::HTTP::Persistent</code></a> objects will share the same set of connections.</p>
+
+<p>For each thread you start a new connection will be created.  A <a href="Persistent.html"><code>Bundler::Persistent::Net::HTTP::Persistent</code></a> connection will not be shared across threads.</p>
+
+<p>You can shut down the HTTP connections when done by calling <a href="Persistent.html#method-i-shutdown"><code>shutdown</code></a>.  You should name your <a href="Persistent.html"><code>Bundler::Persistent::Net::HTTP::Persistent</code></a> object if you intend to call this method.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;bundler/vendor/net-http-persistent/lib/net/http/persistent&#39;</span>
+
+<span class="ruby-identifier">uri</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span> <span class="ruby-string">&#39;http://example.com/awesome/web/service&#39;</span>
+
+<span class="ruby-identifier">http</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">name:</span> <span class="ruby-string">&#39;my_app_name&#39;</span>
+
+<span class="ruby-comment"># perform a GET</span>
+<span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">uri</span>
+
+<span class="ruby-comment"># or</span>
+
+<span class="ruby-identifier">get</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Get</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
+<span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">get</span>
+
+<span class="ruby-comment"># create a POST</span>
+<span class="ruby-identifier">post_uri</span> = <span class="ruby-identifier">uri</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;create&#39;</span>
+<span class="ruby-identifier">post</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Post</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">post_uri</span>.<span class="ruby-identifier">path</span>
+<span class="ruby-identifier">post</span>.<span class="ruby-identifier">set_form_data</span> <span class="ruby-string">&#39;some&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;cool data&#39;</span>
+
+<span class="ruby-comment"># perform the POST, the Bundler::URI is always required</span>
+<span class="ruby-identifier">response</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">post_uri</span>, <span class="ruby-identifier">post</span>
+</pre>
+
+<p>Note that for GET, HEAD and other requests that do not have a body you want to use Bundler::URI#request_uri not Bundler::URI#path.  The request_uri contains the query params which are sent in the body for other requests.</p>
+
+<h2 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-SSL">SSL<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-SSL">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>SSL connections are automatically created depending upon the scheme of the <a href="../../../URI.html"><code>Bundler::URI</code></a>.  SSL connections are automatically verified against the default certificate store for your computer.  You can override this by changing <a href="Persistent.html#attribute-i-verify_mode"><code>verify_mode</code></a> or by specifying an alternate cert_store.</p>
+
+<p>Here are the SSL settings, see the individual methods for documentation:</p>
+<dl class="rdoc-list note-list"><dt><a href="Persistent.html#attribute-i-certificate"><code>certificate</code></a>        
+<dd>
+<p>This client&#39;s certificate</p>
+</dd><dt><a href="Persistent.html#attribute-i-ca_file"><code>ca_file</code></a>            
+<dd>
+<p>The certificate-authorities</p>
+</dd><dt><a href="Persistent.html#attribute-i-ca_path"><code>ca_path</code></a>            
+<dd>
+<p>Directory with certificate-authorities</p>
+</dd><dt><a href="Persistent.html#attribute-i-cert_store"><code>cert_store</code></a>         
+<dd>
+<p>An SSL certificate store</p>
+</dd><dt><a href="Persistent.html#attribute-i-ciphers"><code>ciphers</code></a>            
+<dd>
+<p>List of SSl ciphers allowed</p>
+</dd><dt><a href="Persistent.html#attribute-i-private_key"><code>private_key</code></a>        
+<dd>
+<p>The client&#39;s SSL private key</p>
+</dd><dt><a href="Persistent.html#attribute-i-reuse_ssl_sessions"><code>reuse_ssl_sessions</code></a> 
+<dd>
+<p>Reuse a previously opened SSL session for a new connection</p>
+</dd><dt><a href="Persistent.html#attribute-i-ssl_timeout"><code>ssl_timeout</code></a>        
+<dd>
+<p>SSL session lifetime</p>
+</dd><dt><a href="Persistent.html#attribute-i-ssl_version"><code>ssl_version</code></a>        
+<dd>
+<p>Which specific SSL version to use</p>
+</dd><dt><a href="Persistent.html#attribute-i-verify_callback"><code>verify_callback</code></a>    
+<dd>
+<p>For server certificate verification</p>
+</dd><dt><a href="Persistent.html#attribute-i-verify_depth"><code>verify_depth</code></a>       
+<dd>
+<p>Depth of certificate verification</p>
+</dd><dt><a href="Persistent.html#attribute-i-verify_mode"><code>verify_mode</code></a>        
+<dd>
+<p>How connections should be verified</p>
+</dd></dl>
+
+<h2 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Proxies">Proxies<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Proxies">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A proxy can be set through <a href="Persistent.html#method-i-proxy-3D"><code>proxy=</code></a> or at initialization time by providing a second argument to <a href="Persistent.html#method-c-new"><code>::new</code></a>.  The proxy may be the <a href="../../../URI.html"><code>Bundler::URI</code></a> of the proxy server or <code>:ENV</code> which will consult environment variables.</p>
+
+<p>See <a href="Persistent.html#method-i-proxy-3D"><code>proxy=</code></a> and <a href="Persistent.html#method-i-proxy_from_env"><code>proxy_from_env</code></a> for details.</p>
+
+<h2 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Headers">Headers<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Headers">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Headers may be specified for use in every request.  <a href="Persistent.html#attribute-i-headers"><code>headers</code></a> are appended to any headers on the request.  <a href="Persistent.html#attribute-i-override_headers"><code>override_headers</code></a> replace existing headers on the request.</p>
+
+<p>The difference between the two can be seen in setting the User-Agent.  Using <code>http.headers['User-Agent'] = &#39;MyUserAgent&#39;</code> will send “Ruby, MyUserAgent” while <code>http.override_headers['User-Agent'] = &#39;MyUserAgent&#39;</code> will send “MyUserAgent”.</p>
+
+<h2 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Tuning">Tuning<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Tuning">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Segregation">Segregation<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Segregation">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>By providing an application name to <a href="Persistent.html#method-c-new"><code>::new</code></a> you can separate your connections from the connections of other applications.</p>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Idle+Timeout">Idle <a href="../../../../Timeout.html"><code>Timeout</code></a><span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Idle+Timeout">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>If a connection hasn&#39;t been used for this number of seconds it will automatically be reset upon the next use to avoid attempting to send to a closed connection. The default value is 5 seconds. nil means no timeout. <a href="../../../../Set.html"><code>Set</code></a> through <a href="Persistent.html#attribute-i-idle_timeout"><code>idle_timeout</code></a>.</p>
+
+<p>Reducing this value may help avoid the “too many connection resets” error when sending non-idempotent requests while increasing this value will cause fewer round-trips.</p>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Read+Timeout">Read <a href="../../../../Timeout.html"><code>Timeout</code></a><span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Read+Timeout">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The amount of time allowed between reading two chunks from the socket.  <a href="../../../../Set.html"><code>Set</code></a> through <a href="Persistent.html#attribute-i-read_timeout"><code>read_timeout</code></a></p>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Max+Requests">Max Requests<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Max+Requests">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The number of requests that should be made before opening a new connection. Typically many keep-alive capable servers tune this to 100 or less, so the 101st request will fail with ECONNRESET. If unset (default), this value has no effect, if set, connections will be reset on the request after max_requests.</p>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Open+Timeout">Open <a href="../../../../Timeout.html"><code>Timeout</code></a><span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Open+Timeout">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The amount of time to wait for a connection to be opened.  <a href="../../../../Set.html"><code>Set</code></a> through <a href="Persistent.html#attribute-i-open_timeout"><code>open_timeout</code></a>.</p>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Socket+Options"><a href="../../../../Socket.html"><code>Socket</code></a> Options<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Socket+Options">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="../../../../Socket.html"><code>Socket</code></a> options may be set on newly-created connections.  See <a href="Persistent.html#attribute-i-socket_options"><code>socket_options</code></a> for details.</p>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Non-Idempotent+Requests">Non-Idempotent Requests<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Non-Idempotent+Requests">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>By default non-idempotent requests will not be retried per RFC 2616.  By setting <a href="Persistent.html#attribute-i-retry_change_requests"><code>retry_change_requests</code></a> to true requests will automatically be retried once.</p>
+
+<p>Only do this when you know that retrying a POST or other non-idempotent request is safe for your application and will not create duplicate resources.</p>
+
+<p>The recommended way to handle non-idempotent requests is the following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;bundler/vendor/net-http-persistent/lib/net/http/persistent&#39;</span>
+
+<span class="ruby-identifier">uri</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span> <span class="ruby-string">&#39;http://example.com/awesome/web/service&#39;</span>
+<span class="ruby-identifier">post_uri</span> = <span class="ruby-identifier">uri</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;create&#39;</span>
+
+<span class="ruby-identifier">http</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">name:</span> <span class="ruby-string">&#39;my_app_name&#39;</span>
+
+<span class="ruby-identifier">post</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Post</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">post_uri</span>.<span class="ruby-identifier">path</span>
+<span class="ruby-comment"># ... fill in POST request</span>
+
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">post_uri</span>, <span class="ruby-identifier">post</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
+
+  <span class="ruby-comment"># POST failed, make a new request to verify the server did not process</span>
+  <span class="ruby-comment"># the request</span>
+  <span class="ruby-identifier">exists_uri</span> = <span class="ruby-identifier">uri</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;...&#39;</span>
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">get</span> <span class="ruby-identifier">exists_uri</span>
+
+  <span class="ruby-comment"># Retry if it failed</span>
+  <span class="ruby-keyword">retry</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;404&#39;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The method of determining if the resource was created or not is unique to the particular service you are using.  Of course, you will want to add protection from infinite looping.</p>
+
+<h3 id="class-Bundler::Persistent::Net::HTTP::Persistent-label-Connection+Termination">Connection Termination<span><a href="#class-Bundler::Persistent::Net::HTTP::Persistent-label-Connection+Termination">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>If you are done using the <a href="Persistent.html"><code>Bundler::Persistent::Net::HTTP::Persistent</code></a> instance you may shut down all the connections in the current thread with <a href="Persistent.html#method-i-shutdown"><code>shutdown</code></a>.  This is not recommended for normal use, it should only be used when it will be several minutes before you make another HTTP request.</p>
+
+<p>If you are using multiple threads, call <a href="Persistent.html#method-i-shutdown"><code>shutdown</code></a> in each thread when the thread is done making requests.  If you don&#39;t call shutdown, that&#39;s OK. Ruby will automatically garbage collect and shutdown your HTTP connections when the thread terminates.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DEFAULT_POOL_SIZE">DEFAULT_POOL_SIZE
+        
+        <dd>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd><p>The version of <a href="Persistent.html"><code>Bundler::Persistent::Net::HTTP::Persistent</code></a> you are using</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-ca_file" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ca_file</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>An SSL certificate authority.  Setting this will set <a href="Persistent.html#attribute-i-verify_mode"><code>verify_mode</code></a> to VERIFY_PEER.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ca_path" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ca_path</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>A directory of SSL certificates to be used as certificate authorities. Setting this will set <a href="Persistent.html#attribute-i-verify_mode"><code>verify_mode</code></a> to VERIFY_PEER.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-cert" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cert</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>This client&#39;s <a href="../../../../OpenSSL/X509/Certificate.html"><code>OpenSSL::X509::Certificate</code></a></p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-cert_store" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cert_store</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>An SSL certificate store.  Setting this will override the default certificate store.  See <a href="Persistent.html#attribute-i-verify_mode"><code>verify_mode</code></a> for more information.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-certificate" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">certificate</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>This client&#39;s <a href="../../../../OpenSSL/X509/Certificate.html"><code>OpenSSL::X509::Certificate</code></a></p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ciphers" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ciphers</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The ciphers allowed for SSL connections</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-debug_output" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">debug_output</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Sends <a href="Persistent.html#attribute-i-debug_output"><code>debug_output</code></a> to this <a href="../../../../IO.html"><code>IO</code></a> via <a href="../../../../Net/HTTP.html#method-i-set_debug_output"><code>Net::HTTP#set_debug_output</code></a>.</p>
+
+<p>Never use this method in production code, it causes a serious security hole.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-headers" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">headers</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Headers that are added to every request using Net::HTTP#add_field</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-http_versions" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">http_versions</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Maps host:port to an HTTP version.  This allows us to enable version specific features.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-idle_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">idle_timeout</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Maximum time an unused connection can remain idle before being automatically closed.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-keep_alive" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">keep_alive</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The value sent in the Keep-Alive header.  Defaults to 30.  Not needed for HTTP/1.1 servers.</p>
+
+<p>This may not work correctly for HTTP/1.0 servers</p>
+
+<p>This method may be removed in a future version as RFC 2616 does not require this header.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-key" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">key</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>This client&#39;s SSL private key</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-max_requests" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">max_requests</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Maximum number of requests on a connection before it is considered expired and automatically closed.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-max_version" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">max_version</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Maximum SSL version to use, e.g. :TLS1_2</p>
+
+<p>By default, the version will be negotiated automatically between client and server.  Ruby 2.5 and newer only.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-min_version" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">min_version</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Minimum SSL version to use, e.g. :TLS1_1</p>
+
+<p>By default, the version will be negotiated automatically between client and server.  Ruby 2.5 and newer only.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">name</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>A name for this connection.  Allows you to keep your connections apart from everybody else&#39;s.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-no_proxy" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">no_proxy</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>List of host suffixes which will not be proxied</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-open_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">open_timeout</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Seconds to wait until a connection is opened.  See <a href="../../../../Net/HTTP.html#attribute-i-open_timeout"><code>Net::HTTP#open_timeout</code></a></p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-override_headers" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">override_headers</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Headers that are added to every request using Net::HTTP#[]=</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-private_key" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">private_key</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>This client&#39;s SSL private key</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-proxy_uri" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">proxy_uri</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The URL through which requests will be proxied</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-read_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">read_timeout</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Seconds to wait until reading one block.  See <a href="../../../../Net/HTTP.html#attribute-i-read_timeout"><code>Net::HTTP#read_timeout</code></a></p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-retry_change_requests" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">retry_change_requests</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Enable retries of non-idempotent requests that change data (e.g. POST requests) when the server has disconnected.</p>
+
+<p>This will in the worst case lead to multiple requests with the same data, but it may be useful for some applications.  Take care when enabling this option to ensure it is safe to POST or perform other non-idempotent requests to the server.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-reuse_ssl_sessions" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">reuse_ssl_sessions</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>By default SSL sessions are reused to avoid extra SSL handshakes.  <a href="../../../../Set.html"><code>Set</code></a> this to false if you have problems communicating with an HTTPS server like:</p>
+
+<pre>SSL_connect [...] read finished A: unexpected message (OpenSSL::SSL::SSLError)</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-socket_options" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">socket_options</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>An array of options for <a href="../../../../BasicSocket.html#method-i-setsockopt"><code>Socket#setsockopt</code></a>.</p>
+
+<p>By default the TCP_NODELAY option is set on sockets.</p>
+
+<p>To set additional options append them to this array:</p>
+
+<pre class="ruby"><span class="ruby-identifier">http</span>.<span class="ruby-identifier">socket_options</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SOL_SOCKET</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SO_KEEPALIVE</span>, <span class="ruby-value">1</span>]
+</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ssl_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ssl_timeout</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>SSL session lifetime</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ssl_version" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ssl_version</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>SSL version to use.</p>
+
+<p>By default, the version will be negotiated automatically between client and server.  Ruby 1.9 and newer only. Deprecated since Ruby 2.5.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-verify_callback" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verify_callback</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>SSL verification callback.  Used when <a href="Persistent.html#attribute-i-ca_file"><code>ca_file</code></a> or <a href="Persistent.html#attribute-i-ca_path"><code>ca_path</code></a> is set.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-verify_depth" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verify_depth</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Sets the depth of SSL certificate verification</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-verify_mode" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verify_mode</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>HTTPS verify mode.  Defaults to OpenSSL::SSL::VERIFY_PEER which verifies the server certificate.</p>
+
+<p>If no <a href="Persistent.html#attribute-i-ca_file"><code>ca_file</code></a>, <a href="Persistent.html#attribute-i-ca_path"><code>ca_path</code></a> or <a href="Persistent.html#attribute-i-cert_store"><code>cert_store</code></a> is set the default system certificate store is used.</p>
+
+<p>You can use <code>verify_mode</code> to override any default values.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-write_timeout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">write_timeout</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Seconds to wait until writing one block.  See <a href="../../../../Net/HTTP.html#attribute-i-write_timeout"><code>Net::HTTP#write_timeout</code></a></p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-detect_idle_timeout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">detect_idle_timeout</span><span
+            class="method-args">(uri, max = 10)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Use this method to detect the idle timeout of the host at <code>uri</code>.  The value returned can be used to configure <a href="Persistent.html#attribute-i-idle_timeout"><code>idle_timeout</code></a>.  <code>max</code> controls the maximum idle timeout to detect.</p>
+
+<p>After</p>
+
+<p>Idle timeout detection is performed by creating a connection then performing a HEAD request in a loop until the connection terminates waiting one additional second per loop.</p>
+
+<p>NOTE:  This may not work on ruby &gt; 1.9.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="detect_idle_timeout-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">detect_idle_timeout</span> <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">max</span> = <span class="ruby-value">10</span>
+  <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span> <span class="ruby-identifier">uri</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">Generic</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">uri</span>
+  <span class="ruby-identifier">uri</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&#39;/&#39;</span>
+
+  <span class="ruby-identifier">req</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Head</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
+
+  <span class="ruby-identifier">http</span> = <span class="ruby-identifier">new</span> <span class="ruby-string">&#39;net-http-persistent detect_idle_timeout&#39;</span>
+
+  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">connection_for</span> <span class="ruby-identifier">uri</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">connection</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">sleep_time</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-identifier">http</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">http</span>
+
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">req</span>
+
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;HEAD #{uri} =&gt; #{response.code}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$DEBUG</span>
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPOK</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">response</span> <span class="ruby-keyword">then</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;bad response code #{response.code} detecting idle timeout&quot;</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sleep_time</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">max</span>
+
+      <span class="ruby-identifier">sleep_time</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;sleeping #{sleep_time}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$DEBUG</span>
+      <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">sleep_time</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-comment"># ignore StandardErrors, we&#39;ve probably found the idle timeout.</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">sleep_time</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">$!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(name: nil, proxy: nil, pool_size: DEFAULT_POOL_SIZE)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Persistent.html"><code>Bundler::Persistent::Net::HTTP::Persistent</code></a>.</p>
+
+<p><a href="../../../../Set.html"><code>Set</code></a> <code>name</code> to keep your connections apart from everybody else&#39;s.  Not required currently, but highly recommended.  Your library name should be good enough.  This parameter will be required in a future version.</p>
+
+<p><code>proxy</code> may be set to a <a href="../../../URI/HTTP.html"><code>Bundler::URI::HTTP</code></a> or :ENV to pick up proxy options from the environment.  See <a href="Persistent.html#method-i-proxy_from_env"><code>proxy_from_env</code></a> for details.</p>
+
+<p>In order to use a <a href="../../../URI.html"><code>Bundler::URI</code></a> for the proxy you may need to do some extra work beyond <a href="../../../URI.html"><code>Bundler::URI</code></a> parsing if the proxy requires a password:</p>
+
+<pre class="ruby"><span class="ruby-identifier">proxy</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span> <span class="ruby-string">&#39;http://proxy.example&#39;</span>
+<span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">user</span>     = <span class="ruby-string">&#39;AzureDiamond&#39;</span>
+<span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">password</span> = <span class="ruby-string">&#39;hunter2&#39;</span>
+</pre>
+
+<p><a href="../../../../Set.html"><code>Set</code></a> <code>pool_size</code> to limit the maximum number of connections allowed. Defaults to 1/4 the number of allowed file handles.  You can have no more than this many threads with active HTTP transactions.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 525</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-value">name:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">proxy:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">pool_size:</span> <span class="ruby-constant">DEFAULT_POOL_SIZE</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+
+  <span class="ruby-ivar">@debug_output</span>     = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@proxy_uri</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@no_proxy</span>         = []
+  <span class="ruby-ivar">@headers</span>          = {}
+  <span class="ruby-ivar">@override_headers</span> = {}
+  <span class="ruby-ivar">@http_versions</span>    = {}
+  <span class="ruby-ivar">@keep_alive</span>       = <span class="ruby-value">30</span>
+  <span class="ruby-ivar">@open_timeout</span>     = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@read_timeout</span>     = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@write_timeout</span>    = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@idle_timeout</span>     = <span class="ruby-value">5</span>
+  <span class="ruby-ivar">@max_requests</span>     = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@socket_options</span>   = []
+  <span class="ruby-ivar">@ssl_generation</span>   = <span class="ruby-value">0</span> <span class="ruby-comment"># incremented when SSL session variables change</span>
+
+  <span class="ruby-ivar">@socket_options</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">IPPROTO_TCP</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">TCP_NODELAY</span>, <span class="ruby-value">1</span>] <span class="ruby-keyword">if</span>
+    <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-value">:TCP_NODELAY</span>
+
+  <span class="ruby-ivar">@pool</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Pool</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">size:</span> <span class="ruby-identifier">pool_size</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">http_args</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Persistent</span><span class="ruby-operator">::</span><span class="ruby-constant">Connection</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>, <span class="ruby-identifier">http_args</span>, <span class="ruby-ivar">@ssl_generation</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@certificate</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@ca_file</span>            = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@ca_path</span>            = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@ciphers</span>            = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@private_key</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@ssl_timeout</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@ssl_version</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@min_version</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@max_version</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@verify_callback</span>    = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@verify_depth</span>       = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@verify_mode</span>        = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@cert_store</span>         = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-ivar">@generation</span>         = <span class="ruby-value">0</span> <span class="ruby-comment"># incremented when proxy Bundler::URI changes</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">HAVE_OPENSSL</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@verify_mode</span>        = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">VERIFY_PEER</span>
+    <span class="ruby-ivar">@reuse_ssl_sessions</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-value">:Session</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@retry_change_requests</span> = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">proxy</span> = <span class="ruby-identifier">proxy</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">proxy</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-ca_file-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ca_file=</span><span
+            class="method-args">(file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the SSL certificate authority file.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ca_file-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 591</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ca_file=</span> <span class="ruby-identifier">file</span>
+  <span class="ruby-ivar">@ca_file</span> = <span class="ruby-identifier">file</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ca_path-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ca_path=</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the SSL certificate authority path.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ca_path-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 600</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ca_path=</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-ivar">@ca_path</span> = <span class="ruby-identifier">path</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-can_retry-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">can_retry?</span><span
+            class="method-args">(req)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Is the request <code>req</code> idempotent or is <a href="Persistent.html#attribute-i-retry_change_requests"><code>retry_change_requests</code></a> allowed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="can_retry-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 760</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">can_retry?</span> <span class="ruby-identifier">req</span>
+  <span class="ruby-ivar">@retry_change_requests</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">idempotent?</span>(<span class="ruby-identifier">req</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cert-3D" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">cert=</span><span
+            class="method-args">(certificate)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>For <a href="../../../../Net/HTTP.html"><code>Net::HTTP</code></a> parity</p>
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Persistent.html#method-i-certificate-3D">certificate=</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-cert_store-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cert_store=</span><span
+            class="method-args">(store)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Overrides the default SSL certificate store used for verifying connections.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="cert_store-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 610</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cert_store=</span> <span class="ruby-identifier">store</span>
+  <span class="ruby-ivar">@cert_store</span> = <span class="ruby-identifier">store</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-certificate-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">certificate=</span><span
+            class="method-args">(certificate)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets this client&#39;s <a href="../../../../OpenSSL/X509/Certificate.html"><code>OpenSSL::X509::Certificate</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="certificate-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 579</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">certificate=</span> <span class="ruby-identifier">certificate</span>
+  <span class="ruby-ivar">@certificate</span> = <span class="ruby-identifier">certificate</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Persistent.html#method-i-cert-3D">cert=</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ciphers-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ciphers=</span><span
+            class="method-args">(ciphers)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The ciphers allowed for SSL connections</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ciphers-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 619</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ciphers=</span> <span class="ruby-identifier">ciphers</span>
+  <span class="ruby-ivar">@ciphers</span> = <span class="ruby-identifier">ciphers</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-connection_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">connection_for</span><span
+            class="method-args">(uri) { |connection| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new connection for <code>uri</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="connection_for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 628</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">connection_for</span> <span class="ruby-identifier">uri</span>
+  <span class="ruby-identifier">use_ssl</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;https&#39;</span>
+
+  <span class="ruby-identifier">net_http_args</span> = [<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">hostname</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@proxy_uri</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">proxy_bypass?</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">hostname</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">net_http_args</span>.<span class="ruby-identifier">concat</span> <span class="ruby-ivar">@proxy_args</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">net_http_args</span>.<span class="ruby-identifier">concat</span> [<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">connection</span> = <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">checkout</span> <span class="ruby-identifier">net_http_args</span>
+
+  <span class="ruby-identifier">http</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">http</span>
+
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">ressl</span> <span class="ruby-ivar">@ssl_generation</span> <span class="ruby-keyword">if</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">ssl_generation</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@ssl_generation</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">started?</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">ssl</span>   <span class="ruby-identifier">http</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">use_ssl</span>
+    <span class="ruby-identifier">start</span> <span class="ruby-identifier">http</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">expired?</span> <span class="ruby-identifier">connection</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">reset</span> <span class="ruby-identifier">connection</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">read_timeout</span> = <span class="ruby-ivar">@read_timeout</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@read_timeout</span>
+  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">write_timeout</span> = <span class="ruby-ivar">@write_timeout</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@write_timeout</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:write_timeout=</span>)
+  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">keep_alive_timeout</span> = <span class="ruby-ivar">@idle_timeout</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@idle_timeout</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">connection</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ECONNREFUSED</span>
+  <span class="ruby-identifier">address</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">proxy_address</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">address</span>
+  <span class="ruby-identifier">port</span>    = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">proxy_port</span>    <span class="ruby-operator">||</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">port</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;connection refused: #{address}:#{port}&quot;</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EHOSTDOWN</span>
+  <span class="ruby-identifier">address</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">proxy_address</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">address</span>
+  <span class="ruby-identifier">port</span>    = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">proxy_port</span>    <span class="ruby-operator">||</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">port</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;host down: #{address}:#{port}&quot;</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">checkin</span> <span class="ruby-identifier">net_http_args</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-error_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">error_message</span><span
+            class="method-args">(connection)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an error message containing the number of requests performed on this connection</p>
+          
+          
+
+          
+          <div class="method-source-code" id="error_message-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 676</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">error_message</span> <span class="ruby-identifier">connection</span>
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">requests</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span> <span class="ruby-comment"># fixup</span>
+
+  <span class="ruby-identifier">age</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">last_use</span>
+
+  <span class="ruby-node">&quot;after #{connection.requests} requests on #{connection.http.object_id}, &quot;</span> \
+    <span class="ruby-node">&quot;last used #{age} seconds ago&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-escape" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">escape</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Bundler::URI::escape wrapper</p>
+          
+          
+
+          
+          <div class="method-source-code" id="escape-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 688</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">escape</span> <span class="ruby-identifier">str</span>
+  <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-expired-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">expired?</span><span
+            class="method-args">(connection)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the connection should be reset due to an idle timeout, or maximum request count, false otherwise.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="expired-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 704</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">expired?</span> <span class="ruby-identifier">connection</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>  <span class="ruby-keyword">if</span>     <span class="ruby-ivar">@max_requests</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">requests</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@max_requests</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@idle_timeout</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>  <span class="ruby-keyword">if</span>     <span class="ruby-ivar">@idle_timeout</span>.<span class="ruby-identifier">zero?</span>
+
+  <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">last_use</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@idle_timeout</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finish" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finish</span><span
+            class="method-args">(connection)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finishes the <a href="../../../../Net/HTTP.html"><code>Net::HTTP</code></a> <code>connection</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="finish-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 733</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">finish</span> <span class="ruby-identifier">connection</span>
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">finish</span>
+
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">http</span>.<span class="ruby-identifier">instance_variable_set</span> <span class="ruby-value">:@ssl_session</span>, <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span>
+    <span class="ruby-ivar">@reuse_ssl_sessions</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-http_version" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">http_version</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the HTTP protocol version for <code>uri</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="http_version-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 743</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">http_version</span> <span class="ruby-identifier">uri</span>
+  <span class="ruby-ivar">@http_versions</span>[<span class="ruby-node">&quot;#{uri.host}:#{uri.port}&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-idempotent-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">idempotent?</span><span
+            class="method-args">(req)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Is <code>req</code> idempotent according to RFC 2616?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="idempotent-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 750</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">idempotent?</span> <span class="ruby-identifier">req</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">method</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;DELETE&#39;</span>, <span class="ruby-string">&#39;GET&#39;</span>, <span class="ruby-string">&#39;HEAD&#39;</span>, <span class="ruby-string">&#39;OPTIONS&#39;</span>, <span class="ruby-string">&#39;PUT&#39;</span>, <span class="ruby-string">&#39;TRACE&#39;</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-key-3D" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">key=</span><span
+            class="method-args">(key)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>For <a href="../../../../Net/HTTP.html"><code>Net::HTTP</code></a> parity</p>
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Persistent.html#method-i-private_key-3D">private_key=</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-max_version-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">max_version=</span><span
+            class="method-args">(max_version)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>maximum SSL version to use</p>
+          
+          
+
+          
+          <div class="method-source-code" id="max_version-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">max_version=</span> <span class="ruby-identifier">max_version</span>
+  <span class="ruby-ivar">@max_version</span> = <span class="ruby-identifier">max_version</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-min_version-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">min_version=</span><span
+            class="method-args">(min_version)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Minimum SSL version to use</p>
+          
+          
+
+          
+          <div class="method-source-code" id="min_version-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">min_version=</span> <span class="ruby-identifier">min_version</span>
+  <span class="ruby-ivar">@min_version</span> = <span class="ruby-identifier">min_version</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-normalize_uri" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">normalize_uri</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds “http://” to the <a href="../../../../String.html"><code>String</code></a> <code>uri</code> if it is missing.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="normalize_uri-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 767</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">normalize_uri</span> <span class="ruby-identifier">uri</span>
+  (<span class="ruby-identifier">uri</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^https?:/</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">uri</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;http://#{uri}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-private_key-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">private_key=</span><span
+            class="method-args">(key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets this client&#39;s SSL private key</p>
+          
+          
+
+          
+          <div class="method-source-code" id="private_key-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 774</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">private_key=</span> <span class="ruby-identifier">key</span>
+  <span class="ruby-ivar">@private_key</span> = <span class="ruby-identifier">key</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Persistent.html#method-i-key-3D">key=</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-proxy-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy=</span><span
+            class="method-args">(proxy)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the proxy server.  The <code>proxy</code> may be the <a href="../../../URI.html"><code>Bundler::URI</code></a> of the proxy server, the symbol <code>:ENV</code> which will read the proxy from the environment or nil to disable use of a proxy.  See <a href="Persistent.html#method-i-proxy_from_env"><code>proxy_from_env</code></a> for details on setting the proxy from the environment.</p>
+
+<p>If the proxy <a href="../../../URI.html"><code>Bundler::URI</code></a> is set after requests have been made, the next request will shut-down and re-open all connections.</p>
+
+<p>The <code>no_proxy</code> query parameter can be used to specify hosts which shouldn&#39;t be reached via proxy; if set it should be a comma separated list of hostname suffixes, optionally with <code>:port</code> appended, for example <code>example.com,some.host:8080</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="proxy-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 797</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">proxy=</span> <span class="ruby-identifier">proxy</span>
+  <span class="ruby-ivar">@proxy_uri</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">proxy</span>
+               <span class="ruby-keyword">when</span> <span class="ruby-value">:ENV</span>      <span class="ruby-keyword">then</span> <span class="ruby-identifier">proxy_from_env</span>
+               <span class="ruby-keyword">when</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">proxy</span>
+               <span class="ruby-keyword">when</span> <span class="ruby-keyword">nil</span>       <span class="ruby-keyword">then</span> <span class="ruby-comment"># ignore</span>
+               <span class="ruby-keyword">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;proxy must be :ENV or a Bundler::URI::HTTP&#39;</span>
+               <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@no_proxy</span>.<span class="ruby-identifier">clear</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@proxy_uri</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@proxy_args</span> = [
+      <span class="ruby-ivar">@proxy_uri</span>.<span class="ruby-identifier">host</span>,
+      <span class="ruby-ivar">@proxy_uri</span>.<span class="ruby-identifier">port</span>,
+      <span class="ruby-identifier">unescape</span>(<span class="ruby-ivar">@proxy_uri</span>.<span class="ruby-identifier">user</span>),
+      <span class="ruby-identifier">unescape</span>(<span class="ruby-ivar">@proxy_uri</span>.<span class="ruby-identifier">password</span>),
+    ]
+
+    <span class="ruby-ivar">@proxy_connection_id</span> = [<span class="ruby-keyword">nil</span>, <span class="ruby-operator">*</span><span class="ruby-ivar">@proxy_args</span>].<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;:&#39;</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@proxy_uri</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-ivar">@no_proxy</span> = <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-ivar">@proxy_uri</span>.<span class="ruby-identifier">query</span>)[<span class="ruby-string">&#39;no_proxy&#39;</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">strip</span> }.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">empty?</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">reconnect</span>
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-proxy_bypass-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy_bypass?</span><span
+            class="method-args">(host, port)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true when proxy should by bypassed for host.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="proxy_bypass-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 871</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">proxy_bypass?</span> <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>
+  <span class="ruby-identifier">host</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-identifier">host_port</span> = [<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>].<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;:&#39;</span>
+
+  <span class="ruby-ivar">@no_proxy</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>[<span class="ruby-operator">-</span><span class="ruby-identifier">name</span>.<span class="ruby-identifier">length</span>, <span class="ruby-identifier">name</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">name</span> <span class="ruby-keyword">or</span>
+       <span class="ruby-identifier">host_port</span>[<span class="ruby-operator">-</span><span class="ruby-identifier">name</span>.<span class="ruby-identifier">length</span>, <span class="ruby-identifier">name</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-proxy_from_env" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy_from_env</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a <a href="../../../URI.html"><code>Bundler::URI</code></a> for an HTTP proxy server from <a href="../../../../ENV.html"><code>ENV</code></a> variables.</p>
+
+<p>If <code>HTTP_PROXY</code> is set a proxy will be returned.</p>
+
+<p>If <code>HTTP_PROXY_USER</code> or <code>HTTP_PROXY_PASS</code> are set the <a href="../../../URI.html"><code>Bundler::URI</code></a> is given the indicated user and password unless HTTP_PROXY contains either of these in the <a href="../../../URI.html"><code>Bundler::URI</code></a>.</p>
+
+<p>The <code>NO_PROXY</code> <a href="../../../../ENV.html"><code>ENV</code></a> variable can be used to specify hosts which shouldn&#39;t be reached via proxy; if set it should be a comma separated list of hostname suffixes, optionally with <code>:port</code> appended, for example <code>example.com,some.host:8080</code>. When set to <code>*</code> no proxy will be returned.</p>
+
+<p>For Windows users, lowercase <a href="../../../../ENV.html"><code>ENV</code></a> variables are preferred over uppercase <a href="../../../../ENV.html"><code>ENV</code></a> variables.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="proxy_from_env-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 844</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">proxy_from_env</span>
+  <span class="ruby-identifier">env_proxy</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;http_proxy&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;HTTP_PROXY&#39;</span>]
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">env_proxy</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">env_proxy</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span> <span class="ruby-identifier">normalize_uri</span> <span class="ruby-identifier">env_proxy</span>
+
+  <span class="ruby-identifier">env_no_proxy</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;no_proxy&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;NO_PROXY&#39;</span>]
+
+  <span class="ruby-comment"># &#39;*&#39; is special case for always bypass</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">env_no_proxy</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;*&#39;</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">env_no_proxy</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query</span> = <span class="ruby-node">&quot;no_proxy=#{escape(env_no_proxy)}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">user</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">password</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">user</span>     = <span class="ruby-identifier">escape</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;http_proxy_user&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;HTTP_PROXY_USER&#39;</span>]
+    <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">password</span> = <span class="ruby-identifier">escape</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;http_proxy_pass&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;HTTP_PROXY_PASS&#39;</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reconnect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reconnect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Forces reconnection of HTTP connections.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reconnect-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 886</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reconnect</span>
+  <span class="ruby-ivar">@generation</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reconnect_ssl" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reconnect_ssl</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Forces reconnection of SSL connections.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reconnect_ssl-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 893</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reconnect_ssl</span>
+  <span class="ruby-ivar">@ssl_generation</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">request</span><span
+            class="method-args">(uri, req = nil, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Makes a request on <code>uri</code>.  If <code>req</code> is nil a <a href="../../../../Net/HTTP/Get.html"><code>Net::HTTP::Get</code></a> is performed against <code>uri</code>.</p>
+
+<p>If a block is passed <a href="Persistent.html#method-i-request"><code>request</code></a> behaves like <a href="../../../../Net/HTTP.html#method-i-request"><code>Net::HTTP#request</code></a> (the body of the response will not have been read).</p>
+
+<p><code>req</code> must be a <a href="../../../../Net/HTTPGenericRequest.html"><code>Net::HTTPGenericRequest</code></a> subclass (see <a href="../../../../Net/HTTP.html"><code>Net::HTTP</code></a> for a list).</p>
+
+<p>If there is an error and the request is idempotent according to RFC 2616 it will be retried automatically.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="request-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 928</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request</span> <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">req</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-identifier">retried</span>      = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">bad_response</span> = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-identifier">uri</span>      = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span> <span class="ruby-identifier">uri</span>
+  <span class="ruby-identifier">req</span>      = <span class="ruby-identifier">request_setup</span> <span class="ruby-identifier">req</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">uri</span>
+  <span class="ruby-identifier">response</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-identifier">connection_for</span> <span class="ruby-identifier">uri</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">connection</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">http</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">http</span>
+
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">requests</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+
+      <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">req</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">connection_close?</span> <span class="ruby-keyword">or</span>
+         (<span class="ruby-identifier">response</span>.<span class="ruby-identifier">http_version</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-string">&#39;1.0&#39;</span> <span class="ruby-keyword">and</span>
+          <span class="ruby-keyword">not</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">connection_keep_alive?</span>) <span class="ruby-keyword">or</span>
+         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">connection_close?</span> <span class="ruby-keyword">then</span>
+        <span class="ruby-identifier">finish</span> <span class="ruby-identifier">connection</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPBadResponse</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">message</span> = <span class="ruby-identifier">error_message</span> <span class="ruby-identifier">connection</span>
+
+      <span class="ruby-identifier">finish</span> <span class="ruby-identifier">connection</span>
+
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;too many bad responses #{message}&quot;</span> <span class="ruby-keyword">if</span>
+      <span class="ruby-identifier">bad_response</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">can_retry?</span> <span class="ruby-identifier">req</span>
+
+      <span class="ruby-identifier">bad_response</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">retry</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-operator">*</span><span class="ruby-constant">RETRIED_EXCEPTIONS</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">request_failed</span> <span class="ruby-identifier">e</span>, <span class="ruby-identifier">req</span>, <span class="ruby-identifier">connection</span> <span class="ruby-keyword">if</span>
+        <span class="ruby-identifier">retried</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">can_retry?</span> <span class="ruby-identifier">req</span>
+
+      <span class="ruby-identifier">reset</span> <span class="ruby-identifier">connection</span>
+
+      <span class="ruby-identifier">retried</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">retry</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EINVAL</span>, <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ETIMEDOUT</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span> <span class="ruby-comment"># not retried on ruby 2</span>
+      <span class="ruby-identifier">request_failed</span> <span class="ruby-identifier">e</span>, <span class="ruby-identifier">req</span>, <span class="ruby-identifier">connection</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">retried</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">can_retry?</span> <span class="ruby-identifier">req</span>
+
+      <span class="ruby-identifier">reset</span> <span class="ruby-identifier">connection</span>
+
+      <span class="ruby-identifier">retried</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">retry</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">finish</span> <span class="ruby-identifier">connection</span>
+
+      <span class="ruby-identifier">raise</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">last_use</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@http_versions</span>[<span class="ruby-node">&quot;#{uri.host}:#{uri.port}&quot;</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">http_version</span>
+
+  <span class="ruby-identifier">response</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reset" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset</span><span
+            class="method-args">(connection)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finishes then restarts the <a href="../../../../Net/HTTP.html"><code>Net::HTTP</code></a> <code>connection</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="reset-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 900</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset</span> <span class="ruby-identifier">connection</span>
+  <span class="ruby-identifier">http</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">http</span>
+
+  <span class="ruby-identifier">finish</span> <span class="ruby-identifier">connection</span>
+
+  <span class="ruby-identifier">start</span> <span class="ruby-identifier">http</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ECONNREFUSED</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span> <span class="ruby-node">&quot;connection refused: #{http.address}:#{http.port}&quot;</span>
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">set_backtrace</span> <span class="ruby-identifier">$@</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EHOSTDOWN</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span> <span class="ruby-node">&quot;host down: #{http.address}:#{http.port}&quot;</span>
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">set_backtrace</span> <span class="ruby-identifier">$@</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-shutdown" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">shutdown</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Shuts down all connections</p>
+
+<p><strong>NOTE</strong>: Calling shutdown for can be dangerous!</p>
+
+<p>If any thread is still using a connection it may cause an error!  Call <a href="Persistent.html#method-i-shutdown"><code>shutdown</code></a> when you are completely done making requests!</p>
+          
+          
+
+          
+          <div class="method-source-code" id="shutdown-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1041</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">shutdown</span>
+  <span class="ruby-ivar">@pool</span>.<span class="ruby-identifier">shutdown</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">http</span><span class="ruby-operator">|</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">finish</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ssl" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ssl</span><span
+            class="method-args">(connection)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Enables SSL on <code>connection</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="ssl-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1048</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ssl</span> <span class="ruby-identifier">connection</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">use_ssl</span> = <span class="ruby-keyword">true</span>
+
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">ciphers</span>     = <span class="ruby-ivar">@ciphers</span>     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ciphers</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">ssl_timeout</span> = <span class="ruby-ivar">@ssl_timeout</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ssl_timeout</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">ssl_version</span> = <span class="ruby-ivar">@ssl_version</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ssl_version</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">min_version</span> = <span class="ruby-ivar">@min_version</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@min_version</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">max_version</span> = <span class="ruby-ivar">@max_version</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@max_version</span>
+
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">verify_depth</span> = <span class="ruby-ivar">@verify_depth</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">verify_mode</span>  = <span class="ruby-ivar">@verify_mode</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">VERIFY_PEER</span> <span class="ruby-operator">==</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">VERIFY_NONE</span> <span class="ruby-keyword">and</span>
+       <span class="ruby-keyword">not</span> <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-value">:I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG</span>) <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">warn</span> <span class="ruby-identifier">&lt;&lt;-WARNING</span>
+<span class="ruby-value">                             !!!SECURITY WARNING!!!
+
+The SSL HTTP connection to:
+
+  #{connection.address}:#{connection.port}
+
+                           !!!MAY NOT BE VERIFIED!!!
+
+On your platform your OpenSSL implementation is broken.
+
+There is no difference between the values of VERIFY_NONE and VERIFY_PEER.
+
+This means that attempting to verify the security of SSL connections may not
+work.  This exposes you to man-in-the-middle exploits, snooping on the
+contents of your connection and other dangers to the security of your data.
+
+To disable this warning define the following constant at top-level in your
+application:
+
+  I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG = nil
+
+</span><span class="ruby-identifier">      WARNING</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">ca_file</span> = <span class="ruby-ivar">@ca_file</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ca_file</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">ca_path</span> = <span class="ruby-ivar">@ca_path</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ca_path</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ca_file</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@ca_path</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">verify_mode</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">VERIFY_PEER</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">verify_callback</span> = <span class="ruby-ivar">@verify_callback</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verify_callback</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@certificate</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@private_key</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">cert</span> = <span class="ruby-ivar">@certificate</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">key</span>  = <span class="ruby-ivar">@private_key</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">cert_store</span> = <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cert_store</span> <span class="ruby-keyword">then</span>
+                              <span class="ruby-ivar">@cert_store</span>
+                            <span class="ruby-keyword">else</span>
+                              <span class="ruby-identifier">store</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Store</span>.<span class="ruby-identifier">new</span>
+                              <span class="ruby-identifier">store</span>.<span class="ruby-identifier">set_default_paths</span>
+                              <span class="ruby-identifier">store</span>
+                            <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ssl_timeout-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ssl_timeout=</span><span
+            class="method-args">(ssl_timeout)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>SSL session lifetime</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ssl_timeout-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ssl_timeout=</span> <span class="ruby-identifier">ssl_timeout</span>
+  <span class="ruby-ivar">@ssl_timeout</span> = <span class="ruby-identifier">ssl_timeout</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ssl_version-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ssl_version=</span><span
+            class="method-args">(ssl_version)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>SSL version to use</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ssl_version-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ssl_version=</span> <span class="ruby-identifier">ssl_version</span>
+  <span class="ruby-ivar">@ssl_version</span> = <span class="ruby-identifier">ssl_version</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start</span><span
+            class="method-args">(http)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Starts the <a href="../../../../Net/HTTP.html"><code>Net::HTTP</code></a> <code>connection</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="start-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 715</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">start</span> <span class="ruby-identifier">http</span>
+  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">set_debug_output</span> <span class="ruby-ivar">@debug_output</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug_output</span>
+  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">open_timeout</span> = <span class="ruby-ivar">@open_timeout</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@open_timeout</span>
+
+  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">start</span>
+
+  <span class="ruby-identifier">socket</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-value">:@socket</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">socket</span> <span class="ruby-keyword">then</span> <span class="ruby-comment"># for fakeweb</span>
+    <span class="ruby-ivar">@socket_options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">io</span>.<span class="ruby-identifier">setsockopt</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">option</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unescape" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unescape</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Bundler::URI::unescape wrapper</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unescape-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 695</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unescape</span> <span class="ruby-identifier">str</span>
+  <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">unescape</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-verify_callback-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify_callback=</span><span
+            class="method-args">(callback)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>SSL verification callback.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verify_callback-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1170</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">verify_callback=</span> <span class="ruby-identifier">callback</span>
+  <span class="ruby-ivar">@verify_callback</span> = <span class="ruby-identifier">callback</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-verify_depth-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify_depth=</span><span
+            class="method-args">(verify_depth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the depth of SSL certificate verification</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verify_depth-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">verify_depth=</span> <span class="ruby-identifier">verify_depth</span>
+  <span class="ruby-ivar">@verify_depth</span> = <span class="ruby-identifier">verify_depth</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-verify_mode-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify_mode=</span><span
+            class="method-args">(verify_mode)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the HTTPS verify mode.  Defaults to OpenSSL::SSL::VERIFY_PEER.</p>
+
+<p>Setting this to VERIFY_NONE is a VERY BAD IDEA and should NEVER be used. Securely transfer the correct certificate and update the default certificate store or set the ca file instead.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verify_mode-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/net-http-persistent/lib/net/http/persistent.rb, line 1161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">verify_mode=</span> <span class="ruby-identifier">verify_mode</span>
+  <span class="ruby-ivar">@verify_mode</span> = <span class="ruby-identifier">verify_mode</span>
+
+  <span class="ruby-identifier">reconnect_ssl</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

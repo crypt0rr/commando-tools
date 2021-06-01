@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Ext::ExtConfBuilder - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Builder.html">Gem::Ext::Builder</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-build">::build</a>
+    
+    <li ><a href="#method-c-get_relative_path">::get_relative_path</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Ext::ExtConfBuilder">
+  <h1 id="class-Gem::Ext::ExtConfBuilder" class="class">
+    class Gem::Ext::ExtConfBuilder
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-build" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build</span><span
+            class="method-args">(extension, dest_path, results, args=[], lib_dir=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="build-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/ext/ext_conf_builder.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build</span>(<span class="ruby-identifier">extension</span>, <span class="ruby-identifier">dest_path</span>, <span class="ruby-identifier">results</span>, <span class="ruby-identifier">args</span>=[], <span class="ruby-identifier">lib_dir</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">tmp_dest</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mktmpdir</span>(<span class="ruby-string">&quot;.gem.&quot;</span>, <span class="ruby-string">&quot;.&quot;</span>)
+
+  <span class="ruby-comment"># Some versions of `mktmpdir` return absolute paths, which will break make</span>
+  <span class="ruby-comment"># if the paths contain spaces. However, on Ruby 1.9.x on Windows, relative</span>
+  <span class="ruby-comment"># paths cause all C extension builds to fail.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># As such, we convert to a relative path unless we are using Ruby 1.9.x on</span>
+  <span class="ruby-comment"># Windows. This means that when using Ruby 1.9.x on Windows, paths with</span>
+  <span class="ruby-comment"># spaces do not work.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># Details: https://github.com/rubygems/rubygems/issues/977#issuecomment-171544940</span>
+  <span class="ruby-identifier">tmp_dest</span> = <span class="ruby-identifier">get_relative_path</span>(<span class="ruby-identifier">tmp_dest</span>)
+
+  <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">open</span> <span class="ruby-node">%w&quot;siteconf .rb&quot;</span>, <span class="ruby-string">&quot;.&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">siteconf</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;require &#39;rbconfig&#39;&quot;</span>
+    <span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;dest_path = #{tmp_dest.dump}&quot;</span>
+    <span class="ruby-node">%w[sitearchdir sitelibdir]</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;RbConfig::MAKEFILE_CONFIG[&#39;#{dir}&#39;] = dest_path&quot;</span>
+      <span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;RbConfig::CONFIG[&#39;#{dir}&#39;] = dest_path&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">close</span>
+
+    <span class="ruby-identifier">destdir</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DESTDIR&quot;</span>]
+
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">ruby</span>.<span class="ruby-identifier">shellsplit</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;-I&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../../..&quot;</span>, <span class="ruby-keyword">__FILE__</span>) <span class="ruby-operator">&lt;&lt;</span>
+            <span class="ruby-string">&quot;-r&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">get_relative_path</span>(<span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">path</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">extension</span>)
+      <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">push</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">results</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-string">&#39;mkmf.log&#39;</span>
+            <span class="ruby-keyword">unless</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">success?</span>
+              <span class="ruby-identifier">r</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;To see why this extension failed to compile, please check&quot;</span> \
+                <span class="ruby-string">&quot; the mkmf.log which can be found here:\n&quot;</span>
+              <span class="ruby-identifier">r</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;  &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dest_path</span>, <span class="ruby-string">&#39;mkmf.log&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span>
+            <span class="ruby-keyword">end</span>
+            <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mv</span> <span class="ruby-string">&#39;mkmf.log&#39;</span>, <span class="ruby-identifier">dest_path</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">unlink</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DESTDIR&quot;</span>] = <span class="ruby-keyword">nil</span>
+
+      <span class="ruby-identifier">make</span> <span class="ruby-identifier">dest_path</span>, <span class="ruby-identifier">results</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">tmp_dest</span>
+        <span class="ruby-comment"># TODO remove in RubyGems 3</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">install_extension_in_lib</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">lib_dir</span>
+          <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-identifier">lib_dir</span>
+          <span class="ruby-identifier">entries</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">entries</span>(<span class="ruby-identifier">tmp_dest</span>) <span class="ruby-operator">-</span> <span class="ruby-node">%w[. ..]</span>
+          <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">tmp_dest</span>, <span class="ruby-identifier">entry</span> }
+          <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp_r</span> <span class="ruby-identifier">entries</span>, <span class="ruby-identifier">lib_dir</span>, <span class="ruby-value">:remove_destination</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-constant">FileEntry</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tmp_dest</span>).<span class="ruby-identifier">traverse</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ent</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">destent</span> = <span class="ruby-identifier">ent</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dest_path</span>, <span class="ruby-identifier">ent</span>.<span class="ruby-identifier">rel</span>)
+          <span class="ruby-identifier">destent</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mv</span>(<span class="ruby-identifier">ent</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">destent</span>.<span class="ruby-identifier">path</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DESTDIR&quot;</span>] = <span class="ruby-identifier">destdir</span>
+      <span class="ruby-identifier">siteconf</span>.<span class="ruby-identifier">close!</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">results</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">tmp_dest</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">tmp_dest</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-get_relative_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_relative_path</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_relative_path-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/ext/ext_conf_builder.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">get_relative_path</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">path</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>] = <span class="ruby-string">&#39;.&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>)
+  <span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

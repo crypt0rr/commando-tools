@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Ripper - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Ripper-label-Usage">Usage</a>
+    <li><a href="#class-Ripper-label-Resources">Resources</a>
+    <li><a href="#class-Ripper-label-Requirements">Requirements</a>
+    <li><a href="#class-Ripper-label-License">License</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-dedent_string">::dedent_string</a>
+    
+    <li ><a href="#method-c-lex">::lex</a>
+    
+    <li ><a href="#method-c-lex_state_name">::lex_state_name</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-parse">::parse</a>
+    
+    <li ><a href="#method-c-sexp">::sexp</a>
+    
+    <li ><a href="#method-c-sexp_raw">::sexp_raw</a>
+    
+    <li ><a href="#method-c-slice">::slice</a>
+    
+    <li ><a href="#method-c-tokenize">::tokenize</a>
+    
+    <li ><a href="#method-i-column">#column</a>
+    
+    <li ><a href="#method-i-compile_error">#compile_error</a>
+    
+    <li ><a href="#method-i-debug_output">#debug_output</a>
+    
+    <li ><a href="#method-i-debug_output-3D">#debug_output=</a>
+    
+    <li ><a href="#method-i-dedent_string">#dedent_string</a>
+    
+    <li ><a href="#method-i-encoding">#encoding</a>
+    
+    <li ><a href="#method-i-end_seen-3F">#end_seen?</a>
+    
+    <li ><a href="#method-i-error-3F">#error?</a>
+    
+    <li ><a href="#method-i-filename">#filename</a>
+    
+    <li ><a href="#method-i-lineno">#lineno</a>
+    
+    <li ><a href="#method-i-parse">#parse</a>
+    
+    <li ><a href="#method-i-state">#state</a>
+    
+    <li ><a href="#method-i-token">#token</a>
+    
+    <li ><a href="#method-i-warn">#warn</a>
+    
+    <li ><a href="#method-i-warning">#warning</a>
+    
+    <li ><a href="#method-i-yydebug">#yydebug</a>
+    
+    <li ><a href="#method-i-yydebug-3D">#yydebug=</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Ripper">
+  <h1 id="class-Ripper" class="class">
+    class Ripper
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Ripper.html"><code>Ripper</code></a> is a Ruby script parser.</p>
+
+<p>You can get information from the parser with event-based style. Information such as abstract syntax trees or simple lexical analysis of the Ruby program.</p>
+
+<h2 id="class-Ripper-label-Usage">Usage<span><a href="#class-Ripper-label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="Ripper.html"><code>Ripper</code></a> provides an easy interface for parsing your program into a symbolic expression tree (or S-expression).</p>
+
+<p>Understanding the output of the parser may come as a challenge, it&#39;s recommended you use <a href="PP.html"><code>PP</code></a> to format the output for legibility.</p>
+
+<pre>require &#39;ripper&#39;
+require &#39;pp&#39;
+
+pp Ripper.sexp(&#39;def hello(world) &quot;Hello, #{world}!&quot;; end&#39;)
+  #=&gt; [:program,
+       [[:def,
+         [:@ident, &quot;hello&quot;, [1, 4]],
+         [:paren,
+          [:params, [[:@ident, &quot;world&quot;, [1, 10]]], nil, nil, nil, nil, nil, nil]],
+         [:bodystmt,
+          [[:string_literal,
+            [:string_content,
+             [:@tstring_content, &quot;Hello, &quot;, [1, 18]],
+             [:string_embexpr, [[:var_ref, [:@ident, &quot;world&quot;, [1, 27]]]]],
+             [:@tstring_content, &quot;!&quot;, [1, 33]]]]],
+          nil,
+          nil,
+          nil]]]]</pre>
+
+<p>You can see in the example above, the expression starts with <code>:program</code>.</p>
+
+<p>From here, a method definition at <code>:def</code>, followed by the method&#39;s identifier <code>:@ident</code>. After the method&#39;s identifier comes the parentheses <code>:paren</code> and the method parameters under <code>:params</code>.</p>
+
+<p>Next is the method body, starting at <code>:bodystmt</code> (<code>stmt</code> meaning statement), which contains the full definition of the method.</p>
+
+<p>In our case, we&#39;re simply returning a <a href="String.html"><code>String</code></a>, so next we have the <code>:string_literal</code> expression.</p>
+
+<p>Within our <code>:string_literal</code> you&#39;ll notice two <code>@tstring_content</code>, this is the literal part for <code>Hello, </code> and <code>!</code>. Between the two <code>@tstring_content</code> statements is a <code>:string_embexpr</code>, where <em>embexpr</em> is an embedded expression. Our expression consists of a local variable, or <code>var_ref</code>, with the identifier (<code>@ident</code>) of <code>world</code>.</p>
+
+<h2 id="class-Ripper-label-Resources">Resources<span><a href="#class-Ripper-label-Resources">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a href="http://www.rubyinside.com/using-ripper-to-see-how-ruby-is-parsing-your-code-5270.html">Ruby Inside</a></p>
+</li></ul>
+
+<h2 id="class-Ripper-label-Requirements">Requirements<span><a href="#class-Ripper-label-Requirements">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>ruby 1.9 (support CVS HEAD only)</p>
+</li><li>
+<p>bison 1.28 or later (Other yaccs do not work)</p>
+</li></ul>
+
+<h2 id="class-Ripper-label-License">License<span><a href="#class-Ripper-label-License">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Ruby License.</p>
+<ul><li>
+<p>Minero Aoki</p>
+</li><li>
+<p>aamine@loveruby.net</p>
+</li><li>
+<p><a href="http://i.loveruby.net">i.loveruby.net</a></p>
+</li></ul>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="EVENTS">EVENTS
+        
+        <dd><p>This array contains name of all ripper events.</p>
+        
+      
+        <dt id="PARSER_EVENTS">PARSER_EVENTS
+        
+        <dd><p>This array contains name of parser events.</p>
+        
+      
+        <dt id="SCANNER_EVENTS">SCANNER_EVENTS
+        
+        <dd><p>This array contains name of scanner events.</p>
+        
+      
+        <dt id="Version">Version
+        
+        <dd><p>version of <a href="Ripper.html"><code>Ripper</code></a></p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-dedent_string" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dedent_string(input, width)   &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>USE OF RIPPER LIBRARY ONLY.</p>
+
+<p>Strips up to <code>width</code> leading whitespaces from <code>input</code>, and returns the stripped column width.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dedent_string-source">
+            <pre>static VALUE
+parser_dedent_string(VALUE self, VALUE input, VALUE width)
+{
+    int wid, col;
+
+    StringValue(input);
+    wid = NUM2UINT(width);
+    col = dedent_string(input, wid);
+    return INT2NUM(col);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-lex" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lex</span><span
+            class="method-args">(src, filename = &#39;-&#39;, lineno = 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Tokenizes the Ruby program and returns an array of an array, which is formatted like <code>[[lineno, column], type, token, state]</code>.</p>
+
+<pre>require &#39;ripper&#39;
+require &#39;pp&#39;
+
+pp Ripper.lex(&quot;def m(a) nil end&quot;)
+#=&gt; [[[1,  0], :on_kw,     &quot;def&quot;, FNAME    ],
+     [[1,  3], :on_sp,     &quot; &quot;,   FNAME    ],
+     [[1,  4], :on_ident,  &quot;m&quot;,   ENDFN    ],
+     [[1,  5], :on_lparen, &quot;(&quot;,   BEG|LABEL],
+     [[1,  6], :on_ident,  &quot;a&quot;,   ARG      ],
+     [[1,  7], :on_rparen, &quot;)&quot;,   ENDFN    ],
+     [[1,  8], :on_sp,     &quot; &quot;,   BEG      ],
+     [[1,  9], :on_kw,     &quot;nil&quot;, END      ],
+     [[1, 12], :on_sp,     &quot; &quot;,   END      ],
+     [[1, 13], :on_kw,     &quot;end&quot;, END      ]]</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="lex-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/lexer.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier ruby-title">lex</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span> = <span class="ruby-string">&#39;-&#39;</span>, <span class="ruby-identifier">lineno</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-constant">Lexer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">lineno</span>).<span class="ruby-identifier">lex</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-lex_state_name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            lex_state_name(integer)   &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string representation of lex_state.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lex_state_name-source">
+            <pre>static VALUE
+ripper_lex_state_name(VALUE self, VALUE state)
+{
+    return rb_parser_lex_state_name(NUM2INT(state));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(src, filename=&quot;(ripper)&quot;, lineno=1) &rarr; ripper
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Create a new <a href="Ripper.html"><code>Ripper</code></a> object. <em>src</em> must be a <a href="String.html"><code>String</code></a>, an <a href="IO.html"><code>IO</code></a>, or an <a href="Object.html"><code>Object</code></a> which has <a href="Kernel.html#method-i-gets"><code>gets</code></a> method.</p>
+
+<p>This method does not starts parsing. See also <a href="Ripper.html#method-i-parse"><code>Ripper#parse</code></a> and <a href="Ripper.html#method-c-parse"><code>Ripper.parse</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+ripper_initialize(int argc, VALUE *argv, VALUE self)
+{
+    struct parser_params *p;
+    VALUE src, fname, lineno;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    rb_scan_args(argc, argv, &quot;12&quot;, &amp;src, &amp;fname, &amp;lineno);
+    if (RB_TYPE_P(src, T_FILE)) {
+        p-&gt;lex.gets = ripper_lex_io_get;
+    }
+    else if (rb_respond_to(src, id_gets)) {
+        p-&gt;lex.gets = ripper_lex_get_generic;
+    }
+    else {
+        StringValue(src);
+        p-&gt;lex.gets = lex_get_str;
+    }
+    p-&gt;lex.input = src;
+    p-&gt;eofp = 0;
+    if (NIL_P(fname)) {
+        fname = STR_NEW2(&quot;(ripper)&quot;);
+        OBJ_FREEZE(fname);
+    }
+    else {
+        StringValueCStr(fname);
+        fname = rb_str_new_frozen(fname);
+    }
+    parser_initialize(p);
+
+    p-&gt;ruby_sourcefile_string = fname;
+    p-&gt;ruby_sourcefile = RSTRING_PTR(fname);
+    p-&gt;ruby_sourceline = NIL_P(lineno) ? 0 : NUM2INT(lineno) - 1;
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse</span><span
+            class="method-args">(src, filename = &#39;(ripper)&#39;, lineno = 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parses the given Ruby program read from <code>src</code>. <code>src</code> must be a <a href="String.html"><code>String</code></a> or an <a href="IO.html"><code>IO</code></a> or a object with a <a href="Kernel.html#method-i-gets"><code>gets</code></a> method.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/core.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier ruby-title">parse</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span> = <span class="ruby-string">&#39;(ripper)&#39;</span>, <span class="ruby-identifier">lineno</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">lineno</span>).<span class="ruby-identifier">parse</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-sexp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sexp</span><span
+            class="method-args">(src, filename = &#39;-&#39;, lineno = 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <dl class="rdoc-list label-list"><dt>EXPERIMENTAL
+<dd>
+<p>Parses <code>src</code> and create S-exp tree. Returns more readable tree rather than <a href="Ripper.html#method-c-sexp_raw"><code>Ripper.sexp_raw</code></a>. This method is mainly for developer use.</p>
+
+<pre>require &#39;ripper&#39;
+require &#39;pp&#39;
+
+pp Ripper.sexp(&quot;def m(a) nil end&quot;)
+  #=&gt; [:program,
+       [[:def,
+        [:@ident, &quot;m&quot;, [1, 4]],
+        [:paren, [:params, [[:@ident, &quot;a&quot;, [1, 6]]], nil, nil, nil, nil, nil, nil]],
+        [:bodystmt, [[:var_ref, [:@kw, &quot;nil&quot;, [1, 9]]]], nil, nil, nil]]]]</pre>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="sexp-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/sexp.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier ruby-title">sexp</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span> = <span class="ruby-string">&#39;-&#39;</span>, <span class="ruby-identifier">lineno</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">builder</span> = <span class="ruby-constant">SexpBuilderPP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">lineno</span>)
+  <span class="ruby-identifier">sexp</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">parse</span>
+  <span class="ruby-identifier">sexp</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">error?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-sexp_raw" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sexp_raw</span><span
+            class="method-args">(src, filename = &#39;-&#39;, lineno = 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <dl class="rdoc-list label-list"><dt>EXPERIMENTAL
+<dd>
+<p>Parses <code>src</code> and create S-exp tree. This method is mainly for developer use.</p>
+
+<pre>require &#39;ripper&#39;
+require &#39;pp&#39;
+
+pp Ripper.sexp_raw(&quot;def m(a) nil end&quot;)
+  #=&gt; [:program,
+       [:stmts_add,
+        [:stmts_new],
+        [:def,
+         [:@ident, &quot;m&quot;, [1, 4]],
+         [:paren, [:params, [[:@ident, &quot;a&quot;, [1, 6]]], nil, nil, nil]],
+         [:bodystmt,
+          [:stmts_add, [:stmts_new], [:var_ref, [:@kw, &quot;nil&quot;, [1, 9]]]],
+          nil,
+          nil,
+          nil]]]]</pre>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="sexp_raw-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/sexp.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier ruby-title">sexp_raw</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span> = <span class="ruby-string">&#39;-&#39;</span>, <span class="ruby-identifier">lineno</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">builder</span> = <span class="ruby-constant">SexpBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">lineno</span>)
+  <span class="ruby-identifier">sexp</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">parse</span>
+  <span class="ruby-identifier">sexp</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">error?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-slice" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">slice</span><span
+            class="method-args">(src, pattern, n = 0)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <dl class="rdoc-list label-list"><dt>EXPERIMENTAL
+<dd>
+<p>Parses <code>src</code> and return a string which was matched to <code>pattern</code>. <code>pattern</code> should be described as <a href="Regexp.html"><code>Regexp</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;ripper&#39;</span>
+
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-string">&#39;def m(a) nil end&#39;</span>, <span class="ruby-string">&#39;ident&#39;</span>)                   <span class="ruby-comment">#=&gt; &quot;m&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-string">&#39;def m(a) nil end&#39;</span>, <span class="ruby-string">&#39;[ident lparen rparen]+&#39;</span>)  <span class="ruby-comment">#=&gt; &quot;m(a)&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-string">&quot;&lt;&lt;EOS\nstring\nEOS&quot;</span>,
+               <span class="ruby-string">&#39;heredoc_beg nl $(tstring_content*) heredoc_end&#39;</span>, <span class="ruby-value">1</span>)
+    <span class="ruby-comment">#=&gt; &quot;string\n&quot;</span>
+</pre>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="slice-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/lexer.rb, line 201</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier ruby-title">slice</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">n</span> = <span class="ruby-value">0</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span> = <span class="ruby-identifier">token_match</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">pattern</span>)
+  <span class="ruby-keyword">then</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">string</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-keyword">else</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-tokenize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tokenize</span><span
+            class="method-args">(src, filename = &#39;-&#39;, lineno = 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Tokenizes the Ruby program and returns an array of strings.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier">tokenize</span>(<span class="ruby-string">&quot;def m(a) nil end&quot;</span>)
+   <span class="ruby-comment"># =&gt; [&quot;def&quot;, &quot; &quot;, &quot;m&quot;, &quot;(&quot;, &quot;a&quot;, &quot;)&quot;, &quot; &quot;, &quot;nil&quot;, &quot; &quot;, &quot;end&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="tokenize-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/lexer.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Ripper</span>.<span class="ruby-identifier ruby-title">tokenize</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span> = <span class="ruby-string">&#39;-&#39;</span>, <span class="ruby-identifier">lineno</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-constant">Lexer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">lineno</span>).<span class="ruby-identifier">tokenize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-column" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            column   &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return column number of current parsing line. This number starts from 0.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="column-source">
+            <pre>static VALUE
+ripper_column(VALUE self)
+{
+    struct parser_params *p;
+    long col;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    if (!ripper_initialized_p(p)) {
+        rb_raise(rb_eArgError, &quot;method called for uninitialized object&quot;);
+    }
+    if (NIL_P(p-&gt;parsing_thread)) return Qnil;
+    col = p-&gt;lex.ptok - p-&gt;lex.pbeg;
+    return LONG2NUM(col);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-debug_output" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            debug_output   &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Get debug output.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="debug_output-source">
+            <pre>VALUE
+rb_parser_get_debug_output(VALUE self)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    return p-&gt;debug_output;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-debug_output-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            debug_output = obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p><a href="Set.html"><code>Set</code></a> debug output.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="debug_output-3D-source">
+            <pre>VALUE
+rb_parser_set_debug_output(VALUE self, VALUE output)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    return p-&gt;debug_output = output;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-encoding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            encoding   &rarr; encoding
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return encoding of the source.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="encoding-source">
+            <pre>VALUE
+rb_parser_encoding(VALUE vparser)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(vparser, struct parser_params, &amp;parser_data_type, p);
+    return rb_enc_from_encoding(p-&gt;enc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-end_seen-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            end_seen?   &rarr; Boolean
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return true if parsed source ended by +_<em>END</em>_+.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="end_seen-3F-source">
+            <pre>VALUE
+rb_parser_end_seen_p(VALUE vparser)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(vparser, struct parser_params, &amp;parser_data_type, p);
+    return p-&gt;ruby__end__seen ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-error-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            error?   &rarr; Boolean
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return true if parsed source has errors.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="error-3F-source">
+            <pre>static VALUE
+ripper_error_p(VALUE vparser)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(vparser, struct parser_params, &amp;parser_data_type, p);
+    return p-&gt;error_p ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-filename" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            filename   &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return current parsing filename.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="filename-source">
+            <pre>static VALUE
+ripper_filename(VALUE self)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    if (!ripper_initialized_p(p)) {
+        rb_raise(rb_eArgError, &quot;method called for uninitialized object&quot;);
+    }
+    return p-&gt;ruby_sourcefile_string;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lineno" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            lineno   &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return line number of current parsing line. This number starts from 1.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lineno-source">
+            <pre>static VALUE
+ripper_lineno(VALUE self)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    if (!ripper_initialized_p(p)) {
+        rb_raise(rb_eArgError, &quot;method called for uninitialized object&quot;);
+    }
+    if (NIL_P(p-&gt;parsing_thread)) return Qnil;
+    return INT2NUM(p-&gt;ruby_sourceline);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            parse
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Start parsing and returns the value of the root action.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre>static VALUE
+ripper_parse(VALUE self)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    if (!ripper_initialized_p(p)) {
+        rb_raise(rb_eArgError, &quot;method called for uninitialized object&quot;);
+    }
+    if (!NIL_P(p-&gt;parsing_thread)) {
+        if (p-&gt;parsing_thread == rb_thread_current())
+            rb_raise(rb_eArgError, &quot;Ripper#parse is not reentrant&quot;);
+        else
+            rb_raise(rb_eArgError, &quot;Ripper#parse is not multithread-safe&quot;);
+    }
+    p-&gt;parsing_thread = rb_thread_current();
+    rb_ensure(ripper_parse0, self, ripper_ensure, self);
+
+    return p-&gt;result;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-state" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            state   &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return scanner state of current token.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="state-source">
+            <pre>static VALUE
+ripper_state(VALUE self)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    if (!ripper_initialized_p(p)) {
+        rb_raise(rb_eArgError, &quot;method called for uninitialized object&quot;);
+    }
+    if (NIL_P(p-&gt;parsing_thread)) return Qnil;
+    return INT2NUM(p-&gt;lex.state);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-token" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            token   &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return the current token string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="token-source">
+            <pre>static VALUE
+ripper_token(VALUE self)
+{
+    struct parser_params *p;
+    long pos, len;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    if (!ripper_initialized_p(p)) {
+        rb_raise(rb_eArgError, &quot;method called for uninitialized object&quot;);
+    }
+    if (NIL_P(p-&gt;parsing_thread)) return Qnil;
+    pos = p-&gt;lex.ptok - p-&gt;lex.pbeg;
+    len = p-&gt;lex.pcur - p-&gt;lex.ptok;
+    return rb_str_subseq(p-&gt;lex.lastline, pos, len);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-yydebug" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            yydebug   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Get yydebug.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="yydebug-source">
+            <pre>VALUE
+rb_parser_get_yydebug(VALUE self)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    return p-&gt;debug ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-yydebug-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            yydebug = flag
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p><a href="Set.html"><code>Set</code></a> yydebug.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="yydebug-3D-source">
+            <pre>VALUE
+rb_parser_set_yydebug(VALUE self, VALUE flag)
+{
+    struct parser_params *p;
+
+    TypedData_Get_Struct(self, struct parser_params, &amp;parser_data_type, p);
+    p-&gt;debug = RTEST(flag);
+    return flag;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-compile_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compile_error</span><span
+            class="method-args">(msg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This method is called when the parser found syntax error.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="compile_error-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/core.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compile_error</span>(<span class="ruby-identifier">msg</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dedent_string" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dedent_string(input, width)   &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>USE OF RIPPER LIBRARY ONLY.</p>
+
+<p>Strips up to <code>width</code> leading whitespaces from <code>input</code>, and returns the stripped column width.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dedent_string-source">
+            <pre>static VALUE
+parser_dedent_string(VALUE self, VALUE input, VALUE width)
+{
+    int wid, col;
+
+    StringValue(input);
+    wid = NUM2UINT(width);
+    col = dedent_string(input, wid);
+    return INT2NUM(col);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-warn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">warn</span><span
+            class="method-args">(fmt, *args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This method is called when weak warning is produced by the parser. <code>fmt</code> and <code>args</code> is printf style.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="warn-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/core.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">warn</span>(<span class="ruby-identifier">fmt</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-warning" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">warning</span><span
+            class="method-args">(fmt, *args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This method is called when strong warning is produced by the parser. <code>fmt</code> and <code>args</code> is printf style.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="warning-source">
+            <pre><span class="ruby-comment"># File ext/ripper/lib/ripper/core.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">warning</span>(<span class="ruby-identifier">fmt</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

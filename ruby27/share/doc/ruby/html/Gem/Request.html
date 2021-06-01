@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Request - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="UserInteraction.html">Gem::UserInteraction</a>
+  
+  
+  </ul>
+</div>
+
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="UserInteraction.html">Gem::UserInteraction</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-configure_connection_for_https">::configure_connection_for_https</a>
+    
+    <li ><a href="#method-c-get_cert_files">::get_cert_files</a>
+    
+    <li ><a href="#method-c-get_proxy_from_env">::get_proxy_from_env</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-verify_certificate">::verify_certificate</a>
+    
+    <li ><a href="#method-c-verify_certificate_message">::verify_certificate_message</a>
+    
+    <li ><a href="#method-i-cert_files">#cert_files</a>
+    
+    <li ><a href="#method-i-connection_for">#connection_for</a>
+    
+    <li ><a href="#method-i-fetch">#fetch</a>
+    
+    <li ><a href="#method-i-proxy_uri">#proxy_uri</a>
+    
+    <li ><a href="#method-i-reset">#reset</a>
+    
+    <li ><a href="#method-i-user_agent">#user_agent</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Request">
+  <h1 id="class-Gem::Request" class="class">
+    class Gem::Request
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-configure_connection_for_https" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">configure_connection_for_https</span><span
+            class="method-args">(connection, cert_files)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="configure_connection_for_https-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">configure_connection_for_https</span>(<span class="ruby-identifier">connection</span>, <span class="ruby-identifier">cert_files</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;net/https&#39;</span>
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">use_ssl</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">verify_mode</span> =
+    <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">ssl_verify_mode</span> <span class="ruby-operator">||</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">VERIFY_PEER</span>
+  <span class="ruby-identifier">store</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Store</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">ssl_client_cert</span>
+    <span class="ruby-identifier">pem</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">ssl_client_cert</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">cert</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Certificate</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">pem</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">pem</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">store</span>.<span class="ruby-identifier">set_default_paths</span>
+  <span class="ruby-identifier">cert_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ssl_cert_file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">store</span>.<span class="ruby-identifier">add_file</span> <span class="ruby-identifier">ssl_cert_file</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">ssl_ca_cert</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">ssl_ca_cert</span>
+      <span class="ruby-identifier">store</span>.<span class="ruby-identifier">add_path</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">ssl_ca_cert</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">store</span>.<span class="ruby-identifier">add_file</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">ssl_ca_cert</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">cert_store</span> = <span class="ruby-identifier">store</span>
+
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">verify_callback</span> = <span class="ruby-identifier">proc</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">preverify_ok</span>, <span class="ruby-identifier">store_context</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">verify_certificate</span> <span class="ruby-identifier">store_context</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">preverify_ok</span>
+
+    <span class="ruby-identifier">preverify_ok</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">connection</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">LoadError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">e</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:path</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;openssl&#39;</span>) <span class="ruby-operator">||</span>
+               <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/ -- openssl$/</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(
+          <span class="ruby-string">&#39;Unable to require openssl, install OpenSSL and rebuild Ruby (preferred) or use non-HTTPS sources&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-get_cert_files" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_cert_files</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_cert_files-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">get_cert_files</span>
+  <span class="ruby-identifier">pattern</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;./ssl_certs/*/*.pem&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>))
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-identifier">pattern</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-get_proxy_from_env" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_proxy_from_env</span><span
+            class="method-args">(scheme = &#39;http&#39;)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a proxy <a href="../URI.html"><code>URI</code></a> for the given <code>scheme</code> if one is set in the environment variables.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_proxy_from_env-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">get_proxy_from_env</span>(<span class="ruby-identifier">scheme</span> = <span class="ruby-string">&#39;http&#39;</span>)
+  <span class="ruby-identifier">_scheme</span> = <span class="ruby-identifier">scheme</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-identifier">_SCHEME</span> = <span class="ruby-identifier">scheme</span>.<span class="ruby-identifier">upcase</span>
+  <span class="ruby-identifier">env_proxy</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-node">&quot;#{_scheme}_proxy&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-node">&quot;#{_SCHEME}_PROXY&quot;</span>]
+
+  <span class="ruby-identifier">no_env_proxy</span> = <span class="ruby-identifier">env_proxy</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">env_proxy</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">no_env_proxy</span>
+    <span class="ruby-keyword">return</span> (<span class="ruby-identifier">_scheme</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;https&#39;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">_scheme</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;http&#39;</span>) <span class="ruby-operator">?</span>
+      <span class="ruby-value">:no_proxy</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">get_proxy_from_env</span>(<span class="ruby-string">&#39;http&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;uri&quot;</span>
+  <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>(<span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UriFormatter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env_proxy</span>).<span class="ruby-identifier">normalize</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">uri</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">password</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">user</span>     = <span class="ruby-constant">ENV</span>[<span class="ruby-node">&quot;#{_scheme}_proxy_user&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-node">&quot;#{_SCHEME}_PROXY_USER&quot;</span>]
+    <span class="ruby-identifier">password</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-node">&quot;#{_scheme}_proxy_pass&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-node">&quot;#{_SCHEME}_PROXY_PASS&quot;</span>]
+
+    <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">user</span>     = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UriFormatter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user</span>).<span class="ruby-identifier">escape</span>
+    <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">password</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UriFormatter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">password</span>).<span class="ruby-identifier">escape</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(uri, request_class, last_modified, pool)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">request_class</span>, <span class="ruby-identifier">last_modified</span>, <span class="ruby-identifier">pool</span>)
+  <span class="ruby-ivar">@uri</span> = <span class="ruby-identifier">uri</span>
+  <span class="ruby-ivar">@request_class</span> = <span class="ruby-identifier">request_class</span>
+  <span class="ruby-ivar">@last_modified</span> = <span class="ruby-identifier">last_modified</span>
+  <span class="ruby-ivar">@requests</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@user_agent</span> = <span class="ruby-identifier">user_agent</span>
+
+  <span class="ruby-ivar">@connection_pool</span> = <span class="ruby-identifier">pool</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-verify_certificate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify_certificate</span><span
+            class="method-args">(store_context)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="verify_certificate-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">verify_certificate</span>(<span class="ruby-identifier">store_context</span>)
+  <span class="ruby-identifier">depth</span>  = <span class="ruby-identifier">store_context</span>.<span class="ruby-identifier">error_depth</span>
+  <span class="ruby-identifier">error</span>  = <span class="ruby-identifier">store_context</span>.<span class="ruby-identifier">error_string</span>
+  <span class="ruby-identifier">number</span> = <span class="ruby-identifier">store_context</span>.<span class="ruby-identifier">error</span>
+  <span class="ruby-identifier">cert</span>   = <span class="ruby-identifier">store_context</span>.<span class="ruby-identifier">current_cert</span>
+
+  <span class="ruby-identifier">ui</span>.<span class="ruby-identifier">alert_error</span> <span class="ruby-node">&quot;SSL verification error at depth #{depth}: #{error} (#{number})&quot;</span>
+
+  <span class="ruby-identifier">extra_message</span> = <span class="ruby-identifier">verify_certificate_message</span> <span class="ruby-identifier">number</span>, <span class="ruby-identifier">cert</span>
+
+  <span class="ruby-identifier">ui</span>.<span class="ruby-identifier">alert_error</span> <span class="ruby-identifier">extra_message</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">extra_message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-verify_certificate_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify_certificate_message</span><span
+            class="method-args">(error_number, cert)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="verify_certificate_message-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">verify_certificate_message</span>(<span class="ruby-identifier">error_number</span>, <span class="ruby-identifier">cert</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">cert</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">error_number</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_CERT_HAS_EXPIRED</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Certificate #{cert.subject} expired at #{cert.not_after.iso8601}&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_CERT_NOT_YET_VALID</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Certificate #{cert.subject} not valid until #{cert.not_before.iso8601}&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_CERT_REJECTED</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Certificate #{cert.subject} is rejected&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_CERT_UNTRUSTED</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Certificate #{cert.subject} is not trusted&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Certificate #{cert.issuer} is not trusted&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_INVALID_CA</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Certificate #{cert.subject} is an invalid CA certificate&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_INVALID_PURPOSE</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Certificate #{cert.subject} has an invalid purpose&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_SELF_SIGNED_CERT_IN_CHAIN</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Root certificate is not trusted (#{cert.subject})&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;You must add #{cert.issuer} to your local trusted store&quot;</span>
+  <span class="ruby-keyword">when</span>
+    <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-node">&quot;Cannot verify certificate issued by #{cert.issuer}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-cert_files" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cert_files</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cert_files-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cert_files</span>; <span class="ruby-ivar">@connection_pool</span>.<span class="ruby-identifier">cert_files</span>; <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-connection_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">connection_for</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates or an HTTP connection based on <code>uri</code>, or retrieves an existing connection, using a proxy if needed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="connection_for-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">connection_for</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-ivar">@connection_pool</span>.<span class="ruby-identifier">checkout</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSLError</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EHOSTDOWN</span>,
+       <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EHOSTDOWN</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteFetcher</span><span class="ruby-operator">::</span><span class="ruby-constant">FetchError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">uri</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch</span><span
+            class="method-args">() { |request| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch</span>
+  <span class="ruby-identifier">request</span> = <span class="ruby-ivar">@request_class</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">request_uri</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">request</span>.<span class="ruby-identifier">basic_auth</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UriFormatter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">user</span>).<span class="ruby-identifier">unescape</span>,
+                       <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UriFormatter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">password</span>).<span class="ruby-identifier">unescape</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;User-Agent&#39;</span>, <span class="ruby-ivar">@user_agent</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;Connection&#39;</span>, <span class="ruby-string">&#39;keep-alive&#39;</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;Keep-Alive&#39;</span>, <span class="ruby-string">&#39;30&#39;</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@last_modified</span>
+    <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;If-Modified-Since&#39;</span>, <span class="ruby-ivar">@last_modified</span>.<span class="ruby-identifier">httpdate</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-identifier">request</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">perform_request</span> <span class="ruby-identifier">request</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-proxy_uri" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy_uri</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="proxy_uri-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">proxy_uri</span>; <span class="ruby-ivar">@connection_pool</span>.<span class="ruby-identifier">proxy_uri</span>; <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reset" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset</span><span
+            class="method-args">(connection)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Resets HTTP connection <code>connection</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reset-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 269</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset</span>(<span class="ruby-identifier">connection</span>)
+  <span class="ruby-ivar">@requests</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">object_id</span>
+
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">finish</span>
+  <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">start</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user_agent" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_agent</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_agent-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/request.rb, line 276</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">user_agent</span>
+  <span class="ruby-identifier">ua</span> = <span class="ruby-node">&quot;RubyGems/#{Gem::VERSION} #{Gem::Platform.local}&quot;</span>.<span class="ruby-identifier">dup</span>
+
+  <span class="ruby-identifier">ruby_version</span> = <span class="ruby-constant">RUBY_VERSION</span>
+  <span class="ruby-identifier">ruby_version</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&#39;dev&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">RUBY_PATCHLEVEL</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1</span>
+
+  <span class="ruby-identifier">ua</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; Ruby/#{ruby_version} (#{RUBY_RELEASE_DATE}&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">RUBY_PATCHLEVEL</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">ua</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; patchlevel #{RUBY_PATCHLEVEL}&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">RUBY_REVISION</span>)
+    <span class="ruby-identifier">ua</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; revision #{RUBY_REVISION}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ua</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)&quot;</span>
+
+  <span class="ruby-identifier">ua</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{RUBY_ENGINE}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">RUBY_ENGINE</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;ruby&#39;</span>
+
+  <span class="ruby-identifier">ua</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

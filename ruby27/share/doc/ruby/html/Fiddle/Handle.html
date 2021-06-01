@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Fiddle::Handle - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Fiddle::Handle-label-Example">Example</a>
+    <li><a href="#class-Fiddle::Handle-label-Setup">Setup</a>
+    <li><a href="#class-Fiddle::Handle-label-Setup-2C+with+flags">Setup, with flags</a>
+    <li><a href="#class-Fiddle::Handle-label-Addresses+to+symbols">Addresses to symbols</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-5B-5D">::[]</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-sym">::sym</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-close">#close</a>
+    
+    <li ><a href="#method-i-close_enabled-3F">#close_enabled?</a>
+    
+    <li ><a href="#method-i-disable_close">#disable_close</a>
+    
+    <li ><a href="#method-i-enable_close">#enable_close</a>
+    
+    <li ><a href="#method-i-sym">#sym</a>
+    
+    <li ><a href="#method-i-to_i">#to_i</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Fiddle::Handle">
+  <h1 id="class-Fiddle::Handle" class="class">
+    class Fiddle::Handle
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="Handle.html"><code>Fiddle::Handle</code></a> is the manner to access the dynamic library</p>
+
+<h2 id="class-Fiddle::Handle-label-Example">Example<span><a href="#class-Fiddle::Handle-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="class-Fiddle::Handle-label-Setup">Setup<span><a href="#class-Fiddle::Handle-label-Setup">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre>libc_so = &quot;/lib64/libc.so.6&quot;
+=&gt; &quot;/lib64/libc.so.6&quot;
+@handle = Fiddle::Handle.new(libc_so)
+=&gt; #&lt;Fiddle::Handle:0x00000000d69ef8&gt;</pre>
+
+<h3 id="class-Fiddle::Handle-label-Setup-2C+with+flags">Setup, with flags<span><a href="#class-Fiddle::Handle-label-Setup-2C+with+flags">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre>libc_so = &quot;/lib64/libc.so.6&quot;
+=&gt; &quot;/lib64/libc.so.6&quot;
+@handle = Fiddle::Handle.new(libc_so, Fiddle::RTLD_LAZY | Fiddle::RTLD_GLOBAL)
+=&gt; #&lt;Fiddle::Handle:0x00000000d69ef8&gt;</pre>
+
+<p>See <a href="Handle.html#RTLD_LAZY"><code>RTLD_LAZY</code></a> and <a href="Handle.html#RTLD_GLOBAL"><code>RTLD_GLOBAL</code></a></p>
+
+<h3 id="class-Fiddle::Handle-label-Addresses+to+symbols">Addresses to symbols<span><a href="#class-Fiddle::Handle-label-Addresses+to+symbols">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre>strcpy_addr = @handle[&#39;strcpy&#39;]
+=&gt; 140062278451968</pre>
+
+<p>or</p>
+
+<pre>strcpy_addr = @handle.sym(&#39;strcpy&#39;)
+=&gt; 140062278451968</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DEFAULT">DEFAULT
+        
+        <dd><p><a href="Handle.html#DEFAULT"><code>DEFAULT</code></a></p>
+
+<p>A predefined pseudo-handle of RTLD_DEFAULT</p>
+
+<p>Which will find the first occurrence of the desired symbol using the default library search order</p>
+        
+      
+        <dt id="NEXT">NEXT
+        
+        <dd><p><a href="Handle.html#NEXT"><code>NEXT</code></a></p>
+
+<p>A predefined pseudo-handle of RTLD_NEXT</p>
+
+<p>Which will find the next occurrence of a function in the search order after the current library.</p>
+        
+      
+        <dt id="RTLD_GLOBAL">RTLD_GLOBAL
+        
+        <dd><p><a href="Handle.html#RTLD_GLOBAL"><code>RTLD_GLOBAL</code></a></p>
+
+<p>rtld <a href="Handle.html"><code>Fiddle::Handle</code></a> flag.</p>
+
+<p>The symbols defined by this library will be made available for symbol resolution of subsequently loaded libraries.</p>
+        
+      
+        <dt id="RTLD_LAZY">RTLD_LAZY
+        
+        <dd><p><a href="Handle.html#RTLD_LAZY"><code>RTLD_LAZY</code></a></p>
+
+<p>rtld <a href="Handle.html"><code>Fiddle::Handle</code></a> flag.</p>
+
+<p>Perform lazy binding.  Only resolve symbols as the code that references them is executed.  If the  symbol is never referenced, then it is never resolved.  (Lazy binding is only performed for function references; references to variables are always immediately bound when the library is loaded.)</p>
+        
+      
+        <dt id="RTLD_NOW">RTLD_NOW
+        
+        <dd><p><a href="Handle.html#RTLD_NOW"><code>RTLD_NOW</code></a></p>
+
+<p>rtld <a href="Handle.html"><code>Fiddle::Handle</code></a> flag.</p>
+
+<p>If this value is specified or the environment variable LD_BIND_NOW is set to a nonempty string, all undefined symbols in the library are resolved before <a href="../Fiddle.html#method-c-dlopen"><code>Fiddle.dlopen</code></a> returns.  If this cannot be done an error is returned.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-5B-5D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym(name)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Get the address as an <a href="../Integer.html"><code>Integer</code></a> for the function named <code>name</code>.  The function is searched via dlsym on RTLD_NEXT.</p>
+
+<p>See man(3) dlsym() for more info.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+rb_fiddle_handle_s_sym(VALUE self, VALUE sym)
+{
+    return fiddle_handle_sym(RTLD_NEXT, sym);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(library = nil, flags = Fiddle::RTLD_LAZY | Fiddle::RTLD_GLOBAL)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Create a new handler that opens <code>library</code> with <code>flags</code>.</p>
+
+<p>If no <code>library</code> is specified or <code>nil</code> is given, <a href="Handle.html#DEFAULT"><code>DEFAULT</code></a> is used, which is the equivalent to RTLD_DEFAULT. See <code>man 3 dlopen</code> for more.</p>
+
+<pre class="ruby"><span class="ruby-identifier">lib</span> = <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Handle</span>.<span class="ruby-identifier">new</span>
+</pre>
+
+<p>The default is dependent on OS, and provide a handle for all libraries already loaded. For example, in most cases you can use this to access <code>libc</code> functions, or ruby functions like <code>rb_str_new</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rb_fiddle_handle_initialize(int argc, VALUE argv[], VALUE self)
+{
+    void *ptr;
+    struct dl_handle *fiddle_handle;
+    VALUE lib, flag;
+    char  *clib;
+    int   cflag;
+    const char *err;
+
+    switch( rb_scan_args(argc, argv, &quot;02&quot;, &amp;lib, &amp;flag) ){
+      case 0:
+        clib = NULL;
+        cflag = RTLD_LAZY | RTLD_GLOBAL;
+        break;
+      case 1:
+        clib = NIL_P(lib) ? NULL : StringValueCStr(lib);
+        cflag = RTLD_LAZY | RTLD_GLOBAL;
+        break;
+      case 2:
+        clib = NIL_P(lib) ? NULL : StringValueCStr(lib);
+        cflag = NUM2INT(flag);
+        break;
+      default:
+        rb_bug(&quot;rb_fiddle_handle_new&quot;);
+    }
+
+#if defined(_WIN32)
+    if( !clib ){
+        HANDLE rb_libruby_handle(void);
+        ptr = rb_libruby_handle();
+    }
+    else if( STRCASECMP(clib, &quot;libc&quot;) == 0
+# ifdef RUBY_COREDLL
+             || STRCASECMP(clib, RUBY_COREDLL) == 0
+             || STRCASECMP(clib, RUBY_COREDLL&quot;.dll&quot;) == 0
+# endif
+        ){
+# ifdef _WIN32_WCE
+        ptr = dlopen(&quot;coredll.dll&quot;, cflag);
+# else
+        (void)cflag;
+        ptr = w32_coredll();
+# endif
+    }
+    else
+#endif
+        ptr = dlopen(clib, cflag);
+#if defined(HAVE_DLERROR)
+    if( !ptr &amp;&amp; (err = dlerror()) ){
+        rb_raise(rb_eFiddleError, &quot;%s&quot;, err);
+    }
+#else
+    if( !ptr ){
+        err = dlerror();
+        rb_raise(rb_eFiddleError, &quot;%s&quot;, err);
+    }
+#endif
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+    if( fiddle_handle-&gt;ptr &amp;&amp; fiddle_handle-&gt;open &amp;&amp; fiddle_handle-&gt;enable_close ){
+        dlclose(fiddle_handle-&gt;ptr);
+    }
+    fiddle_handle-&gt;ptr = ptr;
+    fiddle_handle-&gt;open = 1;
+    fiddle_handle-&gt;enable_close = 0;
+
+    if( rb_block_given_p() ){
+        rb_ensure(rb_yield, self, rb_fiddle_handle_close, self);
+    }
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-sym" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym(name)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Get the address as an <a href="../Integer.html"><code>Integer</code></a> for the function named <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sym-source">
+            <pre>static VALUE
+rb_fiddle_handle_s_sym(VALUE self, VALUE sym)
+{
+    return fiddle_handle_sym(RTLD_NEXT, sym);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym(name)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Get the address as an <a href="../Integer.html"><code>Integer</code></a> for the function named <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+rb_fiddle_handle_sym(VALUE self, VALUE sym)
+{
+    struct dl_handle *fiddle_handle;
+
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+    if( ! fiddle_handle-&gt;open ){
+        rb_raise(rb_eFiddleError, &quot;closed handle&quot;);
+    }
+
+    return fiddle_handle_sym(fiddle_handle-&gt;ptr, sym);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Close this handle.</p>
+
+<p>Calling close more than once will raise a <a href="DLError.html"><code>Fiddle::DLError</code></a> exception.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre>static VALUE
+rb_fiddle_handle_close(VALUE self)
+{
+    struct dl_handle *fiddle_handle;
+
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+    if(fiddle_handle-&gt;open) {
+        int ret = dlclose(fiddle_handle-&gt;ptr);
+        fiddle_handle-&gt;open = 0;
+
+        /* Check dlclose for successful return value */
+        if(ret) {
+#if defined(HAVE_DLERROR)
+            rb_raise(rb_eFiddleError, &quot;%s&quot;, dlerror());
+#else
+            rb_raise(rb_eFiddleError, &quot;could not close handle&quot;);
+#endif
+        }
+        return INT2NUM(ret);
+    }
+    rb_raise(rb_eFiddleError, &quot;dlclose() called too many times&quot;);
+
+    UNREACHABLE;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-close_enabled-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close_enabled?
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if dlclose() will be called when this handle is garbage collected.</p>
+
+<p>See man(3) dlclose() for more info.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close_enabled-3F-source">
+            <pre>static VALUE
+rb_fiddle_handle_close_enabled_p(VALUE self)
+{
+    struct dl_handle *fiddle_handle;
+
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+
+    if(fiddle_handle-&gt;enable_close) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-disable_close" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            disable_close
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Disable a call to dlclose() when this handle is garbage collected.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="disable_close-source">
+            <pre>static VALUE
+rb_fiddle_handle_disable_close(VALUE self)
+{
+    struct dl_handle *fiddle_handle;
+
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+    fiddle_handle-&gt;enable_close = 0;
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enable_close" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enable_close
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Enable a call to dlclose() when this handle is garbage collected.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enable_close-source">
+            <pre>static VALUE
+rb_fiddle_handle_enable_close(VALUE self)
+{
+    struct dl_handle *fiddle_handle;
+
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+    fiddle_handle-&gt;enable_close = 1;
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sym" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            sym(name)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Get the address as an <a href="../Integer.html"><code>Integer</code></a> for the function named <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sym-source">
+            <pre>static VALUE
+rb_fiddle_handle_sym(VALUE self, VALUE sym)
+{
+    struct dl_handle *fiddle_handle;
+
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+    if( ! fiddle_handle-&gt;open ){
+        rb_raise(rb_eFiddleError, &quot;closed handle&quot;);
+    }
+
+    return fiddle_handle_sym(fiddle_handle-&gt;ptr, sym);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_i" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_i
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the memory address for this handle.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_i-source">
+            <pre>static VALUE
+rb_fiddle_handle_to_i(VALUE self)
+{
+    struct dl_handle *fiddle_handle;
+
+    TypedData_Get_Struct(self, struct dl_handle, &amp;fiddle_handle_data_type, fiddle_handle);
+    return PTR2NUM(fiddle_handle);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

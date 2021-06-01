@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::ConfigFile - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="UserInteraction.html">Gem::UserInteraction</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-5B-5D-3D">#[]=</a>
+    
+    <li ><a href="#method-i-api_keys">#api_keys</a>
+    
+    <li ><a href="#method-i-backtrace">#backtrace</a>
+    
+    <li ><a href="#method-i-check_credentials_permissions">#check_credentials_permissions</a>
+    
+    <li ><a href="#method-i-config_file_name">#config_file_name</a>
+    
+    <li ><a href="#method-i-credentials_path">#credentials_path</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-handle_arguments">#handle_arguments</a>
+    
+    <li ><a href="#method-i-load_api_keys">#load_api_keys</a>
+    
+    <li ><a href="#method-i-load_file">#load_file</a>
+    
+    <li ><a href="#method-i-really_verbose">#really_verbose</a>
+    
+    <li ><a href="#method-i-rubygems_api_key">#rubygems_api_key</a>
+    
+    <li ><a href="#method-i-rubygems_api_key-3D">#rubygems_api_key=</a>
+    
+    <li ><a href="#method-i-set_api_key">#set_api_key</a>
+    
+    <li ><a href="#method-i-set_config_file_name">#set_config_file_name</a>
+    
+    <li ><a href="#method-i-unset_api_key-21">#unset_api_key!</a>
+    
+    <li ><a href="#method-i-write">#write</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::ConfigFile">
+  <h1 id="class-Gem::ConfigFile" class="class">
+    class Gem::ConfigFile
+  </h1>
+
+  <section class="description">
+    
+<p><a href="ConfigFile.html"><code>Gem::ConfigFile</code></a> RubyGems options and gem command options from gemrc.</p>
+
+<p>gemrc is a YAML file that uses strings to match gem command arguments and symbols to match RubyGems options.</p>
+
+<p>Gem command arguments use a <a href="../String.html"><code>String</code></a> key that matches the command name and allow you to specify default arguments:</p>
+
+<pre>install: --no-rdoc --no-ri
+update: --no-rdoc --no-ri</pre>
+
+<p>You can use <code>gem:</code> to set default arguments for all commands.</p>
+
+<p>RubyGems options use symbol keys.  Valid options are:</p>
+<dl class="rdoc-list note-list"><dt><code>:backtrace</code>
+<dd>
+<p>See <a href="ConfigFile.html#method-i-backtrace"><code>backtrace</code></a></p>
+</dd><dt><code>:sources</code>
+<dd>
+<p>Sets <a href="../Gem.html#method-c-sources"><code>Gem::sources</code></a></p>
+</dd><dt><code>:verbose</code>
+<dd>
+<p>See <a href="ConfigFile.html#attribute-i-verbose"><code>verbose</code></a></p>
+</dd><dt><code>:concurrent_downloads</code>
+<dd>
+<p>See <a href="ConfigFile.html#attribute-i-concurrent_downloads"><code>concurrent_downloads</code></a></p>
+</dd></dl>
+
+<p>gemrc files may exist in various locations and are read and merged in the following order:</p>
+<ul><li>
+<p>system wide (/etc/gemrc)</p>
+</li><li>
+<p>per user (~/.gemrc)</p>
+</li><li>
+<p>per environment (gemrc files listed in the GEMRC environment variable)</p>
+</li></ul>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DEFAULT_BACKTRACE">DEFAULT_BACKTRACE
+        
+        <dd>
+        
+      
+        <dt id="DEFAULT_BULK_THRESHOLD">DEFAULT_BULK_THRESHOLD
+        
+        <dd>
+        
+      
+        <dt id="DEFAULT_CERT_EXPIRATION_LENGTH_DAYS">DEFAULT_CERT_EXPIRATION_LENGTH_DAYS
+        
+        <dd>
+        
+      
+        <dt id="DEFAULT_CONCURRENT_DOWNLOADS">DEFAULT_CONCURRENT_DOWNLOADS
+        
+        <dd>
+        
+      
+        <dt id="DEFAULT_UPDATE_SOURCES">DEFAULT_UPDATE_SOURCES
+        
+        <dd>
+        
+      
+        <dt id="DEFAULT_VERBOSITY">DEFAULT_VERBOSITY
+        
+        <dd>
+        
+      
+        <dt id="OPERATING_SYSTEM_DEFAULTS">OPERATING_SYSTEM_DEFAULTS
+        
+        <dd><p>For Ruby packagers to set configuration defaults.  <a href="../Set.html"><code>Set</code></a> in rubygems/defaults/operating_system.rb</p>
+        
+      
+        <dt id="PLATFORM_DEFAULTS">PLATFORM_DEFAULTS
+        
+        <dd><p>For Ruby implementers to set configuration defaults.  <a href="../Set.html"><code>Set</code></a> in rubygems/defaults/#{RUBY_ENGINE}.rb</p>
+        
+      
+        <dt id="SYSTEM_WIDE_CONFIG_FILE">SYSTEM_WIDE_CONFIG_FILE
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-args" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">args</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>List of arguments supplied to the config file object.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-backtrace" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">backtrace</span><span
+            class="attribute-access-type">[W]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>True if we print backtraces on errors.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-bulk_threshold" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">bulk_threshold</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Bulk threshold value.  If the number of missing gems are above this threshold value, then a bulk download technique is used.  (deprecated)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-cert_expiration_length_days" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cert_expiration_length_days</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Expiration length to sign a certificate</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-concurrent_downloads" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">concurrent_downloads</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Number of gem downloads that should be performed concurrently.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-disable_default_gem_server" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">disable_default_gem_server</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>True if we want to force specification of gem server when pushing a gem</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-hash" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">hash</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-home" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">home</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Where to install gems (deprecated)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-path" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">path</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Where to look for gems (deprecated)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-sources" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">sources</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>sources to look for gems</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ssl_ca_cert" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ssl_ca_cert</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Path name of directory or file of openssl CA certificate, used for remote https connection</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ssl_client_cert" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ssl_client_cert</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Path name of directory or file of openssl client certificate, used for remote https connection with client authentication</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ssl_verify_mode" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ssl_verify_mode</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>openssl verify mode value, used for remote https connection</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-update_sources" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">update_sources</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>True if we want to update the SourceInfoCache every time, false otherwise</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-verbose" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verbose</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Verbose level of output:</p>
+<ul><li>
+<p>false – No output</p>
+</li><li>
+<p>true – Normal output</p>
+</li><li>
+<p>:loud – Extra output</p>
+</li></ul>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create the config file object.  <code>args</code> is the list of arguments from the command line.</p>
+
+<p>The following command line options are handled early here rather than later at the time most command options are processed.</p>
+<dl class="rdoc-list note-list"><dt><code>--config-file</code>, <code>--config-file==NAME</code>
+<dd>
+<p>Obviously these need to be handled by the <a href="ConfigFile.html"><code>ConfigFile</code></a> object to ensure we get the right config file.</p>
+</dd><dt><code>--backtrace</code>
+<dd>
+<p>Backtrace needs to be turned on early so that errors before normal option parsing can be properly handled.</p>
+</dd><dt><code>--debug</code>
+<dd>
+<p>Enable Ruby level debug messages.  Handled early for the same reason as –backtrace.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 170</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">set_config_file_name</span>(<span class="ruby-identifier">args</span>)
+
+  <span class="ruby-ivar">@backtrace</span> = <span class="ruby-constant">DEFAULT_BACKTRACE</span>
+  <span class="ruby-ivar">@bulk_threshold</span> = <span class="ruby-constant">DEFAULT_BULK_THRESHOLD</span>
+  <span class="ruby-ivar">@verbose</span> = <span class="ruby-constant">DEFAULT_VERBOSITY</span>
+  <span class="ruby-ivar">@update_sources</span> = <span class="ruby-constant">DEFAULT_UPDATE_SOURCES</span>
+  <span class="ruby-ivar">@concurrent_downloads</span> = <span class="ruby-constant">DEFAULT_CONCURRENT_DOWNLOADS</span>
+  <span class="ruby-ivar">@cert_expiration_length_days</span> = <span class="ruby-constant">DEFAULT_CERT_EXPIRATION_LENGTH_DAYS</span>
+
+  <span class="ruby-identifier">operating_system_config</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span> <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-constant">OPERATING_SYSTEM_DEFAULTS</span>)
+  <span class="ruby-identifier">platform_config</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span> <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-constant">PLATFORM_DEFAULTS</span>)
+  <span class="ruby-identifier">system_config</span> = <span class="ruby-identifier">load_file</span> <span class="ruby-constant">SYSTEM_WIDE_CONFIG_FILE</span>
+  <span class="ruby-identifier">user_config</span> = <span class="ruby-identifier">load_file</span> <span class="ruby-identifier">config_file_name</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">tap</span>(<span class="ruby-operator">&amp;</span><span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UNTAINT</span>)
+
+  <span class="ruby-identifier">environment_config</span> = (<span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;GEMRC&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>)
+    .<span class="ruby-identifier">split</span>(<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_SEPARATOR</span>).<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result</span>, <span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">result</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">load_file</span> <span class="ruby-identifier">file</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@hash</span> = <span class="ruby-identifier">operating_system_config</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">platform_config</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">index</span> <span class="ruby-string">&#39;--norc&#39;</span>
+    <span class="ruby-ivar">@hash</span> = <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">system_config</span>
+    <span class="ruby-ivar">@hash</span> = <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">user_config</span>
+    <span class="ruby-ivar">@hash</span> = <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">environment_config</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># HACK these override command-line args, which is bad</span>
+  <span class="ruby-ivar">@backtrace</span>                   = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:backtrace</span>]                   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:backtrace</span>
+  <span class="ruby-ivar">@bulk_threshold</span>              = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:bulk_threshold</span>]              <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:bulk_threshold</span>
+  <span class="ruby-ivar">@home</span>                        = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:gemhome</span>]                     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:gemhome</span>
+  <span class="ruby-ivar">@path</span>                        = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:gempath</span>]                     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:gempath</span>
+  <span class="ruby-ivar">@update_sources</span>              = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:update_sources</span>]              <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:update_sources</span>
+  <span class="ruby-ivar">@verbose</span>                     = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:verbose</span>]                     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:verbose</span>
+  <span class="ruby-ivar">@disable_default_gem_server</span>  = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:disable_default_gem_server</span>]  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:disable_default_gem_server</span>
+  <span class="ruby-ivar">@sources</span>                     = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:sources</span>]                     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:sources</span>
+  <span class="ruby-ivar">@cert_expiration_length_days</span> = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:cert_expiration_length_days</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:cert_expiration_length_days</span>
+
+  <span class="ruby-ivar">@ssl_verify_mode</span>  = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:ssl_verify_mode</span>]  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:ssl_verify_mode</span>
+  <span class="ruby-ivar">@ssl_ca_cert</span>      = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:ssl_ca_cert</span>]      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:ssl_ca_cert</span>
+  <span class="ruby-ivar">@ssl_client_cert</span>  = <span class="ruby-ivar">@hash</span>[<span class="ruby-value">:ssl_client_cert</span>]  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:ssl_client_cert</span>
+
+  <span class="ruby-ivar">@api_keys</span>         = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@rubygems_api_key</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-identifier">handle_arguments</span> <span class="ruby-identifier">args</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the configuration information for <code>key</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 453</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-ivar">@hash</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]=</span><span
+            class="method-args">(key, value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="../Set.html"><code>Set</code></a> configuration option <code>key</code> to <code>value</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-3D-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 458</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-ivar">@hash</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-api_keys" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">api_keys</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="../Hash.html"><code>Hash</code></a> of RubyGems.org and alternate API keys</p>
+          
+          
+
+          
+          <div class="method-source-code" id="api_keys-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 221</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">api_keys</span>
+  <span class="ruby-identifier">load_api_keys</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@api_keys</span>
+
+  <span class="ruby-ivar">@api_keys</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-backtrace" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">backtrace</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>True if the backtrace option has been specified, or debug is on.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="backtrace-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 356</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">backtrace</span>
+  <span class="ruby-ivar">@backtrace</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">$DEBUG</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-check_credentials_permissions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_credentials_permissions</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks the permissions of the credentials file.  If they are not 0600 an error message is displayed and RubyGems aborts.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="check_credentials_permissions-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 231</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check_credentials_permissions</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">win_platform?</span> <span class="ruby-comment"># windows doesn&#39;t write 0600 as 0600</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">credentials_path</span>
+
+    <span class="ruby-identifier">existing_permissions</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">credentials_path</span>).<span class="ruby-identifier">mode</span> <span class="ruby-operator">&amp;</span> <span class="ruby-value">0777</span>
+
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">existing_permissions</span> <span class="ruby-operator">==</span> <span class="ruby-value">0600</span>
+
+    <span class="ruby-identifier">alert_error</span> <span class="ruby-identifier">&lt;&lt;-ERROR</span>
+<span class="ruby-value">Your gem push credentials file located at:
+
+\t#{credentials_path}
+
+has file permissions of 0#{existing_permissions.to_s 8} but 0600 is required.
+
+To fix this error run:
+
+\tchmod 0600 #{credentials_path}
+
+You should reset your credentials at:
+
+\thttps://rubygems.org/profile/edit
+
+if you believe they were disclosed to a third party.
+</span><span class="ruby-identifier">    ERROR</span>
+
+    <span class="ruby-identifier">terminate_interaction</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-config_file_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">config_file_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The name of the configuration file.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="config_file_name-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 361</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">config_file_name</span>
+  <span class="ruby-ivar">@config_file_name</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">config_file</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-credentials_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">credentials_path</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Location of RubyGems.org credentials</p>
+          
+          
+
+          
+          <div class="method-source-code" id="credentials_path-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 263</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">credentials_path</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">user_home</span>, <span class="ruby-string">&#39;.gem&#39;</span>, <span class="ruby-string">&#39;credentials&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">() { |:update_sources, update_sources| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Delegates to @hash</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 366</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">hash</span> = <span class="ruby-ivar">@hash</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:update_sources</span>
+  <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:verbose</span>
+  <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:backtrace</span>
+  <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:bulk_threshold</span>
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-value">:update_sources</span>, <span class="ruby-ivar">@update_sources</span>
+  <span class="ruby-keyword">yield</span> <span class="ruby-value">:verbose</span>, <span class="ruby-ivar">@verbose</span>
+  <span class="ruby-keyword">yield</span> <span class="ruby-value">:backtrace</span>, <span class="ruby-ivar">@backtrace</span>
+  <span class="ruby-keyword">yield</span> <span class="ruby-value">:bulk_threshold</span>, <span class="ruby-ivar">@bulk_threshold</span>
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-string">&#39;config_file_name&#39;</span>, <span class="ruby-ivar">@config_file_name</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@config_file_name</span>
+
+  <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_arguments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_arguments</span><span
+            class="method-args">(arg_list)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Handle the command arguments.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="handle_arguments-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 384</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handle_arguments</span>(<span class="ruby-identifier">arg_list</span>)
+  <span class="ruby-ivar">@args</span> = []
+
+  <span class="ruby-identifier">arg_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">arg</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^--(backtrace|traceback)$/</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-ivar">@backtrace</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^--debug$/</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">$DEBUG</span> = <span class="ruby-keyword">true</span>
+
+      <span class="ruby-identifier">warn</span> <span class="ruby-string">&#39;NOTE:  Debugging mode prints all exceptions even when rescued&#39;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">arg</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_api_keys" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_api_keys</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_api_keys-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 267</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_api_keys</span>
+  <span class="ruby-identifier">check_credentials_permissions</span>
+
+  <span class="ruby-ivar">@api_keys</span> = <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">credentials_path</span>
+                <span class="ruby-identifier">load_file</span>(<span class="ruby-identifier">credentials_path</span>)
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-ivar">@hash</span>
+              <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@api_keys</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:rubygems_api_key</span>
+    <span class="ruby-ivar">@rubygems_api_key</span>    = <span class="ruby-ivar">@api_keys</span>[<span class="ruby-value">:rubygems_api_key</span>]
+    <span class="ruby-ivar">@api_keys</span>[<span class="ruby-value">:rubygems</span>] = <span class="ruby-ivar">@api_keys</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:rubygems_api_key</span> <span class="ruby-keyword">unless</span>
+      <span class="ruby-ivar">@api_keys</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:rubygems</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_file</span><span
+            class="method-args">(filename)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_file-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 331</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_file</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">load_yaml</span>
+
+  <span class="ruby-identifier">yaml_errors</span> = [<span class="ruby-constant">ArgumentError</span>]
+  <span class="ruby-identifier">yaml_errors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">SyntaxError</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">SyntaxError</span>)
+
+  <span class="ruby-keyword">return</span> {} <span class="ruby-keyword">unless</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">filename</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">filename</span>)
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">content</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SafeYAML</span>.<span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">filename</span>))
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Hash</span>
+      <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Failed to load #{filename} because it doesn&#39;t contain valid YAML hash&quot;</span>
+      <span class="ruby-keyword">return</span> {}
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">content</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-operator">*</span><span class="ruby-identifier">yaml_errors</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Failed to load #{filename}, #{e}&quot;</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EACCES</span>
+    <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Failed to load #{filename} due to permissions problem.&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  {}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-really_verbose" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">really_verbose</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Really verbose mode gives you extra output.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="really_verbose-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 402</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">really_verbose</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">verbose</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">nil</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rubygems_api_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rubygems_api_key</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the RubyGems.org API key</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rubygems_api_key-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 286</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rubygems_api_key</span>
+  <span class="ruby-identifier">load_api_keys</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@rubygems_api_key</span>
+
+  <span class="ruby-ivar">@rubygems_api_key</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rubygems_api_key-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rubygems_api_key=</span><span
+            class="method-args">(api_key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the RubyGems.org API key to <code>api_key</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="rubygems_api_key-3D-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 295</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rubygems_api_key=</span>(<span class="ruby-identifier">api_key</span>)
+  <span class="ruby-identifier">set_api_key</span> <span class="ruby-value">:rubygems_api_key</span>, <span class="ruby-identifier">api_key</span>
+
+  <span class="ruby-ivar">@rubygems_api_key</span> = <span class="ruby-identifier">api_key</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_api_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_api_key</span><span
+            class="method-args">(host, api_key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="../Set.html"><code>Set</code></a> a specific host&#39;s API key to <code>api_key</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_api_key-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 304</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_api_key</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">api_key</span>)
+  <span class="ruby-identifier">check_credentials_permissions</span>
+
+  <span class="ruby-identifier">config</span> = <span class="ruby-identifier">load_file</span>(<span class="ruby-identifier">credentials_path</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">host</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">api_key</span>)
+
+  <span class="ruby-identifier">dirname</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span> <span class="ruby-identifier">credentials_path</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">dirname</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">dirname</span>
+
+  <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">load_yaml</span>
+
+  <span class="ruby-identifier">permissions</span> = <span class="ruby-value">0600</span> <span class="ruby-operator">&amp;</span> (<span class="ruby-operator">~</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">umask</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">credentials_path</span>, <span class="ruby-string">&#39;w&#39;</span>, <span class="ruby-identifier">permissions</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">to_yaml</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">load_api_keys</span> <span class="ruby-comment"># reload</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unset_api_key-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unset_api_key!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Remove the +~/.gem/credentials+ file to clear all the current sessions.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unset_api_key-21-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 325</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unset_api_key!</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">credentials_path</span>)
+
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">credentials_path</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Writes out this config file, replacing its source.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="write-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 446</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">write</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">config_file_name</span>, <span class="ruby-string">&#39;w&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">to_yaml</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-set_config_file_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_config_file_name</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_config_file_name-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/config_file.rb, line 476</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_config_file_name</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@config_file_name</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;GEMRC&quot;</span>]
+  <span class="ruby-identifier">need_config_file_name</span> = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">need_config_file_name</span>
+      <span class="ruby-ivar">@config_file_name</span> = <span class="ruby-identifier">arg</span>
+      <span class="ruby-identifier">need_config_file_name</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">arg</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^--config-file=(.*)/</span>
+      <span class="ruby-ivar">@config_file_name</span> = <span class="ruby-node">$1</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">arg</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^--config-file$/</span>
+      <span class="ruby-identifier">need_config_file_name</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

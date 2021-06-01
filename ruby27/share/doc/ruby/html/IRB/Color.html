@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module IRB::Color - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-clear">::clear</a>
+    
+    <li ><a href="#method-c-colorable-3F">::colorable?</a>
+    
+    <li ><a href="#method-c-colorize">::colorize</a>
+    
+    <li ><a href="#method-c-colorize_code">::colorize_code</a>
+    
+    <li ><a href="#method-c-dispatch_seq">::dispatch_seq</a>
+    
+    <li ><a href="#method-c-inspect_colorable-3F">::inspect_colorable?</a>
+    
+    <li ><a href="#method-c-scan">::scan</a>
+    
+    <li ><a href="#method-c-supported-3F">::supported?</a>
+    
+    <li ><a href="#method-c-without_circular_ref">::without_circular_ref</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-IRB::Color">
+  <h1 id="module-IRB::Color" class="module">
+    module IRB::Color
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="ALL">ALL
+        
+        <dd><p>A constant of all-bit 1 to match any Ripper&#39;s state in dispatch_seq</p>
+        
+      
+        <dt id="BLUE">BLUE
+        
+        <dd>
+        
+      
+        <dt id="BOLD">BOLD
+        
+        <dd>
+        
+      
+        <dt id="CLEAR">CLEAR
+        
+        <dd>
+        
+      
+        <dt id="CYAN">CYAN
+        
+        <dd>
+        
+      
+        <dt id="GREEN">GREEN
+        
+        <dd>
+        
+      
+        <dt id="MAGENTA">MAGENTA
+        
+        <dd>
+        
+      
+        <dt id="RED">RED
+        
+        <dd>
+        
+      
+        <dt id="REVERSE">REVERSE
+        
+        <dd>
+        
+      
+        <dt id="TOKEN_KEYWORDS">TOKEN_KEYWORDS
+        
+        <dd>
+        
+      
+        <dt id="TOKEN_SEQ_EXPRS">TOKEN_SEQ_EXPRS
+        
+        <dd><p>Following pry&#39;s colors where possible, but sometimes having a compromise like making backtick and regexp as red (string&#39;s color, because they&#39;re sharing tokens).</p>
+        
+      
+        <dt id="UNDERLINE">UNDERLINE
+        
+        <dd>
+        
+      
+        <dt id="YELLOW">YELLOW
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-clear" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clear-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clear</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">colorable?</span>
+  <span class="ruby-node">&quot;\e[#{CLEAR}m&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-colorable-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">colorable?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="colorable-3F-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">colorable?</span>
+  <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">tty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">supported?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-regexp">/mswin|mingw/</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">||</span> (<span class="ruby-constant">ENV</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">&#39;TERM&#39;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;TERM&#39;</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;dumb&#39;</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-colorize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">colorize</span><span
+            class="method-args">(text, seq)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="colorize-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">seq</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">text</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">colorable?</span>
+  <span class="ruby-identifier">seq</span> = <span class="ruby-identifier">seq</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\e[#{const_get(s)}m&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-node">&quot;#{seq}#{text}#{clear}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-colorize_code" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">colorize_code</span><span
+            class="method-args">(code, complete: true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If `complete` is false (code is incomplete), this does not warn compile_error. This option is needed to avoid warning a user when the compile_error is happening because the input is not wrong but just incomplete.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="colorize_code-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">colorize_code</span>(<span class="ruby-identifier">code</span>, <span class="ruby-value">complete:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">code</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">colorable?</span>
+
+  <span class="ruby-identifier">symbol_state</span> = <span class="ruby-constant">SymbolState</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">colored</span> = <span class="ruby-string">+&#39;&#39;</span>
+  <span class="ruby-identifier">length</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-identifier">scan</span>(<span class="ruby-identifier">code</span>, <span class="ruby-value">allow_last_error:</span> <span class="ruby-operator">!</span><span class="ruby-identifier">complete</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">token</span>, <span class="ruby-identifier">str</span>, <span class="ruby-identifier">expr</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">in_symbol</span> = <span class="ruby-identifier">symbol_state</span>.<span class="ruby-identifier">scan_token</span>(<span class="ruby-identifier">token</span>)
+    <span class="ruby-identifier">str</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">line</span> = <span class="ruby-constant">Reline</span><span class="ruby-operator">::</span><span class="ruby-constant">Unicode</span>.<span class="ruby-identifier">escape_for_print</span>(<span class="ruby-identifier">line</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">seq</span> = <span class="ruby-identifier">dispatch_seq</span>(<span class="ruby-identifier">token</span>, <span class="ruby-identifier">expr</span>, <span class="ruby-identifier">line</span>, <span class="ruby-value">in_symbol:</span> <span class="ruby-identifier">in_symbol</span>)
+        <span class="ruby-identifier">colored</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">seq</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\e[#{s}m&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&#39;</span>)
+        <span class="ruby-identifier">colored</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\Z/</span>, <span class="ruby-identifier">clear</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">colored</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">length</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">bytesize</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># give up colorizing incomplete Ripper tokens</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">code</span>.<span class="ruby-identifier">bytesize</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">Reline</span><span class="ruby-operator">::</span><span class="ruby-constant">Unicode</span>.<span class="ruby-identifier">escape_for_print</span>(<span class="ruby-identifier">code</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">colored</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-inspect_colorable-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect_colorable?</span><span
+            class="method-args">(obj, seen: {}.compare_by_identity)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inspect_colorable-3F-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect_colorable?</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-value">seen:</span> {}.<span class="ruby-identifier">compare_by_identity</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">obj</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Symbol</span>, <span class="ruby-constant">Regexp</span>, <span class="ruby-constant">Integer</span>, <span class="ruby-constant">Float</span>, <span class="ruby-constant">FalseClass</span>, <span class="ruby-constant">TrueClass</span>, <span class="ruby-constant">NilClass</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">without_circular_ref</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-value">seen:</span> <span class="ruby-identifier">seen</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">inspect_colorable?</span>(<span class="ruby-identifier">k</span>, <span class="ruby-value">seen:</span> <span class="ruby-identifier">seen</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">inspect_colorable?</span>(<span class="ruby-identifier">v</span>, <span class="ruby-value">seen:</span> <span class="ruby-identifier">seen</span>) }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">without_circular_ref</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-value">seen:</span> <span class="ruby-identifier">seen</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-identifier">inspect_colorable?</span>(<span class="ruby-identifier">o</span>, <span class="ruby-value">seen:</span> <span class="ruby-identifier">seen</span>) }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Range</span>
+    <span class="ruby-identifier">inspect_colorable?</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">begin</span>, <span class="ruby-value">seen:</span> <span class="ruby-identifier">seen</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">inspect_colorable?</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">end</span>, <span class="ruby-value">seen:</span> <span class="ruby-identifier">seen</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Module</span>
+    <span class="ruby-operator">!</span><span class="ruby-identifier">obj</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-dispatch_seq" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dispatch_seq</span><span
+            class="method-args">(token, expr, str, in_symbol:)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dispatch_seq-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dispatch_seq</span>(<span class="ruby-identifier">token</span>, <span class="ruby-identifier">expr</span>, <span class="ruby-identifier">str</span>, <span class="ruby-value">in_symbol:</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">token</span> <span class="ruby-operator">==</span> <span class="ruby-value">:on_parse_error</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">token</span> <span class="ruby-operator">==</span> <span class="ruby-value">:compile_error</span>
+    <span class="ruby-constant">TOKEN_SEQ_EXPRS</span>[<span class="ruby-identifier">token</span>][<span class="ruby-value">0</span>]
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">in_symbol</span>
+    [<span class="ruby-constant">YELLOW</span>]
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">TOKEN_KEYWORDS</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">token</span>, []).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">str</span>)
+    [<span class="ruby-constant">CYAN</span>, <span class="ruby-constant">BOLD</span>]
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">seq</span>, <span class="ruby-identifier">exprs</span> = <span class="ruby-constant">TOKEN_SEQ_EXPRS</span>[<span class="ruby-identifier">token</span>]; (<span class="ruby-identifier">expr</span> <span class="ruby-operator">&amp;</span> (<span class="ruby-identifier">exprs</span> <span class="ruby-operator">||</span> <span class="ruby-value">0</span>)) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>)
+    <span class="ruby-identifier">seq</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-scan" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scan</span><span
+            class="method-args">(code, allow_last_error:) { |event, str, state| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scan-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scan</span>(<span class="ruby-identifier">code</span>, <span class="ruby-value">allow_last_error:</span>)
+  <span class="ruby-identifier">pos</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>]
+
+  <span class="ruby-identifier">verbose</span>, <span class="ruby-identifier">$VERBOSE</span> = <span class="ruby-identifier">$VERBOSE</span>, <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">lexer</span> = <span class="ruby-constant">Ripper</span><span class="ruby-operator">::</span><span class="ruby-constant">Lexer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">code</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">lexer</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:scan</span>) <span class="ruby-comment"># Ruby 2.7+</span>
+    <span class="ruby-identifier">lexer</span>.<span class="ruby-identifier">scan</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">elem</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">str</span> = <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">tok</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">allow_last_error</span> <span class="ruby-keyword">and</span> <span class="ruby-regexp">/meets end of file|unexpected end-of-input/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">message</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> ([<span class="ruby-identifier">elem</span>.<span class="ruby-identifier">pos</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">pos</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">bytesize</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">pos</span>) <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>
+
+      <span class="ruby-identifier">str</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+          <span class="ruby-identifier">pos</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">pos</span>[<span class="ruby-value">1</span>] = <span class="ruby-value">0</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">pos</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">bytesize</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">elem</span>.<span class="ruby-identifier">event</span>, <span class="ruby-identifier">str</span>, <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">state</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">lexer</span>.<span class="ruby-identifier">parse</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">elem</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">elem</span>.<span class="ruby-identifier">event</span>, <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">tok</span>, <span class="ruby-identifier">elem</span>.<span class="ruby-identifier">state</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">$VERBOSE</span> = <span class="ruby-identifier">verbose</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-supported-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">supported?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Ripper::Lexer::Elem#state is supported on Ruby 2.5+</p>
+          
+          
+
+          
+          <div class="method-source-code" id="supported-3F-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">supported?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@supported</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-ivar">@supported</span>)
+  <span class="ruby-ivar">@supported</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Version</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">RUBY_VERSION</span>) <span class="ruby-operator">&gt;=</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Version</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;2.5.0&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-without_circular_ref" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">without_circular_ref</span><span
+            class="method-args">(obj, seen:, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="without_circular_ref-source">
+            <pre><span class="ruby-comment"># File lib/irb/color.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">without_circular_ref</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-value">seen:</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">seen</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">obj</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-identifier">seen</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

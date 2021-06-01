@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Gem::LocalRemoteOptions - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-accept_uri_http">#accept_uri_http</a>
+    
+    <li ><a href="#method-i-add_bulk_threshold_option">#add_bulk_threshold_option</a>
+    
+    <li ><a href="#method-i-add_clear_sources_option">#add_clear_sources_option</a>
+    
+    <li ><a href="#method-i-add_local_remote_options">#add_local_remote_options</a>
+    
+    <li ><a href="#method-i-add_proxy_option">#add_proxy_option</a>
+    
+    <li ><a href="#method-i-add_source_option">#add_source_option</a>
+    
+    <li ><a href="#method-i-add_update_sources_option">#add_update_sources_option</a>
+    
+    <li ><a href="#method-i-both-3F">#both?</a>
+    
+    <li ><a href="#method-i-local-3F">#local?</a>
+    
+    <li ><a href="#method-i-remote-3F">#remote?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Gem::LocalRemoteOptions">
+  <h1 id="module-Gem::LocalRemoteOptions" class="module">
+    module Gem::LocalRemoteOptions
+  </h1>
+
+  <section class="description">
+    
+<p>Mixin methods for local and remote <a href="Command.html"><code>Gem::Command</code></a> options.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-accept_uri_http" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">accept_uri_http</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Allows <a href="../OptionParser.html"><code>OptionParser</code></a> to handle HTTP URIs.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="accept_uri_http-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">accept_uri_http</span>
+  <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">accept</span> <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidURIError</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidArgument</span>, <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">valid_uri_schemes</span> = [<span class="ruby-string">&quot;http&quot;</span>, <span class="ruby-string">&quot;https&quot;</span>, <span class="ruby-string">&quot;file&quot;</span>, <span class="ruby-string">&quot;s3&quot;</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid_uri_schemes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span>)
+      <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;Invalid uri scheme for #{value}\nPreface URLs with one of #{valid_uri_schemes.map{|s| &quot;#{s}://&quot;}}&quot;</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">msg</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_bulk_threshold_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_bulk_threshold_option</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the –bulk-threshold option</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_bulk_threshold_option-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_bulk_threshold_option</span>
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Local/Remote&quot;</span>, <span class="ruby-string">&#39;-B&#39;</span>, <span class="ruby-string">&#39;--bulk-threshold COUNT&#39;</span>,
+             <span class="ruby-string">&quot;Threshold for switching to bulk&quot;</span>,
+             <span class="ruby-node">&quot;synchronization (default #{Gem.configuration.bulk_threshold})&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">bulk_threshold</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_clear_sources_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_clear_sources_option</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the –clear-sources option</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_clear_sources_option-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_clear_sources_option</span>
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Local/Remote&quot;</span>, <span class="ruby-string">&#39;--clear-sources&#39;</span>,
+             <span class="ruby-string">&#39;Clear the gem sources&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+
+    <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">sources</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:sources_cleared</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_local_remote_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_local_remote_options</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add local/remote options to the command line parser.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_local_remote_options-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_local_remote_options</span>
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Local/Remote&quot;</span>, <span class="ruby-string">&#39;-l&#39;</span>, <span class="ruby-string">&#39;--local&#39;</span>,
+             <span class="ruby-string">&#39;Restrict operations to the LOCAL domain&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] = <span class="ruby-value">:local</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Local/Remote&quot;</span>, <span class="ruby-string">&#39;-r&#39;</span>, <span class="ruby-string">&#39;--remote&#39;</span>,
+    <span class="ruby-string">&#39;Restrict operations to the REMOTE domain&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] = <span class="ruby-value">:remote</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Local/Remote&quot;</span>, <span class="ruby-string">&#39;-b&#39;</span>, <span class="ruby-string">&#39;--both&#39;</span>,
+             <span class="ruby-string">&#39;Allow LOCAL and REMOTE operations&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] = <span class="ruby-value">:both</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_bulk_threshold_option</span>
+  <span class="ruby-identifier">add_clear_sources_option</span>
+  <span class="ruby-identifier">add_source_option</span>
+  <span class="ruby-identifier">add_proxy_option</span>
+  <span class="ruby-identifier">add_update_sources_option</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_proxy_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_proxy_option</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the –http-proxy option</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_proxy_option-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_proxy_option</span>
+  <span class="ruby-identifier">accept_uri_http</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Local/Remote&quot;</span>, <span class="ruby-string">&#39;-p&#39;</span>, <span class="ruby-string">&#39;--[no-]http-proxy [URL]&#39;</span>, <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>,
+             <span class="ruby-string">&#39;Use HTTP proxy for remote operations&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:http_proxy</span>] = (<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>) <span class="ruby-operator">?</span> <span class="ruby-value">:no_proxy</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">value</span>
+    <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>[<span class="ruby-value">:http_proxy</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:http_proxy</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_source_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_source_option</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the –source option</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_source_option-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_source_option</span>
+  <span class="ruby-identifier">accept_uri_http</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:&quot;Local/Remote&quot;</span>, <span class="ruby-string">&#39;-s&#39;</span>, <span class="ruby-string">&#39;--source URL&#39;</span>, <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>,
+             <span class="ruby-string">&#39;Append URL to list of remote gem sources&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+
+    <span class="ruby-identifier">source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">source</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/\/\z/</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:sources_cleared</span>
+      <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">sources</span> = [<span class="ruby-identifier">source</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">source</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">sources</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">source</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_update_sources_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_update_sources_option</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the –update-sources option</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_update_sources_option-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_update_sources_option</span>
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-value">:Deprecated</span>, <span class="ruby-string">&#39;-u&#39;</span>, <span class="ruby-string">&#39;--[no-]update-sources&#39;</span>,
+             <span class="ruby-string">&#39;Update local source cache&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">update_sources</span> = <span class="ruby-identifier">value</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-both-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">both?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Is fetching of local and remote information enabled?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="both-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">both?</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:both</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-local-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">local?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Is local fetching enabled?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="local-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">local?</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:local</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:both</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remote-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remote?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Is remote fetching enabled?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remote-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/local_remote_options.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remote?</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:remote</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:domain</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:both</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

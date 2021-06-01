@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::FakeFetcher - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-cache_update_path">#cache_update_path</a>
+    
+    <li ><a href="#method-i-download">#download</a>
+    
+    <li ><a href="#method-i-download_to_cache">#download_to_cache</a>
+    
+    <li ><a href="#method-i-fetch_path">#fetch_path</a>
+    
+    <li ><a href="#method-i-fetch_size">#fetch_size</a>
+    
+    <li ><a href="#method-i-find_data">#find_data</a>
+    
+    <li ><a href="#method-i-open_uri_or_path">#open_uri_or_path</a>
+    
+    <li ><a href="#method-i-request">#request</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::FakeFetcher">
+  <h1 id="class-Gem::FakeFetcher" class="class">
+    class Gem::FakeFetcher
+  </h1>
+
+  <section class="description">
+    
+<p>A fake <a href="RemoteFetcher.html"><code>Gem::RemoteFetcher</code></a> for use in tests or to avoid real live HTTP requests when testing code that uses RubyGems.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-ivar">@fetcher</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">FakeFetcher</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-ivar">@fetcher</span>.<span class="ruby-identifier">data</span>[<span class="ruby-string">&#39;http://gems.example.com/yaml&#39;</span>] = <span class="ruby-identifier">source_index</span>.<span class="ruby-identifier">to_yaml</span>
+<span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteFetcher</span>.<span class="ruby-identifier">fetcher</span> = <span class="ruby-ivar">@fetcher</span>
+
+<span class="ruby-identifier">use</span> <span class="ruby-identifier">nested</span> <span class="ruby-identifier">array</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">multiple</span> <span class="ruby-identifier">response</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">needed</span>
+
+<span class="ruby-ivar">@fetcher</span>.<span class="ruby-identifier">data</span>[<span class="ruby-string">&#39;http://gems.example.com/sequence&#39;</span>] = [[<span class="ruby-string">&#39;Success&#39;</span>, <span class="ruby-value">200</span>, <span class="ruby-string">&#39;OK&#39;</span>], [<span class="ruby-string">&#39;Failed&#39;</span>, <span class="ruby-value">401</span>, <span class="ruby-string">&#39;Unauthorized&#39;</span>]]
+
+<span class="ruby-ivar">@fetcher</span>.<span class="ruby-identifier">fetch_path</span>(<span class="ruby-string">&#39;http://gems.example.com/sequence&#39;</span>) <span class="ruby-comment"># =&gt; [&#39;Success&#39;, 200, &#39;OK&#39;]</span>
+<span class="ruby-ivar">@fetcher</span>.<span class="ruby-identifier">fetch_path</span>(<span class="ruby-string">&#39;http://gems.example.com/sequence&#39;</span>) <span class="ruby-comment"># =&gt; [&#39;Failed&#39;, 401, &#39;Unauthorized&#39;]</span>
+
+<span class="ruby-comment"># invoke RubyGems code</span>
+
+<span class="ruby-identifier">paths</span> = <span class="ruby-ivar">@fetcher</span>.<span class="ruby-identifier">paths</span>
+<span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;http://gems.example.com/yaml&#39;</span>, <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">shift</span>
+<span class="ruby-identifier">assert</span> <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">empty?</span>, <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>)
+</pre>
+
+<p>See RubyGems&#39; tests for more examples of <a href="FakeFetcher.html"><code>FakeFetcher</code></a>.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-data" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">data</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-last_request" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">last_request</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-paths" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">paths</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@data</span> = {}
+  <span class="ruby-ivar">@paths</span> = []
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-cache_update_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cache_update_path</span><span
+            class="method-args">(uri, path = nil, update = true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cache_update_path-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cache_update_path</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">path</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">update</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">data</span> = <span class="ruby-identifier">fetch_path</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-string">&#39;wb&#39;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">data</span> } <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">update</span>
+    <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">read_binary</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-download" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">download</span><span
+            class="method-args">(spec, source_uri, install_dir = Gem.dir)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="download-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">download</span>(<span class="ruby-identifier">spec</span>, <span class="ruby-identifier">source_uri</span>, <span class="ruby-identifier">install_dir</span> = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">cache_file</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">install_dir</span>  <span class="ruby-comment"># see fetch_command</span>
+           <span class="ruby-identifier">install_dir</span>
+         <span class="ruby-keyword">else</span>
+           <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">install_dir</span>, <span class="ruby-string">&quot;cache&quot;</span>
+         <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">path</span>, <span class="ruby-identifier">name</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">source_uri</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^http/</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-string">&quot;wb&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">fetch_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">source_uri</span>, <span class="ruby-string">&quot;gems&quot;</span>, <span class="ruby-identifier">name</span>))
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">source_uri</span>, <span class="ruby-identifier">path</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-download_to_cache" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">download_to_cache</span><span
+            class="method-args">(dependency)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="download_to_cache-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">download_to_cache</span>(<span class="ruby-identifier">dependency</span>)
+  <span class="ruby-identifier">found</span>, <span class="ruby-identifier">_</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SpecFetcher</span>.<span class="ruby-identifier">fetcher</span>.<span class="ruby-identifier">spec_for_dependency</span> <span class="ruby-identifier">dependency</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">found</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">spec</span>, <span class="ruby-identifier">source</span> = <span class="ruby-identifier">found</span>.<span class="ruby-identifier">first</span>
+
+  <span class="ruby-identifier">download</span> <span class="ruby-identifier">spec</span>, <span class="ruby-identifier">source</span>.<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_path</span><span
+            class="method-args">(path, mtime = nil, head = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_path-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch_path</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mtime</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">head</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">find_data</span>(<span class="ruby-identifier">path</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:call</span>)
+    <span class="ruby-identifier">data</span>.<span class="ruby-identifier">call</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/gz$/</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">data</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">gunzip</span> <span class="ruby-identifier">data</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_size" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_size</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_size-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch_size</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-ivar">@paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;need full URI&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r&#39;^http://&#39;</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">path</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteFetcher</span><span class="ruby-operator">::</span><span class="ruby-constant">FetchError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;no data for #{path}&quot;</span>, <span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">data</span> = <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">path</span>]
+
+  <span class="ruby-identifier">data</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:call</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">call</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_data</span><span
+            class="method-args">(path, nargs = 3)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_data-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_data</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">nargs</span> = <span class="ruby-value">3</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">URI</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">and</span> <span class="ruby-string">&#39;file&#39;</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">scheme</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">URI</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">and</span> <span class="ruby-node">&quot;URI::#{path.scheme.upcase}&quot;</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>,
+      <span class="ruby-node">&quot;mismatch for scheme #{path.scheme} and class #{path.class}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-ivar">@paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;need full URI&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r&#39;^https?://&#39;</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">path</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteFetcher</span><span class="ruby-operator">::</span><span class="ruby-constant">FetchError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;no data for #{path}&quot;</span>, <span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">data</span> = <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">path</span>]
+
+  <span class="ruby-identifier">data</span>.<span class="ruby-identifier">flatten!</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">shift</span>(<span class="ruby-identifier">nargs</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:flatten!</span>)
+  <span class="ruby-identifier">data</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-open_uri_or_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open_uri_or_path</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Thanks, FakeWeb!</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open_uri_or_path-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open_uri_or_path</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">find_data</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">body</span>, <span class="ruby-identifier">code</span>, <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">data</span>
+
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPResponse</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:response_class</span>, <span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;1.0&quot;</span>, <span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">msg</span>)
+  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@body</span>, <span class="ruby-identifier">body</span>)
+  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@read</span>, <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">response</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">request</span><span
+            class="method-args">(uri, request_class, last_modified = nil) { |last_request| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="request-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/test_utilities.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">request_class</span>, <span class="ruby-identifier">last_modified</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">find_data</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-identifier">body</span>, <span class="ruby-identifier">code</span>, <span class="ruby-identifier">msg</span> = (<span class="ruby-identifier">data</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:call</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">call</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">data</span>)
+
+  <span class="ruby-ivar">@last_request</span> = <span class="ruby-identifier">request_class</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
+  <span class="ruby-keyword">yield</span> <span class="ruby-ivar">@last_request</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPResponse</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:response_class</span>, <span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;1.0&quot;</span>, <span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">msg</span>)
+  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@body</span>, <span class="ruby-identifier">body</span>)
+  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@read</span>, <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">response</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

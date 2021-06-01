@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Tracer - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Tracer-label-Example">Example</a>
+    <li><a href="#class-Tracer-label-Copyright">Copyright</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-add_filter">::add_filter</a>
+    
+    <li ><a href="#method-c-off">::off</a>
+    
+    <li ><a href="#method-c-on">::on</a>
+    
+    <li ><a href="#method-c-set_get_line_procs">::set_get_line_procs</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Tracer">
+  <h1 id="class-Tracer" class="class">
+    class Tracer
+  </h1>
+
+  <section class="description">
+    
+<p>Outputs a source level execution trace of a Ruby program.</p>
+
+<p>It does this by registering an event handler with <a href="Kernel.html#method-i-set_trace_func"><code>Kernel#set_trace_func</code></a> for processing incoming events.  It also provides methods for filtering unwanted trace output (see <a href="Tracer.html#method-c-add_filter"><code>Tracer.add_filter</code></a>, <a href="Tracer.html#method-c-on"><code>Tracer.on</code></a>, and <a href="Tracer.html#method-c-off"><code>Tracer.off</code></a>).</p>
+
+<h2 id="class-Tracer-label-Example">Example<span><a href="#class-Tracer-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Consider the following Ruby script</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">A</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">square</span>(<span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">a</span><span class="ruby-operator">*</span><span class="ruby-identifier">a</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">a</span> = <span class="ruby-constant">A</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">square</span>(<span class="ruby-value">5</span>)
+</pre>
+
+<p>Running the above script using <code>ruby -r tracer example.rb</code> will output the following trace to STDOUT (Note you can also explicitly <code>require &#39;tracer&#39;</code>)</p>
+
+<pre>#0:&lt;internal:lib/rubygems/custom_require&gt;:38:Kernel:&lt;: -
+#0:example.rb:3::-: class A
+#0:example.rb:3::C: class A
+#0:example.rb:4::-:   def square(a)
+#0:example.rb:7::E: end
+#0:example.rb:9::-: a = A.new
+#0:example.rb:10::-: a.square(5)
+#0:example.rb:4:A:&gt;:   def square(a)
+#0:example.rb:5:A:-:     return a*a
+#0:example.rb:6:A:&lt;:   end
+ |  |         | |  |
+ |  |         | |   ---------------------+ event
+ |  |         |  ------------------------+ class
+ |  |          --------------------------+ line
+ |   ------------------------------------+ filename
+  ---------------------------------------+ thread</pre>
+
+<p><a href="Symbol.html"><code>Symbol</code></a> table used for displaying incoming events:</p>
+<dl class="rdoc-list note-list"><dt>+}+
+<dd>
+<p>call a C-language routine</p>
+</dd><dt>+{+
+<dd>
+<p>return from a C-language routine</p>
+</dd><dt>+&gt;+
+<dd>
+<p>call a Ruby method</p>
+</dd><dt><code>C</code>
+<dd>
+<p>start a class or module definition</p>
+</dd><dt><code>E</code>
+<dd>
+<p>finish a class or module definition</p>
+</dd><dt><code>-</code>
+<dd>
+<p>execute code on a new line</p>
+</dd><dt>+^+
+<dd>
+<p>raise an exception</p>
+</dd><dt>+&lt;+
+<dd>
+<p>return from a Ruby method</p>
+</dd></dl>
+
+<h2 id="class-Tracer-label-Copyright">Copyright<span><a href="#class-Tracer-label-Copyright">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>by Keiju ISHITSUKA(keiju@ishitsuka.com)</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="EVENT_SYMBOL">EVENT_SYMBOL
+        
+        <dd><p><a href="Symbol.html"><code>Symbol</code></a> table used for displaying trace information</p>
+        
+      
+        <dt id="Single">Single
+        
+        <dd><p>Reference to singleton instance of <a href="Tracer.html"><code>Tracer</code></a></p>
+        
+      
+        <dt id="display_c_call">display_c_call
+        
+        <dd>
+        
+      
+        <dt id="display_process_id">display_process_id
+        
+        <dd>
+        
+      
+        <dt id="display_thread_id">display_thread_id
+        
+        <dd>
+        
+      
+        <dt id="stdout">stdout
+        
+        <dd>
+        
+      
+        <dt id="verbose">verbose
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-c-display_c_call" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">display_c_call</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display C-routine calls in trace output (defaults to false)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-display_c_call-3F" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">display_c_call?</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display C-routine calls in trace output (defaults to false)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-display_process_id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">display_process_id</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display process id in trace output (defaults to false)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-display_process_id-3F" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">display_process_id?</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display process id in trace output (defaults to false)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-display_thread_id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">display_thread_id</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display thread id in trace output (defaults to true)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-display_thread_id-3F" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">display_thread_id?</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display thread id in trace output (defaults to true)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-stdout" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stdout</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>output stream used to output trace (defaults to STDOUT)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-stdout_mutex" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stdout_mutex</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>mutex lock used by tracer for displaying trace output</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-verbose" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verbose</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display additional debug information (defaults to false)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-verbose-3F" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verbose?</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>display additional debug information (defaults to false)</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-add_filter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_filter</span><span
+            class="method-args">(p = nil, &amp;b)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Used to filter unwanted trace output</p>
+
+<p>Example which only outputs lines of code executed within the <a href="Kernel.html"><code>Kernel</code></a> class:</p>
+
+<pre class="ruby"><span class="ruby-constant">Tracer</span>.<span class="ruby-identifier">add_filter</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">event</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">binding</span>, <span class="ruby-identifier">klass</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">rest</span><span class="ruby-operator">|</span>
+  <span class="ruby-string">&quot;Kernel&quot;</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="add_filter-source">
+            <pre><span class="ruby-comment"># File lib/tracer.rb, line 267</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Tracer</span>.<span class="ruby-identifier ruby-title">add_filter</span>(<span class="ruby-identifier">p</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+  <span class="ruby-identifier">p</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">b</span>
+  <span class="ruby-constant">Single</span>.<span class="ruby-identifier">add_filter</span>(<span class="ruby-identifier">p</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-off" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">off</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Disable tracing</p>
+          
+          
+
+          
+          <div class="method-source-code" id="off-source">
+            <pre><span class="ruby-comment"># File lib/tracer.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Tracer</span>.<span class="ruby-identifier ruby-title">off</span>
+  <span class="ruby-constant">Single</span>.<span class="ruby-identifier">off</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-on" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">on</span><span
+            class="method-args">() { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Start tracing</p>
+
+<h3 id="method-c-on-label-Example">Example<span><a href="#method-c-on-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-constant">Tracer</span>.<span class="ruby-identifier">on</span>
+<span class="ruby-comment"># code to trace here</span>
+<span class="ruby-constant">Tracer</span>.<span class="ruby-identifier">off</span>
+</pre>
+
+<p>You can also pass a block:</p>
+
+<pre class="ruby"><span class="ruby-constant">Tracer</span>.<span class="ruby-identifier">on</span> {
+  <span class="ruby-comment"># trace everything in this block</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="on-source">
+            <pre><span class="ruby-comment"># File lib/tracer.rb, line 228</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Tracer</span>.<span class="ruby-identifier ruby-title">on</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-constant">Single</span>.<span class="ruby-identifier">on</span>{<span class="ruby-keyword">yield</span>}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Single</span>.<span class="ruby-identifier">on</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-set_get_line_procs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_get_line_procs</span><span
+            class="method-args">(file_name, p = nil, &amp;b)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Register an event handler <code>p</code> which is called every time a line in <code>file_name</code> is executed.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-constant">Tracer</span>.<span class="ruby-identifier">set_get_line_procs</span>(<span class="ruby-string">&quot;example.rb&quot;</span>, <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;line number executed is #{line}&quot;</span>
+})
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="set_get_line_procs-source">
+            <pre><span class="ruby-comment"># File lib/tracer.rb, line 253</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Tracer</span>.<span class="ruby-identifier ruby-title">set_get_line_procs</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">p</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+  <span class="ruby-identifier">p</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">b</span>
+  <span class="ruby-constant">Single</span>.<span class="ruby-identifier">set_get_line_procs</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">p</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

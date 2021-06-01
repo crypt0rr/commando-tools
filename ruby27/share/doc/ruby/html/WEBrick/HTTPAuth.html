@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module WEBrick::HTTPAuth - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-basic_auth">#basic_auth</a>
+    
+    <li ><a href="#method-i-proxy_basic_auth">#proxy_basic_auth</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-WEBrick::HTTPAuth">
+  <h1 id="module-WEBrick::HTTPAuth" class="module">
+    module WEBrick::HTTPAuth
+  </h1>
+
+  <section class="description">
+    
+<p><a href="HTTPAuth.html"><code>HTTPAuth</code></a> provides both basic and digest authentication.</p>
+
+<p>To enable authentication for requests in <a href="../WEBrick.html"><code>WEBrick</code></a> you will need a user database and an authenticator.  To start, here&#39;s an <a href="HTTPAuth/Htpasswd.html"><code>Htpasswd</code></a> database for use with a <a href="HTTPAuth/DigestAuth.html"><code>DigestAuth</code></a> authenticator:</p>
+
+<pre class="ruby"><span class="ruby-identifier">config</span> = { <span class="ruby-value">:Realm</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;DigestAuth example realm&#39;</span> }
+
+<span class="ruby-identifier">htpasswd</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Htpasswd</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;my_password_file&#39;</span>
+<span class="ruby-identifier">htpasswd</span>.<span class="ruby-identifier">auth_type</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">DigestAuth</span>
+<span class="ruby-identifier">htpasswd</span>.<span class="ruby-identifier">set_passwd</span> <span class="ruby-identifier">config</span>[<span class="ruby-value">:Realm</span>], <span class="ruby-string">&#39;username&#39;</span>, <span class="ruby-string">&#39;password&#39;</span>
+<span class="ruby-identifier">htpasswd</span>.<span class="ruby-identifier">flush</span>
+</pre>
+
+<p>The <code>:Realm</code> is used to provide different access to different groups across several resources on a server.  Typically you&#39;ll need only one realm for a server.</p>
+
+<p>This database can be used to create an authenticator:</p>
+
+<pre class="ruby"><span class="ruby-identifier">config</span>[<span class="ruby-value">:UserDB</span>] = <span class="ruby-identifier">htpasswd</span>
+
+<span class="ruby-identifier">digest_auth</span> = <span class="ruby-constant">WEBrick</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">DigestAuth</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">config</span>
+</pre>
+
+<p>To authenticate a request call authenticate with a request and response object in a servlet:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">do_GET</span> <span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>
+  <span class="ruby-ivar">@authenticator</span>.<span class="ruby-identifier">authenticate</span> <span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>For digest authentication the authenticator must not be created every request, it must be passed in as an option via <a href="HTTPServer.html#method-i-mount"><code>WEBrick::HTTPServer#mount</code></a>.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-basic_auth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">basic_auth</span><span
+            class="method-args">(req, res, realm) { |username, password| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Simple wrapper for providing basic authentication for a request.  When called with a request <code>req</code>, response <code>res</code>, authentication <code>realm</code> and <code>block</code> the block will be called with a <code>username</code> and <code>password</code>.  If the block returns true the request is allowed to continue, otherwise an HTTPStatus::Unauthorized error is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="basic_auth-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httpauth.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">basic_auth</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>, <span class="ruby-identifier">realm</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: username, password</span>
+  <span class="ruby-identifier">_basic_auth</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>, <span class="ruby-identifier">realm</span>, <span class="ruby-string">&quot;Authorization&quot;</span>, <span class="ruby-string">&quot;WWW-Authenticate&quot;</span>,
+              <span class="ruby-constant">HTTPStatus</span><span class="ruby-operator">::</span><span class="ruby-constant">Unauthorized</span>, <span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-proxy_basic_auth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy_basic_auth</span><span
+            class="method-args">(req, res, realm) { |username, password| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Simple wrapper for providing basic authentication for a proxied request. When called with a request <code>req</code>, response <code>res</code>, authentication <code>realm</code> and <code>block</code> the block will be called with a <code>username</code> and <code>password</code>. If the block returns true the request is allowed to continue, otherwise an HTTPStatus::ProxyAuthenticationRequired error is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="proxy_basic_auth-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httpauth.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">proxy_basic_auth</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>, <span class="ruby-identifier">realm</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield: username, password</span>
+  <span class="ruby-identifier">_basic_auth</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">res</span>, <span class="ruby-identifier">realm</span>, <span class="ruby-string">&quot;Proxy-Authorization&quot;</span>, <span class="ruby-string">&quot;Proxy-Authenticate&quot;</span>,
+              <span class="ruby-constant">HTTPStatus</span><span class="ruby-operator">::</span><span class="ruby-constant">ProxyAuthenticationRequired</span>, <span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

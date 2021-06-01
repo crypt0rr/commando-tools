@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Zlib::GzipWriter - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="GzipFile.html">Zlib::GzipFile</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-open">::open</a>
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-comment-3D">#comment=</a>
+    
+    <li ><a href="#method-i-flush">#flush</a>
+    
+    <li ><a href="#method-i-mtime-3D">#mtime=</a>
+    
+    <li ><a href="#method-i-orig_name-3D">#orig_name=</a>
+    
+    <li ><a href="#method-i-pos">#pos</a>
+    
+    <li ><a href="#method-i-print">#print</a>
+    
+    <li ><a href="#method-i-printf">#printf</a>
+    
+    <li ><a href="#method-i-putc">#putc</a>
+    
+    <li ><a href="#method-i-puts">#puts</a>
+    
+    <li ><a href="#method-i-tell">#tell</a>
+    
+    <li ><a href="#method-i-write">#write</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Zlib::GzipWriter">
+  <h1 id="class-Zlib::GzipWriter" class="class">
+    class Zlib::GzipWriter
+  </h1>
+
+  <section class="description">
+    
+<p><a href="GzipWriter.html"><code>Zlib::GzipWriter</code></a> is a class for writing gzipped files.  <a href="GzipWriter.html"><code>GzipWriter</code></a> should be used with an instance of <a href="../IO.html"><code>IO</code></a>, or IO-like, object.</p>
+
+<p>Following two example generate the same result.</p>
+
+<pre class="ruby"><span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">GzipWriter</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;hoge.gz&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gz</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">write</span> <span class="ruby-string">&#39;jugemu jugemu gokou no surikire...&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;hoge.gz&#39;</span>, <span class="ruby-string">&#39;w&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">gz</span> = <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">GzipWriter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f</span>)
+  <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">write</span> <span class="ruby-string">&#39;jugemu jugemu gokou no surikire...&#39;</span>
+  <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">close</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>To make like gzip(1) does, run following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">orig</span> = <span class="ruby-string">&#39;hoge.txt&#39;</span>
+<span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">GzipWriter</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;hoge.gz&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gz</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">mtime</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">mtime</span>(<span class="ruby-identifier">orig</span>)
+  <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">orig_name</span> = <span class="ruby-identifier">orig</span>
+  <span class="ruby-identifier">gz</span>.<span class="ruby-identifier">write</span> <span class="ruby-constant">IO</span>.<span class="ruby-identifier">binread</span>(<span class="ruby-identifier">orig</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>NOTE: Due to the limitation of Ruby&#39;s finalizer, you must explicitly close <a href="GzipWriter.html"><code>GzipWriter</code></a> objects by <a href="GzipFile.html#method-i-close"><code>Zlib::GzipWriter#close</code></a> etc.  Otherwise, <a href="GzipWriter.html"><code>GzipWriter</code></a> will be not able to write the gzip footer and will generate a broken gzip file.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Zlib::GzipWriter.new(io, level = nil, strategy = nil, options = {})
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a <a href="GzipWriter.html"><code>GzipWriter</code></a> object associated with <code>io</code>. <code>level</code> and <code>strategy</code> should be the same as the arguments of <a href="Deflate.html#method-c-new"><code>Zlib::Deflate.new</code></a>.  The <a href="GzipWriter.html"><code>GzipWriter</code></a> object writes gzipped data to <code>io</code>.  <code>io</code> must respond to the <code>write</code> method that behaves the same as <a href="../IO.html#method-i-write"><code>IO#write</code></a>.</p>
+
+<p>The <code>options</code> hash may be used to set the encoding of the data. <code>:external_encoding</code>, <code>:internal_encoding</code> and <code>:encoding</code> may be set as in <a href="../IO.html#method-c-new"><code>IO::new</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rb_gzwriter_initialize(int argc, VALUE *argv, VALUE obj)
+{
+    struct gzfile *gz;
+    VALUE io, level, strategy, opt = Qnil;
+    int err;
+
+    if (argc &gt; 1) {
+        opt = rb_check_convert_type(argv[argc-1], T_HASH, &quot;Hash&quot;, &quot;to_hash&quot;);
+        if (!NIL_P(opt)) argc--;
+    }
+
+    rb_scan_args(argc, argv, &quot;12&quot;, &amp;io, &amp;level, &amp;strategy);
+    TypedData_Get_Struct(obj, struct gzfile, &amp;gzfile_data_type, gz);
+
+    /* this is undocumented feature of zlib */
+    gz-&gt;level = ARG_LEVEL(level);
+    err = deflateInit2(&amp;gz-&gt;z.stream, gz-&gt;level, Z_DEFLATED,
+                       -MAX_WBITS, DEF_MEM_LEVEL, ARG_STRATEGY(strategy));
+    if (err != Z_OK) {
+        raise_zlib_error(err, gz-&gt;z.stream.msg);
+    }
+    gz-&gt;io = io;
+    ZSTREAM_READY(&amp;gz-&gt;z);
+    rb_gzfile_ecopts(gz, opt);
+
+    if (rb_respond_to(io, id_path)) {
+        gz-&gt;path = rb_funcall(gz-&gt;io, id_path, 0);
+        rb_define_singleton_method(obj, &quot;path&quot;, rb_gzfile_path, 0);
+    }
+
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Zlib::GzipWriter.open(filename, level=nil, strategy=nil) { |gz| ... }
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Opens a file specified by <code>filename</code> for writing gzip compressed data, and returns a <a href="GzipWriter.html"><code>GzipWriter</code></a> object associated with that file.  Further details of this method are found in <a href="GzipWriter.html#method-c-new"><code>Zlib::GzipWriter.new</code></a> and <a href="GzipFile.html#method-c-wrap"><code>Zlib::GzipFile.wrap</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre>static VALUE
+rb_gzwriter_s_open(int argc, VALUE *argv, VALUE klass)
+{
+    return gzfile_s_open(argc, argv, klass, &quot;wb&quot;);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;&lt;</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Same as <a href="../IO.html"><code>IO</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3C-source">
+            <pre>#define rb_gzwriter_addstr  rb_io_addstr</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-comment-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">comment=</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Specify the comment (<code>str</code>) in the gzip header.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="comment-3D-source">
+            <pre>static VALUE
+rb_gzfile_set_comment(VALUE obj, VALUE str)
+{
+    struct gzfile *gz = get_gzfile(obj);
+    VALUE s;
+    char *p;
+
+    if (gz-&gt;z.flags &amp; GZFILE_FLAG_HEADER_FINISHED) {
+        rb_raise(cGzError, &quot;header is already written&quot;);
+    }
+    s = rb_str_dup(rb_str_to_str(str));
+    p = memchr(RSTRING_PTR(s), &#39;\0&#39;, RSTRING_LEN(s));
+    if (p) {
+        rb_str_resize(s, p - RSTRING_PTR(s));
+    }
+    gz-&gt;comment = s;
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flush" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flush(flush=nil)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Flushes all the internal buffers of the <a href="GzipWriter.html"><code>GzipWriter</code></a> object.  The meaning of <code>flush</code> is same as in <a href="Deflate.html#method-i-deflate"><code>Zlib::Deflate#deflate</code></a>.  <code>Zlib::SYNC_FLUSH</code> is used if <code>flush</code> is omitted.  It is no use giving flush <code>Zlib::NO_FLUSH</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="flush-source">
+            <pre>static VALUE
+rb_gzwriter_flush(int argc, VALUE *argv, VALUE obj)
+{
+    struct gzfile *gz = get_gzfile(obj);
+    VALUE v_flush;
+    int flush;
+
+    rb_scan_args(argc, argv, &quot;01&quot;, &amp;v_flush);
+
+    flush = FIXNUMARG(v_flush, Z_SYNC_FLUSH);
+    if (flush != Z_NO_FLUSH) {  /* prevent Z_BUF_ERROR */
+        zstream_run(&amp;gz-&gt;z, (Bytef*)&quot;&quot;, 0, flush);
+    }
+
+    gzfile_write_raw(gz);
+    if (rb_respond_to(gz-&gt;io, id_flush)) {
+        rb_funcall(gz-&gt;io, id_flush, 0);
+    }
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mtime-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mtime=</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Specify the modification time (<code>mtime</code>) in the gzip header. Using an <a href="../Integer.html"><code>Integer</code></a>.</p>
+
+<p>Setting the mtime in the gzip header does not effect the mtime of the file generated. Different utilities that expand the gzipped files may use the mtime header. For example the gunzip utility can use the `-N` flag which will set the resultant file&#39;s mtime to the value in the header. By default many tools will set the mtime of the expanded file to the mtime of the gzipped file, not the mtime in the header.</p>
+
+<p>If you do not set an mtime, the default value will be the time when compression started. Setting a value of 0 indicates no time stamp is available.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mtime-3D-source">
+            <pre>static VALUE
+rb_gzfile_set_mtime(VALUE obj, VALUE mtime)
+{
+    struct gzfile *gz = get_gzfile(obj);
+    VALUE val;
+
+    if (gz-&gt;z.flags &amp; GZFILE_FLAG_HEADER_FINISHED) {
+        rb_raise(cGzError, &quot;header is already written&quot;);
+    }
+
+    val = rb_Integer(mtime);
+    gz-&gt;mtime = NUM2UINT(val);
+    gz-&gt;z.flags |= GZFILE_FLAG_MTIME_IS_SET;
+
+    return mtime;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-orig_name-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">orig_name=</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Specify the original name (<code>str</code>) in the gzip header.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="orig_name-3D-source">
+            <pre>static VALUE
+rb_gzfile_set_orig_name(VALUE obj, VALUE str)
+{
+    struct gzfile *gz = get_gzfile(obj);
+    VALUE s;
+    char *p;
+
+    if (gz-&gt;z.flags &amp; GZFILE_FLAG_HEADER_FINISHED) {
+        rb_raise(cGzError, &quot;header is already written&quot;);
+    }
+    s = rb_str_dup(rb_str_to_str(str));
+    p = memchr(RSTRING_PTR(s), &#39;\0&#39;, RSTRING_LEN(s));
+    if (p) {
+        rb_str_resize(s, p - RSTRING_PTR(s));
+    }
+    gz-&gt;orig_name = s;
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pos" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pos</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Total number of input bytes read so far.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pos-source">
+            <pre>static VALUE
+rb_gzfile_total_in(VALUE obj)
+{
+    return rb_uint2inum(get_gzfile(obj)-&gt;z.stream.total_in);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-print" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">print</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Same as <a href="../IO.html"><code>IO</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="print-source">
+            <pre>#define rb_gzwriter_print  rb_io_print</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-printf" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">printf</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Same as <a href="../IO.html"><code>IO</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="printf-source">
+            <pre>#define rb_gzwriter_printf  rb_io_printf</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-putc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">putc</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Same as <a href="../IO.html"><code>IO</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="putc-source">
+            <pre>static VALUE
+rb_gzwriter_putc(VALUE obj, VALUE ch)
+{
+    struct gzfile *gz = get_gzfile(obj);
+    char c = NUM2CHR(ch);
+
+    gzfile_write(gz, (Bytef*)&amp;c, 1);
+    return ch;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-puts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">puts</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Same as <a href="../IO.html"><code>IO</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="puts-source">
+            <pre>#define rb_gzwriter_puts  rb_io_puts</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tell" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tell</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Total number of input bytes read so far.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tell-source">
+            <pre>static VALUE
+rb_gzfile_total_in(VALUE obj)
+{
+    return rb_uint2inum(get_gzfile(obj)-&gt;z.stream.total_in);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-write" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Same as <a href="../IO.html"><code>IO</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="write-source">
+            <pre>static VALUE
+rb_gzwriter_write(int argc, VALUE *argv, VALUE obj)
+{
+    struct gzfile *gz = get_gzfile(obj);
+    size_t total = 0;
+
+    while (argc-- &gt; 0) {
+        VALUE str = *argv++;
+        if (!RB_TYPE_P(str, T_STRING))
+            str = rb_obj_as_string(str);
+        if (gz-&gt;enc2 &amp;&amp; gz-&gt;enc2 != rb_ascii8bit_encoding()) {
+            str = rb_str_conv_enc(str, rb_enc_get(str), gz-&gt;enc2);
+        }
+        gzfile_write(gz, (Bytef*)RSTRING_PTR(str), RSTRING_LEN(str));
+        total += RSTRING_LEN(str);
+        RB_GC_GUARD(str);
+    }
+    return SIZET2NUM(total);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class MatchData - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-begin">#begin</a>
+    
+    <li ><a href="#method-i-captures">#captures</a>
+    
+    <li ><a href="#method-i-end">#end</a>
+    
+    <li ><a href="#method-i-eql-3F">#eql?</a>
+    
+    <li ><a href="#method-i-hash">#hash</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-length">#length</a>
+    
+    <li ><a href="#method-i-named_captures">#named_captures</a>
+    
+    <li ><a href="#method-i-names">#names</a>
+    
+    <li ><a href="#method-i-offset">#offset</a>
+    
+    <li ><a href="#method-i-post_match">#post_match</a>
+    
+    <li ><a href="#method-i-pre_match">#pre_match</a>
+    
+    <li ><a href="#method-i-regexp">#regexp</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+    <li ><a href="#method-i-string">#string</a>
+    
+    <li ><a href="#method-i-to_a">#to_a</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-values_at">#values_at</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-MatchData">
+  <h1 id="class-MatchData" class="class">
+    class MatchData
+  </h1>
+
+  <section class="description">
+    
+<p><a href="MatchData.html"><code>MatchData</code></a> encapsulates the result of matching a <a href="Regexp.html"><code>Regexp</code></a> against string. It is returned by <a href="Regexp.html#method-i-match"><code>Regexp#match</code></a> and <a href="String.html#method-i-match"><code>String#match</code></a>, and also stored in a global variable returned by <a href="Regexp.html#method-c-last_match"><code>Regexp.last_match</code></a>.</p>
+
+<p>Usage:</p>
+
+<pre class="ruby"><span class="ruby-identifier">url</span> = <span class="ruby-string">&#39;https://docs.ruby-lang.org/en/2.5.0/MatchData.html&#39;</span>
+<span class="ruby-identifier">m</span> = <span class="ruby-identifier">url</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/(\d\.?)+/</span>)   <span class="ruby-comment"># =&gt; #&lt;MatchData &quot;2.5.0&quot; 1:&quot;0&quot;&gt;</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">string</span>                    <span class="ruby-comment"># =&gt; &quot;https://docs.ruby-lang.org/en/2.5.0/MatchData.html&quot;</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">regexp</span>                    <span class="ruby-comment"># =&gt; /(\d\.?)+/</span>
+<span class="ruby-comment"># entire matched substring:</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">0</span>]                        <span class="ruby-comment"># =&gt; &quot;2.5.0&quot;</span>
+
+<span class="ruby-comment"># Working with unnamed captures</span>
+<span class="ruby-identifier">m</span> = <span class="ruby-identifier">url</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r{([^/]+)/([^/]+)\.html$}</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">captures</span>                  <span class="ruby-comment"># =&gt; [&quot;2.5.0&quot;, &quot;MatchData&quot;]</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">1</span>]                        <span class="ruby-comment"># =&gt; &quot;2.5.0&quot;</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>)           <span class="ruby-comment"># =&gt; [&quot;2.5.0&quot;, &quot;MatchData&quot;]</span>
+
+<span class="ruby-comment"># Working with named captures</span>
+<span class="ruby-identifier">m</span> = <span class="ruby-identifier">url</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r{(?&lt;version&gt;[^/]+)/(?&lt;module&gt;[^/]+)\.html$}</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">captures</span>                  <span class="ruby-comment"># =&gt; [&quot;2.5.0&quot;, &quot;MatchData&quot;]</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">named_captures</span>            <span class="ruby-comment"># =&gt; {&quot;version&quot;=&gt;&quot;2.5.0&quot;, &quot;module&quot;=&gt;&quot;MatchData&quot;}</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">:version</span>]                 <span class="ruby-comment"># =&gt; &quot;2.5.0&quot;</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:version</span>, <span class="ruby-value">:module</span>)
+                            <span class="ruby-comment"># =&gt; [&quot;2.5.0&quot;, &quot;MatchData&quot;]</span>
+<span class="ruby-comment"># Numerical indexes are working, too</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">1</span>]                        <span class="ruby-comment"># =&gt; &quot;2.5.0&quot;</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>)           <span class="ruby-comment"># =&gt; [&quot;2.5.0&quot;, &quot;MatchData&quot;]</span>
+</pre>
+
+<h2 id="class-MatchData-label-Global+variables+equivalence">Global variables equivalence<span><a href="#class-MatchData-label-Global+variables+equivalence">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Parts of last <a href="MatchData.html"><code>MatchData</code></a> (returned by <a href="Regexp.html#method-c-last_match"><code>Regexp.last_match</code></a>) are also aliased as global variables:</p>
+<ul><li>
+<p><code>$~</code> is <a href="Regexp.html#method-c-last_match"><code>Regexp.last_match</code></a>;</p>
+</li><li>
+<p><code>$&amp;</code> is <a href="Regexp.html#method-c-last_match"><code><a href="0">Regexp.last_match</a></code></a>;</p>
+</li><li>
+<p><code>$1</code>, <code>$2</code>, and so on are <a href="Regexp.html#method-c-last_match"><code><a href="i">Regexp.last_match</a></code></a> (captures by number);</p>
+</li><li>
+<p><code>$`</code> is <a href="Regexp.html#method-c-last_match"><code>Regexp.last_match</code></a><code>.pre_match</code>;</p>
+</li><li>
+<p><code>$&#39;</code> is <a href="Regexp.html#method-c-last_match"><code>Regexp.last_match</code></a><code>.post_match</code>;</p>
+</li><li>
+<p><code>$+</code> is <a href="Regexp.html#method-c-last_match"><code><a href="-1">Regexp.last_match</a></code></a> (the last capture).</p>
+</li></ul>
+
+<p>See also “Special global variables” section in <a href="Regexp.html"><code>Regexp</code></a> documentation.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            mtch == mtch2   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Equality—Two matchdata are equal if their target strings, patterns, and matched positions are identical.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+match_equal(VALUE match1, VALUE match2)
+{
+    const struct re_registers *regs1, *regs2;
+
+    if (match1 == match2) return Qtrue;
+    if (!RB_TYPE_P(match2, T_MATCH)) return Qfalse;
+    if (!RMATCH(match1)-&gt;regexp || !RMATCH(match2)-&gt;regexp) return Qfalse;
+    if (!rb_str_equal(RMATCH(match1)-&gt;str, RMATCH(match2)-&gt;str)) return Qfalse;
+    if (!rb_reg_equal(match_regexp(match1), match_regexp(match2))) return Qfalse;
+    regs1 = RMATCH_REGS(match1);
+    regs2 = RMATCH_REGS(match2);
+    if (regs1-&gt;num_regs != regs2-&gt;num_regs) return Qfalse;
+    if (memcmp(regs1-&gt;beg, regs2-&gt;beg, regs1-&gt;num_regs * sizeof(*regs1-&gt;beg))) return Qfalse;
+    if (memcmp(regs1-&gt;end, regs2-&gt;end, regs1-&gt;num_regs * sizeof(*regs1-&gt;end))) return Qfalse;
+    return Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            mtch[i]               &rarr; str or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            mtch[start, length]   &rarr; array
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            mtch[range]           &rarr; array
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            mtch[name]            &rarr; str or nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Match Reference – <a href="MatchData.html"><code>MatchData</code></a> acts as an array, and may be accessed using the normal array indexing techniques.  <code>mtch[0]</code> is equivalent to the special variable <code>$&amp;</code>, and returns the entire matched string.  <code>mtch[1]</code>, <code>mtch[2]</code>, and so on return the values of the matched backreferences (portions of the pattern between parentheses).</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>          <span class="ruby-comment">#=&gt; #&lt;MatchData &quot;HX1138&quot; 1:&quot;H&quot; 2:&quot;X&quot; 3:&quot;113&quot; 4:&quot;8&quot;&gt;</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">0</span>]       <span class="ruby-comment">#=&gt; &quot;HX1138&quot;</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]    <span class="ruby-comment">#=&gt; [&quot;H&quot;, &quot;X&quot;]</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]    <span class="ruby-comment">#=&gt; [&quot;H&quot;, &quot;X&quot;, &quot;113&quot;]</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">-3</span>, <span class="ruby-value">2</span>]   <span class="ruby-comment">#=&gt; [&quot;X&quot;, &quot;113&quot;]</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;foo&gt;a+)b/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;ccaaab&quot;</span>)
+<span class="ruby-identifier">m</span>          <span class="ruby-comment">#=&gt; #&lt;MatchData &quot;aaab&quot; foo:&quot;aaa&quot;&gt;</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-string">&quot;foo&quot;</span>]   <span class="ruby-comment">#=&gt; &quot;aaa&quot;</span>
+<span class="ruby-identifier">m</span>[<span class="ruby-value">:foo</span>]    <span class="ruby-comment">#=&gt; &quot;aaa&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+match_aref(int argc, VALUE *argv, VALUE match)
+{
+    VALUE idx, length;
+
+    match_check(match);
+    rb_scan_args(argc, argv, &quot;11&quot;, &amp;idx, &amp;length);
+
+    if (NIL_P(length)) {
+        if (FIXNUM_P(idx)) {
+            return rb_reg_nth_match(FIX2INT(idx), match);
+        }
+        else {
+            int num = namev_to_backref_number(RMATCH_REGS(match), RMATCH(match)-&gt;regexp, idx);
+            if (num &gt;= 0) {
+                return rb_reg_nth_match(num, match);
+            }
+            else {
+                return match_ary_aref(match, idx, Qnil);
+            }
+        }
+    }
+    else {
+        long beg = NUM2LONG(idx);
+        long len = NUM2LONG(length);
+        long num_regs = RMATCH_REGS(match)-&gt;num_regs;
+        if (len &lt; 0) {
+            return Qnil;
+        }
+        if (beg &lt; 0) {
+            beg += num_regs;
+            if (beg &lt; 0) return Qnil;
+        }
+        else if (beg &gt; num_regs) {
+            return Qnil;
+        }
+        else if (beg+len &gt; num_regs) {
+            len = num_regs - beg;
+        }
+        return match_ary_subseq(match, beg, len, Qnil);
+    }
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-begin" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            begin(n)   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the offset of the start of the <em>n</em>th element of the match array in the string. <em>n</em> can be a string or symbol to reference a named capture.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">begin</span>(<span class="ruby-value">0</span>)       <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">begin</span>(<span class="ruby-value">2</span>)       <span class="ruby-comment">#=&gt; 2</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;foo&gt;.)(.)(?&lt;bar&gt;.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;hoge&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">begin</span>(<span class="ruby-value">:foo</span>)  <span class="ruby-comment">#=&gt; 0</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">begin</span>(<span class="ruby-value">:bar</span>)  <span class="ruby-comment">#=&gt; 2</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="begin-source">
+            <pre>static VALUE
+match_begin(VALUE match, VALUE n)
+{
+    int i = match_backref_number(match, n);
+    struct re_registers *regs = RMATCH_REGS(match);
+
+    match_check(match);
+    if (i &lt; 0 || regs-&gt;num_regs &lt;= i)
+        rb_raise(rb_eIndexError, &quot;index %d out of matches&quot;, i);
+
+    if (BEG(i) &lt; 0)
+        return Qnil;
+
+    update_char_offset(match);
+    return INT2FIX(RMATCH(match)-&gt;rmatch-&gt;char_offset[i].beg);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-captures" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            captures   &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the array of captures; equivalent to <code>mtch.to_a[1..-1]</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">f1</span>,<span class="ruby-identifier">f2</span>,<span class="ruby-identifier">f3</span>,<span class="ruby-identifier">f4</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>).<span class="ruby-identifier">captures</span>
+<span class="ruby-identifier">f1</span>    <span class="ruby-comment">#=&gt; &quot;H&quot;</span>
+<span class="ruby-identifier">f2</span>    <span class="ruby-comment">#=&gt; &quot;X&quot;</span>
+<span class="ruby-identifier">f3</span>    <span class="ruby-comment">#=&gt; &quot;113&quot;</span>
+<span class="ruby-identifier">f4</span>    <span class="ruby-comment">#=&gt; &quot;8&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="captures-source">
+            <pre>static VALUE
+match_captures(VALUE match)
+{
+    return match_array(match, 1);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-end" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            end(n)   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the offset of the character immediately following the end of the <em>n</em>th element of the match array in the string. <em>n</em> can be a string or symbol to reference a named capture.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">end</span>(<span class="ruby-value">0</span>)         <span class="ruby-comment">#=&gt; 7</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">end</span>(<span class="ruby-value">2</span>)         <span class="ruby-comment">#=&gt; 3</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;foo&gt;.)(.)(?&lt;bar&gt;.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;hoge&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">end</span>(<span class="ruby-value">:foo</span>)    <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">end</span>(<span class="ruby-value">:bar</span>)    <span class="ruby-comment">#=&gt; 3</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="end-source">
+            <pre>static VALUE
+match_end(VALUE match, VALUE n)
+{
+    int i = match_backref_number(match, n);
+    struct re_registers *regs = RMATCH_REGS(match);
+
+    match_check(match);
+    if (i &lt; 0 || regs-&gt;num_regs &lt;= i)
+        rb_raise(rb_eIndexError, &quot;index %d out of matches&quot;, i);
+
+    if (BEG(i) &lt; 0)
+        return Qnil;
+
+    update_char_offset(match);
+    return INT2FIX(RMATCH(match)-&gt;rmatch-&gt;char_offset[i].end);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eql-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            eql?(mtch2)   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Equality—Two matchdata are equal if their target strings, patterns, and matched positions are identical.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eql-3F-source">
+            <pre>static VALUE
+match_equal(VALUE match1, VALUE match2)
+{
+    const struct re_registers *regs1, *regs2;
+
+    if (match1 == match2) return Qtrue;
+    if (!RB_TYPE_P(match2, T_MATCH)) return Qfalse;
+    if (!RMATCH(match1)-&gt;regexp || !RMATCH(match2)-&gt;regexp) return Qfalse;
+    if (!rb_str_equal(RMATCH(match1)-&gt;str, RMATCH(match2)-&gt;str)) return Qfalse;
+    if (!rb_reg_equal(match_regexp(match1), match_regexp(match2))) return Qfalse;
+    regs1 = RMATCH_REGS(match1);
+    regs2 = RMATCH_REGS(match2);
+    if (regs1-&gt;num_regs != regs2-&gt;num_regs) return Qfalse;
+    if (memcmp(regs1-&gt;beg, regs2-&gt;beg, regs1-&gt;num_regs * sizeof(*regs1-&gt;beg))) return Qfalse;
+    if (memcmp(regs1-&gt;end, regs2-&gt;end, regs1-&gt;num_regs * sizeof(*regs1-&gt;end))) return Qfalse;
+    return Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hash" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hash   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Produce a hash based on the target string, regexp and matched positions of this matchdata.</p>
+
+<p>See also <a href="Object.html#method-i-hash"><code>Object#hash</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hash-source">
+            <pre>static VALUE
+match_hash(VALUE match)
+{
+    const struct re_registers *regs;
+    st_index_t hashval;
+
+    match_check(match);
+    hashval = rb_hash_start(rb_str_hash(RMATCH(match)-&gt;str));
+    hashval = rb_hash_uint(hashval, reg_hash(match_regexp(match)));
+    regs = RMATCH_REGS(match);
+    hashval = rb_hash_uint(hashval, regs-&gt;num_regs);
+    hashval = rb_hash_uint(hashval, rb_memhash(regs-&gt;beg, regs-&gt;num_regs * sizeof(*regs-&gt;beg)));
+    hashval = rb_hash_uint(hashval, rb_memhash(regs-&gt;end, regs-&gt;num_regs * sizeof(*regs-&gt;end)));
+    hashval = rb_hash_end(hashval);
+    return ST2FIX(hashval);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect   &rarr; str
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a printable version of <em>mtch</em>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">puts</span> <span class="ruby-regexp">/.$/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;foo&quot;</span>).<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment">#=&gt; #&lt;MatchData &quot;o&quot;&gt;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-regexp">/(.)(.)(.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;foo&quot;</span>).<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment">#=&gt; #&lt;MatchData &quot;foo&quot; 1:&quot;f&quot; 2:&quot;o&quot; 3:&quot;o&quot;&gt;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-regexp">/(.)(.)?(.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;fo&quot;</span>).<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment">#=&gt; #&lt;MatchData &quot;fo&quot; 1:&quot;f&quot; 2:nil 3:&quot;o&quot;&gt;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-regexp">/(?&lt;foo&gt;.)(?&lt;bar&gt;.)(?&lt;baz&gt;.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;hoge&quot;</span>).<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment">#=&gt; #&lt;MatchData &quot;hog&quot; foo:&quot;h&quot; bar:&quot;o&quot; baz:&quot;g&quot;&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+match_inspect(VALUE match)
+{
+    VALUE cname = rb_class_path(rb_obj_class(match));
+    VALUE str;
+    int i;
+    struct re_registers *regs = RMATCH_REGS(match);
+    int num_regs = regs-&gt;num_regs;
+    struct backref_name_tag *names;
+    VALUE regexp = RMATCH(match)-&gt;regexp;
+
+    if (regexp == 0) {
+        return rb_sprintf(&quot;#&lt;%&quot;PRIsVALUE&quot;:%p&gt;&quot;, cname, (void*)match);
+    }
+    else if (NIL_P(regexp)) {
+        return rb_sprintf(&quot;#&lt;%&quot;PRIsVALUE&quot;: %&quot;PRIsVALUE&quot;&gt;&quot;,
+                          cname, rb_reg_nth_match(0, match));
+    }
+
+    names = ALLOCA_N(struct backref_name_tag, num_regs);
+    MEMZERO(names, struct backref_name_tag, num_regs);
+
+    onig_foreach_name(RREGEXP_PTR(regexp),
+            match_inspect_name_iter, names);
+
+    str = rb_str_buf_new2(&quot;#&lt;&quot;);
+    rb_str_append(str, cname);
+
+    for (i = 0; i &lt; num_regs; i++) {
+        VALUE v;
+        rb_str_buf_cat2(str, &quot; &quot;);
+        if (0 &lt; i) {
+            if (names[i].name)
+                rb_str_buf_cat(str, (const char *)names[i].name, names[i].len);
+            else {
+                rb_str_catf(str, &quot;%d&quot;, i);
+            }
+            rb_str_buf_cat2(str, &quot;:&quot;);
+        }
+        v = rb_reg_nth_match(i, match);
+        if (v == Qnil)
+            rb_str_buf_cat2(str, &quot;nil&quot;);
+        else
+            rb_str_buf_append(str, rb_str_inspect(v));
+    }
+    rb_str_buf_cat2(str, &quot;&gt;&quot;);
+
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-length" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            length   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of elements in the match array.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">length</span>   <span class="ruby-comment">#=&gt; 5</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">size</span>     <span class="ruby-comment">#=&gt; 5</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="length-source">
+            <pre>static VALUE
+match_size(VALUE match)
+{
+    match_check(match);
+    return INT2FIX(RMATCH_REGS(match)-&gt;num_regs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-named_captures" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            named_captures &rarr; hash
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a <a href="Hash.html"><code>Hash</code></a> using named capture.</p>
+
+<p>A key of the hash is a name of the named captures. A value of the hash is a string of last successful capture of corresponding group.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;a&gt;.)(?&lt;b&gt;.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;01&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">named_captures</span> <span class="ruby-comment">#=&gt; {&quot;a&quot; =&gt; &quot;0&quot;, &quot;b&quot; =&gt; &quot;1&quot;}</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;a&gt;.)(?&lt;b&gt;.)?/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;0&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">named_captures</span> <span class="ruby-comment">#=&gt; {&quot;a&quot; =&gt; &quot;0&quot;, &quot;b&quot; =&gt; nil}</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;a&gt;.)(?&lt;a&gt;.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;01&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">named_captures</span> <span class="ruby-comment">#=&gt; {&quot;a&quot; =&gt; &quot;1&quot;}</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;a&gt;x)|(?&lt;a&gt;y)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;x&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">named_captures</span> <span class="ruby-comment">#=&gt; {&quot;a&quot; =&gt; &quot;x&quot;}</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="named_captures-source">
+            <pre>static VALUE
+match_named_captures(VALUE match)
+{
+    VALUE hash;
+    struct MEMO *memo;
+
+    match_check(match);
+    if (NIL_P(RMATCH(match)-&gt;regexp))
+        return rb_hash_new();
+
+    hash = rb_hash_new();
+    memo = MEMO_NEW(hash, match, 0);
+
+    onig_foreach_name(RREGEXP(RMATCH(match)-&gt;regexp)-&gt;ptr, match_named_captures_iter, (void*)memo);
+
+    return hash;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-names" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            names   &rarr; [name1, name2, ...]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a list of names of captures as an array of strings. It is same as mtch.regexp.names.</p>
+
+<pre class="ruby"><span class="ruby-regexp">/(?&lt;foo&gt;.)(?&lt;bar&gt;.)(?&lt;baz&gt;.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;hoge&quot;</span>).<span class="ruby-identifier">names</span>
+<span class="ruby-comment">#=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;x&gt;.)(?&lt;y&gt;.)?/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;a&quot;</span>) <span class="ruby-comment">#=&gt; #&lt;MatchData &quot;a&quot; x:&quot;a&quot; y:nil&gt;</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">names</span>                          <span class="ruby-comment">#=&gt; [&quot;x&quot;, &quot;y&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="names-source">
+            <pre>static VALUE
+match_names(VALUE match)
+{
+    match_check(match);
+    if (NIL_P(RMATCH(match)-&gt;regexp))
+        return rb_ary_new_capa(0);
+    return rb_reg_names(RMATCH(match)-&gt;regexp);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-offset" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            offset(n)   &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a two-element array containing the beginning and ending offsets of the <em>n</em>th match. <em>n</em> can be a string or symbol to reference a named capture.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">offset</span>(<span class="ruby-value">0</span>)      <span class="ruby-comment">#=&gt; [1, 7]</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">offset</span>(<span class="ruby-value">4</span>)      <span class="ruby-comment">#=&gt; [6, 7]</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;foo&gt;.)(.)(?&lt;bar&gt;.)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;hoge&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">offset</span>(<span class="ruby-value">:foo</span>) <span class="ruby-comment">#=&gt; [0, 1]</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">offset</span>(<span class="ruby-value">:bar</span>) <span class="ruby-comment">#=&gt; [2, 3]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="offset-source">
+            <pre>static VALUE
+match_offset(VALUE match, VALUE n)
+{
+    int i = match_backref_number(match, n);
+    struct re_registers *regs = RMATCH_REGS(match);
+
+    match_check(match);
+    if (i &lt; 0 || regs-&gt;num_regs &lt;= i)
+        rb_raise(rb_eIndexError, &quot;index %d out of matches&quot;, i);
+
+    if (BEG(i) &lt; 0)
+        return rb_assoc_new(Qnil, Qnil);
+
+    update_char_offset(match);
+    return rb_assoc_new(INT2FIX(RMATCH(match)-&gt;rmatch-&gt;char_offset[i].beg),
+                        INT2FIX(RMATCH(match)-&gt;rmatch-&gt;char_offset[i].end));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-post_match" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            post_match   &rarr; str
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the portion of the original string after the current match. Equivalent to the special variable <code>$&#39;</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138: The Movie&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">post_match</span>   <span class="ruby-comment">#=&gt; &quot;: The Movie&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="post_match-source">
+            <pre>VALUE
+rb_reg_match_post(VALUE match)
+{
+    VALUE str;
+    long pos;
+    struct re_registers *regs;
+
+    if (NIL_P(match)) return Qnil;
+    match_check(match);
+    regs = RMATCH_REGS(match);
+    if (BEG(0) == -1) return Qnil;
+    str = RMATCH(match)-&gt;str;
+    pos = END(0);
+    str = rb_str_subseq(str, pos, RSTRING_LEN(str) - pos);
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pre_match" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            pre_match   &rarr; str
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the portion of the original string before the current match. Equivalent to the special variable <code>$`</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">pre_match</span>   <span class="ruby-comment">#=&gt; &quot;T&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="pre_match-source">
+            <pre>VALUE
+rb_reg_match_pre(VALUE match)
+{
+    VALUE str;
+    struct re_registers *regs;
+
+    if (NIL_P(match)) return Qnil;
+    match_check(match);
+    regs = RMATCH_REGS(match);
+    if (BEG(0) == -1) return Qnil;
+    str = rb_str_subseq(RMATCH(match)-&gt;str, 0, BEG(0));
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-regexp" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            regexp   &rarr; regexp
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the regexp.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/a.*b/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;abc&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">regexp</span> <span class="ruby-comment">#=&gt; /a.*b/</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="regexp-source">
+            <pre>static VALUE
+match_regexp(VALUE match)
+{
+    VALUE regexp;
+    match_check(match);
+    regexp = RMATCH(match)-&gt;regexp;
+    if (NIL_P(regexp)) {
+        VALUE str = rb_reg_nth_match(0, match);
+        regexp = rb_reg_regcomp(rb_reg_quote(str));
+        RMATCH(match)-&gt;regexp = regexp;
+    }
+    return regexp;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            size     &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of elements in the match array.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">length</span>   <span class="ruby-comment">#=&gt; 5</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">size</span>     <span class="ruby-comment">#=&gt; 5</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre>static VALUE
+match_size(VALUE match)
+{
+    match_check(match);
+    return INT2FIX(RMATCH_REGS(match)-&gt;num_regs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-string" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            string   &rarr; str
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a frozen copy of the string passed in to <code>match</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">string</span>   <span class="ruby-comment">#=&gt; &quot;THX1138.&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="string-source">
+            <pre>static VALUE
+match_string(VALUE match)
+{
+    match_check(match);
+    return RMATCH(match)-&gt;str;  /* str is frozen */
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_a" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_a   &rarr; anArray
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the array of matches.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_a</span>   <span class="ruby-comment">#=&gt; [&quot;HX1138&quot;, &quot;H&quot;, &quot;X&quot;, &quot;113&quot;, &quot;8&quot;]</span>
+</pre>
+
+<p>Because <code>to_a</code> is called when expanding <code>*</code><em>variable</em>, there&#39;s a useful assignment shortcut for extracting matched fields. This is slightly slower than accessing the fields directly (as an intermediate array is generated).</p>
+
+<pre class="ruby"><span class="ruby-identifier">all</span>,<span class="ruby-identifier">f1</span>,<span class="ruby-identifier">f2</span>,<span class="ruby-identifier">f3</span> = <span class="ruby-operator">*</span> <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">all</span>   <span class="ruby-comment">#=&gt; &quot;HX1138&quot;</span>
+<span class="ruby-identifier">f1</span>    <span class="ruby-comment">#=&gt; &quot;H&quot;</span>
+<span class="ruby-identifier">f2</span>    <span class="ruby-comment">#=&gt; &quot;X&quot;</span>
+<span class="ruby-identifier">f3</span>    <span class="ruby-comment">#=&gt; &quot;113&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_a-source">
+            <pre>static VALUE
+match_to_a(VALUE match)
+{
+    return match_array(match, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s   &rarr; str
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the entire matched string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138.&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span>   <span class="ruby-comment">#=&gt; &quot;HX1138&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+match_to_s(VALUE match)
+{
+    VALUE str = rb_reg_last_match(match);
+
+    match_check(match);
+    if (NIL_P(str)) str = rb_str_new(0,0);
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-values_at" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            values_at(index, ...)   &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Uses each <em>index</em> to access the matching values, returning an array of the corresponding matches.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(.)(.)(\d+)(\d)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;THX1138: The Movie&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_a</span>               <span class="ruby-comment">#=&gt; [&quot;HX1138&quot;, &quot;H&quot;, &quot;X&quot;, &quot;113&quot;, &quot;8&quot;]</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">0</span>, <span class="ruby-value">2</span>, <span class="ruby-value">-2</span>)   <span class="ruby-comment">#=&gt; [&quot;HX1138&quot;, &quot;X&quot;, &quot;113&quot;]</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-regexp">/(?&lt;a&gt;\d+) *(?&lt;op&gt;[+\-*\/]) *(?&lt;b&gt;\d+)/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-string">&quot;1 + 2&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_a</span>               <span class="ruby-comment">#=&gt; [&quot;1 + 2&quot;, &quot;1&quot;, &quot;+&quot;, &quot;2&quot;]</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">:a</span>, <span class="ruby-value">:b</span>, <span class="ruby-value">:op</span>) <span class="ruby-comment">#=&gt; [&quot;1&quot;, &quot;2&quot;, &quot;+&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="values_at-source">
+            <pre>static VALUE
+match_values_at(int argc, VALUE *argv, VALUE match)
+{
+    VALUE result;
+    int i;
+
+    match_check(match);
+    result = rb_ary_new2(argc);
+
+    for (i=0; i&lt;argc; i++) {
+        if (FIXNUM_P(argv[i])) {
+            rb_ary_push(result, rb_reg_nth_match(FIX2INT(argv[i]), match));
+        }
+        else {
+            int num = namev_to_backref_number(RMATCH_REGS(match), RMATCH(match)-&gt;regexp, argv[i]);
+            if (num &gt;= 0) {
+                rb_ary_push(result, rb_reg_nth_match(num, match));
+            }
+            else {
+                match_ary_aref(match, argv[i], result);
+            }
+        }
+    }
+    return result;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

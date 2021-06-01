@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Socket::AncillaryData - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-int">::int</a>
+    
+    <li ><a href="#method-c-ip_pktinfo">::ip_pktinfo</a>
+    
+    <li ><a href="#method-c-ipv6_pktinfo">::ipv6_pktinfo</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-unix_rights">::unix_rights</a>
+    
+    <li ><a href="#method-i-cmsg_is-3F">#cmsg_is?</a>
+    
+    <li ><a href="#method-i-data">#data</a>
+    
+    <li ><a href="#method-i-family">#family</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-int">#int</a>
+    
+    <li ><a href="#method-i-ip_pktinfo">#ip_pktinfo</a>
+    
+    <li ><a href="#method-i-ipv6_pktinfo">#ipv6_pktinfo</a>
+    
+    <li ><a href="#method-i-ipv6_pktinfo_addr">#ipv6_pktinfo_addr</a>
+    
+    <li ><a href="#method-i-ipv6_pktinfo_ifindex">#ipv6_pktinfo_ifindex</a>
+    
+    <li ><a href="#method-i-level">#level</a>
+    
+    <li ><a href="#method-i-timestamp">#timestamp</a>
+    
+    <li ><a href="#method-i-type">#type</a>
+    
+    <li ><a href="#method-i-unix_rights">#unix_rights</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Socket::AncillaryData">
+  <h1 id="class-Socket::AncillaryData" class="class">
+    class Socket::AncillaryData
+  </h1>
+
+  <section class="description">
+    
+<p><a href="AncillaryData.html"><code>Socket::AncillaryData</code></a> represents the ancillary data (control information) used by sendmsg and recvmsg system call.  It contains socket <a href="AncillaryData.html#method-i-family"><code>family</code></a>, control message (cmsg) <a href="AncillaryData.html#method-i-level"><code>level</code></a>, cmsg <a href="AncillaryData.html#method-i-type"><code>type</code></a> and cmsg <a href="AncillaryData.html#method-i-data"><code>data</code></a>.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-int" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Socket::AncillaryData.int(family, cmsg_level, cmsg_type, integer) &rarr; ancillarydata
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="AncillaryData.html"><code>Socket::AncillaryData</code></a> object which contains a int as data.</p>
+
+<p>The size and endian is dependent on the host.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;socket&#39;</span>
+
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">int</span>(<span class="ruby-value">:UNIX</span>, <span class="ruby-value">:SOCKET</span>, <span class="ruby-value">:RIGHTS</span>, <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">fileno</span>)
+<span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: UNIX SOCKET RIGHTS 2&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="int-source">
+            <pre>static VALUE
+ancillary_s_int(VALUE klass, VALUE vfamily, VALUE vlevel, VALUE vtype, VALUE integer)
+{
+    int family = rsock_family_arg(vfamily);
+    int level = rsock_level_arg(family, vlevel);
+    int type = rsock_cmsg_type_arg(family, level, vtype);
+    int i = NUM2INT(integer);
+    return ancdata_new(family, level, type, rb_str_new((char*)&amp;i, sizeof(i)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ip_pktinfo" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Socket::AncillaryData.ip_pktinfo(addr, ifindex) &rarr; ancdata
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Socket::AncillaryData.ip_pktinfo(addr, ifindex, spec_dst) &rarr; ancdata
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns new ancillary data for IP_PKTINFO.</p>
+
+<p>If spec_dst is not given, addr is used.</p>
+
+<p>IP_PKTINFO is not standard.</p>
+
+<p>Supported platform: GNU/Linux</p>
+
+<pre class="ruby"><span class="ruby-identifier">addr</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>)
+<span class="ruby-identifier">ifindex</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">spec_dst</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">ip_pktinfo</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ifindex</span>, <span class="ruby-identifier">spec_dst</span>)
+<span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: INET IP PKTINFO 127.0.0.1 ifindex:0 spec_dst:127.0.0.1&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ip_pktinfo-source">
+            <pre>static VALUE
+ancillary_s_ip_pktinfo(int argc, VALUE *argv, VALUE self)
+{
+    VALUE v_addr, v_ifindex, v_spec_dst;
+    unsigned int ifindex;
+    struct sockaddr_in sa;
+    struct in_pktinfo pktinfo;
+
+    rb_scan_args(argc, argv, &quot;21&quot;, &amp;v_addr, &amp;v_ifindex, &amp;v_spec_dst);
+
+    SockAddrStringValue(v_addr);
+    ifindex = NUM2UINT(v_ifindex);
+    if (NIL_P(v_spec_dst))
+        v_spec_dst = v_addr;
+    else
+        SockAddrStringValue(v_spec_dst);
+
+    memset(&amp;pktinfo, 0, sizeof(pktinfo));
+
+    memset(&amp;sa, 0, sizeof(sa));
+    if (RSTRING_LEN(v_addr) != sizeof(sa))
+        rb_raise(rb_eArgError, &quot;addr size different to AF_INET sockaddr&quot;);
+    memcpy(&amp;sa, RSTRING_PTR(v_addr), sizeof(sa));
+    if (sa.sin_family != AF_INET)
+        rb_raise(rb_eArgError, &quot;addr is not AF_INET sockaddr&quot;);
+    memcpy(&amp;pktinfo.ipi_addr, &amp;sa.sin_addr, sizeof(pktinfo.ipi_addr));
+
+    pktinfo.ipi_ifindex = ifindex;
+
+    memset(&amp;sa, 0, sizeof(sa));
+    if (RSTRING_LEN(v_spec_dst) != sizeof(sa))
+        rb_raise(rb_eArgError, &quot;spec_dat size different to AF_INET sockaddr&quot;);
+    memcpy(&amp;sa, RSTRING_PTR(v_spec_dst), sizeof(sa));
+    if (sa.sin_family != AF_INET)
+        rb_raise(rb_eArgError, &quot;spec_dst is not AF_INET sockaddr&quot;);
+    memcpy(&amp;pktinfo.ipi_spec_dst, &amp;sa.sin_addr, sizeof(pktinfo.ipi_spec_dst));
+
+    return ancdata_new(AF_INET, IPPROTO_IP, IP_PKTINFO, rb_str_new((char *)&amp;pktinfo, sizeof(pktinfo)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ipv6_pktinfo" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Socket::AncillaryData.ipv6_pktinfo(addr, ifindex) &rarr; ancdata
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns new ancillary data for IPV6_PKTINFO.</p>
+
+<p>IPV6_PKTINFO is defined by RFC 3542.</p>
+
+<pre class="ruby"><span class="ruby-identifier">addr</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;::1&quot;</span>)
+<span class="ruby-identifier">ifindex</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">ipv6_pktinfo</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ifindex</span>)
+<span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: INET6 IPV6 PKTINFO ::1 ifindex:0&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ipv6_pktinfo-source">
+            <pre>static VALUE
+ancillary_s_ipv6_pktinfo(VALUE self, VALUE v_addr, VALUE v_ifindex)
+{
+    unsigned int ifindex;
+    struct sockaddr_in6 sa;
+    struct in6_pktinfo pktinfo;
+
+    SockAddrStringValue(v_addr);
+    ifindex = NUM2UINT(v_ifindex);
+
+    memset(&amp;pktinfo, 0, sizeof(pktinfo));
+
+    memset(&amp;sa, 0, sizeof(sa));
+    if (RSTRING_LEN(v_addr) != sizeof(sa))
+        rb_raise(rb_eArgError, &quot;addr size different to AF_INET6 sockaddr&quot;);
+    memcpy(&amp;sa, RSTRING_PTR(v_addr), sizeof(sa));
+    if (sa.sin6_family != AF_INET6)
+        rb_raise(rb_eArgError, &quot;addr is not AF_INET6 sockaddr&quot;);
+    memcpy(&amp;pktinfo.ipi6_addr, &amp;sa.sin6_addr, sizeof(pktinfo.ipi6_addr));
+
+    pktinfo.ipi6_ifindex = ifindex;
+
+    return ancdata_new(AF_INET6, IPPROTO_IPV6, IPV6_PKTINFO, rb_str_new((char *)&amp;pktinfo, sizeof(pktinfo)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Socket::AncillaryData.new(family, cmsg_level, cmsg_type, cmsg_data) &rarr; ancillarydata
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p><em>family</em> should be an integer, a string or a symbol.</p>
+<ul><li>
+<p>Socket::AF_INET, “AF_INET”, “INET”, :AF_INET, :INET</p>
+</li><li>
+<p>Socket::AF_UNIX, “AF_UNIX”, “UNIX”, :AF_UNIX, :UNIX</p>
+</li><li>
+<p>etc.</p>
+</li></ul>
+
+<p><em>cmsg_level</em> should be an integer, a string or a symbol.</p>
+<ul><li>
+<p>Socket::SOL_SOCKET, “SOL_SOCKET”, “SOCKET”, :SOL_SOCKET and :SOCKET</p>
+</li><li>
+<p>Socket::IPPROTO_IP, “IP” and :IP</p>
+</li><li>
+<p>Socket::IPPROTO_IPV6, “IPV6” and :IPV6</p>
+</li><li>
+<p>Socket::IPPROTO_TCP, “TCP” and :TCP</p>
+</li><li>
+<p>etc.</p>
+</li></ul>
+
+<p><em>cmsg_type</em> should be an integer, a string or a symbol. If a string/symbol is specified, it is interpreted depend on <em>cmsg_level</em>.</p>
+<ul><li>
+<p>Socket::SCM_RIGHTS, “SCM_RIGHTS”, “RIGHTS”, :SCM_RIGHTS, :RIGHTS for SOL_SOCKET</p>
+</li><li>
+<p>Socket::IP_RECVTTL, “RECVTTL” and :RECVTTL for IPPROTO_IP</p>
+</li><li>
+<p>Socket::IPV6_PKTINFO, “PKTINFO” and :PKTINFO for IPPROTO_IPV6</p>
+</li><li>
+<p>etc.</p>
+</li></ul>
+
+<p><em>cmsg_data</em> should be a string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET</span>, <span class="ruby-value">:TCP</span>, <span class="ruby-value">:NODELAY</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: INET TCP NODELAY &quot;&quot;&gt;</span>
+
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET6</span>, <span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: INET6 IPV6 PKTINFO &quot;&quot;&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+ancillary_initialize(VALUE self, VALUE vfamily, VALUE vlevel, VALUE vtype, VALUE data)
+{
+    int family = rsock_family_arg(vfamily);
+    int level = rsock_level_arg(family, vlevel);
+    int type = rsock_cmsg_type_arg(family, level, vtype);
+    StringValue(data);
+    rb_ivar_set(self, rb_intern(&quot;family&quot;), INT2NUM(family));
+    rb_ivar_set(self, rb_intern(&quot;level&quot;), INT2NUM(level));
+    rb_ivar_set(self, rb_intern(&quot;type&quot;), INT2NUM(type));
+    rb_ivar_set(self, rb_intern(&quot;data&quot;), data);
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-unix_rights" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Socket::AncillaryData.unix_rights(io1, io2, ...) &rarr; ancillarydata
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="AncillaryData.html"><code>Socket::AncillaryData</code></a> object which contains file descriptors as data.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">unix_rights</span>(<span class="ruby-constant">STDERR</span>)
+<span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: UNIX SOCKET RIGHTS 2&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="unix_rights-source">
+            <pre>static VALUE
+ancillary_s_unix_rights(int argc, VALUE *argv, VALUE klass)
+{
+    VALUE result, str, ary;
+    int i;
+
+    ary = rb_ary_new();
+
+    for (i = 0 ; i &lt; argc; i++) {
+        VALUE obj = argv[i];
+        if (!RB_TYPE_P(obj, T_FILE)) {
+            rb_raise(rb_eTypeError, &quot;IO expected&quot;);
+        }
+        rb_ary_push(ary, obj);
+    }
+
+    str = rb_str_buf_new(sizeof(int) * argc);
+
+    for (i = 0 ; i &lt; argc; i++) {
+        VALUE obj = RARRAY_AREF(ary, i);
+        rb_io_t *fptr;
+        int fd;
+        GetOpenFile(obj, fptr);
+        fd = fptr-&gt;fd;
+        rb_str_buf_cat(str, (char *)&amp;fd, sizeof(int));
+    }
+
+    result = ancdata_new(AF_UNIX, SOL_SOCKET, SCM_RIGHTS, str);
+    rb_ivar_set(result, rb_intern(&quot;unix_rights&quot;), ary);
+    return result;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-cmsg_is-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            cmsg_is?(level, type) &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>tests the level and type of <em>ancillarydata</em>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ancdata</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET6</span>, <span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">cmsg_is?</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">IPPROTO_IPV6</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">IPV6_PKTINFO</span>) <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">cmsg_is?</span>(<span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>)       <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">cmsg_is?</span>(<span class="ruby-value">:IP</span>, <span class="ruby-value">:PKTINFO</span>)         <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">cmsg_is?</span>(<span class="ruby-value">:SOCKET</span>, <span class="ruby-value">:RIGHTS</span>)      <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="cmsg_is-3F-source">
+            <pre>static VALUE
+ancillary_cmsg_is_p(VALUE self, VALUE vlevel, VALUE vtype)
+{
+    int family = ancillary_family(self);
+    int level = rsock_level_arg(family, vlevel);
+    int type = rsock_cmsg_type_arg(family, level, vtype);
+
+    if (ancillary_level(self) == level &amp;&amp;
+        ancillary_type(self) == type)
+        return Qtrue;
+    else
+        return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-data" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            data &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns the cmsg data as a string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET6</span>, <span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">data</span>
+<span class="ruby-comment">#=&gt; &quot;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="data-source">
+            <pre>static VALUE
+ancillary_data(VALUE self)
+{
+    VALUE v = rb_attr_get(self, rb_intern(&quot;data&quot;));
+    StringValue(v);
+    return v;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-family" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            family &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns the socket family as an integer.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET6</span>, <span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">family</span>
+<span class="ruby-comment">#=&gt; 10</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="family-source">
+            <pre>static VALUE
+ancillary_family_m(VALUE self)
+{
+    return INT2NUM(ancillary_family(self));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns a string which shows ancillarydata in human-readable form.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET6</span>, <span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment">#=&gt; &quot;#&lt;Socket::AncillaryData: INET6 IPV6 PKTINFO \&quot;\&quot;&gt;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+ancillary_inspect(VALUE self)
+{
+    VALUE ret;
+    int family, level, type;
+    VALUE data;
+    ID family_id, level_id, type_id;
+    VALUE vtype;
+    int inspected;
+
+    family = ancillary_family(self);
+    level = ancillary_level(self);
+    type = ancillary_type(self);
+    data = ancillary_data(self);
+
+    ret = rb_sprintf(&quot;#&lt;%s:&quot;, rb_obj_classname(self));
+
+    family_id = rsock_intern_family_noprefix(family);
+    if (family_id)
+        rb_str_catf(ret, &quot; %s&quot;, rb_id2name(family_id));
+    else
+        rb_str_catf(ret, &quot; family:%d&quot;, family);
+
+    if (level == SOL_SOCKET) {
+        rb_str_cat2(ret, &quot; SOCKET&quot;);
+
+        type_id = rsock_intern_scm_optname(type);
+        if (type_id)
+            rb_str_catf(ret, &quot; %s&quot;, rb_id2name(type_id));
+        else
+            rb_str_catf(ret, &quot; cmsg_type:%d&quot;, type);
+    }
+    else if (IS_IP_FAMILY(family)) {
+        level_id = rsock_intern_iplevel(level);
+        if (level_id)
+            rb_str_catf(ret, &quot; %s&quot;, rb_id2name(level_id));
+        else
+            rb_str_catf(ret, &quot; cmsg_level:%d&quot;, level);
+
+        vtype = ip_cmsg_type_to_sym(level, type);
+        if (SYMBOL_P(vtype))
+            rb_str_catf(ret, &quot; %&quot;PRIsVALUE, rb_sym2str(vtype));
+        else
+            rb_str_catf(ret, &quot; cmsg_type:%d&quot;, type);
+    }
+    else {
+        rb_str_catf(ret, &quot; cmsg_level:%d&quot;, level);
+        rb_str_catf(ret, &quot; cmsg_type:%d&quot;, type);
+    }
+
+    inspected = 0;
+
+    if (level == SOL_SOCKET)
+        family = AF_UNSPEC;
+
+    switch (family) {
+      case AF_UNSPEC:
+        switch (level) {
+#        if defined(SOL_SOCKET)
+          case SOL_SOCKET:
+            switch (type) {
+#            if defined(SCM_TIMESTAMP) /* GNU/Linux, FreeBSD, NetBSD, OpenBSD, MacOS X, Solaris */
+              case SCM_TIMESTAMP: inspected = inspect_timeval_as_abstime(level, type, data, ret); break;
+#            endif
+#            if defined(SCM_TIMESTAMPNS) /* GNU/Linux */
+              case SCM_TIMESTAMPNS: inspected = inspect_timespec_as_abstime(level, type, data, ret); break;
+#            endif
+#            if defined(SCM_BINTIME) /* FreeBSD */
+              case SCM_BINTIME: inspected = inspect_bintime_as_abstime(level, type, data, ret); break;
+#            endif
+#            if defined(SCM_RIGHTS) /* 4.4BSD */
+              case SCM_RIGHTS: inspected = anc_inspect_socket_rights(level, type, data, ret); break;
+#            endif
+#            if defined(SCM_CREDENTIALS) /* GNU/Linux */
+              case SCM_CREDENTIALS: inspected = anc_inspect_passcred_credentials(level, type, data, ret); break;
+#            endif
+#            if defined(INSPECT_SCM_CREDS) /* NetBSD */
+              case SCM_CREDS: inspected = anc_inspect_socket_creds(level, type, data, ret); break;
+#            endif
+            }
+            break;
+#        endif
+        }
+        break;
+
+      case AF_INET:
+#ifdef INET6
+      case AF_INET6:
+#endif
+        switch (level) {
+#        if defined(IPPROTO_IP)
+          case IPPROTO_IP:
+            switch (type) {
+#            if defined(IP_RECVDSTADDR) /* 4.4BSD */
+              case IP_RECVDSTADDR: inspected = anc_inspect_ip_recvdstaddr(level, type, data, ret); break;
+#            endif
+#            if defined(IP_PKTINFO) &amp;&amp; defined(HAVE_STRUCT_IN_PKTINFO_IPI_SPEC_DST) /* GNU/Linux */
+              case IP_PKTINFO: inspected = anc_inspect_ip_pktinfo(level, type, data, ret); break;
+#            endif
+            }
+            break;
+#        endif
+
+#        if defined(IPPROTO_IPV6)
+          case IPPROTO_IPV6:
+            switch (type) {
+#            if defined(IPV6_PKTINFO) &amp;&amp; defined(HAVE_TYPE_STRUCT_IN6_PKTINFO) /* RFC 3542 */
+              case IPV6_PKTINFO: inspected = anc_inspect_ipv6_pktinfo(level, type, data, ret); break;
+#            endif
+            }
+            break;
+#        endif
+        }
+        break;
+    }
+
+    if (!inspected) {
+        rb_str_cat2(ret, &quot; &quot;);
+        rb_str_append(ret, rb_str_dump(data));
+    }
+
+    rb_str_cat2(ret, &quot;&gt;&quot;);
+
+    return ret;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-int" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            int &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the data in <em>ancillarydata</em> as an int.</p>
+
+<p>The size and endian is dependent on the host.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ancdata</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">int</span>(<span class="ruby-value">:UNIX</span>, <span class="ruby-value">:SOCKET</span>, <span class="ruby-value">:RIGHTS</span>, <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">fileno</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">int</span> <span class="ruby-comment">#=&gt; 2</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="int-source">
+            <pre>static VALUE
+ancillary_int(VALUE self)
+{
+    VALUE data;
+    int i;
+    data = ancillary_data(self);
+    if (RSTRING_LEN(data) != sizeof(int))
+        rb_raise(rb_eTypeError, &quot;size differ.  expected as sizeof(int)=%d but %ld&quot;, (int)sizeof(int), (long)RSTRING_LEN(data));
+    memcpy((char*)&amp;i, RSTRING_PTR(data), sizeof(int));
+    return INT2NUM(i);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ip_pktinfo" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ip_pktinfo &rarr; [addr, ifindex, spec_dst]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Extracts addr, ifindex and spec_dst from IP_PKTINFO ancillary data.</p>
+
+<p>IP_PKTINFO is not standard.</p>
+
+<p>Supported platform: GNU/Linux</p>
+
+<pre class="ruby"><span class="ruby-identifier">addr</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>)
+<span class="ruby-identifier">ifindex</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">spec_dest</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>)
+<span class="ruby-identifier">ancdata</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">ip_pktinfo</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ifindex</span>, <span class="ruby-identifier">spec_dest</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">ip_pktinfo</span>
+<span class="ruby-comment">#=&gt; [#&lt;Addrinfo: 127.0.0.1&gt;, 0, #&lt;Addrinfo: 127.0.0.1&gt;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ip_pktinfo-source">
+            <pre>static VALUE
+ancillary_ip_pktinfo(VALUE self)
+{
+    int level, type;
+    VALUE data;
+    struct in_pktinfo pktinfo;
+    struct sockaddr_in sa;
+    VALUE v_spec_dst, v_addr;
+
+    level = ancillary_level(self);
+    type = ancillary_type(self);
+    data = ancillary_data(self);
+
+    if (level != IPPROTO_IP || type != IP_PKTINFO ||
+        RSTRING_LEN(data) != sizeof(struct in_pktinfo)) {
+        rb_raise(rb_eTypeError, &quot;IP_PKTINFO ancillary data expected&quot;);
+    }
+
+    memcpy(&amp;pktinfo, RSTRING_PTR(data), sizeof(struct in_pktinfo));
+    memset(&amp;sa, 0, sizeof(sa));
+
+    sa.sin_family = AF_INET;
+    memcpy(&amp;sa.sin_addr, &amp;pktinfo.ipi_addr, sizeof(sa.sin_addr));
+    v_addr = rsock_addrinfo_new((struct sockaddr *)&amp;sa, sizeof(sa), PF_INET, 0, 0, Qnil, Qnil);
+
+    sa.sin_family = AF_INET;
+    memcpy(&amp;sa.sin_addr, &amp;pktinfo.ipi_spec_dst, sizeof(sa.sin_addr));
+    v_spec_dst = rsock_addrinfo_new((struct sockaddr *)&amp;sa, sizeof(sa), PF_INET, 0, 0, Qnil, Qnil);
+
+    return rb_ary_new3(3, v_addr, UINT2NUM(pktinfo.ipi_ifindex), v_spec_dst);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ipv6_pktinfo" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ipv6_pktinfo &rarr; [addr, ifindex]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Extracts addr and ifindex from IPV6_PKTINFO ancillary data.</p>
+
+<p>IPV6_PKTINFO is defined by RFC 3542.</p>
+
+<pre class="ruby"><span class="ruby-identifier">addr</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;::1&quot;</span>)
+<span class="ruby-identifier">ifindex</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">ancdata</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">ipv6_pktinfo</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ifindex</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">ipv6_pktinfo</span> <span class="ruby-comment">#=&gt; [#&lt;Addrinfo: ::1&gt;, 0]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ipv6_pktinfo-source">
+            <pre>static VALUE
+ancillary_ipv6_pktinfo(VALUE self)
+{
+    struct in6_pktinfo pktinfo;
+    struct sockaddr_in6 sa;
+    VALUE v_addr;
+
+    extract_ipv6_pktinfo(self, &amp;pktinfo, &amp;sa);
+    v_addr = rsock_addrinfo_new((struct sockaddr *)&amp;sa, (socklen_t)sizeof(sa), PF_INET6, 0, 0, Qnil, Qnil);
+    return rb_ary_new3(2, v_addr, UINT2NUM(pktinfo.ipi6_ifindex));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ipv6_pktinfo_addr" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ipv6_pktinfo_addr &rarr; addr
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Extracts addr from IPV6_PKTINFO ancillary data.</p>
+
+<p>IPV6_PKTINFO is defined by RFC 3542.</p>
+
+<pre class="ruby"><span class="ruby-identifier">addr</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;::1&quot;</span>)
+<span class="ruby-identifier">ifindex</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">ancdata</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">ipv6_pktinfo</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ifindex</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">ipv6_pktinfo_addr</span> <span class="ruby-comment">#=&gt; #&lt;Addrinfo: ::1&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ipv6_pktinfo_addr-source">
+            <pre>static VALUE
+ancillary_ipv6_pktinfo_addr(VALUE self)
+{
+    struct in6_pktinfo pktinfo;
+    struct sockaddr_in6 sa;
+    extract_ipv6_pktinfo(self, &amp;pktinfo, &amp;sa);
+    return rsock_addrinfo_new((struct sockaddr *)&amp;sa, (socklen_t)sizeof(sa), PF_INET6, 0, 0, Qnil, Qnil);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ipv6_pktinfo_ifindex" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ipv6_pktinfo_ifindex &rarr; addr
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Extracts ifindex from IPV6_PKTINFO ancillary data.</p>
+
+<p>IPV6_PKTINFO is defined by RFC 3542.</p>
+
+<pre class="ruby"><span class="ruby-identifier">addr</span> = <span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">ip</span>(<span class="ruby-string">&quot;::1&quot;</span>)
+<span class="ruby-identifier">ifindex</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">ancdata</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">ipv6_pktinfo</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ifindex</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ancdata</span>.<span class="ruby-identifier">ipv6_pktinfo_ifindex</span> <span class="ruby-comment">#=&gt; 0</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ipv6_pktinfo_ifindex-source">
+            <pre>static VALUE
+ancillary_ipv6_pktinfo_ifindex(VALUE self)
+{
+    struct in6_pktinfo pktinfo;
+    struct sockaddr_in6 sa;
+    extract_ipv6_pktinfo(self, &amp;pktinfo, &amp;sa);
+    return UINT2NUM(pktinfo.ipi6_ifindex);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-level" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            level &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns the cmsg level as an integer.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET6</span>, <span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">level</span>
+<span class="ruby-comment">#=&gt; 41</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="level-source">
+            <pre>static VALUE
+ancillary_level_m(VALUE self)
+{
+    return INT2NUM(ancillary_level(self));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-timestamp" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            timestamp &rarr; time
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns the timestamp as a time object.</p>
+
+<p><em>ancillarydata</em> should be one of following type:</p>
+<ul><li>
+<p>SOL_SOCKET/SCM_TIMESTAMP (microsecond) GNU/Linux, FreeBSD, NetBSD, OpenBSD, Solaris, MacOS X</p>
+</li><li>
+<p>SOL_SOCKET/SCM_TIMESTAMPNS (nanosecond) GNU/Linux</p>
+</li><li>
+<p>SOL_SOCKET/SCM_BINTIME (2**(-64) second) FreeBSD</p>
+
+<p><a href="../Addrinfo.html#method-c-udp"><code>Addrinfo.udp</code></a>(“127.0.0.1”, 0).bind {|s1|</p>
+
+<pre class="ruby"><span class="ruby-constant">Addrinfo</span>.<span class="ruby-identifier">udp</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">0</span>).<span class="ruby-identifier">bind</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s2</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">s1</span>.<span class="ruby-identifier">setsockopt</span>(<span class="ruby-value">:SOCKET</span>, <span class="ruby-value">:TIMESTAMP</span>, <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">s2</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;a&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">s1</span>.<span class="ruby-identifier">local_address</span>
+  <span class="ruby-identifier">ctl</span> = <span class="ruby-identifier">s1</span>.<span class="ruby-identifier">recvmsg</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">ctl</span>    <span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: INET SOCKET TIMESTAMP 2009-02-24 17:35:46.775581&gt;</span>
+  <span class="ruby-identifier">t</span> = <span class="ruby-identifier">ctl</span>.<span class="ruby-identifier">timestamp</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">t</span>      <span class="ruby-comment">#=&gt; 2009-02-24 17:35:46 +0900</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">usec</span> <span class="ruby-comment">#=&gt; 775581</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">nsec</span> <span class="ruby-comment">#=&gt; 775581000</span>
+}
+</pre>
+
+<p>}</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="timestamp-source">
+            <pre>static VALUE
+ancillary_timestamp(VALUE self)
+{
+    int level, type;
+    VALUE data;
+    VALUE result = Qnil;
+
+    level = ancillary_level(self);
+    type = ancillary_type(self);
+    data = ancillary_data(self);
+
+# ifdef SCM_TIMESTAMP
+    if (level == SOL_SOCKET &amp;&amp; type == SCM_TIMESTAMP &amp;&amp;
+        RSTRING_LEN(data) == sizeof(struct timeval)) {
+        struct timeval tv;
+        memcpy((char*)&amp;tv, RSTRING_PTR(data), sizeof(tv));
+        result = rb_time_new(tv.tv_sec, tv.tv_usec);
+    }
+# endif
+
+# ifdef SCM_TIMESTAMPNS
+    if (level == SOL_SOCKET &amp;&amp; type == SCM_TIMESTAMPNS &amp;&amp;
+        RSTRING_LEN(data) == sizeof(struct timespec)) {
+        struct timespec ts;
+        memcpy((char*)&amp;ts, RSTRING_PTR(data), sizeof(ts));
+        result = rb_time_nano_new(ts.tv_sec, ts.tv_nsec);
+    }
+# endif
+
+#define add(x,y) (rb_funcall((x), &#39;+&#39;, 1, (y)))
+#define mul(x,y) (rb_funcall((x), &#39;*&#39;, 1, (y)))
+#define quo(x,y) (rb_funcall((x), rb_intern(&quot;quo&quot;), 1, (y)))
+
+# ifdef SCM_BINTIME
+    if (level == SOL_SOCKET &amp;&amp; type == SCM_BINTIME &amp;&amp;
+        RSTRING_LEN(data) == sizeof(struct bintime)) {
+        struct bintime bt;
+        VALUE d, timev;
+        memcpy((char*)&amp;bt, RSTRING_PTR(data), sizeof(bt));
+        d = ULL2NUM(0x100000000ULL);
+        d = mul(d,d);
+        timev = add(TIMET2NUM(bt.sec), quo(ULL2NUM(bt.frac), d));
+        result = rb_time_num_new(timev, Qnil);
+    }
+# endif
+
+    if (result == Qnil)
+        rb_raise(rb_eTypeError, &quot;timestamp ancillary data expected&quot;);
+
+    return result;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-type" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            type &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns the cmsg type as an integer.</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:INET6</span>, <span class="ruby-value">:IPV6</span>, <span class="ruby-value">:PKTINFO</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">type</span>
+<span class="ruby-comment">#=&gt; 2</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="type-source">
+            <pre>static VALUE
+ancillary_type_m(VALUE self)
+{
+    return INT2NUM(ancillary_type(self));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unix_rights" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            unix_rights &rarr; array-of-IOs or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns the array of <a href="../IO.html"><code>IO</code></a> objects for SCM_RIGHTS control message in UNIX domain socket.</p>
+
+<p>The class of the <a href="../IO.html"><code>IO</code></a> objects in the array is <a href="../IO.html"><code>IO</code></a> or <a href="../Socket.html"><code>Socket</code></a>.</p>
+
+<p>The array is attached to <em>ancillarydata</em> when it is instantiated. For example, <a href="../BasicSocket.html#method-i-recvmsg"><code>BasicSocket#recvmsg</code></a> attach the array when receives a SCM_RIGHTS control message and :scm_rights=&gt;true option is given.</p>
+
+<pre class="ruby"><span class="ruby-comment"># recvmsg needs :scm_rights=&gt;true for unix_rights</span>
+<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">s2</span> = <span class="ruby-constant">UNIXSocket</span>.<span class="ruby-identifier">pair</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">s1</span>                                         <span class="ruby-comment">#=&gt; #&lt;UNIXSocket:fd 3&gt;</span>
+<span class="ruby-identifier">s1</span>.<span class="ruby-identifier">sendmsg</span> <span class="ruby-string">&quot;stdin and a socket&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">unix_rights</span>(<span class="ruby-constant">STDIN</span>, <span class="ruby-identifier">s1</span>)
+<span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">ctl</span> = <span class="ruby-identifier">s2</span>.<span class="ruby-identifier">recvmsg</span>(<span class="ruby-value">:scm_rights</span><span class="ruby-operator">=&gt;</span><span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ctl</span>                                        <span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: UNIX SOCKET RIGHTS 6 7&gt;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ctl</span>.<span class="ruby-identifier">unix_rights</span>                            <span class="ruby-comment">#=&gt; [#&lt;IO:fd 6&gt;, #&lt;Socket:fd 7&gt;]</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">identical?</span>(<span class="ruby-constant">STDIN</span>, <span class="ruby-identifier">ctl</span>.<span class="ruby-identifier">unix_rights</span>[<span class="ruby-value">0</span>]) <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">identical?</span>(<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">ctl</span>.<span class="ruby-identifier">unix_rights</span>[<span class="ruby-value">1</span>])    <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-comment"># If :scm_rights=&gt;true is not given, unix_rights returns nil</span>
+<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">s2</span> = <span class="ruby-constant">UNIXSocket</span>.<span class="ruby-identifier">pair</span>
+<span class="ruby-identifier">s1</span>.<span class="ruby-identifier">sendmsg</span> <span class="ruby-string">&quot;stdin and a socket&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AncillaryData</span>.<span class="ruby-identifier">unix_rights</span>(<span class="ruby-constant">STDIN</span>, <span class="ruby-identifier">s1</span>)
+<span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">ctl</span> = <span class="ruby-identifier">s2</span>.<span class="ruby-identifier">recvmsg</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ctl</span> <span class="ruby-comment">#=&gt; #&lt;Socket::AncillaryData: UNIX SOCKET RIGHTS 6 7&gt;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ctl</span>.<span class="ruby-identifier">unix_rights</span> <span class="ruby-comment">#=&gt; nil</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="unix_rights-source">
+            <pre>static VALUE
+ancillary_unix_rights(VALUE self)
+{
+    int level, type;
+
+    level = ancillary_level(self);
+    type = ancillary_type(self);
+
+    if (level != SOL_SOCKET || type != SCM_RIGHTS)
+        rb_raise(rb_eTypeError, &quot;SCM_RIGHTS ancillary data expected&quot;);
+
+    return rb_attr_get(self, rb_intern(&quot;unix_rights&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

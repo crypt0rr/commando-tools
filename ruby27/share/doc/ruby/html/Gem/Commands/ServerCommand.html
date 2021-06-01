@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Commands::ServerCommand - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Command.html">Gem::Command</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-execute">#execute</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Commands::ServerCommand">
+  <h1 id="class-Gem::Commands::ServerCommand" class="class">
+    class Gem::Commands::ServerCommand
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../Command.html#method-c-new"><code>Gem::Command::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/server_command.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;server&#39;</span>, <span class="ruby-string">&#39;Documentation and gem repository HTTP server&#39;</span>,
+        <span class="ruby-value">:port</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">8808</span>, <span class="ruby-value">:gemdir</span> <span class="ruby-operator">=&gt;</span> [], <span class="ruby-value">:daemon</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>
+
+  <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">accept</span> <span class="ruby-value">:Port</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">port</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\A\d+\z/</span>
+      <span class="ruby-identifier">port</span> = <span class="ruby-constant">Integer</span> <span class="ruby-identifier">port</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidArgument</span>, <span class="ruby-node">&quot;#{port}: not a port number&quot;</span> <span class="ruby-keyword">if</span>
+        <span class="ruby-identifier">port</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">65535</span>
+
+      <span class="ruby-identifier">port</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">getservbyname</span> <span class="ruby-identifier">port</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">SocketError</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidArgument</span>, <span class="ruby-node">&quot;#{port}: no such named service&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span> <span class="ruby-string">&#39;-p&#39;</span>, <span class="ruby-string">&#39;--port=PORT&#39;</span>, <span class="ruby-value">:Port</span>,
+             <span class="ruby-string">&#39;port to listen on&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:port</span>] = <span class="ruby-identifier">port</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span> <span class="ruby-string">&#39;-d&#39;</span>, <span class="ruby-string">&#39;--dir=GEMDIR&#39;</span>,
+             <span class="ruby-string">&#39;directories from which to serve gems&#39;</span>,
+             <span class="ruby-string">&#39;multiple directories may be provided&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gemdir</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:gemdir</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">gemdir</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span> <span class="ruby-string">&#39;--[no-]daemon&#39;</span>, <span class="ruby-string">&#39;run as a daemon&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">daemon</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:daemon</span>] = <span class="ruby-identifier">daemon</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span> <span class="ruby-string">&#39;-b&#39;</span>, <span class="ruby-string">&#39;--bind=HOST,HOST&#39;</span>,
+             <span class="ruby-string">&#39;addresses to bind&#39;</span>, <span class="ruby-constant">Array</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">address</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:addresses</span>] <span class="ruby-operator">||=</span> []
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:addresses</span>].<span class="ruby-identifier">push</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">address</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_option</span> <span class="ruby-string">&#39;-l&#39;</span>, <span class="ruby-string">&#39;--launch[=COMMAND]&#39;</span>,
+             <span class="ruby-string">&#39;launches a browser window&#39;</span>,
+             <span class="ruby-string">&quot;COMMAND defaults to &#39;start&#39; on Windows&quot;</span>,
+             <span class="ruby-string">&quot;and &#39;open&#39; on all other platforms&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">launch</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">launch</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">win_platform?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;start&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;open&#39;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:launch</span>] = <span class="ruby-identifier">launch</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-execute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">execute</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/server_command.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:gemdir</span>] = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:gemdir</span>].<span class="ruby-identifier">empty?</span>
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Server</span>.<span class="ruby-identifier">run</span> <span class="ruby-identifier">options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

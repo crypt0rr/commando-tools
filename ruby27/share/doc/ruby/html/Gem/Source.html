@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Source - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../Comparable.html">Comparable</a>
+  
+  
+  
+    <li><a class="include" href="Text.html">Gem::Text</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    
+    <li ><a href="#method-i-cache_dir">#cache_dir</a>
+    
+    <li ><a href="#method-i-download">#download</a>
+    
+    <li ><a href="#method-i-fetch_spec">#fetch_spec</a>
+    
+    <li ><a href="#method-i-load_specs">#load_specs</a>
+    
+    <li ><a href="#method-i-typo_squatting-3F">#typo_squatting?</a>
+    
+    <li ><a href="#method-i-update_cache-3F">#update_cache?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Source">
+  <h1 id="class-Gem::Source" class="class">
+    class Gem::Source
+  </h1>
+
+  <section class="description">
+    
+<p>A <a href="Source.html"><code>Source</code></a> knows how to list and fetch gems from a RubyGems marshal index.</p>
+
+<p>There are other <a href="Source.html"><code>Source</code></a> subclasses for installed gems, local gems, the bundler dependency API and so-forth.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-uri" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">uri</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The <a href="../URI.html"><code>URI</code></a> this source will fetch gems from.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Source.html"><code>Source</code></a> which will use the index located at <code>uri</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">URI</span>
+      <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidURIError</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@uri</span> = <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3D-3E" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;=&gt;</span><span
+            class="method-args">(other)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sources are ordered by installation preference.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3D-3E-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">other</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span><span class="ruby-operator">::</span><span class="ruby-constant">Installed</span>,
+       <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span><span class="ruby-operator">::</span><span class="ruby-constant">Local</span>,
+       <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span><span class="ruby-operator">::</span><span class="ruby-constant">Lock</span>,
+       <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span><span class="ruby-operator">::</span><span class="ruby-constant">SpecificFile</span>,
+       <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span><span class="ruby-operator">::</span><span class="ruby-constant">Git</span>,
+       <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span><span class="ruby-operator">::</span><span class="ruby-constant">Vendor</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-value">-1</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Source</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@uri</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-value">0</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">uri</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">return</span> <span class="ruby-value">-1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">other</span>.<span class="ruby-identifier">uri</span>
+
+    <span class="ruby-comment"># Returning 1 here ensures that when sorting a list of sources, the</span>
+    <span class="ruby-comment"># original ordering of sources supplied by the user is preserved.</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">1</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>
+
+    <span class="ruby-value">0</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cache_dir" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cache_dir</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the local directory to write <code>uri</code> to.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="cache_dir-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cache_dir</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-comment"># Correct for windows paths</span>
+  <span class="ruby-identifier">escaped_path</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\/([a-z]):\//i</span>, <span class="ruby-string">&#39;/\\1-/&#39;</span>)
+  <span class="ruby-identifier">escaped_path</span>.<span class="ruby-identifier">tap</span>(<span class="ruby-operator">&amp;</span><span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">UNTAINT</span>)
+
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">spec_cache_dir</span>, <span class="ruby-node">&quot;#{uri.host}%#{uri.port}&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">escaped_path</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-download" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">download</span><span
+            class="method-args">(spec, dir=Dir.pwd)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Downloads <code>spec</code> and writes it to <code>dir</code>.  See also <a href="RemoteFetcher.html#method-i-download"><code>Gem::RemoteFetcher#download</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="download-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 205</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">download</span>(<span class="ruby-identifier">spec</span>, <span class="ruby-identifier">dir</span>=<span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>)
+  <span class="ruby-identifier">fetcher</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteFetcher</span>.<span class="ruby-identifier">fetcher</span>
+  <span class="ruby-identifier">fetcher</span>.<span class="ruby-identifier">download</span> <span class="ruby-identifier">spec</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">dir</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_spec" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_spec</span><span
+            class="method-args">(name_tuple)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Fetches a specification for the given <code>name_tuple</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_spec-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch_spec</span>(<span class="ruby-identifier">name_tuple</span>)
+  <span class="ruby-identifier">fetcher</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteFetcher</span>.<span class="ruby-identifier">fetcher</span>
+
+  <span class="ruby-identifier">spec_file_name</span> = <span class="ruby-identifier">name_tuple</span>.<span class="ruby-identifier">spec_name</span>
+
+  <span class="ruby-identifier">source_uri</span> = <span class="ruby-identifier">uri</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;#{Gem::MARSHAL_SPEC_DIR}#{spec_file_name}&quot;</span>
+
+  <span class="ruby-identifier">cache_dir</span> = <span class="ruby-identifier">cache_dir</span> <span class="ruby-identifier">source_uri</span>
+
+  <span class="ruby-identifier">local_spec</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">cache_dir</span>, <span class="ruby-identifier">spec_file_name</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">local_spec</span>
+    <span class="ruby-identifier">spec</span> = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">read_binary</span> <span class="ruby-identifier">local_spec</span>
+    <span class="ruby-identifier">spec</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">spec</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">spec</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">source_uri</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;.rz&#39;</span>
+
+  <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">fetcher</span>.<span class="ruby-identifier">fetch_path</span> <span class="ruby-identifier">source_uri</span>
+  <span class="ruby-identifier">spec</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">inflate</span> <span class="ruby-identifier">spec</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">update_cache?</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-identifier">cache_dir</span>
+
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">local_spec</span>, <span class="ruby-string">&#39;wb&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">spec</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># TODO: Investigate setting Gem::Specification#loaded_from to a URI</span>
+  <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span> <span class="ruby-identifier">spec</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_specs</span><span
+            class="method-args">(type)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Loads <code>type</code> kind of specs fetching from +@uri+ if the on-disk cache is out of date.</p>
+
+<p><code>type</code> is one of the following:</p>
+
+<p>:released   =&gt; Return the list of all released specs :latest     =&gt; Return the list of only the highest version of each gem :prerelease =&gt; Return the list of all prerelease only specs</p>
+          
+          
+
+          
+          <div class="method-source-code" id="load_specs-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_specs</span>(<span class="ruby-identifier">type</span>)
+  <span class="ruby-identifier">file</span>       = <span class="ruby-constant">FILES</span>[<span class="ruby-identifier">type</span>]
+  <span class="ruby-identifier">fetcher</span>    = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteFetcher</span>.<span class="ruby-identifier">fetcher</span>
+  <span class="ruby-identifier">file_name</span>  = <span class="ruby-node">&quot;#{file}.#{Gem.marshal_version}&quot;</span>
+  <span class="ruby-identifier">spec_path</span>  = <span class="ruby-identifier">uri</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;#{file_name}.gz&quot;</span>
+  <span class="ruby-identifier">cache_dir</span>  = <span class="ruby-identifier">cache_dir</span> <span class="ruby-identifier">spec_path</span>
+  <span class="ruby-identifier">local_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">cache_dir</span>, <span class="ruby-identifier">file_name</span>)
+  <span class="ruby-identifier">retried</span>    = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-identifier">cache_dir</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">update_cache?</span>
+
+  <span class="ruby-identifier">spec_dump</span> = <span class="ruby-identifier">fetcher</span>.<span class="ruby-identifier">cache_update_path</span> <span class="ruby-identifier">spec_path</span>, <span class="ruby-identifier">local_file</span>, <span class="ruby-identifier">update_cache?</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">NameTuple</span>.<span class="ruby-identifier">from_list</span> <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">spec_dump</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">update_cache?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">retried</span>
+      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span> <span class="ruby-identifier">local_file</span>
+      <span class="ruby-identifier">retried</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">retry</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Invalid spec cache file in #{local_file}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-typo_squatting-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">typo_squatting?</span><span
+            class="method-args">(host, distance_threshold=4)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="typo_squatting-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">typo_squatting?</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">distance_threshold</span>=<span class="ruby-value">4</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">host</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">levenshtein_distance</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">host</span>) <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">distance_threshold</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_cache-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_cache?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true when it is possible and safe to update the cache directory.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update_cache-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/source.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_cache?</span>
+  <span class="ruby-ivar">@update_cache</span> <span class="ruby-operator">||=</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-constant">Gem</span>.<span class="ruby-identifier">user_home</span>).<span class="ruby-identifier">uid</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>
+      <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

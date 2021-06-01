@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Thor::Group - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Base.html">Bundler::Thor::Base</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-banner">::banner</a>
+    
+    <li ><a href="#method-c-desc">::desc</a>
+    
+    <li ><a href="#method-c-help">::help</a>
+    
+    <li ><a href="#method-c-invoke">::invoke</a>
+    
+    <li ><a href="#method-c-invoke_from_option">::invoke_from_option</a>
+    
+    <li ><a href="#method-c-printable_commands">::printable_commands</a>
+    
+    <li ><a href="#method-c-printable_tasks">::printable_tasks</a>
+    
+    <li ><a href="#method-c-remove_invocation">::remove_invocation</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Thor::Group">
+  <h1 id="class-Bundler::Thor::Group" class="class">
+    class Bundler::Thor::Group
+  </h1>
+
+  <section class="description">
+    
+<p>Bundler::Thor has a special class called <a href="Group.html"><code>Bundler::Thor::Group</code></a>. The main difference to Bundler::Thor class is that it invokes all commands at once. It also include some methods that allows invocations to be done at the class method, which are not available to Bundler::Thor commands.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-desc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">desc</span><span
+            class="method-args">(description = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The description for this <a href="Group.html"><code>Bundler::Thor::Group</code></a>. If none is provided, but a source root exists, tries to find the USAGE one folder above it, otherwise searches in the superclass.</p>
+
+<h4 id="method-c-desc-label-Parameters">Parameters<span><a href="#method-c-desc-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>description&lt;String&gt;
+<dd>
+<p>The description for this <a href="Group.html"><code>Bundler::Thor::Group</code></a>.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="desc-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/group.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">desc</span>(<span class="ruby-identifier">description</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">description</span>
+    <span class="ruby-ivar">@desc</span> = <span class="ruby-identifier">description</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@desc</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">from_superclass</span>(<span class="ruby-value">:desc</span>, <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">(shell)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prints help information.</p>
+
+<h4 id="method-c-help-label-Options">Options<span><a href="#method-c-help-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>short
+<dd>
+<p>When true, shows only usage.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/group.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">help</span>(<span class="ruby-identifier">shell</span>)
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Usage:&quot;</span>
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-node">&quot;  #{banner}\n&quot;</span>
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span>
+  <span class="ruby-identifier">class_options_help</span>(<span class="ruby-identifier">shell</span>)
+  <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">say</span> <span class="ruby-identifier">desc</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">desc</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-invoke" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">invoke</span><span
+            class="method-args">(*names, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Invoke the given namespace or class given. It adds an instance method that will invoke the klass and command. You can give a block to configure how it will be invoked.</p>
+
+<p>The namespace/class given will have its options showed on the help usage. Check <a href="Group.html#method-c-invoke_from_option"><code>invoke_from_option</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="invoke-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/group.rb, line 56</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">invoke</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">names</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">options</span> = <span class="ruby-identifier">names</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">names</span>.<span class="ruby-identifier">pop</span> <span class="ruby-operator">:</span> {}
+      <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-value">:verbose</span>, <span class="ruby-keyword">true</span>)
+
+      <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">invocations</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-keyword">false</span>
+        <span class="ruby-identifier">invocation_blocks</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">block</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+        <span class="ruby-identifier">class_eval</span> <span class="ruby-identifier">&lt;&lt;-METHOD</span>, <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+<span class="ruby-value">          def _invoke_#{name.to_s.gsub(/\W/, &#39;_&#39;)}
+            klass, command = self.class.prepare_for_invocation(nil, #{name.inspect})
+
+            if klass
+              say_status :invoke, #{name.inspect}, #{verbose.inspect}
+              block = self.class.invocation_blocks[#{name.inspect}]
+              _invoke_for_class_method klass, command, &amp;block
+            else
+              say_status :error, %(#{name.inspect} [not found]), :red
+            end
+          end
+</span><span class="ruby-identifier">        METHOD</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-invoke_from_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">invoke_from_option</span><span
+            class="method-args">(*names, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Invoke a thor class based on the value supplied by the user to the given option named “name”. A class option must be created before this method is invoked for each name given.</p>
+
+<h4 id="method-c-invoke_from_option-label-Examples">Examples<span><a href="#method-c-invoke_from_option-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">GemGenerator</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Group</span>
+  <span class="ruby-identifier">class_option</span> <span class="ruby-value">:test_framework</span>, <span class="ruby-value">:type</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:string</span>
+  <span class="ruby-identifier">invoke_from_option</span> <span class="ruby-value">:test_framework</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h4 id="method-c-invoke_from_option-label-Boolean+options">Boolean options<span><a href="#method-c-invoke_from_option-label-Boolean+options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>In some cases, you want to invoke a thor class if some option is true or false. This is automatically handled by invoke_from_option. Then the option name is used to invoke the generator.</p>
+
+<h4 id="method-c-invoke_from_option-label-Preparing+for+invocation">Preparing for invocation<span><a href="#method-c-invoke_from_option-label-Preparing+for+invocation">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>In some cases you want to customize how a specified hook is going to be invoked. You can do that by overwriting the class method prepare_for_invocation. The class method must necessarily return a klass and an optional command.</p>
+
+<h4 id="method-c-invoke_from_option-label-Custom+invocations">Custom invocations<span><a href="#method-c-invoke_from_option-label-Custom+invocations">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>You can also supply a block to customize how the option is going to be invoked. The block receives two parameters, an instance of the current class and the klass to be invoked.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="invoke_from_option-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/group.rb, line 110</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">invoke_from_option</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">names</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">options</span> = <span class="ruby-identifier">names</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">names</span>.<span class="ruby-identifier">pop</span> <span class="ruby-operator">:</span> {}
+      <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-value">:verbose</span>, <span class="ruby-value">:white</span>)
+
+      <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">class_options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">name</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;You have to define the option #{name.inspect} &quot;</span> \
+                              <span class="ruby-string">&quot;before setting invoke_from_option.&quot;</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">invocations</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">invocation_blocks</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">block</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+        <span class="ruby-identifier">class_eval</span> <span class="ruby-identifier">&lt;&lt;-METHOD</span>, <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+<span class="ruby-value">          def _invoke_from_option_#{name.to_s.gsub(/\W/, &#39;_&#39;)}
+            return unless options[#{name.inspect}]
+
+            value = options[#{name.inspect}]
+            value = #{name.inspect} if TrueClass === value
+            klass, command = self.class.prepare_for_invocation(#{name.inspect}, value)
+
+            if klass
+              say_status :invoke, value, #{verbose.inspect}
+              block = self.class.invocation_blocks[#{name.inspect}]
+              _invoke_for_class_method klass, command, &amp;block
+            else
+              say_status :error, %(\#{value} [not found]), :red
+            end
+          end
+</span><span class="ruby-identifier">        METHOD</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-printable_commands" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">printable_commands</span><span
+            class="method-args">(*)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns commands ready to be printed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="printable_commands-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/group.rb, line 199</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">printable_commands</span>(<span class="ruby-operator">*</span>)
+  <span class="ruby-identifier">item</span> = []
+  <span class="ruby-identifier">item</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">banner</span>
+  <span class="ruby-identifier">item</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">desc</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;# #{desc.gsub(/\s+/m, &#39; &#39;)}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>)
+  [<span class="ruby-identifier">item</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Group.html#method-c-printable_tasks">printable_tasks</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-printable_tasks" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">printable_tasks</span><span
+            class="method-args">(*)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Group.html#method-c-printable_commands">printable_commands</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-remove_invocation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_invocation</span><span
+            class="method-args">(*names)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Remove a previously added invocation.</p>
+
+<h4 id="method-c-remove_invocation-label-Examples">Examples<span><a href="#method-c-remove_invocation-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-identifier">remove_invocation</span> <span class="ruby-value">:test_framework</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_invocation-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/group.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove_invocation</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">names</span>)
+  <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">remove_command</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">remove_class_option</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">invocations</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">invocation_blocks</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-banner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">banner</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The banner for this class. You can customize it if you are invoking the thor class by another ways which is not the Bundler::Thor::Runner.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="banner-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/group.rb, line 238</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">banner</span>
+  <span class="ruby-node">&quot;#{basename} #{self_command.formatted_usage(self, false)}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

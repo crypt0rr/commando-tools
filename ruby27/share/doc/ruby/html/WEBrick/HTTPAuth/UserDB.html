@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module WEBrick::HTTPAuth::UserDB - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-get_passwd">#get_passwd</a>
+    
+    <li ><a href="#method-i-make_passwd">#make_passwd</a>
+    
+    <li ><a href="#method-i-set_passwd">#set_passwd</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-WEBrick::HTTPAuth::UserDB">
+  <h1 id="module-WEBrick::HTTPAuth::UserDB" class="module">
+    module WEBrick::HTTPAuth::UserDB
+  </h1>
+
+  <section class="description">
+    
+<p>User database mixin for <a href="../HTTPAuth.html"><code>HTTPAuth</code></a>.  This mixin dispatches user record access to the underlying <a href="UserDB.html#attribute-i-auth_type"><code>auth_type</code></a> for this database.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-auth_type" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">auth_type</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The authentication type.</p>
+
+<p><a href="BasicAuth.html"><code>WEBrick::HTTPAuth::BasicAuth</code></a> or <a href="DigestAuth.html"><code>WEBrick::HTTPAuth::DigestAuth</code></a> are built-in.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-get_passwd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_passwd</span><span
+            class="method-args">(realm, user, reload_db=false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves a password in <code>realm</code> for <code>user</code> for the <a href="UserDB.html#attribute-i-auth_type"><code>auth_type</code></a> of this database.  <code>reload_db</code> is a dummy value.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_passwd-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httpauth/userdb.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_passwd</span>(<span class="ruby-identifier">realm</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">reload_db</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">make_passwd</span>(<span class="ruby-identifier">realm</span>, <span class="ruby-identifier">user</span>, <span class="ruby-keyword">self</span>[<span class="ruby-identifier">user</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-make_passwd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_passwd</span><span
+            class="method-args">(realm, user, pass)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates an obscured password in <code>realm</code> with <code>user</code> and <code>password</code> using the <a href="UserDB.html#attribute-i-auth_type"><code>auth_type</code></a> of this database.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="make_passwd-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httpauth/userdb.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_passwd</span>(<span class="ruby-identifier">realm</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">pass</span>)
+  <span class="ruby-ivar">@auth_type</span><span class="ruby-operator">::</span><span class="ruby-identifier">make_passwd</span>(<span class="ruby-identifier">realm</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">pass</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_passwd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_passwd</span><span
+            class="method-args">(realm, user, pass)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets a password in <code>realm</code> with <code>user</code> and <code>password</code> for the <a href="UserDB.html#attribute-i-auth_type"><code>auth_type</code></a> of this database.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_passwd-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httpauth/userdb.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_passwd</span>(<span class="ruby-identifier">realm</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">pass</span>)
+  <span class="ruby-keyword">self</span>[<span class="ruby-identifier">user</span>] = <span class="ruby-identifier">pass</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

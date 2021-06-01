@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Molinillo::DependencyGraph::Log - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+  var index_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/navigation.js" defer></script>
+<script src="../../../js/search.js" defer></script>
+<script src="../../../js/search_index.js" defer></script>
+<script src="../../../js/searcher.js" defer></script>
+<script src="../../../js/darkfish.js" defer></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../../Object.html">Object</a>
+  
+</div>
+
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="../../../Enumerable.html">Enumerable</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-add_edge_no_circular">#add_edge_no_circular</a>
+    
+    <li ><a href="#method-i-add_vertex">#add_vertex</a>
+    
+    <li ><a href="#method-i-delete_edge">#delete_edge</a>
+    
+    <li ><a href="#method-i-detach_vertex_named">#detach_vertex_named</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-pop-21">#pop!</a>
+    
+    <li ><a href="#method-i-push_action">#push_action</a>
+    
+    <li ><a href="#method-i-reverse_each">#reverse_each</a>
+    
+    <li ><a href="#method-i-rewind_to">#rewind_to</a>
+    
+    <li ><a href="#method-i-set_payload">#set_payload</a>
+    
+    <li ><a href="#method-i-tag">#tag</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Molinillo::DependencyGraph::Log">
+  <h1 id="class-Bundler::Molinillo::DependencyGraph::Log" class="class">
+    class Bundler::Molinillo::DependencyGraph::Log
+  </h1>
+
+  <section class="description">
+    
+<p>A log for dependency graph actions</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes an empty log</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@current_action</span> = <span class="ruby-ivar">@first_action</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_edge_no_circular" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_edge_no_circular</span><span
+            class="method-args">(graph, origin, destination, requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@macro action</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_edge_no_circular-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_edge_no_circular</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">origin</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">requirement</span>)
+  <span class="ruby-identifier">push_action</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-constant">AddEdgeNoCircular</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">origin</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">requirement</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_vertex" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_vertex</span><span
+            class="method-args">(graph, name, payload, root)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@macro action</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_vertex-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_vertex</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>, <span class="ruby-identifier">root</span>)
+  <span class="ruby-identifier">push_action</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-constant">AddVertex</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>, <span class="ruby-identifier">root</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_edge" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_edge</span><span
+            class="method-args">(graph, origin_name, destination_name, requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>{include:DependencyGraph#delete_edge} @param [Graph] graph the graph to perform the action on @param [String] origin_name @param [String] destination_name @param [Object] requirement @return (see <a href="../DependencyGraph.html#method-i-delete_edge"><code>DependencyGraph#delete_edge</code></a>)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_edge-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_edge</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">origin_name</span>, <span class="ruby-identifier">destination_name</span>, <span class="ruby-identifier">requirement</span>)
+  <span class="ruby-identifier">push_action</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-constant">DeleteEdge</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">origin_name</span>, <span class="ruby-identifier">destination_name</span>, <span class="ruby-identifier">requirement</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-detach_vertex_named" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">detach_vertex_named</span><span
+            class="method-args">(graph, name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@macro action</p>
+          
+          
+
+          
+          <div class="method-source-code" id="detach_vertex_named-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">detach_vertex_named</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">push_action</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-constant">DetachVertexNamed</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">() { |action| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@!visibility private Enumerates each action in the log @yield [Action]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">enum_for</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-identifier">action</span> = <span class="ruby-ivar">@first_action</span>
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">action</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">action</span>
+    <span class="ruby-identifier">action</span> = <span class="ruby-identifier">action</span>.<span class="ruby-identifier">next</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pop-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pop!</span><span
+            class="method-args">(graph)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pops the most recent action from the log and undoes the action @param [DependencyGraph] graph @return [Action] the action that was popped off the log</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pop-21-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pop!</span>(<span class="ruby-identifier">graph</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">action</span> = <span class="ruby-ivar">@current_action</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@current_action</span> = <span class="ruby-identifier">action</span>.<span class="ruby-identifier">previous</span>
+    <span class="ruby-ivar">@first_action</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">action</span>.<span class="ruby-identifier">down</span>(<span class="ruby-identifier">graph</span>)
+  <span class="ruby-identifier">action</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reverse_each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reverse_each</span><span
+            class="method-args">() { |action| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@!visibility private Enumerates each action in the log in reverse order @yield [Action]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reverse_each-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reverse_each</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">enum_for</span>(<span class="ruby-value">:reverse_each</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-identifier">action</span> = <span class="ruby-ivar">@current_action</span>
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">action</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">action</span>
+    <span class="ruby-identifier">action</span> = <span class="ruby-identifier">action</span>.<span class="ruby-identifier">previous</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rewind_to" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rewind_to</span><span
+            class="method-args">(graph, tag)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@macro action</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rewind_to-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rewind_to</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">tag</span>)
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">action</span> = <span class="ruby-identifier">pop!</span>(<span class="ruby-identifier">graph</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;No tag #{tag.inspect} found&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">action</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">action</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">action_name</span> <span class="ruby-operator">==</span> <span class="ruby-value">:tag</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">action</span>.<span class="ruby-identifier">tag</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tag</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_payload</span><span
+            class="method-args">(graph, name, payload)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@macro action</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_payload-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_payload</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>)
+  <span class="ruby-identifier">push_action</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-constant">SetPayload</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tag" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tag</span><span
+            class="method-args">(graph, tag)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@macro action</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tag-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tag</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">tag</span>)
+  <span class="ruby-identifier">push_action</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tag</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-push_action" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">push_action</span><span
+            class="method-args">(graph, action)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the given action to the log, running the action @param [DependencyGraph] graph @param [Action] action @return The value returned by `action.up`</p>
+          
+          
+
+          
+          <div class="method-source-code" id="push_action-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/dependency_graph/log.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">push_action</span>(<span class="ruby-identifier">graph</span>, <span class="ruby-identifier">action</span>)
+  <span class="ruby-identifier">action</span>.<span class="ruby-identifier">previous</span> = <span class="ruby-ivar">@current_action</span>
+  <span class="ruby-ivar">@current_action</span>.<span class="ruby-identifier">next</span> = <span class="ruby-identifier">action</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@current_action</span>
+  <span class="ruby-ivar">@current_action</span> = <span class="ruby-identifier">action</span>
+  <span class="ruby-ivar">@first_action</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">action</span>
+  <span class="ruby-identifier">action</span>.<span class="ruby-identifier">up</span>(<span class="ruby-identifier">graph</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

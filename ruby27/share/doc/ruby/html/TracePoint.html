@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class TracePoint - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-TracePoint-label-Example">Example</a>
+    <li><a href="#class-TracePoint-label-Events">Events</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-stat">::stat</a>
+    
+    <li ><a href="#method-c-trace">::trace</a>
+    
+    <li ><a href="#method-i-binding">#binding</a>
+    
+    <li ><a href="#method-i-callee_id">#callee_id</a>
+    
+    <li ><a href="#method-i-defined_class">#defined_class</a>
+    
+    <li ><a href="#method-i-disable">#disable</a>
+    
+    <li ><a href="#method-i-enable">#enable</a>
+    
+    <li ><a href="#method-i-enabled-3F">#enabled?</a>
+    
+    <li ><a href="#method-i-eval_script">#eval_script</a>
+    
+    <li ><a href="#method-i-event">#event</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-instruction_sequence">#instruction_sequence</a>
+    
+    <li ><a href="#method-i-lineno">#lineno</a>
+    
+    <li ><a href="#method-i-method_id">#method_id</a>
+    
+    <li ><a href="#method-i-parameters">#parameters</a>
+    
+    <li ><a href="#method-i-path">#path</a>
+    
+    <li ><a href="#method-i-raised_exception">#raised_exception</a>
+    
+    <li ><a href="#method-i-return_value">#return_value</a>
+    
+    <li ><a href="#method-i-self">#self</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-TracePoint">
+  <h1 id="class-TracePoint" class="class">
+    class TracePoint
+  </h1>
+
+  <section class="description">
+    
+<p>Document-class: <a href="TracePoint.html"><code>TracePoint</code></a></p>
+
+<p>A class that provides the functionality of <a href="Kernel.html#method-i-set_trace_func"><code>Kernel#set_trace_func</code></a> in a nice Object-Oriented API.</p>
+
+<h2 id="class-TracePoint-label-Example">Example<span><a href="#class-TracePoint-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We can use <a href="TracePoint.html"><code>TracePoint</code></a> to gather information specifically for exceptions:</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span> = <span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:raise</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">p</span> [<span class="ruby-identifier">tp</span>.<span class="ruby-identifier">lineno</span>, <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">event</span>, <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">raised_exception</span>]
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; #&lt;TracePoint:disabled&gt;</span>
+
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enable</span>
+<span class="ruby-comment">#=&gt; false</span>
+
+<span class="ruby-value">0</span> <span class="ruby-operator">/</span> <span class="ruby-value">0</span>
+<span class="ruby-comment">#=&gt; [5, :raise, #&lt;ZeroDivisionError: divided by 0&gt;]</span>
+</pre>
+
+<h2 id="class-TracePoint-label-Events">Events<span><a href="#class-TracePoint-label-Events">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If you don&#39;t specify the type of events you want to listen for, <a href="TracePoint.html"><code>TracePoint</code></a> will include all available events.</p>
+
+<p><strong>Note</strong> do not depend on current event set, as this list is subject to change. Instead, it is recommended you specify the type of events you want to use.</p>
+
+<p>To filter what is traced, you can pass any of the following as <code>events</code>:</p>
+<dl class="rdoc-list note-list"><dt><code>:line</code>
+<dd>
+<p>execute code on a new line</p>
+</dd><dt><code>:class</code>
+<dd>
+<p>start a class or module definition</p>
+</dd><dt><code>:end</code>
+<dd>
+<p>finish a class or module definition</p>
+</dd><dt><code>:call</code>
+<dd>
+<p>call a Ruby method</p>
+</dd><dt><code>:return</code>
+<dd>
+<p>return from a Ruby method</p>
+</dd><dt><code>:c_call</code>
+<dd>
+<p>call a C-language routine</p>
+</dd><dt><code>:c_return</code>
+<dd>
+<p>return from a C-language routine</p>
+</dd><dt><code>:raise</code>
+<dd>
+<p>raise an exception</p>
+</dd><dt><code>:b_call</code>
+<dd>
+<p>event hook at block entry</p>
+</dd><dt><code>:b_return</code>
+<dd>
+<p>event hook at block ending</p>
+</dd><dt><code>:thread_begin</code>
+<dd>
+<p>event hook at thread beginning</p>
+</dd><dt><code>:thread_end</code>
+<dd>
+<p>event hook at thread ending</p>
+</dd><dt><code>:fiber_switch</code>
+<dd>
+<p>event hook at fiber switch</p>
+</dd><dt><code>:script_compiled</code>
+<dd>
+<p>new Ruby code compiled (with <code>eval</code>, <code>load</code> or <code>require</code>)</p>
+</dd></dl>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(*events) { |obj| block }         &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new <a href="TracePoint.html"><code>TracePoint</code></a> object, not enabled by default.</p>
+
+<p>Next, in order to activate the trace, you must use <a href="TracePoint.html#method-i-enable"><code>TracePoint#enable</code></a></p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span> = <span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:call</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">p</span> [<span class="ruby-identifier">tp</span>.<span class="ruby-identifier">lineno</span>, <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">defined_class</span>, <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">method_id</span>, <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">event</span>]
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; #&lt;TracePoint:disabled&gt;</span>
+
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enable</span>
+<span class="ruby-comment">#=&gt; false</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hello, TracePoint!&quot;</span>
+<span class="ruby-comment"># ...</span>
+<span class="ruby-comment"># [48, IRB::Notifier::AbstractNotifier, :printf, :call]</span>
+<span class="ruby-comment"># ...</span>
+</pre>
+
+<p>When you want to deactivate the trace, you must use <a href="TracePoint.html#method-i-disable"><code>TracePoint#disable</code></a></p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">disable</span>
+</pre>
+
+<p>See <a href="TracePoint.html#class-TracePoint-label-Events">Events at <code>TracePoint</code></a> for possible events and more information.</p>
+
+<p>A block must be given, otherwise an <a href="ArgumentError.html"><code>ArgumentError</code></a> is raised.</p>
+
+<p>If the trace method isn&#39;t included in the given events filter, a <a href="RuntimeError.html"><code>RuntimeError</code></a> is raised.</p>
+
+<pre class="ruby"><span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">trace</span>(<span class="ruby-value">:line</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">p</span> <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">raised_exception</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; RuntimeError: &#39;raised_exception&#39; not supported by this event</span>
+</pre>
+
+<p>If the trace method is called outside block, a <a href="RuntimeError.html"><code>RuntimeError</code></a> is raised.</p>
+
+<pre class="ruby"><span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">trace</span>(<span class="ruby-value">:line</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">$tp</span> = <span class="ruby-identifier">tp</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">$tp</span>.<span class="ruby-identifier">lineno</span> <span class="ruby-comment">#=&gt; access from outside (RuntimeError)</span>
+</pre>
+
+<p>Access from other threads is also forbidden.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">events</span>)
+  <span class="ruby-identifier">__builtin_tracepoint_new_s</span>(<span class="ruby-identifier">events</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-stat" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stat &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns internal information of <a href="TracePoint.html"><code>TracePoint</code></a>.</p>
+
+<p>The contents of the returned value are implementation specific. It may be changed in future.</p>
+
+<p>This method is only for debugging <a href="TracePoint.html"><code>TracePoint</code></a> itself.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stat-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">stat</span>
+  <span class="ruby-identifier">__builtin_tracepoint_stat_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-trace" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            trace(*events) { |obj| block }   &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Document-method: trace</p>
+
+<pre>A convenience method for TracePoint.new, that activates the trace
+automatically.
+
+       trace = TracePoint.trace(:call) { |tp| [tp.lineno, tp.event] }
+       #=&gt; #&lt;TracePoint:enabled&gt;
+
+       trace.enabled? #=&gt; true</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="trace-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">trace</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">events</span>)
+  <span class="ruby-identifier">__builtin_tracepoint_trace_s</span>(<span class="ruby-identifier">events</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-binding" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">binding</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the generated binding object from event</p>
+          
+          
+
+          
+          <div class="method-source-code" id="binding-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 313</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">binding</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_binding</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-callee_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">callee_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the called name of the method being called</p>
+          
+          
+
+          
+          <div class="method-source-code" id="callee_id-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 272</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">callee_id</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_callee_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-defined_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">defined_class</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return class or module of the method being called.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>; <span class="ruby-keyword">end</span>; <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">trace</span> = <span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:call</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">defined_class</span> <span class="ruby-comment">#=&gt; C</span>
+<span class="ruby-keyword">end</span>.<span class="ruby-identifier">enable</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">foo</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>If method is defined by a module, then that module is returned.</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">M</span>; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>; <span class="ruby-keyword">end</span>; <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>; <span class="ruby-identifier">include</span> <span class="ruby-constant">M</span>; <span class="ruby-keyword">end</span>;
+<span class="ruby-identifier">trace</span> = <span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:call</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">defined_class</span> <span class="ruby-comment">#=&gt; M</span>
+<span class="ruby-keyword">end</span>.<span class="ruby-identifier">enable</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">foo</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><strong>Note:</strong> <a href="TracePoint.html#method-i-defined_class"><code>defined_class</code></a> returns singleton class.</p>
+
+<p>6th block parameter of <a href="Kernel.html#method-i-set_trace_func"><code>Kernel#set_trace_func</code></a> passes original class of attached by singleton class.</p>
+
+<p><strong>This is a difference between <a href="Kernel.html#method-i-set_trace_func"><code>Kernel#set_trace_func</code></a> and <a href="TracePoint.html"><code>TracePoint</code></a>.</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>; <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">foo</span>; <span class="ruby-keyword">end</span>; <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">trace</span> = <span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:call</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">defined_class</span> <span class="ruby-comment">#=&gt; #&lt;Class:C&gt;</span>
+<span class="ruby-keyword">end</span>.<span class="ruby-identifier">enable</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">C</span>.<span class="ruby-identifier">foo</span>
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="defined_class-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 308</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">defined_class</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_defined_class</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-disable" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            disable               &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            disable { block } &rarr; obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Deactivates the trace</p>
+
+<p>Return true if trace was enabled. Return false if trace was disabled.</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>      <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">disable</span>       <span class="ruby-comment">#=&gt; true (previous status)</span>
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>      <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">disable</span>       <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>If a block is given, the trace will only be disable within the scope of the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>
+<span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">disable</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>
+    <span class="ruby-comment"># only disabled for this block</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>
+<span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>Note: You cannot access event hooks within the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">disable</span> { <span class="ruby-identifier">p</span> <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">lineno</span> }
+<span class="ruby-comment">#=&gt; RuntimeError: access from outside</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="disable-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">disable</span>
+  <span class="ruby-identifier">__builtin_tracepoint_disable_m</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enable" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enable(target: nil, target_line: nil, target_thread: nil)    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enable(target: nil, target_line: nil, target_thread: nil) { block }  &rarr; obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Activates the trace.</p>
+
+<p>Returns <code>true</code> if trace was enabled. Returns <code>false</code> if trace was disabled.</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>  <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enable</span>    <span class="ruby-comment">#=&gt; false (previous state)</span>
+                <span class="ruby-comment">#   trace is enabled</span>
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>  <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enable</span>    <span class="ruby-comment">#=&gt; true (previous state)</span>
+                <span class="ruby-comment">#   trace is still enabled</span>
+</pre>
+
+<p>If a block is given, the trace will only be enabled within the scope of the block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>
+<span class="ruby-comment">#=&gt; false</span>
+
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enable</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>
+  <span class="ruby-comment"># only enabled for this block</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enabled?</span>
+<span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p><code>target</code>, <code>target_line</code> and <code>target_thread</code> parameters are used to limit tracing only to specified code objects. <code>target</code> should be a code object for which <a href="RubyVM/InstructionSequence.html#method-c-of"><code>RubyVM::InstructionSequence.of</code></a> will return an instruction sequence.</p>
+
+<pre class="ruby"><span class="ruby-identifier">t</span> = <span class="ruby-constant">TracePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:line</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">tp</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">tp</span> }
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m1</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">m2</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-value">2</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">t</span>.<span class="ruby-identifier">enable</span>(<span class="ruby-value">target:</span> <span class="ruby-identifier">method</span>(<span class="ruby-value">:m1</span>))
+
+<span class="ruby-identifier">m1</span>
+<span class="ruby-comment"># prints #&lt;TracePoint:line@test.rb:5 in `m1&#39;&gt;</span>
+<span class="ruby-identifier">m2</span>
+<span class="ruby-comment"># prints nothing</span>
+</pre>
+
+<p>Note: You cannot access event hooks within the <code>enable</code> block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">enable</span> { <span class="ruby-identifier">p</span> <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">lineno</span> }
+<span class="ruby-comment">#=&gt; RuntimeError: access from outside</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="enable-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">enable</span>(<span class="ruby-value">target:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">target_line:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">target_thread:</span> <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">__builtin_tracepoint_enable_m</span>(<span class="ruby-identifier">target</span>, <span class="ruby-identifier">target_line</span>, <span class="ruby-identifier">target_thread</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enabled-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enabled?          &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>The current status of the trace</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enabled-3F-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">enabled?</span>
+  <span class="ruby-identifier">__builtin_tracepoint_enabled_p</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eval_script" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">eval_script</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compiled source code (<a href="String.html"><code>String</code></a>) on *eval methods on the <code>:script_compiled</code> event. If loaded from a file, it will return nil.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eval_script-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 337</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">eval_script</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_eval_script</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-event" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">event</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Type of event</p>
+
+<p>See <a href="TracePoint.html#class-TracePoint-label-Events">Events at <code>TracePoint</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="event-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">event</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_event</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect  &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Return a string containing a human-readable <a href="TracePoint.html"><code>TracePoint</code></a> status.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+  <span class="ruby-identifier">__builtin_tracepoint_inspect</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-instruction_sequence" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instruction_sequence</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compiled instruction sequence represented by a <a href="RubyVM/InstructionSequence.html"><code>RubyVM::InstructionSequence</code></a> instance on the <code>:script_compiled</code> event.</p>
+
+<p>Note that this method is MRI specific.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="instruction_sequence-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 345</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">instruction_sequence</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_instruction_sequence</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lineno" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lineno</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Line number of the event</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lineno-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 251</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lineno</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_lineno</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-method_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">method_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the name at the definition of the method being called</p>
+          
+          
+
+          
+          <div class="method-source-code" id="method_id-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 267</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_id</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_method_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parameters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parameters</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the parameters definition of the method or block that the current hook belongs to. Format is the same as for <a href="Method.html#method-i-parameters"><code>Method#parameters</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="parameters-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 262</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parameters</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_parameters</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">path</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Path of the file being run</p>
+          
+          
+
+          
+          <div class="method-source-code" id="path-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 256</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">path</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-raised_exception" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">raised_exception</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Value from exception raised on the <code>:raise</code> event</p>
+          
+          
+
+          
+          <div class="method-source-code" id="raised_exception-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 331</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">raised_exception</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_raised_exception</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-return_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">return_value</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return value from <code>:return</code>, <code>c_return</code>, and <code>b_return</code> event</p>
+          
+          
+
+          
+          <div class="method-source-code" id="return_value-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 326</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">return_value</span>
+  <span class="ruby-identifier">__builtin_tracepoint_attr_return_value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-self" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the trace object during event</p>
+
+<p>Same as <a href="TracePoint.html#method-i-binding"><code>TracePoint#binding</code></a>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">trace</span>.<span class="ruby-identifier">binding</span>.<span class="ruby-identifier">eval</span>(<span class="ruby-string">&#39;self&#39;</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="self-source">
+            <pre><span class="ruby-comment"># File trace_point.rb, line 321</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>
+  <span class="ruby-identifier ruby-title">__builtin_tracepoint_attr_self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

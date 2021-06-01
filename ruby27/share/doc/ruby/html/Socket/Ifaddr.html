@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Socket::Ifaddr - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Data.html">Data</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-addr">#addr</a>
+    
+    <li ><a href="#method-i-broadaddr">#broadaddr</a>
+    
+    <li ><a href="#method-i-dstaddr">#dstaddr</a>
+    
+    <li ><a href="#method-i-flags">#flags</a>
+    
+    <li ><a href="#method-i-ifindex">#ifindex</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-name">#name</a>
+    
+    <li ><a href="#method-i-netmask">#netmask</a>
+    
+    <li ><a href="#method-i-vhid">#vhid</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Socket::Ifaddr">
+  <h1 id="class-Socket::Ifaddr" class="class">
+    class Socket::Ifaddr
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Ifaddr.html"><code>Socket::Ifaddr</code></a> represents a result of getifaddrs() function.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-addr" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            addr &rarr; addrinfo
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the address of <em>ifaddr</em>. nil is returned if address is not available in <em>ifaddr</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="addr-source">
+            <pre>static VALUE
+ifaddr_addr(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    if (ifa-&gt;ifa_addr)
+        return rsock_sockaddr_obj(ifa-&gt;ifa_addr, rsock_sockaddr_len(ifa-&gt;ifa_addr));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-broadaddr" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            broadaddr &rarr; addrinfo
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the broadcast address of <em>ifaddr</em>. nil is returned if the flags doesn&#39;t have IFF_BROADCAST.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="broadaddr-source">
+            <pre>static VALUE
+ifaddr_broadaddr(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    if ((ifa-&gt;ifa_flags &amp; IFF_BROADCAST) &amp;&amp; ifa-&gt;ifa_broadaddr)
+        return rsock_sockaddr_obj(ifa-&gt;ifa_broadaddr, rsock_sockaddr_len(ifa-&gt;ifa_broadaddr));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dstaddr" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dstaddr &rarr; addrinfo
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the destination address of <em>ifaddr</em>. nil is returned if the flags doesn&#39;t have IFF_POINTOPOINT.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dstaddr-source">
+            <pre>static VALUE
+ifaddr_dstaddr(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    if ((ifa-&gt;ifa_flags &amp; IFF_POINTOPOINT) &amp;&amp; ifa-&gt;ifa_dstaddr)
+        return rsock_sockaddr_obj(ifa-&gt;ifa_dstaddr, rsock_sockaddr_len(ifa-&gt;ifa_dstaddr));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flags" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flags &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the flags of <em>ifaddr</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="flags-source">
+            <pre>static VALUE
+ifaddr_flags(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    return IFAFLAGS2NUM(ifa-&gt;ifa_flags);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ifindex" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ifindex &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the interface index of <em>ifaddr</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ifindex-source">
+            <pre>static VALUE
+ifaddr_ifindex(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    unsigned int ifindex = if_nametoindex(ifa-&gt;ifa_name);
+    if (ifindex == 0) {
+        rb_raise(rb_eArgError, &quot;invalid interface name: %s&quot;, ifa-&gt;ifa_name);
+    }
+    return UINT2NUM(ifindex);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string to show contents of <em>ifaddr</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+ifaddr_inspect(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    VALUE result;
+
+    result = rb_str_new_cstr(&quot;#&lt;&quot;);
+
+    rb_str_append(result, rb_class_name(CLASS_OF(self)));
+    rb_str_cat2(result, &quot; &quot;);
+    rb_str_cat2(result, ifa-&gt;ifa_name);
+
+    if (ifa-&gt;ifa_flags)
+        ifaddr_inspect_flags(ifa-&gt;ifa_flags, result);
+
+    if (ifa-&gt;ifa_addr) {
+      rb_str_cat2(result, &quot; &quot;);
+      rsock_inspect_sockaddr(ifa-&gt;ifa_addr,
+          rsock_sockaddr_len(ifa-&gt;ifa_addr),
+          result);
+    }
+    if (ifa-&gt;ifa_netmask) {
+      rb_str_cat2(result, &quot; netmask=&quot;);
+      rsock_inspect_sockaddr(ifa-&gt;ifa_netmask,
+          rsock_sockaddr_len(ifa-&gt;ifa_netmask),
+          result);
+    }
+
+    if ((ifa-&gt;ifa_flags &amp; IFF_BROADCAST) &amp;&amp; ifa-&gt;ifa_broadaddr) {
+      rb_str_cat2(result, &quot; broadcast=&quot;);
+      rsock_inspect_sockaddr(ifa-&gt;ifa_broadaddr,
+          rsock_sockaddr_len(ifa-&gt;ifa_broadaddr),
+          result);
+    }
+
+    if ((ifa-&gt;ifa_flags &amp; IFF_POINTOPOINT) &amp;&amp; ifa-&gt;ifa_dstaddr) {
+      rb_str_cat2(result, &quot; dstaddr=&quot;);
+      rsock_inspect_sockaddr(ifa-&gt;ifa_dstaddr,
+          rsock_sockaddr_len(ifa-&gt;ifa_dstaddr),
+          result);
+    }
+
+    rb_str_cat2(result, &quot;&gt;&quot;);
+    return result;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            name &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the interface name of <em>ifaddr</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="name-source">
+            <pre>static VALUE
+ifaddr_name(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    return rb_str_new_cstr(ifa-&gt;ifa_name);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-netmask" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            netmask &rarr; addrinfo
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the netmask address of <em>ifaddr</em>. nil is returned if netmask is not available in <em>ifaddr</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="netmask-source">
+            <pre>static VALUE
+ifaddr_netmask(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    if (ifa-&gt;ifa_netmask)
+        return rsock_sockaddr_obj(ifa-&gt;ifa_netmask, rsock_sockaddr_len(ifa-&gt;ifa_netmask));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vhid" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            vhid &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the vhid address of <em>ifaddr</em>. nil is returned if there is no vhid.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="vhid-source">
+            <pre>static VALUE
+ifaddr_vhid(VALUE self)
+{
+    struct ifaddrs *ifa = get_ifaddrs(self);
+    if (ifa-&gt;ifa_data)
+        return (INT2FIX(((struct if_data*)ifa-&gt;ifa_data)-&gt;ifi_vhid));
+    else
+        return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

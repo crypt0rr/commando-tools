@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class RDoc::Parser - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-alias_extension">::alias_extension</a>
+    
+    <li ><a href="#method-c-binary-3F">::binary?</a>
+    
+    <li ><a href="#method-c-can_parse">::can_parse</a>
+    
+    <li ><a href="#method-c-can_parse_by_name">::can_parse_by_name</a>
+    
+    <li ><a href="#method-c-check_modeline">::check_modeline</a>
+    
+    <li ><a href="#method-c-for">::for</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-parse_files_matching">::parse_files_matching</a>
+    
+    <li ><a href="#method-c-remove_modeline">::remove_modeline</a>
+    
+    <li ><a href="#method-c-use_markup">::use_markup</a>
+    
+    <li ><a href="#method-c-zip-3F">::zip?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-RDoc::Parser">
+  <h1 id="class-RDoc::Parser" class="class">
+    class RDoc::Parser
+  </h1>
+
+  <section class="description">
+    
+<p>A parser is simple a class that subclasses <a href="Parser.html"><code>RDoc::Parser</code></a> and implements scan to fill in an <a href="TopLevel.html"><code>RDoc::TopLevel</code></a> with parsed data.</p>
+
+<p>The initialize method takes an <a href="TopLevel.html"><code>RDoc::TopLevel</code></a> to fill with parsed content, the name of the file to be parsed, the content of the file, an <a href="Options.html"><code>RDoc::Options</code></a> object and an <a href="Stats.html"><code>RDoc::Stats</code></a> object to inform the user of parsed items.  The scan method is then called to parse the file and must return the <a href="TopLevel.html"><code>RDoc::TopLevel</code></a> object.  By calling super these items will be set for you.</p>
+
+<p>In order to be used by <a href="../RDoc.html"><code>RDoc</code></a> the parser needs to register the file extensions it can parse.  Use <a href="Parser.html#method-c-parse_files_matching"><code>::parse_files_matching</code></a> to register extensions.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rdoc&#39;</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span><span class="ruby-operator">::</span><span class="ruby-constant">Xyz</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>
+  <span class="ruby-identifier">parse_files_matching</span> <span class="ruby-regexp">/\.xyz$/</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">top_level</span>, <span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">stats</span>
+    <span class="ruby-keyword">super</span>
+
+    <span class="ruby-comment"># extra initialization if needed</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scan</span>
+    <span class="ruby-comment"># parse file and fill in @top_level</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-c-parsers" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">parsers</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>An <a href="../Array.html"><code>Array</code></a> of arrays that maps file extension (or name) regular expressions to parser classes that will parse matching filenames.</p>
+
+<p>Use <a href="Parser.html#method-c-parse_files_matching"><code>parse_files_matching</code></a> to register a parser&#39;s file extensions.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-file_name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">file_name</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The name of the file being parsed</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-alias_extension" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">alias_extension</span><span
+            class="method-args">(old_ext, new_ext)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Alias an extension to another extension. After this call, files ending “new_ext” will be parsed using the same parser as “old_ext”</p>
+          
+          
+
+          
+          <div class="method-source-code" id="alias_extension-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">alias_extension</span>(<span class="ruby-identifier">old_ext</span>, <span class="ruby-identifier">new_ext</span>)
+  <span class="ruby-identifier">old_ext</span> = <span class="ruby-identifier">old_ext</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\.(.*)/</span>, <span class="ruby-string">&#39;\1&#39;</span>)
+  <span class="ruby-identifier">new_ext</span> = <span class="ruby-identifier">new_ext</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\.(.*)/</span>, <span class="ruby-string">&#39;\1&#39;</span>)
+
+  <span class="ruby-identifier">parser</span> = <span class="ruby-identifier">can_parse_by_name</span> <span class="ruby-node">&quot;xxx.#{old_ext}&quot;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parser</span>
+
+  <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsers</span>.<span class="ruby-identifier">unshift</span> [<span class="ruby-regexp">/\.#{new_ext}$/</span>, <span class="ruby-identifier">parser</span>]
+
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-binary-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">binary?</span><span
+            class="method-args">(file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Determines if the file is a “binary” file which basically means it has content that an <a href="../RDoc.html"><code>RDoc</code></a> parser shouldn&#39;t try to consume.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="binary-3F-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">binary?</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">file</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\.(rdoc|txt)$/</span>
+
+  <span class="ruby-identifier">s</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>, <span class="ruby-value">1024</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span>[<span class="ruby-value">0</span>, <span class="ruby-value">2</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-string">&#39;&#39;</span>)[<span class="ruby-value">0</span>, <span class="ruby-value">2</span>] <span class="ruby-keyword">or</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">&quot;\x00&quot;</span>)
+
+  <span class="ruby-identifier">mode</span> = <span class="ruby-string">&#39;r:utf-8&#39;</span> <span class="ruby-comment"># default source encoding has been chagened to utf-8</span>
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\A#!.*\n/</span>, <span class="ruby-string">&#39;&#39;</span>)     <span class="ruby-comment"># assume shebang line isn&#39;t longer than 1024.</span>
+  <span class="ruby-identifier">encoding</span> = <span class="ruby-identifier">s</span>[<span class="ruby-regexp">/^\s*\#\s*(?:-\*-\s*)?(?:en)?coding:\s*([^\s;]+?)(?:-\*-|[\s;])/</span>, <span class="ruby-value">1</span>]
+  <span class="ruby-identifier">mode</span> = <span class="ruby-node">&quot;rb:#{encoding}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">encoding</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">mode</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-value">1024</span>)}
+
+  <span class="ruby-keyword">not</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">valid_encoding?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-can_parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">can_parse</span><span
+            class="method-args">(file_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return a parser that can handle a particular extension</p>
+          
+          
+
+          
+          <div class="method-source-code" id="can_parse-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">can_parse</span> <span class="ruby-identifier">file_name</span>
+  <span class="ruby-identifier">parser</span> = <span class="ruby-identifier">can_parse_by_name</span> <span class="ruby-identifier">file_name</span>
+
+  <span class="ruby-comment"># HACK Selenium hides a jar file using a .txt extension</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parser</span> <span class="ruby-operator">==</span> <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span><span class="ruby-operator">::</span><span class="ruby-constant">Simple</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">zip?</span> <span class="ruby-identifier">file_name</span>
+
+  <span class="ruby-identifier">parser</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-can_parse_by_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">can_parse_by_name</span><span
+            class="method-args">(file_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a parser that can handle the extension for <code>file_name</code>.  This does not depend upon the file being readable.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="can_parse_by_name-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 119</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">can_parse_by_name</span> <span class="ruby-identifier">file_name</span>
+  <span class="ruby-identifier">_</span>, <span class="ruby-identifier">parser</span> = <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsers</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">regexp</span>,<span class="ruby-operator">|</span> <span class="ruby-identifier">regexp</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">file_name</span> }
+
+  <span class="ruby-comment"># The default parser must not parse binary files</span>
+  <span class="ruby-identifier">ext_name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span> <span class="ruby-identifier">file_name</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">parser</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ext_name</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">parser</span> <span class="ruby-operator">==</span> <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span><span class="ruby-operator">::</span><span class="ruby-constant">Simple</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">ext_name</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/txt|rdoc/</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">check_modeline</span> <span class="ruby-identifier">file_name</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;rdoc&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-comment"># continue</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">parser</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EACCES</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-check_modeline" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_modeline</span><span
+            class="method-args">(file_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the file type from the modeline in <code>file_name</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="check_modeline-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">check_modeline</span> <span class="ruby-identifier">file_name</span>
+  <span class="ruby-identifier">line</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">file_name</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">io</span>.<span class="ruby-identifier">gets</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-regexp">/-\*-\s*(.*?\S)\s*-\*-/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">line</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">type</span> = <span class="ruby-node">$1</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-regexp">/;/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">type</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-regexp">/(?:\s|\A)mode:\s*([^\s;]+)/i</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">type</span>
+    <span class="ruby-identifier">type</span> = <span class="ruby-node">$1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-regexp">/coding:/i</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">type</span>
+
+  <span class="ruby-identifier">type</span>.<span class="ruby-identifier">downcase</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidByteSequenceError</span> <span class="ruby-comment"># invalid byte sequence</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">for</span><span
+            class="method-args">(top_level, file_name, content, options, stats)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds and instantiates the correct parser for the given <code>file_name</code> and <code>content</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="for-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 166</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-keyword">for</span> <span class="ruby-identifier ruby-title">top_level</span>, <span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">stats</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">binary?</span> <span class="ruby-identifier">file_name</span>
+
+  <span class="ruby-identifier">parser</span> = <span class="ruby-identifier">use_markup</span> <span class="ruby-identifier">content</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parser</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">parse_name</span> = <span class="ruby-identifier">file_name</span>
+
+    <span class="ruby-comment"># If no extension, look for shebang</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">file_name</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/\.\w+$/</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">content</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{\A#!(.+)}</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">shebang</span> = <span class="ruby-node">$1</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">shebang</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r{env\s+ruby}</span>, <span class="ruby-regexp">%r{/ruby}</span>
+        <span class="ruby-identifier">parse_name</span> = <span class="ruby-string">&#39;dummy.rb&#39;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">parser</span> = <span class="ruby-identifier">can_parse</span> <span class="ruby-identifier">parse_name</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parser</span>
+
+  <span class="ruby-identifier">content</span> = <span class="ruby-identifier">remove_modeline</span> <span class="ruby-identifier">content</span>
+
+  <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">top_level</span>, <span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">stats</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">SystemCallError</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(top_level, file_name, content, options, stats)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Parser.html"><code>Parser</code></a> storing <code>top_level</code>, <code>file_name</code>, <code>content</code>, <code>options</code> and <code>stats</code> in instance variables.  In +@preprocess+ an RDoc::Markup::PreProcess object is created which allows processing of directives.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 251</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">top_level</span>, <span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">stats</span>
+  <span class="ruby-ivar">@top_level</span> = <span class="ruby-identifier">top_level</span>
+  <span class="ruby-ivar">@top_level</span>.<span class="ruby-identifier">parser</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>
+  <span class="ruby-ivar">@store</span> = <span class="ruby-ivar">@top_level</span>.<span class="ruby-identifier">store</span>
+
+  <span class="ruby-ivar">@file_name</span> = <span class="ruby-identifier">file_name</span>
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">content</span>
+  <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
+  <span class="ruby-ivar">@stats</span> = <span class="ruby-identifier">stats</span>
+
+  <span class="ruby-ivar">@preprocess</span> = <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Markup</span><span class="ruby-operator">::</span><span class="ruby-constant">PreProcess</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@file_name</span>, <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">rdoc_include</span>
+  <span class="ruby-ivar">@preprocess</span>.<span class="ruby-identifier">options</span> = <span class="ruby-ivar">@options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-parse_files_matching" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_files_matching</span><span
+            class="method-args">(regexp)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Record which file types this parser can understand.</p>
+
+<p>It is ok to call this multiple times.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parse_files_matching-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">parse_files_matching</span>(<span class="ruby-identifier">regexp</span>)
+  <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsers</span>.<span class="ruby-identifier">unshift</span> [<span class="ruby-identifier">regexp</span>, <span class="ruby-keyword">self</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-remove_modeline" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_modeline</span><span
+            class="method-args">(content)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Removes an emacs-style modeline from the first line of the document</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_modeline-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">remove_modeline</span> <span class="ruby-identifier">content</span>
+  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\A.*-\*-\s*(.*?\S)\s*-\*-.*\r?\n/</span>, <span class="ruby-string">&#39;&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-use_markup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">use_markup</span><span
+            class="method-args">(content)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If there is a <code>markup: parser_name</code> comment at the front of the file, use it to determine the parser.  For example:</p>
+
+<pre class="ruby"><span class="ruby-comment"># markup: rdoc</span>
+<span class="ruby-comment"># Class comment can go here</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>The comment should appear as the first line of the <code>content</code>.</p>
+
+<p>If the content contains a shebang or editor modeline the comment may appear on the second or third line.</p>
+
+<p>Any comment style may be used to hide the markup comment.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="use_markup-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 228</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">use_markup</span> <span class="ruby-identifier">content</span>
+  <span class="ruby-identifier">markup</span> = <span class="ruby-identifier">content</span>.<span class="ruby-identifier">lines</span>.<span class="ruby-identifier">first</span>(<span class="ruby-value">3</span>).<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/markup:\s+(\w+)/</span>) { <span class="ruby-node">$1</span> }.<span class="ruby-identifier">first</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">markup</span>
+
+  <span class="ruby-comment"># TODO Ruby should be returned only when the filename is correct</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span><span class="ruby-operator">::</span><span class="ruby-constant">Ruby</span> <span class="ruby-keyword">if</span> <span class="ruby-node">%w[tomdoc markdown]</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">markup</span>
+
+  <span class="ruby-identifier">markup</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span> <span class="ruby-identifier">markup</span>
+
+  <span class="ruby-identifier">_</span>, <span class="ruby-identifier">selected</span> = <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsers</span>.<span class="ruby-identifier">find</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">parser</span><span class="ruby-operator">|</span>
+    <span class="ruby-regexp">/^#{markup}$/i</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/.*:/</span>, <span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">selected</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-zip-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">zip?</span><span
+            class="method-args">(file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks if <code>file</code> is a zip file in disguise.  Signatures from <a href="http://www.garykessler.net/library/file_sigs.html">www.garykessler.net/library/file_sigs.html</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="zip-3F-source">
+            <pre><span class="ruby-comment"># File lib/rdoc/parser.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">zip?</span> <span class="ruby-identifier">file</span>
+  <span class="ruby-identifier">zip_signature</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-identifier">file</span>, <span class="ruby-value">4</span>
+
+  <span class="ruby-identifier">zip_signature</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;PK\x03\x04&quot;</span> <span class="ruby-keyword">or</span>
+    <span class="ruby-identifier">zip_signature</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;PK\x05\x06&quot;</span> <span class="ruby-keyword">or</span>
+    <span class="ruby-identifier">zip_signature</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;PK\x07\x08&quot;</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

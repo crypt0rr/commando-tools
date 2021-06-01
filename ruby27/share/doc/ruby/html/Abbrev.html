@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Abbrev - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-abbrev">::abbrev</a>
+    
+    <li ><a href="#method-i-abbrev">#abbrev</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Abbrev">
+  <h1 id="module-Abbrev" class="module">
+    module Abbrev
+  </h1>
+
+  <section class="description">
+    
+<p>Calculates the set of unambiguous abbreviations for a given set of strings.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;abbrev&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;pp&#39;</span>
+
+<span class="ruby-identifier">pp</span> <span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>([<span class="ruby-string">&#39;ruby&#39;</span>])
+<span class="ruby-comment">#=&gt;  {&quot;ruby&quot;=&gt;&quot;ruby&quot;, &quot;rub&quot;=&gt;&quot;ruby&quot;, &quot;ru&quot;=&gt;&quot;ruby&quot;, &quot;r&quot;=&gt;&quot;ruby&quot;}</span>
+
+<span class="ruby-identifier">pp</span> <span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>(<span class="ruby-node">%w{ ruby rules }</span>)
+</pre>
+
+<p><em>Generates:</em></p>
+
+<pre class="ruby">{ <span class="ruby-string">&quot;ruby&quot;</span>  <span class="ruby-operator">=&gt;</span>  <span class="ruby-string">&quot;ruby&quot;</span>,
+  <span class="ruby-string">&quot;rub&quot;</span>   <span class="ruby-operator">=&gt;</span>  <span class="ruby-string">&quot;ruby&quot;</span>,
+  <span class="ruby-string">&quot;rules&quot;</span> <span class="ruby-operator">=&gt;</span>  <span class="ruby-string">&quot;rules&quot;</span>,
+  <span class="ruby-string">&quot;rule&quot;</span>  <span class="ruby-operator">=&gt;</span>  <span class="ruby-string">&quot;rules&quot;</span>,
+  <span class="ruby-string">&quot;rul&quot;</span>   <span class="ruby-operator">=&gt;</span>  <span class="ruby-string">&quot;rules&quot;</span> }
+</pre>
+
+<p>It also provides an array core extension, <a href="Array.html#method-i-abbrev"><code>Array#abbrev</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">pp</span> <span class="ruby-node">%w{ summer winter }</span>.<span class="ruby-identifier">abbrev</span>
+</pre>
+
+<p><em>Generates:</em></p>
+
+<pre class="ruby">{ <span class="ruby-string">&quot;summer&quot;</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;summer&quot;</span>,
+  <span class="ruby-string">&quot;summe&quot;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;summer&quot;</span>,
+  <span class="ruby-string">&quot;summ&quot;</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;summer&quot;</span>,
+  <span class="ruby-string">&quot;sum&quot;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;summer&quot;</span>,
+  <span class="ruby-string">&quot;su&quot;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;summer&quot;</span>,
+  <span class="ruby-string">&quot;s&quot;</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;summer&quot;</span>,
+  <span class="ruby-string">&quot;winter&quot;</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;winter&quot;</span>,
+  <span class="ruby-string">&quot;winte&quot;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;winter&quot;</span>,
+  <span class="ruby-string">&quot;wint&quot;</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;winter&quot;</span>,
+  <span class="ruby-string">&quot;win&quot;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;winter&quot;</span>,
+  <span class="ruby-string">&quot;wi&quot;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;winter&quot;</span>,
+  <span class="ruby-string">&quot;w&quot;</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;winter&quot;</span> }
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-abbrev" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">abbrev</span><span
+            class="method-args">(words, pattern = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given a set of strings, calculate the set of unambiguous abbreviations for those strings, and return a hash where the keys are all the possible abbreviations and the values are the full strings.</p>
+
+<p>Thus, given <code>words</code> is “car” and “cone”, the keys pointing to “car” would be “ca” and “car”, while those pointing to “cone” would be “co”, “con”, and “cone”.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;abbrev&#39;</span>
+
+<span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>(<span class="ruby-node">%w{ car cone }</span>)
+<span class="ruby-comment">#=&gt; {&quot;ca&quot;=&gt;&quot;car&quot;, &quot;con&quot;=&gt;&quot;cone&quot;, &quot;co&quot;=&gt;&quot;cone&quot;, &quot;car&quot;=&gt;&quot;car&quot;, &quot;cone&quot;=&gt;&quot;cone&quot;}</span>
+</pre>
+
+<p>The optional <code>pattern</code> parameter is a pattern or a string. Only input strings that match the pattern or start with the string are included in the output hash.</p>
+
+<pre class="ruby"><span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>(<span class="ruby-node">%w{car box cone crab}</span>, <span class="ruby-regexp">/b/</span>)
+<span class="ruby-comment">#=&gt; {&quot;box&quot;=&gt;&quot;box&quot;, &quot;bo&quot;=&gt;&quot;box&quot;, &quot;b&quot;=&gt;&quot;box&quot;, &quot;crab&quot; =&gt; &quot;crab&quot;}</span>
+
+<span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>(<span class="ruby-node">%w{car box cone}</span>, <span class="ruby-string">&#39;ca&#39;</span>)
+<span class="ruby-comment">#=&gt; {&quot;car&quot;=&gt;&quot;car&quot;, &quot;ca&quot;=&gt;&quot;car&quot;}</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="abbrev-source">
+            <pre><span class="ruby-comment"># File lib/abbrev.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">abbrev</span>(<span class="ruby-identifier">words</span>, <span class="ruby-identifier">pattern</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">table</span> = {}
+  <span class="ruby-identifier">seen</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">pattern</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-identifier">pattern</span> = <span class="ruby-regexp">/\A#{Regexp.quote(pattern)}/</span>  <span class="ruby-comment"># regard as a prefix</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">words</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">word</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">downto</span>(<span class="ruby-value">1</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">len</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">abbrev</span> = <span class="ruby-identifier">word</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">len</span>]
+
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">abbrev</span>
+
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">abbrev</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">table</span>[<span class="ruby-identifier">abbrev</span>] = <span class="ruby-identifier">word</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+        <span class="ruby-identifier">table</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">abbrev</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">end</span>
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">words</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">word</span>
+
+    <span class="ruby-identifier">table</span>[<span class="ruby-identifier">word</span>] = <span class="ruby-identifier">word</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">table</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-abbrev" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">abbrev</span><span
+            class="method-args">(words, pattern = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given a set of strings, calculate the set of unambiguous abbreviations for those strings, and return a hash where the keys are all the possible abbreviations and the values are the full strings.</p>
+
+<p>Thus, given <code>words</code> is “car” and “cone”, the keys pointing to “car” would be “ca” and “car”, while those pointing to “cone” would be “co”, “con”, and “cone”.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;abbrev&#39;</span>
+
+<span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>(<span class="ruby-node">%w{ car cone }</span>)
+<span class="ruby-comment">#=&gt; {&quot;ca&quot;=&gt;&quot;car&quot;, &quot;con&quot;=&gt;&quot;cone&quot;, &quot;co&quot;=&gt;&quot;cone&quot;, &quot;car&quot;=&gt;&quot;car&quot;, &quot;cone&quot;=&gt;&quot;cone&quot;}</span>
+</pre>
+
+<p>The optional <code>pattern</code> parameter is a pattern or a string. Only input strings that match the pattern or start with the string are included in the output hash.</p>
+
+<pre class="ruby"><span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>(<span class="ruby-node">%w{car box cone crab}</span>, <span class="ruby-regexp">/b/</span>)
+<span class="ruby-comment">#=&gt; {&quot;box&quot;=&gt;&quot;box&quot;, &quot;bo&quot;=&gt;&quot;box&quot;, &quot;b&quot;=&gt;&quot;box&quot;, &quot;crab&quot; =&gt; &quot;crab&quot;}</span>
+
+<span class="ruby-constant">Abbrev</span>.<span class="ruby-identifier">abbrev</span>(<span class="ruby-node">%w{car box cone}</span>, <span class="ruby-string">&#39;ca&#39;</span>)
+<span class="ruby-comment">#=&gt; {&quot;car&quot;=&gt;&quot;car&quot;, &quot;ca&quot;=&gt;&quot;car&quot;}</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="abbrev-source">
+            <pre><span class="ruby-comment"># File lib/abbrev.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">abbrev</span>(<span class="ruby-identifier">words</span>, <span class="ruby-identifier">pattern</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">table</span> = {}
+  <span class="ruby-identifier">seen</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">pattern</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-identifier">pattern</span> = <span class="ruby-regexp">/\A#{Regexp.quote(pattern)}/</span>  <span class="ruby-comment"># regard as a prefix</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">words</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">word</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">downto</span>(<span class="ruby-value">1</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">len</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">abbrev</span> = <span class="ruby-identifier">word</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">len</span>]
+
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">abbrev</span>
+
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">abbrev</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">table</span>[<span class="ruby-identifier">abbrev</span>] = <span class="ruby-identifier">word</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+        <span class="ruby-identifier">table</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">abbrev</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">end</span>
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">words</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">pattern</span> <span class="ruby-operator">!~</span> <span class="ruby-identifier">word</span>
+
+    <span class="ruby-identifier">table</span>[<span class="ruby-identifier">word</span>] = <span class="ruby-identifier">word</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">table</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

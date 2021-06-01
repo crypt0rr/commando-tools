@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module RSS::RSS10 - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-RSS::RSS10-label-RSS+1.0+support">RSS 1.0 support</a>
+    <li><a href="#module-RSS::RSS10-label-Producing+RSS+1.0">Producing RSS 1.0</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-append_features">::append_features</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-RSS::RSS10">
+  <h1 id="module-RSS::RSS10" class="module">
+    module RSS::RSS10
+  </h1>
+
+  <section class="description">
+    
+<h1 id="module-RSS::RSS10-label-RSS+1.0+support"><a href="../RSS.html"><code>RSS</code></a> 1.0 support<span><a href="#module-RSS::RSS10-label-RSS+1.0+support">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><a href="../RSS.html"><code>RSS</code></a> has three different versions. This module contains support for version <a href="http://web.resource.org/rss/1.0/">1.0</a></p>
+
+<h2 id="module-RSS::RSS10-label-Producing+RSS+1.0">Producing <a href="../RSS.html"><code>RSS</code></a> 1.0<span><a href="#module-RSS::RSS10-label-Producing+RSS+1.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Producing our own <a href="../RSS.html"><code>RSS</code></a> feeds is easy as well. Let&#39;s make a very basic feed:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;rss&quot;</span>
+
+<span class="ruby-identifier">rss</span> = <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Maker</span>.<span class="ruby-identifier">make</span>(<span class="ruby-string">&quot;1.0&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">maker</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">language</span> = <span class="ruby-string">&quot;en&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">author</span> = <span class="ruby-string">&quot;matz&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">about</span> = <span class="ruby-string">&quot;About my feed.&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">updated</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">link</span> = <span class="ruby-string">&quot;http://www.ruby-lang.org/en/feeds/news.rss&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;Example Feed&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">description</span> = <span class="ruby-string">&quot;A longer description of my feed.&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">new_item</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">link</span> = <span class="ruby-string">&quot;http://www.ruby-lang.org/en/news/2010/12/25/ruby-1-9-2-p136-is-released/&quot;</span>
+    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;Ruby 1.9.2-p136 is released&quot;</span>
+    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">updated</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">rss</span>
+</pre>
+
+<p>As you can see, this is a very Builder-like DSL. This code will spit out an <a href="../RSS.html"><code>RSS</code></a> 1.0 feed with one item. If we needed a second item, we&#39;d make another block with maker.items.new_item and build a second one.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="ELEMENTS">ELEMENTS
+        
+        <dd>
+        
+      
+        <dt id="NSPOOL">NSPOOL
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-append_features" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">append_features</span><span
+            class="method-args">(klass)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="append_features-source">
+            <pre><span class="ruby-comment"># File lib/rss/1.0.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">append_features</span>(<span class="ruby-identifier">klass</span>)
+  <span class="ruby-keyword">super</span>
+
+  <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">install_must_call_validator</span>(<span class="ruby-string">&#39;&#39;</span>, <span class="ruby-operator">::</span><span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

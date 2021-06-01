@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Bundler::FriendlyErrors - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-exit_status">#exit_status</a>
+    
+    <li ><a href="#method-i-issues_url">#issues_url</a>
+    
+    <li ><a href="#method-i-log_error">#log_error</a>
+    
+    <li ><a href="#method-i-request_issue_report_for">#request_issue_report_for</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Bundler::FriendlyErrors">
+  <h1 id="module-Bundler::FriendlyErrors" class="module">
+    module Bundler::FriendlyErrors
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-exit_status" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exit_status</span><span
+            class="method-args">(error)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="exit_status-source">
+            <pre><span class="ruby-comment"># File lib/bundler/friendly_errors.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exit_status</span>(<span class="ruby-identifier">error</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">error</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">BundlerError</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">status_code</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span> <span class="ruby-keyword">then</span> <span class="ruby-value">15</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">SystemExit</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-keyword">else</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-issues_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">issues_url</span><span
+            class="method-args">(exception)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="issues_url-source">
+            <pre><span class="ruby-comment"># File lib/bundler/friendly_errors.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">issues_url</span>(<span class="ruby-identifier">exception</span>)
+  <span class="ruby-identifier">message</span> = <span class="ruby-identifier">exception</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">lines</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&quot;:&quot;</span>, <span class="ruby-string">&quot; &quot;</span>).<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">message</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;-&quot;</span>).<span class="ruby-identifier">first</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">exception</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Errno</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;cgi&quot;</span>
+  <span class="ruby-string">&quot;https://github.com/bundler/bundler/search?q=&quot;</span> \
+    <span class="ruby-node">&quot;#{CGI.escape(message)}&amp;type=Issues&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-log_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">log_error</span><span
+            class="method-args">(error)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="log_error-source">
+            <pre><span class="ruby-comment"># File lib/bundler/friendly_errors.rb, line 9</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">log_error</span>(<span class="ruby-identifier">error</span>)
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">error</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">YamlSyntaxError</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">trace</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">orig_exception</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">Dsl</span><span class="ruby-operator">::</span><span class="ruby-constant">DSLError</span>, <span class="ruby-constant">GemspecError</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">message</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">GemRequireError</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">trace</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">orig_exception</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">BundlerError</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">message</span>, <span class="ruby-value">:wrap</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">trace</span> <span class="ruby-identifier">error</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">message</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">LoadError</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-identifier">error</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/cannot load such file -- openssl|openssl.so|libcrypto.so/</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-string">&quot;\nCould not load OpenSSL.&quot;</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">warn</span> <span class="ruby-identifier">&lt;&lt;-WARN</span>, <span class="ruby-value">:wrap</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+<span class="ruby-value">          You must recompile Ruby with OpenSSL support or change the sources in your \
+          Gemfile from &#39;https&#39; to &#39;http&#39;. Instructions for compiling with OpenSSL \
+          using RVM are available at https://rvm.io/packages/openssl.
+</span><span class="ruby-identifier">        WARN</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">trace</span> <span class="ruby-identifier">error</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">Interrupt</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-string">&quot;\nQuitting...&quot;</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">trace</span> <span class="ruby-identifier">error</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidSpecificationException</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">message</span>, <span class="ruby-value">:wrap</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">SystemExit</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-operator">*</span>[<span class="ruby-keyword">defined?</span>(<span class="ruby-constant">Java</span><span class="ruby-operator">::</span><span class="ruby-constant">JavaLang</span><span class="ruby-operator">::</span><span class="ruby-constant">OutOfMemoryError</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Java</span><span class="ruby-operator">::</span><span class="ruby-constant">JavaLang</span><span class="ruby-operator">::</span><span class="ruby-constant">OutOfMemoryError</span>].<span class="ruby-identifier">compact</span>
+        <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-string">&quot;\nYour JVM has run out of memory, and Bundler cannot continue. &quot;</span> \
+          <span class="ruby-string">&quot;You can decrease the amount of memory Bundler needs by removing gems from your Gemfile, &quot;</span> \
+          <span class="ruby-string">&quot;especially large gems. (Gems can be as large as hundreds of megabytes, and Bundler has to read those files!). &quot;</span> \
+          <span class="ruby-string">&quot;Alternatively, you can increase the amount of memory the JVM is able to use by running Bundler with jruby -J-Xmx1024m -S bundle (JRuby defaults to 500MB).&quot;</span>
+      <span class="ruby-keyword">else</span> <span class="ruby-identifier">request_issue_report_for</span>(<span class="ruby-identifier">error</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-identifier">error</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-request_issue_report_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">request_issue_report_for</span><span
+            class="method-args">(e)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="request_issue_report_for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/friendly_errors.rb, line 59</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_issue_report_for</span>(<span class="ruby-identifier">e</span>)
+      <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-identifier">&lt;&lt;-EOS</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^ {8}/</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-value">        --- ERROR REPORT TEMPLATE -------------------------------------------------------
+        # Error Report
+
+        ## Questions
+
+        Please fill out answers to these questions, it&#39;ll help us figure out
+        why things are going wrong.
+
+        - **What did you do?**
+
+          I ran the command `#{$PROGRAM_NAME} #{ARGV.join(&quot; &quot;)}`
+
+        - **What did you expect to happen?**
+
+          I expected Bundler to...
+
+        - **What happened instead?**
+
+          Instead, what happened was...
+
+        - **Have you tried any solutions posted on similar issues in our issue tracker, stack overflow, or google?**
+
+          I tried...
+
+        - **Have you read our issues document, https://github.com/bundler/bundler/blob/master/doc/contributing/ISSUES.md?**
+
+          ...
+
+        ## Backtrace
+
+        ```
+        #{e.class}: #{e.message}
+          #{e.backtrace &amp;&amp; e.backtrace.join(&quot;\n          &quot;).chomp}
+        ```
+
+        #{Bundler::Env.report}
+        --- TEMPLATE END ----------------------------------------------------------------
+
+</span><span class="ruby-identifier">      EOS</span>
+
+      <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-string">&quot;Unfortunately, an unexpected error occurred, and Bundler cannot continue.&quot;</span>
+
+      <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">warn</span> <span class="ruby-identifier">&lt;&lt;-EOS</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^ {8}/</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-value">
+        First, try this link to see if there are any existing issue reports for this error:
+        #{issues_url(e)}
+
+        If there aren&#39;t any reports for this error yet, please create copy and paste the report template above into a new issue. Don&#39;t forget to anonymize any private data! The new issue form is located at:
+        https://github.com/bundler/bundler/issues/new
+</span><span class="ruby-identifier">      EOS</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

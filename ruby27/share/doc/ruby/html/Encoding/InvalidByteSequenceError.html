@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Encoding::InvalidByteSequenceError - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">rb_eEncodingError
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-destination_encoding">#destination_encoding</a>
+    
+    <li ><a href="#method-i-destination_encoding_name">#destination_encoding_name</a>
+    
+    <li ><a href="#method-i-error_bytes">#error_bytes</a>
+    
+    <li ><a href="#method-i-incomplete_input-3F">#incomplete_input?</a>
+    
+    <li ><a href="#method-i-readagain_bytes">#readagain_bytes</a>
+    
+    <li ><a href="#method-i-source_encoding">#source_encoding</a>
+    
+    <li ><a href="#method-i-source_encoding_name">#source_encoding_name</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Encoding::InvalidByteSequenceError">
+  <h1 id="class-Encoding::InvalidByteSequenceError" class="class">
+    class Encoding::InvalidByteSequenceError
+  </h1>
+
+  <section class="description">
+    
+<p>Raised by <a href="../Encoding.html"><code>Encoding</code></a> and <a href="../String.html"><code>String</code></a> methods when the string being transcoded contains a byte invalid for the either the source or target encoding.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-destination_encoding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            destination_encoding         &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the destination encoding as an encoding object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="destination_encoding-source">
+            <pre>static VALUE
+ecerr_destination_encoding(VALUE self)
+{
+    return rb_attr_get(self, rb_intern(&quot;destination_encoding&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destination_encoding_name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            destination_encoding_name         &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the destination encoding name as a string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="destination_encoding_name-source">
+            <pre>static VALUE
+ecerr_destination_encoding_name(VALUE self)
+{
+    return rb_attr_get(self, rb_intern(&quot;destination_encoding_name&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-error_bytes" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            error_bytes         &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the discarded bytes when <a href="InvalidByteSequenceError.html"><code>Encoding::InvalidByteSequenceError</code></a> occurs.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-string">&quot;ISO-8859-1&quot;</span>)
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;abc\xA1\xFFdef&quot;</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidByteSequenceError</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>      <span class="ruby-comment">#=&gt; #&lt;Encoding::InvalidByteSequenceError: &quot;\xA1&quot; followed by &quot;\xFF&quot; on EUC-JP&gt;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">error_bytes</span>.<span class="ruby-identifier">dump</span>          <span class="ruby-comment">#=&gt; &quot;\xA1&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">readagain_bytes</span>.<span class="ruby-identifier">dump</span>      <span class="ruby-comment">#=&gt; &quot;\xFF&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="error_bytes-source">
+            <pre>static VALUE
+ecerr_error_bytes(VALUE self)
+{
+    return rb_attr_get(self, rb_intern(&quot;error_bytes&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-incomplete_input-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            incomplete_input?         &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the invalid byte sequence error is caused by premature end of string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-string">&quot;ISO-8859-1&quot;</span>)
+
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;abc\xA1z&quot;</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidByteSequenceError</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>      <span class="ruby-comment">#=&gt; #&lt;Encoding::InvalidByteSequenceError: &quot;\xA1&quot; followed by &quot;z&quot; on EUC-JP&gt;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">incomplete_input?</span>    <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;abc\xA1&quot;</span>)
+  <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">finish</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidByteSequenceError</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>      <span class="ruby-comment">#=&gt; #&lt;Encoding::InvalidByteSequenceError: incomplete &quot;\xA1&quot; on EUC-JP&gt;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">incomplete_input?</span>    <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="incomplete_input-3F-source">
+            <pre>static VALUE
+ecerr_incomplete_input(VALUE self)
+{
+    return rb_attr_get(self, rb_intern(&quot;incomplete_input&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-readagain_bytes" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            readagain_bytes         &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the bytes to be read again when <a href="InvalidByteSequenceError.html"><code>Encoding::InvalidByteSequenceError</code></a> occurs.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="readagain_bytes-source">
+            <pre>static VALUE
+ecerr_readagain_bytes(VALUE self)
+{
+    return rb_attr_get(self, rb_intern(&quot;readagain_bytes&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source_encoding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            source_encoding              &rarr; encoding
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the source encoding as an encoding object.</p>
+
+<p>Note that the result may not be equal to the source encoding of the encoding converter if the conversion has multiple steps.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;ISO-8859-1&quot;</span>, <span class="ruby-string">&quot;EUC-JP&quot;</span>) <span class="ruby-comment"># ISO-8859-1 -&gt; UTF-8 -&gt; EUC-JP</span>
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\xa0&quot;</span>) <span class="ruby-comment"># NO-BREAK SPACE, which is available in UTF-8 but not in EUC-JP.</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UndefinedConversionError</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">source_encoding</span>              <span class="ruby-comment">#=&gt; #&lt;Encoding:UTF-8&gt;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">destination_encoding</span>         <span class="ruby-comment">#=&gt; #&lt;Encoding:EUC-JP&gt;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">source_encoding_name</span>         <span class="ruby-comment">#=&gt; &quot;UTF-8&quot;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">destination_encoding_name</span>    <span class="ruby-comment">#=&gt; &quot;EUC-JP&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="source_encoding-source">
+            <pre>static VALUE
+ecerr_source_encoding(VALUE self)
+{
+    return rb_attr_get(self, rb_intern(&quot;source_encoding&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source_encoding_name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            source_encoding_name         &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the source encoding name as a string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="source_encoding_name-source">
+            <pre>static VALUE
+ecerr_source_encoding_name(VALUE self)
+{
+    return rb_attr_get(self, rb_intern(&quot;source_encoding_name&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

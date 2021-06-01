@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Racc - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-Racc-label-Command-line+Reference">Command-line Reference</a>
+    <li><a href="#module-Racc-label-Generating+Parser+Using+Racc">Generating Parser Using Racc</a>
+    <li><a href="#module-Racc-label-Writing+A+Racc+Grammar+File">Writing A Racc Grammar File</a>
+    <li><a href="#module-Racc-label-Parser">Parser</a>
+    <li><a href="#module-Racc-label-Debugging">Debugging</a>
+    <li><a href="#module-Racc-label-Racc+reported+syntax+error.">Racc reported syntax error.</a>
+    <li><a href="#module-Racc-label-Racc+reported+-22XXXX+conflicts-22.">Racc reported “XXXX conflicts”.</a>
+    <li><a href="#module-Racc-label-Generated+parsers+does+not+work+correctly">Generated parsers does not work correctly</a>
+    <li><a href="#module-Racc-label-Re-distributing+Racc+runtime">Re-distributing Racc runtime</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Racc">
+  <h1 id="module-Racc" class="module">
+    module Racc
+  </h1>
+
+  <section class="description">
+    
+<p>$Id: 74ff4369ce53c7f45cfc2644ce907785104ebf6e $</p>
+
+<p><a href="Racc.html#Copyright"><code>Copyright</code></a> © 1999-2006 Minero Aoki</p>
+
+<p>This program is free software. You can distribute/modify this program under the terms of the GNU LGPL, Lesser General Public License version 2.1. For details of LGPL, see the file “COPYING”.</p>
+
+<p>$Id: ebb9798ad0b211e031670a12a1ab154678c1c8f3 $</p>
+
+<p><a href="Racc.html#Copyright"><code>Copyright</code></a> © 1999-2006 Minero Aoki</p>
+
+<p>This program is free software. You can distribute/modify this program under the same terms of ruby. see the file “COPYING”.</p>
+
+<p>$Id: 8ab2cb5341529fe5e35956bb1a1f42ec9b9c6f5a $</p>
+
+<p><a href="Racc.html#Copyright"><code>Copyright</code></a> © 1999-2006 Minero Aoki</p>
+
+<p>This program is free software. You can distribute/modify this program under the same terms of ruby. see the file “COPYING”.</p>
+
+<p>$Id: 31aa4331c08dfd4609c06eb5f94b7ef38dc708e1 $</p>
+
+<p><a href="Racc.html#Copyright"><code>Copyright</code></a> © 1999-2006 Minero Aoki</p>
+
+<p>This program is free software. You can distribute/modify this program under the terms of the GNU LGPL, Lesser General Public License version 2.1. For details of the GNU LGPL, see the file “COPYING”.</p>
+
+<p>$Id: 5e9d0a01b5d56fd9cdc3d5cb078b1a3e1bbaf779 $</p>
+
+<p><a href="Racc.html#Copyright"><code>Copyright</code></a> © 1999-2006 Minero Aoki</p>
+
+<p>This program is free software. You can distribute/modify this program under the terms of the GNU LGPL, Lesser General Public License version 2.1. For details of the GNU LGPL, see the file “COPYING”.</p>
+
+<p><a href="Racc.html"><code>Racc</code></a> is a LALR(1) parser generator. It is written in Ruby itself, and generates Ruby programs.</p>
+
+<h2 id="module-Racc-label-Command-line+Reference">Command-line Reference<span><a href="#module-Racc-label-Command-line+Reference">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>racc [-o&lt;var&gt;filename&lt;/var&gt;] [--output-file=&lt;var&gt;filename&lt;/var&gt;]
+     [-e&lt;var&gt;rubypath&lt;/var&gt;] [--embedded=&lt;var&gt;rubypath&lt;/var&gt;]
+     [-v] [--verbose]
+     [-O&lt;var&gt;filename&lt;/var&gt;] [--log-file=&lt;var&gt;filename&lt;/var&gt;]
+     [-g] [--debug]
+     [-E] [--embedded]
+     [-l] [--no-line-convert]
+     [-c] [--line-convert-all]
+     [-a] [--no-omit-actions]
+     [-C] [--check-only]
+     [-S] [--output-status]
+     [--version] [--copyright] [--help] &lt;var&gt;grammarfile&lt;/var&gt;</pre>
+<dl class="rdoc-list label-list"><dt><code>filename</code>
+<dd>
+<p><a href="Racc.html"><code>Racc</code></a> grammar file. Any extension is permitted.</p>
+</dd><dt>-o+outfile+, –output-file=<code>outfile</code>
+<dd>
+<p>A filename for output. default is &lt;<code>filename</code>&gt;.tab.rb</p>
+</dd><dt>-O+filename+, –log-file=<code>filename</code>
+<dd>
+<p>Place logging output in file <code>filename</code>. Default log file name is &lt;<code>filename</code>&gt;.output.</p>
+</dd><dt>-e+rubypath+, –executable=<code>rubypath</code>
+<dd>
+<p>output executable file(mode 755). where <code>path</code> is the Ruby interpreter.</p>
+</dd><dt>-v, –verbose
+<dd>
+<p>verbose mode. create <code>filename</code>.output file, like yacc&#39;s y.output file.</p>
+</dd><dt>-g, –debug
+<dd>
+<p>add debug code to parser class. To display debuggin information, use this &#39;-g&#39; option and set @yydebug true in parser class.</p>
+</dd><dt>-E, –embedded
+<dd>
+<p>Output parser which doesn&#39;t need runtime files (racc/parser.rb).</p>
+</dd><dt>-C, –check-only
+<dd>
+<p>Check syntax of racc grammar file and quit.</p>
+</dd><dt>-S, –output-status
+<dd>
+<p>Print messages time to time while compiling.</p>
+</dd><dt>-l, –no-line-convert
+<dd>
+<p>turns off line number converting.</p>
+</dd><dt>-c, –line-convert-all
+<dd>
+<p>Convert line number of actions, inner, header and footer.</p>
+</dd><dt>-a, –no-omit-actions
+<dd>
+<p>Call all actions, even if an action is empty.</p>
+</dd><dt>–version
+<dd>
+<p>print <a href="Racc.html"><code>Racc</code></a> version and quit.</p>
+</dd><dt>–copyright
+<dd>
+<p>Print copyright and quit.</p>
+</dd><dt>–help
+<dd>
+<p>Print usage and quit.</p>
+</dd></dl>
+
+<h2 id="module-Racc-label-Generating+Parser+Using+Racc">Generating <a href="Racc/Parser.html"><code>Parser</code></a> Using <a href="Racc.html"><code>Racc</code></a><span><a href="#module-Racc-label-Generating+Parser+Using+Racc">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To compile <a href="Racc.html"><code>Racc</code></a> grammar file, simply type:</p>
+
+<pre>$ racc parse.y</pre>
+
+<p>This creates Ruby script file “parse.tab.y”. The -o option can change the output filename.</p>
+
+<h2 id="module-Racc-label-Writing+A+Racc+Grammar+File">Writing A <a href="Racc.html"><code>Racc</code></a> <a href="Racc/Grammar.html"><code>Grammar</code></a> <a href="File.html"><code>File</code></a><span><a href="#module-Racc-label-Writing+A+Racc+Grammar+File">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If you want your own parser, you have to write a grammar file. A grammar file contains the name of your parser class, grammar for the parser, user code, and anything else. When writing a grammar file, yacc&#39;s knowledge is helpful. If you have not used yacc before, <a href="Racc.html"><code>Racc</code></a> is not too difficult.</p>
+
+<p>Here&#39;s an example <a href="Racc.html"><code>Racc</code></a> grammar file.</p>
+
+<pre>class Calcparser
+rule
+  target: exp { print val[0] }
+
+  exp: exp &#39;+&#39; exp
+     | exp &#39;*&#39; exp
+     | &#39;(&#39; exp &#39;)&#39;
+     | NUMBER
+end</pre>
+
+<p><a href="Racc.html"><code>Racc</code></a> grammar files resemble yacc files. But (of course), this is Ruby code. yacc&#39;s $$ is the &#39;result&#39;, $0, $1… is an array called &#39;val&#39;, and $-1, $-2… is an array called &#39;_values&#39;.</p>
+
+<p>See the <a href="lib/racc/rdoc/grammar_en_rdoc.html">Grammar File Reference</a> for more information on grammar files.</p>
+
+<h2 id="module-Racc-label-Parser"><a href="Racc/Parser.html"><code>Parser</code></a><span><a href="#module-Racc-label-Parser">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Then you must prepare the parse entry method. There are two types of parse methods in <a href="Racc.html"><code>Racc</code></a>, Racc::Parser#do_parse and Racc::Parser#yyparse</p>
+
+<p>Racc::Parser#do_parse is simple.</p>
+
+<p>It&#39;s yyparse() of yacc, and <a href="Racc/Parser.html#method-i-next_token"><code>Racc::Parser#next_token</code></a> is yylex(). This method must returns an array like [TOKENSYMBOL, ITS_VALUE]. EOF is [false, false]. (TOKENSYMBOL is a Ruby symbol (taken from <a href="String.html#method-i-intern"><code>String#intern</code></a>) by default. If you want to change this, see the grammar reference.</p>
+
+<p>Racc::Parser#yyparse is little complicated, but useful. It does not use <a href="Racc/Parser.html#method-i-next_token"><code>Racc::Parser#next_token</code></a>, instead it gets tokens from any iterator.</p>
+
+<p>For example, <code>yyparse(obj, :scan)</code> causes calling +obj#scan+, and you can return tokens by yielding them from +obj#scan+.</p>
+
+<h2 id="module-Racc-label-Debugging">Debugging<span><a href="#module-Racc-label-Debugging">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>When debugging, “-v” or/and the “-g” option is helpful.</p>
+
+<p>“-v” creates verbose log file (.output). “-g” creates a “Verbose Parser”. Verbose <a href="Racc/Parser.html"><code>Parser</code></a> prints the internal status when parsing. But it&#39;s <em>not</em> automatic. You must use -g option and set +@yydebug+ to <code>true</code> in order to get output. -g option only creates the verbose parser.</p>
+
+<h3 id="module-Racc-label-Racc+reported+syntax+error."><a href="Racc.html"><code>Racc</code></a> reported syntax error.<span><a href="#module-Racc-label-Racc+reported+syntax+error.">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Isn&#39;t there too many “end”? grammar of racc file is changed in v0.10.</p>
+
+<p><a href="Racc.html"><code>Racc</code></a> does not use &#39;%&#39; mark, while yacc uses huge number of &#39;%&#39; marks..</p>
+
+<h3 id="module-Racc-label-Racc+reported+-22XXXX+conflicts-22."><a href="Racc.html"><code>Racc</code></a> reported “XXXX conflicts”.<span><a href="#module-Racc-label-Racc+reported+-22XXXX+conflicts-22.">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Try “racc -v xxxx.y”. It causes producing racc&#39;s internal log file, xxxx.output.</p>
+
+<h3 id="module-Racc-label-Generated+parsers+does+not+work+correctly">Generated parsers does not work correctly<span><a href="#module-Racc-label-Generated+parsers+does+not+work+correctly">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Try “racc -g xxxx.y”. This command let racc generate “debugging parser”. Then set @yydebug=true in your parser. It produces a working log of your parser.</p>
+
+<h2 id="module-Racc-label-Re-distributing+Racc+runtime">Re-distributing <a href="Racc.html"><code>Racc</code></a> runtime<span><a href="#module-Racc-label-Re-distributing+Racc+runtime">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A parser, which is created by <a href="Racc.html"><code>Racc</code></a>, requires the <a href="Racc.html"><code>Racc</code></a> runtime module; racc/parser.rb.</p>
+
+<p>Ruby 1.8.x comes with <a href="Racc.html"><code>Racc</code></a> runtime module, you need NOT distribute <a href="Racc.html"><code>Racc</code></a> runtime files.</p>
+
+<p>If you want to include the <a href="Racc.html"><code>Racc</code></a> runtime module with your parser. This can be done by using &#39;-E&#39; option:</p>
+
+<pre>$ racc -E -omyparser.rb myparser.y</pre>
+
+<p>This command creates myparser.rb which `includes&#39; <a href="Racc.html"><code>Racc</code></a> runtime. Only you must do is to distribute your parser file (myparser.rb).</p>
+
+<p>Note: parser.rb is ruby license, but your parser is not. Your own parser is completely yours.</p>
+
+<p>$Id: 3b2d89d9ada2f5fcb043837dcc5c9631856d5b70 $</p>
+
+<p><a href="Racc.html#Copyright"><code>Copyright</code></a> © 1999-2006 Minero Aoki</p>
+
+<p>This program is free software. You can distribute/modify this program under the terms of the GNU LGPL, Lesser General Public License version 2.1. For details of LGPL, see the file “COPYING”.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Copyright">Copyright
+        
+        <dd>
+        
+      
+        <dt id="GrammarFileParser">GrammarFileParser
+        
+        <dd>
+        
+      
+        <dt id="PARSER_TEXT">PARSER_TEXT
+        
+        <dd>
+        
+      
+        <dt id="StateTransitionTable">StateTransitionTable
+        
+        <dd>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd>
+        
+      
+        <dt id="Version">Version
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

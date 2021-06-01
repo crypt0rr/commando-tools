@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Molinillo::Resolver::Resolution - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+  var index_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/navigation.js" defer></script>
+<script src="../../../js/search.js" defer></script>
+<script src="../../../js/search_index.js" defer></script>
+<script src="../../../js/searcher.js" defer></script>
+<script src="../../../js/darkfish.js" defer></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../Delegates/ResolutionState.html">Bundler::Molinillo::Delegates::ResolutionState</a>
+  
+  
+  
+    <li><a class="include" href="../Delegates/SpecificationProvider.html">Bundler::Molinillo::Delegates::SpecificationProvider</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-activate_new_spec">#activate_new_spec</a>
+    
+    <li ><a href="#method-i-attempt_to_activate">#attempt_to_activate</a>
+    
+    <li ><a href="#method-i-attempt_to_filter_existing_spec">#attempt_to_filter_existing_spec</a>
+    
+    <li ><a href="#method-i-binding_requirement_in_set-3F">#binding_requirement_in_set?</a>
+    
+    <li ><a href="#method-i-binding_requirements_for_conflict">#binding_requirements_for_conflict</a>
+    
+    <li ><a href="#method-i-build_details_for_unwind">#build_details_for_unwind</a>
+    
+    <li ><a href="#method-i-conflict_fixing_possibilities-3F">#conflict_fixing_possibilities?</a>
+    
+    <li ><a href="#method-i-create_conflict">#create_conflict</a>
+    
+    <li ><a href="#method-i-debug">#debug</a>
+    
+    <li ><a href="#method-i-end_resolution">#end_resolution</a>
+    
+    <li ><a href="#method-i-filter_possibilities_after_unwind">#filter_possibilities_after_unwind</a>
+    
+    <li ><a href="#method-i-filter_possibilities_for_parent_unwind">#filter_possibilities_for_parent_unwind</a>
+    
+    <li ><a href="#method-i-filter_possibilities_for_primary_unwind">#filter_possibilities_for_primary_unwind</a>
+    
+    <li ><a href="#method-i-filtered_possibility_set">#filtered_possibility_set</a>
+    
+    <li ><a href="#method-i-find_state_for">#find_state_for</a>
+    
+    <li ><a href="#method-i-group_possibilities">#group_possibilities</a>
+    
+    <li ><a href="#method-i-handle_missing_or_push_dependency_state">#handle_missing_or_push_dependency_state</a>
+    
+    <li ><a href="#method-i-indicate_progress">#indicate_progress</a>
+    
+    <li ><a href="#method-i-initial_state">#initial_state</a>
+    
+    <li ><a href="#method-i-locked_requirement_named">#locked_requirement_named</a>
+    
+    <li ><a href="#method-i-locked_requirement_possibility_set">#locked_requirement_possibility_set</a>
+    
+    <li ><a href="#method-i-parent_of">#parent_of</a>
+    
+    <li ><a href="#method-i-possibilities_for_requirement">#possibilities_for_requirement</a>
+    
+    <li ><a href="#method-i-possibility">#possibility</a>
+    
+    <li ><a href="#method-i-possibility_satisfies_requirements-3F">#possibility_satisfies_requirements?</a>
+    
+    <li ><a href="#method-i-process_topmost_state">#process_topmost_state</a>
+    
+    <li ><a href="#method-i-push_state_for_requirements">#push_state_for_requirements</a>
+    
+    <li ><a href="#method-i-raise_error_unless_state">#raise_error_unless_state</a>
+    
+    <li ><a href="#method-i-require_nested_dependencies_for">#require_nested_dependencies_for</a>
+    
+    <li ><a href="#method-i-requirement_for_existing_name">#requirement_for_existing_name</a>
+    
+    <li ><a href="#method-i-requirement_tree_for">#requirement_tree_for</a>
+    
+    <li ><a href="#method-i-requirement_trees">#requirement_trees</a>
+    
+    <li ><a href="#method-i-resolve">#resolve</a>
+    
+    <li ><a href="#method-i-resolve_activated_specs">#resolve_activated_specs</a>
+    
+    <li ><a href="#method-i-start_resolution">#start_resolution</a>
+    
+    <li ><a href="#method-i-state">#state</a>
+    
+    <li ><a href="#method-i-unwind_for_conflict">#unwind_for_conflict</a>
+    
+    <li ><a href="#method-i-unwind_options_for_requirements">#unwind_options_for_requirements</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Molinillo::Resolver::Resolution">
+  <h1 id="class-Bundler::Molinillo::Resolver::Resolution" class="class">
+    class Bundler::Molinillo::Resolver::Resolution
+  </h1>
+
+  <section class="description">
+    
+<p>A specific resolution from a given {Resolver}</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Conflict">Conflict
+        
+        <dd><p>A conflict that the resolution process encountered @attr [Object] requirement the requirement that immediately led to the conflict @attr [{<a href="Object">String,Nil=></a>}] requirements the requirements that caused the conflict @attr [Object, nil] existing the existing spec that was in conflict with</p>
+
+<pre>the {#possibility}</pre>
+
+<p>@attr [Object] possibility_set the set of specs that was unable to be</p>
+
+<pre>activated due to a conflict.</pre>
+
+<p>@attr [Object] locked_requirement the relevant locking requirement. @attr [Array&lt;Array&lt;Object&gt;&gt;] <a href="Resolution.html#method-i-requirement_trees"><code>requirement_trees</code></a> the different requirement</p>
+
+<pre>trees that led to every requirement for the conflicting name.</pre>
+
+<p>@attr [{String=&gt;Object}] activated_by_name the already-activated specs. @attr [Object] underlying_error an error that has occurred during resolution, and</p>
+
+<pre>will be raised at the end of it if no resolution is found.</pre>
+        
+      
+        <dt id="PossibilitySet">PossibilitySet
+        
+        <dd><p>A collection of possibility states that share the same dependencies @attr [Array] dependencies the dependencies for this set of possibilities @attr [Array] possibilities the possibilities</p>
+        
+      
+        <dt id="UnwindDetails">UnwindDetails
+        
+        <dd><p>Details of the state to unwind to when a conflict occurs, and the cause of the unwind @attr [Integer] state_index the index of the state to unwind to @attr [Object] state_requirement the requirement of the state we&#39;re unwinding to @attr [Array] requirement_tree for the requirement we&#39;re relaxing @attr [Array] conflicting_requirements the requirements that combined to cause the conflict @attr [Array] <a href="Resolution.html#method-i-requirement_trees"><code>requirement_trees</code></a> for the conflict @attr [Array] requirements_unwound_to_instead array of unwind requirements that were chosen over this unwind</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-base" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">base</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [DependencyGraph] the base dependency graph to which</p>
+
+<pre class="ruby"><span class="ruby-identifier">dependencies</span> <span class="ruby-identifier">should</span> <span class="ruby-identifier">be</span> <span class="ruby-string">&#39;locked&#39;</span>
+</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-iteration_rate" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">iteration_rate</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [Integer] the number of resolver iterations in between calls to</p>
+
+<pre>{#resolver_ui}&#39;s {UI#indicate_progress} method</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-original_requested" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">original_requested</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [Array] the dependencies that were explicitly required</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-resolver_ui" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">resolver_ui</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [UI] the <a href="../UI.html"><code>UI</code></a> that knows how to communicate feedback about the</p>
+
+<pre class="ruby"><span class="ruby-identifier">resolution</span> <span class="ruby-identifier">process</span> <span class="ruby-identifier">back</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">user</span>
+</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-specification_provider" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">specification_provider</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [SpecificationProvider] the provider that knows about</p>
+
+<pre>dependencies, requirements, specifications, versions, etc.</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-started_at" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">started_at</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [Time] the time at which resolution began</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-states" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">states</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [Array&lt;ResolutionState&gt;] the stack of states for the resolution</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(specification_provider, resolver_ui, requested, base)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes a new resolution. @param [SpecificationProvider] <a href="Resolution.html#attribute-i-specification_provider"><code>specification_provider</code></a></p>
+
+<pre>see {#specification_provider}</pre>
+
+<p>@param [UI] <a href="Resolution.html#attribute-i-resolver_ui"><code>resolver_ui</code></a> see {#resolver_ui} @param [Array] requested see {#original_requested} @param [DependencyGraph] base see {#base}</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">specification_provider</span>, <span class="ruby-identifier">resolver_ui</span>, <span class="ruby-identifier">requested</span>, <span class="ruby-identifier">base</span>)
+  <span class="ruby-ivar">@specification_provider</span> = <span class="ruby-identifier">specification_provider</span>
+  <span class="ruby-ivar">@resolver_ui</span> = <span class="ruby-identifier">resolver_ui</span>
+  <span class="ruby-ivar">@original_requested</span> = <span class="ruby-identifier">requested</span>
+  <span class="ruby-ivar">@base</span> = <span class="ruby-identifier">base</span>
+  <span class="ruby-ivar">@states</span> = []
+  <span class="ruby-ivar">@iteration_counter</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@parents_of</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = [] }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-resolve" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">resolve</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Resolves the {#original_requested} dependencies into a full dependency</p>
+
+<pre class="ruby"><span class="ruby-identifier">graph</span>
+</pre>
+
+<p>@raise [ResolverError] if successful resolution is impossible @return [DependencyGraph] the dependency graph of successfully resolved</p>
+
+<pre class="ruby"><span class="ruby-identifier">dependencies</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="resolve-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resolve</span>
+  <span class="ruby-identifier">start_resolution</span>
+
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">state</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">state</span>.<span class="ruby-identifier">requirement</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">indicate_progress</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:pop_possibility_state</span>) <span class="ruby-comment"># DependencyState</span>
+      <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>) { <span class="ruby-node">&quot;Creating possibility state for #{requirement} (#{possibilities.count} remaining)&quot;</span> }
+      <span class="ruby-identifier">state</span>.<span class="ruby-identifier">pop_possibility_state</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span>
+          <span class="ruby-identifier">states</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">s</span>)
+          <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">tag</span>(<span class="ruby-identifier">s</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">process_topmost_state</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">resolve_activated_specs</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-identifier">end_resolution</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-activate_new_spec" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">activate_new_spec</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the current {#possibility} to the dependency graph of the current {#state} @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="activate_new_spec-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 725</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">activate_new_spec</span>
+  <span class="ruby-identifier">conflicts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>) { <span class="ruby-node">&quot;Activated #{name} at #{possibility}&quot;</span> }
+  <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">set_payload</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">possibility</span>)
+  <span class="ruby-identifier">require_nested_dependencies_for</span>(<span class="ruby-identifier">possibility</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-attempt_to_activate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">attempt_to_activate</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Attempts to activate the current {#possibility} @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="attempt_to_activate-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 668</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">attempt_to_activate</span>
+  <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>) { <span class="ruby-string">&#39;Attempting to activate &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">possibility</span>.<span class="ruby-identifier">to_s</span> }
+  <span class="ruby-identifier">existing_vertex</span> = <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">existing_vertex</span>.<span class="ruby-identifier">payload</span>
+    <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>) { <span class="ruby-node">&quot;Found existing spec (#{existing_vertex.payload})&quot;</span> }
+    <span class="ruby-identifier">attempt_to_filter_existing_spec</span>(<span class="ruby-identifier">existing_vertex</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">latest</span> = <span class="ruby-identifier">possibility</span>.<span class="ruby-identifier">latest_version</span>
+    <span class="ruby-comment"># use reject!(!satisfied) for 1.8.7 compatibility</span>
+    <span class="ruby-identifier">possibility</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">reject!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility</span><span class="ruby-operator">|</span>
+      <span class="ruby-operator">!</span><span class="ruby-identifier">requirement_satisfied_by?</span>(<span class="ruby-identifier">requirement</span>, <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">possibility</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">possibility</span>.<span class="ruby-identifier">latest_version</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-comment"># ensure there&#39;s a possibility for better error messages</span>
+      <span class="ruby-identifier">possibility</span>.<span class="ruby-identifier">possibilities</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">latest</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">latest</span>
+      <span class="ruby-identifier">create_conflict</span>
+      <span class="ruby-identifier">unwind_for_conflict</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">activate_new_spec</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-attempt_to_filter_existing_spec" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">attempt_to_filter_existing_spec</span><span
+            class="method-args">(vertex)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Attempts to update the existing vertex&#39;s `PossibilitySet` with a filtered version @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="attempt_to_filter_existing_spec-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 693</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">attempt_to_filter_existing_spec</span>(<span class="ruby-identifier">vertex</span>)
+  <span class="ruby-identifier">filtered_set</span> = <span class="ruby-identifier">filtered_possibility_set</span>(<span class="ruby-identifier">vertex</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">filtered_set</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">set_payload</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">filtered_set</span>)
+    <span class="ruby-identifier">new_requirements</span> = <span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">push_state_for_requirements</span>(<span class="ruby-identifier">new_requirements</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">create_conflict</span>
+    <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>) { <span class="ruby-node">&quot;Unsatisfied by existing spec (#{vertex.payload})&quot;</span> }
+    <span class="ruby-identifier">unwind_for_conflict</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-binding_requirement_in_set-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">binding_requirement_in_set?</span><span
+            class="method-args">(requirement, possible_binding_requirements, possibilities)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Object] requirement we wish to check @param [Array] array of requirements @param [Array] array of possibilities the requirements will be used to filter @return [Boolean] whether or not the given requirement is required to filter</p>
+
+<pre>out all elements of the array of possibilities.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="binding_requirement_in_set-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 565</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">binding_requirement_in_set?</span>(<span class="ruby-identifier">requirement</span>, <span class="ruby-identifier">possible_binding_requirements</span>, <span class="ruby-identifier">possibilities</span>)
+  <span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">poss</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">possibility_satisfies_requirements?</span>(<span class="ruby-identifier">poss</span>, <span class="ruby-identifier">possible_binding_requirements</span> <span class="ruby-operator">-</span> [<span class="ruby-identifier">requirement</span>])
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-binding_requirements_for_conflict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">binding_requirements_for_conflict</span><span
+            class="method-args">(conflict)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Conflict] conflict @return [Array] minimal array of requirements that would cause the passed</p>
+
+<pre>conflict to occur.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="binding_requirements_for_conflict-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 522</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">binding_requirements_for_conflict</span>(<span class="ruby-identifier">conflict</span>)
+  <span class="ruby-keyword">return</span> [<span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirement</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">possibility</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">possible_binding_requirements</span> = <span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">flatten</span>(<span class="ruby-value">1</span>).<span class="ruby-identifier">uniq</span>
+
+  <span class="ruby-comment"># When there’s a `CircularDependency` error the conflicting requirement</span>
+  <span class="ruby-comment"># (the one causing the circular) won’t be `conflict.requirement`</span>
+  <span class="ruby-comment"># (which won’t be for the right state, because we won’t have created it,</span>
+  <span class="ruby-comment"># because it’s circular).</span>
+  <span class="ruby-comment"># We need to make sure we have that requirement in the conflict’s list,</span>
+  <span class="ruby-comment"># otherwise we won’t be able to unwind properly, so we just return all</span>
+  <span class="ruby-comment"># the requirements for the conflict.</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">possible_binding_requirements</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">underlying_error</span>
+
+  <span class="ruby-identifier">possibilities</span> = <span class="ruby-identifier">search_for</span>(<span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirement</span>)
+
+  <span class="ruby-comment"># If all the requirements together don&#39;t filter out all possibilities,</span>
+  <span class="ruby-comment"># then the only two requirements we need to consider are the initial one</span>
+  <span class="ruby-comment"># (where the dependency&#39;s version was first chosen) and the last</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">binding_requirement_in_set?</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">possible_binding_requirements</span>, <span class="ruby-identifier">possibilities</span>)
+    <span class="ruby-keyword">return</span> [<span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirement</span>, <span class="ruby-identifier">requirement_for_existing_name</span>(<span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirement</span>))].<span class="ruby-identifier">compact</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Loop through the possible binding requirements, removing each one</span>
+  <span class="ruby-comment"># that doesn&#39;t bind. Use a `reverse_each` as we want the earliest set of</span>
+  <span class="ruby-comment"># binding requirements, and don&#39;t use `reject!` as we wish to refine the</span>
+  <span class="ruby-comment"># array *on each iteration*.</span>
+  <span class="ruby-identifier">binding_requirements</span> = <span class="ruby-identifier">possible_binding_requirements</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">possible_binding_requirements</span>.<span class="ruby-identifier">reverse_each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">req</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">req</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">conflict</span>.<span class="ruby-identifier">requirement</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">binding_requirement_in_set?</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">binding_requirements</span>, <span class="ruby-identifier">possibilities</span>)
+      <span class="ruby-identifier">binding_requirements</span> <span class="ruby-operator">-=</span> [<span class="ruby-identifier">req</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">binding_requirements</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-build_details_for_unwind" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_details_for_unwind</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [UnwindDetails] Details of the nearest index to which we could unwind</p>
+          
+          
+
+          
+          <div class="method-source-code" id="build_details_for_unwind-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 332</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">build_details_for_unwind</span>
+  <span class="ruby-comment"># Get the possible unwinds for the current conflict</span>
+  <span class="ruby-identifier">current_conflict</span> = <span class="ruby-identifier">conflicts</span>[<span class="ruby-identifier">name</span>]
+  <span class="ruby-identifier">binding_requirements</span> = <span class="ruby-identifier">binding_requirements_for_conflict</span>(<span class="ruby-identifier">current_conflict</span>)
+  <span class="ruby-identifier">unwind_details</span> = <span class="ruby-identifier">unwind_options_for_requirements</span>(<span class="ruby-identifier">binding_requirements</span>)
+
+  <span class="ruby-identifier">last_detail_for_current_unwind</span> = <span class="ruby-identifier">unwind_details</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">current_detail</span> = <span class="ruby-identifier">last_detail_for_current_unwind</span>
+
+  <span class="ruby-comment"># Look for past conflicts that could be unwound to affect the</span>
+  <span class="ruby-comment"># requirement tree for the current conflict</span>
+  <span class="ruby-identifier">relevant_unused_unwinds</span> = <span class="ruby-identifier">unused_unwind_options</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">alternative</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">intersecting_requirements</span> =
+      <span class="ruby-identifier">last_detail_for_current_unwind</span>.<span class="ruby-identifier">all_requirements</span> <span class="ruby-operator">&amp;</span>
+      <span class="ruby-identifier">alternative</span>.<span class="ruby-identifier">requirements_unwound_to_instead</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">intersecting_requirements</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-comment"># Find the highest index unwind whilst looping through</span>
+    <span class="ruby-identifier">current_detail</span> = <span class="ruby-identifier">alternative</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">alternative</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_detail</span>
+    <span class="ruby-identifier">alternative</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Add the current unwind options to the `unused_unwind_options` array.</span>
+  <span class="ruby-comment"># The &quot;used&quot; option will be filtered out during `unwind_for_conflict`.</span>
+  <span class="ruby-identifier">state</span>.<span class="ruby-identifier">unused_unwind_options</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">unwind_details</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">detail</span><span class="ruby-operator">|</span> <span class="ruby-identifier">detail</span>.<span class="ruby-identifier">state_index</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1</span> }
+
+  <span class="ruby-comment"># Update the requirements_unwound_to_instead on any relevant unused unwinds</span>
+  <span class="ruby-identifier">relevant_unused_unwinds</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">requirements_unwound_to_instead</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current_detail</span>.<span class="ruby-identifier">state_requirement</span> }
+  <span class="ruby-identifier">unwind_details</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">requirements_unwound_to_instead</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current_detail</span>.<span class="ruby-identifier">state_requirement</span> }
+
+  <span class="ruby-identifier">current_detail</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-conflict_fixing_possibilities-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">conflict_fixing_possibilities?</span><span
+            class="method-args">(state, binding_requirements)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [DependencyState] state @param [Array] array of requirements @return [Boolean] whether or not the given state has any possibilities</p>
+
+<pre class="ruby"><span class="ruby-identifier">that</span> <span class="ruby-identifier">could</span> <span class="ruby-identifier">satisfy</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">given</span> <span class="ruby-identifier">requirements</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="conflict_fixing_possibilities-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 435</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">conflict_fixing_possibilities?</span>(<span class="ruby-identifier">state</span>, <span class="ruby-identifier">binding_requirements</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">state</span>
+
+  <span class="ruby-identifier">state</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility_set</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">possibility_set</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">poss</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">possibility_satisfies_requirements?</span>(<span class="ruby-identifier">poss</span>, <span class="ruby-identifier">binding_requirements</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_conflict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_conflict</span><span
+            class="method-args">(underlying_error = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Conflict] a {Conflict} that reflects the failure to activate</p>
+
+<pre>the {#possibility} in conjunction with the current {#state}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="create_conflict-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 597</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_conflict</span>(<span class="ruby-identifier">underlying_error</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">vertex</span> = <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">locked_requirement</span> = <span class="ruby-identifier">locked_requirement_named</span>(<span class="ruby-identifier">name</span>)
+
+  <span class="ruby-identifier">requirements</span> = {}
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">explicit_requirements</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">requirements</span>[<span class="ruby-identifier">name_for_explicit_dependency_source</span>] = <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">explicit_requirements</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">requirements</span>[<span class="ruby-identifier">name_for_locking_dependency_source</span>] = [<span class="ruby-identifier">locked_requirement</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">locked_requirement</span>
+  <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">incoming_edges</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">edge</span><span class="ruby-operator">|</span>
+    (<span class="ruby-identifier">requirements</span>[<span class="ruby-identifier">edge</span>.<span class="ruby-identifier">origin</span>.<span class="ruby-identifier">payload</span>.<span class="ruby-identifier">latest_version</span>] <span class="ruby-operator">||=</span> []).<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">edge</span>.<span class="ruby-identifier">requirement</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">activated_by_name</span> = {}
+  <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">activated_by_name</span>[<span class="ruby-identifier">v</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">payload</span>.<span class="ruby-identifier">latest_version</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">payload</span> }
+  <span class="ruby-identifier">conflicts</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-constant">Conflict</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-identifier">requirement</span>,
+    <span class="ruby-identifier">requirements</span>,
+    <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>.<span class="ruby-identifier">latest_version</span>,
+    <span class="ruby-identifier">possibility</span>,
+    <span class="ruby-identifier">locked_requirement</span>,
+    <span class="ruby-identifier">requirement_trees</span>,
+    <span class="ruby-identifier">activated_by_name</span>,
+    <span class="ruby-identifier">underlying_error</span>
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-debug" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">debug</span><span
+            class="method-args">(depth = 0, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calls the {#resolver_ui}&#39;s {UI#debug} method @param [Integer] depth the depth of the {#states} stack @param [Proc] block a block that yields a {#to_s} @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="debug-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 662</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">debug</span>(<span class="ruby-identifier">depth</span> = <span class="ruby-value">0</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">resolver_ui</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-end_resolution" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">end_resolution</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Ends the resolution process @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="end_resolution-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">end_resolution</span>
+  <span class="ruby-identifier">resolver_ui</span>.<span class="ruby-identifier">after_resolution</span>
+  <span class="ruby-identifier">debug</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-node">&quot;Finished resolution (#{@iteration_counter} steps) &quot;</span> \
+    <span class="ruby-node">&quot;(Took #{(ended_at = Time.now) - @started_at} seconds) (#{ended_at})&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">debug</span> { <span class="ruby-string">&#39;Unactivated: &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_n</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">payload</span> }].<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>) } <span class="ruby-keyword">if</span> <span class="ruby-identifier">state</span>
+  <span class="ruby-identifier">debug</span> { <span class="ruby-string">&#39;Activated: &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_n</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">payload</span> }].<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>) } <span class="ruby-keyword">if</span> <span class="ruby-identifier">state</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-filter_possibilities_after_unwind" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filter_possibilities_after_unwind</span><span
+            class="method-args">(unwind_details)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Filter&#39;s a state&#39;s possibilities to remove any that would not fix the conflict we&#39;ve just rewound from @param [UnwindDetails] details of the conflict just unwound from @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="filter_possibilities_after_unwind-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 449</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">filter_possibilities_after_unwind</span>(<span class="ruby-identifier">unwind_details</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">state</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">state</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">unwind_details</span>.<span class="ruby-identifier">unwinding_to_primary_requirement?</span>
+    <span class="ruby-identifier">filter_possibilities_for_primary_unwind</span>(<span class="ruby-identifier">unwind_details</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">filter_possibilities_for_parent_unwind</span>(<span class="ruby-identifier">unwind_details</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-filter_possibilities_for_parent_unwind" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filter_possibilities_for_parent_unwind</span><span
+            class="method-args">(unwind_details)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Filter&#39;s a state&#39;s possibilities to remove any that would (eventually) create a requirement in the conflict we&#39;ve just rewound from @param [UnwindDetails] details of the conflict just unwound from @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="filter_possibilities_for_parent_unwind-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 496</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">filter_possibilities_for_parent_unwind</span>(<span class="ruby-identifier">unwind_details</span>)
+  <span class="ruby-identifier">unwinds_to_state</span> = <span class="ruby-identifier">unused_unwind_options</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">uw</span><span class="ruby-operator">|</span> <span class="ruby-identifier">uw</span>.<span class="ruby-identifier">state_index</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">unwind_details</span>.<span class="ruby-identifier">state_index</span> }
+  <span class="ruby-identifier">unwinds_to_state</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">unwind_details</span>
+
+  <span class="ruby-identifier">primary_unwinds</span> = <span class="ruby-identifier">unwinds_to_state</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:unwinding_to_primary_requirement?</span>).<span class="ruby-identifier">uniq</span>
+  <span class="ruby-identifier">parent_unwinds</span> = <span class="ruby-identifier">unwinds_to_state</span>.<span class="ruby-identifier">uniq</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">primary_unwinds</span>
+
+  <span class="ruby-identifier">allowed_possibility_sets</span> = <span class="ruby-constant">Compatibility</span>.<span class="ruby-identifier">flat_map</span>(<span class="ruby-identifier">primary_unwinds</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">unwind</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">states</span>[<span class="ruby-identifier">unwind</span>.<span class="ruby-identifier">state_index</span>].<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility_set</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">possibility_set</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">poss</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">possibility_satisfies_requirements?</span>(<span class="ruby-identifier">poss</span>, <span class="ruby-identifier">unwind</span>.<span class="ruby-identifier">conflicting_requirements</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">requirements_to_avoid</span> = <span class="ruby-constant">Compatibility</span>.<span class="ruby-identifier">flat_map</span>(<span class="ruby-identifier">parent_unwinds</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:sub_dependencies_to_avoid</span>)
+
+  <span class="ruby-identifier">state</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">reject!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility_set</span><span class="ruby-operator">|</span>
+    <span class="ruby-operator">!</span><span class="ruby-identifier">allowed_possibility_sets</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">possibility_set</span>) <span class="ruby-operator">&amp;&amp;</span>
+      (<span class="ruby-identifier">requirements_to_avoid</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">possibility_set</span>.<span class="ruby-identifier">dependencies</span>).<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-filter_possibilities_for_primary_unwind" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filter_possibilities_for_primary_unwind</span><span
+            class="method-args">(unwind_details)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Filter&#39;s a state&#39;s possibilities to remove any that would not satisfy the requirements in the conflict we&#39;ve just rewound from @param [UnwindDetails] details of the conflict just unwound from @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="filter_possibilities_for_primary_unwind-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 463</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">filter_possibilities_for_primary_unwind</span>(<span class="ruby-identifier">unwind_details</span>)
+  <span class="ruby-identifier">unwinds_to_state</span> = <span class="ruby-identifier">unused_unwind_options</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">uw</span><span class="ruby-operator">|</span> <span class="ruby-identifier">uw</span>.<span class="ruby-identifier">state_index</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">unwind_details</span>.<span class="ruby-identifier">state_index</span> }
+  <span class="ruby-identifier">unwinds_to_state</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">unwind_details</span>
+  <span class="ruby-identifier">unwind_requirement_sets</span> = <span class="ruby-identifier">unwinds_to_state</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:conflicting_requirements</span>)
+
+  <span class="ruby-identifier">state</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">reject!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility_set</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">possibility_set</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">none?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">poss</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">unwind_requirement_sets</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">requirements</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">possibility_satisfies_requirements?</span>(<span class="ruby-identifier">poss</span>, <span class="ruby-identifier">requirements</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-filtered_possibility_set" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filtered_possibility_set</span><span
+            class="method-args">(vertex)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generates a filtered version of the existing vertex&#39;s `PossibilitySet` using the current state&#39;s `requirement` @param [Object] existing vertex @return [PossibilitySet] filtered possibility set</p>
+          
+          
+
+          
+          <div class="method-source-code" id="filtered_possibility_set-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 710</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">filtered_possibility_set</span>(<span class="ruby-identifier">vertex</span>)
+  <span class="ruby-constant">PossibilitySet</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>.<span class="ruby-identifier">dependencies</span>, <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>.<span class="ruby-identifier">possibilities</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">possibility</span>.<span class="ruby-identifier">possibilities</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_state_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_state_for</span><span
+            class="method-args">(requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [ResolutionState] the state whose `requirement` is the given</p>
+
+<pre>`requirement`.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="find_state_for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 590</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_state_for</span>(<span class="ruby-identifier">requirement</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">requirement</span>
+  <span class="ruby-identifier">states</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">requirement</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">requirement</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-group_possibilities" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">group_possibilities</span><span
+            class="method-args">(possibilities)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Build an array of PossibilitySets, with each element representing a group of dependency versions that all have the same sub-dependency version constraints and are contiguous. @param [Array] an array of possibilities @return [Array] an array of possibility sets</p>
+          
+          
+
+          
+          <div class="method-source-code" id="group_possibilities-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 802</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">group_possibilities</span>(<span class="ruby-identifier">possibilities</span>)
+  <span class="ruby-identifier">possibility_sets</span> = []
+  <span class="ruby-identifier">current_possibility_set</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">reverse_each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">dependencies</span> = <span class="ruby-identifier">dependencies_for</span>(<span class="ruby-identifier">possibility</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_possibility_set</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_possibility_set</span>.<span class="ruby-identifier">dependencies</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">dependencies</span>
+      <span class="ruby-identifier">current_possibility_set</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">possibility</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">possibility_sets</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-constant">PossibilitySet</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dependencies</span>, [<span class="ruby-identifier">possibility</span>]))
+      <span class="ruby-identifier">current_possibility_set</span> = <span class="ruby-identifier">possibility_sets</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">possibility_sets</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_missing_or_push_dependency_state" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_missing_or_push_dependency_state</span><span
+            class="method-args">(state)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pushes a new {DependencyState}. If the {#specification_provider} says to {SpecificationProvider#allow_missing?} that particular requirement, and there are no possibilities for that requirement, then `state` is not pushed, and the vertex in {#activated} is removed, and we continue resolving the remaining requirements. @param [DependencyState] state @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="handle_missing_or_push_dependency_state-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 827</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handle_missing_or_push_dependency_state</span>(<span class="ruby-identifier">state</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">requirement</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">allow_missing?</span>(<span class="ruby-identifier">state</span>.<span class="ruby-identifier">requirement</span>)
+    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">activated</span>.<span class="ruby-identifier">detach_vertex_named</span>(<span class="ruby-identifier">state</span>.<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">push_state_for_requirements</span>(<span class="ruby-identifier">state</span>.<span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">dup</span>, <span class="ruby-keyword">false</span>, <span class="ruby-identifier">state</span>.<span class="ruby-identifier">activated</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">states</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">state</span>).<span class="ruby-identifier">tap</span> { <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">tag</span>(<span class="ruby-identifier">state</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-indicate_progress" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">indicate_progress</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Indicates progress roughly once every second @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="indicate_progress-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 644</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">indicate_progress</span>
+  <span class="ruby-ivar">@iteration_counter</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@progress_rate</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">resolver_ui</span>.<span class="ruby-identifier">progress_rate</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">iteration_rate</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">started_at</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@progress_rate</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">iteration_rate</span> = <span class="ruby-ivar">@iteration_counter</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">iteration_rate</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-ivar">@iteration_counter</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">iteration_rate</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">resolver_ui</span>.<span class="ruby-identifier">indicate_progress</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initial_state" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initial_state</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates the initial state for the resolution, based upon the {#requested} dependencies @return [DependencyState] the initial state for the resolution</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initial_state-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 279</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initial_state</span>
+  <span class="ruby-identifier">graph</span> = <span class="ruby-constant">DependencyGraph</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dg</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">original_requested</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">requested</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">vertex</span> = <span class="ruby-identifier">dg</span>.<span class="ruby-identifier">add_vertex</span>(<span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">requested</span>), <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">explicit_requirements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">requested</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">dg</span>.<span class="ruby-identifier">tag</span>(<span class="ruby-value">:initial_state</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">requirements</span> = <span class="ruby-identifier">sort_dependencies</span>(<span class="ruby-identifier">original_requested</span>, <span class="ruby-identifier">graph</span>, {})
+  <span class="ruby-identifier">initial_requirement</span> = <span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-constant">DependencyState</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-identifier">initial_requirement</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">initial_requirement</span>),
+    <span class="ruby-identifier">requirements</span>,
+    <span class="ruby-identifier">graph</span>,
+    <span class="ruby-identifier">initial_requirement</span>,
+    <span class="ruby-identifier">possibilities_for_requirement</span>(<span class="ruby-identifier">initial_requirement</span>, <span class="ruby-identifier">graph</span>),
+    <span class="ruby-value">0</span>,
+    {},
+    []
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-locked_requirement_named" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">locked_requirement_named</span><span
+            class="method-args">(requirement_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [String] requirement_name the spec name to search for @return [Object] the locked spec named `requirement_name`, if one</p>
+
+<pre>is found on {#base}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="locked_requirement_named-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 717</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">locked_requirement_named</span>(<span class="ruby-identifier">requirement_name</span>)
+  <span class="ruby-identifier">vertex</span> = <span class="ruby-identifier">base</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">requirement_name</span>)
+  <span class="ruby-identifier">vertex</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-locked_requirement_possibility_set" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">locked_requirement_possibility_set</span><span
+            class="method-args">(requirement, activated = self.activated)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Object] the proposed requirement @return [Array] possibility set containing only the locked requirement, if any</p>
+          
+          
+
+          
+          <div class="method-source-code" id="locked_requirement_possibility_set-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 783</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">locked_requirement_possibility_set</span>(<span class="ruby-identifier">requirement</span>, <span class="ruby-identifier">activated</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">activated</span>)
+  <span class="ruby-identifier">all_possibilities</span> = <span class="ruby-identifier">search_for</span>(<span class="ruby-identifier">requirement</span>)
+  <span class="ruby-identifier">locked_requirement</span> = <span class="ruby-identifier">locked_requirement_named</span>(<span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">requirement</span>))
+
+  <span class="ruby-comment"># Longwinded way to build a possibilities array with either the locked</span>
+  <span class="ruby-comment"># requirement or nothing in it. Required, since the API for</span>
+  <span class="ruby-comment"># locked_requirement isn&#39;t guaranteed.</span>
+  <span class="ruby-identifier">locked_possibilities</span> = <span class="ruby-identifier">all_possibilities</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">requirement_satisfied_by?</span>(<span class="ruby-identifier">locked_requirement</span>, <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">possibility</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">group_possibilities</span>(<span class="ruby-identifier">locked_possibilities</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parent_of" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parent_of</span><span
+            class="method-args">(requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Object] the requirement that led to `requirement` being added</p>
+
+<pre>to the list of requirements.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="parent_of-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 573</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parent_of</span>(<span class="ruby-identifier">requirement</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">requirement</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">index</span> = <span class="ruby-ivar">@parents_of</span>[<span class="ruby-identifier">requirement</span>].<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parent_state</span> = <span class="ruby-ivar">@states</span>[<span class="ruby-identifier">index</span>]
+  <span class="ruby-identifier">parent_state</span>.<span class="ruby-identifier">requirement</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-possibilities_for_requirement" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">possibilities_for_requirement</span><span
+            class="method-args">(requirement, activated = self.activated)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks a proposed requirement with any existing locked requirement before generating an array of possibilities for it. @param [Object] the proposed requirement @return [Array] possibilities</p>
+          
+          
+
+          
+          <div class="method-source-code" id="possibilities_for_requirement-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 772</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">possibilities_for_requirement</span>(<span class="ruby-identifier">requirement</span>, <span class="ruby-identifier">activated</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">activated</span>)
+  <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">requirement</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">locked_requirement_named</span>(<span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">requirement</span>))
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">locked_requirement_possibility_set</span>(<span class="ruby-identifier">requirement</span>, <span class="ruby-identifier">activated</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">group_possibilities</span>(<span class="ruby-identifier">search_for</span>(<span class="ruby-identifier">requirement</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-possibility" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">possibility</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Object] the current possibility that the resolution is trying</p>
+
+<pre class="ruby"><span class="ruby-identifier">to</span> <span class="ruby-identifier">activate</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="possibility-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 266</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">possibility</span>
+  <span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-possibility_satisfies_requirements-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">possibility_satisfies_requirements?</span><span
+            class="method-args">(possibility, requirements)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Object] possibility a single possibility @param [Array] requirements an array of requirements @return [Boolean] whether the possibility satisfies all of the</p>
+
+<pre class="ruby"><span class="ruby-identifier">given</span> <span class="ruby-identifier">requirements</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="possibility_satisfies_requirements-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 481</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">possibility_satisfies_requirements?</span>(<span class="ruby-identifier">possibility</span>, <span class="ruby-identifier">requirements</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">possibility</span>)
+
+  <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">tag</span>(<span class="ruby-value">:swap</span>)
+  <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">set_payload</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">possibility</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">satisfied</span> = <span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">requirement_satisfied_by?</span>(<span class="ruby-identifier">r</span>, <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">possibility</span>) }
+  <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">rewind_to</span>(<span class="ruby-value">:swap</span>)
+
+  <span class="ruby-identifier">satisfied</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-process_topmost_state" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_topmost_state</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Processes the topmost available {RequirementState} on the stack @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="process_topmost_state-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 252</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">process_topmost_state</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">possibility</span>
+    <span class="ruby-identifier">attempt_to_activate</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">create_conflict</span>
+    <span class="ruby-identifier">unwind_for_conflict</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">CircularDependencyError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">underlying_error</span>
+  <span class="ruby-identifier">create_conflict</span>(<span class="ruby-identifier">underlying_error</span>)
+  <span class="ruby-identifier">unwind_for_conflict</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-push_state_for_requirements" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">push_state_for_requirements</span><span
+            class="method-args">(new_requirements, requires_sort = true, new_activated = activated)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pushes a new {DependencyState} that encapsulates both existing and new requirements @param [Array] new_requirements @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="push_state_for_requirements-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 753</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">push_state_for_requirements</span>(<span class="ruby-identifier">new_requirements</span>, <span class="ruby-identifier">requires_sort</span> = <span class="ruby-keyword">true</span>, <span class="ruby-identifier">new_activated</span> = <span class="ruby-identifier">activated</span>)
+  <span class="ruby-identifier">new_requirements</span> = <span class="ruby-identifier">sort_dependencies</span>(<span class="ruby-identifier">new_requirements</span>.<span class="ruby-identifier">uniq</span>, <span class="ruby-identifier">new_activated</span>, <span class="ruby-identifier">conflicts</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">requires_sort</span>
+  <span class="ruby-identifier">new_requirement</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">new_requirement</span> = <span class="ruby-identifier">new_requirements</span>.<span class="ruby-identifier">shift</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_requirement</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">states</span>.<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">requirement</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">new_requirement</span> }
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">new_name</span> = <span class="ruby-identifier">new_requirement</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">new_requirement</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>.<span class="ruby-identifier">freeze</span>
+  <span class="ruby-identifier">possibilities</span> = <span class="ruby-identifier">possibilities_for_requirement</span>(<span class="ruby-identifier">new_requirement</span>)
+  <span class="ruby-identifier">handle_missing_or_push_dependency_state</span> <span class="ruby-constant">DependencyState</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-identifier">new_name</span>, <span class="ruby-identifier">new_requirements</span>, <span class="ruby-identifier">new_activated</span>,
+    <span class="ruby-identifier">new_requirement</span>, <span class="ruby-identifier">possibilities</span>, <span class="ruby-identifier">depth</span>, <span class="ruby-identifier">conflicts</span>.<span class="ruby-identifier">dup</span>, <span class="ruby-identifier">unused_unwind_options</span>.<span class="ruby-identifier">dup</span>
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-raise_error_unless_state" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">raise_error_unless_state</span><span
+            class="method-args">(conflicts)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Raises a <a href="../VersionConflict.html"><code>VersionConflict</code></a> error, or any underlying error, if there is no current state @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="raise_error_unless_state-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 324</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">raise_error_unless_state</span>(<span class="ruby-identifier">conflicts</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">state</span>
+
+  <span class="ruby-identifier">error</span> = <span class="ruby-identifier">conflicts</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:underlying_error</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">||</span> <span class="ruby-constant">VersionConflict</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">conflicts</span>, <span class="ruby-identifier">specification_provider</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-require_nested_dependencies_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">require_nested_dependencies_for</span><span
+            class="method-args">(possibility_set)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Requires the dependencies that the recently activated spec has @param [Object] activated_possibility the <a href="Resolution/PossibilitySet.html"><code>PossibilitySet</code></a> that has just been</p>
+
+<pre class="ruby"><span class="ruby-identifier">activated</span>
+</pre>
+
+<p>@return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="require_nested_dependencies_for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 736</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">require_nested_dependencies_for</span>(<span class="ruby-identifier">possibility_set</span>)
+  <span class="ruby-identifier">nested_dependencies</span> = <span class="ruby-identifier">dependencies_for</span>(<span class="ruby-identifier">possibility_set</span>.<span class="ruby-identifier">latest_version</span>)
+  <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>) { <span class="ruby-node">&quot;Requiring nested dependencies (#{nested_dependencies.join(&#39;, &#39;)})&quot;</span> }
+  <span class="ruby-identifier">nested_dependencies</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">add_child_vertex</span>(<span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">d</span>), <span class="ruby-keyword">nil</span>, [<span class="ruby-identifier">name_for</span>(<span class="ruby-identifier">possibility_set</span>.<span class="ruby-identifier">latest_version</span>)], <span class="ruby-identifier">d</span>)
+    <span class="ruby-identifier">parent_index</span> = <span class="ruby-identifier">states</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">parents</span> = <span class="ruby-ivar">@parents_of</span>[<span class="ruby-identifier">d</span>]
+    <span class="ruby-identifier">parents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parent_index</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parents</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">push_state_for_requirements</span>(<span class="ruby-identifier">requirements</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">nested_dependencies</span>, <span class="ruby-operator">!</span><span class="ruby-identifier">nested_dependencies</span>.<span class="ruby-identifier">empty?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-requirement_for_existing_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">requirement_for_existing_name</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Object] the requirement that led to a version of a possibility</p>
+
+<pre>with the given name being activated.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="requirement_for_existing_name-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 582</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">requirement_for_existing_name</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">vertex</span> = <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>
+  <span class="ruby-identifier">states</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">name</span> }.<span class="ruby-identifier">requirement</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-requirement_tree_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">requirement_tree_for</span><span
+            class="method-args">(requirement)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Array&lt;Object&gt;] the list of requirements that led to</p>
+
+<pre>`requirement` being required.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="requirement_tree_for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 633</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">requirement_tree_for</span>(<span class="ruby-identifier">requirement</span>)
+  <span class="ruby-identifier">tree</span> = []
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">requirement</span>
+    <span class="ruby-identifier">tree</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">requirement</span>)
+    <span class="ruby-identifier">requirement</span> = <span class="ruby-identifier">parent_of</span>(<span class="ruby-identifier">requirement</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">tree</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-requirement_trees" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">requirement_trees</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Array&lt;Array&lt;Object&gt;&gt;] The different requirement</p>
+
+<pre>trees that led to every requirement for the current spec.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="requirement_trees-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 626</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">requirement_trees</span>
+  <span class="ruby-identifier">vertex</span> = <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertex_named</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">requirement_tree_for</span>(<span class="ruby-identifier">r</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-resolve_activated_specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">resolve_activated_specs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="resolve_activated_specs-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 216</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resolve_activated_specs</span>
+  <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">vertices</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">vertex</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>
+
+    <span class="ruby-identifier">latest_version</span> = <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">payload</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">reverse_each</span>.<span class="ruby-identifier">find</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">possibility</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">requirements</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">req</span><span class="ruby-operator">|</span> <span class="ruby-identifier">requirement_satisfied_by?</span>(<span class="ruby-identifier">req</span>, <span class="ruby-identifier">activated</span>, <span class="ruby-identifier">possibility</span>) }
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">set_payload</span>(<span class="ruby-identifier">vertex</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">latest_version</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start_resolution" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_resolution</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets up the resolution process @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="start_resolution-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">start_resolution</span>
+  <span class="ruby-ivar">@started_at</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+
+  <span class="ruby-identifier">handle_missing_or_push_dependency_state</span>(<span class="ruby-identifier">initial_state</span>)
+
+  <span class="ruby-identifier">debug</span> { <span class="ruby-node">&quot;Starting resolution (#{@started_at})\nUser-requested dependencies: #{original_requested}&quot;</span> }
+  <span class="ruby-identifier">resolver_ui</span>.<span class="ruby-identifier">before_resolution</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-state" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">state</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [RequirementState] the current state the resolution is</p>
+
+<pre class="ruby"><span class="ruby-identifier">operating</span> <span class="ruby-identifier">upon</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="state-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 272</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">state</span>
+  <span class="ruby-identifier">states</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unwind_for_conflict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unwind_for_conflict</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Unwinds the states stack because a conflict has been encountered @return [void]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unwind_for_conflict-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 304</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unwind_for_conflict</span>
+  <span class="ruby-identifier">details_for_unwind</span> = <span class="ruby-identifier">build_details_for_unwind</span>
+  <span class="ruby-identifier">unwind_options</span> = <span class="ruby-identifier">unused_unwind_options</span>
+  <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">depth</span>) { <span class="ruby-node">&quot;Unwinding for conflict: #{requirement} to #{details_for_unwind.state_index / 2}&quot;</span> }
+  <span class="ruby-identifier">conflicts</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">sliced_states</span> = <span class="ruby-identifier">states</span>.<span class="ruby-identifier">slice!</span>((<span class="ruby-identifier">details_for_unwind</span>.<span class="ruby-identifier">state_index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)<span class="ruby-operator">..</span><span class="ruby-value">-1</span>)
+    <span class="ruby-identifier">raise_error_unless_state</span>(<span class="ruby-identifier">c</span>)
+    <span class="ruby-identifier">activated</span>.<span class="ruby-identifier">rewind_to</span>(<span class="ruby-identifier">sliced_states</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> <span class="ruby-value">:initial_state</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">sliced_states</span>
+    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">conflicts</span> = <span class="ruby-identifier">c</span>
+    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">unused_unwind_options</span> = <span class="ruby-identifier">unwind_options</span>
+    <span class="ruby-identifier">filter_possibilities_after_unwind</span>(<span class="ruby-identifier">details_for_unwind</span>)
+    <span class="ruby-identifier">index</span> = <span class="ruby-identifier">states</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@parents_of</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">reject!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">index</span> } }
+    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">unused_unwind_options</span>.<span class="ruby-identifier">reject!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">uw</span><span class="ruby-operator">|</span> <span class="ruby-identifier">uw</span>.<span class="ruby-identifier">state_index</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">index</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unwind_options_for_requirements" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unwind_options_for_requirements</span><span
+            class="method-args">(binding_requirements)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Array&lt;Object&gt;] array of requirements that combine to create a conflict @return [Array&lt;UnwindDetails&gt;] array of <a href="Resolution/UnwindDetails.html"><code>UnwindDetails</code></a> that have a chance</p>
+
+<pre class="ruby"><span class="ruby-identifier">of</span> <span class="ruby-identifier">resolving</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">passed</span> <span class="ruby-identifier">requirements</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="unwind_options_for_requirements-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/molinillo/lib/molinillo/resolution.rb, line 367</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unwind_options_for_requirements</span>(<span class="ruby-identifier">binding_requirements</span>)
+  <span class="ruby-identifier">unwind_details</span> = []
+
+  <span class="ruby-identifier">trees</span> = []
+  <span class="ruby-identifier">binding_requirements</span>.<span class="ruby-identifier">reverse_each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">partial_tree</span> = [<span class="ruby-identifier">r</span>]
+    <span class="ruby-identifier">trees</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">partial_tree</span>
+    <span class="ruby-identifier">unwind_details</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">UnwindDetails</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">-1</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">partial_tree</span>, <span class="ruby-identifier">binding_requirements</span>, <span class="ruby-identifier">trees</span>, [])
+
+    <span class="ruby-comment"># If this requirement has alternative possibilities, check if any would</span>
+    <span class="ruby-comment"># satisfy the other requirements that created this conflict</span>
+    <span class="ruby-identifier">requirement_state</span> = <span class="ruby-identifier">find_state_for</span>(<span class="ruby-identifier">r</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">conflict_fixing_possibilities?</span>(<span class="ruby-identifier">requirement_state</span>, <span class="ruby-identifier">binding_requirements</span>)
+      <span class="ruby-identifier">unwind_details</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">UnwindDetails</span>.<span class="ruby-identifier">new</span>(
+        <span class="ruby-identifier">states</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">requirement_state</span>),
+        <span class="ruby-identifier">r</span>,
+        <span class="ruby-identifier">partial_tree</span>,
+        <span class="ruby-identifier">binding_requirements</span>,
+        <span class="ruby-identifier">trees</span>,
+        []
+      )
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Next, look at the parent of this requirement, and check if the requirement</span>
+    <span class="ruby-comment"># could have been avoided if an alternative PossibilitySet had been chosen</span>
+    <span class="ruby-identifier">parent_r</span> = <span class="ruby-identifier">parent_of</span>(<span class="ruby-identifier">r</span>)
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">parent_r</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">partial_tree</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">parent_r</span>)
+    <span class="ruby-identifier">requirement_state</span> = <span class="ruby-identifier">find_state_for</span>(<span class="ruby-identifier">parent_r</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">requirement_state</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">set</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">set</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">r</span>) }
+      <span class="ruby-identifier">unwind_details</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">UnwindDetails</span>.<span class="ruby-identifier">new</span>(
+        <span class="ruby-identifier">states</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">requirement_state</span>),
+        <span class="ruby-identifier">parent_r</span>,
+        <span class="ruby-identifier">partial_tree</span>,
+        <span class="ruby-identifier">binding_requirements</span>,
+        <span class="ruby-identifier">trees</span>,
+        []
+      )
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Finally, look at the grandparent and up of this requirement, looking</span>
+    <span class="ruby-comment"># for any possibilities that wouldn&#39;t create their parent requirement</span>
+    <span class="ruby-identifier">grandparent_r</span> = <span class="ruby-identifier">parent_of</span>(<span class="ruby-identifier">parent_r</span>)
+    <span class="ruby-keyword">until</span> <span class="ruby-identifier">grandparent_r</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">partial_tree</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">grandparent_r</span>)
+      <span class="ruby-identifier">requirement_state</span> = <span class="ruby-identifier">find_state_for</span>(<span class="ruby-identifier">grandparent_r</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">requirement_state</span>.<span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">set</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">set</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">parent_r</span>) }
+        <span class="ruby-identifier">unwind_details</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">UnwindDetails</span>.<span class="ruby-identifier">new</span>(
+          <span class="ruby-identifier">states</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">requirement_state</span>),
+          <span class="ruby-identifier">grandparent_r</span>,
+          <span class="ruby-identifier">partial_tree</span>,
+          <span class="ruby-identifier">binding_requirements</span>,
+          <span class="ruby-identifier">trees</span>,
+          []
+        )
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">parent_r</span> = <span class="ruby-identifier">grandparent_r</span>
+      <span class="ruby-identifier">grandparent_r</span> = <span class="ruby-identifier">parent_of</span>(<span class="ruby-identifier">parent_r</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">unwind_details</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

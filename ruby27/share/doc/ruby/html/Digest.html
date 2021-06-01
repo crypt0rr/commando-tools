@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Digest - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-Digest-label-Examples">Examples</a>
+    <li><a href="#module-Digest-label-Digest+algorithms">Digest algorithms</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-bubblebabble">::bubblebabble</a>
+    
+    <li ><a href="#method-c-hexencode">::hexencode</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Digest">
+  <h1 id="module-Digest" class="module">
+    module Digest
+  </h1>
+
+  <section class="description">
+    
+<p>This module provides a framework for message digest libraries.</p>
+
+<p>You may want to look at <a href="OpenSSL/Digest.html"><code>OpenSSL::Digest</code></a> as it supports more algorithms.</p>
+
+<p>A cryptographic hash function is a procedure that takes data and returns a fixed bit string: the hash value, also known as <em>digest</em>. <a href="Hash.html"><code>Hash</code></a> functions are also called one-way functions, it is easy to compute a digest from a message, but it is infeasible to generate a message from a digest.</p>
+
+<h2 id="module-Digest-label-Examples">Examples<span><a href="#module-Digest-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;digest&#39;</span>
+
+<span class="ruby-comment"># Compute a complete digest</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">digest</span> <span class="ruby-string">&#39;message&#39;</span>       <span class="ruby-comment">#=&gt; &quot;\xABS\n\x13\xE4Y...&quot;</span>
+
+<span class="ruby-identifier">sha256</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">sha256</span>.<span class="ruby-identifier">digest</span> <span class="ruby-string">&#39;message&#39;</span>               <span class="ruby-comment">#=&gt; &quot;\xABS\n\x13\xE4Y...&quot;</span>
+
+<span class="ruby-comment"># Other encoding formats</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;message&#39;</span>    <span class="ruby-comment">#=&gt; &quot;ab530a13e459...&quot;</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">base64digest</span> <span class="ruby-string">&#39;message&#39;</span> <span class="ruby-comment">#=&gt; &quot;q1MKE+RZFJgr...&quot;</span>
+
+<span class="ruby-comment"># Compute digest by chunks</span>
+<span class="ruby-identifier">md5</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">md5</span>.<span class="ruby-identifier">update</span> <span class="ruby-string">&#39;message1&#39;</span>
+<span class="ruby-identifier">md5</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;message2&#39;</span>                     <span class="ruby-comment"># &lt;&lt; is an alias for update</span>
+
+<span class="ruby-identifier">md5</span>.<span class="ruby-identifier">hexdigest</span>                         <span class="ruby-comment">#=&gt; &quot;94af09c09bb9...&quot;</span>
+
+<span class="ruby-comment"># Compute digest for a file</span>
+<span class="ruby-identifier">sha256</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">file</span> <span class="ruby-string">&#39;testfile&#39;</span>
+<span class="ruby-identifier">sha256</span>.<span class="ruby-identifier">hexdigest</span>
+</pre>
+
+<p>Additionally digests can be encoded in “bubble babble” format as a sequence of consonants and vowels which is more recognizable and comparable than a hexadecimal digest.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;digest/bubblebabble&#39;</span>
+
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">bubblebabble</span> <span class="ruby-string">&#39;message&#39;</span> <span class="ruby-comment">#=&gt; &quot;xopoh-fedac-fenyh-...&quot;</span>
+</pre>
+
+<p>See the bubble babble specification at <a href="http://web.mit.edu/kenta/www/one/bubblebabble/spec/jrtrjwzi/draft-huima-01.txt">web.mit.edu/kenta/www/one/bubblebabble/spec/jrtrjwzi/draft-huima-01.txt</a>.</p>
+
+<h2 id="module-Digest-label-Digest+algorithms"><a href="Digest.html"><code>Digest</code></a> algorithms<span><a href="#module-Digest-label-Digest+algorithms">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Different digest algorithms (or hash functions) are available:</p>
+<dl class="rdoc-list note-list"><dt><a href="Digest/MD5.html"><code>MD5</code></a>
+<dd>
+<p>See RFC 1321 The <a href="Digest/MD5.html"><code>MD5</code></a> Message-Digest Algorithm</p>
+</dd><dt>RIPEMD-160
+<dd>
+<p>As <a href="Digest/RMD160.html"><code>Digest::RMD160</code></a>. See <a href="http://homes.esat.kuleuven.be/~bosselae/ripemd160.html">homes.esat.kuleuven.be/~bosselae/ripemd160.html</a>.</p>
+</dd><dt><a href="Digest/SHA1.html"><code>SHA1</code></a>
+<dd>
+<p>See FIPS 180 Secure <a href="Hash.html"><code>Hash</code></a> Standard.</p>
+</dd><dt>SHA2 family
+<dd>
+<p>See FIPS 180 Secure <a href="Hash.html"><code>Hash</code></a> Standard which defines the following algorithms:</p>
+<ul><li>
+<p>SHA512</p>
+</li><li>
+<p>SHA384</p>
+</li><li>
+<p>SHA256</p>
+</li></ul>
+</dd></dl>
+
+<p>The latest versions of the FIPS publications can be found here: <a href="http://csrc.nist.gov/publications/PubsFIPS.html">csrc.nist.gov/publications/PubsFIPS.html</a>.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="REQUIRE_MUTEX">REQUIRE_MUTEX
+        
+        <dd><p>A mutex for Digest().</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-bubblebabble" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            bubblebabble(string) &rarr; bubblebabble_string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a BubbleBabble encoded version of a given <em>string</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="bubblebabble-source">
+            <pre>static VALUE
+rb_digest_s_bubblebabble(VALUE klass, VALUE str)
+{
+    return bubblebabble_str_new(str);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-hexencode" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hexencode(string) &rarr; hexencoded_string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Generates a hex-encoded version of a given <em>string</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hexencode-source">
+            <pre>static VALUE
+rb_digest_s_hexencode(VALUE klass, VALUE str)
+{
+    return hexencode_str_new(str);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

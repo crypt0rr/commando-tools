@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Reline - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="Forwardable.html">Forwardable</a>
+  
+  
+  
+    <li><a class="extend" href="SingleForwardable.html">SingleForwardable</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-core">::core</a>
+    
+    <li ><a href="#method-c-encoding_system_needs">::encoding_system_needs</a>
+    
+    <li ><a href="#method-c-insert_text">::insert_text</a>
+    
+    <li ><a href="#method-c-line_editor">::line_editor</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Reline">
+  <h1 id="module-Reline" class="module">
+    module Reline
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="CursorPos">CursorPos
+        
+        <dd>
+        
+      
+        <dt id="FILENAME_COMPLETION_PROC">FILENAME_COMPLETION_PROC
+        
+        <dd>
+        
+      
+        <dt id="HISTORY">HISTORY
+        
+        <dd>
+        
+      
+        <dt id="IOGate">IOGate
+        
+        <dd>
+        
+      
+        <dt id="Key">Key
+        
+        <dd>
+        
+      
+        <dt id="USERNAME_COMPLETION_PROC">USERNAME_COMPLETION_PROC
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-core" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">core</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="core-source">
+            <pre><span class="ruby-comment"># File lib/reline.rb, line 404</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">core</span>
+  <span class="ruby-ivar">@core</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Core</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">core</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">config</span> = <span class="ruby-constant">Reline</span><span class="ruby-operator">::</span><span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">key_stroke</span> = <span class="ruby-constant">Reline</span><span class="ruby-operator">::</span><span class="ruby-constant">KeyStroke</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">core</span>.<span class="ruby-identifier">config</span>)
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">line_editor</span> = <span class="ruby-constant">Reline</span><span class="ruby-operator">::</span><span class="ruby-constant">LineEditor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">core</span>.<span class="ruby-identifier">config</span>, <span class="ruby-constant">Reline</span><span class="ruby-operator">::</span><span class="ruby-constant">IOGate</span>.<span class="ruby-identifier">encoding</span>)
+
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">basic_word_break_characters</span> = <span class="ruby-string">&quot; \t\n`&gt;&lt;=;|&amp;{(&quot;</span>
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">completer_word_break_characters</span> = <span class="ruby-string">&quot; \t\n`&gt;&lt;=;|&amp;{(&quot;</span>
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">basic_quote_characters</span> = <span class="ruby-string">&#39;&quot;\&#39;&#39;</span>
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">completer_quote_characters</span> = <span class="ruby-string">&#39;&quot;\&#39;&#39;</span>
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">filename_quote_characters</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">core</span>.<span class="ruby-identifier">special_prefixes</span> = <span class="ruby-string">&quot;&quot;</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-encoding_system_needs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encoding_system_needs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="encoding_system_needs-source">
+            <pre><span class="ruby-comment"># File lib/reline.rb, line 400</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">encoding_system_needs</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">core</span>.<span class="ruby-identifier">encoding</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-insert_text" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert_text</span><span
+            class="method-args">(*args, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="insert_text-source">
+            <pre><span class="ruby-comment"># File lib/reline.rb, line 384</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">insert_text</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">line_editor</span>.<span class="ruby-identifier">insert_text</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-line_editor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">line_editor</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="line_editor-source">
+            <pre><span class="ruby-comment"># File lib/reline.rb, line 419</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">line_editor</span>
+  <span class="ruby-identifier">core</span>.<span class="ruby-identifier">line_editor</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

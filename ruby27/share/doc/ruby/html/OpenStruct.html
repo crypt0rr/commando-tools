@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class OpenStruct - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-json_create">::json_create</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-5B-5D-3D">#[]=</a>
+    
+    <li ><a href="#method-i-as_json">#as_json</a>
+    
+    <li ><a href="#method-i-delete_field">#delete_field</a>
+    
+    <li ><a href="#method-i-dig">#dig</a>
+    
+    <li ><a href="#method-i-each_pair">#each_pair</a>
+    
+    <li ><a href="#method-i-eql-3F">#eql?</a>
+    
+    <li class="calls-super" ><a href="#method-i-freeze">#freeze</a>
+    
+    <li ><a href="#method-i-hash">#hash</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-marshal_dump">#marshal_dump</a>
+    
+    <li ><a href="#method-i-marshal_load">#marshal_load</a>
+    
+    <li ><a href="#method-i-to_h">#to_h</a>
+    
+    <li ><a href="#method-i-to_json">#to_json</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-OpenStruct">
+  <h1 id="class-OpenStruct" class="class">
+    class OpenStruct
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-json_create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">json_create</span><span
+            class="method-args">(object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deserializes <a href="JSON.html"><code>JSON</code></a> string by constructing new <a href="Struct.html"><code>Struct</code></a> object with values <code>t</code> serialized by <code>to_json</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="json_create-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/ostruct.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">json_create</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">object</span>[<span class="ruby-string">&#39;t&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">object</span>[<span class="ruby-value">:t</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(hash=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="OpenStruct.html"><code>OpenStruct</code></a> object.  By default, the resulting <a href="OpenStruct.html"><code>OpenStruct</code></a> object will have no attributes.</p>
+
+<p>The optional <code>hash</code>, if given, will generate attributes and values (can be a <a href="Hash.html"><code>Hash</code></a>, an <a href="OpenStruct.html"><code>OpenStruct</code></a> or a <a href="Struct.html"><code>Struct</code></a>). For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+<span class="ruby-identifier">hash</span> = { <span class="ruby-string">&quot;country&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Australia&quot;</span>, <span class="ruby-value">:capital</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Canberra&quot;</span> }
+<span class="ruby-identifier">data</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">hash</span>)
+
+<span class="ruby-identifier">data</span>   <span class="ruby-comment"># =&gt; #&lt;OpenStruct country=&quot;Australia&quot;, capital=&quot;Canberra&quot;&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">hash</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@table</span> = {}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">hash</span>
+    <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">k</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>
+      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">==</span><span
+            class="method-args">(other)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compares this object and <code>other</code> for equality.  An <a href="OpenStruct.html"><code>OpenStruct</code></a> is equal to <code>other</code> when <code>other</code> is an <a href="OpenStruct.html"><code>OpenStruct</code></a> and the two objects&#39; <a href="Hash.html"><code>Hash</code></a> tables are equal.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+<span class="ruby-identifier">first_pet</span>  = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;name&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Rowdy&quot;</span>)
+<span class="ruby-identifier">second_pet</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Rowdy&quot;</span>)
+<span class="ruby-identifier">third_pet</span>  = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;name&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Rowdy&quot;</span>, <span class="ruby-value">:age</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">nil</span>)
+
+<span class="ruby-identifier">first_pet</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">second_pet</span>   <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">first_pet</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">third_pet</span>    <span class="ruby-comment"># =&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 356</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">==</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">OpenStruct</span>)
+  <span class="ruby-ivar">@table</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">table!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ostruct[name]  &rarr; object
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the value of an attribute.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+<span class="ruby-identifier">person</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;name&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;John Smith&quot;</span>, <span class="ruby-string">&quot;age&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">70</span>)
+<span class="ruby-identifier">person</span>[<span class="ruby-value">:age</span>]   <span class="ruby-comment"># =&gt; 70, same as person.age</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 241</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ostruct[name] = obj  &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets the value of an attribute.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+<span class="ruby-identifier">person</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;name&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;John Smith&quot;</span>, <span class="ruby-string">&quot;age&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">70</span>)
+<span class="ruby-identifier">person</span>[<span class="ruby-value">:age</span>] = <span class="ruby-value">42</span>   <span class="ruby-comment"># equivalent to person.age = 42</span>
+<span class="ruby-identifier">person</span>.<span class="ruby-identifier">age</span>          <span class="ruby-comment"># =&gt; 42</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-3D-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 256</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]=</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">modifiable?</span>[<span class="ruby-identifier">new_ostruct_member!</span>(<span class="ruby-identifier">name</span>)] = <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-as_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_json</span><span
+            class="method-args">(*)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a hash, that will be turned into a <a href="JSON.html"><code>JSON</code></a> object and represent this object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="as_json-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/ostruct.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">as_json</span>(<span class="ruby-operator">*</span>)
+  <span class="ruby-identifier">klass</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">JSON</span><span class="ruby-operator">::</span><span class="ruby-constant">JSONError</span>, <span class="ruby-string">&quot;Only named structs are supported!&quot;</span>
+  {
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">create_id</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">klass</span>,
+    <span class="ruby-string">&#39;t&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">table</span>,
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_field" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_field</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Removes the named field from the object. Returns the value that the field contained if it was defined.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+
+<span class="ruby-identifier">person</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">name:</span> <span class="ruby-string">&quot;John&quot;</span>, <span class="ruby-value">age:</span> <span class="ruby-value">70</span>, <span class="ruby-value">pension:</span> <span class="ruby-value">300</span>)
+
+<span class="ruby-identifier">person</span>.<span class="ruby-identifier">delete_field</span>(<span class="ruby-string">&quot;age&quot;</span>)   <span class="ruby-comment"># =&gt; 70</span>
+<span class="ruby-identifier">person</span>                       <span class="ruby-comment"># =&gt; #&lt;OpenStruct name=&quot;John&quot;, pension=300&gt;</span>
+</pre>
+
+<p>Setting the value to <code>nil</code> will not remove the attribute:</p>
+
+<pre class="ruby"><span class="ruby-identifier">person</span>.<span class="ruby-identifier">pension</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-identifier">person</span>                 <span class="ruby-comment"># =&gt; #&lt;OpenStruct name=&quot;John&quot;, pension=nil&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_field-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 305</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_field</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">sym</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">remove_method</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-node">&quot;#{sym}=&quot;</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NameError</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">sym</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">NameError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;no field `#{sym}&#39; in #{self}&quot;</span>, <span class="ruby-identifier">sym</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dig" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dig(name, ...)  &rarr; object
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Extracts the nested value specified by the sequence of <code>name</code> objects by calling <code>dig</code> at each step, returning <code>nil</code> if any intermediate step is <code>nil</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+<span class="ruby-identifier">address</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;city&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Anytown NC&quot;</span>, <span class="ruby-string">&quot;zip&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">12345</span>)
+<span class="ruby-identifier">person</span>  = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;name&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;John Smith&quot;</span>, <span class="ruby-string">&quot;address&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">address</span>)
+
+<span class="ruby-identifier">person</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:address</span>, <span class="ruby-string">&quot;zip&quot;</span>)            <span class="ruby-comment"># =&gt; 12345</span>
+<span class="ruby-identifier">person</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:business_address</span>, <span class="ruby-string">&quot;zip&quot;</span>)   <span class="ruby-comment"># =&gt; nil</span>
+
+<span class="ruby-identifier">data</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:array</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-value">1</span>, [<span class="ruby-value">2</span>, <span class="ruby-value">3</span>]])
+
+<span class="ruby-identifier">data</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:array</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>)   <span class="ruby-comment"># =&gt; 2</span>
+<span class="ruby-identifier">data</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:array</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)   <span class="ruby-comment"># TypeError: Integer does not have #dig method</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="dig-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 280</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dig</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">names</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;#{name} is not a symbol nor a string&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">names</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_pair" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_pair {|name, value| block }  &rarr; ostruct
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_pair                         &rarr; Enumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Yields all attributes (as symbols) along with the corresponding values or returns an enumerator if no block is given.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+<span class="ruby-identifier">data</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;country&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Australia&quot;</span>, <span class="ruby-value">:capital</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Canberra&quot;</span>)
+<span class="ruby-identifier">data</span>.<span class="ruby-identifier">each_pair</span>.<span class="ruby-identifier">to_a</span>   <span class="ruby-comment"># =&gt; [[:country, &quot;Australia&quot;], [:capital, &quot;Canberra&quot;]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="each_pair-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_pair</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">to_enum</span>(<span class="ruby-identifier">__method__</span>) { <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">size</span> } <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">each_pair</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">p</span>}
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eql-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">eql?</span><span
+            class="method-args">(other)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compares this object and <code>other</code> for equality.  An <a href="OpenStruct.html"><code>OpenStruct</code></a> is eql? to <code>other</code> when <code>other</code> is an <a href="OpenStruct.html"><code>OpenStruct</code></a> and the two objects&#39; <a href="Hash.html"><code>Hash</code></a> tables are eql?.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eql-3F-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 366</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">eql?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">OpenStruct</span>)
+  <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">other</span>.<span class="ruby-identifier">table!</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-freeze" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">freeze</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Object.html#method-i-freeze"><code>Object#freeze</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="freeze-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 197</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">freeze</span>
+  <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">each_key</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">new_ostruct_member!</span>(<span class="ruby-identifier">key</span>)}
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hash</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Computes a hash code for this <a href="OpenStruct.html"><code>OpenStruct</code></a>. Two <a href="OpenStruct.html"><code>OpenStruct</code></a> objects with the same content will have the same hash code (and will compare using <a href="OpenStruct.html#method-i-eql-3F"><code>eql?</code></a>).</p>
+
+<p>See also <a href="Object.html#method-i-hash"><code>Object#hash</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hash-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 376</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hash</span>
+  <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string containing a detailed summary of the keys and values.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 321</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+  <span class="ruby-identifier">ids</span> = (<span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-constant">InspectKey</span>] <span class="ruby-operator">||=</span> [])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">object_id</span>)
+    <span class="ruby-identifier">detail</span> = <span class="ruby-string">&#39; ...&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">object_id</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">detail</span> = <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+        <span class="ruby-node">&quot; #{key}=#{value.inspect}&quot;</span>
+      <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;,&#39;</span>)
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  [<span class="ruby-string">&#39;#&lt;&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-identifier">detail</span>, <span class="ruby-string">&#39;&gt;&#39;</span>].<span class="ruby-identifier">join</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="OpenStruct.html#method-i-to_s">to_s</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-marshal_dump" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marshal_dump</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Provides marshalling support for use by the <a href="Marshal.html"><code>Marshal</code></a> library.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="marshal_dump-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_dump</span>
+  <span class="ruby-ivar">@table</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-marshal_load" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marshal_load</span><span
+            class="method-args">(x)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Provides marshalling support for use by the <a href="Marshal.html"><code>Marshal</code></a> library.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="marshal_load-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_load</span>(<span class="ruby-identifier">x</span>)
+  <span class="ruby-ivar">@table</span> = <span class="ruby-identifier">x</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_h" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_h                        &rarr; hash
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_h {|name, value| block } &rarr; hash
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Converts the <a href="OpenStruct.html"><code>OpenStruct</code></a> to a hash with keys representing each attribute (as symbols) and their corresponding values.</p>
+
+<p>If a block is given, the results of the block on each pair of the receiver will be used as pairs.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;ostruct&quot;</span>
+<span class="ruby-identifier">data</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;country&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Australia&quot;</span>, <span class="ruby-value">:capital</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Canberra&quot;</span>)
+<span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_h</span>   <span class="ruby-comment"># =&gt; {:country =&gt; &quot;Australia&quot;, :capital =&gt; &quot;Canberra&quot; }</span>
+<span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_h</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">upcase</span>] }
+            <span class="ruby-comment"># =&gt; {&quot;country&quot; =&gt; &quot;AUSTRALIA&quot;, &quot;capital&quot; =&gt; &quot;CANBERRA&quot; }</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_h-source">
+            <pre><span class="ruby-comment"># File lib/ostruct.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_h</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">to_h</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@table</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_json</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Stores class name (<a href="OpenStruct.html"><code>OpenStruct</code></a>) with this struct&#39;s values <code>t</code> as a <a href="JSON.html"><code>JSON</code></a> string.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_json-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/add/ostruct.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">as_json</span>.<span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="OpenStruct.html#method-i-inspect">inspect</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

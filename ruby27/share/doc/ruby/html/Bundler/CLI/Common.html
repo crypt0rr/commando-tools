@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Bundler::CLI::Common - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-ask_for_spec_from">::ask_for_spec_from</a>
+    
+    <li ><a href="#method-c-clean_after_install-3F">::clean_after_install?</a>
+    
+    <li ><a href="#method-c-configure_gem_version_promoter">::configure_gem_version_promoter</a>
+    
+    <li ><a href="#method-c-ensure_all_gems_in_lockfile-21">::ensure_all_gems_in_lockfile!</a>
+    
+    <li ><a href="#method-c-gem_not_found_message">::gem_not_found_message</a>
+    
+    <li ><a href="#method-c-output_post_install_messages">::output_post_install_messages</a>
+    
+    <li ><a href="#method-c-output_without_groups_message">::output_without_groups_message</a>
+    
+    <li ><a href="#method-c-patch_level_options">::patch_level_options</a>
+    
+    <li ><a href="#method-c-print_post_install_message">::print_post_install_message</a>
+    
+    <li ><a href="#method-c-select_spec">::select_spec</a>
+    
+    <li ><a href="#method-c-without_groups_message">::without_groups_message</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Bundler::CLI::Common">
+  <h1 id="module-Bundler::CLI::Common" class="module">
+    module Bundler::CLI::Common
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-ask_for_spec_from" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ask_for_spec_from</span><span
+            class="method-args">(specs)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ask_for_spec_from-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">ask_for_spec_from</span>(<span class="ruby-identifier">specs</span>)
+  <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;#{index.succ} : #{spec.name}&quot;</span>, <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&quot;0 : - exit -&quot;</span>, <span class="ruby-keyword">true</span>
+
+  <span class="ruby-identifier">num</span> = <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">ask</span>(<span class="ruby-string">&quot;&gt; &quot;</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">num</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">specs</span>[<span class="ruby-identifier">num</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-clean_after_install-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_after_install?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clean_after_install-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">clean_after_install?</span>
+  <span class="ruby-identifier">clean</span> = <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-value">:clean</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">clean</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">clean</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">clean</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">feature_flag</span>.<span class="ruby-identifier">auto_clean_without_path?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-value">:path</span>].<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">clean</span> <span class="ruby-operator">&amp;&amp;=</span> <span class="ruby-operator">!</span><span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">use_system_gems?</span>
+  <span class="ruby-identifier">clean</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-configure_gem_version_promoter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">configure_gem_version_promoter</span><span
+            class="method-args">(definition, options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="configure_gem_version_promoter-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">configure_gem_version_promoter</span>(<span class="ruby-identifier">definition</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">patch_level</span> = <span class="ruby-identifier">patch_level_options</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">patch_level</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:patch</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">patch_level</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-value">:prefer_patch</span>]
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidOption</span>, <span class="ruby-node">&quot;Provide only one of the following options: #{patch_level.join(&quot;, &quot;)}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">patch_level</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">1</span>
+
+  <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">gem_version_promoter</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gvp</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">gvp</span>.<span class="ruby-identifier">level</span> = <span class="ruby-identifier">patch_level</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> <span class="ruby-value">:major</span>
+    <span class="ruby-identifier">gvp</span>.<span class="ruby-identifier">strict</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:strict</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;update-strict&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-string">&quot;filter-strict&quot;</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ensure_all_gems_in_lockfile-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ensure_all_gems_in_lockfile!</span><span
+            class="method-args">(names, locked_gems = Bundler.locked_gems)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ensure_all_gems_in_lockfile-21-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">ensure_all_gems_in_lockfile!</span>(<span class="ruby-identifier">names</span>, <span class="ruby-identifier">locked_gems</span> = <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">locked_gems</span>)
+  <span class="ruby-identifier">locked_names</span> = <span class="ruby-identifier">locked_gems</span>.<span class="ruby-identifier">specs</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>).<span class="ruby-identifier">uniq</span>
+  <span class="ruby-identifier">names</span>.<span class="ruby-identifier">-</span>(<span class="ruby-identifier">locked_names</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">GemNotFound</span>, <span class="ruby-identifier">gem_not_found_message</span>(<span class="ruby-identifier">g</span>, <span class="ruby-identifier">locked_names</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-gem_not_found_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gem_not_found_message</span><span
+            class="method-args">(missing_gem_name, alternatives)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="gem_not_found_message-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">gem_not_found_message</span>(<span class="ruby-identifier">missing_gem_name</span>, <span class="ruby-identifier">alternatives</span>)
+  <span class="ruby-identifier">require_relative</span> <span class="ruby-string">&quot;../similarity_detector&quot;</span>
+  <span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;Could not find gem &#39;#{missing_gem_name}&#39;.&quot;</span>
+  <span class="ruby-identifier">alternate_names</span> = <span class="ruby-identifier">alternatives</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:name</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">a</span> }
+  <span class="ruby-identifier">suggestions</span> = <span class="ruby-constant">SimilarityDetector</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">alternate_names</span>).<span class="ruby-identifier">similar_word_list</span>(<span class="ruby-identifier">missing_gem_name</span>)
+  <span class="ruby-identifier">message</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;\nDid you mean #{suggestions}?&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">suggestions</span>
+  <span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-output_post_install_messages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">output_post_install_messages</span><span
+            class="method-args">(messages)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="output_post_install_messages-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">output_post_install_messages</span>(<span class="ruby-identifier">messages</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-string">&quot;ignore_messages&quot;</span>]
+  <span class="ruby-identifier">messages</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">msg</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">print_post_install_message</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">msg</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-node">&quot;ignore_messages.#{name}&quot;</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-output_without_groups_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">output_without_groups_message</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="output_without_groups_message-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">output_without_groups_message</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-value">:without</span>].<span class="ruby-identifier">empty?</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">confirm</span> <span class="ruby-identifier">without_groups_message</span>(<span class="ruby-identifier">command</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-patch_level_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">patch_level_options</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="patch_level_options-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">patch_level_options</span>(<span class="ruby-identifier">options</span>)
+  [<span class="ruby-value">:major</span>, <span class="ruby-value">:minor</span>, <span class="ruby-value">:patch</span>].<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-print_post_install_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">print_post_install_message</span><span
+            class="method-args">(name, msg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="print_post_install_message-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">print_post_install_message</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">msg</span>)
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">confirm</span> <span class="ruby-node">&quot;Post-install message from #{name}:&quot;</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-identifier">msg</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-select_spec" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_spec</span><span
+            class="method-args">(name, regex_match = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="select_spec-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">select_spec</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">regex_match</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">specs</span> = []
+  <span class="ruby-identifier">regexp</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">regex_match</span>
+
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">definition</span>.<span class="ruby-identifier">specs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">spec</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">specs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">spec</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">regexp</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">regexp</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">GemNotFound</span>, <span class="ruby-identifier">gem_not_found_message</span>(<span class="ruby-identifier">name</span>, <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">definition</span>.<span class="ruby-identifier">dependencies</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">ask_for_spec_from</span>(<span class="ruby-identifier">specs</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">RegexpError</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">GemNotFound</span>, <span class="ruby-identifier">gem_not_found_message</span>(<span class="ruby-identifier">name</span>, <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">definition</span>.<span class="ruby-identifier">dependencies</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-without_groups_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">without_groups_message</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="without_groups_message-source">
+            <pre><span class="ruby-comment"># File lib/bundler/cli/common.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">without_groups_message</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">command_in_past_tense</span> = <span class="ruby-identifier">command</span> <span class="ruby-operator">==</span> <span class="ruby-value">:install</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;installed&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;updated&quot;</span>
+  <span class="ruby-identifier">groups</span> = <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-value">:without</span>]
+  <span class="ruby-identifier">group_list</span> = [<span class="ruby-identifier">groups</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>), <span class="ruby-identifier">groups</span>[<span class="ruby-value">-1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]].
+    <span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; and &quot;</span>)
+  <span class="ruby-identifier">group_str</span> = <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;group&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;groups&quot;</span>
+  <span class="ruby-node">&quot;Gems in the #{group_str} #{group_list} were not #{command_in_past_tense}.&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

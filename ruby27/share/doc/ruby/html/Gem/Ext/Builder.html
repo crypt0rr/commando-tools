@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Ext::Builder - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../UserInteraction.html">Gem::UserInteraction</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-class_name">::class_name</a>
+    
+    <li ><a href="#method-c-make">::make</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-run">::run</a>
+    
+    <li ><a href="#method-i-build_extensions">#build_extensions</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Ext::Builder">
+  <h1 id="class-Gem::Ext::Builder" class="class">
+    class Gem::Ext::Builder
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-class_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">class_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="class_name-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/ext/builder.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">class_name</span>
+  <span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/Ext::(.*)Builder/</span>
+  <span class="ruby-node">$1</span>.<span class="ruby-identifier">downcase</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-make" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make</span><span
+            class="method-args">(dest_path, results)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="make-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/ext/builder.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">make</span>(<span class="ruby-identifier">dest_path</span>, <span class="ruby-identifier">results</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-string">&#39;Makefile&#39;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">InstallError</span>, <span class="ruby-string">&#39;Makefile not found&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># try to find make program from Ruby configure arguments first</span>
+  <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">&#39;configure_args&#39;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/with-make-prog\=(\w+)/</span>
+  <span class="ruby-identifier">make_program</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;MAKE&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;make&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-node">$1</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">make_program</span>
+    <span class="ruby-identifier">make_program</span> = (<span class="ruby-regexp">/mswin/</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">RUBY_PLATFORM</span>) <span class="ruby-operator">?</span> <span class="ruby-string">&#39;nmake&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;make&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">destdir</span> = <span class="ruby-string">&#39;&quot;DESTDIR=%s&quot;&#39;</span> <span class="ruby-operator">%</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;DESTDIR&#39;</span>]
+
+  [<span class="ruby-string">&#39;clean&#39;</span>, <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;install&#39;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># Pass DESTDIR via command line to override what&#39;s in MAKEFLAGS</span>
+    <span class="ruby-identifier">cmd</span> = [
+      <span class="ruby-identifier">make_program</span>,
+      <span class="ruby-identifier">destdir</span>,
+      <span class="ruby-identifier">target</span>
+    ].<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>).<span class="ruby-identifier">rstrip</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">results</span>, <span class="ruby-node">&quot;make #{target}&quot;</span>.<span class="ruby-identifier">rstrip</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">InstallError</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">target</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;clean&#39;</span> <span class="ruby-comment"># ignore clean failure</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(spec, build_args = spec.build_args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new extension builder for <code>spec</code>.  If the <code>spec</code> does not yet have build arguments, saved, set <code>build_args</code> which is an ARGV-style array.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/ext/builder.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">spec</span>, <span class="ruby-identifier">build_args</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">build_args</span>)
+  <span class="ruby-ivar">@spec</span>       = <span class="ruby-identifier">spec</span>
+  <span class="ruby-ivar">@build_args</span> = <span class="ruby-identifier">build_args</span>
+  <span class="ruby-ivar">@gem_dir</span>    = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_gem_path</span>
+
+  <span class="ruby-ivar">@ran_rake</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">(command, results, command_name = nil) { |status, results| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/ext/builder.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">run</span>(<span class="ruby-identifier">command</span>, <span class="ruby-identifier">results</span>, <span class="ruby-identifier">command_name</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">verbose</span> = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">really_verbose</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">rubygems_gemdeps</span>, <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;RUBYGEMS_GEMDEPS&#39;</span>] = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;RUBYGEMS_GEMDEPS&#39;</span>], <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose</span>
+      <span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;current directory: #{Dir.pwd}&quot;</span>)
+      <span class="ruby-identifier">p</span>(<span class="ruby-identifier">command</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;current directory: #{Dir.pwd}&quot;</span>
+    <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">command</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:shelljoin</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">shelljoin</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">command</span>)
+
+    <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;open3&quot;</span>
+    <span class="ruby-identifier">output</span>, <span class="ruby-identifier">status</span> = <span class="ruby-constant">Open3</span>.<span class="ruby-identifier">capture2e</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">command</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">output</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">output</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">error</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">InstallError</span>, <span class="ruby-node">&quot;#{command_name || class_name} failed#{error.message}&quot;</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;RUBYGEMS_GEMDEPS&#39;</span>] = <span class="ruby-identifier">rubygems_gemdeps</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">status</span>.<span class="ruby-identifier">success?</span>
+    <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Building has failed. See above output for more information on the failure.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">status</span>, <span class="ruby-identifier">results</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">status</span>.<span class="ruby-identifier">success?</span>
+    <span class="ruby-identifier">exit_reason</span> =
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">status</span>.<span class="ruby-identifier">exited?</span>
+        <span class="ruby-node">&quot;, exit code #{status.exitstatus}&quot;</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">status</span>.<span class="ruby-identifier">signaled?</span>
+        <span class="ruby-node">&quot;, uncaught signal #{status.termsig}&quot;</span>
+      <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">InstallError</span>, <span class="ruby-node">&quot;#{command_name || class_name} failed#{exit_reason}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-build_extensions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_extensions</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Builds extensions.  Valid types of extensions are extconf.rb files, configure scripts and rakefiles or mkrf_conf files.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="build_extensions-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/ext/builder.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">build_extensions</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@spec</span>.<span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@build_args</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;Building native extensions. This could take a while...&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Building native extensions with: &#39;#{@build_args.join &#39; &#39;}&#39;&quot;</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-string">&quot;This could take a while...&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">dest_path</span> = <span class="ruby-ivar">@spec</span>.<span class="ruby-identifier">extension_dir</span>
+
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_f</span> <span class="ruby-ivar">@spec</span>.<span class="ruby-identifier">gem_build_complete_path</span>
+
+  <span class="ruby-ivar">@spec</span>.<span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">extension</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ran_rake</span>
+
+    <span class="ruby-identifier">build_extension</span> <span class="ruby-identifier">extension</span>, <span class="ruby-identifier">dest_path</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">touch</span> <span class="ruby-ivar">@spec</span>.<span class="ruby-identifier">gem_build_complete_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

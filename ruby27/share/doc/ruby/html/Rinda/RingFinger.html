@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Rinda::RingFinger - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-finger">::finger</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-primary">::primary</a>
+    
+    <li ><a href="#method-c-to_a">::to_a</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-lookup_ring">#lookup_ring</a>
+    
+    <li ><a href="#method-i-lookup_ring_any">#lookup_ring_any</a>
+    
+    <li ><a href="#method-i-to_a">#to_a</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Rinda::RingFinger">
+  <h1 id="class-Rinda::RingFinger" class="class">
+    class Rinda::RingFinger
+  </h1>
+
+  <section class="description">
+    
+<p><a href="RingFinger.html"><code>RingFinger</code></a> is used by <a href="RingServer.html"><code>RingServer</code></a> clients to discover the RingServer&#39;s <a href="TupleSpace.html"><code>TupleSpace</code></a>.  Typically, all a client needs to do is call <a href="RingFinger.html#method-c-primary"><code>RingFinger.primary</code></a> to retrieve the remote <a href="TupleSpace.html"><code>TupleSpace</code></a>, which it can then begin using.</p>
+
+<p>To find the first available remote TupleSpace:</p>
+
+<pre class="ruby"><span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingFinger</span>.<span class="ruby-identifier">primary</span>
+</pre>
+
+<p>To create a <a href="RingFinger.html"><code>RingFinger</code></a> that broadcasts to a custom list:</p>
+
+<pre class="ruby"><span class="ruby-identifier">rf</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingFinger</span>.<span class="ruby-identifier">new</span>  [<span class="ruby-string">&#39;localhost&#39;</span>, <span class="ruby-string">&#39;192.0.2.1&#39;</span>]
+<span class="ruby-identifier">rf</span>.<span class="ruby-identifier">primary</span>
+</pre>
+
+<p><a href="RingFinger.html"><code>Rinda::RingFinger</code></a> also understands multicast addresses and sets them up properly.  This allows you to run multiple RingServers on the same host:</p>
+
+<pre class="ruby"><span class="ruby-identifier">rf</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingFinger</span>.<span class="ruby-identifier">new</span> [<span class="ruby-string">&#39;239.0.0.1&#39;</span>]
+<span class="ruby-identifier">rf</span>.<span class="ruby-identifier">primary</span>
+</pre>
+
+<p>You can set the hop count (or TTL) for multicast searches using <a href="RingFinger.html#attribute-i-multicast_hops"><code>multicast_hops</code></a>.</p>
+
+<p>If you use IPv6 multicast you may need to set both an address and the outbound interface index:</p>
+
+<pre class="ruby"><span class="ruby-identifier">rf</span> = <span class="ruby-constant">Rinda</span><span class="ruby-operator">::</span><span class="ruby-constant">RingFinger</span>.<span class="ruby-identifier">new</span> [<span class="ruby-string">&#39;ff02::1&#39;</span>]
+<span class="ruby-identifier">rf</span>.<span class="ruby-identifier">multicast_interface</span> = <span class="ruby-value">1</span>
+<span class="ruby-identifier">rf</span>.<span class="ruby-identifier">primary</span>
+</pre>
+
+<p>At this time there is no easy way to get an interface index by name.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-broadcast_list" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">broadcast_list</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The list of addresses where <a href="RingFinger.html"><code>RingFinger</code></a> will send query packets.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-multicast_hops" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">multicast_hops</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Maximum number of hops for sent multicast packets (if using a multicast address in the broadcast list).  The default is 1 (same as UDP broadcast).</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-multicast_interface" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">multicast_interface</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The interface index to send IPv6 multicast packets from.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-port" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">port</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The port that <a href="RingFinger.html"><code>RingFinger</code></a> will send query packets to.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-primary" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">primary</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Contain the first advertised <a href="TupleSpace.html"><code>TupleSpace</code></a> after <a href="RingFinger.html#method-i-lookup_ring_any"><code>lookup_ring_any</code></a> is called.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-finger" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finger</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a singleton <a href="RingFinger.html"><code>RingFinger</code></a> and looks for a <a href="RingServer.html"><code>RingServer</code></a>.  Returns the created <a href="RingFinger.html"><code>RingFinger</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="finger-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 288</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">finger</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">@@finger</span>
+    <span class="ruby-identifier">@@finger</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">@@finger</span>.<span class="ruby-identifier">lookup_ring_any</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">@@finger</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(broadcast_list=@@broadcast_list, port=Ring_PORT)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="RingFinger.html"><code>RingFinger</code></a> that will look for RingServers at <code>port</code> on the addresses in <code>broadcast_list</code>.</p>
+
+<p>If <code>broadcast_list</code> contains a multicast address then multicast queries will be made using the given <a href="RingFinger.html#attribute-i-multicast_hops"><code>multicast_hops</code></a> and multicast_interface.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 344</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">broadcast_list</span>=<span class="ruby-identifier">@@broadcast_list</span>, <span class="ruby-identifier">port</span>=<span class="ruby-constant">Ring_PORT</span>)
+  <span class="ruby-ivar">@broadcast_list</span> = <span class="ruby-identifier">broadcast_list</span> <span class="ruby-operator">||</span> [<span class="ruby-string">&#39;localhost&#39;</span>]
+  <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">port</span>
+  <span class="ruby-ivar">@primary</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@rings</span> = []
+
+  <span class="ruby-ivar">@multicast_hops</span> = <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@multicast_interface</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-primary" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">primary</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the first advertised <a href="TupleSpace.html"><code>TupleSpace</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="primary-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 299</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">primary</span>
+  <span class="ruby-identifier">finger</span>.<span class="ruby-identifier">primary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-to_a" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_a</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Contains all discovered TupleSpaces except for the primary.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_a-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 306</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">to_a</span>
+  <span class="ruby-identifier">finger</span>.<span class="ruby-identifier">to_a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">() { |primary| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all discovered TupleSpaces starting with the primary.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 364</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>
+  <span class="ruby-identifier">lookup_ring_any</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@primary</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@primary</span>
+  <span class="ruby-keyword">yield</span>(<span class="ruby-ivar">@primary</span>)
+  <span class="ruby-ivar">@rings</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">x</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lookup_ring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lookup_ring</span><span
+            class="method-args">(timeout=5, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up RingServers waiting <code>timeout</code> seconds.  RingServers will be given <code>block</code> as a callback, which will be called with the remote <a href="TupleSpace.html"><code>TupleSpace</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lookup_ring-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 376</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lookup_ring</span>(<span class="ruby-identifier">timeout</span>=<span class="ruby-value">5</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">lookup_ring_any</span>(<span class="ruby-identifier">timeout</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>([[<span class="ruby-value">:lookup_ring</span>, <span class="ruby-constant">DRbObject</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">block</span>)], <span class="ruby-identifier">timeout</span>])
+  <span class="ruby-ivar">@broadcast_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">it</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">send_message</span>(<span class="ruby-identifier">it</span>, <span class="ruby-identifier">msg</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">sleep</span>(<span class="ruby-identifier">timeout</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lookup_ring_any" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lookup_ring_any</span><span
+            class="method-args">(timeout=5)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the first found remote <a href="TupleSpace.html"><code>TupleSpace</code></a>.  Any further recovered TupleSpaces can be found by calling <code>to_a</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lookup_ring_any-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 390</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lookup_ring_any</span>(<span class="ruby-identifier">timeout</span>=<span class="ruby-value">5</span>)
+  <span class="ruby-identifier">queue</span> = <span class="ruby-constant">Thread</span><span class="ruby-operator">::</span><span class="ruby-constant">Queue</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lookup_ring</span>(<span class="ruby-identifier">timeout</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">ts</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">push</span>(<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@primary</span> = <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">pop</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&#39;RingNotFound&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@primary</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">it</span> = <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">pop</span>
+      <span class="ruby-ivar">@rings</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">it</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@primary</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_a" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_a</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Contains all discovered TupleSpaces except for the primary.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_a-source">
+            <pre><span class="ruby-comment"># File lib/rinda/ring.rb, line 357</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_a</span>
+  <span class="ruby-ivar">@rings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

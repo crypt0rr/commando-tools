@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class IRB::JobManager - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-delete">#delete</a>
+    
+    <li ><a href="#method-i-insert">#insert</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-irb">#irb</a>
+    
+    <li ><a href="#method-i-kill">#kill</a>
+    
+    <li ><a href="#method-i-main_irb">#main_irb</a>
+    
+    <li ><a href="#method-i-main_thread">#main_thread</a>
+    
+    <li ><a href="#method-i-n_jobs">#n_jobs</a>
+    
+    <li ><a href="#method-i-search">#search</a>
+    
+    <li ><a href="#method-i-switch">#switch</a>
+    
+    <li ><a href="#method-i-thread">#thread</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-IRB::JobManager">
+  <h1 id="class-IRB::JobManager" class="class">
+    class IRB::JobManager
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-current_job" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">current_job</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The active irb session</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="JobManager.html"><code>JobManager</code></a> object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@jobs</span> = []
+  <span class="ruby-ivar">@current_job</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">(key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes the job at the given <code>key</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">key</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Integer</span>
+    <span class="ruby-identifier">fail</span> <span class="ruby-constant">NoSuchJob</span>, <span class="ruby-identifier">key</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">key</span>]
+    <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">catch</span>(<span class="ruby-value">:EXISTS</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">i</span>] <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">i</span>][<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">||</span>
+            <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">i</span>][<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">||</span>
+            <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">i</span>][<span class="ruby-value">1</span>].<span class="ruby-identifier">context</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">equal?</span>(<span class="ruby-identifier">key</span>))
+          <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-keyword">nil</span>
+          <span class="ruby-identifier">throw</span> <span class="ruby-value">:EXISTS</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">fail</span> <span class="ruby-constant">NoSuchJob</span>, <span class="ruby-identifier">key</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">assoc</span> = <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">pop</span>; <span class="ruby-keyword">end</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">assoc</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-insert" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert</span><span
+            class="method-args">(irb)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add the given <code>irb</code> session to the jobs <a href="../Array.html"><code>Array</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="insert-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">insert</span>(<span class="ruby-identifier">irb</span>)
+  <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">push</span> [<span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>, <span class="ruby-identifier">irb</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Outputs a list of jobs, see the irb command <code>irb_jobs</code>, or <code>jobs</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+  <span class="ruby-identifier">ary</span> = []
+  <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">th</span>, <span class="ruby-identifier">irb</span> = <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">i</span>]
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">th</span>.<span class="ruby-identifier">nil?</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">th</span>.<span class="ruby-identifier">alive?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">th</span>.<span class="ruby-identifier">stop?</span>
+        <span class="ruby-identifier">t_status</span> = <span class="ruby-string">&quot;stop&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">t_status</span> = <span class="ruby-string">&quot;running&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">t_status</span> = <span class="ruby-string">&quot;exited&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">format</span>(<span class="ruby-string">&quot;#%d-&gt;%s on %s (%s: %s)&quot;</span>,
+      <span class="ruby-identifier">i</span>,
+      <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">irb_name</span>,
+      <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">main</span>,
+      <span class="ruby-identifier">th</span>,
+      <span class="ruby-identifier">t_status</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-irb" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">irb</span><span
+            class="method-args">(key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the irb session for the given <code>key</code> object, see <a href="JobManager.html#method-i-search"><code>search</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="irb-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">irb</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">_</span>, <span class="ruby-identifier">irb</span> = <span class="ruby-identifier">search</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">irb</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-kill" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">kill</span><span
+            class="method-args">(*keys)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Terminates the irb sessions specified by the given <code>keys</code>.</p>
+
+<p>Raises an IrbAlreadyDead exception if one of the given <code>keys</code> is already terminated.</p>
+
+<p>See <a href="../Thread.html#method-i-exit"><code>Thread#exit</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="kill-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">kill</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">keys</span>)
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">keys</span>
+    <span class="ruby-identifier">th</span>, <span class="ruby-identifier">_</span> = <span class="ruby-identifier">search</span>(<span class="ruby-identifier">key</span>)
+    <span class="ruby-identifier">fail</span> <span class="ruby-constant">IrbAlreadyDead</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">th</span>.<span class="ruby-identifier">alive?</span>
+    <span class="ruby-identifier">th</span>.<span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-main_irb" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_irb</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the top level irb session.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="main_irb-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">main_irb</span>
+  <span class="ruby-ivar">@jobs</span>[<span class="ruby-value">0</span>][<span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-main_thread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_thread</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the top level thread.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="main_thread-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">main_thread</span>
+  <span class="ruby-ivar">@jobs</span>[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-n_jobs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">n_jobs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The total number of irb sessions, used to set <code>irb_name</code> of the current <a href="Context.html"><code>Context</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="n_jobs-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">n_jobs</span>
+  <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">size</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">(key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the associated job for the given <code>key</code>.</p>
+
+<p>If given an <a href="../Integer.html"><code>Integer</code></a>, it will return the <code>key</code> index for the jobs <a href="../Array.html"><code>Array</code></a>.</p>
+
+<p>When an instance of <a href="Irb.html"><code>Irb</code></a> is given, it will return the irb session associated with <code>key</code>.</p>
+
+<p>If given an instance of <a href="../Thread.html"><code>Thread</code></a>, it will return the associated thread <code>key</code> using <a href="../Object.html#method-i-3D-3D-3D"><code>Object#===</code></a> on the jobs <a href="../Array.html"><code>Array</code></a>.</p>
+
+<p>Otherwise returns the irb session with the same top-level binding as the given <code>key</code>.</p>
+
+<p>Raises a NoSuchJob exception if no job can be found with the given <code>key</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">job</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">key</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-constant">Integer</span>
+          <span class="ruby-ivar">@jobs</span>[<span class="ruby-identifier">key</span>]
+        <span class="ruby-keyword">when</span> <span class="ruby-constant">Irb</span>
+          <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">find</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">equal?</span>(<span class="ruby-identifier">key</span>)}
+        <span class="ruby-keyword">when</span> <span class="ruby-constant">Thread</span>
+          <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">assoc</span>(<span class="ruby-identifier">key</span>)
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@jobs</span>.<span class="ruby-identifier">find</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">equal?</span>(<span class="ruby-identifier">key</span>)}
+        <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">fail</span> <span class="ruby-constant">NoSuchJob</span>, <span class="ruby-identifier">key</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">job</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">job</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-switch" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">switch</span><span
+            class="method-args">(key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Changes the current active irb session to the given <code>key</code> in the jobs <a href="../Array.html"><code>Array</code></a>.</p>
+
+<p>Raises an IrbAlreadyDead exception if the given <code>key</code> is no longer alive.</p>
+
+<p>If the given irb session is already active, an IrbSwitchedToCurrentThread exception is raised.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="switch-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">switch</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">th</span>, <span class="ruby-identifier">irb</span> = <span class="ruby-identifier">search</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">fail</span> <span class="ruby-constant">IrbAlreadyDead</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">th</span>.<span class="ruby-identifier">alive?</span>
+  <span class="ruby-identifier">fail</span> <span class="ruby-constant">IrbSwitchedToCurrentThread</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">th</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>
+  <span class="ruby-ivar">@current_job</span> = <span class="ruby-identifier">irb</span>
+  <span class="ruby-identifier">th</span>.<span class="ruby-identifier">run</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">stop</span>
+  <span class="ruby-ivar">@current_job</span> = <span class="ruby-identifier">irb</span>(<span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-thread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">thread</span><span
+            class="method-args">(key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the thread for the given <code>key</code> object, see <a href="JobManager.html#method-i-search"><code>search</code></a> for more information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="thread-source">
+            <pre><span class="ruby-comment"># File lib/irb/ext/multi-irb.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">thread</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">th</span>, = <span class="ruby-identifier">search</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">th</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

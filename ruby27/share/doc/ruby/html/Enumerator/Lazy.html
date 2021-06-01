@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Enumerator::Lazy - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Enumerator.html">Enumerator</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-_enumerable_collect">#_enumerable_collect</a>
+    
+    <li ><a href="#method-i-_enumerable_collect_concat">#_enumerable_collect_concat</a>
+    
+    <li ><a href="#method-i-_enumerable_drop">#_enumerable_drop</a>
+    
+    <li ><a href="#method-i-_enumerable_drop_while">#_enumerable_drop_while</a>
+    
+    <li ><a href="#method-i-_enumerable_filter">#_enumerable_filter</a>
+    
+    <li ><a href="#method-i-_enumerable_filter_map">#_enumerable_filter_map</a>
+    
+    <li ><a href="#method-i-_enumerable_find_all">#_enumerable_find_all</a>
+    
+    <li ><a href="#method-i-_enumerable_flat_map">#_enumerable_flat_map</a>
+    
+    <li ><a href="#method-i-_enumerable_grep">#_enumerable_grep</a>
+    
+    <li ><a href="#method-i-_enumerable_grep_v">#_enumerable_grep_v</a>
+    
+    <li ><a href="#method-i-_enumerable_map">#_enumerable_map</a>
+    
+    <li ><a href="#method-i-_enumerable_reject">#_enumerable_reject</a>
+    
+    <li ><a href="#method-i-_enumerable_select">#_enumerable_select</a>
+    
+    <li ><a href="#method-i-_enumerable_take">#_enumerable_take</a>
+    
+    <li ><a href="#method-i-_enumerable_take_while">#_enumerable_take_while</a>
+    
+    <li ><a href="#method-i-_enumerable_uniq">#_enumerable_uniq</a>
+    
+    <li ><a href="#method-i-_enumerable_with_index">#_enumerable_with_index</a>
+    
+    <li ><a href="#method-i-_enumerable_zip">#_enumerable_zip</a>
+    
+    <li ><a href="#method-i-chunk">#chunk</a>
+    
+    <li ><a href="#method-i-chunk_while">#chunk_while</a>
+    
+    <li ><a href="#method-i-collect">#collect</a>
+    
+    <li ><a href="#method-i-collect_concat">#collect_concat</a>
+    
+    <li ><a href="#method-i-drop">#drop</a>
+    
+    <li ><a href="#method-i-drop_while">#drop_while</a>
+    
+    <li ><a href="#method-i-eager">#eager</a>
+    
+    <li ><a href="#method-i-enum_for">#enum_for</a>
+    
+    <li ><a href="#method-i-filter">#filter</a>
+    
+    <li ><a href="#method-i-filter_map">#filter_map</a>
+    
+    <li ><a href="#method-i-find_all">#find_all</a>
+    
+    <li ><a href="#method-i-flat_map">#flat_map</a>
+    
+    <li ><a href="#method-i-force">#force</a>
+    
+    <li ><a href="#method-i-grep">#grep</a>
+    
+    <li ><a href="#method-i-grep_v">#grep_v</a>
+    
+    <li ><a href="#method-i-lazy">#lazy</a>
+    
+    <li ><a href="#method-i-map">#map</a>
+    
+    <li ><a href="#method-i-reject">#reject</a>
+    
+    <li ><a href="#method-i-select">#select</a>
+    
+    <li ><a href="#method-i-slice_after">#slice_after</a>
+    
+    <li ><a href="#method-i-slice_before">#slice_before</a>
+    
+    <li ><a href="#method-i-slice_when">#slice_when</a>
+    
+    <li ><a href="#method-i-take">#take</a>
+    
+    <li ><a href="#method-i-take_while">#take_while</a>
+    
+    <li ><a href="#method-i-to_a">#to_a</a>
+    
+    <li ><a href="#method-i-to_enum">#to_enum</a>
+    
+    <li ><a href="#method-i-uniq">#uniq</a>
+    
+    <li ><a href="#method-i-with_index">#with_index</a>
+    
+    <li ><a href="#method-i-zip">#zip</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Enumerator::Lazy">
+  <h1 id="class-Enumerator::Lazy" class="class">
+    class Enumerator::Lazy
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Lazy.html"><code>Enumerator::Lazy</code></a> is a special type of <a href="../Enumerator.html"><code>Enumerator</code></a>, that allows constructing chains of operations without evaluating them immediately, and evaluating values on as-needed basis. In order to do so it redefines most of <a href="../Enumerable.html"><code>Enumerable</code></a> methods so that they just construct another lazy enumerator.</p>
+
+<p><a href="Lazy.html"><code>Enumerator::Lazy</code></a> can be constructed from any <a href="../Enumerable.html"><code>Enumerable</code></a> with the <a href="../Enumerable.html#method-i-lazy"><code>Enumerable#lazy</code></a> method.</p>
+
+<pre class="ruby"><span class="ruby-identifier">lazy</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>).<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:odd?</span>).<span class="ruby-identifier">drop</span>(<span class="ruby-value">10</span>).<span class="ruby-identifier">take_while</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">30</span> }
+<span class="ruby-comment"># =&gt; #&lt;Enumerator::Lazy: #&lt;Enumerator::Lazy: #&lt;Enumerator::Lazy: #&lt;Enumerator::Lazy: 1..Infinity&gt;:select&gt;:drop(10)&gt;:take_while&gt;</span>
+</pre>
+
+<p>The real enumeration is performed when any non-redefined <a href="../Enumerable.html"><code>Enumerable</code></a> method is called, like <a href="../Enumerable.html#method-i-first"><code>Enumerable#first</code></a> or <a href="../Enumerable.html#method-i-to_a"><code>Enumerable#to_a</code></a> (the latter is aliased as <a href="Lazy.html#method-i-force"><code>force</code></a> for more semantic code):</p>
+
+<pre class="ruby"><span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">first</span>(<span class="ruby-value">2</span>)
+<span class="ruby-comment">#=&gt; [21, 23]</span>
+
+<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">force</span>
+<span class="ruby-comment">#=&gt; [21, 23, 25, 27, 29]</span>
+</pre>
+
+<p>Note that most <a href="../Enumerable.html"><code>Enumerable</code></a> methods that could be called with or without a block, on <a href="Lazy.html"><code>Enumerator::Lazy</code></a> will always require a block:</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">map</span>       <span class="ruby-comment">#=&gt; #&lt;Enumerator: [1, 2, 3]:map&gt;</span>
+[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">map</span>  <span class="ruby-comment"># ArgumentError: tried to call lazy map without a block</span>
+</pre>
+
+<p>This class allows idiomatic calculations on long or infinite sequences, as well as chaining of calculations without constructing intermediate arrays.</p>
+
+<p>Example for working with a slowly calculated sequence:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;open-uri&#39;</span>
+
+<span class="ruby-comment"># This will fetch all URLs before selecting</span>
+<span class="ruby-comment"># necessary data</span>
+<span class="ruby-constant">URLS</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span> <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">open</span>(<span class="ruby-identifier">u</span>).<span class="ruby-identifier">read</span>) }
+  .<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">&#39;stats&#39;</span>) }
+  .<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>)
+
+<span class="ruby-comment"># This will fetch URLs one-by-one, only till</span>
+<span class="ruby-comment"># there is enough data to satisfy the condition</span>
+<span class="ruby-constant">URLS</span>.<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span> <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">open</span>(<span class="ruby-identifier">u</span>).<span class="ruby-identifier">read</span>) }
+  .<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">&#39;stats&#39;</span>) }
+  .<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>)
+</pre>
+
+<p>Ending a chain with “.eager” generates a non-lazy enumerator, which is suitable for returning or passing to another method that expects a normal enumerator.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">active_items</span>
+  <span class="ruby-identifier">groups</span>
+    .<span class="ruby-identifier">lazy</span>
+    .<span class="ruby-identifier">flat_map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:items</span>)
+    .<span class="ruby-identifier">reject</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:disabled</span>)
+    .<span class="ruby-identifier">eager</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># This works lazily; if a checked item is found, it stops</span>
+<span class="ruby-comment"># iteration and does not look into remaining groups.</span>
+<span class="ruby-identifier">first_checked</span> = <span class="ruby-identifier">active_items</span>.<span class="ruby-identifier">find</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:checked</span>)
+
+<span class="ruby-comment"># This returns an array of items like a normal enumerator does.</span>
+<span class="ruby-identifier">all_checked</span> = <span class="ruby-identifier">active_items</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:checked</span>)
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(obj, size=nil) { |yielder, *values| block }
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Lazy.html"><code>Lazy</code></a> enumerator. When the enumerator is actually enumerated (e.g. by calling <a href="Lazy.html#method-i-force"><code>force</code></a>), <code>obj</code> will be enumerated and each value passed to the given block. The block can yield values back using <code>yielder</code>. For example, to create a “filter+map” enumerator:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">filter_map</span>(<span class="ruby-identifier">sequence</span>)
+  <span class="ruby-constant">Lazy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sequence</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">yielder</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">values</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-keyword">yield</span> <span class="ruby-operator">*</span><span class="ruby-identifier">values</span>
+    <span class="ruby-identifier">yielder</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">result</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">filter_map</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span><span class="ruby-operator">*</span><span class="ruby-identifier">i</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">even?</span>}.<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>)
+<span class="ruby-comment">#=&gt; [4, 16, 36, 64, 100]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+lazy_initialize(int argc, VALUE *argv, VALUE self)
+{
+    VALUE obj, size = Qnil;
+    VALUE generator;
+
+    rb_check_arity(argc, 1, 2);
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy new without a block&quot;);
+    }
+    obj = argv[0];
+    if (argc &gt; 1) {
+        size = argv[1];
+    }
+    generator = generator_allocate(rb_cGenerator);
+    rb_block_call(generator, id_initialize, 0, 0, lazy_init_block_i, obj);
+    enumerator_init(self, generator, sym_each, 0, 0, 0, size, 0);
+    rb_ivar_set(self, id_receiver, obj);
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-_enumerable_collect" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_collect</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-collect">collect</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_collect_concat" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_collect_concat</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-collect_concat">collect_concat</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_drop" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_drop</span><span
+            class="method-args">(p1)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-drop">drop</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_drop_while" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_drop_while</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-drop_while">drop_while</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_filter" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_filter</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-filter">filter</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_filter_map" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_filter_map</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-filter_map">filter_map</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_find_all" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_find_all</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-find_all">find_all</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_flat_map" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_flat_map</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-flat_map">flat_map</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_grep" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_grep</span><span
+            class="method-args">(p1)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-grep">grep</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_grep_v" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_grep_v</span><span
+            class="method-args">(p1)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-grep_v">grep_v</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_map" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_map</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-map">map</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_reject" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_reject</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-reject">reject</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_select" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_select</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-select">select</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_take" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_take</span><span
+            class="method-args">(p1)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-take">take</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_take_while" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_take_while</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-take_while">take_while</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_uniq" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_uniq</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-uniq">uniq</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_enumerable_zip" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_enumerable_zip</span><span
+            class="method-args">(*args)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-zip">zip</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-chunk" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">chunk</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-chunk"><code>Enumerable#chunk</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="chunk-source">
+            <pre>static VALUE
+lazy_super(int argc, VALUE *argv, VALUE lazy)
+{
+    return enumerable_lazy(rb_call_super(argc, argv));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-chunk_while" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">chunk_while</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-chunk_while"><code>Enumerable#chunk_while</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="chunk_while-source">
+            <pre>static VALUE
+lazy_super(int argc, VALUE *argv, VALUE lazy)
+{
+    return enumerable_lazy(rb_call_super(argc, argv));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-collect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            collect { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-map"><code>Enumerable#map</code></a>, but chains operation to be lazy-evaluated.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>).<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+<span class="ruby-comment">#=&gt; #&lt;Enumerator::Lazy: #&lt;Enumerator::Lazy: 1..Infinity&gt;:map&gt;</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>).<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }.<span class="ruby-identifier">first</span>(<span class="ruby-value">3</span>)
+<span class="ruby-comment">#=&gt; [1, 4, 9]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="collect-source">
+            <pre>static VALUE
+lazy_map(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy map without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_map_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_collect">_enumerable_collect</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-collect_concat" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            collect_concat { |obj| block } &rarr; a_lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new lazy enumerator with the concatenated results of running <code>block</code> once for every element in the lazy enumerator.</p>
+
+<pre class="ruby">[<span class="ruby-string">&quot;foo&quot;</span>, <span class="ruby-string">&quot;bar&quot;</span>].<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">flat_map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">each_char</span>.<span class="ruby-identifier">lazy</span>}.<span class="ruby-identifier">force</span>
+<span class="ruby-comment">#=&gt; [&quot;f&quot;, &quot;o&quot;, &quot;o&quot;, &quot;b&quot;, &quot;a&quot;, &quot;r&quot;]</span>
+</pre>
+
+<p>A value <code>x</code> returned by <code>block</code> is decomposed if either of the following conditions is true:</p>
+<ul><li>
+<p><code>x</code> responds to both each and force, which means that <code>x</code> is a lazy enumerator.</p>
+</li><li>
+<p><code>x</code> is an array or responds to to_ary.</p>
+</li></ul>
+
+<p>Otherwise, <code>x</code> is contained as-is in the return value.</p>
+
+<pre class="ruby">[{<span class="ruby-value">a:</span><span class="ruby-value">1</span>}, {<span class="ruby-value">b:</span><span class="ruby-value">2</span>}].<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">flat_map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>}.<span class="ruby-identifier">force</span>
+<span class="ruby-comment">#=&gt; [{:a=&gt;1}, {:b=&gt;2}]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="collect_concat-source">
+            <pre>static VALUE
+lazy_flat_map(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy flat_map without a block&quot;);
+    }
+
+    return lazy_set_method(rb_block_call(rb_cLazy, id_new, 1, &amp;obj,
+                                         lazy_flat_map_proc, 0),
+                           Qnil, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_collect_concat">_enumerable_collect_concat</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-drop" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            drop(n)               &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-drop"><code>Enumerable#drop</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="drop-source">
+            <pre>static VALUE
+lazy_drop(VALUE obj, VALUE n)
+{
+    long len = NUM2LONG(n);
+    VALUE argv[2];
+    argv[0] = sym_each;
+    argv[1] = n;
+
+    if (len &lt; 0) {
+        rb_raise(rb_eArgError, &quot;attempt to drop negative size&quot;);
+    }
+
+    return lazy_add_method(obj, 2, argv, n, rb_ary_new3(1, n), &amp;lazy_drop_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_drop">_enumerable_drop</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-drop_while" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            drop_while { |obj| block }  &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-drop_while"><code>Enumerable#drop_while</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="drop_while-source">
+            <pre>static VALUE
+lazy_drop_while(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy drop_while without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qfalse, Qnil, &amp;lazy_drop_while_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_drop_while">_enumerable_drop_while</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eager" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            eager &rarr; enum
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a non-lazy <a href="../Enumerator.html"><code>Enumerator</code></a> converted from the lazy enumerator.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eager-source">
+            <pre>static VALUE
+lazy_eager(VALUE self)
+{
+    return enumerator_init(enumerator_allocate(rb_cEnumerator),
+                           self, sym_each, 0, 0, lazy_eager_size, Qnil, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enum_for" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enum_for(method = :each, *args)                  &rarr; lazy_enum
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enum_for(method = :each, *args) {|*args| block } &rarr; lazy_enum
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Similar to <a href="../Object.html#method-i-to_enum"><code>Object#to_enum</code></a>, except it returns a lazy enumerator. This makes it easy to define <a href="../Enumerable.html"><code>Enumerable</code></a> methods that will naturally remain lazy if called from a lazy enumerator.</p>
+
+<p>For example, continuing from the example in <a href="../Object.html#method-i-to_enum"><code>Object#to_enum</code></a>:</p>
+
+<pre class="ruby"><span class="ruby-comment"># See Object#to_enum for the definition of repeat</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>) <span class="ruby-comment"># =&gt; [1, 1, 2, 2, 3]</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">class</span> <span class="ruby-comment"># =&gt; Enumerator</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">**</span> <span class="ruby-value">2</span>}.<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>) <span class="ruby-comment"># =&gt; endless loop!</span>
+<span class="ruby-comment"># works naturally on lazy enumerator:</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">class</span> <span class="ruby-comment"># =&gt; Enumerator::Lazy</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">**</span> <span class="ruby-value">2</span>}.<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>) <span class="ruby-comment"># =&gt; [1, 1, 4, 4, 9]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="enum_for-source">
+            <pre>static VALUE
+lazy_to_enum(int argc, VALUE *argv, VALUE self)
+{
+    VALUE lazy, meth = sym_each, super_meth;
+
+    if (argc &gt; 0) {
+        --argc;
+        meth = *argv++;
+    }
+    if (RTEST((super_meth = rb_hash_aref(lazy_use_super_method, meth)))) {
+        meth = super_meth;
+    }
+    lazy = lazy_to_enum_i(self, meth, argc, argv, 0, PASS_KW_SPLAT);
+    if (rb_block_given_p()) {
+        enumerator_ptr(lazy)-&gt;size = rb_block_proc();
+    }
+    return lazy;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-filter" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            filter   { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-select"><code>Enumerable#select</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="filter-source">
+            <pre>static VALUE
+lazy_select(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy select without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_select_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_filter">_enumerable_filter</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-filter_map" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            filter_map { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-filter_map"><code>Enumerable#filter_map</code></a>, but chains operation to be lazy-evaluated.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span>).<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">filter_map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">even?</span> }.<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>)
+<span class="ruby-comment">#=&gt; [4, 8, 12, 16, 20]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="filter_map-source">
+            <pre>static VALUE
+lazy_filter_map(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy filter_map without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_filter_map_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_filter_map">_enumerable_filter_map</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_all" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            find_all { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-select"><code>Enumerable#select</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_all-source">
+            <pre>static VALUE
+lazy_select(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy select without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_select_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_find_all">_enumerable_find_all</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flat_map" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flat_map       { |obj| block } &rarr; a_lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new lazy enumerator with the concatenated results of running <code>block</code> once for every element in the lazy enumerator.</p>
+
+<pre class="ruby">[<span class="ruby-string">&quot;foo&quot;</span>, <span class="ruby-string">&quot;bar&quot;</span>].<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">flat_map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">each_char</span>.<span class="ruby-identifier">lazy</span>}.<span class="ruby-identifier">force</span>
+<span class="ruby-comment">#=&gt; [&quot;f&quot;, &quot;o&quot;, &quot;o&quot;, &quot;b&quot;, &quot;a&quot;, &quot;r&quot;]</span>
+</pre>
+
+<p>A value <code>x</code> returned by <code>block</code> is decomposed if either of the following conditions is true:</p>
+<ul><li>
+<p><code>x</code> responds to both each and force, which means that <code>x</code> is a lazy enumerator.</p>
+</li><li>
+<p><code>x</code> is an array or responds to to_ary.</p>
+</li></ul>
+
+<p>Otherwise, <code>x</code> is contained as-is in the return value.</p>
+
+<pre class="ruby">[{<span class="ruby-value">a:</span><span class="ruby-value">1</span>}, {<span class="ruby-value">b:</span><span class="ruby-value">2</span>}].<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">flat_map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>}.<span class="ruby-identifier">force</span>
+<span class="ruby-comment">#=&gt; [{:a=&gt;1}, {:b=&gt;2}]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="flat_map-source">
+            <pre>static VALUE
+lazy_flat_map(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy flat_map without a block&quot;);
+    }
+
+    return lazy_set_method(rb_block_call(rb_cLazy, id_new, 1, &amp;obj,
+                                         lazy_flat_map_proc, 0),
+                           Qnil, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_flat_map">_enumerable_flat_map</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-force" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">force</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Lazy.html#method-i-to_a">to_a</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-grep" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            grep(pattern)                  &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            grep(pattern) { |obj| block }  &rarr; lazy_enumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-grep"><code>Enumerable#grep</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="grep-source">
+            <pre>static VALUE
+lazy_grep(VALUE obj, VALUE pattern)
+{
+    const lazyenum_funcs *const funcs = rb_block_given_p() ?
+        &amp;lazy_grep_iter_funcs : &amp;lazy_grep_funcs;
+    return lazy_add_method(obj, 0, 0, pattern, rb_ary_new3(1, pattern), funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_grep">_enumerable_grep</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-grep_v" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            grep_v(pattern)                  &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            grep_v(pattern) { |obj| block }  &rarr; lazy_enumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-grep_v"><code>Enumerable#grep_v</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="grep_v-source">
+            <pre>static VALUE
+lazy_grep_v(VALUE obj, VALUE pattern)
+{
+    const lazyenum_funcs *const funcs = rb_block_given_p() ?
+        &amp;lazy_grep_v_iter_funcs : &amp;lazy_grep_v_funcs;
+    return lazy_add_method(obj, 0, 0, pattern, rb_ary_new3(1, pattern), funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_grep_v">_enumerable_grep_v</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lazy" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            lazy &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns self.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lazy-source">
+            <pre>static VALUE
+lazy_lazy(VALUE obj)
+{
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-map" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            map     { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-map"><code>Enumerable#map</code></a>, but chains operation to be lazy-evaluated.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>).<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+<span class="ruby-comment">#=&gt; #&lt;Enumerator::Lazy: #&lt;Enumerator::Lazy: 1..Infinity&gt;:map&gt;</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>).<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span><span class="ruby-operator">**</span><span class="ruby-value">2</span> }.<span class="ruby-identifier">first</span>(<span class="ruby-value">3</span>)
+<span class="ruby-comment">#=&gt; [1, 4, 9]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="map-source">
+            <pre>static VALUE
+lazy_map(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy map without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_map_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_map">_enumerable_map</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reject" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            reject { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-reject"><code>Enumerable#reject</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reject-source">
+            <pre>static VALUE
+lazy_reject(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy reject without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_reject_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_reject">_enumerable_reject</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-select" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            select   { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-select"><code>Enumerable#select</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="select-source">
+            <pre>static VALUE
+lazy_select(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy select without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_select_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_select">_enumerable_select</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-slice_after" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">slice_after</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-slice_after"><code>Enumerable#slice_after</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="slice_after-source">
+            <pre>static VALUE
+lazy_super(int argc, VALUE *argv, VALUE lazy)
+{
+    return enumerable_lazy(rb_call_super(argc, argv));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-slice_before" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">slice_before</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-slice_before"><code>Enumerable#slice_before</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="slice_before-source">
+            <pre>static VALUE
+lazy_super(int argc, VALUE *argv, VALUE lazy)
+{
+    return enumerable_lazy(rb_call_super(argc, argv));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-slice_when" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">slice_when</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-slice_when"><code>Enumerable#slice_when</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="slice_when-source">
+            <pre>static VALUE
+lazy_super(int argc, VALUE *argv, VALUE lazy)
+{
+    return enumerable_lazy(rb_call_super(argc, argv));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-take" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            take(n)               &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-take"><code>Enumerable#take</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="take-source">
+            <pre>static VALUE
+lazy_take(VALUE obj, VALUE n)
+{
+    long len = NUM2LONG(n);
+    int argc = 0;
+    VALUE argv[2];
+
+    if (len &lt; 0) {
+        rb_raise(rb_eArgError, &quot;attempt to take negative size&quot;);
+    }
+
+    if (len == 0) {
+       argv[0] = sym_cycle;
+       argv[1] = INT2NUM(0);
+       argc = 2;
+    }
+
+    return lazy_add_method(obj, argc, argv, n, rb_ary_new3(1, n), &amp;lazy_take_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_take">_enumerable_take</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-take_while" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            take_while { |obj| block } &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-take_while"><code>Enumerable#take_while</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="take_while-source">
+            <pre>static VALUE
+lazy_take_while(VALUE obj)
+{
+    if (!rb_block_given_p()) {
+        rb_raise(rb_eArgError, &quot;tried to call lazy take_while without a block&quot;);
+    }
+
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, &amp;lazy_take_while_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_take_while">_enumerable_take_while</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_a" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_a  &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            force &rarr; array
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Expands <code>lazy</code> enumerator to an array. See <a href="../Enumerable.html#method-i-to_a"><code>Enumerable#to_a</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_a-source">
+            <pre>static VALUE lazy_to_a(VALUE self)
+{
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-force">force</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_enum" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_enum(method = :each, *args)                   &rarr; lazy_enum
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_enum(method = :each, *args) {|*args| block }  &rarr; lazy_enum
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Similar to <a href="../Object.html#method-i-to_enum"><code>Object#to_enum</code></a>, except it returns a lazy enumerator. This makes it easy to define <a href="../Enumerable.html"><code>Enumerable</code></a> methods that will naturally remain lazy if called from a lazy enumerator.</p>
+
+<p>For example, continuing from the example in <a href="../Object.html#method-i-to_enum"><code>Object#to_enum</code></a>:</p>
+
+<pre class="ruby"><span class="ruby-comment"># See Object#to_enum for the definition of repeat</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>) <span class="ruby-comment"># =&gt; [1, 1, 2, 2, 3]</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">class</span> <span class="ruby-comment"># =&gt; Enumerator</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">**</span> <span class="ruby-value">2</span>}.<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>) <span class="ruby-comment"># =&gt; endless loop!</span>
+<span class="ruby-comment"># works naturally on lazy enumerator:</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">class</span> <span class="ruby-comment"># =&gt; Enumerator::Lazy</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">repeat</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">**</span> <span class="ruby-value">2</span>}.<span class="ruby-identifier">first</span>(<span class="ruby-value">5</span>) <span class="ruby-comment"># =&gt; [1, 1, 4, 4, 9]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_enum-source">
+            <pre>static VALUE
+lazy_to_enum(int argc, VALUE *argv, VALUE self)
+{
+    VALUE lazy, meth = sym_each, super_meth;
+
+    if (argc &gt; 0) {
+        --argc;
+        meth = *argv++;
+    }
+    if (RTEST((super_meth = rb_hash_aref(lazy_use_super_method, meth)))) {
+        meth = super_meth;
+    }
+    lazy = lazy_to_enum_i(self, meth, argc, argv, 0, PASS_KW_SPLAT);
+    if (rb_block_given_p()) {
+        enumerator_ptr(lazy)-&gt;size = rb_block_proc();
+    }
+    return lazy;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-uniq" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            uniq                  &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            uniq { |item| block } &rarr; lazy_enumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-uniq"><code>Enumerable#uniq</code></a>, but chains operation to be lazy-evaluated.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="uniq-source">
+            <pre>static VALUE
+lazy_uniq(VALUE obj)
+{
+    const lazyenum_funcs *const funcs =
+        rb_block_given_p() ? &amp;lazy_uniq_iter_funcs : &amp;lazy_uniq_funcs;
+    return lazy_add_method(obj, 0, 0, Qnil, Qnil, funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_uniq">_enumerable_uniq</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-with_index" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            with_index(offset = 0) {|(*args), idx| block }
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            with_index(offset = 0)
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>If a block is given, iterates the given block for each element with an index, which starts from <code>offset</code>, and returns a lazy enumerator that yields the same values (without the index).</p>
+
+<p>If a block is not given, returns a new lazy enumerator that includes the index, starting from <code>offset</code>.</p>
+<dl class="rdoc-list note-list"><dt><code>offset</code>
+<dd>
+<p>the starting index to use</p>
+</dd></dl>
+
+<p>See <a href="../Enumerator.html#method-i-with_index"><code>Enumerator#with_index</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="with_index-source">
+            <pre>static VALUE
+lazy_with_index(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE memo;
+
+    rb_scan_args(argc, argv, &quot;01&quot;, &amp;memo);
+    if (NIL_P(memo))
+        memo = LONG2NUM(0);
+
+    return lazy_add_method(obj, 0, 0, memo, rb_ary_new_from_values(1, &amp;memo), &amp;lazy_with_index_funcs);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-zip" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            zip(arg, ...)                  &rarr; lazy_enumerator
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            zip(arg, ...) { |arr| block }  &rarr; nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Like <a href="../Enumerable.html#method-i-zip"><code>Enumerable#zip</code></a>, but chains operation to be lazy-evaluated. However, if a block is given to zip, values are enumerated immediately.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="zip-source">
+            <pre>static VALUE
+lazy_zip(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE ary, v;
+    long i;
+    rb_block_call_func *func = lazy_zip_arrays_func;
+
+    if (rb_block_given_p()) {
+        return rb_call_super(argc, argv);
+    }
+
+    ary = rb_ary_new2(argc);
+    for (i = 0; i &lt; argc; i++) {
+        v = rb_check_array_type(argv[i]);
+        if (NIL_P(v)) {
+            for (; i &lt; argc; i++) {
+                if (!rb_respond_to(argv[i], id_each)) {
+                    rb_raise(rb_eTypeError, &quot;wrong argument type %&quot;PRIsVALUE&quot; (must respond to :each)&quot;,
+                             rb_obj_class(argv[i]));
+                }
+            }
+            ary = rb_ary_new4(argc, argv);
+            func = lazy_zip_func;
+            break;
+        }
+        rb_ary_push(ary, v);
+    }
+
+    return lazy_set_method(rb_block_call(rb_cLazy, id_new, 1, &amp;obj,
+                                         func, ary),
+                           ary, lazy_receiver_size);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Lazy.html#method-i-_enumerable_zip">_enumerable_zip</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-_enumerable_with_index" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            with_index(offset = 0) {|(*args), idx| ... }
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            with_index(offset = 0)
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates the given block for each element with an index, which starts from <code>offset</code>.  If no block is given, returns a new <a href="../Enumerator.html"><code>Enumerator</code></a> that includes the index, starting from <code>offset</code></p>
+<dl class="rdoc-list note-list"><dt><code>offset</code>
+<dd>
+<p>the starting index to use</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="_enumerable_with_index-source">
+            <pre>static VALUE
+enumerator_with_index(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE memo;
+
+    rb_check_arity(argc, 0, 1);
+    RETURN_SIZED_ENUMERATOR(obj, argc, argv, enumerator_enum_size);
+    memo = (!argc || NIL_P(memo = argv[0])) ? INT2FIX(0) : rb_to_int(memo);
+    return enumerator_block_call(obj, enumerator_with_index_i, (VALUE)MEMO_NEW(memo, 0, 0));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

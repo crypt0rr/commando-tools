@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module PP::PPMethods - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-check_inspect_key">#check_inspect_key</a>
+    
+    <li ><a href="#method-i-comma_breakable">#comma_breakable</a>
+    
+    <li ><a href="#method-i-guard_inspect_key">#guard_inspect_key</a>
+    
+    <li ><a href="#method-i-object_address_group">#object_address_group</a>
+    
+    <li ><a href="#method-i-object_group">#object_group</a>
+    
+    <li ><a href="#method-i-pop_inspect_key">#pop_inspect_key</a>
+    
+    <li ><a href="#method-i-pp">#pp</a>
+    
+    <li ><a href="#method-i-pp_hash">#pp_hash</a>
+    
+    <li ><a href="#method-i-pp_object">#pp_object</a>
+    
+    <li ><a href="#method-i-push_inspect_key">#push_inspect_key</a>
+    
+    <li ><a href="#method-i-seplist">#seplist</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-PP::PPMethods">
+  <h1 id="module-PP::PPMethods" class="module">
+    module PP::PPMethods
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-check_inspect_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_inspect_key</span><span
+            class="method-args">(id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Check whether the object_id <code>id</code> is in the current buffer of objects to be pretty printed. Used to break cycles in chains of objects to be pretty printed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="check_inspect_key-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check_inspect_key</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>] <span class="ruby-operator">&amp;&amp;</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>] <span class="ruby-operator">&amp;&amp;</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-comma_breakable" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">comma_breakable</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A convenience method which is same as follows:</p>
+
+<pre class="ruby"><span class="ruby-identifier">text</span> <span class="ruby-string">&#39;,&#39;</span>
+<span class="ruby-identifier">breakable</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="comma_breakable-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 188</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">comma_breakable</span>
+  <span class="ruby-identifier">text</span> <span class="ruby-string">&#39;,&#39;</span>
+  <span class="ruby-identifier">breakable</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-guard_inspect_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">guard_inspect_key</span><span
+            class="method-args">() { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Yields to a block and preserves the previous set of objects being printed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="guard_inspect_key-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">guard_inspect_key</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>] = {}.<span class="ruby-identifier">compare_by_identity</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>] = {}.<span class="ruby-identifier">compare_by_identity</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">save</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>]
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>] = {}.<span class="ruby-identifier">compare_by_identity</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>] = <span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-object_address_group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">object_address_group</span><span
+            class="method-args">(obj, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A convenience method, like <a href="PPMethods.html#method-i-object_group"><code>object_group</code></a>, but also reformats the Object&#39;s object_id.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="object_address_group-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">object_address_group</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">str</span> = <span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">instance_method</span>(<span class="ruby-value">:to_s</span>).<span class="ruby-identifier">bind_call</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">chomp!</span>(<span class="ruby-string">&#39;&gt;&#39;</span>)
+  <span class="ruby-identifier">group</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">str</span>, <span class="ruby-string">&#39;&gt;&#39;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-object_group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">object_group</span><span
+            class="method-args">(obj) { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A convenience method which is same as follows:</p>
+
+<pre>group(1, &#39;#&lt;&#39; + obj.class.name, &#39;&gt;&#39;) { ... }</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="object_group-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">object_group</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yield:</span>
+  <span class="ruby-identifier">group</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&#39;#&lt;&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>, <span class="ruby-string">&#39;&gt;&#39;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pop_inspect_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pop_inspect_key</span><span
+            class="method-args">(id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Removes an object from the set of objects being pretty printed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pop_inspect_key-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pop_inspect_key</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>].<span class="ruby-identifier">delete</span> <span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pp</span><span
+            class="method-args">(obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds <code>obj</code> to the pretty printing buffer using Object#pretty_print or Object#pretty_print_cycle.</p>
+
+<p>Object#pretty_print_cycle is used when <code>obj</code> is already printed, a.k.a the object reference chain has a cycle.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pp-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pp</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-comment"># If obj is a Delegator then use the object being delegated to for cycle</span>
+  <span class="ruby-comment"># detection</span>
+  <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">__getobj__</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Delegator</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Delegator</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">check_inspect_key</span>(<span class="ruby-identifier">obj</span>)
+    <span class="ruby-identifier">group</span> {<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">pretty_print_cycle</span> <span class="ruby-keyword">self</span>}
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">push_inspect_key</span>(<span class="ruby-identifier">obj</span>)
+    <span class="ruby-identifier">group</span> {<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">pretty_print</span> <span class="ruby-keyword">self</span>}
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">pop_inspect_key</span>(<span class="ruby-identifier">obj</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">PP</span>.<span class="ruby-identifier">sharing_detection</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pp_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pp_hash</span><span
+            class="method-args">(obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A pretty print for a <a href="../Hash.html"><code>Hash</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="pp_hash-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 256</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pp_hash</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">group</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&#39;{&#39;</span>, <span class="ruby-string">&#39;}&#39;</span>) {
+    <span class="ruby-identifier">seplist</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">:each_pair</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">group</span> {
+        <span class="ruby-identifier">pp</span> <span class="ruby-identifier">k</span>
+        <span class="ruby-identifier">text</span> <span class="ruby-string">&#39;=&gt;&#39;</span>
+        <span class="ruby-identifier">group</span>(<span class="ruby-value">1</span>) {
+          <span class="ruby-identifier">breakable</span> <span class="ruby-string">&#39;&#39;</span>
+          <span class="ruby-identifier">pp</span> <span class="ruby-identifier">v</span>
+        }
+      }
+    }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pp_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pp_object</span><span
+            class="method-args">(obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A present standard failsafe for pretty printing any given <a href="../Object.html"><code>Object</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="pp_object-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 240</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pp_object</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">object_address_group</span>(<span class="ruby-identifier">obj</span>) {
+    <span class="ruby-identifier">seplist</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">pretty_print_instance_variables</span>, <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">text</span> <span class="ruby-string">&#39;,&#39;</span> }) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">breakable</span>
+      <span class="ruby-identifier">v</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Symbol</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">v</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-identifier">v</span>
+      <span class="ruby-identifier">text</span> <span class="ruby-string">&#39;=&#39;</span>
+      <span class="ruby-identifier">group</span>(<span class="ruby-value">1</span>) {
+        <span class="ruby-identifier">breakable</span> <span class="ruby-string">&#39;&#39;</span>
+        <span class="ruby-identifier">pp</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">v</span>))
+      }
+    }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-push_inspect_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">push_inspect_key</span><span
+            class="method-args">(id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the object_id <code>id</code> to the set of objects being pretty printed, so as to not repeat objects.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="push_inspect_key-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">push_inspect_key</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__recursive_key__</span>][<span class="ruby-value">:inspect</span>][<span class="ruby-identifier">id</span>] = <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-seplist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">seplist</span><span
+            class="method-args">(list, sep=nil, iter_method=:each) { |element| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds a separated list. The list is separated by comma with breakable space, by default.</p>
+
+<p><a href="PPMethods.html#method-i-seplist"><code>seplist</code></a> iterates the <code>list</code> using <code>iter_method</code>. It yields each object to the block given for <a href="PPMethods.html#method-i-seplist"><code>seplist</code></a>. The procedure <code>separator_proc</code> is called between each yields.</p>
+
+<p>If the iteration is zero times, <code>separator_proc</code> is not called at all.</p>
+
+<p>If <code>separator_proc</code> is nil or not given, +lambda { <a href="PPMethods.html#method-i-comma_breakable"><code>comma_breakable</code></a> }+ is used. If <code>iter_method</code> is not given, :each is used.</p>
+
+<p>For example, following 3 code fragments has similar effect.</p>
+
+<pre class="ruby"><span class="ruby-identifier">q</span>.<span class="ruby-identifier">seplist</span>([<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>]) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">xxx</span> <span class="ruby-identifier">v</span> }
+
+<span class="ruby-identifier">q</span>.<span class="ruby-identifier">seplist</span>([<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>], <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">q</span>.<span class="ruby-identifier">comma_breakable</span> }, <span class="ruby-value">:each</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">xxx</span> <span class="ruby-identifier">v</span> }
+
+<span class="ruby-identifier">xxx</span> <span class="ruby-value">1</span>
+<span class="ruby-identifier">q</span>.<span class="ruby-identifier">comma_breakable</span>
+<span class="ruby-identifier">xxx</span> <span class="ruby-value">2</span>
+<span class="ruby-identifier">q</span>.<span class="ruby-identifier">comma_breakable</span>
+<span class="ruby-identifier">xxx</span> <span class="ruby-value">3</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="seplist-source">
+            <pre><span class="ruby-comment"># File lib/pp.rb, line 217</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">seplist</span>(<span class="ruby-identifier">list</span>, <span class="ruby-identifier">sep</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">iter_method</span>=<span class="ruby-value">:each</span>) <span class="ruby-comment"># :yield: element</span>
+  <span class="ruby-identifier">sep</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">comma_breakable</span> }
+  <span class="ruby-identifier">first</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">list</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">iter_method</span>) {<span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">first</span>
+      <span class="ruby-identifier">first</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">sep</span>.<span class="ruby-identifier">call</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">last</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Hash</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">ruby2_keywords_hash?</span>(<span class="ruby-identifier">v</span>.<span class="ruby-identifier">last</span>)
+        <span class="ruby-keyword">yield</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">v</span>, <span class="ruby-operator">**</span>{})
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">yield</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">v</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">yield</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">v</span>)
+    <span class="ruby-keyword">end</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

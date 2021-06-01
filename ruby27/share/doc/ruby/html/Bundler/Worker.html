@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Worker - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-abort_threads">#abort_threads</a>
+    
+    <li ><a href="#method-i-apply_func">#apply_func</a>
+    
+    <li ><a href="#method-i-create_threads">#create_threads</a>
+    
+    <li ><a href="#method-i-deq">#deq</a>
+    
+    <li ><a href="#method-i-enq">#enq</a>
+    
+    <li ><a href="#method-i-process_queue">#process_queue</a>
+    
+    <li ><a href="#method-i-stop">#stop</a>
+    
+    <li ><a href="#method-i-stop_threads">#stop_threads</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Worker">
+  <h1 id="class-Bundler::Worker" class="class">
+    class Bundler::Worker
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="POISON">POISON
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">name</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>@return [String] the name of the worker</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(size, name, func)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a worker pool of specified size</p>
+
+<p>@param size [Integer] Size of pool @param name [String] name the name of the worker @param func [Proc] job to run in inside the worker pool</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">size</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">func</span>)
+  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@request_queue</span> = <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@response_queue</span> = <span class="ruby-constant">Queue</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@func</span> = <span class="ruby-identifier">func</span>
+  <span class="ruby-ivar">@size</span> = <span class="ruby-identifier">size</span>
+  <span class="ruby-ivar">@threads</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-constant">SharedHelpers</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;INT&quot;</span>) { <span class="ruby-identifier">abort_threads</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-deq" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deq</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves results of job function being executed in worker pool</p>
+          
+          
+
+          
+          <div class="method-source-code" id="deq-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deq</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-ivar">@response_queue</span>.<span class="ruby-identifier">deq</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">exception</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">WrappedException</span>)
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enq" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enq</span><span
+            class="method-args">(obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Enqueue a request to be executed in the worker pool</p>
+
+<p>@param obj [String] mostly it is name of spec that should be downloaded</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enq-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">enq</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">create_threads</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@threads</span>
+  <span class="ruby-ivar">@request_queue</span>.<span class="ruby-identifier">enq</span> <span class="ruby-identifier">obj</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stop-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stop</span>
+  <span class="ruby-identifier">stop_threads</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-abort_threads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">abort_threads</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="abort_threads-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">abort_threads</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@threads</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;\n#{caller.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-ivar">@threads</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:exit</span>)
+  <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-apply_func" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">apply_func</span><span
+            class="method-args">(obj, i)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="apply_func-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">apply_func</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">i</span>)
+  <span class="ruby-ivar">@func</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">i</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span> <span class="ruby-comment"># rubocop:disable Lint/RescueException</span>
+  <span class="ruby-constant">WrappedException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_threads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_threads</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_threads-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_threads</span>
+  <span class="ruby-identifier">creation_errors</span> = []
+
+  <span class="ruby-ivar">@threads</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@size</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">start</span> { <span class="ruby-identifier">process_queue</span>(<span class="ruby-identifier">i</span>) }.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">thread</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">thread</span>.<span class="ruby-identifier">name</span> = <span class="ruby-node">&quot;#{name} Worker ##{i}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">thread</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:name=</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ThreadError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">creation_errors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">compact</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">creation_errors</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;Failed to create threads for the #{name} worker: #{creation_errors.map(&amp;:to_s).uniq.join(&quot;, &quot;)}&quot;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ThreadCreationError</span>, <span class="ruby-identifier">message</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@threads</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-process_queue" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_queue</span><span
+            class="method-args">(i)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="process_queue-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">process_queue</span>(<span class="ruby-identifier">i</span>)
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">obj</span> = <span class="ruby-ivar">@request_queue</span>.<span class="ruby-identifier">deq</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">equal?</span> <span class="ruby-constant">POISON</span>
+    <span class="ruby-ivar">@response_queue</span>.<span class="ruby-identifier">enq</span> <span class="ruby-identifier">apply_func</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">i</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stop_threads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_threads</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Stop the worker threads by sending a poison object down the request queue so as worker threads after retrieving it, shut themselves down</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stop_threads-source">
+            <pre><span class="ruby-comment"># File lib/bundler/worker.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stop_threads</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@threads</span>
+  <span class="ruby-ivar">@threads</span>.<span class="ruby-identifier">each</span> { <span class="ruby-ivar">@request_queue</span>.<span class="ruby-identifier">enq</span> <span class="ruby-constant">POISON</span> }
+  <span class="ruby-ivar">@threads</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:join</span>)
+  <span class="ruby-ivar">@threads</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

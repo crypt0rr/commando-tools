@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ThreadGroup - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-add">#add</a>
+    
+    <li ><a href="#method-i-enclose">#enclose</a>
+    
+    <li ><a href="#method-i-enclosed-3F">#enclosed?</a>
+    
+    <li ><a href="#method-i-list">#list</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ThreadGroup">
+  <h1 id="class-ThreadGroup" class="class">
+    class ThreadGroup
+  </h1>
+
+  <section class="description">
+    
+<p><a href="ThreadGroup.html"><code>ThreadGroup</code></a> provides a means of keeping track of a number of threads as a group.</p>
+
+<p>A given <a href="Thread.html"><code>Thread</code></a> object can only belong to one <a href="ThreadGroup.html"><code>ThreadGroup</code></a> at a time; adding a thread to a new group will remove it from any previous group.</p>
+
+<p>Newly created threads belong to the same group as the thread from which they were created.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Default">Default
+        
+        <dd><p>The default <a href="ThreadGroup.html"><code>ThreadGroup</code></a> created when Ruby starts; all Threads belong to it by default.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            add(thread)   &rarr; thgrp
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Adds the given <code>thread</code> to this group, removing it from any other group to which it may have previously been a member.</p>
+
+<pre class="ruby"><span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Initial group is #{ThreadGroup::Default.list}&quot;</span>
+<span class="ruby-identifier">tg</span> = <span class="ruby-constant">ThreadGroup</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">t1</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">sleep</span> }
+<span class="ruby-identifier">t2</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">sleep</span> }
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;t1 is #{t1}&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;t2 is #{t2}&quot;</span>
+<span class="ruby-identifier">tg</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">t1</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Initial group now #{ThreadGroup::Default.list}&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;tg group now #{tg.list}&quot;</span>
+</pre>
+
+<p>This will produce:</p>
+
+<pre class="ruby"><span class="ruby-constant">Initial</span> <span class="ruby-identifier">group</span> <span class="ruby-identifier">is</span> <span class="ruby-comment">#&lt;Thread:0x401bdf4c&gt;</span>
+<span class="ruby-identifier">t1</span> <span class="ruby-identifier">is</span> <span class="ruby-comment">#&lt;Thread:0x401b3c90&gt;</span>
+<span class="ruby-identifier">t2</span> <span class="ruby-identifier">is</span> <span class="ruby-comment">#&lt;Thread:0x401b3c18&gt;</span>
+<span class="ruby-constant">Initial</span> <span class="ruby-identifier">group</span> <span class="ruby-identifier">now</span> <span class="ruby-comment">#&lt;Thread:0x401b3c18&gt;#&lt;Thread:0x401bdf4c&gt;</span>
+<span class="ruby-identifier">tg</span> <span class="ruby-identifier">group</span> <span class="ruby-identifier">now</span> <span class="ruby-comment">#&lt;Thread:0x401b3c90&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="add-source">
+            <pre>static VALUE
+thgroup_add(VALUE group, VALUE thread)
+{
+    rb_thread_t *target_th = rb_thread_ptr(thread);
+    struct thgroup *data;
+
+    if (OBJ_FROZEN(group)) {
+        rb_raise(rb_eThreadError, &quot;can&#39;t move to the frozen thread group&quot;);
+    }
+    TypedData_Get_Struct(group, struct thgroup, &amp;thgroup_data_type, data);
+    if (data-&gt;enclosed) {
+        rb_raise(rb_eThreadError, &quot;can&#39;t move to the enclosed thread group&quot;);
+    }
+
+    if (!target_th-&gt;thgroup) {
+        return Qnil;
+    }
+
+    if (OBJ_FROZEN(target_th-&gt;thgroup)) {
+        rb_raise(rb_eThreadError, &quot;can&#39;t move from the frozen thread group&quot;);
+    }
+    TypedData_Get_Struct(target_th-&gt;thgroup, struct thgroup, &amp;thgroup_data_type, data);
+    if (data-&gt;enclosed) {
+        rb_raise(rb_eThreadError,
+                 &quot;can&#39;t move from the enclosed thread group&quot;);
+    }
+
+    target_th-&gt;thgroup = group;
+    return group;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enclose" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enclose   &rarr; thgrp
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Prevents threads from being added to or removed from the receiving <a href="ThreadGroup.html"><code>ThreadGroup</code></a>.</p>
+
+<p>New threads can still be started in an enclosed <a href="ThreadGroup.html"><code>ThreadGroup</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-constant">ThreadGroup</span><span class="ruby-operator">::</span><span class="ruby-constant">Default</span>.<span class="ruby-identifier">enclose</span>        <span class="ruby-comment">#=&gt; #&lt;ThreadGroup:0x4029d914&gt;</span>
+<span class="ruby-identifier">thr</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> { <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">stop</span> }    <span class="ruby-comment">#=&gt; #&lt;Thread:0x402a7210 sleep&gt;</span>
+<span class="ruby-identifier">tg</span> = <span class="ruby-constant">ThreadGroup</span>.<span class="ruby-identifier">new</span>                <span class="ruby-comment">#=&gt; #&lt;ThreadGroup:0x402752d4&gt;</span>
+<span class="ruby-identifier">tg</span>.<span class="ruby-identifier">add</span> <span class="ruby-identifier">thr</span>
+<span class="ruby-comment">#=&gt; ThreadError: can&#39;t move from the enclosed thread group</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="enclose-source">
+            <pre>static VALUE
+thgroup_enclose(VALUE group)
+{
+    struct thgroup *data;
+
+    TypedData_Get_Struct(group, struct thgroup, &amp;thgroup_data_type, data);
+    data-&gt;enclosed = 1;
+
+    return group;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-enclosed-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enclosed?   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the <code>thgrp</code> is enclosed. See also <a href="ThreadGroup.html#method-i-enclose"><code>ThreadGroup#enclose</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enclosed-3F-source">
+            <pre>static VALUE
+thgroup_enclosed_p(VALUE group)
+{
+    struct thgroup *data;
+
+    TypedData_Get_Struct(group, struct thgroup, &amp;thgroup_data_type, data);
+    if (data-&gt;enclosed)
+        return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-list" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            list   &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of all existing <a href="Thread.html"><code>Thread</code></a> objects that belong to this group.</p>
+
+<pre class="ruby"><span class="ruby-constant">ThreadGroup</span><span class="ruby-operator">::</span><span class="ruby-constant">Default</span>.<span class="ruby-identifier">list</span>   <span class="ruby-comment">#=&gt; [#&lt;Thread:0x401bdf4c run&gt;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre>static VALUE
+thgroup_list(VALUE group)
+{
+    VALUE ary = rb_ary_new();
+    rb_vm_t *vm = GET_THREAD()-&gt;vm;
+    rb_thread_t *th = 0;
+
+    list_for_each(&amp;vm-&gt;living_threads, th, vmlt_node) {
+        if (th-&gt;thgroup == group) {
+            rb_ary_push(ary, th-&gt;self);
+        }
+    }
+    return ary;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

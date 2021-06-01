@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Racc::Grammar::DefinitionEnv - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-_">#_</a>
+    
+    <li ><a href="#method-i-_add">#_add</a>
+    
+    <li ><a href="#method-i-_added-3F">#_added?</a>
+    
+    <li ><a href="#method-i-_defmetasyntax">#_defmetasyntax</a>
+    
+    <li ><a href="#method-i-_delayed_add">#_delayed_add</a>
+    
+    <li ><a href="#method-i-_intern">#_intern</a>
+    
+    <li ><a href="#method-i-_regist">#_regist</a>
+    
+    <li ><a href="#method-i-_wrap">#_wrap</a>
+    
+    <li ><a href="#method-i-action">#action</a>
+    
+    <li ><a href="#method-i-flush_delayed">#flush_delayed</a>
+    
+    <li ><a href="#method-i-grammar">#grammar</a>
+    
+    <li ><a href="#method-i-many">#many</a>
+    
+    <li ><a href="#method-i-many1">#many1</a>
+    
+    <li class="calls-super" ><a href="#method-i-method_missing">#method_missing</a>
+    
+    <li ><a href="#method-i-null">#null</a>
+    
+    <li ><a href="#method-i-option">#option</a>
+    
+    <li ><a href="#method-i-precedence_table">#precedence_table</a>
+    
+    <li ><a href="#method-i-separated_by">#separated_by</a>
+    
+    <li ><a href="#method-i-separated_by1">#separated_by1</a>
+    
+    <li ><a href="#method-i-seq">#seq</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Racc::Grammar::DefinitionEnv">
+  <h1 id="class-Racc::Grammar::DefinitionEnv" class="class">
+    class Racc::Grammar::DefinitionEnv
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 203</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@grammar</span> = <span class="ruby-constant">Grammar</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@seqs</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-ivar">@delayed</span> = []
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-_" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">_</span><span
+            class="method-args">(&amp;block)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="DefinitionEnv.html#method-i-action">action</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-_add" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_add</span><span
+            class="method-args">(target, x)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_add-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 237</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_add</span>(<span class="ruby-identifier">target</span>, <span class="ruby-identifier">x</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">x</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Sym</span>
+    <span class="ruby-ivar">@delayed</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">rule</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">x</span>, <span class="ruby-identifier">target</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">rule</span>.<span class="ruby-identifier">target</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">x</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">symboltable</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">x</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">x</span>.<span class="ruby-identifier">each_rule</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">r</span>.<span class="ruby-identifier">target</span> = <span class="ruby-identifier">target</span>
+      <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">add</span> <span class="ruby-identifier">r</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">flush_delayed</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_added-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_added?</span><span
+            class="method-args">(sym)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_added-3F-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_added?</span>(<span class="ruby-identifier">sym</span>)
+  <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">added?</span>(<span class="ruby-identifier">sym</span>) <span class="ruby-keyword">or</span> <span class="ruby-ivar">@delayed</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">target</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sym</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_delayed_add" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_delayed_add</span><span
+            class="method-args">(rule)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_delayed_add-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 253</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_delayed_add</span>(<span class="ruby-identifier">rule</span>)
+  <span class="ruby-ivar">@delayed</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">rule</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_intern" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_intern</span><span
+            class="method-args">(x)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_intern-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 316</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_intern</span>(<span class="ruby-identifier">x</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">x</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Symbol</span>, <span class="ruby-constant">String</span>
+    <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">x</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Racc</span><span class="ruby-operator">::</span><span class="ruby-constant">Sym</span>
+    <span class="ruby-identifier">x</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;wrong type #{x.class} (expected Symbol/String/Racc::Sym)&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-action" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">action</span><span
+            class="method-args">(&amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="action-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 277</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">action</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">id</span> = <span class="ruby-node">&quot;@#{@seqs[&quot;action&quot;] += 1}&quot;</span>.<span class="ruby-identifier">intern</span>
+  <span class="ruby-identifier">_delayed_add</span> <span class="ruby-constant">Rule</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">id</span>), [], <span class="ruby-constant">UserAction</span>.<span class="ruby-identifier">proc</span>(<span class="ruby-identifier">block</span>))
+  <span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="DefinitionEnv.html#method-i-_">_</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flush_delayed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">flush_delayed</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="flush_delayed-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 261</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">flush_delayed</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@delayed</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-ivar">@delayed</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">add</span> <span class="ruby-identifier">rule</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@delayed</span>.<span class="ruby-identifier">clear</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-grammar" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">grammar</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="grammar-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">grammar</span>
+  <span class="ruby-identifier">flush_delayed</span>
+  <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">rule</span>.<span class="ruby-identifier">specified_prec</span>
+      <span class="ruby-identifier">rule</span>.<span class="ruby-identifier">specified_prec</span> = <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">rule</span>.<span class="ruby-identifier">specified_prec</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">init</span>
+  <span class="ruby-ivar">@grammar</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-many" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">many</span><span
+            class="method-args">(sym, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="many-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 291</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">many</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">_defmetasyntax</span>(<span class="ruby-string">&quot;many&quot;</span>, <span class="ruby-identifier">_intern</span>(<span class="ruby-identifier">sym</span>), <span class="ruby-identifier">block</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">seq</span>() { [] }\
+    <span class="ruby-operator">|</span> <span class="ruby-identifier">seq</span>(<span class="ruby-identifier">target</span>, <span class="ruby-identifier">sym</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">list</span>, <span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">x</span>; <span class="ruby-identifier">list</span> }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-many1" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">many1</span><span
+            class="method-args">(sym, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="many1-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 298</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">many1</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">_defmetasyntax</span>(<span class="ruby-string">&quot;many1&quot;</span>, <span class="ruby-identifier">_intern</span>(<span class="ruby-identifier">sym</span>), <span class="ruby-identifier">block</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">seq</span>(<span class="ruby-identifier">sym</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">x</span>] }\
+    <span class="ruby-operator">|</span> <span class="ruby-identifier">seq</span>(<span class="ruby-identifier">target</span>, <span class="ruby-identifier">sym</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">list</span>, <span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">x</span>; <span class="ruby-identifier">list</span> }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-method_missing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">method_missing</span><span
+            class="method-args">(mid, *args, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../../BasicObject.html#method-i-method_missing"><code>BasicObject#method_missing</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="method_missing-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 226</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_missing</span>(<span class="ruby-identifier">mid</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mid</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">-1</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;=&#39;</span>
+    <span class="ruby-keyword">super</span>   <span class="ruby-comment"># raises NoMethodError</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">target</span> = <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">mid</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">chop</span>.<span class="ruby-identifier">intern</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;too many arguments for #{mid} (#{args.size} for 1)&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">_add</span> <span class="ruby-identifier">target</span>, <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-null" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">null</span><span
+            class="method-args">(&amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="null-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">null</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">seq</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">option</span><span
+            class="method-args">(sym, default = nil, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="option-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 285</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">option</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">default</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">_defmetasyntax</span>(<span class="ruby-string">&quot;option&quot;</span>, <span class="ruby-identifier">_intern</span>(<span class="ruby-identifier">sym</span>), <span class="ruby-identifier">block</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">seq</span>() { <span class="ruby-identifier">default</span> } <span class="ruby-operator">|</span> <span class="ruby-identifier">seq</span>(<span class="ruby-identifier">sym</span>)
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-precedence_table" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">precedence_table</span><span
+            class="method-args">(&amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="precedence_table-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 220</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">precedence_table</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">env</span> = <span class="ruby-constant">PrecedenceDefinitionEnv</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grammar</span>)
+  <span class="ruby-identifier">env</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">end_precedence_declaration</span> <span class="ruby-identifier">env</span>.<span class="ruby-identifier">reverse</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-separated_by" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">separated_by</span><span
+            class="method-args">(sep, sym, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="separated_by-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 305</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">separated_by</span>(<span class="ruby-identifier">sep</span>, <span class="ruby-identifier">sym</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">option</span>(<span class="ruby-identifier">separated_by1</span>(<span class="ruby-identifier">sep</span>, <span class="ruby-identifier">sym</span>), [], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-separated_by1" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">separated_by1</span><span
+            class="method-args">(sep, sym, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="separated_by1-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 309</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">separated_by1</span>(<span class="ruby-identifier">sep</span>, <span class="ruby-identifier">sym</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">_defmetasyntax</span>(<span class="ruby-string">&quot;separated_by1&quot;</span>, <span class="ruby-identifier">_intern</span>(<span class="ruby-identifier">sym</span>), <span class="ruby-identifier">block</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">seq</span>(<span class="ruby-identifier">sym</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">x</span>] }\
+    <span class="ruby-operator">|</span> <span class="ruby-identifier">seq</span>(<span class="ruby-identifier">target</span>, <span class="ruby-identifier">sep</span>, <span class="ruby-identifier">sym</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">list</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">x</span>; <span class="ruby-identifier">list</span> }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-seq" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">seq</span><span
+            class="method-args">(*list, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="seq-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 269</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">seq</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">list</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">Rule</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">list</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">_intern</span>(<span class="ruby-identifier">x</span>) }, <span class="ruby-constant">UserAction</span>.<span class="ruby-identifier">proc</span>(<span class="ruby-identifier">block</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-_defmetasyntax" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_defmetasyntax</span><span
+            class="method-args">(type, id, action, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_defmetasyntax-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 329</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_defmetasyntax</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">action</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">action</span>
+    <span class="ruby-identifier">idbase</span> = <span class="ruby-node">&quot;#{type}@#{id}-#{@seqs[type] += 1}&quot;</span>
+    <span class="ruby-identifier">target</span> = <span class="ruby-identifier">_wrap</span>(<span class="ruby-identifier">idbase</span>, <span class="ruby-node">&quot;#{idbase}-core&quot;</span>, <span class="ruby-identifier">action</span>)
+    <span class="ruby-identifier">_regist</span>(<span class="ruby-node">&quot;#{idbase}-core&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">target</span> = <span class="ruby-identifier">_regist</span>(<span class="ruby-node">&quot;#{type}@#{id}&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">target</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_regist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_regist</span><span
+            class="method-args">(target_name) { |target| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_regist-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 340</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_regist</span>(<span class="ruby-identifier">target_name</span>)
+  <span class="ruby-identifier">target</span> = <span class="ruby-identifier">target_name</span>.<span class="ruby-identifier">intern</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">_added?</span>(<span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">target</span>))
+    <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">target</span>).<span class="ruby-identifier">each_rule</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">rule</span>.<span class="ruby-identifier">target</span> = <span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">target</span>)
+      <span class="ruby-identifier">_delayed_add</span> <span class="ruby-identifier">rule</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">target</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_wrap" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_wrap</span><span
+            class="method-args">(target_name, sym, block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_wrap-source">
+            <pre><span class="ruby-comment"># File lib/racc/grammar.rb, line 351</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_wrap</span>(<span class="ruby-identifier">target_name</span>, <span class="ruby-identifier">sym</span>, <span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">target</span> = <span class="ruby-identifier">target_name</span>.<span class="ruby-identifier">intern</span>
+  <span class="ruby-identifier">_delayed_add</span> <span class="ruby-constant">Rule</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">target</span>),
+                        [<span class="ruby-ivar">@grammar</span>.<span class="ruby-identifier">intern</span>(<span class="ruby-identifier">sym</span>.<span class="ruby-identifier">intern</span>)],
+                        <span class="ruby-constant">UserAction</span>.<span class="ruby-identifier">proc</span>(<span class="ruby-identifier">block</span>))
+  <span class="ruby-identifier">target</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Fetcher::Dependency - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Base.html">Bundler::Fetcher::Base</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-api_fetcher-3F">#api_fetcher?</a>
+    
+    <li ><a href="#method-i-available-3F">#available?</a>
+    
+    <li ><a href="#method-i-dependency_api_uri">#dependency_api_uri</a>
+    
+    <li ><a href="#method-i-dependency_specs">#dependency_specs</a>
+    
+    <li ><a href="#method-i-get_formatted_specs_and_deps">#get_formatted_specs_and_deps</a>
+    
+    <li ><a href="#method-i-specs">#specs</a>
+    
+    <li ><a href="#method-i-unmarshalled_dep_gems">#unmarshalled_dep_gems</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Fetcher::Dependency">
+  <h1 id="class-Bundler::Fetcher::Dependency" class="class">
+    class Bundler::Fetcher::Dependency
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-api_fetcher-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">api_fetcher?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="api_fetcher-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/fetcher/dependency.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">api_fetcher?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-available-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">available?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="available-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/fetcher/dependency.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">available?</span>
+  <span class="ruby-ivar">@available</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">fetch_uri</span>.<span class="ruby-identifier">scheme</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;file&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">downloader</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">dependency_api_uri</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">NetworkDownError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">HTTPError</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">AuthenticationRequiredError</span>
+  <span class="ruby-comment"># Fail since we got a 401 from the server.</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">HTTPError</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dependency_api_uri" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dependency_api_uri</span><span
+            class="method-args">(gem_names = [])</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dependency_api_uri-source">
+            <pre><span class="ruby-comment"># File lib/bundler/fetcher/dependency.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dependency_api_uri</span>(<span class="ruby-identifier">gem_names</span> = [])
+  <span class="ruby-identifier">uri</span> = <span class="ruby-identifier">fetch_uri</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;api/v1/dependencies&quot;</span>
+  <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query</span> = <span class="ruby-node">&quot;gems=#{CGI.escape(gem_names.sort.join(&quot;,&quot;))}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">gem_names</span>.<span class="ruby-identifier">any?</span>
+  <span class="ruby-identifier">uri</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dependency_specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dependency_specs</span><span
+            class="method-args">(gem_names)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dependency_specs-source">
+            <pre><span class="ruby-comment"># File lib/bundler/fetcher/dependency.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dependency_specs</span>(<span class="ruby-identifier">gem_names</span>)
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Query Gemcutter Dependency Endpoint API: #{gem_names.join(&quot;,&quot;)}&quot;</span>
+
+  <span class="ruby-identifier">gem_list</span> = <span class="ruby-identifier">unmarshalled_dep_gems</span>(<span class="ruby-identifier">gem_names</span>)
+  <span class="ruby-identifier">get_formatted_specs_and_deps</span>(<span class="ruby-identifier">gem_list</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_formatted_specs_and_deps" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_formatted_specs_and_deps</span><span
+            class="method-args">(gem_list)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_formatted_specs_and_deps-source">
+            <pre><span class="ruby-comment"># File lib/bundler/fetcher/dependency.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_formatted_specs_and_deps</span>(<span class="ruby-identifier">gem_list</span>)
+  <span class="ruby-identifier">deps_list</span> = []
+  <span class="ruby-identifier">spec_list</span> = []
+
+  <span class="ruby-identifier">gem_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">deps_list</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">s</span>[<span class="ruby-value">:dependencies</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:first</span>))
+    <span class="ruby-identifier">deps</span> = <span class="ruby-identifier">s</span>[<span class="ruby-value">:dependencies</span>].<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-identifier">d</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">n</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;, &quot;</span>)] }
+    <span class="ruby-identifier">spec_list</span>.<span class="ruby-identifier">push</span>([<span class="ruby-identifier">s</span>[<span class="ruby-value">:name</span>], <span class="ruby-identifier">s</span>[<span class="ruby-value">:number</span>], <span class="ruby-identifier">s</span>[<span class="ruby-value">:platform</span>], <span class="ruby-identifier">deps</span>])
+  <span class="ruby-keyword">end</span>
+  [<span class="ruby-identifier">spec_list</span>, <span class="ruby-identifier">deps_list</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-specs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">specs</span><span
+            class="method-args">(gem_names, full_dependency_list = [], last_spec_list = [])</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="specs-source">
+            <pre><span class="ruby-comment"># File lib/bundler/fetcher/dependency.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">specs</span>(<span class="ruby-identifier">gem_names</span>, <span class="ruby-identifier">full_dependency_list</span> = [], <span class="ruby-identifier">last_spec_list</span> = [])
+  <span class="ruby-identifier">query_list</span> = <span class="ruby-identifier">gem_names</span>.<span class="ruby-identifier">uniq</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">full_dependency_list</span>
+
+  <span class="ruby-identifier">log_specs</span> <span class="ruby-node">&quot;Query List: #{query_list.inspect}&quot;</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">last_spec_list</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">query_list</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">spec_list</span>, <span class="ruby-identifier">deps_list</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Retry</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;dependency api&quot;</span>, <span class="ruby-constant">FAIL_ERRORS</span>).<span class="ruby-identifier">attempts</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">dependency_specs</span>(<span class="ruby-identifier">query_list</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">returned_gems</span> = <span class="ruby-identifier">spec_list</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:first</span>).<span class="ruby-identifier">uniq</span>
+  <span class="ruby-identifier">specs</span>(<span class="ruby-identifier">deps_list</span>, <span class="ruby-identifier">full_dependency_list</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">returned_gems</span>, <span class="ruby-identifier">spec_list</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">last_spec_list</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">MarshalError</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">debug?</span> <span class="ruby-comment"># new line now that the dots are over</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;could not fetch from the dependency API, trying the full index&quot;</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">HTTPError</span>, <span class="ruby-constant">GemspecError</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">debug?</span> <span class="ruby-comment"># new line now that the dots are over</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;could not fetch from the dependency API\nit&#39;s suggested to retry using the full index via `bundle install --full-index`&quot;</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unmarshalled_dep_gems" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unmarshalled_dep_gems</span><span
+            class="method-args">(gem_names)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="unmarshalled_dep_gems-source">
+            <pre><span class="ruby-comment"># File lib/bundler/fetcher/dependency.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unmarshalled_dep_gems</span>(<span class="ruby-identifier">gem_names</span>)
+  <span class="ruby-identifier">gem_list</span> = []
+  <span class="ruby-identifier">gem_names</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-constant">Source</span><span class="ruby-operator">::</span><span class="ruby-constant">Rubygems</span><span class="ruby-operator">::</span><span class="ruby-constant">API_REQUEST_SIZE</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">names</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">marshalled_deps</span> = <span class="ruby-identifier">downloader</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">dependency_api_uri</span>(<span class="ruby-identifier">names</span>)).<span class="ruby-identifier">body</span>
+    <span class="ruby-identifier">gem_list</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">load_marshal</span>(<span class="ruby-identifier">marshalled_deps</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">gem_list</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

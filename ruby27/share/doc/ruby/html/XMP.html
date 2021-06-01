@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class XMP - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-puts">#puts</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-XMP">
+  <h1 id="class-XMP" class="class">
+    class XMP
+  </h1>
+
+  <section class="description">
+    
+<p>An example printer for irb.</p>
+
+<p>It&#39;s much like the standard library <a href="PrettyPrint.html"><code>PrettyPrint</code></a>, that shows the value of each expression as it runs.</p>
+
+<p>In order to use this library, you must first require it:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;irb/xmp&#39;</span>
+</pre>
+
+<p>Now, you can take advantage of the <a href="Object.html#method-i-xmp"><code>Object#xmp</code></a> convenience method.</p>
+
+<pre class="ruby"><span class="ruby-identifier">xmp</span> <span class="ruby-identifier">&lt;&lt;END</span>
+<span class="ruby-value">  foo = &quot;bar&quot;
+  baz = 42
+</span><span class="ruby-identifier">END</span>
+<span class="ruby-comment">#=&gt; foo = &quot;bar&quot;</span>
+  <span class="ruby-comment">#==&gt;&quot;bar&quot;</span>
+<span class="ruby-comment">#=&gt; baz = 42</span>
+  <span class="ruby-comment">#==&gt;42</span>
+</pre>
+
+<p>You can also create an <a href="XMP.html"><code>XMP</code></a> object, with an optional binding to print expressions in the given binding:</p>
+
+<pre class="ruby"><span class="ruby-identifier">ctx</span> = <span class="ruby-identifier">binding</span>
+<span class="ruby-identifier">x</span> = <span class="ruby-constant">XMP</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">ctx</span>
+<span class="ruby-identifier">x</span>.<span class="ruby-identifier">puts</span>
+<span class="ruby-comment">#=&gt; today = &quot;a good day&quot;</span>
+  <span class="ruby-comment">#==&gt;&quot;a good day&quot;</span>
+<span class="ruby-identifier">ctx</span>.<span class="ruby-identifier">eval</span> <span class="ruby-string">&#39;today # is what?&#39;</span>
+<span class="ruby-comment">#=&gt; &quot;a good day&quot;</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(bind = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="XMP.html"><code>XMP</code></a> object.</p>
+
+<p>The top-level binding or, optional <code>bind</code> parameter will be used when creating the workspace. See WorkSpace.new for more information.</p>
+
+<p>This uses the <code>:XMP</code> prompt mode, see Customizing the IRB Prompt at <code>IRB</code> for full detail.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/irb/xmp.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">bind</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">init_config</span>(<span class="ruby-keyword">nil</span>)
+
+  <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">conf</span>[<span class="ruby-value">:PROMPT_MODE</span>] = <span class="ruby-value">:XMP</span>
+
+  <span class="ruby-identifier">bind</span> = <span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">Frame</span>.<span class="ruby-identifier">top</span>(<span class="ruby-value">1</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">bind</span>
+  <span class="ruby-identifier">ws</span> = <span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">WorkSpace</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bind</span>)
+  <span class="ruby-ivar">@io</span> = <span class="ruby-constant">StringInputMethod</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@irb</span> = <span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">Irb</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ws</span>, <span class="ruby-ivar">@io</span>)
+  <span class="ruby-ivar">@irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">ignore_sigint</span> = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">conf</span>[<span class="ruby-value">:MAIN_CONTEXT</span>] = <span class="ruby-ivar">@irb</span>.<span class="ruby-identifier">context</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-puts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">puts</span><span
+            class="method-args">(exps)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates the given <code>exps</code>, for example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;irb/xmp&#39;</span>
+<span class="ruby-identifier">x</span> = <span class="ruby-constant">XMP</span>.<span class="ruby-identifier">new</span>
+
+<span class="ruby-identifier">x</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;{:a =&gt; 1, :b =&gt; 2, :c =&gt; 3}&#39;</span>
+<span class="ruby-comment">#=&gt; {:a =&gt; 1, :b =&gt; 2, :c =&gt; 3}</span>
+  <span class="ruby-comment"># ==&gt;{:a=&gt;1, :b=&gt;2, :c=&gt;3}</span>
+<span class="ruby-identifier">x</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;foo = &quot;bar&quot;&#39;</span>
+<span class="ruby-comment"># =&gt; foo = &quot;bar&quot;</span>
+  <span class="ruby-comment"># ==&gt;&quot;bar&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="puts-source">
+            <pre><span class="ruby-comment"># File lib/irb/xmp.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">puts</span>(<span class="ruby-identifier">exps</span>)
+  <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">exps</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">ignore_sigint</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">trap_proc_b</span> = <span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;SIGINT&quot;</span>){<span class="ruby-ivar">@irb</span>.<span class="ruby-identifier">signal_handle</span>}
+      <span class="ruby-identifier">catch</span>(<span class="ruby-value">:IRB_EXIT</span>) <span class="ruby-keyword">do</span>
+        <span class="ruby-ivar">@irb</span>.<span class="ruby-identifier">eval_input</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-identifier">trap</span>(<span class="ruby-string">&quot;SIGINT&quot;</span>, <span class="ruby-identifier">trap_proc_b</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">catch</span>(<span class="ruby-value">:IRB_EXIT</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-ivar">@irb</span>.<span class="ruby-identifier">eval_input</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

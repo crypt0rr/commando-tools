@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Coverage - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-Coverage-label-Usage">Usage</a>
+    <li><a href="#module-Coverage-label-Example">Example</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-peek_result">::peek_result</a>
+    
+    <li ><a href="#method-c-result">::result</a>
+    
+    <li ><a href="#method-c-running-3F">::running?</a>
+    
+    <li ><a href="#method-c-start">::start</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Coverage">
+  <h1 id="module-Coverage" class="module">
+    module Coverage
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Coverage.html"><code>Coverage</code></a> provides coverage measurement feature for Ruby. This feature is experimental, so these APIs may be changed in future.</p>
+
+<h1 id="module-Coverage-label-Usage">Usage<span><a href="#module-Coverage-label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<ol><li>
+<p>require “coverage”</p>
+</li><li>
+<p>do <a href="Coverage.html#method-c-start"><code>Coverage.start</code></a></p>
+</li><li>
+<p>require or load Ruby source file</p>
+</li><li>
+<p><a href="Coverage.html#method-c-result"><code>Coverage.result</code></a> will return a hash that contains filename as key and coverage array as value. A coverage array gives, for each line, the number of line execution by the interpreter. A <code>nil</code> value means coverage is disabled for this line (lines like <code>else</code> and <code>end</code>).</p>
+</li></ol>
+
+<h1 id="module-Coverage-label-Example">Example<span><a href="#module-Coverage-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<pre class="ruby">[<span class="ruby-identifier">foo</span>.<span class="ruby-identifier">rb</span>]
+<span class="ruby-identifier">s</span> = <span class="ruby-value">0</span>
+<span class="ruby-value">10</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">s</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">==</span> <span class="ruby-value">45</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-value">:ok</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-value">:ng</span>
+<span class="ruby-keyword">end</span>
+[<span class="ruby-constant">EOF</span>]
+
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;coverage&quot;</span>
+<span class="ruby-constant">Coverage</span>.<span class="ruby-identifier">start</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;foo.rb&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Coverage</span>.<span class="ruby-identifier">result</span>  <span class="ruby-comment">#=&gt; {&quot;foo.rb&quot;=&gt;[1, 1, 10, nil, nil, 1, 1, nil, 0, nil]}</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-peek_result" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            peek_result  &rarr; hash
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a hash that contains filename as key and coverage array as value. This is the same as `Coverage.result(stop: false, clear: false)`.</p>
+
+<pre>{
+  &quot;file.rb&quot; =&gt; [1, 2, nil],
+  ...
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="peek_result-source">
+            <pre>static VALUE
+rb_coverage_peek_result(VALUE klass)
+{
+    VALUE coverages = rb_get_coverages();
+    VALUE ncoverages = rb_hash_new();
+    if (!RTEST(coverages)) {
+        rb_raise(rb_eRuntimeError, &quot;coverage measurement is not enabled&quot;);
+    }
+    st_foreach(RHASH_TBL(coverages), coverage_peek_result_i, ncoverages);
+
+    if (current_mode &amp; COVERAGE_TARGET_METHODS) {
+        rb_objspace_each_objects(method_coverage_i, &amp;ncoverages);
+    }
+
+    rb_hash_freeze(ncoverages);
+    return ncoverages;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-result" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            result(stop: true, clear: true)  &rarr; hash
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a hash that contains filename as key and coverage array as value. If <code>clear</code> is true, it clears the counters to zero. If <code>stop</code> is true, it disables coverage measurement.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="result-source">
+            <pre>static VALUE
+rb_coverage_result(int argc, VALUE *argv, VALUE klass)
+{
+    VALUE ncoverages;
+    VALUE opt;
+    int stop = 1, clear = 1;
+
+    rb_scan_args(argc, argv, &quot;01&quot;, &amp;opt);
+
+    if (argc == 1) {
+        opt = rb_convert_type(opt, T_HASH, &quot;Hash&quot;, &quot;to_hash&quot;);
+        stop = RTEST(rb_hash_lookup(opt, ID2SYM(rb_intern(&quot;stop&quot;))));
+        clear = RTEST(rb_hash_lookup(opt, ID2SYM(rb_intern(&quot;clear&quot;))));
+    }
+
+    ncoverages = rb_coverage_peek_result(klass);
+    if (stop &amp;&amp; !clear) {
+        rb_warn(&quot;stop implies clear&quot;);
+        clear = 1;
+    }
+    if (clear) {
+        rb_clear_coverages();
+        if (!NIL_P(me2counter)) rb_hash_foreach(me2counter, clear_me2counter_i, Qnil);
+    }
+    if (stop) {
+        rb_reset_coverages();
+        me2counter = Qnil;
+    }
+    return ncoverages;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-running-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            running?  &rarr; bool
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if coverage stats are currently being collected (after <a href="Coverage.html#method-c-start"><code>Coverage.start</code></a> call, but before <a href="Coverage.html#method-c-result"><code>Coverage.result</code></a> call)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="running-3F-source">
+            <pre>static VALUE
+rb_coverage_running(VALUE klass)
+{
+    VALUE coverages = rb_get_coverages();
+    return RTEST(coverages) ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-start" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            start  &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Enables coverage measurement.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="start-source">
+            <pre>static VALUE
+rb_coverage_start(int argc, VALUE *argv, VALUE klass)
+{
+    VALUE coverages, opt;
+    int mode;
+
+    rb_scan_args(argc, argv, &quot;01&quot;, &amp;opt);
+
+    if (argc == 0) {
+        mode = 0; /* compatible mode */
+    }
+    else if (opt == ID2SYM(rb_intern(&quot;all&quot;))) {
+        mode = COVERAGE_TARGET_LINES | COVERAGE_TARGET_BRANCHES | COVERAGE_TARGET_METHODS;
+    }
+    else {
+        mode = 0;
+        opt = rb_convert_type(opt, T_HASH, &quot;Hash&quot;, &quot;to_hash&quot;);
+
+        if (RTEST(rb_hash_lookup(opt, ID2SYM(rb_intern(&quot;lines&quot;)))))
+            mode |= COVERAGE_TARGET_LINES;
+        if (RTEST(rb_hash_lookup(opt, ID2SYM(rb_intern(&quot;branches&quot;)))))
+            mode |= COVERAGE_TARGET_BRANCHES;
+        if (RTEST(rb_hash_lookup(opt, ID2SYM(rb_intern(&quot;methods&quot;)))))
+            mode |= COVERAGE_TARGET_METHODS;
+        if (RTEST(rb_hash_lookup(opt, ID2SYM(rb_intern(&quot;oneshot_lines&quot;))))) {
+            if (mode &amp; COVERAGE_TARGET_LINES)
+                rb_raise(rb_eRuntimeError, &quot;cannot enable lines and oneshot_lines simultaneously&quot;);
+            mode |= COVERAGE_TARGET_LINES;
+            mode |= COVERAGE_TARGET_ONESHOT_LINES;
+        }
+    }
+
+    if (mode &amp; COVERAGE_TARGET_METHODS) {
+        me2counter = rb_ident_hash_new();
+    }
+    else {
+        me2counter = Qnil;
+    }
+
+    coverages = rb_get_coverages();
+    if (!RTEST(coverages)) {
+        coverages = rb_hash_new();
+        rb_obj_hide(coverages);
+        current_mode = mode;
+        if (mode == 0) mode = COVERAGE_TARGET_LINES;
+        rb_set_coverages(coverages, mode, me2counter);
+    }
+    else if (current_mode != mode) {
+        rb_raise(rb_eRuntimeError, &quot;cannot change the measuring target during coverage measurement&quot;);
+    }
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

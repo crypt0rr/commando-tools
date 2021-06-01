@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class DRb::DRbUnknown - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-exception">#exception</a>
+    
+    <li ><a href="#method-i-reload">#reload</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-DRb::DRbUnknown">
+  <h1 id="class-DRb::DRbUnknown" class="class">
+    class DRb::DRbUnknown
+  </h1>
+
+  <section class="description">
+    
+<p><a href="../Class.html"><code>Class</code></a> wrapping a marshalled object whose type is unknown locally.</p>
+
+<p>If an object is returned by a method invoked over drb, but the class of the object is unknown in the client namespace, or the object is a constant unknown in the client namespace, then the still-marshalled object is returned wrapped in a <a href="DRbUnknown.html"><code>DRbUnknown</code></a> instance.</p>
+
+<p>If this object is passed as an argument to a method invoked over drb, then the wrapped object is passed instead.</p>
+
+<p>The class or constant name of the object can be read from the <code>name</code> attribute.  The marshalled object is held in the <code>buf</code> attribute.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-buf" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">buf</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Buffer contained the marshalled, unknown object.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">name</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The name of the unknown thing.</p>
+
+<p><a href="../Class.html"><code>Class</code></a> name for unknown objects; variable name for unknown constants.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(err, buf)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a new <a href="DRbUnknown.html"><code>DRbUnknown</code></a> object.</p>
+
+<p><code>buf</code> is a string containing a marshalled object that could not be unmarshalled.  <code>err</code> is the error message that was raised when the unmarshalling failed.  It is used to determine the name of the unmarshalled object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 464</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">err</span>, <span class="ruby-identifier">buf</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">err</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/uninitialized constant (\S+)/</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-node">$1</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/undefined class\/module (\S+)/</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-node">$1</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@buf</span> = <span class="ruby-identifier">buf</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-exception" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exception</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a <a href="DRbUnknownError.html"><code>DRbUnknownError</code></a> exception containing this object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exception-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 507</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exception</span>
+  <span class="ruby-constant">DRbUnknownError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Attempt to load the wrapped marshalled object again.</p>
+
+<p>If the class of the object is now known locally, the object will be unmarshalled and returned.  Otherwise, a new but identical <a href="DRbUnknown.html"><code>DRbUnknown</code></a> object will be returned.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reload-source">
+            <pre><span class="ruby-comment"># File lib/drb/drb.rb, line 502</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reload</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_load</span>(<span class="ruby-ivar">@buf</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

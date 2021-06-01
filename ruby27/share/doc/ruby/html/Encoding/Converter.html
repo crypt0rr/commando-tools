@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Encoding::Converter - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Data.html">Data</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-asciicompat_encoding">::asciicompat_encoding</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-search_convpath">::search_convpath</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-convert">#convert</a>
+    
+    <li ><a href="#method-i-convpath">#convpath</a>
+    
+    <li ><a href="#method-i-destination_encoding">#destination_encoding</a>
+    
+    <li ><a href="#method-i-finish">#finish</a>
+    
+    <li ><a href="#method-i-insert_output">#insert_output</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-last_error">#last_error</a>
+    
+    <li ><a href="#method-i-primitive_convert">#primitive_convert</a>
+    
+    <li ><a href="#method-i-primitive_errinfo">#primitive_errinfo</a>
+    
+    <li ><a href="#method-i-putback">#putback</a>
+    
+    <li ><a href="#method-i-replacement">#replacement</a>
+    
+    <li ><a href="#method-i-replacement-3D">#replacement=</a>
+    
+    <li ><a href="#method-i-source_encoding">#source_encoding</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Encoding::Converter">
+  <h1 id="class-Encoding::Converter" class="class">
+    class Encoding::Converter
+  </h1>
+
+  <section class="description">
+    
+<p><a href="../Encoding.html"><code>Encoding</code></a> conversion class.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="AFTER_OUTPUT">AFTER_OUTPUT
+        
+        <dd><p><a href="Converter.html#AFTER_OUTPUT"><code>AFTER_OUTPUT</code></a></p>
+
+<p>Stop converting after some output is complete but before all of the input was consumed.  See <a href="Converter.html#method-i-primitive_convert"><code>primitive_convert</code></a> for an example.</p>
+        
+      
+        <dt id="CRLF_NEWLINE_DECORATOR">CRLF_NEWLINE_DECORATOR
+        
+        <dd><p><a href="Converter.html#CRLF_NEWLINE_DECORATOR"><code>CRLF_NEWLINE_DECORATOR</code></a></p>
+
+<p>Decorator for converting LF to CRLF</p>
+        
+      
+        <dt id="CR_NEWLINE_DECORATOR">CR_NEWLINE_DECORATOR
+        
+        <dd><p><a href="Converter.html#CR_NEWLINE_DECORATOR"><code>CR_NEWLINE_DECORATOR</code></a></p>
+
+<p>Decorator for converting LF to CR</p>
+        
+      
+        <dt id="INVALID_MASK">INVALID_MASK
+        
+        <dd><p><a href="Converter.html#INVALID_MASK"><code>INVALID_MASK</code></a></p>
+
+<p>Mask for invalid byte sequences</p>
+        
+      
+        <dt id="INVALID_REPLACE">INVALID_REPLACE
+        
+        <dd><p><a href="Converter.html#INVALID_REPLACE"><code>INVALID_REPLACE</code></a></p>
+
+<p>Replace invalid byte sequences</p>
+        
+      
+        <dt id="PARTIAL_INPUT">PARTIAL_INPUT
+        
+        <dd><p><a href="Converter.html#PARTIAL_INPUT"><code>PARTIAL_INPUT</code></a></p>
+
+<p>Indicates the source may be part of a larger string.  See <a href="Converter.html#method-i-primitive_convert"><code>primitive_convert</code></a> for an example.</p>
+        
+      
+        <dt id="UNDEF_HEX_CHARREF">UNDEF_HEX_CHARREF
+        
+        <dd><p><a href="Converter.html#UNDEF_HEX_CHARREF"><code>UNDEF_HEX_CHARREF</code></a></p>
+
+<p>Replace byte sequences that are undefined in the destination encoding with an <a href="../XML.html"><code>XML</code></a> hexadecimal character reference.  This is valid for <a href="../XML.html"><code>XML</code></a> conversion.</p>
+        
+      
+        <dt id="UNDEF_MASK">UNDEF_MASK
+        
+        <dd><p><a href="Converter.html#UNDEF_MASK"><code>UNDEF_MASK</code></a></p>
+
+<p>Mask for a valid character in the source encoding but no related character(s) in destination encoding.</p>
+        
+      
+        <dt id="UNDEF_REPLACE">UNDEF_REPLACE
+        
+        <dd><p><a href="Converter.html#UNDEF_REPLACE"><code>UNDEF_REPLACE</code></a></p>
+
+<p>Replace byte sequences that are undefined in the destination encoding.</p>
+        
+      
+        <dt id="UNIVERSAL_NEWLINE_DECORATOR">UNIVERSAL_NEWLINE_DECORATOR
+        
+        <dd><p><a href="Converter.html#UNIVERSAL_NEWLINE_DECORATOR"><code>UNIVERSAL_NEWLINE_DECORATOR</code></a></p>
+
+<p>Decorator for converting CRLF and CR to LF</p>
+        
+      
+        <dt id="XML_ATTR_CONTENT_DECORATOR">XML_ATTR_CONTENT_DECORATOR
+        
+        <dd><p><a href="Converter.html#XML_ATTR_CONTENT_DECORATOR"><code>XML_ATTR_CONTENT_DECORATOR</code></a></p>
+
+<p>Escape as <a href="../XML.html"><code>XML</code></a> AttValue</p>
+        
+      
+        <dt id="XML_ATTR_QUOTE_DECORATOR">XML_ATTR_QUOTE_DECORATOR
+        
+        <dd><p><a href="Converter.html#XML_ATTR_QUOTE_DECORATOR"><code>XML_ATTR_QUOTE_DECORATOR</code></a></p>
+
+<p>Escape as <a href="../XML.html"><code>XML</code></a> AttValue</p>
+        
+      
+        <dt id="XML_TEXT_DECORATOR">XML_TEXT_DECORATOR
+        
+        <dd><p><a href="Converter.html#XML_TEXT_DECORATOR"><code>XML_TEXT_DECORATOR</code></a></p>
+
+<p>Escape as <a href="../XML.html"><code>XML</code></a> CharData</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-asciicompat_encoding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Encoding::Converter.asciicompat_encoding(string) &rarr; encoding or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Encoding::Converter.asciicompat_encoding(encoding) &rarr; encoding or nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the corresponding ASCII compatible encoding.</p>
+
+<p>Returns nil if the argument is an ASCII compatible encoding.</p>
+
+<p>“corresponding ASCII compatible encoding” is an ASCII compatible encoding which can represents exactly the same characters as the given ASCII incompatible encoding. So, no conversion undefined error occurs when converting between the two encodings.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">asciicompat_encoding</span>(<span class="ruby-string">&quot;ISO-2022-JP&quot;</span>) <span class="ruby-comment">#=&gt; #&lt;Encoding:stateless-ISO-2022-JP&gt;</span>
+<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">asciicompat_encoding</span>(<span class="ruby-string">&quot;UTF-16BE&quot;</span>) <span class="ruby-comment">#=&gt; #&lt;Encoding:UTF-8&gt;</span>
+<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">asciicompat_encoding</span>(<span class="ruby-string">&quot;UTF-8&quot;</span>) <span class="ruby-comment">#=&gt; nil</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="asciicompat_encoding-source">
+            <pre>static VALUE
+econv_s_asciicompat_encoding(VALUE klass, VALUE arg)
+{
+    const char *arg_name, *result_name;
+    rb_encoding *arg_enc, *result_enc;
+
+    enc_arg(&amp;arg, &amp;arg_name, &amp;arg_enc);
+
+    result_name = rb_econv_asciicompat_encoding(arg_name);
+
+    if (result_name == NULL)
+        return Qnil;
+
+    result_enc = make_encoding(result_name);
+
+    return rb_enc_from_encoding(result_enc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Encoding::Converter.new(source_encoding, destination_encoding)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Encoding::Converter.new(source_encoding, destination_encoding, opt)
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Encoding::Converter.new(convpath)
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>possible options elements:</p>
+
+<pre>hash form:
+  :invalid =&gt; nil            # raise error on invalid byte sequence (default)
+  :invalid =&gt; :replace       # replace invalid byte sequence
+  :undef =&gt; nil              # raise error on undefined conversion (default)
+  :undef =&gt; :replace         # replace undefined conversion
+  :replace =&gt; string         # replacement string (&quot;?&quot; or &quot;\uFFFD&quot; if not specified)
+  :newline =&gt; :universal     # decorator for converting CRLF and CR to LF
+  :newline =&gt; :crlf          # decorator for converting LF to CRLF
+  :newline =&gt; :cr            # decorator for converting LF to CR
+  :universal_newline =&gt; true # decorator for converting CRLF and CR to LF
+  :crlf_newline =&gt; true      # decorator for converting LF to CRLF
+  :cr_newline =&gt; true        # decorator for converting LF to CR
+  :xml =&gt; :text              # escape as XML CharData.
+  :xml =&gt; :attr              # escape as XML AttValue
+integer form:
+  Encoding::Converter::INVALID_REPLACE
+  Encoding::Converter::UNDEF_REPLACE
+  Encoding::Converter::UNDEF_HEX_CHARREF
+  Encoding::Converter::UNIVERSAL_NEWLINE_DECORATOR
+  Encoding::Converter::CRLF_NEWLINE_DECORATOR
+  Encoding::Converter::CR_NEWLINE_DECORATOR
+  Encoding::Converter::XML_TEXT_DECORATOR
+  Encoding::Converter::XML_ATTR_CONTENT_DECORATOR
+  Encoding::Converter::XML_ATTR_QUOTE_DECORATOR</pre>
+
+<p><a href="Converter.html#method-c-new"><code>Encoding::Converter.new</code></a> creates an instance of <a href="Converter.html"><code>Encoding::Converter</code></a>.</p>
+
+<p>Source_encoding and <a href="Converter.html#method-i-destination_encoding"><code>destination_encoding</code></a> should be a string or <a href="../Encoding.html"><code>Encoding</code></a> object.</p>
+
+<p>opt should be nil, a hash or an integer.</p>
+
+<p>convpath should be an array. convpath may contain</p>
+<ul><li>
+<p>two-element arrays which contain encodings or encoding names, or</p>
+</li><li>
+<p>strings representing decorator names.</p>
+</li></ul>
+
+<p><a href="Converter.html#method-c-new"><code>Encoding::Converter.new</code></a> optionally takes an option. The option should be a hash or an integer. The option hash can contain :invalid =&gt; nil, etc. The option integer should be logical-or of constants such as <a href="Converter.html#INVALID_REPLACE"><code>Encoding::Converter::INVALID_REPLACE</code></a>, etc.</p>
+<dl class="rdoc-list label-list"><dt>:invalid =&gt; nil
+<dd>
+<p>Raise error on invalid byte sequence.  This is a default behavior.</p>
+</dd><dt>:invalid =&gt; :replace
+<dd>
+<p>Replace invalid byte sequence by replacement string.</p>
+</dd><dt>:undef =&gt; nil
+<dd>
+<p>Raise an error if a character in <a href="Converter.html#method-i-source_encoding"><code>source_encoding</code></a> is not defined in destination_encoding. This is a default behavior.</p>
+</dd><dt>:undef =&gt; :replace
+<dd>
+<p>Replace undefined character in <a href="Converter.html#method-i-destination_encoding"><code>destination_encoding</code></a> with replacement string.</p>
+</dd><dt>:replace =&gt; string
+<dd>
+<p>Specify the replacement string. If not specified, “uFFFD” is used for Unicode encodings and “?” for others.</p>
+</dd><dt>:universal_newline =&gt; true
+<dd>
+<p>Convert CRLF and CR to LF.</p>
+</dd><dt>:crlf_newline =&gt; true
+<dd>
+<p>Convert LF to CRLF.</p>
+</dd><dt>:cr_newline =&gt; true
+<dd>
+<p>Convert LF to CR.</p>
+</dd><dt>:xml =&gt; :text
+<dd>
+<p>Escape as <a href="../XML.html"><code>XML</code></a> CharData. This form can be used as an HTML 4.0 #PCDATA.</p>
+<ul><li>
+<p>&#39;&amp;&#39; -&gt; &#39;&amp;amp;&#39;</p>
+</li><li>
+<p>&#39;&lt;&#39; -&gt; &#39;&amp;lt;&#39;</p>
+</li><li>
+<p>&#39;&gt;&#39; -&gt; &#39;&amp;gt;&#39;</p>
+</li><li>
+<p>undefined characters in <a href="Converter.html#method-i-destination_encoding"><code>destination_encoding</code></a> -&gt; hexadecimal CharRef such as &amp;#xHH;</p>
+</li></ul>
+</dd><dt>:xml =&gt; :attr
+<dd>
+<p>Escape as <a href="../XML.html"><code>XML</code></a> AttValue. The converted result is quoted as “…”. This form can be used as an HTML 4.0 attribute value.</p>
+<ul><li>
+<p>&#39;&amp;&#39; -&gt; &#39;&amp;amp;&#39;</p>
+</li><li>
+<p>&#39;&lt;&#39; -&gt; &#39;&amp;lt;&#39;</p>
+</li><li>
+<p>&#39;&gt;&#39; -&gt; &#39;&amp;gt;&#39;</p>
+</li><li>
+<p>&#39;“&#39; -&gt; &#39;&amp;quot;&#39;</p>
+</li><li>
+<p>undefined characters in <a href="Converter.html#method-i-destination_encoding"><code>destination_encoding</code></a> -&gt; hexadecimal CharRef such as &amp;#xHH;</p>
+</li></ul>
+</dd></dl>
+
+<p>Examples:</p>
+
+<pre class="ruby"><span class="ruby-comment"># UTF-16BE to UTF-8</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;UTF-16BE&quot;</span>, <span class="ruby-string">&quot;UTF-8&quot;</span>)
+
+<span class="ruby-comment"># Usually, decorators such as newline conversion are inserted last.</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;UTF-16BE&quot;</span>, <span class="ruby-string">&quot;UTF-8&quot;</span>, <span class="ruby-value">:universal_newline</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convpath</span> <span class="ruby-comment">#=&gt; [[#&lt;Encoding:UTF-16BE&gt;, #&lt;Encoding:UTF-8&gt;],</span>
+              <span class="ruby-comment">#    &quot;universal_newline&quot;]</span>
+
+<span class="ruby-comment"># But, if the last encoding is ASCII incompatible,</span>
+<span class="ruby-comment"># decorators are inserted before the last conversion.</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;UTF-8&quot;</span>, <span class="ruby-string">&quot;UTF-16BE&quot;</span>, <span class="ruby-value">:crlf_newline</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convpath</span> <span class="ruby-comment">#=&gt; [&quot;crlf_newline&quot;,</span>
+              <span class="ruby-comment">#    [#&lt;Encoding:UTF-8&gt;, #&lt;Encoding:UTF-16BE&gt;]]</span>
+
+<span class="ruby-comment"># Conversion path can be specified directly.</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>([<span class="ruby-string">&quot;universal_newline&quot;</span>, [<span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-string">&quot;UTF-8&quot;</span>], [<span class="ruby-string">&quot;UTF-8&quot;</span>, <span class="ruby-string">&quot;UTF-16BE&quot;</span>]])
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convpath</span> <span class="ruby-comment">#=&gt; [&quot;universal_newline&quot;,</span>
+              <span class="ruby-comment">#    [#&lt;Encoding:EUC-JP&gt;, #&lt;Encoding:UTF-8&gt;],</span>
+              <span class="ruby-comment">#    [#&lt;Encoding:UTF-8&gt;, #&lt;Encoding:UTF-16BE&gt;]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+econv_init(int argc, VALUE *argv, VALUE self)
+{
+    VALUE ecopts;
+    VALUE snamev, dnamev;
+    const char *sname, *dname;
+    rb_encoding *senc, *denc;
+    rb_econv_t *ec;
+    int ecflags;
+    VALUE convpath;
+
+    if (rb_check_typeddata(self, &amp;econv_data_type)) {
+        rb_raise(rb_eTypeError, &quot;already initialized&quot;);
+    }
+
+    if (argc == 1 &amp;&amp; !NIL_P(convpath = rb_check_array_type(argv[0]))) {
+        ec = rb_econv_init_by_convpath(self, convpath, &amp;sname, &amp;dname, &amp;senc, &amp;denc);
+        ecflags = 0;
+        ecopts = Qnil;
+    }
+    else {
+        econv_args(argc, argv, &amp;snamev, &amp;dnamev, &amp;sname, &amp;dname, &amp;senc, &amp;denc, &amp;ecflags, &amp;ecopts);
+        ec = rb_econv_open_opts(sname, dname, ecflags, ecopts);
+    }
+
+    if (!ec) {
+        VALUE exc = rb_econv_open_exc(sname, dname, ecflags);
+        RB_GC_GUARD(snamev);
+        RB_GC_GUARD(dnamev);
+        rb_exc_raise(exc);
+    }
+
+    if (!DECORATOR_P(sname, dname)) {
+        if (!senc)
+            senc = make_dummy_encoding(sname);
+        if (!denc)
+            denc = make_dummy_encoding(dname);
+        RB_GC_GUARD(snamev);
+        RB_GC_GUARD(dnamev);
+    }
+
+    ec-&gt;source_encoding = senc;
+    ec-&gt;destination_encoding = denc;
+
+    DATA_PTR(self) = ec;
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-search_convpath" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Encoding::Converter.search_convpath(source_encoding, destination_encoding)         &rarr; ary
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Encoding::Converter.search_convpath(source_encoding, destination_encoding, opt)    &rarr; ary
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a conversion path.</p>
+
+<pre>p Encoding::Converter.search_convpath(&quot;ISO-8859-1&quot;, &quot;EUC-JP&quot;)
+#=&gt; [[#&lt;Encoding:ISO-8859-1&gt;, #&lt;Encoding:UTF-8&gt;],
+#    [#&lt;Encoding:UTF-8&gt;, #&lt;Encoding:EUC-JP&gt;]]
+
+p Encoding::Converter.search_convpath(&quot;ISO-8859-1&quot;, &quot;EUC-JP&quot;, universal_newline: true)
+or
+p Encoding::Converter.search_convpath(&quot;ISO-8859-1&quot;, &quot;EUC-JP&quot;, newline: :universal)
+#=&gt; [[#&lt;Encoding:ISO-8859-1&gt;, #&lt;Encoding:UTF-8&gt;],
+#    [#&lt;Encoding:UTF-8&gt;, #&lt;Encoding:EUC-JP&gt;],
+#    &quot;universal_newline&quot;]
+
+p Encoding::Converter.search_convpath(&quot;ISO-8859-1&quot;, &quot;UTF-32BE&quot;, universal_newline: true)
+or
+p Encoding::Converter.search_convpath(&quot;ISO-8859-1&quot;, &quot;UTF-32BE&quot;, newline: :universal)
+#=&gt; [[#&lt;Encoding:ISO-8859-1&gt;, #&lt;Encoding:UTF-8&gt;],
+#    &quot;universal_newline&quot;,
+#    [#&lt;Encoding:UTF-8&gt;, #&lt;Encoding:UTF-32BE&gt;]]</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="search_convpath-source">
+            <pre>static VALUE
+econv_s_search_convpath(int argc, VALUE *argv, VALUE klass)
+{
+    VALUE snamev, dnamev;
+    const char *sname, *dname;
+    rb_encoding *senc, *denc;
+    int ecflags;
+    VALUE ecopts;
+    VALUE convpath;
+
+    econv_args(argc, argv, &amp;snamev, &amp;dnamev, &amp;sname, &amp;dname, &amp;senc, &amp;denc, &amp;ecflags, &amp;ecopts);
+
+    convpath = Qnil;
+    transcode_search_path(sname, dname, search_convpath_i, &amp;convpath);
+
+    if (NIL_P(convpath)) {
+        VALUE exc = rb_econv_open_exc(sname, dname, ecflags);
+        RB_GC_GUARD(snamev);
+        RB_GC_GUARD(dnamev);
+        rb_exc_raise(exc);
+    }
+
+    if (decorate_convpath(convpath, ecflags) == -1) {
+        VALUE exc = rb_econv_open_exc(sname, dname, ecflags);
+        RB_GC_GUARD(snamev);
+        RB_GC_GUARD(dnamev);
+        rb_exc_raise(exc);
+    }
+
+    return convpath;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ec == other        &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+econv_equal(VALUE self, VALUE other)
+{
+    rb_econv_t *ec1 = check_econv(self);
+    rb_econv_t *ec2;
+    int i;
+
+    if (!rb_typeddata_is_kind_of(other, &amp;econv_data_type)) {
+        return Qnil;
+    }
+    ec2 = DATA_PTR(other);
+    if (!ec2) return Qfalse;
+    if (ec1-&gt;source_encoding_name != ec2-&gt;source_encoding_name &amp;&amp;
+        strcmp(ec1-&gt;source_encoding_name, ec2-&gt;source_encoding_name))
+        return Qfalse;
+    if (ec1-&gt;destination_encoding_name != ec2-&gt;destination_encoding_name &amp;&amp;
+        strcmp(ec1-&gt;destination_encoding_name, ec2-&gt;destination_encoding_name))
+        return Qfalse;
+    if (ec1-&gt;flags != ec2-&gt;flags) return Qfalse;
+    if (ec1-&gt;replacement_enc != ec2-&gt;replacement_enc &amp;&amp;
+        strcmp(ec1-&gt;replacement_enc, ec2-&gt;replacement_enc))
+        return Qfalse;
+    if (ec1-&gt;replacement_len != ec2-&gt;replacement_len) return Qfalse;
+    if (ec1-&gt;replacement_str != ec2-&gt;replacement_str &amp;&amp;
+        memcmp(ec1-&gt;replacement_str, ec2-&gt;replacement_str, ec2-&gt;replacement_len))
+        return Qfalse;
+
+    if (ec1-&gt;num_trans != ec2-&gt;num_trans) return Qfalse;
+    for (i = 0; i &lt; ec1-&gt;num_trans; i++) {
+        if (ec1-&gt;elems[i].tc-&gt;transcoder != ec2-&gt;elems[i].tc-&gt;transcoder)
+            return Qfalse;
+    }
+    return Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-convert" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            convert(source_string) &rarr; destination_string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Convert source_string and return destination_string.</p>
+
+<p>source_string is assumed as a part of source. i.e.  :partial_input=&gt;true is specified internally. finish method should be used last.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-8&quot;</span>, <span class="ruby-string">&quot;euc-jp&quot;</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\u3042&quot;</span>).<span class="ruby-identifier">dump</span>     <span class="ruby-comment">#=&gt; &quot;\xA4\xA2&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">finish</span>.<span class="ruby-identifier">dump</span>                <span class="ruby-comment">#=&gt; &quot;&quot;</span>
+
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;euc-jp&quot;</span>, <span class="ruby-string">&quot;utf-8&quot;</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\xA4&quot;</span>).<span class="ruby-identifier">dump</span>       <span class="ruby-comment">#=&gt; &quot;&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\xA2&quot;</span>).<span class="ruby-identifier">dump</span>       <span class="ruby-comment">#=&gt; &quot;\xE3\x81\x82&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">finish</span>.<span class="ruby-identifier">dump</span>                <span class="ruby-comment">#=&gt; &quot;&quot;</span>
+
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-8&quot;</span>, <span class="ruby-string">&quot;iso-2022-jp&quot;</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\xE3&quot;</span>).<span class="ruby-identifier">dump</span>       <span class="ruby-comment">#=&gt; &quot;&quot;.force_encoding(&quot;ISO-2022-JP&quot;)</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\x81&quot;</span>).<span class="ruby-identifier">dump</span>       <span class="ruby-comment">#=&gt; &quot;&quot;.force_encoding(&quot;ISO-2022-JP&quot;)</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\x82&quot;</span>).<span class="ruby-identifier">dump</span>       <span class="ruby-comment">#=&gt; &quot;\e$B$\&quot;&quot;.force_encoding(&quot;ISO-2022-JP&quot;)</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">finish</span>.<span class="ruby-identifier">dump</span>                <span class="ruby-comment">#=&gt; &quot;\e(B&quot;.force_encoding(&quot;ISO-2022-JP&quot;)</span>
+</pre>
+
+<p>If a conversion error occur, <a href="UndefinedConversionError.html"><code>Encoding::UndefinedConversionError</code></a> or <a href="InvalidByteSequenceError.html"><code>Encoding::InvalidByteSequenceError</code></a> is raised. <a href="Converter.html#method-i-convert"><code>Encoding::Converter#convert</code></a> doesn&#39;t supply methods to recover or restart from these exceptions. When you want to handle these conversion errors, use <a href="Converter.html#method-i-primitive_convert"><code>Encoding::Converter#primitive_convert</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="convert-source">
+            <pre>static VALUE
+econv_convert(VALUE self, VALUE source_string)
+{
+    VALUE ret, dst;
+    VALUE av[5];
+    int ac;
+    rb_econv_t *ec = check_econv(self);
+
+    StringValue(source_string);
+
+    dst = rb_str_new(NULL, 0);
+
+    av[0] = rb_str_dup(source_string);
+    av[1] = dst;
+    av[2] = Qnil;
+    av[3] = Qnil;
+    av[4] = INT2NUM(ECONV_PARTIAL_INPUT);
+    ac = 5;
+
+    ret = econv_primitive_convert(ac, av, self);
+
+    if (ret == sym_invalid_byte_sequence ||
+        ret == sym_undefined_conversion ||
+        ret == sym_incomplete_input) {
+        VALUE exc = make_econv_exception(ec);
+        rb_exc_raise(exc);
+    }
+
+    if (ret == sym_finished) {
+        rb_raise(rb_eArgError, &quot;converter already finished&quot;);
+    }
+
+    if (ret != sym_source_buffer_empty) {
+        rb_bug(&quot;unexpected result of econv_primitive_convert&quot;);
+    }
+
+    return dst;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-convpath" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            convpath        &rarr; ary
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the conversion path of ec.</p>
+
+<p>The result is an array of conversions.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;ISO-8859-1&quot;</span>, <span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-value">crlf_newline:</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convpath</span>
+<span class="ruby-comment">#=&gt; [[#&lt;Encoding:ISO-8859-1&gt;, #&lt;Encoding:UTF-8&gt;],</span>
+<span class="ruby-comment">#    [#&lt;Encoding:UTF-8&gt;, #&lt;Encoding:EUC-JP&gt;],</span>
+<span class="ruby-comment">#    &quot;crlf_newline&quot;]</span>
+</pre>
+
+<p>Each element of the array is a pair of encodings or a string. A pair means an encoding conversion. A string means a decorator.</p>
+
+<p>In the above example, [#&lt;Encoding:ISO-8859-1&gt;, #&lt;Encoding:UTF-8&gt;] means a converter from ISO-8859-1 to UTF-8. “crlf_newline” means newline converter from LF to CRLF.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="convpath-source">
+            <pre>static VALUE
+econv_convpath(VALUE self)
+{
+    rb_econv_t *ec = check_econv(self);
+    VALUE result;
+    int i;
+
+    result = rb_ary_new();
+    for (i = 0; i &lt; ec-&gt;num_trans; i++) {
+        const rb_transcoder *tr = ec-&gt;elems[i].tc-&gt;transcoder;
+        VALUE v;
+        if (DECORATOR_P(tr-&gt;src_encoding, tr-&gt;dst_encoding))
+            v = rb_str_new_cstr(tr-&gt;dst_encoding);
+        else
+            v = rb_assoc_new(make_encobj(tr-&gt;src_encoding), make_encobj(tr-&gt;dst_encoding));
+        rb_ary_push(result, v);
+    }
+    return result;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destination_encoding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            destination_encoding &rarr; encoding
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the destination encoding as an <a href="../Encoding.html"><code>Encoding</code></a> object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="destination_encoding-source">
+            <pre>static VALUE
+econv_destination_encoding(VALUE self)
+{
+    rb_econv_t *ec = check_econv(self);
+    if (!ec-&gt;destination_encoding)
+        return Qnil;
+    return rb_enc_from_encoding(ec-&gt;destination_encoding);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finish" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            finish &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Finishes the converter. It returns the last part of the converted string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-8&quot;</span>, <span class="ruby-string">&quot;iso-2022-jp&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;\u3042&quot;</span>)     <span class="ruby-comment">#=&gt; &quot;\e$B$\&quot;&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">finish</span>                <span class="ruby-comment">#=&gt; &quot;\e(B&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="finish-source">
+            <pre>static VALUE
+econv_finish(VALUE self)
+{
+    VALUE ret, dst;
+    VALUE av[5];
+    int ac;
+    rb_econv_t *ec = check_econv(self);
+
+    dst = rb_str_new(NULL, 0);
+
+    av[0] = Qnil;
+    av[1] = dst;
+    av[2] = Qnil;
+    av[3] = Qnil;
+    av[4] = INT2FIX(0);
+    ac = 5;
+
+    ret = econv_primitive_convert(ac, av, self);
+
+    if (ret == sym_invalid_byte_sequence ||
+        ret == sym_undefined_conversion ||
+        ret == sym_incomplete_input) {
+        VALUE exc = make_econv_exception(ec);
+        rb_exc_raise(exc);
+    }
+
+    if (ret != sym_finished) {
+        rb_bug(&quot;unexpected result of econv_primitive_convert&quot;);
+    }
+
+    return dst;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-insert_output" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            insert_output(string) &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Inserts string into the encoding converter. The string will be converted to the destination encoding and output on later conversions.</p>
+
+<p>If the destination encoding is stateful, string is converted according to the state and the state is updated.</p>
+
+<p>This method should be used only when a conversion error occurs.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-8&quot;</span>, <span class="ruby-string">&quot;iso-8859-1&quot;</span>)
+<span class="ruby-identifier">src</span> = <span class="ruby-string">&quot;HIRAGANA LETTER A is \u{3042}.&quot;</span>
+<span class="ruby-identifier">dst</span> = <span class="ruby-string">&quot;&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>)    <span class="ruby-comment">#=&gt; :undefined_conversion</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[#{dst.dump}, #{src.dump}]&quot;</span>   <span class="ruby-comment">#=&gt; [&quot;HIRAGANA LETTER A is &quot;, &quot;.&quot;]</span>
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">insert_output</span>(<span class="ruby-string">&quot;&lt;err&gt;&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>)    <span class="ruby-comment">#=&gt; :finished</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[#{dst.dump}, #{src.dump}]&quot;</span>   <span class="ruby-comment">#=&gt; [&quot;HIRAGANA LETTER A is &lt;err&gt;.&quot;, &quot;&quot;]</span>
+
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-8&quot;</span>, <span class="ruby-string">&quot;iso-2022-jp&quot;</span>)
+<span class="ruby-identifier">src</span> = <span class="ruby-string">&quot;\u{306F 3041 3068 2661 3002}&quot;</span> <span class="ruby-comment"># U+2661 is not representable in iso-2022-jp</span>
+<span class="ruby-identifier">dst</span> = <span class="ruby-string">&quot;&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>)    <span class="ruby-comment">#=&gt; :undefined_conversion</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[#{dst.dump}, #{src.dump}]&quot;</span>   <span class="ruby-comment">#=&gt; [&quot;\e$B$O$!$H&quot;.force_encoding(&quot;ISO-2022-JP&quot;), &quot;\xE3\x80\x82&quot;]</span>
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">insert_output</span> <span class="ruby-string">&quot;?&quot;</span>                <span class="ruby-comment"># state change required to output &quot;?&quot;.</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>)    <span class="ruby-comment">#=&gt; :finished</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[#{dst.dump}, #{src.dump}]&quot;</span>   <span class="ruby-comment">#=&gt; [&quot;\e$B$O$!$H\e(B?\e$B!#\e(B&quot;.force_encoding(&quot;ISO-2022-JP&quot;), &quot;&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="insert_output-source">
+            <pre>static VALUE
+econv_insert_output(VALUE self, VALUE string)
+{
+    const char *insert_enc;
+
+    int ret;
+
+    rb_econv_t *ec = check_econv(self);
+
+    StringValue(string);
+    insert_enc = rb_econv_encoding_to_insert_output(ec);
+    string = rb_str_encode(string, rb_enc_from_encoding(rb_enc_find(insert_enc)), 0, Qnil);
+
+    ret = rb_econv_insert_output(ec, (const unsigned char *)RSTRING_PTR(string), RSTRING_LEN(string), insert_enc);
+    if (ret == -1) {
+        rb_raise(rb_eArgError, &quot;too big string&quot;);
+    }
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect         &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a printable version of <em>ec</em></p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;iso-8859-1&quot;</span>, <span class="ruby-string">&quot;utf-8&quot;</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">inspect</span>    <span class="ruby-comment">#=&gt; #&lt;Encoding::Converter: ISO-8859-1 to UTF-8&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+econv_inspect(VALUE self)
+{
+    const char *cname = rb_obj_classname(self);
+    rb_econv_t *ec;
+
+    TypedData_Get_Struct(self, rb_econv_t, &amp;econv_data_type, ec);
+    if (!ec)
+        return rb_sprintf(&quot;#&lt;%s: uninitialized&gt;&quot;, cname);
+    else {
+        const char *sname = ec-&gt;source_encoding_name;
+        const char *dname = ec-&gt;destination_encoding_name;
+        VALUE str;
+        str = rb_sprintf(&quot;#&lt;%s: &quot;, cname);
+        econv_description(sname, dname, ec-&gt;flags, str);
+        rb_str_cat2(str, &quot;&gt;&quot;);
+        return str;
+    }
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-last_error" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            last_error &rarr; exception or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an exception object for the last conversion. Returns nil if the last conversion did not produce an error.</p>
+
+<p>“error” means that <a href="InvalidByteSequenceError.html"><code>Encoding::InvalidByteSequenceError</code></a> and <a href="UndefinedConversionError.html"><code>Encoding::UndefinedConversionError</code></a> for <a href="Converter.html#method-i-convert"><code>Encoding::Converter#convert</code></a> and :invalid_byte_sequence, :incomplete_input and :undefined_conversion for <a href="Converter.html#method-i-primitive_convert"><code>Encoding::Converter#primitive_convert</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-8&quot;</span>, <span class="ruby-string">&quot;iso-8859-1&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;\xf1abcd&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>)       <span class="ruby-comment">#=&gt; :invalid_byte_sequence</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">last_error</span>      <span class="ruby-comment">#=&gt; #&lt;Encoding::InvalidByteSequenceError: &quot;\xF1&quot; followed by &quot;a&quot; on UTF-8&gt;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">1</span>)             <span class="ruby-comment">#=&gt; :destination_buffer_full</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">last_error</span>      <span class="ruby-comment">#=&gt; nil</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="last_error-source">
+            <pre>static VALUE
+econv_last_error(VALUE self)
+{
+    rb_econv_t *ec = check_econv(self);
+    VALUE exc;
+
+    exc = make_econv_exception(ec);
+    if (NIL_P(exc))
+        return Qnil;
+    return exc;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-primitive_convert" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            primitive_convert(source_buffer, destination_buffer) &rarr; symbol
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            primitive_convert(source_buffer, destination_buffer, destination_byteoffset) &rarr; symbol
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            primitive_convert(source_buffer, destination_buffer, destination_byteoffset, destination_bytesize) &rarr; symbol
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            primitive_convert(source_buffer, destination_buffer, destination_byteoffset, destination_bytesize, opt) &rarr; symbol
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>possible opt elements:</p>
+
+<pre>hash form:
+  :partial_input =&gt; true           # source buffer may be part of larger source
+  :after_output =&gt; true            # stop conversion after output before input
+integer form:
+  Encoding::Converter::PARTIAL_INPUT
+  Encoding::Converter::AFTER_OUTPUT</pre>
+
+<p>possible results:</p>
+
+<pre class="ruby"><span class="ruby-value">:invalid_byte_sequence</span>
+<span class="ruby-value">:incomplete_input</span>
+<span class="ruby-value">:undefined_conversion</span>
+<span class="ruby-value">:after_output</span>
+<span class="ruby-value">:destination_buffer_full</span>
+<span class="ruby-value">:source_buffer_empty</span>
+<span class="ruby-value">:finished</span>
+</pre>
+
+<p><a href="Converter.html#method-i-primitive_convert"><code>primitive_convert</code></a> converts source_buffer into destination_buffer.</p>
+
+<p>source_buffer should be a string or nil. nil means an empty string.</p>
+
+<p>destination_buffer should be a string.</p>
+
+<p>destination_byteoffset should be an integer or nil. nil means the end of destination_buffer. If it is omitted, nil is assumed.</p>
+
+<p>destination_bytesize should be an integer or nil. nil means unlimited. If it is omitted, nil is assumed.</p>
+
+<p>opt should be nil, a hash or an integer. nil means no flags. If it is omitted, nil is assumed.</p>
+
+<p><a href="Converter.html#method-i-primitive_convert"><code>primitive_convert</code></a> converts the content of source_buffer from beginning and store the result into destination_buffer.</p>
+
+<p>destination_byteoffset and destination_bytesize specify the region which the converted result is stored. destination_byteoffset specifies the start position in destination_buffer in bytes. If destination_byteoffset is nil, destination_buffer.bytesize is used for appending the result. destination_bytesize specifies maximum number of bytes. If destination_bytesize is nil, destination size is unlimited. After conversion, destination_buffer is resized to destination_byteoffset + actually produced number of bytes. Also destination_buffer&#39;s encoding is set to destination_encoding.</p>
+
+<p><a href="Converter.html#method-i-primitive_convert"><code>primitive_convert</code></a> drops the converted part of source_buffer. the dropped part is converted in destination_buffer or buffered in <a href="Converter.html"><code>Encoding::Converter</code></a> object.</p>
+
+<p><a href="Converter.html#method-i-primitive_convert"><code>primitive_convert</code></a> stops conversion when one of following condition met.</p>
+<ul><li>
+<p>invalid byte sequence found in source buffer (:invalid_byte_sequence) <code>primitive_errinfo</code> and <code>last_error</code> methods returns the detail of the error.</p>
+</li><li>
+<p>unexpected end of source buffer (:incomplete_input) this occur only when :partial_input is not specified. <code>primitive_errinfo</code> and <code>last_error</code> methods returns the detail of the error.</p>
+</li><li>
+<p>character not representable in output encoding (:undefined_conversion) <code>primitive_errinfo</code> and <code>last_error</code> methods returns the detail of the error.</p>
+</li><li>
+<p>after some output is generated, before input is done (:after_output) this occur only when :after_output is specified.</p>
+</li><li>
+<p>destination buffer is full (:destination_buffer_full) this occur only when destination_bytesize is non-nil.</p>
+</li><li>
+<p>source buffer is empty (:source_buffer_empty) this occur only when :partial_input is specified.</p>
+</li><li>
+<p>conversion is finished (:finished)</p>
+</li></ul>
+
+<p>example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;UTF-8&quot;</span>, <span class="ruby-string">&quot;UTF-16BE&quot;</span>)
+<span class="ruby-identifier">ret</span> = <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;pi&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">100</span>)
+<span class="ruby-identifier">p</span> [<span class="ruby-identifier">ret</span>, <span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>] <span class="ruby-comment">#=&gt; [:finished, &quot;&quot;, &quot;\x00p\x00i&quot;]</span>
+
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;UTF-8&quot;</span>, <span class="ruby-string">&quot;UTF-16BE&quot;</span>)
+<span class="ruby-identifier">ret</span> = <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;pi&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">1</span>)
+<span class="ruby-identifier">p</span> [<span class="ruby-identifier">ret</span>, <span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>] <span class="ruby-comment">#=&gt; [:destination_buffer_full, &quot;i&quot;, &quot;\x00&quot;]</span>
+<span class="ruby-identifier">ret</span> = <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">1</span>)
+<span class="ruby-identifier">p</span> [<span class="ruby-identifier">ret</span>, <span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>] <span class="ruby-comment">#=&gt; [:destination_buffer_full, &quot;&quot;, &quot;p&quot;]</span>
+<span class="ruby-identifier">ret</span> = <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">1</span>)
+<span class="ruby-identifier">p</span> [<span class="ruby-identifier">ret</span>, <span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>] <span class="ruby-comment">#=&gt; [:destination_buffer_full, &quot;&quot;, &quot;\x00&quot;]</span>
+<span class="ruby-identifier">ret</span> = <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">1</span>)
+<span class="ruby-identifier">p</span> [<span class="ruby-identifier">ret</span>, <span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>] <span class="ruby-comment">#=&gt; [:finished, &quot;&quot;, &quot;i&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="primitive_convert-source">
+            <pre>static VALUE
+econv_primitive_convert(int argc, VALUE *argv, VALUE self)
+{
+    VALUE input, output, output_byteoffset_v, output_bytesize_v, opt, flags_v;
+    rb_econv_t *ec = check_econv(self);
+    rb_econv_result_t res;
+    const unsigned char *ip, *is;
+    unsigned char *op, *os;
+    long output_byteoffset, output_bytesize;
+    unsigned long output_byteend;
+    int flags;
+
+    argc = rb_scan_args(argc, argv, &quot;23:&quot;, &amp;input, &amp;output, &amp;output_byteoffset_v, &amp;output_bytesize_v, &amp;flags_v, &amp;opt);
+
+    if (NIL_P(output_byteoffset_v))
+        output_byteoffset = 0; /* dummy */
+    else
+        output_byteoffset = NUM2LONG(output_byteoffset_v);
+
+    if (NIL_P(output_bytesize_v))
+        output_bytesize = 0; /* dummy */
+    else
+        output_bytesize = NUM2LONG(output_bytesize_v);
+
+    if (!NIL_P(flags_v)) {
+        if (!NIL_P(opt)) {
+            rb_error_arity(argc + 1, 2, 5);
+        }
+        flags = NUM2INT(rb_to_int(flags_v));
+    }
+    else if (!NIL_P(opt)) {
+        VALUE v;
+        flags = 0;
+        v = rb_hash_aref(opt, sym_partial_input);
+        if (RTEST(v))
+            flags |= ECONV_PARTIAL_INPUT;
+        v = rb_hash_aref(opt, sym_after_output);
+        if (RTEST(v))
+            flags |= ECONV_AFTER_OUTPUT;
+    }
+    else {
+        flags = 0;
+    }
+
+    StringValue(output);
+    if (!NIL_P(input))
+        StringValue(input);
+    rb_str_modify(output);
+
+    if (NIL_P(output_bytesize_v)) {
+        output_bytesize = RSTRING_EMBED_LEN_MAX;
+        if (!NIL_P(input) &amp;&amp; output_bytesize &lt; RSTRING_LEN(input))
+            output_bytesize = RSTRING_LEN(input);
+    }
+
+  retry:
+
+    if (NIL_P(output_byteoffset_v))
+        output_byteoffset = RSTRING_LEN(output);
+
+    if (output_byteoffset &lt; 0)
+        rb_raise(rb_eArgError, &quot;negative output_byteoffset&quot;);
+
+    if (RSTRING_LEN(output) &lt; output_byteoffset)
+        rb_raise(rb_eArgError, &quot;output_byteoffset too big&quot;);
+
+    if (output_bytesize &lt; 0)
+        rb_raise(rb_eArgError, &quot;negative output_bytesize&quot;);
+
+    output_byteend = (unsigned long)output_byteoffset +
+                     (unsigned long)output_bytesize;
+
+    if (output_byteend &lt; (unsigned long)output_byteoffset ||
+        LONG_MAX &lt; output_byteend)
+        rb_raise(rb_eArgError, &quot;output_byteoffset+output_bytesize too big&quot;);
+
+    if (rb_str_capacity(output) &lt; output_byteend)
+        rb_str_resize(output, output_byteend);
+
+    if (NIL_P(input)) {
+        ip = is = NULL;
+    }
+    else {
+        ip = (const unsigned char *)RSTRING_PTR(input);
+        is = ip + RSTRING_LEN(input);
+    }
+
+    op = (unsigned char *)RSTRING_PTR(output) + output_byteoffset;
+    os = op + output_bytesize;
+
+    res = rb_econv_convert(ec, &amp;ip, is, &amp;op, os, flags);
+    rb_str_set_len(output, op-(unsigned char *)RSTRING_PTR(output));
+    if (!NIL_P(input)) {
+        rb_str_drop_bytes(input, ip - (unsigned char *)RSTRING_PTR(input));
+    }
+
+    if (NIL_P(output_bytesize_v) &amp;&amp; res == econv_destination_buffer_full) {
+        if (LONG_MAX / 2 &lt; output_bytesize)
+            rb_raise(rb_eArgError, &quot;too long conversion result&quot;);
+        output_bytesize *= 2;
+        output_byteoffset_v = Qnil;
+        goto retry;
+    }
+
+    if (ec-&gt;destination_encoding) {
+        rb_enc_associate(output, ec-&gt;destination_encoding);
+    }
+
+    return econv_result_to_symbol(res);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-primitive_errinfo" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            primitive_errinfo &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p><a href="Converter.html#method-i-primitive_errinfo"><code>primitive_errinfo</code></a> returns important information regarding the last error as a 5-element array:</p>
+
+<pre class="ruby">[<span class="ruby-identifier">result</span>, <span class="ruby-identifier">enc1</span>, <span class="ruby-identifier">enc2</span>, <span class="ruby-identifier">error_bytes</span>, <span class="ruby-identifier">readagain_bytes</span>]
+</pre>
+
+<p>result is the last result of primitive_convert.</p>
+
+<p>Other elements are only meaningful when result is :invalid_byte_sequence, :incomplete_input or :undefined_conversion.</p>
+
+<p>enc1 and enc2 indicate a conversion step as a pair of strings. For example, a converter from EUC-JP to ISO-8859-1 converts a string as follows: EUC-JP -&gt; UTF-8 -&gt; ISO-8859-1. So [enc1, enc2] is either [“EUC-JP”, “UTF-8”] or [“UTF-8”, “ISO-8859-1”].</p>
+
+<p>error_bytes and readagain_bytes indicate the byte sequences which caused the error. error_bytes is discarded portion. readagain_bytes is buffered portion which is read again on next conversion.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-comment"># \xff is invalid as EUC-JP.</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-string">&quot;Shift_JIS&quot;</span>)
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;\xff&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">10</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_errinfo</span>
+<span class="ruby-comment">#=&gt; [:invalid_byte_sequence, &quot;EUC-JP&quot;, &quot;UTF-8&quot;, &quot;\xFF&quot;, &quot;&quot;]</span>
+
+<span class="ruby-comment"># HIRAGANA LETTER A (\xa4\xa2 in EUC-JP) is not representable in ISO-8859-1.</span>
+<span class="ruby-comment"># Since this error is occur in UTF-8 to ISO-8859-1 conversion,</span>
+<span class="ruby-comment"># error_bytes is HIRAGANA LETTER A in UTF-8 (\xE3\x81\x82).</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-string">&quot;ISO-8859-1&quot;</span>)
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;\xa4\xa2&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">10</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_errinfo</span>
+<span class="ruby-comment">#=&gt; [:undefined_conversion, &quot;UTF-8&quot;, &quot;ISO-8859-1&quot;, &quot;\xE3\x81\x82&quot;, &quot;&quot;]</span>
+
+<span class="ruby-comment"># partial character is invalid</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-string">&quot;ISO-8859-1&quot;</span>)
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;\xa4&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">10</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_errinfo</span>
+<span class="ruby-comment">#=&gt; [:incomplete_input, &quot;EUC-JP&quot;, &quot;UTF-8&quot;, &quot;\xA4&quot;, &quot;&quot;]</span>
+
+<span class="ruby-comment"># Encoding::Converter::PARTIAL_INPUT prevents invalid errors by</span>
+<span class="ruby-comment"># partial characters.</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;EUC-JP&quot;</span>, <span class="ruby-string">&quot;ISO-8859-1&quot;</span>)
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;\xa4&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">10</span>, <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span><span class="ruby-operator">::</span><span class="ruby-constant">PARTIAL_INPUT</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_errinfo</span>
+<span class="ruby-comment">#=&gt; [:source_buffer_empty, nil, nil, nil, nil]</span>
+
+<span class="ruby-comment"># \xd8\x00\x00@ is invalid as UTF-16BE because</span>
+<span class="ruby-comment"># no low surrogate after high surrogate (\xd8\x00).</span>
+<span class="ruby-comment"># It is detected by 3rd byte (\00) which is part of next character.</span>
+<span class="ruby-comment"># So the high surrogate (\xd8\x00) is discarded and</span>
+<span class="ruby-comment"># the 3rd byte is read again later.</span>
+<span class="ruby-comment"># Since the byte is buffered in ec, it is dropped from src.</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;UTF-16BE&quot;</span>, <span class="ruby-string">&quot;UTF-8&quot;</span>)
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;\xd8\x00\x00@&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">10</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_errinfo</span>
+<span class="ruby-comment">#=&gt; [:invalid_byte_sequence, &quot;UTF-16BE&quot;, &quot;UTF-8&quot;, &quot;\xD8\x00&quot;, &quot;\x00&quot;]</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">src</span>
+<span class="ruby-comment">#=&gt; &quot;@&quot;</span>
+
+<span class="ruby-comment"># Similar to UTF-16BE, \x00\xd8@\x00 is invalid as UTF-16LE.</span>
+<span class="ruby-comment"># The problem is detected by 4th byte.</span>
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;UTF-16LE&quot;</span>, <span class="ruby-string">&quot;UTF-8&quot;</span>)
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>=<span class="ruby-string">&quot;\x00\xd8@\x00&quot;</span>, <span class="ruby-identifier">dst</span>=<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">10</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_errinfo</span>
+<span class="ruby-comment">#=&gt; [:invalid_byte_sequence, &quot;UTF-16LE&quot;, &quot;UTF-8&quot;, &quot;\x00\xD8&quot;, &quot;@\x00&quot;]</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">src</span>
+<span class="ruby-comment">#=&gt; &quot;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="primitive_errinfo-source">
+            <pre>static VALUE
+econv_primitive_errinfo(VALUE self)
+{
+    rb_econv_t *ec = check_econv(self);
+
+    VALUE ary;
+
+    ary = rb_ary_new2(5);
+
+    rb_ary_store(ary, 0, econv_result_to_symbol(ec-&gt;last_error.result));
+    rb_ary_store(ary, 4, Qnil);
+
+    if (ec-&gt;last_error.source_encoding)
+        rb_ary_store(ary, 1, rb_str_new2(ec-&gt;last_error.source_encoding));
+
+    if (ec-&gt;last_error.destination_encoding)
+        rb_ary_store(ary, 2, rb_str_new2(ec-&gt;last_error.destination_encoding));
+
+    if (ec-&gt;last_error.error_bytes_start) {
+        rb_ary_store(ary, 3, rb_str_new((const char *)ec-&gt;last_error.error_bytes_start, ec-&gt;last_error.error_bytes_len));
+        rb_ary_store(ary, 4, rb_str_new((const char *)ec-&gt;last_error.error_bytes_start + ec-&gt;last_error.error_bytes_len, ec-&gt;last_error.readagain_len));
+    }
+
+    return ary;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-putback" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            putback                    &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            putback(max_numbytes)      &rarr; string
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Put back the bytes which will be converted.</p>
+
+<p>The bytes are caused by invalid_byte_sequence error. When invalid_byte_sequence error, some bytes are discarded and some bytes are buffered to be converted later. The latter bytes can be put back. It can be observed by <a href="InvalidByteSequenceError.html#method-i-readagain_bytes"><code>Encoding::InvalidByteSequenceError#readagain_bytes</code></a> and <a href="Converter.html#method-i-primitive_errinfo"><code>Encoding::Converter#primitive_errinfo</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-16le&quot;</span>, <span class="ruby-string">&quot;iso-8859-1&quot;</span>)
+<span class="ruby-identifier">src</span> = <span class="ruby-string">&quot;\x00\xd8\x61\x00&quot;</span>
+<span class="ruby-identifier">dst</span> = <span class="ruby-string">&quot;&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_convert</span>(<span class="ruby-identifier">src</span>, <span class="ruby-identifier">dst</span>)   <span class="ruby-comment">#=&gt; :invalid_byte_sequence</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">primitive_errinfo</span>     <span class="ruby-comment">#=&gt; [:invalid_byte_sequence, &quot;UTF-16LE&quot;, &quot;UTF-8&quot;, &quot;\x00\xD8&quot;, &quot;a\x00&quot;]</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">putback</span>               <span class="ruby-comment">#=&gt; &quot;a\x00&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">putback</span>               <span class="ruby-comment">#=&gt; &quot;&quot;          # no more bytes to put back</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="putback-source">
+            <pre>static VALUE
+econv_putback(int argc, VALUE *argv, VALUE self)
+{
+    rb_econv_t *ec = check_econv(self);
+    int n;
+    int putbackable;
+    VALUE str, max;
+
+    if (!rb_check_arity(argc, 0, 1) || NIL_P(max = argv[0])) {
+        n = rb_econv_putbackable(ec);
+    }
+    else {
+        n = NUM2INT(max);
+        putbackable = rb_econv_putbackable(ec);
+        if (putbackable &lt; n)
+            n = putbackable;
+    }
+
+    str = rb_str_new(NULL, n);
+    rb_econv_putback(ec, (unsigned char *)RSTRING_PTR(str), n);
+
+    if (ec-&gt;source_encoding) {
+        rb_enc_associate(str, ec-&gt;source_encoding);
+    }
+
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-replacement" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            replacement &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the replacement string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;euc-jp&quot;</span>, <span class="ruby-string">&quot;us-ascii&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">replacement</span>    <span class="ruby-comment">#=&gt; &quot;?&quot;</span>
+
+<span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;euc-jp&quot;</span>, <span class="ruby-string">&quot;utf-8&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">replacement</span>    <span class="ruby-comment">#=&gt; &quot;\uFFFD&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="replacement-source">
+            <pre>static VALUE
+econv_get_replacement(VALUE self)
+{
+    rb_econv_t *ec = check_econv(self);
+    int ret;
+    rb_encoding *enc;
+
+    ret = make_replacement(ec);
+    if (ret == -1) {
+        rb_raise(rb_eUndefinedConversionError, &quot;replacement character setup failed&quot;);
+    }
+
+    enc = rb_enc_find(ec-&gt;replacement_enc);
+    return rb_enc_str_new((const char *)ec-&gt;replacement_str, (long)ec-&gt;replacement_len, enc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-replacement-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            replacement = string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets the replacement string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ec</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">Converter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;utf-8&quot;</span>, <span class="ruby-string">&quot;us-ascii&quot;</span>, <span class="ruby-value">:undef</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:replace</span>)
+<span class="ruby-identifier">ec</span>.<span class="ruby-identifier">replacement</span> = <span class="ruby-string">&quot;&lt;undef&gt;&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">ec</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-string">&quot;a \u3042 b&quot;</span>)      <span class="ruby-comment">#=&gt; &quot;a &lt;undef&gt; b&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="replacement-3D-source">
+            <pre>static VALUE
+econv_set_replacement(VALUE self, VALUE arg)
+{
+    rb_econv_t *ec = check_econv(self);
+    VALUE string = arg;
+    int ret;
+    rb_encoding *enc;
+
+    StringValue(string);
+    enc = rb_enc_get(string);
+
+    ret = rb_econv_set_replacement(ec,
+            (const unsigned char *)RSTRING_PTR(string),
+            RSTRING_LEN(string),
+            rb_enc_name(enc));
+
+    if (ret == -1) {
+        /* xxx: rb_eInvalidByteSequenceError? */
+        rb_raise(rb_eUndefinedConversionError, &quot;replacement character setup failed&quot;);
+    }
+
+    return arg;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source_encoding" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            source_encoding &rarr; encoding
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the source encoding as an <a href="../Encoding.html"><code>Encoding</code></a> object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="source_encoding-source">
+            <pre>static VALUE
+econv_source_encoding(VALUE self)
+{
+    rb_econv_t *ec = check_econv(self);
+    if (!ec-&gt;source_encoding)
+        return Qnil;
+    return rb_enc_from_encoding(ec-&gt;source_encoding);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

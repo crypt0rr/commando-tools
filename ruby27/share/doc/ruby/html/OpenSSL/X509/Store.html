@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class OpenSSL::X509::Store - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-add_cert">#add_cert</a>
+    
+    <li ><a href="#method-i-add_crl">#add_crl</a>
+    
+    <li ><a href="#method-i-add_file">#add_file</a>
+    
+    <li ><a href="#method-i-add_path">#add_path</a>
+    
+    <li ><a href="#method-i-flags-3D">#flags=</a>
+    
+    <li ><a href="#method-i-purpose-3D">#purpose=</a>
+    
+    <li ><a href="#method-i-set_default_paths">#set_default_paths</a>
+    
+    <li ><a href="#method-i-time-3D">#time=</a>
+    
+    <li ><a href="#method-i-trust-3D">#trust=</a>
+    
+    <li ><a href="#method-i-verify">#verify</a>
+    
+    <li ><a href="#method-i-verify_callback-3D">#verify_callback=</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-OpenSSL::X509::Store">
+  <h1 id="class-OpenSSL::X509::Store" class="class">
+    class OpenSSL::X509::Store
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="../X509.html"><code>X509</code></a> certificate store holds trusted CA certificates used to verify peer certificates.</p>
+
+<p>The easiest way to create a useful certificate store is:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cert_store</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Store</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">cert_store</span>.<span class="ruby-identifier">set_default_paths</span>
+</pre>
+
+<p>This will use your system&#39;s built-in certificates.</p>
+
+<p>If your system does not have a default set of certificates you can obtain a set extracted from Mozilla CA certificate store by cURL maintainers here: <a href="https://curl.haxx.se/docs/caextract.html">curl.haxx.se/docs/caextract.html</a> (You may wish to use the firefox-db2pem.sh script to extract the certificates from a local install to avoid man-in-the-middle attacks.)</p>
+
+<p>After downloading or generating a cacert.pem from the above link you can create a certificate store from the pem file like this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cert_store</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Store</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">cert_store</span>.<span class="ruby-identifier">add_file</span> <span class="ruby-string">&#39;cacert.pem&#39;</span>
+</pre>
+
+<p>The certificate store can be used with an SSLSocket like this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">ssl_context</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSLContext</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">ssl_context</span>.<span class="ruby-identifier">verify_mode</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">VERIFY_PEER</span>
+<span class="ruby-identifier">ssl_context</span>.<span class="ruby-identifier">cert_store</span> = <span class="ruby-identifier">cert_store</span>
+
+<span class="ruby-identifier">tcp_socket</span> = <span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">open</span> <span class="ruby-string">&#39;example.com&#39;</span>, <span class="ruby-value">443</span>
+
+<span class="ruby-identifier">ssl_socket</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSL</span><span class="ruby-operator">::</span><span class="ruby-constant">SSLSocket</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">tcp_socket</span>, <span class="ruby-identifier">ssl_context</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-chain" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">chain</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The certificate chain constructed by the last call of <a href="Store.html#method-i-verify"><code>verify</code></a>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-error" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">error</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The error code set by the last call of <a href="Store.html#method-i-verify"><code>verify</code></a>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-error_string" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">error_string</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The description for the error code set by the last call of <a href="Store.html#method-i-verify"><code>verify</code></a>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-verify_callback" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verify_callback</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The callback for additional certificate verification. It is invoked for each untrusted certificate in the chain.</p>
+
+<p>The callback is invoked with two values, a boolean that indicates if the pre-verification by <a href="../../OpenSSL.html"><code>OpenSSL</code></a> has succeeded or not, and the <a href="StoreContext.html"><code>StoreContext</code></a> in use. The callback must return either true or false.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            X509::Store.new &rarr; store
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Store.html"><code>X509::Store</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+ossl_x509store_initialize(int argc, VALUE *argv, VALUE self)
+{
+    X509_STORE *store;
+
+/* BUG: This method takes any number of arguments but appears to ignore them. */
+    GetX509Store(self, store);
+#if !defined(HAVE_OPAQUE_OPENSSL)
+    /* [Bug #405] [Bug #1678] [Bug #3000]; already fixed? */
+    store-&gt;ex_data.sk = NULL;
+#endif
+    X509_STORE_set_verify_cb(store, x509store_verify_cb);
+    ossl_x509store_set_vfy_cb(self, Qnil);
+
+    /* last verification status */
+    rb_iv_set(self, &quot;@error&quot;, Qnil);
+    rb_iv_set(self, &quot;@error_string&quot;, Qnil);
+    rb_iv_set(self, &quot;@chain&quot;, Qnil);
+    rb_iv_set(self, &quot;@time&quot;, Qnil);
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_cert" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            add_cert(cert)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Certificate.html"><code>OpenSSL::X509::Certificate</code></a> <em>cert</em> to the certificate store.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_cert-source">
+            <pre>static VALUE
+ossl_x509store_add_cert(VALUE self, VALUE arg)
+{
+    X509_STORE *store;
+    X509 *cert;
+
+    cert = GetX509CertPtr(arg); /* NO NEED TO DUP */
+    GetX509Store(self, store);
+    if (X509_STORE_add_cert(store, cert) != 1){
+        ossl_raise(eX509StoreError, NULL);
+    }
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_crl" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            add_crl(crl) &rarr; self
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="CRL.html"><code>OpenSSL::X509::CRL</code></a> <em>crl</em> to the store.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_crl-source">
+            <pre>static VALUE
+ossl_x509store_add_crl(VALUE self, VALUE arg)
+{
+    X509_STORE *store;
+    X509_CRL *crl;
+
+    crl = GetX509CRLPtr(arg); /* NO NEED TO DUP */
+    GetX509Store(self, store);
+    if (X509_STORE_add_crl(store, crl) != 1){
+        ossl_raise(eX509StoreError, NULL);
+    }
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_file" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            add_file(file) &rarr; self
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Adds the certificates in <em>file</em> to the certificate store. <em>file</em> is the path to the file, and the file contains one or more certificates in PEM format concatenated together.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_file-source">
+            <pre>static VALUE
+ossl_x509store_add_file(VALUE self, VALUE file)
+{
+    X509_STORE *store;
+    X509_LOOKUP *lookup;
+    char *path = NULL;
+
+    if(file != Qnil){
+        path = StringValueCStr(file);
+    }
+    GetX509Store(self, store);
+    lookup = X509_STORE_add_lookup(store, X509_LOOKUP_file());
+    if(lookup == NULL) ossl_raise(eX509StoreError, NULL);
+    if(X509_LOOKUP_load_file(lookup, path, X509_FILETYPE_PEM) != 1){
+        ossl_raise(eX509StoreError, NULL);
+    }
+#if OPENSSL_VERSION_NUMBER &lt; 0x10101000 || defined(LIBRESSL_VERSION_NUMBER)
+    /*
+     * X509_load_cert_crl_file() which is called from X509_LOOKUP_load_file()
+     * did not check the return value of X509_STORE_add_{cert,crl}(), leaking
+     * &quot;cert already in hash table&quot; errors on the error queue, if duplicate
+     * certificates are found. This will be fixed by OpenSSL 1.1.1.
+     */
+    ossl_clear_error();
+#endif
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_path" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            add_path(path) &rarr; self
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Adds <em>path</em> as the hash dir to be looked up by the store.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_path-source">
+            <pre>static VALUE
+ossl_x509store_add_path(VALUE self, VALUE dir)
+{
+    X509_STORE *store;
+    X509_LOOKUP *lookup;
+    char *path = NULL;
+
+    if(dir != Qnil){
+        path = StringValueCStr(dir);
+    }
+    GetX509Store(self, store);
+    lookup = X509_STORE_add_lookup(store, X509_LOOKUP_hash_dir());
+    if(lookup == NULL) ossl_raise(eX509StoreError, NULL);
+    if(X509_LOOKUP_add_dir(lookup, path, X509_FILETYPE_PEM) != 1){
+        ossl_raise(eX509StoreError, NULL);
+    }
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flags-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flags = flags
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets <em>flags</em> to the <a href="Store.html"><code>Store</code></a>. <em>flags</em> consists of zero or more of the constants defined in with name V_FLAG_* or&#39;ed together.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="flags-3D-source">
+            <pre>static VALUE
+ossl_x509store_set_flags(VALUE self, VALUE flags)
+{
+    X509_STORE *store;
+    long f = NUM2LONG(flags);
+
+    GetX509Store(self, store);
+    X509_STORE_set_flags(store, f);
+
+    return flags;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-purpose-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            purpose = purpose
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets the store&#39;s purpose to <em>purpose</em>. If specified, the verifications on the store will check every untrusted certificate&#39;s extensions are consistent with the purpose. The purpose is specified by constants:</p>
+<ul><li>
+<p>X509::PURPOSE_SSL_CLIENT</p>
+</li><li>
+<p>X509::PURPOSE_SSL_SERVER</p>
+</li><li>
+<p>X509::PURPOSE_NS_SSL_SERVER</p>
+</li><li>
+<p>X509::PURPOSE_SMIME_SIGN</p>
+</li><li>
+<p>X509::PURPOSE_SMIME_ENCRYPT</p>
+</li><li>
+<p>X509::PURPOSE_CRL_SIGN</p>
+</li><li>
+<p>X509::PURPOSE_ANY</p>
+</li><li>
+<p>X509::PURPOSE_OCSP_HELPER</p>
+</li><li>
+<p>X509::PURPOSE_TIMESTAMP_SIGN</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="purpose-3D-source">
+            <pre>static VALUE
+ossl_x509store_set_purpose(VALUE self, VALUE purpose)
+{
+    X509_STORE *store;
+    int p = NUM2INT(purpose);
+
+    GetX509Store(self, store);
+    X509_STORE_set_purpose(store, p);
+
+    return purpose;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_default_paths" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            set_default_paths
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Configures <em>store</em> to look up CA certificates from the system default certificate store as needed basis. The location of the store can usually be determined by:</p>
+<ul><li>
+<p>OpenSSL::X509::DEFAULT_CERT_FILE</p>
+</li><li>
+<p>OpenSSL::X509::DEFAULT_CERT_DIR</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="set_default_paths-source">
+            <pre>static VALUE
+ossl_x509store_set_default_paths(VALUE self)
+{
+    X509_STORE *store;
+
+    GetX509Store(self, store);
+    if (X509_STORE_set_default_paths(store) != 1){
+        ossl_raise(eX509StoreError, NULL);
+    }
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-time-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            time = time
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets the time to be used in verifications.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="time-3D-source">
+            <pre>static VALUE
+ossl_x509store_set_time(VALUE self, VALUE time)
+{
+    rb_iv_set(self, &quot;@time&quot;, time);
+    return time;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-trust-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            trust = trust
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="trust-3D-source">
+            <pre>static VALUE
+ossl_x509store_set_trust(VALUE self, VALUE trust)
+{
+    X509_STORE *store;
+    int t = NUM2INT(trust);
+
+    GetX509Store(self, store);
+    X509_STORE_set_trust(store, t);
+
+    return trust;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-verify" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            verify(cert, chain = nil) &rarr; true | false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Performs a certificate verification on the <a href="Certificate.html"><code>OpenSSL::X509::Certificate</code></a> <em>cert</em>.</p>
+
+<p><em>chain</em> can be an array of <a href="Certificate.html"><code>OpenSSL::X509::Certificate</code></a> that is used to construct the certificate chain.</p>
+
+<p>If a block is given, it overrides the callback set by <a href="Store.html#method-i-verify_callback-3D"><code>verify_callback=</code></a>.</p>
+
+<p>After finishing the verification, the error information can be retrieved by <a href="Store.html#attribute-i-error"><code>error</code></a>, <a href="Store.html#attribute-i-error_string"><code>error_string</code></a>, and the resulting complete certificate chain can be retrieved by <a href="Store.html#attribute-i-chain"><code>chain</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verify-source">
+            <pre>static VALUE
+ossl_x509store_verify(int argc, VALUE *argv, VALUE self)
+{
+    VALUE cert, chain;
+    VALUE ctx, proc, result;
+
+    rb_scan_args(argc, argv, &quot;11&quot;, &amp;cert, &amp;chain);
+    ctx = rb_funcall(cX509StoreContext, rb_intern(&quot;new&quot;), 3, self, cert, chain);
+    proc = rb_block_given_p() ?  rb_block_proc() :
+           rb_iv_get(self, &quot;@verify_callback&quot;);
+    rb_iv_set(ctx, &quot;@verify_callback&quot;, proc);
+    result = rb_funcall(ctx, rb_intern(&quot;verify&quot;), 0);
+
+    rb_iv_set(self, &quot;@error&quot;, ossl_x509stctx_get_err(ctx));
+    rb_iv_set(self, &quot;@error_string&quot;, ossl_x509stctx_get_err_string(ctx));
+    rb_iv_set(self, &quot;@chain&quot;, ossl_x509stctx_get_chain(ctx));
+
+    return result;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-verify_callback-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify_callback=</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>General callback for <a href="../../OpenSSL.html"><code>OpenSSL</code></a> verify</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verify_callback-3D-source">
+            <pre>static VALUE
+ossl_x509store_set_vfy_cb(VALUE self, VALUE cb)
+{
+    X509_STORE *store;
+
+    GetX509Store(self, store);
+    X509_STORE_set_ex_data(store, store_ex_verify_cb_idx, (void *)cb);
+    rb_iv_set(self, &quot;@verify_callback&quot;, cb);
+
+    return cb;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

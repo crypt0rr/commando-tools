@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module OpenURI::OpenRead - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-open">#open</a>
+    
+    <li ><a href="#method-i-read">#read</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-OpenURI::OpenRead">
+  <h1 id="module-OpenURI::OpenRead" class="module">
+    module OpenURI::OpenRead
+  </h1>
+
+  <section class="description">
+    
+<p>Mixin for HTTP and FTP URIs.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-open" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open</span><span
+            class="method-args">(*rest, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="OpenRead.html#method-i-open"><code>OpenURI::OpenRead#open</code></a> provides `open&#39; for <a href="../URI/HTTP.html"><code>URI::HTTP</code></a> and <a href="../URI/FTP.html"><code>URI::FTP</code></a>.</p>
+
+<p><a href="OpenRead.html#method-i-open"><code>OpenURI::OpenRead#open</code></a> takes optional 3 arguments as:</p>
+
+<pre class="ruby"><span class="ruby-constant">OpenURI</span><span class="ruby-operator">::</span><span class="ruby-constant">OpenRead</span><span class="ruby-comment">#open([mode [, perm]] [, options]) [{|io| ... }]</span>
+</pre>
+
+<p><a href="OpenRead.html#method-i-open"><code>OpenURI::OpenRead#open</code></a> returns an IO-like object if block is not given. Otherwise it yields the <a href="../IO.html"><code>IO</code></a> object and return the value of the block. The <a href="../IO.html"><code>IO</code></a> object is extended with <a href="Meta.html"><code>OpenURI::Meta</code></a>.</p>
+
+<p><code>mode</code> and <code>perm</code> are the same as <a href="../Kernel.html#method-i-open"><code>Kernel#open</code></a>.</p>
+
+<p>However, <code>mode</code> must be read mode because <a href="OpenRead.html#method-i-open"><code>OpenURI::OpenRead#open</code></a> doesn&#39;t support write mode (yet). Also <code>perm</code> is ignored because it is meaningful only for file creation.</p>
+
+<p><code>options</code> must be a hash.</p>
+
+<p>Each option with a string key specifies an extra header field for HTTP. I.e., it is ignored for FTP without HTTP proxy.</p>
+
+<p>The hash may include other options, where keys are symbols:</p>
+<dl class="rdoc-list label-list"><dt>:proxy
+<dd>
+<p>Synopsis:</p>
+
+<pre>:proxy =&gt; &quot;http://proxy.foo.com:8000/&quot;
+:proxy =&gt; URI.parse(&quot;http://proxy.foo.com:8000/&quot;)
+:proxy =&gt; true
+:proxy =&gt; false
+:proxy =&gt; nil</pre>
+
+<p>If :proxy option is specified, the value should be <a href="../String.html"><code>String</code></a>, <a href="../URI.html"><code>URI</code></a>, boolean or nil.</p>
+
+<p>When <a href="../String.html"><code>String</code></a> or <a href="../URI.html"><code>URI</code></a> is given, it is treated as proxy <a href="../URI.html"><code>URI</code></a>.</p>
+
+<p>When true is given or the option itself is not specified, environment variable `scheme_proxy&#39; is examined. `scheme&#39; is replaced by `http&#39;, `https&#39; or `ftp&#39;.</p>
+
+<p>When false or nil is given, the environment variables are ignored and connection will be made to a server directly.</p>
+</dd><dt>:proxy_http_basic_authentication
+<dd>
+<p>Synopsis:</p>
+
+<pre>:proxy_http_basic_authentication =&gt;
+  [&quot;http://proxy.foo.com:8000/&quot;, &quot;proxy-user&quot;, &quot;proxy-password&quot;]
+:proxy_http_basic_authentication =&gt;
+  [URI.parse(&quot;http://proxy.foo.com:8000/&quot;),
+   &quot;proxy-user&quot;, &quot;proxy-password&quot;]</pre>
+
+<p>If :proxy option is specified, the value should be an <a href="../Array.html"><code>Array</code></a> with 3 elements.  It should contain a proxy <a href="../URI.html"><code>URI</code></a>, a proxy user name and a proxy password.  The proxy <a href="../URI.html"><code>URI</code></a> should be a <a href="../String.html"><code>String</code></a>, an <a href="../URI.html"><code>URI</code></a> or nil.  The proxy user name and password should be a <a href="../String.html"><code>String</code></a>.</p>
+
+<p>If nil is given for the proxy <a href="../URI.html"><code>URI</code></a>, this option is just ignored.</p>
+
+<p>If :proxy and :proxy_http_basic_authentication is specified, <a href="../ArgumentError.html"><code>ArgumentError</code></a> is raised.</p>
+</dd><dt>:http_basic_authentication
+<dd>
+<p>Synopsis:</p>
+
+<pre>:http_basic_authentication=&gt;[user, password]</pre>
+
+<p>If :http_basic_authentication is specified, the value should be an array which contains 2 strings: username and password. It is used for HTTP Basic authentication defined by RFC 2617.</p>
+</dd><dt>:content_length_proc
+<dd>
+<p>Synopsis:</p>
+
+<pre>:content_length_proc =&gt; lambda {|content_length| ... }</pre>
+
+<p>If :content_length_proc option is specified, the option value procedure is called before actual transfer is started. It takes one argument, which is expected content length in bytes.</p>
+
+<p>If two or more transfers are performed by HTTP redirection, the procedure is called only once for the last transfer.</p>
+
+<p>When expected content length is unknown, the procedure is called with nil.  This happens when the HTTP response has no Content-Length header.</p>
+</dd><dt>:progress_proc
+<dd>
+<p>Synopsis:</p>
+
+<pre>:progress_proc =&gt; lambda {|size| ...}</pre>
+
+<p>If :progress_proc option is specified, the proc is called with one argument each time when `open&#39; gets content fragment from network. The argument <code>size</code> is the accumulated transferred size in bytes.</p>
+
+<p>If two or more transfer is done by HTTP redirection, the procedure is called only one for a last transfer.</p>
+
+<p>:progress_proc and :content_length_proc are intended to be used for progress bar. For example, it can be implemented as follows using Ruby/ProgressBar.</p>
+
+<pre>pbar = nil
+open(&quot;http://...&quot;,
+  :content_length_proc =&gt; lambda {|t|
+    if t &amp;&amp; 0 &lt; t
+      pbar = ProgressBar.new(&quot;...&quot;, t)
+      pbar.file_transfer_mode
+    end
+  },
+  :progress_proc =&gt; lambda {|s|
+    pbar.set s if pbar
+  }) {|f| ... }</pre>
+</dd><dt>:read_timeout
+<dd>
+<p>Synopsis:</p>
+
+<pre>:read_timeout=&gt;nil     (no timeout)
+:read_timeout=&gt;10      (10 second)</pre>
+
+<p>:read_timeout option specifies a timeout of read for http connections.</p>
+</dd><dt>:open_timeout
+<dd>
+<p>Synopsis:</p>
+
+<pre>:open_timeout=&gt;nil     (no timeout)
+:open_timeout=&gt;10      (10 second)</pre>
+
+<p>:open_timeout option specifies a timeout of open for http connections.</p>
+</dd><dt>:ssl_ca_cert
+<dd>
+<p>Synopsis:</p>
+
+<pre>:ssl_ca_cert=&gt;filename or an Array of filenames</pre>
+
+<p>:ssl_ca_cert is used to specify CA certificate for SSL. If it is given, default certificates are not used.</p>
+</dd><dt>:ssl_verify_mode
+<dd>
+<p>Synopsis:</p>
+
+<pre>:ssl_verify_mode=&gt;mode</pre>
+
+<p>:ssl_verify_mode is used to specify openssl verify mode.</p>
+</dd><dt>:ftp_active_mode
+<dd>
+<p>Synopsis:</p>
+
+<pre>:ftp_active_mode=&gt;bool</pre>
+
+<p><code>:ftp_active_mode =&gt; true</code> is used to make ftp active mode. Ruby 1.9 uses passive mode by default. Note that the active mode is default in Ruby 1.8 or prior.</p>
+</dd><dt>:redirect
+<dd>
+<p>Synopsis:</p>
+
+<pre>:redirect=&gt;bool</pre>
+
+<p><code>:redirect</code> is true by default.  <code>:redirect =&gt; false</code> is used to disable all HTTP redirects.</p>
+
+<p><a href="HTTPRedirect.html"><code>OpenURI::HTTPRedirect</code></a> exception raised on redirection. Using <code>true</code> also means that redirections between http and ftp are permitted.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre><span class="ruby-comment"># File lib/open-uri.rb, line 743</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rest</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">OpenURI</span>.<span class="ruby-identifier">open_uri</span>(<span class="ruby-keyword">self</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">rest</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read</span><span
+            class="method-args">(options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="OpenRead.html#method-i-read"><code><a href="options">OpenURI::OpenRead#read(</a></code></a>) reads a content referenced by self and returns the content as string. The string is extended with <a href="Meta.html"><code>OpenURI::Meta</code></a>. The argument <code>options</code> is same as <a href="OpenRead.html#method-i-open"><code>OpenURI::OpenRead#open</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="read-source">
+            <pre><span class="ruby-comment"># File lib/open-uri.rb, line 751</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">read</span>(<span class="ruby-identifier">options</span>={})
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">options</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">str</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>
+    <span class="ruby-constant">Meta</span>.<span class="ruby-identifier">init</span> <span class="ruby-identifier">str</span>, <span class="ruby-identifier">f</span>
+    <span class="ruby-identifier">str</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

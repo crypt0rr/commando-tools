@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class UDPSocket - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="IPSocket.html">IPSocket</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-bind">#bind</a>
+    
+    <li ><a href="#method-i-connect">#connect</a>
+    
+    <li ><a href="#method-i-recvfrom_nonblock">#recvfrom_nonblock</a>
+    
+    <li ><a href="#method-i-send">#send</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-UDPSocket">
+  <h1 id="class-UDPSocket" class="class">
+    class UDPSocket
+  </h1>
+
+  <section class="description">
+    
+<p><a href="UDPSocket.html"><code>UDPSocket</code></a> represents a UDP/IP socket.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new([address_family]) &rarr; socket
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="UDPSocket.html"><code>UDPSocket</code></a> object.</p>
+
+<p><em>address_family</em> should be an integer, a string or a symbol: Socket::AF_INET, “AF_INET”, :INET, etc.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;socket&#39;</span>
+
+<span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>                   <span class="ruby-comment">#=&gt; #&lt;UDPSocket:fd 3&gt;</span>
+<span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">AF_INET6</span>) <span class="ruby-comment">#=&gt; #&lt;UDPSocket:fd 4&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+udp_init(int argc, VALUE *argv, VALUE sock)
+{
+    VALUE arg;
+    int family = AF_INET;
+    int fd;
+
+    if (rb_scan_args(argc, argv, &quot;01&quot;, &amp;arg) == 1) {
+        family = rsock_family_arg(arg);
+    }
+    fd = rsock_socket(family, SOCK_DGRAM, 0);
+    if (fd &lt; 0) {
+        rb_sys_fail(&quot;socket(2) - udp&quot;);
+    }
+
+    return rsock_init_sock(sock, fd);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-bind" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            bind(host, port) #&rarr; 0
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Binds <em>udpsocket</em> to <em>host</em>:<em>port</em>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">u1</span> = <span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">u1</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">4913</span>)
+<span class="ruby-identifier">u1</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;message-to-self&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">4913</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">u1</span>.<span class="ruby-identifier">recvfrom</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; [&quot;message-to&quot;, [&quot;AF_INET&quot;, 4913, &quot;localhost&quot;, &quot;127.0.0.1&quot;]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="bind-source">
+            <pre>static VALUE
+udp_bind(VALUE sock, VALUE host, VALUE port)
+{
+    struct udp_arg arg;
+    VALUE ret;
+
+    GetOpenFile(sock, arg.fptr);
+    arg.res = rsock_addrinfo(host, port, rsock_fd_family(arg.fptr-&gt;fd), SOCK_DGRAM, 0);
+    ret = rb_ensure(udp_bind_internal, (VALUE)&amp;arg,
+                    rsock_freeaddrinfo, (VALUE)arg.res);
+    if (!ret) rsock_sys_fail_host_port(&quot;bind(2)&quot;, host, port);
+    return INT2FIX(0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-connect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            connect(host, port) &rarr; 0
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Connects <em>udpsocket</em> to <em>host</em>:<em>port</em>.</p>
+
+<p>This makes possible to send without destination address.</p>
+
+<pre class="ruby"><span class="ruby-identifier">u1</span> = <span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">u1</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">4913</span>)
+<span class="ruby-identifier">u2</span> = <span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">u2</span>.<span class="ruby-identifier">connect</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">4913</span>)
+<span class="ruby-identifier">u2</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;uuuu&quot;</span>, <span class="ruby-value">0</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">u1</span>.<span class="ruby-identifier">recvfrom</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; [&quot;uuuu&quot;, [&quot;AF_INET&quot;, 33230, &quot;localhost&quot;, &quot;127.0.0.1&quot;]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="connect-source">
+            <pre>static VALUE
+udp_connect(VALUE sock, VALUE host, VALUE port)
+{
+    struct udp_arg arg;
+    VALUE ret;
+
+    GetOpenFile(sock, arg.fptr);
+    arg.res = rsock_addrinfo(host, port, rsock_fd_family(arg.fptr-&gt;fd), SOCK_DGRAM, 0);
+    ret = rb_ensure(udp_connect_internal, (VALUE)&amp;arg,
+                    rsock_freeaddrinfo, (VALUE)arg.res);
+    if (!ret) rsock_sys_fail_host_port(&quot;connect(2)&quot;, host, port);
+    return INT2FIX(0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-recvfrom_nonblock" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            recvfrom_nonblock(maxlen [, flags[, outbuf [, options]]]) &rarr; [mesg, sender_inet_addr]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Receives up to <em>maxlen</em> bytes from <code>udpsocket</code> using recvfrom(2) after O_NONBLOCK is set for the underlying file descriptor. <em>flags</em> is zero or more of the <code>MSG_</code> options. The first element of the results, <em>mesg</em>, is the data received. The second element, <em>sender_inet_addr</em>, is an array to represent the sender address.</p>
+
+<p>When recvfrom(2) returns 0, <a href="Socket.html#method-i-recvfrom_nonblock"><code>Socket#recvfrom_nonblock</code></a> returns an empty string as data. It means an empty packet.</p>
+
+<h3 id="method-i-recvfrom_nonblock-label-Parameters">Parameters<span><a href="#method-i-recvfrom_nonblock-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>maxlen</code> - the number of bytes to receive from the socket</p>
+</li><li>
+<p><code>flags</code> - zero or more of the <code>MSG_</code> options</p>
+</li><li>
+<p><code>outbuf</code> - destination <a href="String.html"><code>String</code></a> buffer</p>
+</li><li>
+<p><code>options</code> - keyword hash, supporting `exception: false`</p>
+</li></ul>
+
+<h3 id="method-i-recvfrom_nonblock-label-Example">Example<span><a href="#method-i-recvfrom_nonblock-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;socket&#39;</span>
+<span class="ruby-identifier">s1</span> = <span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">s1</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-identifier">s2</span> = <span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">s2</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-identifier">s2</span>.<span class="ruby-identifier">connect</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">s1</span>.<span class="ruby-identifier">addr</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">3</span>,<span class="ruby-value">1</span>))
+<span class="ruby-identifier">s1</span>.<span class="ruby-identifier">connect</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">s2</span>.<span class="ruby-identifier">addr</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value">3</span>,<span class="ruby-value">1</span>))
+<span class="ruby-identifier">s1</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;aaa&quot;</span>, <span class="ruby-value">0</span>
+<span class="ruby-keyword">begin</span> <span class="ruby-comment"># emulate blocking recvfrom</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">s2</span>.<span class="ruby-identifier">recvfrom_nonblock</span>(<span class="ruby-value">10</span>)  <span class="ruby-comment">#=&gt; [&quot;aaa&quot;, [&quot;AF_INET&quot;, 33302, &quot;localhost.localdomain&quot;, &quot;127.0.0.1&quot;]]</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">WaitReadable</span>
+  <span class="ruby-constant">IO</span>.<span class="ruby-identifier">select</span>([<span class="ruby-identifier">s2</span>])
+  <span class="ruby-keyword">retry</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Refer to <a href="Socket.html#method-i-recvfrom"><code>Socket#recvfrom</code></a> for the exceptions that may be thrown if the call to <em>recvfrom_nonblock</em> fails.</p>
+
+<p><a href="UDPSocket.html#method-i-recvfrom_nonblock"><code>UDPSocket#recvfrom_nonblock</code></a> may raise any error corresponding to recvfrom(2) failure, including Errno::EWOULDBLOCK.</p>
+
+<p>If the exception is Errno::EWOULDBLOCK or Errno::EAGAIN, it is extended by <a href="IO/WaitReadable.html"><code>IO::WaitReadable</code></a>. So <a href="IO/WaitReadable.html"><code>IO::WaitReadable</code></a> can be used to rescue the exceptions for retrying recvfrom_nonblock.</p>
+
+<p>By specifying a keyword argument <em>exception</em> to <code>false</code>, you can indicate that <a href="UDPSocket.html#method-i-recvfrom_nonblock"><code>recvfrom_nonblock</code></a> should not raise an <a href="IO/WaitReadable.html"><code>IO::WaitReadable</code></a> exception, but return the symbol <code>:wait_readable</code> instead.</p>
+
+<h3 id="method-i-recvfrom_nonblock-label-See">See<span><a href="#method-i-recvfrom_nonblock-label-See">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><a href="Socket.html#method-i-recvfrom"><code>Socket#recvfrom</code></a></p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="recvfrom_nonblock-source">
+            <pre><span class="ruby-comment"># File ext/socket/lib/socket.rb, line 1271</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">recvfrom_nonblock</span>(<span class="ruby-identifier">len</span>, <span class="ruby-identifier">flag</span> = <span class="ruby-value">0</span>, <span class="ruby-identifier">outbuf</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-value">exception:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">__recvfrom_nonblock</span>(<span class="ruby-identifier">len</span>, <span class="ruby-identifier">flag</span>, <span class="ruby-identifier">outbuf</span>, <span class="ruby-identifier">exception</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-send" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            send(mesg, flags, host, port)  &rarr; numbytes_sent
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            send(mesg, flags, sockaddr_to) &rarr; numbytes_sent
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            send(mesg, flags)              &rarr; numbytes_sent
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sends <em>mesg</em> via <em>udpsocket</em>.</p>
+
+<p><em>flags</em> should be a bitwise OR of Socket::MSG_* constants.</p>
+
+<pre class="ruby"><span class="ruby-identifier">u1</span> = <span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">u1</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">4913</span>)
+
+<span class="ruby-identifier">u2</span> = <span class="ruby-constant">UDPSocket</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">u2</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;hi&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-string">&quot;127.0.0.1&quot;</span>, <span class="ruby-value">4913</span>
+
+<span class="ruby-identifier">mesg</span>, <span class="ruby-identifier">addr</span> = <span class="ruby-identifier">u1</span>.<span class="ruby-identifier">recvfrom</span>(<span class="ruby-value">10</span>)
+<span class="ruby-identifier">u1</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">mesg</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">addr</span>[<span class="ruby-value">3</span>], <span class="ruby-identifier">addr</span>[<span class="ruby-value">1</span>]
+
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">u2</span>.<span class="ruby-identifier">recv</span>(<span class="ruby-value">100</span>) <span class="ruby-comment">#=&gt; &quot;hi&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="send-source">
+            <pre>static VALUE
+udp_send(int argc, VALUE *argv, VALUE sock)
+{
+    VALUE flags, host, port;
+    struct udp_send_arg arg;
+    VALUE ret;
+
+    if (argc == 2 || argc == 3) {
+        return rsock_bsock_send(argc, argv, sock);
+    }
+    rb_scan_args(argc, argv, &quot;4&quot;, &amp;arg.sarg.mesg, &amp;flags, &amp;host, &amp;port);
+
+    StringValue(arg.sarg.mesg);
+    GetOpenFile(sock, arg.fptr);
+    arg.sarg.fd = arg.fptr-&gt;fd;
+    arg.sarg.flags = NUM2INT(flags);
+    arg.res = rsock_addrinfo(host, port, rsock_fd_family(arg.fptr-&gt;fd), SOCK_DGRAM, 0);
+    ret = rb_ensure(udp_send_internal, (VALUE)&amp;arg,
+                    rsock_freeaddrinfo, (VALUE)arg.res);
+    if (!ret) rsock_sys_fail_host_port(&quot;sendto(2)&quot;, host, port);
+    return ret;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

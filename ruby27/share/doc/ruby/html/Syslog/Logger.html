@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Syslog::Logger - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-make_methods">::make_methods</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-syslog">::syslog</a>
+    
+    <li ><a href="#method-c-syslog-3D">::syslog=</a>
+    
+    <li ><a href="#method-i-add">#add</a>
+    
+    <li ><a href="#method-i-debug">#debug</a>
+    
+    <li ><a href="#method-i-error">#error</a>
+    
+    <li ><a href="#method-i-fatal">#fatal</a>
+    
+    <li ><a href="#method-i-info">#info</a>
+    
+    <li ><a href="#method-i-unknown">#unknown</a>
+    
+    <li ><a href="#method-i-warn">#warn</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Syslog::Logger">
+  <h1 id="class-Syslog::Logger" class="class">
+    class Syslog::Logger
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Logger.html"><code>Syslog::Logger</code></a> is a <a href="Logger.html"><code>Logger</code></a> work-alike that logs via syslog instead of to a file.  You can use <a href="Logger.html"><code>Syslog::Logger</code></a> to aggregate logs between multiple machines.</p>
+
+<p>By default, <a href="Logger.html"><code>Syslog::Logger</code></a> uses the program name &#39;ruby&#39;, but this can be changed via the first argument to <a href="Logger.html#method-c-new"><code>Syslog::Logger.new</code></a>.</p>
+
+<p>NOTE! You can only set the <a href="Logger.html"><code>Syslog::Logger</code></a> program name when you initialize <a href="Logger.html"><code>Syslog::Logger</code></a> for the first time.  This is a limitation of the way <a href="Logger.html"><code>Syslog::Logger</code></a> uses syslog (and in some ways, a limitation of the way syslog(3) works).  Attempts to change Syslog::Logger&#39;s program name after the first initialization will be ignored.</p>
+
+<h3 id="class-Syslog::Logger-label-Example">Example<span><a href="#class-Syslog::Logger-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The following will log to syslogd on your local machine:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;syslog/logger&#39;</span>
+
+<span class="ruby-identifier">log</span> = <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;my_program&#39;</span>
+<span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&#39;this line will be logged via syslog(3)&#39;</span>
+</pre>
+
+<p>Also the facility may be set to specify the facility level which will be used:</p>
+
+<pre class="ruby"><span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&#39;this line will be logged using Syslog default facility level&#39;</span>
+
+<span class="ruby-identifier">log_local1</span> = <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;my_program&#39;</span>, <span class="ruby-constant">Syslog</span><span class="ruby-operator">::</span><span class="ruby-constant">LOG_LOCAL1</span>
+<span class="ruby-identifier">log_local1</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&#39;this line will be logged using local1 facility level&#39;</span>
+</pre>
+
+<p>You may need to perform some syslog.conf setup first.  For a BSD machine add the following lines to /etc/syslog.conf:</p>
+
+<pre>!my_program
+*.*                                             /var/log/my_program.log</pre>
+
+<p>Then touch /var/log/my_program.log and signal syslogd with a HUP (killall -HUP syslogd, on FreeBSD).</p>
+
+<p>If you wish to have logs automatically roll over and archive, see the newsyslog.conf(5) and newsyslog(8) man pages.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="LEVEL_MAP">LEVEL_MAP
+        
+        <dd><p>Maps <a href="Logger.html"><code>Logger</code></a> warning types to syslog(3) warning types.</p>
+
+<p>Messages from Ruby applications are not considered as critical as messages from other system daemons using syslog(3), so most messages are reduced by one level.  For example, a fatal message for Ruby&#39;s <a href="Logger.html"><code>Logger</code></a> is considered an error for syslog(3).</p>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd><p>The version of <a href="Logger.html"><code>Syslog::Logger</code></a> you are using.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-facility" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">facility</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The facility argument is used to specify what type of program is logging the message.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-formatter" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">formatter</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Logging formatter, as a <code>Proc</code> that will take four arguments and return the formatted message. The arguments are:</p>
+<dl class="rdoc-list note-list"><dt><code>severity</code>
+<dd>
+<p>The Severity of the log message.</p>
+</dd><dt><code>time</code>
+<dd>
+<p>A <a href="../Time.html"><code>Time</code></a> instance representing when the message was logged.</p>
+</dd><dt><code>progname</code>
+<dd>
+<p>The progname configured, or passed to the logger method.</p>
+</dd><dt><code>msg</code>
+<dd>
+<p>The <em>Object</em> the user passed to the log message; not necessarily a <a href="../String.html"><code>String</code></a>.</p>
+</dd></dl>
+
+<p>The block should return an <a href="../Object.html"><code>Object</code></a> that can be written to the logging device via <code>write</code>.  The default formatter is used when no formatter is set.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-level" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">level</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Log level for <a href="Logger.html"><code>Logger</code></a> compatibility.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-make_methods" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_methods</span><span
+            class="method-args">(meth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Builds a methods for level <code>meth</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="make_methods-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 107</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">make_methods</span> <span class="ruby-identifier">meth</span>
+    <span class="ruby-identifier">level</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Logger</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">meth</span>.<span class="ruby-identifier">upcase</span>)
+    <span class="ruby-identifier">eval</span> <span class="ruby-identifier">&lt;&lt;-EOM</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+<span class="ruby-value">      def #{meth}(message = nil, &amp;block)
+        add(#{level}, message, &amp;block)
+      end
+
+      def #{meth}?
+        level &lt;= #{level}
+      end
+</span><span class="ruby-identifier">    EOM</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(program_name = &#39;ruby&#39;, facility = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Fills in variables for <a href="Logger.html"><code>Logger</code></a> compatibility.  If this is the first instance of <a href="Logger.html"><code>Syslog::Logger</code></a>, <code>program_name</code> may be set to change the logged program name. The <code>facility</code> may be set to specify the facility level which will be used.</p>
+
+<p>Due to the way syslog works, only one program name may be chosen.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">program_name</span> = <span class="ruby-string">&#39;ruby&#39;</span>, <span class="ruby-identifier">facility</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@level</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">DEBUG</span>
+  <span class="ruby-ivar">@formatter</span> = <span class="ruby-constant">Formatter</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-identifier">@@syslog</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">program_name</span>)
+
+  <span class="ruby-ivar">@facility</span> = (<span class="ruby-identifier">facility</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">@@syslog</span>.<span class="ruby-identifier">facility</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-syslog" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">syslog</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the internal <a href="../Syslog.html"><code>Syslog</code></a> object that is initialized when the first instance is created.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="syslog-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">syslog</span>
+  <span class="ruby-identifier">@@syslog</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-syslog-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">syslog=</span><span
+            class="method-args">(syslog)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Specifies the internal <a href="../Syslog.html"><code>Syslog</code></a> object to be used.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="syslog-3D-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">syslog=</span> <span class="ruby-identifier">syslog</span>
+  <span class="ruby-identifier">@@syslog</span> = <span class="ruby-identifier">syslog</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add</span><span
+            class="method-args">(severity, message = nil, progname = nil, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Almost duplicates <a href="Logger.html#method-i-add"><code>Logger#add</code></a>.  <code>progname</code> is ignored.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 203</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span> <span class="ruby-identifier">severity</span>, <span class="ruby-identifier">message</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">progname</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-identifier">severity</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">UNKNOWN</span>
+  <span class="ruby-identifier">level</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">severity</span> <span class="ruby-keyword">and</span>
+    <span class="ruby-identifier">@@syslog</span>.<span class="ruby-identifier">log</span>( (<span class="ruby-constant">LEVEL_MAP</span>[<span class="ruby-identifier">severity</span>] <span class="ruby-operator">|</span> <span class="ruby-ivar">@facility</span>), <span class="ruby-string">&#39;%s&#39;</span>, <span class="ruby-identifier">formatter</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">severity</span>, <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>, <span class="ruby-identifier">progname</span>, (<span class="ruby-identifier">message</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>)) )
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-debug" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">debug</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs a <code>message</code> at the debug (syslog debug) log level, or logs the message returned from the block.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="debug-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 151</span>
+  </pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">error</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs a <code>message</code> at the error (syslog warning) log level, or logs the message returned from the block.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="error-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 133</span>
+  </pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fatal" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fatal</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs a <code>message</code> at the fatal (syslog err) log level, or logs the message returned from the block.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fatal-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 127</span>
+  </pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">info</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs a <code>message</code> at the info (syslog info) log level, or logs the message returned from the block.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="info-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 145</span>
+  </pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unknown" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unknown</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs a <code>message</code> at the unknown (syslog alert) log level, or logs the message returned from the block.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unknown-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 121</span>
+  </pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-warn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">warn</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs a <code>message</code> at the warn (syslog notice) log level, or logs the message returned from the block.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="warn-source">
+            <pre><span class="ruby-comment"># File ext/syslog/lib/syslog/logger.rb, line 139</span>
+  </pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

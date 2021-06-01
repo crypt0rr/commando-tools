@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Method - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-3D-3D-3D">#===</a>
+    
+    <li ><a href="#method-i-3E-3E">#&gt;&gt;</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-arity">#arity</a>
+    
+    <li ><a href="#method-i-call">#call</a>
+    
+    <li ><a href="#method-i-clone">#clone</a>
+    
+    <li ><a href="#method-i-curry">#curry</a>
+    
+    <li ><a href="#method-i-eql-3F">#eql?</a>
+    
+    <li ><a href="#method-i-hash">#hash</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-name">#name</a>
+    
+    <li ><a href="#method-i-original_name">#original_name</a>
+    
+    <li ><a href="#method-i-owner">#owner</a>
+    
+    <li ><a href="#method-i-parameters">#parameters</a>
+    
+    <li ><a href="#method-i-receiver">#receiver</a>
+    
+    <li ><a href="#method-i-source_location">#source_location</a>
+    
+    <li ><a href="#method-i-super_method">#super_method</a>
+    
+    <li ><a href="#method-i-to_proc">#to_proc</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-unbind">#unbind</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Method">
+  <h1 id="class-Method" class="class">
+    class Method
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Method.html"><code>Method</code></a> objects are created by <a href="Object.html#method-i-method"><code>Object#method</code></a>, and are associated with a particular object (not just with a class).  They may be used to invoke the method within the object, and as a block associated with an iterator.  They may also be unbound from one object (creating an <a href="UnboundMethod.html"><code>UnboundMethod</code></a>) and bound to another.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Thing</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">square</span>(<span class="ruby-identifier">n</span>)
+    <span class="ruby-identifier">n</span><span class="ruby-operator">*</span><span class="ruby-identifier">n</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">thing</span> = <span class="ruby-constant">Thing</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">meth</span>  = <span class="ruby-identifier">thing</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:square</span>)
+
+<span class="ruby-identifier">meth</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">9</span>)                 <span class="ruby-comment">#=&gt; 81</span>
+[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ].<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">meth</span>)   <span class="ruby-comment">#=&gt; [1, 4, 9]</span>
+
+[ <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span> ].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-value">:puts</span>)) <span class="ruby-comment">#=&gt; prints 1, 2, 3</span>
+
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;date&#39;</span>
+<span class="ruby-node">%w[2017-03-01 2017-03-02]</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-constant">Date</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:parse</span>))
+<span class="ruby-comment">#=&gt; [#&lt;Date: 2017-03-01 ((2457814j,0s,0n),+0s,2299161j)&gt;, #&lt;Date: 2017-03-02 ((2457815j,0s,0n),+0s,2299161j)&gt;]</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            meth &lt;&lt; g &rarr; a_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a proc that is the composition of this method and the given <em>g</em>. The returned proc takes a variable number of arguments, calls <em>g</em> with them then calls this method with the result.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">f</span>(<span class="ruby-identifier">x</span>)
+  <span class="ruby-identifier">x</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">x</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">f</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:f</span>)
+<span class="ruby-identifier">g</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x</span> }
+<span class="ruby-identifier">p</span> (<span class="ruby-identifier">f</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">g</span>).<span class="ruby-identifier">call</span>(<span class="ruby-value">2</span>) <span class="ruby-comment">#=&gt; 16</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3C-source">
+            <pre>static VALUE
+rb_method_compose_to_left(VALUE self, VALUE g)
+{
+    g = to_callable(g);
+    self = method_to_proc(self);
+    return proc_compose_to_left(self, g);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            meth == other_meth  &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Two method objects are equal if they are bound to the same object and refer to the same method definition and their owners are the same class or module.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+method_eq(VALUE method, VALUE other)
+{
+    struct METHOD *m1, *m2;
+    VALUE klass1, klass2;
+
+    if (!rb_obj_is_method(other))
+        return Qfalse;
+    if (CLASS_OF(method) != CLASS_OF(other))
+        return Qfalse;
+
+    Check_TypedStruct(method, &amp;method_data_type);
+    m1 = (struct METHOD *)DATA_PTR(method);
+    m2 = (struct METHOD *)DATA_PTR(other);
+
+    klass1 = method_entry_defined_class(m1-&gt;me);
+    klass2 = method_entry_defined_class(m2-&gt;me);
+
+    if (!rb_method_entry_eq(m1-&gt;me, m2-&gt;me) ||
+        klass1 != klass2 ||
+        m1-&gt;klass != m2-&gt;klass ||
+        m1-&gt;recv != m2-&gt;recv) {
+        return Qfalse;
+    }
+
+    return Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            method === obj   &rarr; result_of_method
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the method with <code>obj</code> as the parameter like <a href="Method.html#method-i-call"><code>call</code></a>. This allows a method object to be the target of a <code>when</code> clause in a case statement.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;prime&#39;</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-value">1373</span>
+<span class="ruby-keyword">when</span> <span class="ruby-constant">Prime</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:prime?</span>)
+  <span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-3D-source">
+            <pre>static VALUE
+rb_method_call_pass_called_kw(int argc, const VALUE *argv, VALUE method)
+{
+    VALUE procval = rb_block_given_p() ? rb_block_proc() : Qnil;
+    return rb_method_call_with_block_kw(argc, argv, method, procval, RB_PASS_CALLED_KEYWORDS);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3E-3E" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            meth &gt;&gt; g &rarr; a_proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a proc that is the composition of this method and the given <em>g</em>. The returned proc takes a variable number of arguments, calls <em>g</em> with them then calls this method with the result.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">f</span>(<span class="ruby-identifier">x</span>)
+  <span class="ruby-identifier">x</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">x</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">f</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:f</span>)
+<span class="ruby-identifier">g</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x</span> }
+<span class="ruby-identifier">p</span> (<span class="ruby-identifier">f</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-identifier">g</span>).<span class="ruby-identifier">call</span>(<span class="ruby-value">2</span>) <span class="ruby-comment">#=&gt; 8</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3E-3E-source">
+            <pre>static VALUE
+rb_method_compose_to_right(VALUE self, VALUE g)
+{
+    g = to_callable(g);
+    self = method_to_proc(self);
+    return proc_compose_to_right(self, g);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            meth[args, ...]         &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the <em>meth</em> with the specified arguments, returning the method&#39;s return value.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-value">12</span>.<span class="ruby-identifier">method</span>(<span class="ruby-string">&quot;+&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">3</span>)    <span class="ruby-comment">#=&gt; 15</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">20</span>)   <span class="ruby-comment">#=&gt; 32</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+rb_method_call_pass_called_kw(int argc, const VALUE *argv, VALUE method)
+{
+    VALUE procval = rb_block_given_p() ? rb_block_proc() : Qnil;
+    return rb_method_call_with_block_kw(argc, argv, method, procval, RB_PASS_CALLED_KEYWORDS);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-arity" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            arity    &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an indication of the number of arguments accepted by a method. Returns a nonnegative integer for methods that take a fixed number of arguments. For Ruby methods that take a variable number of arguments, returns -n-1, where n is the number of required arguments. Keyword arguments will be considered as a single additional argument, that argument being mandatory if any keyword argument is mandatory. For methods written in C, returns -1 if the call takes a variable number of arguments.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">one</span>;    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">two</span>(<span class="ruby-identifier">a</span>); <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">three</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>);  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">four</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>); <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">five</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">c</span>);    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">six</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">c</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">d</span>); <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">seven</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>, <span class="ruby-value">x:</span><span class="ruby-value">0</span>); <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">eight</span>(<span class="ruby-value">x:</span>, <span class="ruby-value">y:</span>); <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">nine</span>(<span class="ruby-value">x:</span>, <span class="ruby-value">y:</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">z</span>); <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ten</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-value">x:</span>, <span class="ruby-value">y:</span>); <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">c</span> = <span class="ruby-constant">C</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:one</span>).<span class="ruby-identifier">arity</span>     <span class="ruby-comment">#=&gt; 0</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:two</span>).<span class="ruby-identifier">arity</span>     <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:three</span>).<span class="ruby-identifier">arity</span>   <span class="ruby-comment">#=&gt; -1</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:four</span>).<span class="ruby-identifier">arity</span>    <span class="ruby-comment">#=&gt; 2</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:five</span>).<span class="ruby-identifier">arity</span>    <span class="ruby-comment">#=&gt; -3</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:six</span>).<span class="ruby-identifier">arity</span>     <span class="ruby-comment">#=&gt; -3</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:seven</span>).<span class="ruby-identifier">arity</span>   <span class="ruby-comment">#=&gt; -3</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:eight</span>).<span class="ruby-identifier">arity</span>   <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:nine</span>).<span class="ruby-identifier">arity</span>    <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-identifier">c</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:ten</span>).<span class="ruby-identifier">arity</span>     <span class="ruby-comment">#=&gt; -2</span>
+
+<span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:size</span>).<span class="ruby-identifier">arity</span>      <span class="ruby-comment">#=&gt; 0</span>
+<span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:replace</span>).<span class="ruby-identifier">arity</span>   <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:squeeze</span>).<span class="ruby-identifier">arity</span>   <span class="ruby-comment">#=&gt; -1</span>
+<span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:count</span>).<span class="ruby-identifier">arity</span>     <span class="ruby-comment">#=&gt; -1</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="arity-source">
+            <pre>static VALUE
+method_arity_m(VALUE method)
+{
+    int n = method_arity(method);
+    return INT2FIX(n);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-call" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            call(args, ...)    &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the <em>meth</em> with the specified arguments, returning the method&#39;s return value.</p>
+
+<pre class="ruby"><span class="ruby-identifier">m</span> = <span class="ruby-value">12</span>.<span class="ruby-identifier">method</span>(<span class="ruby-string">&quot;+&quot;</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">3</span>)    <span class="ruby-comment">#=&gt; 15</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">20</span>)   <span class="ruby-comment">#=&gt; 32</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="call-source">
+            <pre>static VALUE
+rb_method_call_pass_called_kw(int argc, const VALUE *argv, VALUE method)
+{
+    VALUE procval = rb_block_given_p() ? rb_block_proc() : Qnil;
+    return rb_method_call_with_block_kw(argc, argv, method, procval, RB_PASS_CALLED_KEYWORDS);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-clone" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            clone &rarr; new_method
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a clone of this method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">A</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;bar&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-constant">A</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:foo</span>)
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span> <span class="ruby-comment"># =&gt; &quot;bar&quot;</span>
+<span class="ruby-identifier">n</span> = <span class="ruby-identifier">m</span>.<span class="ruby-identifier">clone</span>.<span class="ruby-identifier">call</span> <span class="ruby-comment"># =&gt; &quot;bar&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="clone-source">
+            <pre>static VALUE
+method_clone(VALUE self)
+{
+    VALUE clone;
+    struct METHOD *orig, *data;
+
+    TypedData_Get_Struct(self, struct METHOD, &amp;method_data_type, orig);
+    clone = TypedData_Make_Struct(CLASS_OF(self), struct METHOD, &amp;method_data_type, data);
+    CLONESETUP(clone, self);
+    RB_OBJ_WRITE(clone, &amp;data-&gt;recv, orig-&gt;recv);
+    RB_OBJ_WRITE(clone, &amp;data-&gt;klass, orig-&gt;klass);
+    RB_OBJ_WRITE(clone, &amp;data-&gt;iclass, orig-&gt;iclass);
+    RB_OBJ_WRITE(clone, &amp;data-&gt;me, rb_method_entry_clone(orig-&gt;me));
+    return clone;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-curry" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            curry        &rarr; proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            curry(arity) &rarr; proc
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a curried proc based on the method. When the proc is called with a number of arguments that is lower than the method&#39;s arity, then another curried proc is returned. Only when enough arguments have been supplied to satisfy the method signature, will the method actually be called.</p>
+
+<p>The optional <em>arity</em> argument should be supplied when currying methods with variable arguments to determine how many arguments are needed before the method is called.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span>,<span class="ruby-identifier">c</span>)
+  [<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>, <span class="ruby-identifier">c</span>]
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">proc</span>  = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:foo</span>).<span class="ruby-identifier">curry</span>
+<span class="ruby-identifier">proc2</span> = <span class="ruby-identifier">proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>)          <span class="ruby-comment">#=&gt; #&lt;Proc&gt;</span>
+<span class="ruby-identifier">proc2</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">3</span>)                    <span class="ruby-comment">#=&gt; [1,2,3]</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">vararg</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">args</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">proc</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:vararg</span>).<span class="ruby-identifier">curry</span>(<span class="ruby-value">4</span>)
+<span class="ruby-identifier">proc2</span> = <span class="ruby-identifier">proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">:x</span>)      <span class="ruby-comment">#=&gt; #&lt;Proc&gt;</span>
+<span class="ruby-identifier">proc3</span> = <span class="ruby-identifier">proc2</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">:y</span>, <span class="ruby-value">:z</span>) <span class="ruby-comment">#=&gt; #&lt;Proc&gt;</span>
+<span class="ruby-identifier">proc3</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">:a</span>)             <span class="ruby-comment">#=&gt; [:x, :y, :z, :a]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="curry-source">
+            <pre>static VALUE
+rb_method_curry(int argc, const VALUE *argv, VALUE self)
+{
+    VALUE proc = method_to_proc(self);
+    return proc_curry(argc, argv, proc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eql-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            eql?(other_meth)  &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Two method objects are equal if they are bound to the same object and refer to the same method definition and their owners are the same class or module.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eql-3F-source">
+            <pre>static VALUE
+method_eq(VALUE method, VALUE other)
+{
+    struct METHOD *m1, *m2;
+    VALUE klass1, klass2;
+
+    if (!rb_obj_is_method(other))
+        return Qfalse;
+    if (CLASS_OF(method) != CLASS_OF(other))
+        return Qfalse;
+
+    Check_TypedStruct(method, &amp;method_data_type);
+    m1 = (struct METHOD *)DATA_PTR(method);
+    m2 = (struct METHOD *)DATA_PTR(other);
+
+    klass1 = method_entry_defined_class(m1-&gt;me);
+    klass2 = method_entry_defined_class(m2-&gt;me);
+
+    if (!rb_method_entry_eq(m1-&gt;me, m2-&gt;me) ||
+        klass1 != klass2 ||
+        m1-&gt;klass != m2-&gt;klass ||
+        m1-&gt;recv != m2-&gt;recv) {
+        return Qfalse;
+    }
+
+    return Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hash" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            hash   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a hash value corresponding to the method object.</p>
+
+<p>See also <a href="Object.html#method-i-hash"><code>Object#hash</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hash-source">
+            <pre>static VALUE
+method_hash(VALUE method)
+{
+    struct METHOD *m;
+    st_index_t hash;
+
+    TypedData_Get_Struct(method, struct METHOD, &amp;method_data_type, m);
+    hash = rb_hash_start((st_index_t)m-&gt;recv);
+    hash = rb_hash_method_entry(hash, m-&gt;me);
+    hash = rb_hash_end(hash);
+
+    return ST2FIX(hash);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect   &rarr;  string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a human-readable description of the underlying method.</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:count</span>).<span class="ruby-identifier">inspect</span>   <span class="ruby-comment">#=&gt; &quot;#&lt;Method: String#count(*)&gt;&quot;</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">method</span>(<span class="ruby-value">:map</span>).<span class="ruby-identifier">inspect</span>    <span class="ruby-comment">#=&gt; &quot;#&lt;Method: Range(Enumerable)#map()&gt;&quot;</span>
+</pre>
+
+<p>In the latter case, the method description includes the “owner” of the original method (<code>Enumerable</code> module, which is included into <code>Range</code>).</p>
+
+<p><code>inspect</code> also provides, when possible, method argument names (call sequence) and source location.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;net/http&#39;</span>
+<span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:get</span>).<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment">#=&gt; &quot;#&lt;Method: Net::HTTP.get(uri_or_host, path=..., port=...) &lt;skip&gt;/lib/ruby/2.7.0/net/http.rb:457&gt;&quot;</span>
+</pre>
+
+<p><code>...</code> in argument definition means argument is optional (has some default value).</p>
+
+<p>For methods defined in C (language core and extensions), location and argument names can&#39;t be extracted, and only generic information is provided in form of <code>*</code> (any number of arguments) or <code>_</code> (some positional argument).</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:count</span>).<span class="ruby-identifier">inspect</span>   <span class="ruby-comment">#=&gt; &quot;#&lt;Method: String#count(*)&gt;&quot;</span>
+<span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:+</span>).<span class="ruby-identifier">inspect</span>       <span class="ruby-comment">#=&gt; &quot;#&lt;Method: String#+(_)&gt;&quot;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+method_inspect(VALUE method)
+{
+    struct METHOD *data;
+    VALUE str;
+    const char *sharp = &quot;#&quot;;
+    VALUE mklass;
+    VALUE defined_class;
+
+    TypedData_Get_Struct(method, struct METHOD, &amp;method_data_type, data);
+    str = rb_sprintf(&quot;#&lt;% &quot;PRIsVALUE&quot;: &quot;, rb_obj_class(method));
+
+    mklass = data-&gt;iclass;
+    if (!mklass) mklass = data-&gt;klass;
+
+    if (RB_TYPE_P(mklass, T_ICLASS)) {
+        /* TODO: I&#39;m not sure why mklass is T_ICLASS.
+         * UnboundMethod#bind() can set it as T_ICLASS at convert_umethod_to_method_components()
+         * but not sure it is needed.
+         */
+        mklass = RBASIC_CLASS(mklass);
+    }
+
+    if (data-&gt;me-&gt;def-&gt;type == VM_METHOD_TYPE_ALIAS) {
+        defined_class = data-&gt;me-&gt;def-&gt;body.alias.original_me-&gt;owner;
+    }
+    else {
+        defined_class = method_entry_defined_class(data-&gt;me);
+    }
+
+    if (RB_TYPE_P(defined_class, T_ICLASS)) {
+        defined_class = RBASIC_CLASS(defined_class);
+    }
+
+    if (FL_TEST(mklass, FL_SINGLETON)) {
+        VALUE v = rb_ivar_get(mklass, attached);
+
+        if (data-&gt;recv == Qundef) {
+            rb_str_buf_append(str, rb_inspect(mklass));
+        }
+        else if (data-&gt;recv == v) {
+            rb_str_buf_append(str, rb_inspect(v));
+            sharp = &quot;.&quot;;
+        }
+        else {
+            rb_str_buf_append(str, rb_inspect(data-&gt;recv));
+            rb_str_buf_cat2(str, &quot;(&quot;);
+            rb_str_buf_append(str, rb_inspect(v));
+            rb_str_buf_cat2(str, &quot;)&quot;);
+            sharp = &quot;.&quot;;
+        }
+    }
+    else {
+        mklass = data-&gt;klass;
+        if (FL_TEST(mklass, FL_SINGLETON)) {
+            do {
+               mklass = RCLASS_SUPER(mklass);
+            } while (RB_TYPE_P(mklass, T_ICLASS));
+        }
+        rb_str_buf_append(str, rb_inspect(mklass));
+        if (defined_class != mklass) {
+            rb_str_catf(str, &quot;(% &quot;PRIsVALUE&quot;)&quot;, defined_class);
+        }
+    }
+    rb_str_buf_cat2(str, sharp);
+    rb_str_append(str, rb_id2str(data-&gt;me-&gt;called_id));
+    if (data-&gt;me-&gt;called_id != data-&gt;me-&gt;def-&gt;original_id) {
+        rb_str_catf(str, &quot;(%&quot;PRIsVALUE&quot;)&quot;,
+                    rb_id2str(data-&gt;me-&gt;def-&gt;original_id));
+    }
+    if (data-&gt;me-&gt;def-&gt;type == VM_METHOD_TYPE_NOTIMPLEMENTED) {
+        rb_str_buf_cat2(str, &quot; (not-implemented)&quot;);
+    }
+
+    // parameter information
+    {
+        VALUE params = rb_method_parameters(method);
+        VALUE pair, name, kind;
+        const VALUE req = ID2SYM(rb_intern(&quot;req&quot;));
+        const VALUE opt = ID2SYM(rb_intern(&quot;opt&quot;));
+        const VALUE keyreq = ID2SYM(rb_intern(&quot;keyreq&quot;));
+        const VALUE key = ID2SYM(rb_intern(&quot;key&quot;));
+        const VALUE rest = ID2SYM(rb_intern(&quot;rest&quot;));
+        const VALUE keyrest = ID2SYM(rb_intern(&quot;keyrest&quot;));
+        const VALUE block = ID2SYM(rb_intern(&quot;block&quot;));
+        const VALUE nokey = ID2SYM(rb_intern(&quot;nokey&quot;));
+        int forwarding = 0;
+
+        rb_str_buf_cat2(str, &quot;(&quot;);
+
+        for (int i = 0; i &lt; RARRAY_LEN(params); i++) {
+            pair = RARRAY_AREF(params, i);
+            kind = RARRAY_AREF(pair, 0);
+            name = RARRAY_AREF(pair, 1);
+            // FIXME: in tests it turns out that kind, name = [:req] produces name to be false. Why?..
+            if (NIL_P(name) || name == Qfalse) {
+                // FIXME: can it be reduced to switch/case?
+                if (kind == req || kind == opt) {
+                    name = rb_str_new2(&quot;_&quot;);
+                }
+                else if (kind == rest || kind == keyrest) {
+                    name = rb_str_new2(&quot;&quot;);
+                }
+                else if (kind == block) {
+                    name = rb_str_new2(&quot;block&quot;);
+                }
+                else if (kind == nokey) {
+                    name = rb_str_new2(&quot;nil&quot;);
+                }
+            }
+
+            if (kind == req) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE, name);
+            }
+            else if (kind == opt) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE&quot;=...&quot;, name);
+            }
+            else if (kind == keyreq) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE&quot;:&quot;, name);
+            }
+            else if (kind == key) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE&quot;: ...&quot;, name);
+            }
+            else if (kind == rest) {
+                if (name == ID2SYM(&#39;*&#39;)) {
+                    forwarding = 1;
+                    rb_str_cat_cstr(str, &quot;...&quot;);
+                }
+                else {
+                    rb_str_catf(str, &quot;*%&quot;PRIsVALUE, name);
+                }
+            }
+            else if (kind == keyrest) {
+                rb_str_catf(str, &quot;**%&quot;PRIsVALUE, name);
+            }
+            else if (kind == block) {
+                if (name == ID2SYM(&#39;&amp;&#39;)) {
+                    if (forwarding) {
+                        rb_str_set_len(str, RSTRING_LEN(str) - 2);
+                    }
+                    else {
+                        rb_str_cat_cstr(str, &quot;...&quot;);
+                    }
+                }
+                else {
+                    rb_str_catf(str, &quot;&amp;%&quot;PRIsVALUE, name);
+                }
+            }
+            else if (kind == nokey) {
+                rb_str_buf_cat2(str, &quot;**nil&quot;);
+            }
+
+            if (i &lt; RARRAY_LEN(params) - 1) {
+                rb_str_buf_cat2(str, &quot;, &quot;);
+            }
+        }
+        rb_str_buf_cat2(str, &quot;)&quot;);
+    }
+
+    { // source location
+        VALUE loc = rb_method_location(method);
+        if (!NIL_P(loc)) {
+            rb_str_catf(str, &quot; %&quot;PRIsVALUE&quot;:%&quot;PRIsVALUE,
+                        RARRAY_AREF(loc, 0), RARRAY_AREF(loc, 1));
+        }
+    }
+
+    rb_str_buf_cat2(str, &quot;&gt;&quot;);
+
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            name    &rarr; symbol
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the name of the method.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="name-source">
+            <pre>static VALUE
+method_name(VALUE obj)
+{
+    struct METHOD *data;
+
+    TypedData_Get_Struct(obj, struct METHOD, &amp;method_data_type, data);
+    return ID2SYM(data-&gt;me-&gt;called_id);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-original_name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            original_name    &rarr; symbol
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the original name of the method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>; <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">alias</span> <span class="ruby-identifier">bar</span> <span class="ruby-identifier">foo</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">instance_method</span>(<span class="ruby-value">:bar</span>).<span class="ruby-identifier">original_name</span> <span class="ruby-comment"># =&gt; :foo</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="original_name-source">
+            <pre>static VALUE
+method_original_name(VALUE obj)
+{
+    struct METHOD *data;
+
+    TypedData_Get_Struct(obj, struct METHOD, &amp;method_data_type, data);
+    return ID2SYM(data-&gt;me-&gt;def-&gt;original_id);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-owner" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            owner    &rarr; class_or_module
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the class or module that defines the method. See also <a href="Method.html#method-i-receiver"><code>Method#receiver</code></a>.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">method</span>(<span class="ruby-value">:map</span>).<span class="ruby-identifier">owner</span> <span class="ruby-comment">#=&gt; Enumerable</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="owner-source">
+            <pre>static VALUE
+method_owner(VALUE obj)
+{
+    struct METHOD *data;
+    TypedData_Get_Struct(obj, struct METHOD, &amp;method_data_type, data);
+    return data-&gt;me-&gt;owner;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parameters" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            parameters  &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the parameter information of this method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">bar</span>); <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">method</span>(<span class="ruby-value">:foo</span>).<span class="ruby-identifier">parameters</span> <span class="ruby-comment">#=&gt; [[:req, :bar]]</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">bar</span>, <span class="ruby-identifier">baz</span>, <span class="ruby-identifier">bat</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>); <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">method</span>(<span class="ruby-value">:foo</span>).<span class="ruby-identifier">parameters</span> <span class="ruby-comment">#=&gt; [[:req, :bar], [:req, :baz], [:req, :bat], [:block, :blk]]</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">bar</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>); <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">method</span>(<span class="ruby-value">:foo</span>).<span class="ruby-identifier">parameters</span> <span class="ruby-comment">#=&gt; [[:req, :bar], [:rest, :args]]</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">bar</span>, <span class="ruby-identifier">baz</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>); <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">method</span>(<span class="ruby-value">:foo</span>).<span class="ruby-identifier">parameters</span> <span class="ruby-comment">#=&gt; [[:req, :bar], [:req, :baz], [:rest, :args], [:block, :blk]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="parameters-source">
+            <pre>static VALUE
+rb_method_parameters(VALUE method)
+{
+    const rb_iseq_t *iseq = rb_method_iseq(method);
+    if (!iseq) {
+        return rb_unnamed_parameters(method_arity(method));
+    }
+    return rb_iseq_parameters(iseq, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-receiver" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            receiver    &rarr; object
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the bound receiver of the method object.</p>
+
+<pre class="ruby">(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">method</span>(<span class="ruby-value">:map</span>).<span class="ruby-identifier">receiver</span> <span class="ruby-comment"># =&gt; 1..3</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="receiver-source">
+            <pre>static VALUE
+method_receiver(VALUE obj)
+{
+    struct METHOD *data;
+
+    TypedData_Get_Struct(obj, struct METHOD, &amp;method_data_type, data);
+    return data-&gt;recv;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source_location" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            source_location  &rarr; [String, Integer]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the Ruby source filename and line number containing this method or nil if this method was not defined in Ruby (i.e. native).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="source_location-source">
+            <pre>VALUE
+rb_method_location(VALUE method)
+{
+    return method_def_location(rb_method_def(method));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-super_method" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            super_method  &rarr; method
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a <a href="Method.html"><code>Method</code></a> of superclass which would be called when super is used or nil if there is no method on superclass.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="super_method-source">
+            <pre>static VALUE
+method_super_method(VALUE method)
+{
+    const struct METHOD *data;
+    VALUE super_class, iclass;
+    ID mid;
+    const rb_method_entry_t *me;
+
+    TypedData_Get_Struct(method, struct METHOD, &amp;method_data_type, data);
+    iclass = data-&gt;iclass;
+    if (!iclass) return Qnil;
+    super_class = RCLASS_SUPER(RCLASS_ORIGIN(iclass));
+    mid = data-&gt;me-&gt;called_id;
+    if (!super_class) return Qnil;
+    me = (rb_method_entry_t *)rb_callable_method_entry_with_refinements(super_class, mid, &amp;iclass);
+    if (!me) return Qnil;
+    return mnew_internal(me, me-&gt;owner, iclass, data-&gt;recv, mid, rb_obj_class(method), FALSE, FALSE);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_proc" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_proc    &rarr; proc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a <a href="Proc.html"><code>Proc</code></a> object corresponding to this method.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_proc-source">
+            <pre>static VALUE
+method_to_proc(VALUE method)
+{
+    VALUE procval;
+    rb_proc_t *proc;
+
+    /*
+     * class Method
+     *   def to_proc
+     *     lambda{|*args|
+     *       self.call(*args)
+     *     }
+     *   end
+     * end
+     */
+    procval = rb_iterate(mlambda, 0, bmcall, method);
+    GetProcPtr(procval, proc);
+    proc-&gt;is_from_method = 1;
+    return procval;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s      &rarr;  string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a human-readable description of the underlying method.</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:count</span>).<span class="ruby-identifier">inspect</span>   <span class="ruby-comment">#=&gt; &quot;#&lt;Method: String#count(*)&gt;&quot;</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">method</span>(<span class="ruby-value">:map</span>).<span class="ruby-identifier">inspect</span>    <span class="ruby-comment">#=&gt; &quot;#&lt;Method: Range(Enumerable)#map()&gt;&quot;</span>
+</pre>
+
+<p>In the latter case, the method description includes the “owner” of the original method (<code>Enumerable</code> module, which is included into <code>Range</code>).</p>
+
+<p><code>inspect</code> also provides, when possible, method argument names (call sequence) and source location.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;net/http&#39;</span>
+<span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:get</span>).<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment">#=&gt; &quot;#&lt;Method: Net::HTTP.get(uri_or_host, path=..., port=...) &lt;skip&gt;/lib/ruby/2.7.0/net/http.rb:457&gt;&quot;</span>
+</pre>
+
+<p><code>...</code> in argument definition means argument is optional (has some default value).</p>
+
+<p>For methods defined in C (language core and extensions), location and argument names can&#39;t be extracted, and only generic information is provided in form of <code>*</code> (any number of arguments) or <code>_</code> (some positional argument).</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:count</span>).<span class="ruby-identifier">inspect</span>   <span class="ruby-comment">#=&gt; &quot;#&lt;Method: String#count(*)&gt;&quot;</span>
+<span class="ruby-string">&quot;cat&quot;</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:+</span>).<span class="ruby-identifier">inspect</span>       <span class="ruby-comment">#=&gt; &quot;#&lt;Method: String#+(_)&gt;&quot;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+method_inspect(VALUE method)
+{
+    struct METHOD *data;
+    VALUE str;
+    const char *sharp = &quot;#&quot;;
+    VALUE mklass;
+    VALUE defined_class;
+
+    TypedData_Get_Struct(method, struct METHOD, &amp;method_data_type, data);
+    str = rb_sprintf(&quot;#&lt;% &quot;PRIsVALUE&quot;: &quot;, rb_obj_class(method));
+
+    mklass = data-&gt;iclass;
+    if (!mklass) mklass = data-&gt;klass;
+
+    if (RB_TYPE_P(mklass, T_ICLASS)) {
+        /* TODO: I&#39;m not sure why mklass is T_ICLASS.
+         * UnboundMethod#bind() can set it as T_ICLASS at convert_umethod_to_method_components()
+         * but not sure it is needed.
+         */
+        mklass = RBASIC_CLASS(mklass);
+    }
+
+    if (data-&gt;me-&gt;def-&gt;type == VM_METHOD_TYPE_ALIAS) {
+        defined_class = data-&gt;me-&gt;def-&gt;body.alias.original_me-&gt;owner;
+    }
+    else {
+        defined_class = method_entry_defined_class(data-&gt;me);
+    }
+
+    if (RB_TYPE_P(defined_class, T_ICLASS)) {
+        defined_class = RBASIC_CLASS(defined_class);
+    }
+
+    if (FL_TEST(mklass, FL_SINGLETON)) {
+        VALUE v = rb_ivar_get(mklass, attached);
+
+        if (data-&gt;recv == Qundef) {
+            rb_str_buf_append(str, rb_inspect(mklass));
+        }
+        else if (data-&gt;recv == v) {
+            rb_str_buf_append(str, rb_inspect(v));
+            sharp = &quot;.&quot;;
+        }
+        else {
+            rb_str_buf_append(str, rb_inspect(data-&gt;recv));
+            rb_str_buf_cat2(str, &quot;(&quot;);
+            rb_str_buf_append(str, rb_inspect(v));
+            rb_str_buf_cat2(str, &quot;)&quot;);
+            sharp = &quot;.&quot;;
+        }
+    }
+    else {
+        mklass = data-&gt;klass;
+        if (FL_TEST(mklass, FL_SINGLETON)) {
+            do {
+               mklass = RCLASS_SUPER(mklass);
+            } while (RB_TYPE_P(mklass, T_ICLASS));
+        }
+        rb_str_buf_append(str, rb_inspect(mklass));
+        if (defined_class != mklass) {
+            rb_str_catf(str, &quot;(% &quot;PRIsVALUE&quot;)&quot;, defined_class);
+        }
+    }
+    rb_str_buf_cat2(str, sharp);
+    rb_str_append(str, rb_id2str(data-&gt;me-&gt;called_id));
+    if (data-&gt;me-&gt;called_id != data-&gt;me-&gt;def-&gt;original_id) {
+        rb_str_catf(str, &quot;(%&quot;PRIsVALUE&quot;)&quot;,
+                    rb_id2str(data-&gt;me-&gt;def-&gt;original_id));
+    }
+    if (data-&gt;me-&gt;def-&gt;type == VM_METHOD_TYPE_NOTIMPLEMENTED) {
+        rb_str_buf_cat2(str, &quot; (not-implemented)&quot;);
+    }
+
+    // parameter information
+    {
+        VALUE params = rb_method_parameters(method);
+        VALUE pair, name, kind;
+        const VALUE req = ID2SYM(rb_intern(&quot;req&quot;));
+        const VALUE opt = ID2SYM(rb_intern(&quot;opt&quot;));
+        const VALUE keyreq = ID2SYM(rb_intern(&quot;keyreq&quot;));
+        const VALUE key = ID2SYM(rb_intern(&quot;key&quot;));
+        const VALUE rest = ID2SYM(rb_intern(&quot;rest&quot;));
+        const VALUE keyrest = ID2SYM(rb_intern(&quot;keyrest&quot;));
+        const VALUE block = ID2SYM(rb_intern(&quot;block&quot;));
+        const VALUE nokey = ID2SYM(rb_intern(&quot;nokey&quot;));
+        int forwarding = 0;
+
+        rb_str_buf_cat2(str, &quot;(&quot;);
+
+        for (int i = 0; i &lt; RARRAY_LEN(params); i++) {
+            pair = RARRAY_AREF(params, i);
+            kind = RARRAY_AREF(pair, 0);
+            name = RARRAY_AREF(pair, 1);
+            // FIXME: in tests it turns out that kind, name = [:req] produces name to be false. Why?..
+            if (NIL_P(name) || name == Qfalse) {
+                // FIXME: can it be reduced to switch/case?
+                if (kind == req || kind == opt) {
+                    name = rb_str_new2(&quot;_&quot;);
+                }
+                else if (kind == rest || kind == keyrest) {
+                    name = rb_str_new2(&quot;&quot;);
+                }
+                else if (kind == block) {
+                    name = rb_str_new2(&quot;block&quot;);
+                }
+                else if (kind == nokey) {
+                    name = rb_str_new2(&quot;nil&quot;);
+                }
+            }
+
+            if (kind == req) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE, name);
+            }
+            else if (kind == opt) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE&quot;=...&quot;, name);
+            }
+            else if (kind == keyreq) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE&quot;:&quot;, name);
+            }
+            else if (kind == key) {
+                rb_str_catf(str, &quot;%&quot;PRIsVALUE&quot;: ...&quot;, name);
+            }
+            else if (kind == rest) {
+                if (name == ID2SYM(&#39;*&#39;)) {
+                    forwarding = 1;
+                    rb_str_cat_cstr(str, &quot;...&quot;);
+                }
+                else {
+                    rb_str_catf(str, &quot;*%&quot;PRIsVALUE, name);
+                }
+            }
+            else if (kind == keyrest) {
+                rb_str_catf(str, &quot;**%&quot;PRIsVALUE, name);
+            }
+            else if (kind == block) {
+                if (name == ID2SYM(&#39;&amp;&#39;)) {
+                    if (forwarding) {
+                        rb_str_set_len(str, RSTRING_LEN(str) - 2);
+                    }
+                    else {
+                        rb_str_cat_cstr(str, &quot;...&quot;);
+                    }
+                }
+                else {
+                    rb_str_catf(str, &quot;&amp;%&quot;PRIsVALUE, name);
+                }
+            }
+            else if (kind == nokey) {
+                rb_str_buf_cat2(str, &quot;**nil&quot;);
+            }
+
+            if (i &lt; RARRAY_LEN(params) - 1) {
+                rb_str_buf_cat2(str, &quot;, &quot;);
+            }
+        }
+        rb_str_buf_cat2(str, &quot;)&quot;);
+    }
+
+    { // source location
+        VALUE loc = rb_method_location(method);
+        if (!NIL_P(loc)) {
+            rb_str_catf(str, &quot; %&quot;PRIsVALUE&quot;:%&quot;PRIsVALUE,
+                        RARRAY_AREF(loc, 0), RARRAY_AREF(loc, 1));
+        }
+    }
+
+    rb_str_buf_cat2(str, &quot;&gt;&quot;);
+
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unbind" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            unbind    &rarr; unbound_method
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Dissociates <em>meth</em> from its current receiver. The resulting <a href="UnboundMethod.html"><code>UnboundMethod</code></a> can subsequently be bound to a new object of the same class (see <a href="UnboundMethod.html"><code>UnboundMethod</code></a>).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unbind-source">
+            <pre>static VALUE
+method_unbind(VALUE obj)
+{
+    VALUE method;
+    struct METHOD *orig, *data;
+
+    TypedData_Get_Struct(obj, struct METHOD, &amp;method_data_type, orig);
+    method = TypedData_Make_Struct(rb_cUnboundMethod, struct METHOD,
+                                   &amp;method_data_type, data);
+    RB_OBJ_WRITE(method, &amp;data-&gt;recv, Qundef);
+    RB_OBJ_WRITE(method, &amp;data-&gt;klass, orig-&gt;klass);
+    RB_OBJ_WRITE(method, &amp;data-&gt;iclass, orig-&gt;iclass);
+    RB_OBJ_WRITE(method, &amp;data-&gt;me, rb_method_entry_clone(orig-&gt;me));
+
+    return method;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

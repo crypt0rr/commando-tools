@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Version - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Gem::Version-label-How+Software+Changes">How Software Changes</a>
+    <li><a href="#class-Gem::Version-label-Examples+of+Category+1+changes-3A">Examples of Category 1 changes:</a>
+    <li><a href="#class-Gem::Version-label-Examples+of+Category+2+changes+might+be-3A">Examples of Category 2 changes might be:</a>
+    <li><a href="#class-Gem::Version-label-Examples+of+Category+3+changes+might+be-3A">Examples of Category 3 changes might be:</a>
+    <li><a href="#class-Gem::Version-label-RubyGems+Rational+Versioning">RubyGems Rational Versioning</a>
+    <li><a href="#class-Gem::Version-label-Examples">Examples</a>
+    <li><a href="#class-Gem::Version-label-Preventing+Version+Catastrophe-3A">Preventing Version Catastrophe:</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../Comparable.html">Comparable</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-correct-3F">::correct?</a>
+    
+    <li ><a href="#method-c-create">::create</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    
+    <li ><a href="#method-i-_segments">#_segments</a>
+    
+    <li ><a href="#method-i-_split_segments">#_split_segments</a>
+    
+    <li ><a href="#method-i-_version">#_version</a>
+    
+    <li ><a href="#method-i-approximate_recommendation">#approximate_recommendation</a>
+    
+    <li ><a href="#method-i-bump">#bump</a>
+    
+    <li ><a href="#method-i-canonical_segments">#canonical_segments</a>
+    
+    <li ><a href="#method-i-eql-3F">#eql?</a>
+    
+    <li class="calls-super" ><a href="#method-i-freeze">#freeze</a>
+    
+    <li ><a href="#method-i-marshal_dump">#marshal_dump</a>
+    
+    <li ><a href="#method-i-marshal_load">#marshal_load</a>
+    
+    <li ><a href="#method-i-prerelease-3F">#prerelease?</a>
+    
+    <li ><a href="#method-i-release">#release</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-version">#version</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Version">
+  <h1 id="class-Gem::Version" class="class">
+    class Gem::Version
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="Version.html"><code>Version</code></a> class processes string versions into comparable values. A version string should normally be a series of numbers separated by periods. Each part (digits separated by periods) is considered its own number, and these are used for sorting. So for instance, 3.10 sorts higher than 3.2 because ten is greater than two.</p>
+
+<p>If any part contains letters (currently only a-z are supported) then that version is considered prerelease. Versions with a prerelease part in the Nth part sort less than versions with N-1 parts. Prerelease parts are sorted alphabetically using the normal Ruby string sorting rules. If a prerelease part contains both letters and numbers, it will be broken into multiple parts to provide expected sort behavior (1.0.a10 becomes 1.0.a.10, and is greater than 1.0.a9).</p>
+
+<p>Prereleases sort between real releases (newest to oldest):</p>
+<ol><li>
+<p>1.0</p>
+</li><li>
+<p>1.0.b1</p>
+</li><li>
+<p>1.0.a.2</p>
+</li><li>
+<p>0.9</p>
+</li></ol>
+
+<p>If you want to specify a version restriction that includes both prereleases and regular releases of the 1.x series this is the best way:</p>
+
+<pre class="ruby"><span class="ruby-identifier">s</span>.<span class="ruby-identifier">add_dependency</span> <span class="ruby-string">&#39;example&#39;</span>, <span class="ruby-string">&#39;&gt;= 1.0.0.a&#39;</span>, <span class="ruby-string">&#39;&lt; 2.0.0&#39;</span>
+</pre>
+
+<h2 id="class-Gem::Version-label-How+Software+Changes">How Software Changes<span><a href="#class-Gem::Version-label-How+Software+Changes">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Users expect to be able to specify a version constraint that gives them some reasonable expectation that new versions of a library will work with their software if the version constraint is true, and not work with their software if the version constraint is false.  In other words, the perfect system will accept all compatible versions of the library and reject all incompatible versions.</p>
+
+<p>Libraries change in 3 ways (well, more than 3, but stay focused here!).</p>
+<ol><li>
+<p>The change may be an implementation detail only and have no effect on the client software.</p>
+</li><li>
+<p>The change may add new features, but do so in a way that client software written to an earlier version is still compatible.</p>
+</li><li>
+<p>The change may change the public interface of the library in such a way that old software is no longer compatible.</p>
+</li></ol>
+
+<p>Some examples are appropriate at this point.  Suppose I have a Stack class that supports a <code>push</code> and a <code>pop</code> method.</p>
+
+<h3 id="class-Gem::Version-label-Examples+of+Category+1+changes-3A">Examples of Category 1 changes:<span><a href="#class-Gem::Version-label-Examples+of+Category+1+changes-3A">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Switch from an array based implementation to a linked-list based implementation.</p>
+</li><li>
+<p>Provide an automatic (and transparent) backing store for large stacks.</p>
+</li></ul>
+
+<h3 id="class-Gem::Version-label-Examples+of+Category+2+changes+might+be-3A">Examples of Category 2 changes might be:<span><a href="#class-Gem::Version-label-Examples+of+Category+2+changes+might+be-3A">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Add a <code>depth</code> method to return the current depth of the stack.</p>
+</li><li>
+<p>Add a <code>top</code> method that returns the current top of stack (without changing the stack).</p>
+</li><li>
+<p>Change <code>push</code> so that it returns the item pushed (previously it had no usable return value).</p>
+</li></ul>
+
+<h3 id="class-Gem::Version-label-Examples+of+Category+3+changes+might+be-3A">Examples of Category 3 changes might be:<span><a href="#class-Gem::Version-label-Examples+of+Category+3+changes+might+be-3A">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Changes <code>pop</code> so that it no longer returns a value (you must use <code>top</code> to get the top of the stack).</p>
+</li><li>
+<p>Rename the methods to <code>push_item</code> and <code>pop_item</code>.</p>
+</li></ul>
+
+<h2 id="class-Gem::Version-label-RubyGems+Rational+Versioning">RubyGems <a href="../Rational.html"><code>Rational</code></a> Versioning<span><a href="#class-Gem::Version-label-RubyGems+Rational+Versioning">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Versions shall be represented by three non-negative integers, separated by periods (e.g. 3.1.4).  The first integers is the “major” version number, the second integer is the “minor” version number, and the third integer is the “build” number.</p>
+</li><li>
+<p>A category 1 change (implementation detail) will increment the build number.</p>
+</li><li>
+<p>A category 2 change (backwards compatible) will increment the minor version number and reset the build number.</p>
+</li><li>
+<p>A category 3 change (incompatible) will increment the major build number and reset the minor and build numbers.</p>
+</li><li>
+<p>Any “public” release of a gem should have a different version.  Normally that means incrementing the build number.  This means a developer can generate builds all day long, but as soon as they make a public release, the version must be updated.</p>
+</li></ul>
+
+<h3 id="class-Gem::Version-label-Examples">Examples<span><a href="#class-Gem::Version-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Let&#39;s work through a project lifecycle using our Stack example from above.</p>
+<dl class="rdoc-list note-list"><dt><a href="Version.html"><code>Version</code></a> 0.0.1
+<dd>
+<p>The initial Stack class is release.</p>
+</dd><dt><a href="Version.html"><code>Version</code></a> 0.0.2
+<dd>
+<p>Switched to a linked=list implementation because it is cooler.</p>
+</dd><dt><a href="Version.html"><code>Version</code></a> 0.1.0
+<dd>
+<p>Added a <code>depth</code> method.</p>
+</dd><dt><a href="Version.html"><code>Version</code></a> 1.0.0
+<dd>
+<p>Added <code>top</code> and made <code>pop</code> return nil (<code>pop</code> used to return the  old top item).</p>
+</dd><dt><a href="Version.html"><code>Version</code></a> 1.1.0
+<dd>
+<p><code>push</code> now returns the value pushed (it used it return nil).</p>
+</dd><dt><a href="Version.html"><code>Version</code></a> 1.1.1
+<dd>
+<p>Fixed a bug in the linked list implementation.</p>
+</dd><dt><a href="Version.html"><code>Version</code></a> 1.1.2
+<dd>
+<p>Fixed a bug introduced in the last fix.</p>
+</dd></dl>
+
+<p>Client A needs a stack with basic push/pop capability.  They write to the original interface (no <code>top</code>), so their version constraint looks like:</p>
+
+<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">&#39;stack&#39;</span>, <span class="ruby-string">&#39;&gt;= 0.0&#39;</span>
+</pre>
+
+<p>Essentially, any version is OK with Client A.  An incompatible change to the library will cause them grief, but they are willing to take the chance (we call Client A optimistic).</p>
+
+<p>Client B is just like Client A except for two things: (1) They use the <code>depth</code> method and (2) they are worried about future incompatibilities, so they write their version constraint like this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">&#39;stack&#39;</span>, <span class="ruby-string">&#39;~&gt; 0.1&#39;</span>
+</pre>
+
+<p>The <code>depth</code> method was introduced in version 0.1.0, so that version or anything later is fine, as long as the version stays below version 1.0 where incompatibilities are introduced.  We call Client B pessimistic because they are worried about incompatible future changes (it is OK to be pessimistic!).</p>
+
+<h2 id="class-Gem::Version-label-Preventing+Version+Catastrophe-3A">Preventing <a href="Version.html"><code>Version</code></a> Catastrophe:<span><a href="#class-Gem::Version-label-Preventing+Version+Catastrophe-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>From: <a href="http://blog.zenspider.com/2008/10/rubygems-howto-preventing-cata.html">blog.zenspider.com/2008/10/rubygems-howto-preventing-cata.html</a></p>
+
+<p>Let&#39;s say you&#39;re depending on the fnord gem version 2.y.z. If you specify your dependency as “&gt;= 2.0.0” then, you&#39;re good, right? What happens if fnord 3.0 comes out and it isn&#39;t backwards compatible with 2.y.z? Your stuff will break as a result of using “&gt;=”. The better route is to specify your dependency with an “approximate” version specifier (“~&gt;”). They&#39;re a tad confusing, so here is how the dependency specifiers work:</p>
+
+<pre>Specification From  ... To (exclusive)
+&quot;&gt;= 3.0&quot;      3.0   ... &amp;infin;
+&quot;~&gt; 3.0&quot;      3.0   ... 4.0
+&quot;~&gt; 3.0.0&quot;    3.0.0 ... 3.1
+&quot;~&gt; 3.5&quot;      3.5   ... 4.0
+&quot;~&gt; 3.5.0&quot;    3.5.0 ... 3.6
+&quot;~&gt; 3&quot;        3.0   ... 4.0</pre>
+
+<p>For the last example, single-digit versions are automatically extended with a zero to give a sensible result.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-correct-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">correct?</span><span
+            class="method-args">(version)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>True if the <code>version</code> string matches RubyGems&#39; requirements.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="correct-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">correct?</span>(<span class="ruby-identifier">version</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecate</span>.<span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;nil versions are discouraged and will be deprecated in Rubygems 4&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-operator">!</span><span class="ruby-operator">!</span>(<span class="ruby-identifier">version</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">ANCHORED_VERSION_PATTERN</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">(input)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Factory method to create a <a href="Version.html"><code>Version</code></a> object. Input may be a <a href="Version.html"><code>Version</code></a> or a <a href="../String.html"><code>String</code></a>. Intended to simplify client code.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ver1</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">create</span>(<span class="ruby-string">&#39;1.3.17&#39;</span>)   <span class="ruby-comment"># -&gt; (Version object)</span>
+<span class="ruby-identifier">ver2</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">ver1</span>)       <span class="ruby-comment"># -&gt; (ver1)</span>
+<span class="ruby-identifier">ver3</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">create</span>(<span class="ruby-keyword">nil</span>)        <span class="ruby-comment"># -&gt; nil</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 189</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">create</span>(<span class="ruby-identifier">input</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">input</span>  <span class="ruby-comment"># check yourself before you wreck yourself</span>
+    <span class="ruby-identifier">input</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">new</span> <span class="ruby-identifier">input</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(version)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Constructs a <a href="Version.html"><code>Version</code></a> from the <code>version</code> string.  A version string is a series of digits or ASCII letters separated by dots.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 213</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">version</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">correct?</span>(<span class="ruby-identifier">version</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Malformed version number string #{version}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># If version is an empty string convert it to 0</span>
+  <span class="ruby-identifier">version</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\A\s*\Z/</span>
+
+  <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">version</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&quot;-&quot;</span>,<span class="ruby-string">&quot;.pre.&quot;</span>)
+  <span class="ruby-ivar">@segments</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3D-3E" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;=&gt;</span><span
+            class="method-args">(other)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compares this version with <code>other</code> returning -1, 0, or 1 if the other version is larger, the same, or smaller than this one. Attempts to compare to something that&#39;s not a <code>Gem::Version</code> return <code>nil</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3D-3E-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 345</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Version</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">other</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@version</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">_version</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">canonical_segments</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">canonical_segments</span>
+
+  <span class="ruby-identifier">lhsegments</span> = <span class="ruby-identifier">canonical_segments</span>
+  <span class="ruby-identifier">rhsegments</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">canonical_segments</span>
+
+  <span class="ruby-identifier">lhsize</span> = <span class="ruby-identifier">lhsegments</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-identifier">rhsize</span> = <span class="ruby-identifier">rhsegments</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-identifier">limit</span>  = (<span class="ruby-identifier">lhsize</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">rhsize</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">lhsize</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">rhsize</span>) <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+
+  <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">limit</span>
+    <span class="ruby-identifier">lhs</span>, <span class="ruby-identifier">rhs</span> = <span class="ruby-identifier">lhsegments</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">rhsegments</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+
+    <span class="ruby-keyword">next</span>      <span class="ruby-keyword">if</span> <span class="ruby-identifier">lhs</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">rhs</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">-1</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">String</span>  <span class="ruby-operator">===</span> <span class="ruby-identifier">lhs</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Numeric</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">rhs</span>
+    <span class="ruby-keyword">return</span>  <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Numeric</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">lhs</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">String</span>  <span class="ruby-operator">===</span> <span class="ruby-identifier">rhs</span>
+
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">lhs</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">rhs</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-approximate_recommendation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">approximate_recommendation</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A recommended version for use with a ~&gt; Requirement.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="approximate_recommendation-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 327</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">approximate_recommendation</span>
+  <span class="ruby-identifier">segments</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">segments</span>
+
+  <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">pop</span>    <span class="ruby-keyword">while</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">s</span> }
+  <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">pop</span>    <span class="ruby-keyword">while</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
+  <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">push</span> <span class="ruby-value">0</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+
+  <span class="ruby-identifier">recommendation</span> = <span class="ruby-node">&quot;~&gt; #{segments.join(&quot;.&quot;)}&quot;</span>
+  <span class="ruby-identifier">recommendation</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;.a&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prerelease?</span>
+  <span class="ruby-identifier">recommendation</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bump" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bump</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return a new version object where the next to the last revision number is one greater (e.g., 5.3.1 =&gt; 5.4).</p>
+
+<p>Pre-release (alpha) parts, e.g, 5.3.1.b.2 =&gt; 5.4, are ignored.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="bump-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bump</span>
+  <span class="ruby-identifier">@@bump</span>[<span class="ruby-keyword">self</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+                     <span class="ruby-identifier">segments</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">segments</span>
+                     <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">s</span> }
+                     <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+
+                     <span class="ruby-identifier">segments</span>[<span class="ruby-value">-1</span>] = <span class="ruby-identifier">segments</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">succ</span>
+                     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;.&quot;</span>)
+                   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-canonical_segments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">canonical_segments</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="canonical_segments-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 372</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">canonical_segments</span>
+  <span class="ruby-ivar">@canonical_segments</span> <span class="ruby-operator">||=</span>
+    <span class="ruby-identifier">_split_segments</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">segments</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">reverse_each</span>.<span class="ruby-identifier">drop_while</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> }.<span class="ruby-identifier">reverse</span>
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">reduce</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:concat</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-eql-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">eql?</span><span
+            class="method-args">(other)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A <a href="Version.html"><code>Version</code></a> is only eql? to another version if it&#39;s specified to the same precision. <a href="Version.html"><code>Version</code></a> “1.0” is not the same as version “1”.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eql-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">eql?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">other</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@version</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">_version</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-freeze" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">freeze</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../Object.html#method-i-freeze"><code>Object#freeze</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="freeze-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 379</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">freeze</span>
+  <span class="ruby-identifier">prerelease?</span>
+  <span class="ruby-identifier">canonical_segments</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-marshal_dump" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marshal_dump</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Dump only the raw version string, not the complete object. It&#39;s a string for backwards (RubyGems 1.3.5 and earlier) compatibility.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="marshal_dump-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 266</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_dump</span>
+  [<span class="ruby-identifier">version</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-marshal_load" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marshal_load</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Load custom marshal format. It&#39;s a string for backwards (RubyGems 1.3.5 and earlier) compatibility.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="marshal_load-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 274</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_load</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">array</span>[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prerelease-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prerelease?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A version is considered a prerelease if it contains a letter.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="prerelease-3F-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 295</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prerelease?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">instance_variable_defined?</span> <span class="ruby-value">:@prerelease</span>
+    <span class="ruby-ivar">@prerelease</span> = <span class="ruby-operator">!</span><span class="ruby-operator">!</span>(<span class="ruby-ivar">@version</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/[a-zA-Z]/</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@prerelease</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-release" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">release</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The release for this version (e.g. 1.2.0.a -&gt; 1.2.0). Non-prerelease versions return themselves.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="release-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 310</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">release</span>
+  <span class="ruby-identifier">@@release</span>[<span class="ruby-keyword">self</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">prerelease?</span>
+                        <span class="ruby-identifier">segments</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">segments</span>
+                        <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">s</span> }
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;.&#39;</span>)
+                      <span class="ruby-keyword">else</span>
+                        <span class="ruby-keyword">self</span>
+                      <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Version.html#method-i-version">version</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-version" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">version</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A string representation of this <a href="Version.html"><code>Version</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="version-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 164</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">version</span>
+  <span class="ruby-ivar">@version</span>.<span class="ruby-identifier">dup</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Version.html#method-i-to_s">to_s</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-_segments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_segments</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_segments-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 391</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_segments</span>
+  <span class="ruby-comment"># segments is lazy so it can pick up version values that come from</span>
+  <span class="ruby-comment"># old marshaled versions, which don&#39;t go through marshal_load.</span>
+  <span class="ruby-comment"># since this version object is cached in @@all, its @segments should be frozen</span>
+
+  <span class="ruby-ivar">@segments</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@version</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/[0-9]+|[a-z]+/i</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-regexp">/^\d+$/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">s</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_split_segments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_split_segments</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_split_segments-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 401</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_split_segments</span>
+  <span class="ruby-identifier">string_start</span> = <span class="ruby-identifier">_segments</span>.<span class="ruby-identifier">index</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) }
+  <span class="ruby-identifier">string_segments</span> = <span class="ruby-identifier">segments</span>
+  <span class="ruby-identifier">numeric_segments</span> = <span class="ruby-identifier">string_segments</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">string_start</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">string_segments</span>.<span class="ruby-identifier">size</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">numeric_segments</span>, <span class="ruby-identifier">string_segments</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_version" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_version</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_version-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/version.rb, line 387</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_version</span>
+  <span class="ruby-ivar">@version</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

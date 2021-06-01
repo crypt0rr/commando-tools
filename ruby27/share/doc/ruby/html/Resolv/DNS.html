@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Resolv::DNS - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-open">::open</a>
+    
+    <li ><a href="#method-i-close">#close</a>
+    
+    <li ><a href="#method-i-each_address">#each_address</a>
+    
+    <li ><a href="#method-i-each_name">#each_name</a>
+    
+    <li ><a href="#method-i-each_resource">#each_resource</a>
+    
+    <li ><a href="#method-i-fetch_resource">#fetch_resource</a>
+    
+    <li ><a href="#method-i-getaddress">#getaddress</a>
+    
+    <li ><a href="#method-i-getaddresses">#getaddresses</a>
+    
+    <li ><a href="#method-i-getname">#getname</a>
+    
+    <li ><a href="#method-i-getnames">#getnames</a>
+    
+    <li ><a href="#method-i-getresource">#getresource</a>
+    
+    <li ><a href="#method-i-getresources">#getresources</a>
+    
+    <li ><a href="#method-i-timeouts-3D">#timeouts=</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Resolv::DNS">
+  <h1 id="class-Resolv::DNS" class="class">
+    class Resolv::DNS
+  </h1>
+
+  <section class="description">
+    
+<p><a href="DNS.html"><code>Resolv::DNS</code></a> is a <a href="DNS.html"><code>DNS</code></a> stub resolver.</p>
+
+<p>Information taken from the following places:</p>
+<ul><li>
+<p>STD0013</p>
+</li><li>
+<p>RFC 1035</p>
+</li><li>
+<p><a href="ftp://ftp.isi.edu/in-notes/iana/assignments/dns-parameters">ftp.isi.edu/in-notes/iana/assignments/dns-parameters</a></p>
+</li><li>
+<p>etc.</p>
+</li></ul>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Port">Port
+        
+        <dd><p>Default <a href="DNS.html"><code>DNS</code></a> <a href="DNS.html#Port"><code>Port</code></a></p>
+        
+      
+        <dt id="UDPSize">UDPSize
+        
+        <dd><p>Default <a href="DNS.html"><code>DNS</code></a> UDP packet size</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(config_info=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+
+<p><code>config_info</code> can be:</p>
+<dl class="rdoc-list note-list"><dt>nil
+<dd>
+<p>Uses /etc/resolv.conf.</p>
+</dd><dt><a href="../String.html"><code>String</code></a>
+<dd>
+<p>Path to a file using /etc/resolv.conf&#39;s format.</p>
+</dd><dt><a href="../Hash.html"><code>Hash</code></a>
+<dd>
+<p>Must contain :nameserver, :search and :ndots keys.</p>
+</dd></dl>
+
+<p>:nameserver_port can be used to specify port number of nameserver address.</p>
+
+<p>The value of :nameserver should be an address string or an array of address strings.</p>
+<ul><li>
+<p>:nameserver =&gt; &#39;8.8.8.8&#39;</p>
+</li><li>
+<p>:nameserver =&gt; [&#39;8.8.8.8&#39;, &#39;8.8.4.4&#39;]</p>
+</li></ul>
+
+<p>The value of :nameserver_port should be an array of pair of nameserver address and port number.</p>
+<ul><li>
+<p>:nameserver_port =&gt; [[&#39;8.8.8.8&#39;, 53], [&#39;8.8.4.4&#39;, 53]]</p>
+</li></ul>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-constant">Resolv</span><span class="ruby-operator">::</span><span class="ruby-constant">DNS</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:nameserver</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-string">&#39;210.251.121.21&#39;</span>],
+                <span class="ruby-value">:search</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-string">&#39;ruby-lang.org&#39;</span>],
+                <span class="ruby-value">:ndots</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">1</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 329</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">config_info</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@mutex</span> = <span class="ruby-constant">Thread</span><span class="ruby-operator">::</span><span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@config</span> = <span class="ruby-constant">Config</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">config_info</span>)
+  <span class="ruby-ivar">@initialized</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-open" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open</span><span
+            class="method-args">(*args) { |dns| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="DNS.html"><code>DNS</code></a> resolver.  See <a href="DNS.html#method-c-new"><code>Resolv::DNS.new</code></a> for argument details.</p>
+
+<p>Yields the created <a href="DNS.html"><code>DNS</code></a> resolver to the block, if given, otherwise returns it.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 294</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">open</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">dns</span> = <span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">dns</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">dns</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">dns</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Closes the <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 363</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">close</span>
+  <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> {
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@initialized</span>
+      <span class="ruby-ivar">@initialized</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_address</span><span
+            class="method-args">(name) { |address| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all IP addresses for <code>name</code> retrieved from the <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+
+<p><code>name</code> can be a <a href="DNS/Name.html"><code>Resolv::DNS::Name</code></a> or a <a href="../String.html"><code>String</code></a>.  Retrieved addresses will be a <a href="IPv4.html"><code>Resolv::IPv4</code></a> or <a href="IPv6.html"><code>Resolv::IPv6</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_address-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 401</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_address</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">each_resource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-constant">Resource</span><span class="ruby-operator">::</span><span class="ruby-constant">IN</span><span class="ruby-operator">::</span><span class="ruby-constant">A</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">resource</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">address</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">use_ipv6?</span>
+    <span class="ruby-identifier">each_resource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-constant">Resource</span><span class="ruby-operator">::</span><span class="ruby-constant">IN</span><span class="ruby-operator">::</span><span class="ruby-constant">AAAA</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">resource</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">address</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_name</span><span
+            class="method-args">(address) { |name| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all hostnames for <code>address</code> retrieved from the <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+
+<p><code>address</code> must be a <a href="IPv4.html"><code>Resolv::IPv4</code></a>, <a href="IPv6.html"><code>Resolv::IPv6</code></a> or a <a href="../String.html"><code>String</code></a>.  Retrieved names will be <a href="DNS/Name.html"><code>Resolv::DNS::Name</code></a> instances.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_name-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 448</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_name</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">address</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Name</span>
+    <span class="ruby-identifier">ptr</span> = <span class="ruby-identifier">address</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">IPv4</span>, <span class="ruby-constant">IPv6</span>
+    <span class="ruby-identifier">ptr</span> = <span class="ruby-identifier">address</span>.<span class="ruby-identifier">to_name</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">IPv4</span><span class="ruby-operator">::</span><span class="ruby-constant">Regex</span>
+    <span class="ruby-identifier">ptr</span> = <span class="ruby-constant">IPv4</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">address</span>).<span class="ruby-identifier">to_name</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">IPv6</span><span class="ruby-operator">::</span><span class="ruby-constant">Regex</span>
+    <span class="ruby-identifier">ptr</span> = <span class="ruby-constant">IPv6</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">address</span>).<span class="ruby-identifier">to_name</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ResolvError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;cannot interpret as address: #{address}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">each_resource</span>(<span class="ruby-identifier">ptr</span>, <span class="ruby-constant">Resource</span><span class="ruby-operator">::</span><span class="ruby-constant">IN</span><span class="ruby-operator">::</span><span class="ruby-constant">PTR</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">resource</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">name</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_resource" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_resource</span><span
+            class="method-args">(name, typeclass, &amp;proc)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all <code>typeclass</code> <a href="DNS.html"><code>DNS</code></a> resources for <code>name</code>.  See <a href="DNS.html#method-i-getresource"><code>getresource</code></a> for argument details.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_resource-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 506</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_resource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">typeclass</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+  <span class="ruby-identifier">fetch_resource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">typeclass</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">reply</span>, <span class="ruby-identifier">reply_name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">extract_resources</span>(<span class="ruby-identifier">reply</span>, <span class="ruby-identifier">reply_name</span>, <span class="ruby-identifier">typeclass</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_resource" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_resource</span><span
+            class="method-args">(name, typeclass) { |reply, reply_name| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_resource-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 512</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch_resource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">typeclass</span>)
+  <span class="ruby-identifier">lazy_initialize</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">requester</span> = <span class="ruby-identifier">make_udp_requester</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EACCES</span>
+    <span class="ruby-comment"># fall back to TCP</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">senders</span> = {}
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">resolv</span>(<span class="ruby-identifier">name</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">candidate</span>, <span class="ruby-identifier">tout</span>, <span class="ruby-identifier">nameserver</span>, <span class="ruby-identifier">port</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">requester</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">make_tcp_requester</span>(<span class="ruby-identifier">nameserver</span>, <span class="ruby-identifier">port</span>)
+      <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">rd</span> = <span class="ruby-value">1</span>
+      <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">add_question</span>(<span class="ruby-identifier">candidate</span>, <span class="ruby-identifier">typeclass</span>)
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">senders</span>[[<span class="ruby-identifier">candidate</span>, <span class="ruby-identifier">nameserver</span>, <span class="ruby-identifier">port</span>]]
+        <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">requester</span>.<span class="ruby-identifier">sender</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">candidate</span>, <span class="ruby-identifier">nameserver</span>, <span class="ruby-identifier">port</span>)
+        <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">sender</span>
+        <span class="ruby-identifier">senders</span>[[<span class="ruby-identifier">candidate</span>, <span class="ruby-identifier">nameserver</span>, <span class="ruby-identifier">port</span>]] = <span class="ruby-identifier">sender</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">reply</span>, <span class="ruby-identifier">reply_name</span> = <span class="ruby-identifier">requester</span>.<span class="ruby-identifier">request</span>(<span class="ruby-identifier">sender</span>, <span class="ruby-identifier">tout</span>)
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">reply</span>.<span class="ruby-identifier">rcode</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">RCode</span><span class="ruby-operator">::</span><span class="ruby-constant">NoError</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">reply</span>.<span class="ruby-identifier">tc</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-constant">Requester</span><span class="ruby-operator">::</span><span class="ruby-constant">TCP</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">requester</span>
+          <span class="ruby-identifier">requester</span>.<span class="ruby-identifier">close</span>
+          <span class="ruby-comment"># Retry via TCP:</span>
+          <span class="ruby-identifier">requester</span> = <span class="ruby-identifier">make_tcp_requester</span>(<span class="ruby-identifier">nameserver</span>, <span class="ruby-identifier">port</span>)
+          <span class="ruby-identifier">senders</span> = {}
+          <span class="ruby-comment"># This will use TCP for all remaining candidates (assuming the</span>
+          <span class="ruby-comment"># current candidate does not already respond successfully via</span>
+          <span class="ruby-comment"># TCP).  This makes sense because we already know the full</span>
+          <span class="ruby-comment"># response will not fit in an untruncated UDP packet.</span>
+          <span class="ruby-keyword">redo</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">reply</span>, <span class="ruby-identifier">reply_name</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-constant">RCode</span><span class="ruby-operator">::</span><span class="ruby-constant">NXDomain</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">Config</span><span class="ruby-operator">::</span><span class="ruby-constant">NXDomain</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">reply_name</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">Config</span><span class="ruby-operator">::</span><span class="ruby-constant">OtherResolvError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">reply_name</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-keyword">end</span>
+    }
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">requester</span>&amp;.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getaddress" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getaddress</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the IP address of <code>name</code> from the <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+
+<p><code>name</code> can be a <a href="DNS/Name.html"><code>Resolv::DNS::Name</code></a> or a <a href="../String.html"><code>String</code></a>.  Retrieved address will be a <a href="IPv4.html"><code>Resolv::IPv4</code></a> or <a href="IPv6.html"><code>Resolv::IPv6</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="getaddress-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 377</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getaddress</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">each_address</span>(<span class="ruby-identifier">name</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">address</span>}
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ResolvError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;DNS result has no information for #{name}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getaddresses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getaddresses</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets all IP addresses for <code>name</code> from the <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+
+<p><code>name</code> can be a <a href="DNS/Name.html"><code>Resolv::DNS::Name</code></a> or a <a href="../String.html"><code>String</code></a>.  Retrieved addresses will be a <a href="IPv4.html"><code>Resolv::IPv4</code></a> or <a href="IPv6.html"><code>Resolv::IPv6</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="getaddresses-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 388</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getaddresses</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">ret</span> = []
+  <span class="ruby-identifier">each_address</span>(<span class="ruby-identifier">name</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">address</span>}
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getname</span><span
+            class="method-args">(address)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the hostname for <code>address</code> from the <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+
+<p><code>address</code> must be a <a href="IPv4.html"><code>Resolv::IPv4</code></a>, <a href="IPv6.html"><code>Resolv::IPv6</code></a> or a <a href="../String.html"><code>String</code></a>.  Retrieved name will be a <a href="DNS/Name.html"><code>Resolv::DNS::Name</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getname-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 424</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getname</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-identifier">each_name</span>(<span class="ruby-identifier">address</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">name</span>}
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ResolvError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;DNS result has no information for #{address}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getnames" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getnames</span><span
+            class="method-args">(address)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets all hostnames for <code>address</code> from the <a href="DNS.html"><code>DNS</code></a> resolver.</p>
+
+<p><code>address</code> must be a <a href="IPv4.html"><code>Resolv::IPv4</code></a>, <a href="IPv6.html"><code>Resolv::IPv6</code></a> or a <a href="../String.html"><code>String</code></a>.  Retrieved names will be <a href="DNS/Name.html"><code>Resolv::DNS::Name</code></a> instances.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getnames-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 435</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getnames</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-identifier">ret</span> = []
+  <span class="ruby-identifier">each_name</span>(<span class="ruby-identifier">address</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">name</span>}
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getresource" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getresource</span><span
+            class="method-args">(name, typeclass)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Look up the <code>typeclass</code> <a href="DNS.html"><code>DNS</code></a> resource of <code>name</code>.</p>
+
+<p><code>name</code> must be a <a href="DNS/Name.html"><code>Resolv::DNS::Name</code></a> or a <a href="../String.html"><code>String</code></a>.</p>
+
+<p><code>typeclass</code> should be one of the following:</p>
+<ul><li>
+<p><a href="DNS/Resource/IN/A.html"><code>Resolv::DNS::Resource::IN::A</code></a></p>
+</li><li>
+<p><a href="DNS/Resource/IN/AAAA.html"><code>Resolv::DNS::Resource::IN::AAAA</code></a></p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::ANY</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::CNAME</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::HINFO</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::MINFO</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::MX</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::NS</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::PTR</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::SOA</p>
+</li><li>
+<p>Resolv::DNS::Resource::IN::TXT</p>
+</li><li>
+<p><a href="DNS/Resource/IN/WKS.html"><code>Resolv::DNS::Resource::IN::WKS</code></a></p>
+</li></ul>
+
+<p>Returned resource is represented as a <a href="DNS/Resource.html"><code>Resolv::DNS::Resource</code></a> instance, i.e. <a href="DNS/Resource/IN/A.html"><code>Resolv::DNS::Resource::IN::A</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getresource-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 487</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getresource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">typeclass</span>)
+  <span class="ruby-identifier">each_resource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">typeclass</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">resource</span><span class="ruby-operator">|</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">resource</span>}
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ResolvError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;DNS result has no information for #{name}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getresources" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getresources</span><span
+            class="method-args">(name, typeclass)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up all <code>typeclass</code> <a href="DNS.html"><code>DNS</code></a> resources for <code>name</code>.  See <a href="DNS.html#method-i-getresource"><code>getresource</code></a> for argument details.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getresources-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 496</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getresources</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">typeclass</span>)
+  <span class="ruby-identifier">ret</span> = []
+  <span class="ruby-identifier">each_resource</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">typeclass</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">resource</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">resource</span>}
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-timeouts-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">timeouts=</span><span
+            class="method-args">(values)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the resolver timeouts.  This may be a single positive number or an array of positive numbers representing timeouts in seconds. If an array is specified, a <a href="DNS.html"><code>DNS</code></a> request will retry and wait for each successive interval in the array until a successful response is received.  Specifying <code>nil</code> reverts to the default timeouts:</p>
+<dl class="rdoc-list label-list"><dt> 5, second = 5 * 2 / nameserver_count, 2 * second, 4 * second 
+<dd>
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">dns</span>.<span class="ruby-identifier">timeouts</span> = <span class="ruby-value">3</span>
+</pre>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="timeouts-3D-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 346</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">timeouts=</span>(<span class="ruby-identifier">values</span>)
+  <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">timeouts</span> = <span class="ruby-identifier">values</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

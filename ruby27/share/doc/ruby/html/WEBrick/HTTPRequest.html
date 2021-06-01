@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class WEBrick::HTTPRequest - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    <div id="sections-section" class="nav-section">
+  <h3>Sections</h3>
+
+  <ul class="link-list" role="directory">
+    
+      <li><a href="#5Buntitled-5D"></a></li>
+    
+      <li><a href="#Header+and+entity+body">Header and entity body</a></li>
+    
+      <li><a href="#Request+line">Request line</a></li>
+    
+      <li><a href="#Request-URI">Request-URI</a></li>
+    
+  </ul>
+</div>
+
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-body">#body</a>
+    
+    <li ><a href="#method-i-body_reader">#body_reader</a>
+    
+    <li ><a href="#method-i-content_length">#content_length</a>
+    
+    <li ><a href="#method-i-content_type">#content_type</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-host">#host</a>
+    
+    <li ><a href="#method-i-keep_alive-3F">#keep_alive?</a>
+    
+    <li ><a href="#method-i-meta_vars">#meta_vars</a>
+    
+    <li ><a href="#method-i-parse">#parse</a>
+    
+    <li ><a href="#method-i-port">#port</a>
+    
+    <li ><a href="#method-i-query">#query</a>
+    
+    <li ><a href="#method-i-readpartial">#readpartial</a>
+    
+    <li ><a href="#method-i-remote_ip">#remote_ip</a>
+    
+    <li ><a href="#method-i-server_name">#server_name</a>
+    
+    <li ><a href="#method-i-ssl-3F">#ssl?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-WEBrick::HTTPRequest">
+  <h1 id="class-WEBrick::HTTPRequest" class="class">
+    class WEBrick::HTTPRequest
+  </h1>
+
+  <section class="description">
+    
+<p>An HTTP request.  This is consumed by service and do_* methods in <a href="../WEBrick.html"><code>WEBrick</code></a> servlets</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-addr" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">addr</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The socket address of the server</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-attributes" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">attributes</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="../Hash.html"><code>Hash</code></a> of request attributes</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-cipher" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cipher</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>HTTP request SSL cipher</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-client_cert" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">client_cert</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>HTTP request client certificate</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-keep_alive" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">keep_alive</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Is this a keep-alive connection?</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-peeraddr" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">peeraddr</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The socket address of the client</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-request_time" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">request_time</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The local time this request was received</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-server_cert" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">server_cert</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>HTTP request server certificate</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-user" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The remote user (<a href="CGI.html"><code>CGI</code></a> variable)</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(config)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new HTTP request.  WEBrick::Config::HTTP is the default configuration.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">config</span>)
+  <span class="ruby-ivar">@config</span> = <span class="ruby-identifier">config</span>
+  <span class="ruby-ivar">@buffer_size</span> = <span class="ruby-ivar">@config</span>[<span class="ruby-value">:InputBufferSize</span>]
+  <span class="ruby-ivar">@logger</span> = <span class="ruby-identifier">config</span>[<span class="ruby-value">:Logger</span>]
+
+  <span class="ruby-ivar">@request_line</span> = <span class="ruby-ivar">@request_method</span> =
+    <span class="ruby-ivar">@unparsed_uri</span> = <span class="ruby-ivar">@http_version</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-ivar">@request_uri</span> = <span class="ruby-ivar">@host</span> = <span class="ruby-ivar">@port</span> = <span class="ruby-ivar">@path</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@script_name</span> = <span class="ruby-ivar">@path_info</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@query_string</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@query</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@form_data</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-ivar">@raw_header</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@header</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@cookies</span> = []
+  <span class="ruby-ivar">@accept</span> = []
+  <span class="ruby-ivar">@accept_charset</span> = []
+  <span class="ruby-ivar">@accept_encoding</span> = []
+  <span class="ruby-ivar">@accept_language</span> = []
+  <span class="ruby-ivar">@body</span> = <span class="ruby-string">&quot;&quot;</span>
+
+  <span class="ruby-ivar">@addr</span> = <span class="ruby-ivar">@peeraddr</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@attributes</span> = {}
+  <span class="ruby-ivar">@user</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@keep_alive</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@request_time</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-ivar">@remaining_size</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@socket</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-ivar">@forwarded_proto</span> = <span class="ruby-ivar">@forwarded_host</span> = <span class="ruby-ivar">@forwarded_port</span> =
+    <span class="ruby-ivar">@forwarded_server</span> = <span class="ruby-ivar">@forwarded_for</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(header_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves <code>header_name</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 313</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]</span>(<span class="ruby-identifier">header_name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@header</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-ivar">@header</span>[<span class="ruby-identifier">header_name</span>.<span class="ruby-identifier">downcase</span>]
+    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-body" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">body</span><span
+            class="method-args">() { |body_chunk| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the request body.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="body-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">body</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yields: body_chunk</span>
+  <span class="ruby-identifier">block</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">chunk</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">chunk</span> }
+  <span class="ruby-identifier">read_body</span>(<span class="ruby-ivar">@socket</span>, <span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@body</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-body_reader" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">body_reader</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prepares the <a href="HTTPRequest.html"><code>HTTPRequest</code></a> object for use as the source for <a href="../IO.html#method-c-copy_stream"><code>IO.copy_stream</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="body_reader-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 264</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">body_reader</span>
+  <span class="ruby-ivar">@body_tmp</span> = []
+  <span class="ruby-ivar">@body_rd</span> = <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">body</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">buf</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@body_tmp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">buf</span>
+      <span class="ruby-constant">Fiber</span>.<span class="ruby-identifier">yield</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@body_rd</span>.<span class="ruby-identifier">resume</span> <span class="ruby-comment"># grab the first chunk and yield</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-content_length" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">content_length</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The content-length header</p>
+          
+          
+
+          
+          <div class="method-source-code" id="content_length-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 299</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">content_length</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Integer</span>(<span class="ruby-keyword">self</span>[<span class="ruby-string">&#39;content-length&#39;</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-content_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">content_type</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The content-type header</p>
+          
+          
+
+          
+          <div class="method-source-code" id="content_type-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 306</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">content_type</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>[<span class="ruby-string">&#39;content-type&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">() { |k, empty? ? nil : join(&quot;, &quot;)| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over the request headers</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 323</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@header</span>
+    <span class="ruby-ivar">@header</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-ivar">@header</span>[<span class="ruby-identifier">k</span>]
+      <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">k</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>))
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-host" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">host</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The host this request is for</p>
+          
+          
+
+          
+          <div class="method-source-code" id="host-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 335</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">host</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@forwarded_host</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@host</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-keep_alive-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">keep_alive?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Should the connection this request was made on be kept alive?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="keep_alive-3F-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 370</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">keep_alive?</span>
+  <span class="ruby-ivar">@keep_alive</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-meta_vars" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">meta_vars</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This method provides the metavariables defined by the revision 3 of “The WWW Common Gateway Interface Version 1.1” To browse the current document of <a href="CGI.html"><code>CGI</code></a> Version 1.1, see below: <a href="http://tools.ietf.org/html/rfc3875">tools.ietf.org/html/rfc3875</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="meta_vars-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 402</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">meta_vars</span>
+  <span class="ruby-identifier">meta</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-identifier">cl</span> = <span class="ruby-keyword">self</span>[<span class="ruby-string">&quot;Content-Length&quot;</span>]
+  <span class="ruby-identifier">ct</span> = <span class="ruby-keyword">self</span>[<span class="ruby-string">&quot;Content-Type&quot;</span>]
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;CONTENT_LENGTH&quot;</span>]    = <span class="ruby-identifier">cl</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cl</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;CONTENT_TYPE&quot;</span>]      = <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">dup</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ct</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;GATEWAY_INTERFACE&quot;</span>] = <span class="ruby-string">&quot;CGI/1.1&quot;</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;PATH_INFO&quot;</span>]         = <span class="ruby-ivar">@path_info</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@path_info</span>.<span class="ruby-identifier">dup</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>
+ <span class="ruby-comment">#meta[&quot;PATH_TRANSLATED&quot;]   = nil      # no plan to be provided</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;QUERY_STRING&quot;</span>]      = <span class="ruby-ivar">@query_string</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@query_string</span>.<span class="ruby-identifier">dup</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;REMOTE_ADDR&quot;</span>]       = <span class="ruby-ivar">@peeraddr</span>[<span class="ruby-value">3</span>]
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;REMOTE_HOST&quot;</span>]       = <span class="ruby-ivar">@peeraddr</span>[<span class="ruby-value">2</span>]
+ <span class="ruby-comment">#meta[&quot;REMOTE_IDENT&quot;]      = nil      # no plan to be provided</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;REMOTE_USER&quot;</span>]       = <span class="ruby-ivar">@user</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;REQUEST_METHOD&quot;</span>]    = <span class="ruby-ivar">@request_method</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;REQUEST_URI&quot;</span>]       = <span class="ruby-ivar">@request_uri</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;SCRIPT_NAME&quot;</span>]       = <span class="ruby-ivar">@script_name</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;SERVER_NAME&quot;</span>]       = <span class="ruby-ivar">@host</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;SERVER_PORT&quot;</span>]       = <span class="ruby-ivar">@port</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;SERVER_PROTOCOL&quot;</span>]   = <span class="ruby-string">&quot;HTTP/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@config</span>[<span class="ruby-value">:HTTPVersion</span>].<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-string">&quot;SERVER_SOFTWARE&quot;</span>]   = <span class="ruby-ivar">@config</span>[<span class="ruby-value">:ServerSoftware</span>].<span class="ruby-identifier">dup</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-regexp">/^content-type$/i</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">key</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-regexp">/^content-length$/i</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">key</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-string">&quot;HTTP_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>
+    <span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/-/o</span>, <span class="ruby-string">&quot;_&quot;</span>)
+    <span class="ruby-identifier">name</span>.<span class="ruby-identifier">upcase!</span>
+    <span class="ruby-identifier">meta</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">val</span>
+  }
+
+  <span class="ruby-identifier">meta</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse</span><span
+            class="method-args">(socket=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parses a request from <code>socket</code>.  This is called internally by <a href="HTTPServer.html"><code>WEBrick::HTTPServer</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse</span>(<span class="ruby-identifier">socket</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@socket</span> = <span class="ruby-identifier">socket</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-ivar">@peeraddr</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:peeraddr</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">peeraddr</span> <span class="ruby-operator">:</span> []
+    <span class="ruby-ivar">@addr</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:addr</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">addr</span> <span class="ruby-operator">:</span> []
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOTCONN</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">HTTPStatus</span><span class="ruby-operator">::</span><span class="ruby-constant">EOFError</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">read_request_line</span>(<span class="ruby-identifier">socket</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@http_version</span>.<span class="ruby-identifier">major</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">read_header</span>(<span class="ruby-identifier">socket</span>)
+    <span class="ruby-ivar">@header</span>[<span class="ruby-string">&#39;cookie&#39;</span>].<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">cookie</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@cookies</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Cookie</span><span class="ruby-operator">::</span><span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cookie</span>)
+    }
+    <span class="ruby-ivar">@accept</span> = <span class="ruby-constant">HTTPUtils</span>.<span class="ruby-identifier">parse_qvalues</span>(<span class="ruby-keyword">self</span>[<span class="ruby-string">&#39;accept&#39;</span>])
+    <span class="ruby-ivar">@accept_charset</span> = <span class="ruby-constant">HTTPUtils</span>.<span class="ruby-identifier">parse_qvalues</span>(<span class="ruby-keyword">self</span>[<span class="ruby-string">&#39;accept-charset&#39;</span>])
+    <span class="ruby-ivar">@accept_encoding</span> = <span class="ruby-constant">HTTPUtils</span>.<span class="ruby-identifier">parse_qvalues</span>(<span class="ruby-keyword">self</span>[<span class="ruby-string">&#39;accept-encoding&#39;</span>])
+    <span class="ruby-ivar">@accept_language</span> = <span class="ruby-constant">HTTPUtils</span>.<span class="ruby-identifier">parse_qvalues</span>(<span class="ruby-keyword">self</span>[<span class="ruby-string">&#39;accept-language&#39;</span>])
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@request_method</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;CONNECT&quot;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@unparsed_uri</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;*&quot;</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">setup_forwarded_info</span>
+    <span class="ruby-ivar">@request_uri</span> = <span class="ruby-identifier">parse_uri</span>(<span class="ruby-ivar">@unparsed_uri</span>)
+    <span class="ruby-ivar">@path</span> = <span class="ruby-constant">HTTPUtils</span><span class="ruby-operator">::</span><span class="ruby-identifier">unescape</span>(<span class="ruby-ivar">@request_uri</span>.<span class="ruby-identifier">path</span>)
+    <span class="ruby-ivar">@path</span> = <span class="ruby-constant">HTTPUtils</span><span class="ruby-operator">::</span><span class="ruby-identifier">normalize_path</span>(<span class="ruby-ivar">@path</span>)
+    <span class="ruby-ivar">@host</span> = <span class="ruby-ivar">@request_uri</span>.<span class="ruby-identifier">host</span>
+    <span class="ruby-ivar">@port</span> = <span class="ruby-ivar">@request_uri</span>.<span class="ruby-identifier">port</span>
+    <span class="ruby-ivar">@query_string</span> = <span class="ruby-ivar">@request_uri</span>.<span class="ruby-identifier">query</span>
+    <span class="ruby-ivar">@script_name</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-ivar">@path_info</span> = <span class="ruby-ivar">@path</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">HTTPStatus</span><span class="ruby-operator">::</span><span class="ruby-constant">BadRequest</span>, <span class="ruby-node">&quot;bad URI `#{@unparsed_uri}&#39;.&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-regexp">/close/io</span> <span class="ruby-operator">=~</span> <span class="ruby-keyword">self</span>[<span class="ruby-string">&quot;connection&quot;</span>]
+    <span class="ruby-ivar">@keep_alive</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-regexp">/keep-alive/io</span> <span class="ruby-operator">=~</span> <span class="ruby-keyword">self</span>[<span class="ruby-string">&quot;connection&quot;</span>]
+    <span class="ruby-ivar">@keep_alive</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@http_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-string">&quot;1.1&quot;</span>
+    <span class="ruby-ivar">@keep_alive</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@keep_alive</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-port" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">port</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The port this request is for</p>
+          
+          
+
+          
+          <div class="method-source-code" id="port-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 342</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">port</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@forwarded_port</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@port</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">query</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Request query as a <a href="../Hash.html"><code>Hash</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="query-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 289</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">query</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@query</span>
+    <span class="ruby-identifier">parse_query</span>()
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@query</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-readpartial" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">readpartial</span><span
+            class="method-args">(size, buf = &#39;&#39;.b)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>for <a href="../IO.html#method-c-copy_stream"><code>IO.copy_stream</code></a>.  Note: we may return a larger string than <code>size</code> here; but <a href="../IO.html#method-c-copy_stream"><code>IO.copy_stream</code></a> does not care.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="readpartial-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">readpartial</span>(<span class="ruby-identifier">size</span>, <span class="ruby-identifier">buf</span> = <span class="ruby-string">&#39;&#39;</span>.<span class="ruby-identifier">b</span>) <span class="ruby-comment"># :nodoc</span>
+  <span class="ruby-identifier">res</span> = <span class="ruby-ivar">@body_tmp</span>.<span class="ruby-identifier">shift</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">EOFError</span>, <span class="ruby-string">&#39;end of file reached&#39;</span>
+  <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">res</span>)
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">clear</span>
+  <span class="ruby-ivar">@body_rd</span>.<span class="ruby-identifier">resume</span> <span class="ruby-comment"># get more chunks</span>
+  <span class="ruby-identifier">buf</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remote_ip" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remote_ip</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The client&#39;s IP address</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remote_ip-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 356</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remote_ip</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>[<span class="ruby-string">&quot;client-ip&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@forwarded_for</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@peeraddr</span>[<span class="ruby-value">3</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-server_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">server_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The server name this request is for</p>
+          
+          
+
+          
+          <div class="method-source-code" id="server_name-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 349</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">server_name</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@forwarded_server</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@config</span>[<span class="ruby-value">:ServerName</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ssl-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ssl?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Is this an SSL request?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ssl-3F-source">
+            <pre><span class="ruby-comment"># File lib/webrick/httprequest.rb, line 363</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ssl?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@request_uri</span>.<span class="ruby-identifier">scheme</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;https&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+  <section id="Header+and+entity+body" class="documentation-section">
+    
+    <header class="documentation-section-title">
+      <h2>
+        Header and entity body
+      </h2>
+      <span class="section-click-top">
+        <a href="#top">&uarr; top</a>
+      </span>
+    </header>
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-accept" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">accept</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The Accept header value</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-accept_charset" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">accept_charset</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The Accept-Charset header value</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-accept_encoding" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">accept_encoding</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The Accept-Encoding header value</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-accept_language" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">accept_language</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The Accept-Language header value</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-cookies" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cookies</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The parsed request cookies</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-header" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">header</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The parsed header of the request</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-raw_header" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">raw_header</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The raw header of the request</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+  </section>
+
+  <section id="Request+line" class="documentation-section">
+    
+    <header class="documentation-section-title">
+      <h2>
+        Request line
+      </h2>
+      <span class="section-click-top">
+        <a href="#top">&uarr; top</a>
+      </span>
+    </header>
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-http_version" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">http_version</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The HTTP version of the request</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-request_line" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">request_line</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The complete request line such as:</p>
+
+<pre class="ruby"><span class="ruby-constant">GET</span> <span class="ruby-operator">/</span> <span class="ruby-constant">HTTP</span><span class="ruby-operator">/</span><span class="ruby-value">1.1</span>
+</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-request_method" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">request_method</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The request method, GET, POST, PUT, etc.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-unparsed_uri" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">unparsed_uri</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The unparsed <a href="../URI.html"><code>URI</code></a> of the request</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+  </section>
+
+  <section id="Request-URI" class="documentation-section">
+    
+    <header class="documentation-section-title">
+      <h2>
+        Request-URI
+      </h2>
+      <span class="section-click-top">
+        <a href="#top">&uarr; top</a>
+      </span>
+    </header>
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-path" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">path</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The request path</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-path_info" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">path_info</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The path info (<a href="CGI.html"><code>CGI</code></a> variable)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-query_string" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">query_string</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The query from the <a href="../URI.html"><code>URI</code></a> of the request</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-request_uri" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">request_uri</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The parsed <a href="../URI.html"><code>URI</code></a> of the request</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-script_name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">script_name</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The script name (<a href="CGI.html"><code>CGI</code></a> variable)</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

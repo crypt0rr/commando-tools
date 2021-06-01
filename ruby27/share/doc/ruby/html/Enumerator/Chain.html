@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Enumerator::Chain - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Enumerator.html">Enumerator</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-each">#each</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-rewind">#rewind</a>
+    
+    <li ><a href="#method-i-size">#size</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Enumerator::Chain">
+  <h1 id="class-Enumerator::Chain" class="class">
+    class Enumerator::Chain
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Chain.html"><code>Enumerator::Chain</code></a> is a subclass of <a href="../Enumerator.html"><code>Enumerator</code></a>, which represents a chain of enumerables that works as a single enumerator.</p>
+
+<p>This type of objects can be created by <a href="../Enumerable.html#method-i-chain"><code>Enumerable#chain</code></a> and <a href="../Enumerator.html#method-i-2B"><code>Enumerator#+</code></a>.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Enumerator::Chain.new(*enums) &rarr; enum
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Generates a new enumerator object that iterates over the elements of given enumerable objects in sequence.</p>
+
+<pre class="ruby"><span class="ruby-identifier">e</span> = <span class="ruby-constant">Enumerator</span><span class="ruby-operator">::</span><span class="ruby-constant">Chain</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>, [<span class="ruby-value">4</span>, <span class="ruby-value">5</span>])
+<span class="ruby-identifier">e</span>.<span class="ruby-identifier">to_a</span> <span class="ruby-comment">#=&gt; [1, 2, 3, 4, 5]</span>
+<span class="ruby-identifier">e</span>.<span class="ruby-identifier">size</span> <span class="ruby-comment">#=&gt; 5</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+enum_chain_initialize(VALUE obj, VALUE enums)
+{
+    struct enum_chain *ptr;
+
+    rb_check_frozen(obj);
+    TypedData_Get_Struct(obj, struct enum_chain, &amp;enum_chain_data_type, ptr);
+
+    if (!ptr) rb_raise(rb_eArgError, &quot;unallocated chain&quot;);
+
+    ptr-&gt;enums = rb_obj_freeze(enums);
+    ptr-&gt;pos = -1;
+
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each(*args) { |...| ... } &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each(*args) &rarr; enumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over the elements of the first enumerable by calling the “each” method on it with the given arguments, then proceeds to the following enumerables in sequence until all of the enumerables are exhausted.</p>
+
+<p>If no block is given, returns an enumerator.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre>static VALUE
+enum_chain_each(int argc, VALUE *argv, VALUE obj)
+{
+    VALUE enums, block;
+    struct enum_chain *objptr;
+    long i;
+
+    RETURN_SIZED_ENUMERATOR(obj, argc, argv, argc &gt; 0 ? enum_chain_enum_no_size : enum_chain_enum_size);
+
+    objptr = enum_chain_ptr(obj);
+    enums = objptr-&gt;enums;
+    block = rb_block_proc();
+
+    for (i = 0; i &lt; RARRAY_LEN(enums); i++) {
+        objptr-&gt;pos = i;
+        rb_funcall_with_block(RARRAY_AREF(enums, i), id_each, argc, argv, block);
+    }
+
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a printable version of the enumerator chain.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+enum_chain_inspect(VALUE obj)
+{
+    return rb_exec_recursive(inspect_enum_chain, obj, 0);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rewind" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            rewind &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Rewinds the enumerator chain by calling the “rewind” method on each enumerable in reverse order.  Each call is performed only if the enumerable responds to the method.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rewind-source">
+            <pre>static VALUE
+enum_chain_rewind(VALUE obj)
+{
+    struct enum_chain *objptr = enum_chain_ptr(obj);
+    VALUE enums = objptr-&gt;enums;
+    long i;
+
+    for (i = objptr-&gt;pos; 0 &lt;= i &amp;&amp; i &lt; RARRAY_LEN(enums); objptr-&gt;pos = --i) {
+        rb_check_funcall(RARRAY_AREF(enums, i), id_rewind, 0, 0);
+    }
+
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            size &rarr; int, Float::INFINITY or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the total size of the enumerator chain calculated by summing up the size of each enumerable in the chain.  If any of the enumerables reports its size as nil or Float::INFINITY, that value is returned as the total size.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre>static VALUE
+enum_chain_size(VALUE obj)
+{
+    return enum_chain_total_size(enum_chain_ptr(obj)-&gt;enums);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

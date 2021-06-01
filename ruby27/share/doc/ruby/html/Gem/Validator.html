@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Validator - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="UserInteraction.html">Gem::UserInteraction</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-alien">#alien</a>
+    
+    <li ><a href="#method-i-find_files_for_gem">#find_files_for_gem</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Validator">
+  <h1 id="class-Gem::Validator" class="class">
+    class Gem::Validator
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Validator.html"><code>Validator</code></a> performs various gem file and gem database validation</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-alien" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">alien</span><span
+            class="method-args">(gems=[])</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks the gem directory for the following potential inconsistencies/problems:</p>
+<ul><li>
+<p>Checksum gem itself</p>
+</li><li>
+<p>For each file in each gem, check consistency of installed versions</p>
+</li><li>
+<p>Check for files that aren&#39;t part of the gem but are in the gems directory</p>
+</li><li>
+<p>1 cache - 1 spec - 1 directory.</p>
+</li></ul>
+
+<p>returns a hash of ErrorData objects, keyed on the problem gem&#39;s name.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="alien-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/validator.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">alien</span>(<span class="ruby-identifier">gems</span>=[])
+  <span class="ruby-identifier">errors</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = {} }
+
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">gems</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">gems</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">default_gem?</span>
+
+    <span class="ruby-identifier">gem_name</span>      = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">file_name</span>
+    <span class="ruby-identifier">gem_path</span>      = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">cache_file</span>
+    <span class="ruby-identifier">spec_path</span>     = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">spec_file</span>
+    <span class="ruby-identifier">gem_directory</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_gem_path</span>
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span> <span class="ruby-identifier">gem_directory</span>
+      <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">gem_name</span>][<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>] =
+        <span class="ruby-node">&quot;Gem registered but doesn&#39;t exist at #{gem_directory}&quot;</span>
+      <span class="ruby-keyword">next</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">spec_path</span>
+      <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">gem_name</span>][<span class="ruby-identifier">spec_path</span>] = <span class="ruby-string">&quot;Spec file missing for installed gem&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">readable?</span>(<span class="ruby-identifier">gem_path</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">VerificationError</span>, <span class="ruby-node">&quot;missing gem file #{gem_path}&quot;</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">good</span>, <span class="ruby-identifier">gone</span>, <span class="ruby-identifier">unreadable</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>
+
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">gem_path</span>, <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">binary_mode</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">package</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Package</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">gem_path</span>
+
+        <span class="ruby-identifier">good</span>, <span class="ruby-identifier">gone</span> = <span class="ruby-identifier">package</span>.<span class="ruby-identifier">contents</span>.<span class="ruby-identifier">partition</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file_name</span><span class="ruby-operator">|</span>
+          <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">gem_directory</span>, <span class="ruby-identifier">file_name</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">gone</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">gem_name</span>][<span class="ruby-identifier">path</span>] = <span class="ruby-string">&quot;Missing file&quot;</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">good</span>, <span class="ruby-identifier">unreadable</span> = <span class="ruby-identifier">good</span>.<span class="ruby-identifier">partition</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file_name</span><span class="ruby-operator">|</span>
+          <span class="ruby-constant">File</span>.<span class="ruby-identifier">readable?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">gem_directory</span>, <span class="ruby-identifier">file_name</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">unreadable</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">gem_name</span>][<span class="ruby-identifier">path</span>] = <span class="ruby-string">&quot;Unreadable file&quot;</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">good</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span>, <span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword">begin</span>
+            <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">data</span> <span class="ruby-comment"># HACK `gem check -a mkrf`</span>
+
+            <span class="ruby-identifier">source</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">gem_directory</span>, <span class="ruby-identifier">entry</span>[<span class="ruby-string">&#39;path&#39;</span>]
+
+            <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">source</span>, <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">binary_mode</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword">unless</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">data</span>
+                <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">gem_name</span>][<span class="ruby-identifier">entry</span>[<span class="ruby-string">&#39;path&#39;</span>]] = <span class="ruby-string">&quot;Modified from original&quot;</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">installed_files</span> = <span class="ruby-identifier">find_files_for_gem</span>(<span class="ruby-identifier">gem_directory</span>)
+      <span class="ruby-identifier">extras</span> = <span class="ruby-identifier">installed_files</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">good</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">unreadable</span>
+
+      <span class="ruby-identifier">extras</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">extra</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">gem_name</span>][<span class="ruby-identifier">extra</span>] = <span class="ruby-string">&quot;Extra file&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">VerificationError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">gem_name</span>][<span class="ruby-identifier">gem_path</span>] = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">subhash</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">errors</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">subhash</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span>, <span class="ruby-identifier">msg</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">ErrorData</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">path</span>, <span class="ruby-identifier">msg</span>
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">sort</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">errors</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-find_files_for_gem" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_files_for_gem</span><span
+            class="method-args">(gem_directory)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_files_for_gem-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/validator.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_files_for_gem</span>(<span class="ruby-identifier">gem_directory</span>)
+  <span class="ruby-identifier">installed_files</span> = []
+
+  <span class="ruby-constant">Find</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">gem_directory</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file_name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">fn</span> = <span class="ruby-identifier">file_name</span>[<span class="ruby-identifier">gem_directory</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">..</span><span class="ruby-identifier">file_name</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&quot;&quot;</span>)
+    <span class="ruby-identifier">installed_files</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">fn</span> <span class="ruby-keyword">unless</span>
+      <span class="ruby-identifier">fn</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/CVS/</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">fn</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">file_name</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">installed_files</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Bundler::Thor::Util - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-camel_case">::camel_case</a>
+    
+    <li ><a href="#method-c-escape_globs">::escape_globs</a>
+    
+    <li ><a href="#method-c-escape_html">::escape_html</a>
+    
+    <li ><a href="#method-c-find_by_namespace">::find_by_namespace</a>
+    
+    <li ><a href="#method-c-find_class_and_command_by_namespace">::find_class_and_command_by_namespace</a>
+    
+    <li ><a href="#method-c-find_class_and_task_by_namespace">::find_class_and_task_by_namespace</a>
+    
+    <li ><a href="#method-c-globs_for">::globs_for</a>
+    
+    <li ><a href="#method-c-load_thorfile">::load_thorfile</a>
+    
+    <li ><a href="#method-c-namespace_from_thor_class">::namespace_from_thor_class</a>
+    
+    <li ><a href="#method-c-namespaces_in_content">::namespaces_in_content</a>
+    
+    <li ><a href="#method-c-ruby_command">::ruby_command</a>
+    
+    <li ><a href="#method-c-snake_case">::snake_case</a>
+    
+    <li ><a href="#method-c-thor_classes_in">::thor_classes_in</a>
+    
+    <li ><a href="#method-c-thor_root">::thor_root</a>
+    
+    <li ><a href="#method-c-thor_root_glob">::thor_root_glob</a>
+    
+    <li ><a href="#method-c-user_home">::user_home</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Bundler::Thor::Util">
+  <h1 id="module-Bundler::Thor::Util" class="module">
+    module Bundler::Thor::Util
+  </h1>
+
+  <section class="description">
+    
+<p>This module holds several utilities:</p>
+
+<p>1) Methods to convert thor namespaces to constants and vice-versa.</p>
+
+<pre class="ruby"><span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">namespace_from_thor_class</span>(<span class="ruby-constant">Foo</span><span class="ruby-operator">::</span><span class="ruby-constant">Bar</span><span class="ruby-operator">::</span><span class="ruby-constant">Baz</span>) <span class="ruby-comment">#=&gt; &quot;foo:bar:baz&quot;</span>
+</pre>
+
+<p>2) Loading thor files and sandboxing:</p>
+
+<pre class="ruby"><span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">load_thorfile</span>(<span class="ruby-string">&quot;~/.thor/foo&quot;</span>)
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-camel_case" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">camel_case</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Receives a string and convert it to camel case. <a href="Util.html#method-c-camel_case"><code>camel_case</code></a> returns CamelCase.</p>
+
+<h4 id="method-c-camel_case-label-Parameters">Parameters<span><a href="#method-c-camel_case-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+
+<h4 id="method-c-camel_case-label-Returns">Returns<span><a href="#method-c-camel_case-label-Returns">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="camel_case-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">camel_case</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/_/</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">str</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/[A-Z]+.*/</span>
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;_&quot;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-escape_globs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">escape_globs</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string that has had any glob characters escaped. The glob characters are `* ? { } [ ]`.</p>
+
+<h4 id="method-c-escape_globs-label-Examples">Examples<span><a href="#method-c-escape_globs-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">escape_globs</span>(<span class="ruby-string">&#39;[apps]&#39;</span>)   <span class="ruby-comment"># =&gt; &#39;\[apps\]&#39;</span>
+</pre>
+
+<h4 id="method-c-escape_globs-label-Parameters">Parameters<span><a href="#method-c-escape_globs-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+
+<h4 id="method-c-escape_globs-label-Returns">Returns<span><a href="#method-c-escape_globs-label-Returns">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="escape_globs-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 263</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">escape_globs</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[*?{}\[\]]/</span>, <span class="ruby-string">&#39;\\\\\\&amp;&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-escape_html" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">escape_html</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string that has had any HTML characters escaped.</p>
+
+<h4 id="method-c-escape_html-label-Examples">Examples<span><a href="#method-c-escape_html-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">escape_html</span>(<span class="ruby-string">&#39;&lt;div&gt;&#39;</span>)   <span class="ruby-comment"># =&gt; &quot;&amp;lt;div&amp;gt;&quot;</span>
+</pre>
+
+<h4 id="method-c-escape_html-label-Parameters">Parameters<span><a href="#method-c-escape_html-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+
+<h4 id="method-c-escape_html-label-Returns">Returns<span><a href="#method-c-escape_html-label-Returns">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="escape_html-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 279</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">escape_html</span>(<span class="ruby-identifier">string</span>)
+  <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escapeHTML</span>(<span class="ruby-identifier">string</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find_by_namespace" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_by_namespace</span><span
+            class="method-args">(namespace)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Receives a namespace and search for it in the <a href="Base.html"><code>Bundler::Thor::Base</code></a> subclasses.</p>
+
+<h4 id="method-c-find_by_namespace-label-Parameters">Parameters<span><a href="#method-c-find_by_namespace-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>namespace&lt;String&gt;
+<dd>
+<p>The namespace to search for.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="find_by_namespace-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_by_namespace</span>(<span class="ruby-identifier">namespace</span>)
+  <span class="ruby-identifier">namespace</span> = <span class="ruby-node">&quot;default#{namespace}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">namespace</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^:/</span>
+  <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">namespace</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">namespace</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find_class_and_command_by_namespace" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_class_and_command_by_namespace</span><span
+            class="method-args">(namespace, fallback = true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Receives a namespace and tries to retrieve a Bundler::Thor or <a href="Group.html"><code>Bundler::Thor::Group</code></a> class from it. It first searches for a class using the all the given namespace, if it&#39;s not found, removes the highest entry and searches for the class again. If found, returns the highest entry as the class name.</p>
+
+<h4 id="method-c-find_class_and_command_by_namespace-label-Examples">Examples<span><a href="#method-c-find_class_and_command_by_namespace-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Foo</span><span class="ruby-operator">::</span><span class="ruby-constant">Bar</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">baz</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Baz</span><span class="ruby-operator">::</span><span class="ruby-constant">Foo</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Group</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">namespace_to_thor_class</span>(<span class="ruby-string">&quot;foo:bar&quot;</span>)     <span class="ruby-comment">#=&gt; Foo::Bar, nil # will invoke default command</span>
+<span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">namespace_to_thor_class</span>(<span class="ruby-string">&quot;baz:foo&quot;</span>)     <span class="ruby-comment">#=&gt; Baz::Foo, nil</span>
+<span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">namespace_to_thor_class</span>(<span class="ruby-string">&quot;foo:bar:baz&quot;</span>) <span class="ruby-comment">#=&gt; Foo::Bar, &quot;baz&quot;</span>
+</pre>
+
+<h4 id="method-c-find_class_and_command_by_namespace-label-Parameters">Parameters<span><a href="#method-c-find_class_and_command_by_namespace-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>namespace&lt;String&gt;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_class_and_command_by_namespace-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_class_and_command_by_namespace</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">fallback</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;:&quot;</span>) <span class="ruby-comment"># look for a namespaced command</span>
+    <span class="ruby-identifier">pieces</span>  = <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;:&quot;</span>)
+    <span class="ruby-identifier">command</span> = <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-identifier">klass</span>   = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">find_by_namespace</span>(<span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;:&quot;</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">klass</span> <span class="ruby-comment"># look for a Bundler::Thor::Group with the right name</span>
+    <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">find_by_namespace</span>(<span class="ruby-identifier">namespace</span>)
+    <span class="ruby-identifier">command</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">klass</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">fallback</span> <span class="ruby-comment"># try a command in the default namespace</span>
+    <span class="ruby-identifier">command</span> = <span class="ruby-identifier">namespace</span>
+    <span class="ruby-identifier">klass</span>   = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">find_by_namespace</span>(<span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">command</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Util.html#method-c-find_class_and_task_by_namespace">find_class_and_task_by_namespace</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find_class_and_task_by_namespace" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">find_class_and_task_by_namespace</span><span
+            class="method-args">(namespace, fallback = true)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Util.html#method-c-find_class_and_command_by_namespace">find_class_and_command_by_namespace</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-c-globs_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">globs_for</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Where to look for Bundler::Thor files.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="globs_for-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 212</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">globs_for</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">escape_globs</span>(<span class="ruby-identifier">path</span>)
+  [<span class="ruby-node">&quot;#{path}/Thorfile&quot;</span>, <span class="ruby-node">&quot;#{path}/*.thor&quot;</span>, <span class="ruby-node">&quot;#{path}/tasks/*.thor&quot;</span>, <span class="ruby-node">&quot;#{path}/lib/tasks/*.thor&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-load_thorfile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_thorfile</span><span
+            class="method-args">(path, content = nil, debug = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Receives a path and load the thor file in the path. The file is evaluated inside the sandbox to avoid namespacing conflicts.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="load_thorfile-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_thorfile</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">content</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">debug</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">content</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">binread</span>(<span class="ruby-identifier">path</span>)
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Sandbox</span>.<span class="ruby-identifier">class_eval</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;WARNING: unable to load thorfile #{path.inspect}: #{e.message}&quot;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">first</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-namespace_from_thor_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">namespace_from_thor_class</span><span
+            class="method-args">(constant)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Receives a constant and converts it to a Bundler::Thor namespace. Since Bundler::Thor commands can be added to a sandbox, this method is also responsible for removing the sandbox namespace.</p>
+
+<p>This method should not be used in general because it&#39;s used to deal with older versions of Bundler::Thor. On current versions, if you need to get the namespace from a class, just call namespace on it.</p>
+
+<h4 id="method-c-namespace_from_thor_class-label-Parameters">Parameters<span><a href="#method-c-namespace_from_thor_class-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt>constant&lt;Object&gt;
+<dd>
+<p>The constant to be converted to the thor path.</p>
+</dd></dl>
+
+<h4 id="method-c-namespace_from_thor_class-label-Returns">Returns<span><a href="#method-c-namespace_from_thor_class-label-Returns">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<dl class="rdoc-list note-list"><dt><a href="../../String.html"><code>String</code></a>
+<dd>
+<p>If we receive Foo::Bar::Baz it returns “foo:bar:baz”</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="namespace_from_thor_class-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">namespace_from_thor_class</span>(<span class="ruby-identifier">constant</span>)
+  <span class="ruby-identifier">constant</span> = <span class="ruby-identifier">constant</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^Bundler::Thor::Sandbox::/</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-identifier">constant</span> = <span class="ruby-identifier">snake_case</span>(<span class="ruby-identifier">constant</span>).<span class="ruby-identifier">squeeze</span>(<span class="ruby-string">&quot;:&quot;</span>)
+  <span class="ruby-identifier">constant</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-namespaces_in_content" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">namespaces_in_content</span><span
+            class="method-args">(contents, file = __FILE__)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given the contents, evaluate it inside the sandbox and returns the namespaces defined in the sandbox.</p>
+
+<h4 id="method-c-namespaces_in_content-label-Parameters">Parameters<span><a href="#method-c-namespaces_in_content-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>contents&lt;String&gt;</p>
+
+<h4 id="method-c-namespaces_in_content-label-Returns">Returns<span><a href="#method-c-namespaces_in_content-label-Returns">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="Object">Array</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="namespaces_in_content-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">namespaces_in_content</span>(<span class="ruby-identifier">contents</span>, <span class="ruby-identifier">file</span> = <span class="ruby-keyword">__FILE__</span>)
+  <span class="ruby-identifier">old_constants</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">clear</span>
+
+  <span class="ruby-identifier">load_thorfile</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">contents</span>)
+
+  <span class="ruby-identifier">new_constants</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">old_constants</span>)
+
+  <span class="ruby-identifier">new_constants</span>.<span class="ruby-identifier">map!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:namespace</span>)
+  <span class="ruby-identifier">new_constants</span>.<span class="ruby-identifier">compact!</span>
+  <span class="ruby-identifier">new_constants</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ruby_command" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ruby_command</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the path to the ruby interpreter taking into account multiple installations and windows extensions.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ruby_command-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 220</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ruby_command</span>
+  <span class="ruby-ivar">@ruby_command</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">ruby_name</span> = <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">&quot;ruby_install_name&quot;</span>]
+    <span class="ruby-identifier">ruby</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">&quot;bindir&quot;</span>], <span class="ruby-identifier">ruby_name</span>)
+    <span class="ruby-identifier">ruby</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">&quot;EXEEXT&quot;</span>]
+
+    <span class="ruby-comment"># avoid using different name than ruby (on platforms supporting links)</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">ruby_name</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;ruby&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:readlink</span>)
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">alternate_ruby</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">&quot;bindir&quot;</span>], <span class="ruby-string">&quot;ruby&quot;</span>)
+        <span class="ruby-identifier">alternate_ruby</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-string">&quot;EXEEXT&quot;</span>]
+
+        <span class="ruby-comment"># ruby is a symlink</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">symlink?</span> <span class="ruby-identifier">alternate_ruby</span>
+          <span class="ruby-identifier">linked_ruby</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">readlink</span> <span class="ruby-identifier">alternate_ruby</span>
+
+          <span class="ruby-comment"># symlink points to &#39;ruby_install_name&#39;</span>
+          <span class="ruby-identifier">ruby</span> = <span class="ruby-identifier">alternate_ruby</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">linked_ruby</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ruby_name</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">linked_ruby</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ruby</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NotImplementedError</span> <span class="ruby-comment"># rubocop:disable HandleExceptions</span>
+        <span class="ruby-comment"># just ignore on windows</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># escape string in case path to ruby executable contain spaces.</span>
+    <span class="ruby-identifier">ruby</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/.*\s.*/m</span>, <span class="ruby-string">&#39;&quot;\&amp;&quot;&#39;</span>)
+    <span class="ruby-identifier">ruby</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-snake_case" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">snake_case</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Receives a string and convert it to snake case. SnakeCase returns snake_case.</p>
+
+<h4 id="method-c-snake_case-label-Parameters">Parameters<span><a href="#method-c-snake_case-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+
+<h4 id="method-c-snake_case-label-Returns">Returns<span><a href="#method-c-snake_case-label-Returns">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p><a href="../../String.html"><code>String</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="snake_case-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">snake_case</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^[A-Z_]+$/</span>
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\B[A-Z]/</span>, <span class="ruby-string">&#39;_\&amp;&#39;</span>).<span class="ruby-identifier">squeeze</span>(<span class="ruby-string">&quot;_&quot;</span>) <span class="ruby-operator">=~</span> <span class="ruby-regexp">/_*(.*)/</span>
+  <span class="ruby-node">$+</span>.<span class="ruby-identifier">downcase</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-thor_classes_in" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">thor_classes_in</span><span
+            class="method-args">(klass)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the thor classes declared inside the given class.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="thor_classes_in-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">thor_classes_in</span>(<span class="ruby-identifier">klass</span>)
+  <span class="ruby-identifier">stringfied_constants</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">constants</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_s</span>)
+  <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">Thor</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">subclass</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">subclass</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">stringfied_constants</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">subclass</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">&quot;#{klass.name}::&quot;</span>, <span class="ruby-string">&quot;&quot;</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-thor_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">thor_root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the root where thor files are located, depending on the OS.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="thor_root-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">thor_root</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">user_home</span>, <span class="ruby-string">&quot;.thor&quot;</span>).<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39;\\&#39;</span>, <span class="ruby-string">&quot;/&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-thor_root_glob" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">thor_root_glob</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the files in the thor root. On Windows <a href="Util.html#method-c-thor_root"><code>thor_root</code></a> will be something like this:</p>
+
+<pre>C:\Documents and Settings\james\.thor</pre>
+
+<p>If we don&#39;t gsub the \ character, <a href="../../Dir.html#method-c-glob"><code>Dir.glob</code></a> will fail.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="thor_root_glob-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 202</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">thor_root_glob</span>
+  <span class="ruby-identifier">files</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{escape_globs(thor_root)}/*&quot;</span>]
+
+  <span class="ruby-identifier">files</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">file</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">file</span>, <span class="ruby-string">&quot;main.thor&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">file</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-user_home" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_home</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_home-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/thor/lib/thor/util.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">user_home</span>
+  <span class="ruby-identifier">@@user_home</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;HOME&quot;</span>]
+    <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;HOME&quot;</span>]
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;USERPROFILE&quot;</span>]
+    <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;USERPROFILE&quot;</span>]
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;HOMEDRIVE&quot;</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;HOMEPATH&quot;</span>]
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;HOMEDRIVE&quot;</span>], <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;HOMEPATH&quot;</span>])
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;APPDATA&quot;</span>]
+    <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;APPDATA&quot;</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;~&quot;</span>)
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">ALT_SEPARATOR</span>
+        <span class="ruby-string">&quot;C:/&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-string">&quot;/&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

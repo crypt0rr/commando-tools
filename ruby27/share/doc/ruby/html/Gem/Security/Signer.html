@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Security::Signer - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../UserInteraction.html">Gem::UserInteraction</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-re_sign_cert">::re_sign_cert</a>
+    
+    <li ><a href="#method-i-sign">#sign</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Security::Signer">
+  <h1 id="class-Gem::Security::Signer" class="class">
+    class Gem::Security::Signer
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DEFAULT_OPTIONS">DEFAULT_OPTIONS
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-cert_chain" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cert_chain</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The chain of certificates for signing including the signing certificate</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-digest_algorithm" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">digest_algorithm</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The digest algorithm used to create the signature</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-key" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">key</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The private key for the signing certificate</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-options" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">options</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="Signer.html"><code>Gem::Security::Signer</code></a> options</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(key, cert_chain, passphrase = nil, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new signer with an RSA <code>key</code> or path to a key, and a certificate <code>chain</code> containing X509 certificates, encoding certificates or paths to certificates.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/security/signer.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">cert_chain</span>, <span class="ruby-identifier">passphrase</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@cert_chain</span> = <span class="ruby-identifier">cert_chain</span>
+  <span class="ruby-ivar">@key</span>        = <span class="ruby-identifier">key</span>
+  <span class="ruby-ivar">@passphrase</span> = <span class="ruby-identifier">passphrase</span>
+  <span class="ruby-ivar">@options</span> = <span class="ruby-constant">DEFAULT_OPTIONS</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@key</span>
+    <span class="ruby-identifier">default_key</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">default_key_path</span>
+    <span class="ruby-ivar">@key</span> = <span class="ruby-identifier">default_key</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">default_key</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cert_chain</span>
+    <span class="ruby-identifier">default_cert</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">default_cert_path</span>
+    <span class="ruby-ivar">@cert_chain</span> = [<span class="ruby-identifier">default_cert</span>] <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">default_cert</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@digest_algorithm</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span><span class="ruby-operator">::</span><span class="ruby-constant">DIGEST_ALGORITHM</span>
+  <span class="ruby-ivar">@digest_name</span>      = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span><span class="ruby-operator">::</span><span class="ruby-constant">DIGEST_NAME</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@key</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@key</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>)
+    <span class="ruby-ivar">@key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-ivar">@key</span>), <span class="ruby-ivar">@passphrase</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cert_chain</span>
+    <span class="ruby-ivar">@cert_chain</span> = <span class="ruby-ivar">@cert_chain</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cert</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-identifier">cert</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Certificate</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">cert</span>
+
+      <span class="ruby-identifier">cert</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-identifier">cert</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">cert</span>
+
+      <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Certificate</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">cert</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">load_cert_chain</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-re_sign_cert" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">re_sign_cert</span><span
+            class="method-args">(expired_cert, expired_cert_path, private_key) { |expired_cert_path, new_expired_cert_path| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Attemps to re-sign an expired cert with a given private key</p>
+          
+          
+
+          
+          <div class="method-source-code" id="re_sign_cert-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/security/signer.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">re_sign_cert</span>(<span class="ruby-identifier">expired_cert</span>, <span class="ruby-identifier">expired_cert_path</span>, <span class="ruby-identifier">private_key</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">expired_cert</span>.<span class="ruby-identifier">not_after</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+
+  <span class="ruby-identifier">expiry</span> = <span class="ruby-identifier">expired_cert</span>.<span class="ruby-identifier">not_after</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%Y%m%d%H%M%S&#39;</span>)
+  <span class="ruby-identifier">expired_cert_file</span> = <span class="ruby-node">&quot;#{File.basename(expired_cert_path)}.expired.#{expiry}&quot;</span>
+  <span class="ruby-identifier">new_expired_cert_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Gem</span>.<span class="ruby-identifier">user_home</span>, <span class="ruby-string">&quot;.gem&quot;</span>, <span class="ruby-identifier">expired_cert_file</span>)
+
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">expired_cert</span>, <span class="ruby-identifier">new_expired_cert_path</span>)
+
+  <span class="ruby-identifier">re_signed_cert</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span>.<span class="ruby-identifier">re_sign</span>(
+    <span class="ruby-identifier">expired_cert</span>,
+    <span class="ruby-identifier">private_key</span>,
+    (<span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span><span class="ruby-operator">::</span><span class="ruby-constant">ONE_DAY</span> <span class="ruby-operator">*</span> <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">cert_expiration_length_days</span>)
+  )
+
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">re_signed_cert</span>, <span class="ruby-identifier">expired_cert_path</span>)
+
+  <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">expired_cert_path</span>, <span class="ruby-identifier">new_expired_cert_path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-sign" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sign</span><span
+            class="method-args">(data)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sign data with given digest algorithm</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sign-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/security/signer.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sign</span>(<span class="ruby-identifier">data</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@key</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>, <span class="ruby-string">&#39;no certs provided&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cert_chain</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cert_chain</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@cert_chain</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">not_after</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">alert</span>(<span class="ruby-string">&quot;Your certificate has expired, trying to re-sign it...&quot;</span>)
+
+    <span class="ruby-identifier">re_sign_key</span>(
+      <span class="ruby-value">expiration_length:</span> (<span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span><span class="ruby-operator">::</span><span class="ruby-constant">ONE_DAY</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:expiration_length_days</span>])
+    )
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">full_name</span> = <span class="ruby-identifier">extract_name</span> <span class="ruby-ivar">@cert_chain</span>.<span class="ruby-identifier">last</span>
+
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Security</span><span class="ruby-operator">::</span><span class="ruby-constant">SigningPolicy</span>.<span class="ruby-identifier">verify</span> <span class="ruby-ivar">@cert_chain</span>, <span class="ruby-ivar">@key</span>, {}, {}, <span class="ruby-identifier">full_name</span>
+
+  <span class="ruby-ivar">@key</span>.<span class="ruby-identifier">sign</span> <span class="ruby-ivar">@digest_algorithm</span>.<span class="ruby-identifier">new</span>, <span class="ruby-identifier">data</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

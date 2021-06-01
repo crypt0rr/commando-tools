@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Bundler::BuildMetadata - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-built_at">::built_at</a>
+    
+    <li ><a href="#method-c-git_commit_sha">::git_commit_sha</a>
+    
+    <li ><a href="#method-c-release-3F">::release?</a>
+    
+    <li ><a href="#method-c-to_h">::to_h</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Bundler::BuildMetadata">
+  <h1 id="module-Bundler::BuildMetadata" class="module">
+    module Bundler::BuildMetadata
+  </h1>
+
+  <section class="description">
+    
+<p>Represents metadata from when the <a href="../Bundler.html"><code>Bundler</code></a> gem was built.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-built_at" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">built_at</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A string representing the date the bundler gem was built.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="built_at-source">
+            <pre><span class="ruby-comment"># File lib/bundler/build_metadata.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">built_at</span>
+  <span class="ruby-ivar">@built_at</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%Y-%m-%d&quot;</span>).<span class="ruby-identifier">freeze</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-git_commit_sha" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">git_commit_sha</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The SHA for the git commit the bundler gem was built from.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="git_commit_sha-source">
+            <pre><span class="ruby-comment"># File lib/bundler/build_metadata.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">git_commit_sha</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@git_commit_sha</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">instance_variable_defined?</span> <span class="ruby-value">:@git_commit_sha</span>
+
+  <span class="ruby-comment"># If Bundler has been installed without its .git directory and without a</span>
+  <span class="ruby-comment"># commit instance variable then we can&#39;t determine its commits SHA.</span>
+  <span class="ruby-identifier">git_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../../..&quot;</span>, <span class="ruby-keyword">__FILE__</span>), <span class="ruby-string">&quot;.git&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">git_dir</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@git_commit_sha</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">git_dir</span>) { <span class="ruby-string">`git rev-parse --short HEAD`</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">freeze</span> }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># If Bundler is a submodule in RubyGems, get the submodule commit</span>
+  <span class="ruby-identifier">git_sub_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../../../..&quot;</span>, <span class="ruby-keyword">__FILE__</span>), <span class="ruby-string">&quot;.git&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">git_sub_dir</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@git_commit_sha</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">git_sub_dir</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-string">`git ls-tree --abbrev=8 HEAD bundler`</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\s/</span>).<span class="ruby-identifier">fetch</span>(<span class="ruby-value">2</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">freeze</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@git_commit_sha</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;unknown&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-release-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">release?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Whether this is an official release build of <a href="../Bundler.html"><code>Bundler</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="release-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/build_metadata.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">release?</span>
+  <span class="ruby-ivar">@release</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-to_h" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_h</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>A hash representation of the build metadata.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_h-source">
+            <pre><span class="ruby-comment"># File lib/bundler/build_metadata.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">to_h</span>
+  {
+    <span class="ruby-string">&quot;Built At&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">built_at</span>,
+    <span class="ruby-string">&quot;Git SHA&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">git_commit_sha</span>,
+    <span class="ruby-string">&quot;Released Version&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">release?</span>,
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

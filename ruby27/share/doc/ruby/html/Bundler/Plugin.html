@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Bundler::Plugin - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-add_command">#add_command</a>
+    
+    <li ><a href="#method-i-add_hook">#add_hook</a>
+    
+    <li ><a href="#method-i-add_source">#add_source</a>
+    
+    <li ><a href="#method-i-cache">#cache</a>
+    
+    <li ><a href="#method-i-command-3F">#command?</a>
+    
+    <li ><a href="#method-i-exec_command">#exec_command</a>
+    
+    <li ><a href="#method-i-gemfile_install">#gemfile_install</a>
+    
+    <li ><a href="#method-i-global_root">#global_root</a>
+    
+    <li ><a href="#method-i-hook">#hook</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-install">#install</a>
+    
+    <li ><a href="#method-i-installed-3F">#installed?</a>
+    
+    <li ><a href="#method-i-list">#list</a>
+    
+    <li ><a href="#method-i-load_plugin">#load_plugin</a>
+    
+    <li ><a href="#method-i-local_root">#local_root</a>
+    
+    <li ><a href="#method-i-register_plugin">#register_plugin</a>
+    
+    <li ><a href="#method-i-reset-21">#reset!</a>
+    
+    <li ><a href="#method-i-root">#root</a>
+    
+    <li ><a href="#method-i-save_plugins">#save_plugins</a>
+    
+    <li ><a href="#method-i-source">#source</a>
+    
+    <li ><a href="#method-i-source-3F">#source?</a>
+    
+    <li ><a href="#method-i-source_from_lock">#source_from_lock</a>
+    
+    <li ><a href="#method-i-validate_plugin-21">#validate_plugin!</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Bundler::Plugin">
+  <h1 id="module-Bundler::Plugin" class="module">
+    module Bundler::Plugin
+  </h1>
+
+  <section class="description">
+    
+<p>This is the interfacing class represents the <a href="Plugin/API.html"><code>API</code></a> that we intend to provide the plugins to use.</p>
+
+<p>For plugins to be independent of the <a href="../Bundler.html"><code>Bundler</code></a> internals they shall limit their interactions to methods of this class only. This will save them from breaking when some internal change.</p>
+
+<p>Currently we are delegating the methods defined in <a href="../Bundler.html"><code>Bundler</code></a> class to itself. So, this class acts as a buffer.</p>
+
+<p>If there is some change in the <a href="../Bundler.html"><code>Bundler</code></a> class that is incompatible to its previous behavior or if otherwise desired, we can reimplement(or implement) the method to preserve compatibility.</p>
+
+<p>To use this, either the class can inherit this class or use it directly. For example of both types of use, refer the file `spec/plugins/command.rb`</p>
+
+<p>To use it without inheriting, you will have to create an object of this to use the functions (except for declaration functions like command, source, and hooks).</p>
+
+<p>Manages which plugins are installed and their sources. This also is supposed to map which plugin does what (currently the features are not implemented so this class is now a stub class).</p>
+
+<p>Handles the installation of plugin in appropriate directories.</p>
+
+<p>This class is supposed to be wrapper over the existing gem installation infra but currently it itself handles everything as the Source&#39;s subclasses (e.g. Source::RubyGems) are heavily dependent on the Gemfile.</p>
+
+<p><a href="Plugin/SourceList.html"><code>SourceList</code></a> object to be used while parsing the Gemfile, setting the approptiate options to be used with <a href="Source.html"><code>Source</code></a> classes for plugin installation</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="PLUGIN_FILE_NAME">PLUGIN_FILE_NAME
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_command" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_command</span><span
+            class="method-args">(command, cls)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>To be called via the <a href="Plugin/API.html"><code>API</code></a> to register to handle a command</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_command-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_command</span>(<span class="ruby-identifier">command</span>, <span class="ruby-identifier">cls</span>)
+  <span class="ruby-ivar">@commands</span>[<span class="ruby-identifier">command</span>] = <span class="ruby-identifier">cls</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_hook" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_hook</span><span
+            class="method-args">(event, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>To be called via the <a href="Plugin/API.html"><code>API</code></a> to register a hooks and corresponding block that will be called to handle the hook</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_hook-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_hook</span>(<span class="ruby-identifier">event</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">Events</span>.<span class="ruby-identifier">defined_event?</span>(<span class="ruby-identifier">event</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Event &#39;#{event}&#39; not defined in Bundler::Plugin::Events&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@hooks_by_event</span>[<span class="ruby-identifier">event</span>.<span class="ruby-identifier">to_s</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_source" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_source</span><span
+            class="method-args">(source, cls)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>To be called via the <a href="Plugin/API.html"><code>API</code></a> to register to handle a source plugin</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_source-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_source</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">cls</span>)
+  <span class="ruby-ivar">@sources</span>[<span class="ruby-identifier">source</span>] = <span class="ruby-identifier">cls</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cache" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cache</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The cache directory for plugin stuffs</p>
+          
+          
+
+          
+          <div class="method-source-code" id="cache-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cache</span>
+  <span class="ruby-ivar">@cache</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;cache&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-command-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">command?</span><span
+            class="method-args">(command)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks if any plugin handles the command</p>
+          
+          
+
+          
+          <div class="method-source-code" id="command-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">command?</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-operator">!</span><span class="ruby-identifier">index</span>.<span class="ruby-identifier">command_plugin</span>(<span class="ruby-identifier">command</span>).<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-exec_command" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_command</span><span
+            class="method-args">(command, args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>To be called from Cli class to pass the command and argument to approriate plugin class</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exec_command-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exec_command</span>(<span class="ruby-identifier">command</span>, <span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">UndefinedCommandError</span>, <span class="ruby-node">&quot;Command `#{command}` not found&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">command?</span> <span class="ruby-identifier">command</span>
+
+  <span class="ruby-identifier">load_plugin</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">command_plugin</span>(<span class="ruby-identifier">command</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@commands</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">command</span>
+
+  <span class="ruby-ivar">@commands</span>[<span class="ruby-identifier">command</span>].<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exec</span>(<span class="ruby-identifier">command</span>, <span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-gemfile_install" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gemfile_install</span><span
+            class="method-args">(gemfile = nil, &amp;inline)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates the Gemfile with a limited <a href="Plugin/DSL.html"><code>DSL</code></a> and installs the plugins specified by plugin method</p>
+
+<p>@param [Pathname] gemfile path @param [Proc] block that can be evaluated for (inline) Gemfile</p>
+          
+          
+
+          
+          <div class="method-source-code" id="gemfile_install-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">gemfile_install</span>(<span class="ruby-identifier">gemfile</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">inline</span>)
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>.<span class="ruby-identifier">temporary</span>(<span class="ruby-value">:frozen</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:deployment</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">builder</span> = <span class="ruby-constant">DSL</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+      <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">inline</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">eval_gemfile</span>(<span class="ruby-identifier">gemfile</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">definition</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">to_definition</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>)
+
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-identifier">plugins</span> = <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>).<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">installed?</span> <span class="ruby-identifier">p</span> }
+    <span class="ruby-identifier">installed_specs</span> = <span class="ruby-constant">Installer</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">install_definition</span>(<span class="ruby-identifier">definition</span>)
+
+    <span class="ruby-identifier">save_plugins</span> <span class="ruby-identifier">plugins</span>, <span class="ruby-identifier">installed_specs</span>, <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">inferred_plugins</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">RuntimeError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">GemfileError</span>)
+    <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Failed to install plugin: #{e.message}\n  #{e.backtrace[0]}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-global_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">global_root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The global directory root for all plugin related data</p>
+          
+          
+
+          
+          <div class="method-source-code" id="global_root-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">global_root</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">user_bundle_path</span>(<span class="ruby-string">&quot;plugin&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-hook" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hook</span><span
+            class="method-args">(event, *args, &amp;arg_blk)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs all the hooks that are registered for the passed event</p>
+
+<p>It passes the passed arguments and block to the block registered with the api.</p>
+
+<p>@param [String] event</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hook-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 193</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hook</span>(<span class="ruby-identifier">event</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">arg_blk</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">feature_flag</span>.<span class="ruby-identifier">plugins?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">Events</span>.<span class="ruby-identifier">defined_event?</span>(<span class="ruby-identifier">event</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Event &#39;#{event}&#39; not defined in Bundler::Plugin::Events&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">plugins</span> = <span class="ruby-identifier">index</span>.<span class="ruby-identifier">hook_plugins</span>(<span class="ruby-identifier">event</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">plugins</span>.<span class="ruby-identifier">any?</span>
+
+  (<span class="ruby-identifier">plugins</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@loaded_plugin_names</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">load_plugin</span>(<span class="ruby-identifier">name</span>) }
+
+  <span class="ruby-ivar">@hooks_by_event</span>[<span class="ruby-identifier">event</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">blk</span><span class="ruby-operator">|</span> <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">arg_blk</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The index object used to store the details about the plugin</p>
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+  <span class="ruby-ivar">@index</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Index</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-install" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install</span><span
+            class="method-args">(names, options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Installs a new plugin by the given name</p>
+
+<p>@param [Array&lt;String&gt;] names the name of plugin to be installed @param [Hash] options various parameters as described in description.</p>
+
+<pre>Refer to cli/plugin for available options</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="install-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">install</span>(<span class="ruby-identifier">names</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">specs</span> = <span class="ruby-constant">Installer</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">install</span>(<span class="ruby-identifier">names</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">save_plugins</span> <span class="ruby-identifier">names</span>, <span class="ruby-identifier">specs</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">PluginError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">specs</span>
+    <span class="ruby-identifier">specs_to_delete</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">specs</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">_v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">k</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">index</span>.<span class="ruby-identifier">commands</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">k</span>) }]
+    <span class="ruby-identifier">specs_to_delete</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">rm_rf</span>(<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_gem_path</span>) }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Failed to install plugin #{name}: #{e.message}\n  #{e.backtrace.join(&quot;\n &quot;)}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-installed-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">installed?</span><span
+            class="method-args">(plugin)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>currently only intended for specs</p>
+
+<p>@return [String, nil] installed path</p>
+          
+          
+
+          
+          <div class="method-source-code" id="installed-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 210</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">installed?</span>(<span class="ruby-identifier">plugin</span>)
+  <span class="ruby-constant">Index</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">installed?</span>(<span class="ruby-identifier">plugin</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">list</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>List installed plugins and commands</p>
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">list</span>
+  <span class="ruby-identifier">installed_plugins</span> = <span class="ruby-identifier">index</span>.<span class="ruby-identifier">installed_plugins</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">installed_plugins</span>.<span class="ruby-identifier">any?</span>
+    <span class="ruby-identifier">output</span> = <span class="ruby-constant">String</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">installed_plugins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plugin</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{plugin}\n&quot;</span>
+      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;-----\n&quot;</span>
+      <span class="ruby-identifier">index</span>.<span class="ruby-identifier">plugin_commands</span>(<span class="ruby-identifier">plugin</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">command</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;  #{command}\n&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\n&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">output</span> = <span class="ruby-string">&quot;No plugins installed&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-identifier">output</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_plugin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_plugin</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Executes the plugins.rb file</p>
+
+<p>@param [String] name of the plugin</p>
+          
+          
+
+          
+          <div class="method-source-code" id="load_plugin-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 285</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_plugin</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-comment"># Need to ensure before this that plugin root where the rest of gems</span>
+  <span class="ruby-comment"># are installed to be on load path to support plugin deps. Currently not</span>
+  <span class="ruby-comment"># done to avoid conflicts</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">index</span>.<span class="ruby-identifier">plugin_path</span>(<span class="ruby-identifier">name</span>)
+
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">rubygems</span>.<span class="ruby-identifier">add_to_load_path</span>(<span class="ruby-identifier">index</span>.<span class="ruby-identifier">load_paths</span>(<span class="ruby-identifier">name</span>))
+
+  <span class="ruby-identifier">load</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">PLUGIN_FILE_NAME</span>)
+
+  <span class="ruby-ivar">@loaded_plugin_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">name</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">RuntimeError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Failed loading plugin #{name}: #{e.message}&quot;</span>
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-local_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">local_root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="local_root-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">local_root</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">app_config_path</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;plugin&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-register_plugin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register_plugin</span><span
+            class="method-args">(name, spec, optional_plugin = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs the plugins.rb file in an isolated namespace, records the plugin actions it registers for and then passes the data to index to be stored.</p>
+
+<p>@param [String] name the name of the plugin @param [Specification] spec of installed plugin @param [Boolean] optional_plugin, removed if there is conflict with any</p>
+
+<pre>other plugin (used for default source plugins)</pre>
+
+<p>@raise [MalformattedPlugin] if plugins.rb raises any error</p>
+          
+          
+
+          
+          <div class="method-source-code" id="register_plugin-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">register_plugin</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span>, <span class="ruby-identifier">optional_plugin</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">commands</span> = <span class="ruby-ivar">@commands</span>
+  <span class="ruby-identifier">sources</span> = <span class="ruby-ivar">@sources</span>
+  <span class="ruby-identifier">hooks</span> = <span class="ruby-ivar">@hooks_by_event</span>
+
+  <span class="ruby-ivar">@commands</span> = {}
+  <span class="ruby-ivar">@sources</span> = {}
+  <span class="ruby-ivar">@hooks_by_event</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = [] }
+
+  <span class="ruby-identifier">load_paths</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">load_paths</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">rubygems</span>.<span class="ruby-identifier">add_to_load_path</span>(<span class="ruby-identifier">load_paths</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_gem_path</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">load</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">PLUGIN_FILE_NAME</span>), <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformattedPlugin</span>, <span class="ruby-node">&quot;#{e.class}: #{e.message}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">optional_plugin</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@sources</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">any?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">source?</span> <span class="ruby-identifier">s</span> }
+    <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">rm_rf</span>(<span class="ruby-identifier">path</span>)
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">index</span>.<span class="ruby-identifier">register_plugin</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">load_paths</span>, <span class="ruby-ivar">@commands</span>.<span class="ruby-identifier">keys</span>,
+      <span class="ruby-ivar">@sources</span>.<span class="ruby-identifier">keys</span>, <span class="ruby-ivar">@hooks_by_event</span>.<span class="ruby-identifier">keys</span>)
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-ivar">@commands</span> = <span class="ruby-identifier">commands</span>
+  <span class="ruby-ivar">@sources</span> = <span class="ruby-identifier">sources</span>
+  <span class="ruby-ivar">@hooks_by_event</span> = <span class="ruby-identifier">hooks</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reset-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reset-21-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset!</span>
+  <span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">remove_instance_variable</span>(<span class="ruby-identifier">i</span>) }
+
+  <span class="ruby-ivar">@sources</span> = {}
+  <span class="ruby-ivar">@commands</span> = {}
+  <span class="ruby-ivar">@hooks_by_event</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = [] }
+  <span class="ruby-ivar">@loaded_plugin_names</span> = []
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The directory root for all plugin related data</p>
+
+<p>If run in an app, points to local root, in app_config_path Otherwise, points to global root, in <a href="../Bundler.html#method-c-user_bundle_path"><code>Bundler.user_bundle_path</code></a>(“plugin”)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="root-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">root</span>
+  <span class="ruby-ivar">@root</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">SharedHelpers</span>.<span class="ruby-identifier">in_bundle?</span>
+    <span class="ruby-identifier">local_root</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">global_root</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-save_plugins" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_plugins</span><span
+            class="method-args">(plugins, specs, optional_plugins = [])</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Post installation processing and registering with index</p>
+
+<p>@param [Array&lt;String&gt;] plugins list to be installed @param [Hash] specs of plugins mapped to installation path (currently they</p>
+
+<pre>contain all the installed specs, including plugins)</pre>
+
+<p>@param [Array&lt;String&gt;] names of inferred source plugins that can be ignored</p>
+          
+          
+
+          
+          <div class="method-source-code" id="save_plugins-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 220</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">save_plugins</span>(<span class="ruby-identifier">plugins</span>, <span class="ruby-identifier">specs</span>, <span class="ruby-identifier">optional_plugins</span> = [])
+  <span class="ruby-identifier">plugins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">specs</span>[<span class="ruby-identifier">name</span>]
+    <span class="ruby-identifier">validate_plugin!</span> <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_gem_path</span>)
+    <span class="ruby-identifier">installed</span> = <span class="ruby-identifier">register_plugin</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span>, <span class="ruby-identifier">optional_plugins</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>))
+    <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Installed plugin #{name}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">installed</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">source</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [Class] that handles the source. The calss includes <a href="Plugin/API/Source.html"><code>API::Source</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="source-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">source</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">UnknownSourceError</span>, <span class="ruby-node">&quot;Source #{name} not found&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">source?</span> <span class="ruby-identifier">name</span>
+
+  <span class="ruby-identifier">load_plugin</span>(<span class="ruby-identifier">index</span>.<span class="ruby-identifier">source_plugin</span>(<span class="ruby-identifier">name</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@sources</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">name</span>
+
+  <span class="ruby-ivar">@sources</span>[<span class="ruby-identifier">name</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">source?</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks if any plugin declares the source</p>
+          
+          
+
+          
+          <div class="method-source-code" id="source-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">source?</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-operator">!</span><span class="ruby-identifier">index</span>.<span class="ruby-identifier">source_plugin</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-source_from_lock" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">source_from_lock</span><span
+            class="method-args">(locked_opts)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Hash] The options that are present in the lock file @return [API::Source] the instance of the class that handles the source</p>
+
+<pre>type passed in locked_opts</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="source_from_lock-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">source_from_lock</span>(<span class="ruby-identifier">locked_opts</span>)
+  <span class="ruby-identifier">src</span> = <span class="ruby-identifier">source</span>(<span class="ruby-identifier">locked_opts</span>[<span class="ruby-string">&quot;type&quot;</span>])
+
+  <span class="ruby-identifier">src</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">locked_opts</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;uri&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">locked_opts</span>[<span class="ruby-string">&quot;remote&quot;</span>]))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-validate_plugin-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_plugin!</span><span
+            class="method-args">(plugin_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks if the gem is good to be a plugin</p>
+
+<p>At present it only checks whether it contains plugins.rb file</p>
+
+<p>@param [Pathname] plugin_path the path plugin is installed at @raise [MalformattedPlugin] if plugins.rb file is not found</p>
+          
+          
+
+          
+          <div class="method-source-code" id="validate_plugin-21-source">
+            <pre><span class="ruby-comment"># File lib/bundler/plugin.rb, line 235</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_plugin!</span>(<span class="ruby-identifier">plugin_path</span>)
+  <span class="ruby-identifier">plugin_file</span> = <span class="ruby-identifier">plugin_path</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">PLUGIN_FILE_NAME</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">MalformattedPlugin</span>, <span class="ruby-node">&quot;#{PLUGIN_FILE_NAME} was not found in the plugin.&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">plugin_file</span>.<span class="ruby-identifier">file?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Fiddle - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-Fiddle-label-Description">Description</a>
+    <li><a href="#module-Fiddle-label-Example">Example</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-dlopen">::dlopen</a>
+    
+    <li ><a href="#method-c-dlunwrap">::dlunwrap</a>
+    
+    <li ><a href="#method-c-dlwrap">::dlwrap</a>
+    
+    <li ><a href="#method-c-free">::free</a>
+    
+    <li ><a href="#method-c-last_error">::last_error</a>
+    
+    <li ><a href="#method-c-last_error-3D">::last_error=</a>
+    
+    <li ><a href="#method-c-malloc">::malloc</a>
+    
+    <li ><a href="#method-c-realloc">::realloc</a>
+    
+    <li ><a href="#method-c-win32_last_error">::win32_last_error</a>
+    
+    <li ><a href="#method-c-win32_last_error-3D">::win32_last_error=</a>
+    
+    <li ><a href="#method-i-dlopen">#dlopen</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Fiddle">
+  <h1 id="module-Fiddle" class="module">
+    module Fiddle
+  </h1>
+
+  <section class="description">
+    
+<p>A libffi wrapper for Ruby.</p>
+
+<h2 id="module-Fiddle-label-Description">Description<span><a href="#module-Fiddle-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="Fiddle.html"><code>Fiddle</code></a> is an extension to translate a foreign function interface (FFI) with ruby.</p>
+
+<p>It wraps <a href="http://sourceware.org/libffi/">libffi</a>, a popular C library which provides a portable interface that allows code written in one language to call code written in another language.</p>
+
+<h2 id="module-Fiddle-label-Example">Example<span><a href="#module-Fiddle-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Here we will use <a href="Fiddle/Function.html"><code>Fiddle::Function</code></a> to wrap <a href="http://linux.die.net/man/3/floor">floor(3) from libm</a></p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fiddle&#39;</span>
+
+<span class="ruby-identifier">libm</span> = <span class="ruby-constant">Fiddle</span>.<span class="ruby-identifier">dlopen</span>(<span class="ruby-string">&#39;/lib/libm.so.6&#39;</span>)
+
+<span class="ruby-identifier">floor</span> = <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Function</span>.<span class="ruby-identifier">new</span>(
+  <span class="ruby-identifier">libm</span>[<span class="ruby-string">&#39;floor&#39;</span>],
+  [<span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">TYPE_DOUBLE</span>],
+  <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">TYPE_DOUBLE</span>
+)
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">floor</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">3.14159</span>) <span class="ruby-comment">#=&gt; 3.0</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="ALIGN_CHAR">ALIGN_CHAR
+        
+        <dd><p><a href="Fiddle.html#ALIGN_CHAR"><code>ALIGN_CHAR</code></a></p>
+
+<p>The alignment size of a char</p>
+        
+      
+        <dt id="ALIGN_DOUBLE">ALIGN_DOUBLE
+        
+        <dd><p><a href="Fiddle.html#ALIGN_DOUBLE"><code>ALIGN_DOUBLE</code></a></p>
+
+<p>The alignment size of a double</p>
+        
+      
+        <dt id="ALIGN_FLOAT">ALIGN_FLOAT
+        
+        <dd><p><a href="Fiddle.html#ALIGN_FLOAT"><code>ALIGN_FLOAT</code></a></p>
+
+<p>The alignment size of a float</p>
+        
+      
+        <dt id="ALIGN_INT">ALIGN_INT
+        
+        <dd><p><a href="Fiddle.html#ALIGN_INT"><code>ALIGN_INT</code></a></p>
+
+<p>The alignment size of an int</p>
+        
+      
+        <dt id="ALIGN_INTPTR_T">ALIGN_INTPTR_T
+        
+        <dd><p><a href="Fiddle.html#ALIGN_INTPTR_T"><code>ALIGN_INTPTR_T</code></a></p>
+
+<p>The alignment size of a intptr_t</p>
+        
+      
+        <dt id="ALIGN_LONG">ALIGN_LONG
+        
+        <dd><p><a href="Fiddle.html#ALIGN_LONG"><code>ALIGN_LONG</code></a></p>
+
+<p>The alignment size of a long</p>
+        
+      
+        <dt id="ALIGN_LONG_LONG">ALIGN_LONG_LONG
+        
+        <dd><p><a href="Fiddle.html#ALIGN_LONG_LONG"><code>ALIGN_LONG_LONG</code></a></p>
+
+<p>The alignment size of a long long</p>
+        
+      
+        <dt id="ALIGN_PTRDIFF_T">ALIGN_PTRDIFF_T
+        
+        <dd><p><a href="Fiddle.html#ALIGN_PTRDIFF_T"><code>ALIGN_PTRDIFF_T</code></a></p>
+
+<p>The alignment size of a ptrdiff_t</p>
+        
+      
+        <dt id="ALIGN_SHORT">ALIGN_SHORT
+        
+        <dd><p><a href="Fiddle.html#ALIGN_SHORT"><code>ALIGN_SHORT</code></a></p>
+
+<p>The alignment size of a short</p>
+        
+      
+        <dt id="ALIGN_SIZE_T">ALIGN_SIZE_T
+        
+        <dd><p><a href="Fiddle.html#ALIGN_SIZE_T"><code>ALIGN_SIZE_T</code></a></p>
+
+<p>The alignment size of a size_t</p>
+        
+      
+        <dt id="ALIGN_SSIZE_T">ALIGN_SSIZE_T
+        
+        <dd><p><a href="Fiddle.html#ALIGN_SSIZE_T"><code>ALIGN_SSIZE_T</code></a></p>
+
+<p>The alignment size of a ssize_t</p>
+        
+      
+        <dt id="ALIGN_UINTPTR_T">ALIGN_UINTPTR_T
+        
+        <dd><p><a href="Fiddle.html#ALIGN_UINTPTR_T"><code>ALIGN_UINTPTR_T</code></a></p>
+
+<p>The alignment size of a uintptr_t</p>
+        
+      
+        <dt id="ALIGN_VOIDP">ALIGN_VOIDP
+        
+        <dd><p><a href="Fiddle.html#ALIGN_VOIDP"><code>ALIGN_VOIDP</code></a></p>
+
+<p>The alignment size of a void*</p>
+        
+      
+        <dt id="BUILD_RUBY_PLATFORM">BUILD_RUBY_PLATFORM
+        
+        <dd><p><a href="Fiddle.html#BUILD_RUBY_PLATFORM"><code>BUILD_RUBY_PLATFORM</code></a></p>
+
+<p>Platform built against (i.e. “x86_64-linux”, etc.)</p>
+
+<p>See also RUBY_PLATFORM</p>
+        
+      
+        <dt id="RUBY_FREE">RUBY_FREE
+        
+        <dd><p><a href="Fiddle.html#RUBY_FREE"><code>RUBY_FREE</code></a></p>
+
+<p>Address of the ruby_xfree() function</p>
+        
+      
+        <dt id="SIZEOF_CHAR">SIZEOF_CHAR
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_CHAR"><code>SIZEOF_CHAR</code></a></p>
+
+<p>size of a char</p>
+        
+      
+        <dt id="SIZEOF_DOUBLE">SIZEOF_DOUBLE
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_DOUBLE"><code>SIZEOF_DOUBLE</code></a></p>
+
+<p>size of a double</p>
+        
+      
+        <dt id="SIZEOF_FLOAT">SIZEOF_FLOAT
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_FLOAT"><code>SIZEOF_FLOAT</code></a></p>
+
+<p>size of a float</p>
+        
+      
+        <dt id="SIZEOF_INT">SIZEOF_INT
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_INT"><code>SIZEOF_INT</code></a></p>
+
+<p>size of an int</p>
+        
+      
+        <dt id="SIZEOF_INTPTR_T">SIZEOF_INTPTR_T
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_INTPTR_T"><code>SIZEOF_INTPTR_T</code></a></p>
+
+<p>size of a intptr_t</p>
+        
+      
+        <dt id="SIZEOF_LONG">SIZEOF_LONG
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_LONG"><code>SIZEOF_LONG</code></a></p>
+
+<p>size of a long</p>
+        
+      
+        <dt id="SIZEOF_LONG_LONG">SIZEOF_LONG_LONG
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_LONG_LONG"><code>SIZEOF_LONG_LONG</code></a></p>
+
+<p>size of a long long</p>
+        
+      
+        <dt id="SIZEOF_PTRDIFF_T">SIZEOF_PTRDIFF_T
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_PTRDIFF_T"><code>SIZEOF_PTRDIFF_T</code></a></p>
+
+<p>size of a ptrdiff_t</p>
+        
+      
+        <dt id="SIZEOF_SHORT">SIZEOF_SHORT
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_SHORT"><code>SIZEOF_SHORT</code></a></p>
+
+<p>size of a short</p>
+        
+      
+        <dt id="SIZEOF_SIZE_T">SIZEOF_SIZE_T
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_SIZE_T"><code>SIZEOF_SIZE_T</code></a></p>
+
+<p>size of a size_t</p>
+        
+      
+        <dt id="SIZEOF_SSIZE_T">SIZEOF_SSIZE_T
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_SSIZE_T"><code>SIZEOF_SSIZE_T</code></a></p>
+
+<p>size of a ssize_t</p>
+        
+      
+        <dt id="SIZEOF_UINTPTR_T">SIZEOF_UINTPTR_T
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_UINTPTR_T"><code>SIZEOF_UINTPTR_T</code></a></p>
+
+<p>size of a uintptr_t</p>
+        
+      
+        <dt id="SIZEOF_VOIDP">SIZEOF_VOIDP
+        
+        <dd><p><a href="Fiddle.html#SIZEOF_VOIDP"><code>SIZEOF_VOIDP</code></a></p>
+
+<p>size of a void*</p>
+        
+      
+        <dt id="TYPE_CHAR">TYPE_CHAR
+        
+        <dd><p><a href="Fiddle.html#TYPE_CHAR"><code>TYPE_CHAR</code></a></p>
+
+<p>C type - char</p>
+        
+      
+        <dt id="TYPE_DOUBLE">TYPE_DOUBLE
+        
+        <dd><p><a href="Fiddle.html#TYPE_DOUBLE"><code>TYPE_DOUBLE</code></a></p>
+
+<p>C type - double</p>
+        
+      
+        <dt id="TYPE_FLOAT">TYPE_FLOAT
+        
+        <dd><p><a href="Fiddle.html#TYPE_FLOAT"><code>TYPE_FLOAT</code></a></p>
+
+<p>C type - float</p>
+        
+      
+        <dt id="TYPE_INT">TYPE_INT
+        
+        <dd><p><a href="Fiddle.html#TYPE_INT"><code>TYPE_INT</code></a></p>
+
+<p>C type - int</p>
+        
+      
+        <dt id="TYPE_INTPTR_T">TYPE_INTPTR_T
+        
+        <dd><p><a href="Fiddle.html#TYPE_INTPTR_T"><code>TYPE_INTPTR_T</code></a></p>
+
+<p>C type - intptr_t</p>
+        
+      
+        <dt id="TYPE_LONG">TYPE_LONG
+        
+        <dd><p><a href="Fiddle.html#TYPE_LONG"><code>TYPE_LONG</code></a></p>
+
+<p>C type - long</p>
+        
+      
+        <dt id="TYPE_LONG_LONG">TYPE_LONG_LONG
+        
+        <dd><p><a href="Fiddle.html#TYPE_LONG_LONG"><code>TYPE_LONG_LONG</code></a></p>
+
+<p>C type - long long</p>
+        
+      
+        <dt id="TYPE_PTRDIFF_T">TYPE_PTRDIFF_T
+        
+        <dd><p><a href="Fiddle.html#TYPE_PTRDIFF_T"><code>TYPE_PTRDIFF_T</code></a></p>
+
+<p>C type - ptrdiff_t</p>
+        
+      
+        <dt id="TYPE_SHORT">TYPE_SHORT
+        
+        <dd><p><a href="Fiddle.html#TYPE_SHORT"><code>TYPE_SHORT</code></a></p>
+
+<p>C type - short</p>
+        
+      
+        <dt id="TYPE_SIZE_T">TYPE_SIZE_T
+        
+        <dd><p><a href="Fiddle.html#TYPE_SIZE_T"><code>TYPE_SIZE_T</code></a></p>
+
+<p>C type - size_t</p>
+        
+      
+        <dt id="TYPE_SSIZE_T">TYPE_SSIZE_T
+        
+        <dd><p><a href="Fiddle.html#TYPE_SSIZE_T"><code>TYPE_SSIZE_T</code></a></p>
+
+<p>C type - ssize_t</p>
+        
+      
+        <dt id="TYPE_UINTPTR_T">TYPE_UINTPTR_T
+        
+        <dd><p><a href="Fiddle.html#TYPE_UINTPTR_T"><code>TYPE_UINTPTR_T</code></a></p>
+
+<p>C type - uintptr_t</p>
+        
+      
+        <dt id="TYPE_VOID">TYPE_VOID
+        
+        <dd><p><a href="Fiddle.html#TYPE_VOID"><code>TYPE_VOID</code></a></p>
+
+<p>C type - void</p>
+        
+      
+        <dt id="TYPE_VOIDP">TYPE_VOIDP
+        
+        <dd><p><a href="Fiddle.html#TYPE_VOIDP"><code>TYPE_VOIDP</code></a></p>
+
+<p>C type - void*</p>
+        
+      
+        <dt id="WINDOWS">WINDOWS
+        
+        <dd><p>Returns a boolean regarding whether the host is WIN32</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-dlopen" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dlopen(library) &rarr; Fiddle::Handle
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new handler that opens <code>library</code>, and returns an instance of <a href="Fiddle/Handle.html"><code>Fiddle::Handle</code></a>.</p>
+
+<p>If <code>nil</code> is given for the <code>library</code>, Fiddle::Handle::DEFAULT is used, which is the equivalent to RTLD_DEFAULT. See <code>man 3 dlopen</code> for more.</p>
+
+<pre class="ruby"><span class="ruby-identifier">lib</span> = <span class="ruby-constant">Fiddle</span>.<span class="ruby-identifier">dlopen</span>(<span class="ruby-keyword">nil</span>)
+</pre>
+
+<p>The default is dependent on OS, and provide a handle for all libraries already loaded. For example, in most cases you can use this to access <code>libc</code> functions, or ruby functions like <code>rb_str_new</code>.</p>
+
+<p>See <a href="Fiddle/Handle.html#method-c-new"><code>Fiddle::Handle.new</code></a> for more.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dlopen-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dlopen</span> <span class="ruby-identifier">library</span>
+  <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Handle</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">library</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-dlunwrap" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dlunwrap(addr)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the hexadecimal representation of a memory pointer address <code>addr</code></p>
+
+<p>Example:</p>
+
+<pre>lib = Fiddle.dlopen(&#39;/lib64/libc-2.15.so&#39;)
+=&gt; #&lt;Fiddle::Handle:0x00000001342460&gt;
+
+lib[&#39;strcpy&#39;].to_s(16)
+=&gt; &quot;7f59de6dd240&quot;
+
+Fiddle.dlunwrap(Fiddle.dlwrap(lib[&#39;strcpy&#39;].to_s(16)))
+=&gt; &quot;7f59de6dd240&quot;</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="dlunwrap-source">
+            <pre>VALUE
+rb_fiddle_ptr2value(VALUE self, VALUE addr)
+{
+    return (VALUE)NUM2PTR(addr);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-dlwrap" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dlwrap(val)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a memory pointer of a function&#39;s hexadecimal address location <code>val</code></p>
+
+<p>Example:</p>
+
+<pre>lib = Fiddle.dlopen(&#39;/lib64/libc-2.15.so&#39;)
+=&gt; #&lt;Fiddle::Handle:0x00000001342460&gt;
+
+Fiddle.dlwrap(lib[&#39;strcpy&#39;].to_s(16))
+=&gt; 25522520</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="dlwrap-source">
+            <pre>static VALUE
+rb_fiddle_value2ptr(VALUE self, VALUE val)
+{
+    return PTR2NUM((void*)val);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-free" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            free(addr)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Free the memory at address <code>addr</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="free-source">
+            <pre>VALUE
+rb_fiddle_free(VALUE self, VALUE addr)
+{
+    void *ptr = NUM2PTR(addr);
+
+    ruby_xfree(ptr);
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-last_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">last_error</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the last <code>Error</code> of the current executing <code>Thread</code> or nil if none</p>
+          
+          
+
+          
+          <div class="method-source-code" id="last_error-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">last_error</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__FIDDLE_LAST_ERROR__</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-last_error-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">last_error=</span><span
+            class="method-args">(error)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the last <code>Error</code> of the current executing <code>Thread</code> to <code>error</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="last_error-3D-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">last_error=</span> <span class="ruby-identifier">error</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__DL2_LAST_ERROR__</span>] = <span class="ruby-identifier">error</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__FIDDLE_LAST_ERROR__</span>] = <span class="ruby-identifier">error</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-malloc" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            malloc(size)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Allocate <code>size</code> bytes of memory and return the integer memory address for the allocated memory.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="malloc-source">
+            <pre>static VALUE
+rb_fiddle_malloc(VALUE self, VALUE size)
+{
+    void *ptr;
+
+    ptr = (void*)ruby_xmalloc(NUM2SIZET(size));
+    return PTR2NUM(ptr);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-realloc" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            realloc(addr, size)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Change the size of the memory allocated at the memory location <code>addr</code> to <code>size</code> bytes.  Returns the memory address of the reallocated memory, which may be different than the address passed in.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="realloc-source">
+            <pre>static VALUE
+rb_fiddle_realloc(VALUE self, VALUE addr, VALUE size)
+{
+    void *ptr = NUM2PTR(addr);
+
+    ptr = (void*)ruby_xrealloc(ptr, NUM2SIZET(size));
+    return PTR2NUM(ptr);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-win32_last_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">win32_last_error</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the last win32 <code>Error</code> of the current executing <code>Thread</code> or nil if none</p>
+          
+          
+
+          
+          <div class="method-source-code" id="win32_last_error-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">win32_last_error</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__FIDDLE_WIN32_LAST_ERROR__</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-win32_last_error-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">win32_last_error=</span><span
+            class="method-args">(error)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the last win32 <code>Error</code> of the current executing <code>Thread</code> to <code>error</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="win32_last_error-3D-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">win32_last_error=</span> <span class="ruby-identifier">error</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value">:__FIDDLE_WIN32_LAST_ERROR__</span>] = <span class="ruby-identifier">error</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-dlopen" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dlopen(library) &rarr; Fiddle::Handle
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new handler that opens <code>library</code>, and returns an instance of <a href="Fiddle/Handle.html"><code>Fiddle::Handle</code></a>.</p>
+
+<p>If <code>nil</code> is given for the <code>library</code>, Fiddle::Handle::DEFAULT is used, which is the equivalent to RTLD_DEFAULT. See <code>man 3 dlopen</code> for more.</p>
+
+<pre class="ruby"><span class="ruby-identifier">lib</span> = <span class="ruby-constant">Fiddle</span>.<span class="ruby-identifier">dlopen</span>(<span class="ruby-keyword">nil</span>)
+</pre>
+
+<p>The default is dependent on OS, and provide a handle for all libraries already loaded. For example, in most cases you can use this to access <code>libc</code> functions, or ruby functions like <code>rb_str_new</code>.</p>
+
+<p>See <a href="Fiddle/Handle.html#method-c-new"><code>Fiddle::Handle.new</code></a> for more.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dlopen-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dlopen</span> <span class="ruby-identifier">library</span>
+  <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Handle</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">library</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Fiddle::Function - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Fiddle::Function-label-Description">Description</a>
+    <li><a href="#class-Fiddle::Function-label-Examples">Examples</a>
+    <li><a href="#class-Fiddle::Function-label-27strcpy-27">&#39;strcpy&#39;</a>
+    <li><a href="#class-Fiddle::Function-label-ABI+check">ABI check</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-call">#call</a>
+    
+    <li ><a href="#method-i-to_i">#to_i</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Fiddle::Function">
+  <h1 id="class-Fiddle::Function" class="class">
+    class Fiddle::Function
+  </h1>
+
+  <section class="description">
+    
+<h2 id="class-Fiddle::Function-label-Description">Description<span><a href="#class-Fiddle::Function-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A representation of a C function</p>
+
+<h2 id="class-Fiddle::Function-label-Examples">Examples<span><a href="#class-Fiddle::Function-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="class-Fiddle::Function-label-27strcpy-27">&#39;strcpy&#39;<span><a href="#class-Fiddle::Function-label-27strcpy-27">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre>@libc = Fiddle.dlopen &quot;/lib/libc.so.6&quot;
+   #=&gt; #&lt;Fiddle::Handle:0x00000001d7a8d8&gt;
+f = Fiddle::Function.new(
+  @libc[&#39;strcpy&#39;],
+  [Fiddle::TYPE_VOIDP, Fiddle::TYPE_VOIDP],
+  Fiddle::TYPE_VOIDP)
+   #=&gt; #&lt;Fiddle::Function:0x00000001d8ee00&gt;
+buff = &quot;000&quot;
+   #=&gt; &quot;000&quot;
+str = f.call(buff, &quot;123&quot;)
+   #=&gt; #&lt;Fiddle::Pointer:0x00000001d0c380 ptr=0x000000018a21b8 size=0 free=0x00000000000000&gt;
+str.to_s
+=&gt; &quot;123&quot;</pre>
+
+<h3 id="class-Fiddle::Function-label-ABI+check">ABI check<span><a href="#class-Fiddle::Function-label-ABI+check">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-ivar">@libc</span> = <span class="ruby-constant">Fiddle</span>.<span class="ruby-identifier">dlopen</span> <span class="ruby-string">&quot;/lib/libc.so.6&quot;</span>
+   <span class="ruby-comment">#=&gt; #&lt;Fiddle::Handle:0x00000001d7a8d8&gt;</span>
+<span class="ruby-identifier">f</span> = <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Function</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@libc</span>[<span class="ruby-string">&#39;strcpy&#39;</span>], [<span class="ruby-constant">TYPE_VOIDP</span>, <span class="ruby-constant">TYPE_VOIDP</span>], <span class="ruby-constant">TYPE_VOIDP</span>)
+   <span class="ruby-comment">#=&gt; #&lt;Fiddle::Function:0x00000001d8ee00&gt;</span>
+<span class="ruby-identifier">f</span>.<span class="ruby-identifier">abi</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Function</span><span class="ruby-operator">::</span><span class="ruby-constant">DEFAULT</span>
+   <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="DEFAULT">DEFAULT
+        
+        <dd><p><a href="Function.html#DEFAULT"><code>DEFAULT</code></a></p>
+
+<p>Default ABI</p>
+        
+      
+        <dt id="STDCALL">STDCALL
+        
+        <dd><p><a href="Function.html#STDCALL"><code>STDCALL</code></a></p>
+
+<p>FFI implementation of WIN32 stdcall convention</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-abi" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">abi</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The ABI of the <a href="Function.html"><code>Function</code></a>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">name</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The name of this function</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ptr" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ptr</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The address of this function</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(ptr, args, ret_type, abi = DEFAULT)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Constructs a <a href="Function.html"><code>Function</code></a> object.</p>
+<ul><li>
+<p><code>ptr</code> is a referenced function, of a <a href="Handle.html"><code>Fiddle::Handle</code></a></p>
+</li><li>
+<p><code>args</code> is an <a href="../Array.html"><code>Array</code></a> of arguments, passed to the <code>ptr</code> function</p>
+</li><li>
+<p><code>ret_type</code> is the return type of the function</p>
+</li><li>
+<p><code>abi</code> is the ABI of the function</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+initialize(int argc, VALUE argv[], VALUE self)
+{
+    ffi_cif * cif;
+    ffi_type **arg_types, *rtype;
+    ffi_status result;
+    VALUE ptr, args, ret_type, abi, kwds, ary;
+    int i, len;
+    int nabi;
+    void *cfunc;
+
+    rb_scan_args(argc, argv, &quot;31:&quot;, &amp;ptr, &amp;args, &amp;ret_type, &amp;abi, &amp;kwds);
+    rb_iv_set(self, &quot;@closure&quot;, ptr);
+
+    ptr = rb_Integer(ptr);
+    cfunc = NUM2PTR(ptr);
+    PTR2NUM(cfunc);
+    nabi = NIL_P(abi) ? FFI_DEFAULT_ABI : NUM2INT(abi);
+    abi = INT2FIX(nabi);
+    i = NUM2INT(ret_type);
+    rtype = INT2FFI_TYPE(i);
+    ret_type = INT2FIX(i);
+
+    Check_Type(args, T_ARRAY);
+    len = RARRAY_LENINT(args);
+    Check_Max_Args(&quot;args&quot;, len);
+    ary = rb_ary_subseq(args, 0, len);
+    for (i = 0; i &lt; RARRAY_LEN(args); i++) {
+        VALUE a = RARRAY_AREF(args, i);
+        int type = NUM2INT(a);
+        (void)INT2FFI_TYPE(type); /* raise */
+        if (INT2FIX(type) != a) rb_ary_store(ary, i, INT2FIX(type));
+    }
+    OBJ_FREEZE(ary);
+
+    rb_iv_set(self, &quot;@ptr&quot;, ptr);
+    rb_iv_set(self, &quot;@args&quot;, args);
+    rb_iv_set(self, &quot;@return_type&quot;, ret_type);
+    rb_iv_set(self, &quot;@abi&quot;, abi);
+
+    if (!NIL_P(kwds)) rb_hash_foreach(kwds, parse_keyword_arg_i, self);
+
+    TypedData_Get_Struct(self, ffi_cif, &amp;function_data_type, cif);
+
+    arg_types = xcalloc(len + 1, sizeof(ffi_type *));
+
+    for (i = 0; i &lt; RARRAY_LEN(args); i++) {
+        int type = NUM2INT(RARRAY_AREF(args, i));
+        arg_types[i] = INT2FFI_TYPE(type);
+    }
+    arg_types[len] = NULL;
+
+    result = ffi_prep_cif(cif, nabi, len, rtype, arg_types);
+
+    if (result)
+        rb_raise(rb_eRuntimeError, &quot;error creating CIF %d&quot;, result);
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-call" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">call</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calls the constructed <a href="Function.html"><code>Function</code></a>, with <code>args</code>. Caller must ensure the underlying function is called in a thread-safe manner if running in a multi-threaded process.</p>
+
+<p>For an example see <a href="Function.html"><code>Fiddle::Function</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="call-source">
+            <pre>static VALUE
+function_call(int argc, VALUE argv[], VALUE self)
+{
+    struct nogvl_ffi_call_args args = { 0 };
+    fiddle_generic *generic_args;
+    VALUE cfunc, types, cPointer;
+    int i;
+    VALUE alloc_buffer = 0;
+
+    cfunc    = rb_iv_get(self, &quot;@ptr&quot;);
+    types    = rb_iv_get(self, &quot;@args&quot;);
+    cPointer = rb_const_get(mFiddle, rb_intern(&quot;Pointer&quot;));
+
+    Check_Max_Args(&quot;number of arguments&quot;, argc);
+    if (argc != (i = RARRAY_LENINT(types))) {
+        rb_error_arity(argc, i, i);
+    }
+
+    TypedData_Get_Struct(self, ffi_cif, &amp;function_data_type, args.cif);
+
+    generic_args = ALLOCV(alloc_buffer,
+        (size_t)(argc + 1) * sizeof(void *) + (size_t)argc * sizeof(fiddle_generic));
+    args.values = (void **)((char *)generic_args +
+                            (size_t)argc * sizeof(fiddle_generic));
+
+    for (i = 0; i &lt; argc; i++) {
+        VALUE type = RARRAY_AREF(types, i);
+        VALUE src = argv[i];
+        int argtype = FIX2INT(type);
+
+        if (argtype == TYPE_VOIDP) {
+            if(NIL_P(src)) {
+                src = INT2FIX(0);
+            } else if(cPointer != CLASS_OF(src)) {
+                src = rb_funcall(cPointer, rb_intern(&quot;[]&quot;), 1, src);
+            }
+            src = rb_Integer(src);
+        }
+
+        VALUE2GENERIC(argtype, src, &amp;generic_args[i]);
+        args.values[i] = (void *)&amp;generic_args[i];
+    }
+    args.values[argc] = NULL;
+    args.fn = (void(*)(void))NUM2PTR(cfunc);
+
+    (void)rb_thread_call_without_gvl(nogvl_ffi_call, &amp;args, 0, 0);
+
+    rb_funcall(mFiddle, rb_intern(&quot;last_error=&quot;), 1, INT2NUM(errno));
+#if defined(_WIN32)
+    rb_funcall(mFiddle, rb_intern(&quot;win32_last_error=&quot;), 1, INT2NUM(errno));
+#endif
+
+    ALLOCV_END(alloc_buffer);
+
+    return GENERIC2VALUE(rb_iv_get(self, &quot;@return_type&quot;), args.retval);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_i" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_i</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The integer memory location of this function</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_i-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/function.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_i</span>
+  <span class="ruby-identifier">ptr</span>.<span class="ruby-identifier">to_i</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Commands::OpenCommand - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Command.html">Gem::Command</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../VersionOption.html">Gem::VersionOption</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-execute">#execute</a>
+    
+    <li ><a href="#method-i-get_env_editor">#get_env_editor</a>
+    
+    <li ><a href="#method-i-open_editor">#open_editor</a>
+    
+    <li ><a href="#method-i-open_gem">#open_gem</a>
+    
+    <li ><a href="#method-i-spec_for">#spec_for</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Commands::OpenCommand">
+  <h1 id="class-Gem::Commands::OpenCommand" class="class">
+    class Gem::Commands::OpenCommand
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../Command.html#method-c-new"><code>Gem::Command::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/open_command.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-string">&#39;open&#39;</span>, <span class="ruby-string">&#39;Open gem sources in editor&#39;</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-e&#39;</span>, <span class="ruby-string">&#39;--editor COMMAND&#39;</span>, <span class="ruby-constant">String</span>,
+             <span class="ruby-string">&quot;Prepends COMMAND to gem path. Could be used to specify editor.&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">command</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:editor</span>] = <span class="ruby-identifier">command</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">get_env_editor</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-v&#39;</span>, <span class="ruby-string">&#39;--version VERSION&#39;</span>, <span class="ruby-constant">String</span>,
+             <span class="ruby-string">&quot;Opens specific gem version&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">version</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>] = <span class="ruby-identifier">version</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-execute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">execute</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/open_command.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>
+  <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Requirement</span>.<span class="ruby-identifier">default</span>
+  <span class="ruby-ivar">@editor</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-value">:editor</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">get_env_editor</span>
+
+  <span class="ruby-identifier">found</span> = <span class="ruby-identifier">open_gem</span>(<span class="ruby-identifier">get_one_gem_name</span>)
+
+  <span class="ruby-identifier">terminate_interaction</span> <span class="ruby-value">1</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">found</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_env_editor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_env_editor</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_env_editor-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/open_command.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_env_editor</span>
+  <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;GEM_EDITOR&#39;</span>] <span class="ruby-operator">||</span>
+    <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;VISUAL&#39;</span>] <span class="ruby-operator">||</span>
+    <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;EDITOR&#39;</span>] <span class="ruby-operator">||</span>
+    <span class="ruby-string">&#39;vi&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-open_editor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open_editor</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="open_editor-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/open_command.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open_editor</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">system</span>(<span class="ruby-operator">*</span><span class="ruby-ivar">@editor</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\s+/</span>) <span class="ruby-operator">+</span> [<span class="ruby-identifier">path</span>])
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-open_gem" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open_gem</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="open_gem-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/open_command.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">open_gem</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">spec_for</span> <span class="ruby-identifier">name</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">spec</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">default_gem?</span>
+    <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;&#39;#{name}&#39; is a default gem and can&#39;t be opened.&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">open_editor</span>(<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_gem_path</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-spec_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">spec_for</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="spec_for-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/open_command.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">spec_for</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">spec</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Specification</span>.<span class="ruby-identifier">find_all_by_name</span>(<span class="ruby-identifier">name</span>, <span class="ruby-ivar">@version</span>).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">spec</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>
+
+  <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Unable to find gem &#39;#{name}&#39;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

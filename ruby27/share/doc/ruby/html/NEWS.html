@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>NEWS - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-NEWS+for+Ruby+2.7.0">NEWS for Ruby 2.7.0</a>
+    <li><a href="#label-Changes+since+the+2.6.0+release">Changes since the 2.6.0 release</a>
+    <li><a href="#label-Language+changes">Language changes</a>
+    <li><a href="#label-Pattern+matching">Pattern matching</a>
+    <li><a href="#label-The+spec+of+keyword+arguments+is+changed+towards+3.0">The spec of keyword arguments is changed towards 3.0</a>
+    <li><a href="#label-Numbered+parameters">Numbered parameters</a>
+    <li><a href="#label-proc-2Flambda+without+block+is+deprecated">proc/lambda without block is deprecated</a>
+    <li><a href="#label-Other+miscellaneous+changes">Other miscellaneous changes</a>
+    <li><a href="#label-Command+line+options">Command line options</a>
+    <li><a href="#label-Warning+option">Warning option</a>
+    <li><a href="#label-Core+classes+updates+-28outstanding+ones+only-29">Core classes updates (outstanding ones only)</a>
+    <li><a href="#label-Stdlib+updates+-28outstanding+ones+only-29">Stdlib updates (outstanding ones only)</a>
+    <li><a href="#label-Compatibility+issues+-28excluding+feature+bug+fixes-29">Compatibility issues (excluding feature bug fixes)</a>
+    <li><a href="#label-Stdlib+compatibility+issues+-28excluding+feature+bug+fixes-29">Stdlib compatibility issues (excluding feature bug fixes)</a>
+    <li><a href="#label-C+API+updates">C API updates</a>
+    <li><a href="#label-Implementation+improvements">Implementation improvements</a>
+    <li><a href="#label-Miscellaneous+changes">Miscellaneous changes</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./CONTRIBUTING_md.html">CONTRIBUTING</a>
+  
+    <li><a href="./COPYING.html">COPYING</a>
+  
+    <li><a href="./COPYING_ja.html">COPYING.ja</a>
+  
+    <li><a href="./LEGAL.html">LEGAL</a>
+  
+    <li><a href="./NEWS.html">NEWS</a>
+  
+    <li><a href="./NEWS-1_8_7.html">NEWS-1.8.7</a>
+  
+    <li><a href="./NEWS-1_9_1.html">NEWS-1.9.1</a>
+  
+    <li><a href="./NEWS-1_9_2.html">NEWS-1.9.2</a>
+  
+    <li><a href="./NEWS-1_9_3.html">NEWS-1.9.3</a>
+  
+    <li><a href="./NEWS-2_0_0.html">NEWS-2.0.0</a>
+  
+    <li><a href="./NEWS-2_1_0.html">NEWS-2.1.0</a>
+  
+    <li><a href="./NEWS-2_2_0.html">NEWS-2.2.0</a>
+  
+    <li><a href="./NEWS-2_3_0.html">NEWS-2.3.0</a>
+  
+    <li><a href="./NEWS-2_4_0.html">NEWS-2.4.0</a>
+  
+    <li><a href="./NEWS-2_5_0.html">NEWS-2.5.0</a>
+  
+    <li><a href="./NEWS-2_6_0.html">NEWS-2.6.0</a>
+  
+    <li><a href="./README_ja_md.html">README.ja</a>
+  
+    <li><a href="./README_md.html">README</a>
+  
+    <li><a href="./bug_triaging_rdoc.html">bug_triaging</a>
+  
+    <li><a href="./contributing_rdoc.html">contributing</a>
+  
+    <li><a href="./contributors_rdoc.html">contributors</a>
+  
+    <li><a href="./dtrace_probes_rdoc.html">dtrace_probes</a>
+  
+    <li><a href="./extension_ja_rdoc.html">extension.ja</a>
+  
+    <li><a href="./extension_rdoc.html">extension</a>
+  
+    <li><a href="./globals_rdoc.html">globals</a>
+  
+    <li><a href="./keywords_rdoc.html">keywords</a>
+  
+    <li><a href="./lib/racc/pre-setup.html">pre-setup</a>
+  
+    <li><a href="./lib/racc/rdoc/grammar_en_rdoc.html">grammar.en</a>
+  
+    <li><a href="./maintainers_rdoc.html">maintainers</a>
+  
+    <li><a href="./marshal_rdoc.html">marshal</a>
+  
+    <li><a href="./regexp_rdoc.html">regexp</a>
+  
+    <li><a href="./security_rdoc.html">security</a>
+  
+    <li><a href="./signals_rdoc.html">signals</a>
+  
+    <li><a href="./standard_library_rdoc.html">standard_library</a>
+  
+    <li><a href="./syntax_rdoc.html">syntax</a>
+  
+    <li><a href="./syntax/assignment_rdoc.html">assignment</a>
+  
+    <li><a href="./syntax/calling_methods_rdoc.html">calling_methods</a>
+  
+    <li><a href="./syntax/comments_rdoc.html">comments</a>
+  
+    <li><a href="./syntax/control_expressions_rdoc.html">control_expressions</a>
+  
+    <li><a href="./syntax/exceptions_rdoc.html">exceptions</a>
+  
+    <li><a href="./syntax/literals_rdoc.html">literals</a>
+  
+    <li><a href="./syntax/methods_rdoc.html">methods</a>
+  
+    <li><a href="./syntax/miscellaneous_rdoc.html">miscellaneous</a>
+  
+    <li><a href="./syntax/modules_and_classes_rdoc.html">modules_and_classes</a>
+  
+    <li><a href="./syntax/precedence_rdoc.html">precedence</a>
+  
+    <li><a href="./syntax/refinements_rdoc.html">refinements</a>
+  
+    <li><a href="./win32/README_win32.html">README.win32</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page NEWS">
+
+<h1 id="label-NEWS+for+Ruby+2.7.0"><a href="NEWS.html">NEWS</a> for Ruby 2.7.0<span><a href="#label-NEWS+for+Ruby+2.7.0">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>This document is a list of user visible feature changes made between releases except for bug fixes.</p>
+
+<p>Note that each entry is kept so brief that no reason behind or reference information is supplied with.  For a full list of changes with all sufficient information, see the ChangeLog file or Redmine (e.g. <code>https://bugs.ruby-lang.org/issues/$FEATURE_OR_BUG_NUMBER</code>).</p>
+
+<h2 id="label-Changes+since+the+2.6.0+release">Changes since the 2.6.0 release<span><a href="#label-Changes+since+the+2.6.0+release">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Language+changes">Language changes<span><a href="#label-Language+changes">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<h4 id="label-Pattern+matching">Pattern matching<span><a href="#label-Pattern+matching">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>Pattern matching is introduced as an experimental feature. [Feature #14912]</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">0</span>, [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]]
+<span class="ruby-keyword">in</span> [<span class="ruby-identifier">a</span>, [<span class="ruby-identifier">b</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">c</span>]]
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">a</span> <span class="ruby-comment">#=&gt; 0</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">b</span> <span class="ruby-comment">#=&gt; 1</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">c</span> <span class="ruby-comment">#=&gt; [2, 3]</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">0</span>, <span class="ruby-value">b:</span> <span class="ruby-value">1</span>}
+<span class="ruby-keyword">in</span> {<span class="ruby-value">a:</span> <span class="ruby-value">0</span>, <span class="ruby-value">x:</span> <span class="ruby-value">1</span>}
+  <span class="ruby-value">:unreachable</span>
+<span class="ruby-keyword">in</span> {<span class="ruby-value">a:</span> <span class="ruby-value">0</span>, <span class="ruby-value">b:</span> <span class="ruby-identifier">var</span>}
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">var</span> <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-value">-1</span>
+<span class="ruby-keyword">in</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:unreachable</span>
+<span class="ruby-keyword">in</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:unreachable</span>
+<span class="ruby-keyword">end</span> <span class="ruby-comment">#=&gt; NoMatchingPatternError</span>
+
+<span class="ruby-identifier">json</span> = <span class="ruby-identifier">&lt;&lt;END</span>
+<span class="ruby-value">{
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;age&quot;: 30,
+  &quot;children&quot;: [{ &quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 2 }]
+}
+</span><span class="ruby-identifier">END</span>
+
+<span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">json</span>, <span class="ruby-value">symbolize_names:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">in</span> {<span class="ruby-value">name:</span> <span class="ruby-string">&quot;Alice&quot;</span>, <span class="ruby-value">children:</span> [{<span class="ruby-value">name:</span> <span class="ruby-identifier">name</span>, <span class="ruby-value">age:</span> <span class="ruby-identifier">age</span>}]}
+
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">name</span> <span class="ruby-comment">#=&gt; &quot;Bob&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">age</span>  <span class="ruby-comment">#=&gt; 2</span>
+
+<span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">json</span>, <span class="ruby-value">symbolize_names:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">in</span> {<span class="ruby-value">name:</span> <span class="ruby-string">&quot;Alice&quot;</span>, <span class="ruby-value">children:</span> [{<span class="ruby-value">name:</span> <span class="ruby-string">&quot;Charlie&quot;</span>, <span class="ruby-value">age:</span> <span class="ruby-identifier">age</span>}]}
+<span class="ruby-comment">#=&gt; NoMatchingPatternError</span>
+</pre>
+</li><li>
+<p>See the following slides for more details:</p>
+<ul><li>
+<p><a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7</a></p>
+</li><li>
+<p>Note that the slides are slightly obsolete.</p>
+</li></ul>
+</li><li>
+<p>The warning against pattern matching can be suppressed with <a href="#label-Warning+option">-W:no-experimental option</a>.</p>
+</li></ul>
+
+<h4 id="label-The+spec+of+keyword+arguments+is+changed+towards+3.0">The spec of keyword arguments is changed towards 3.0<span><a href="#label-The+spec+of+keyword+arguments+is+changed+towards+3.0">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>Automatic conversion of keyword arguments and positional arguments is deprecated, and conversion will be removed in Ruby 3.  [Feature #14183]</p>
+<ul><li>
+<p>When a method call passes a <a href="Hash.html"><code>Hash</code></a> at the last argument, and when it passes no keywords, and when the called method accepts keywords, a warning is emitted.  To continue treating the hash as keywords, add a double splat operator to avoid the warning and ensure correct behavior in Ruby 3.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-value">key:</span> <span class="ruby-value">42</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-value">key:</span> <span class="ruby-value">42</span>})   <span class="ruby-comment"># warned</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-operator">**</span><span class="ruby-identifier">kw</span>);    <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-value">key:</span> <span class="ruby-value">42</span>})   <span class="ruby-comment"># warned</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-value">key:</span> <span class="ruby-value">42</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-operator">**</span>{<span class="ruby-value">key:</span> <span class="ruby-value">42</span>}) <span class="ruby-comment"># OK</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-operator">**</span><span class="ruby-identifier">kw</span>);    <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-operator">**</span>{<span class="ruby-value">key:</span> <span class="ruby-value">42</span>}) <span class="ruby-comment"># OK</span>
+</pre>
+</li><li>
+<p>When a method call passes keywords to a method that accepts keywords, but it does not pass enough required positional arguments, the keywords are treated as a final required positional argument, and a warning is emitted.  Pass the argument as a hash instead of keywords to avoid the warning and ensure correct behavior in Ruby 3.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">kw</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-value">key:</span> <span class="ruby-value">42</span>)      <span class="ruby-comment"># warned</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-value">key:</span> <span class="ruby-value">42</span>)   <span class="ruby-comment"># warned</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">kw</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-value">key:</span> <span class="ruby-value">42</span>})    <span class="ruby-comment"># OK</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-value">key:</span> <span class="ruby-value">42</span>}) <span class="ruby-comment"># OK</span>
+</pre>
+</li><li>
+<p>When a method accepts specific keywords but not a keyword splat, and a hash or keywords splat is passed to the method that includes both <a href="Symbol.html"><code>Symbol</code></a> and non-Symbol keys, the hash will continue to be split, and a warning will be emitted.  You will need to update the calling code to pass separate hashes to ensure correct behavior in Ruby 3.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>={}, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-string">&quot;key&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">43</span>, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>)   <span class="ruby-comment"># warned</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>={}, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-string">&quot;key&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">43</span>, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>}) <span class="ruby-comment"># warned</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>={}, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-string">&quot;key&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">43</span>}, <span class="ruby-value">key:</span> <span class="ruby-value">42</span>) <span class="ruby-comment"># OK</span>
+</pre>
+</li><li>
+<p>If a method does not accept keywords, and is called with keywords, the keywords are still treated as a positional hash, with no warning. This behavior will continue to work in Ruby 3.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">opt</span>={});  <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>( <span class="ruby-value">key:</span> <span class="ruby-value">42</span> )   <span class="ruby-comment"># OK</span>
+</pre>
+</li></ul>
+</li><li>
+<p>Non-symbols are allowed as keyword argument keys if the method accepts arbitrary keywords. [Feature #14183]</p>
+<ul><li>
+<p>Non-Symbol keys in a keyword arguments hash were prohibited in 2.6.0, but are now allowed again.  [Bug #15658]</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-operator">**</span><span class="ruby-identifier">kw</span>); <span class="ruby-identifier">p</span> <span class="ruby-identifier">kw</span>; <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-string">&quot;str&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">1</span>) <span class="ruby-comment">#=&gt; {&quot;str&quot;=&gt;1}</span>
+</pre>
+</li></ul>
+</li><li>
+<p><code>**nil</code> is allowed in method definitions to explicitly mark that the method accepts no keywords. Calling such a method with keywords will result in an <a href="ArgumentError.html"><code>ArgumentError</code></a>. [Feature #14183]</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-operator">**</span><span class="ruby-keyword">nil</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-value">key:</span> <span class="ruby-value">1</span>)       <span class="ruby-comment"># ArgumentError</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-operator">**</span><span class="ruby-keyword">nil</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-operator">**</span>{<span class="ruby-value">key:</span> <span class="ruby-value">1</span>})   <span class="ruby-comment"># ArgumentError</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-operator">**</span><span class="ruby-keyword">nil</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-string">&quot;str&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">1</span>)   <span class="ruby-comment"># ArgumentError</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-operator">**</span><span class="ruby-keyword">nil</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-value">key:</span> <span class="ruby-value">1</span>})     <span class="ruby-comment"># OK</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">h</span>, <span class="ruby-operator">**</span><span class="ruby-keyword">nil</span>); <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>({<span class="ruby-string">&quot;str&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">1</span>}) <span class="ruby-comment"># OK</span>
+</pre>
+</li><li>
+<p>Passing an empty keyword splat to a method that does not accept keywords no longer passes an empty hash, unless the empty hash is necessary for a required parameter, in which case a warning will be emitted.  Remove the double splat to continue passing a positional hash.  [Feature #14183]</p>
+
+<pre class="ruby"><span class="ruby-identifier">h</span> = {}; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>) <span class="ruby-identifier">a</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-operator">**</span><span class="ruby-identifier">h</span>) <span class="ruby-comment"># []</span>
+<span class="ruby-identifier">h</span> = {}; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">a</span>) <span class="ruby-identifier">a</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-operator">**</span><span class="ruby-identifier">h</span>)  <span class="ruby-comment"># {} and warning</span>
+<span class="ruby-identifier">h</span> = {}; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>) <span class="ruby-identifier">a</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-identifier">h</span>)   <span class="ruby-comment"># [{}]</span>
+<span class="ruby-identifier">h</span> = {}; <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-identifier">a</span>) <span class="ruby-identifier">a</span> <span class="ruby-keyword">end</span>; <span class="ruby-identifier">foo</span>(<span class="ruby-identifier">h</span>)    <span class="ruby-comment"># {}</span>
+</pre>
+</li><li>
+<p>Above warnings can be suppressed also with <a href="#label-Warning+option">-W:no-deprecated option</a>.</p>
+</li></ul>
+
+<h4 id="label-Numbered+parameters">Numbered parameters<span><a href="#label-Numbered+parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>Numbered parameters as default block parameters are introduced.</p>
+<dl class="rdoc-list label-list"><dt>Feature #4475
+<dd><dl class="rdoc-list label-list"><dt>1, 2, 10].map { _1.to_s(16) }    #=&gt; [“1”, “2”, “a”
+<dt>[1, 2], [3, 4]].map { _1 + _2 }  #=&gt; [3, 7
+<dd></dd></dl>
+</dd></dl>
+
+<p>You can still define a local variable named <code>_1</code> and so on, and that is honored when present, but renders a warning.</p>
+
+<pre class="ruby"><span class="ruby-identifier">_1</span> = <span class="ruby-value">0</span>            <span class="ruby-comment">#=&gt; warning: `_1&#39; is reserved for numbered parameter; consider another name</span>
+[<span class="ruby-value">1</span>].<span class="ruby-identifier">each</span> { <span class="ruby-identifier">p</span> <span class="ruby-identifier">_1</span> } <span class="ruby-comment"># prints 0 instead of 1</span>
+</pre>
+</li></ul>
+
+<h4 id="label-proc-2Flambda+without+block+is+deprecated">proc/lambda without block is deprecated<span><a href="#label-proc-2Flambda+without+block+is+deprecated">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><a href="Proc.html#method-c-new"><code>Proc.new</code></a> and <a href="Kernel.html#method-i-proc"><code>Kernel#proc</code></a> with no block in a method called with a block is warned now.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>
+  <span class="ruby-identifier">proc</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">foo</span> { <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hello&quot;</span> } <span class="ruby-comment">#=&gt; warning: Capturing the given block using Kernel#proc is deprecated; use `&amp;block` instead</span>
+</pre>
+
+<p>This warning can be suppressed with <a href="#label-Warning+option">-W:no-deprecated option</a>.</p>
+</li><li>
+<p><a href="Kernel.html#method-i-lambda"><code>Kernel#lambda</code></a> with no block in a method called with a block raises an exception.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bar</span>
+  <span class="ruby-identifier">lambda</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">bar</span> { <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hello&quot;</span> } <span class="ruby-comment">#=&gt; tried to create Proc object without a block (ArgumentError)</span>
+</pre>
+</li></ul>
+
+<h4 id="label-Other+miscellaneous+changes">Other miscellaneous changes<span><a href="#label-Other+miscellaneous+changes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>A beginless range is experimentally introduced.  It might be useful in <code>case</code>, new call-sequence of the <code>Comparable#clamp</code>, constants and DSLs.  [Feature #14799]</p>
+
+<pre class="ruby"><span class="ruby-identifier">ary</span>[<span class="ruby-operator">..</span><span class="ruby-value">3</span>]  <span class="ruby-comment"># identical to ary[0..3]</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-constant">RUBY_VERSION</span>
+<span class="ruby-keyword">when</span> <span class="ruby-operator">...</span><span class="ruby-string">&quot;2.4&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;EOL&quot;</span>
+<span class="ruby-comment"># ...</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">age</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-operator">..</span><span class="ruby-value">100</span>)
+
+<span class="ruby-identifier">where</span>(<span class="ruby-value">sales:</span> <span class="ruby-operator">..</span><span class="ruby-value">100</span>)
+</pre>
+</li><li>
+<p>Setting <code>$;</code> to a non-nil value is warned now. [Feature #14240] Use of it in <a href="String.html#method-i-split"><code>String#split</code></a> is warned too. This warning can be suppressed with <a href="#label-Warning+option">-W:no-deprecated option</a>.</p>
+</li><li>
+<p>Setting <code>$,</code> to a non-nil value is warned now. [Feature #14240] Use of it in <a href="Array.html#method-i-join"><code>Array#join</code></a> is warned too. This warning can be suppressed with <a href="#label-Warning+option">-W:no-deprecated option</a>.</p>
+</li><li>
+<p>Quoted here-document identifiers must end within the same line.</p>
+
+<pre>&lt;&lt;&quot;EOS
+&quot; # This had been warned since 2.4; Now it raises a SyntaxError
+EOS</pre>
+</li><li>
+<p>The flip-flop syntax deprecation is reverted. [Feature #5400]</p>
+</li><li>
+<p>Comment lines can be placed between fluent dot now.</p>
+
+<pre class="ruby"><span class="ruby-identifier">foo</span>
+  <span class="ruby-comment"># .bar</span>
+  .<span class="ruby-identifier">baz</span> <span class="ruby-comment"># =&gt; foo.baz</span>
+</pre>
+</li><li>
+<p>Calling a private method with a literal <code>self</code> as the receiver is now allowed. [Feature #11297] [Feature #16123]</p>
+</li><li>
+<p>Modifier rescue now operates the same for multiple assignment as single assignment. [Bug #8279]</p>
+
+<pre class="ruby"><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> = <span class="ruby-identifier">raise</span> <span class="ruby-keyword">rescue</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]
+<span class="ruby-comment"># Previously parsed as: (a, b = raise) rescue [1, 2]</span>
+<span class="ruby-comment"># Now parsed as:         a, b = (raise rescue [1, 2])</span>
+</pre>
+</li><li>
+<p><code>yield</code> in singleton class syntax is warned and will be deprecated later. [Feature #15575].</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-comment">#=&gt; warning: `yield&#39; in class syntax will not be supported from Ruby 3.0. [Feature #15575]</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">foo</span> { <span class="ruby-identifier">p</span> <span class="ruby-value">:ok</span> }
+</pre>
+
+<p>This warning can be suppressed with <a href="#label-Warning+option">-W:no-deprecated option</a>.</p>
+</li><li>
+<p>Argument forwarding by <code>(...)</code> is introduced. [Feature #16253]</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">foo</span>(<span class="ruby-operator">...</span>)
+  <span class="ruby-identifier">bar</span>(<span class="ruby-operator">...</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>All arguments to <code>foo</code> are forwarded to <code>bar</code>, including keyword and block arguments. Note that the parentheses are mandatory.  <code>bar ...</code> is parsed as an endless range.</p>
+</li><li>
+<p>Access and setting of <code>$SAFE</code> is now always warned. <code>$SAFE</code> will become a normal global variable in Ruby 3.0. [Feature #16131]</p>
+</li><li>
+<p><code>Object#{taint,untaint,trust,untrust}</code> and related functions in the C-API no longer have an effect (all objects are always considered untainted), and are now warned in verbose mode. This warning will be disabled even in non-verbose mode in Ruby 3.0, and the methods and C functions will be removed in Ruby 3.2. [Feature #16131]</p>
+</li><li>
+<p>Refinements take place at <a href="Object.html#method-i-method"><code>Object#method</code></a> and <a href="Module.html#method-i-instance_method"><code>Module#instance_method</code></a>. [Feature #15373]</p>
+</li></ul>
+
+<h3 id="label-Command+line+options">Command line options<span><a href="#label-Command+line+options">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<h4 id="label-Warning+option"><a href="Warning.html"><code>Warning</code></a> option<span><a href="#label-Warning+option">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The <code>-W</code> option has been extended with a following <code>:</code>, to manage categorized warnings.  [Feature #16345] [Feature #16420]</p>
+<ul><li>
+<p>To suppress deprecation warnings:</p>
+
+<pre>$ ruby -e &#39;$; = &quot;&quot;&#39;
+-e:1: warning: `$;&#39; is deprecated
+
+$ ruby -W:no-deprecated -e &#39;$; = //&#39;</pre>
+</li><li>
+<p>It works with the <code>RUBYOPT</code> environment variable:</p>
+
+<pre>$ RUBYOPT=-W:no-deprecated ruby -e &#39;$; = //&#39;</pre>
+</li><li>
+<p>To suppress experimental feature warnings:</p>
+
+<pre>$ ruby -e &#39;0 in a&#39;
+-e:1: warning: Pattern matching is experimental, and the behavior may change in future versions of Ruby!
+
+$ ruby -W:no-experimental -e &#39;0 in a&#39;</pre>
+</li><li>
+<p>To suppress both by using <code>RUBYOPT</code>, set space separated values:</p>
+
+<pre>$ RUBYOPT=&#39;-W:no-deprecated -W:no-experimental&#39; ruby -e &#39;($; = &quot;&quot;) in a&#39;</pre>
+</li></ul>
+
+<p>See also <a href="Warning.html"><code>Warning</code></a> in <a href="#label-Core+classes+updates+-28outstanding+ones+only-29">Core classes updates</a>.</p>
+
+<h3 id="label-Core+classes+updates+-28outstanding+ones+only-29">Core classes updates (outstanding ones only)<span><a href="#label-Core+classes+updates+-28outstanding+ones+only-29">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<dl class="rdoc-list note-list"><dt><a href="Array.html"><code>Array</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New methods
+<dd><ul><li>
+<p>Added <a href="Array.html#method-i-intersection"><code>Array#intersection</code></a>. [Feature #16155]</p>
+</li><li>
+<p>Added <a href="Array.html#method-i-minmax"><code>Array#minmax</code></a>, with a faster implementation than <a href="Enumerable.html#method-i-minmax"><code>Enumerable#minmax</code></a>. [Bug #15929]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Comparable.html"><code>Comparable</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Modified method
+<dd><ul><li>
+<p><a href="Comparable.html#method-i-clamp"><code>Comparable#clamp</code></a> now accepts a <a href="Range.html"><code>Range</code></a> argument. [Feature #14784]</p>
+
+<pre class="ruby"><span class="ruby-value">-1</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>) <span class="ruby-comment">#=&gt; 0</span>
+ <span class="ruby-value">1</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>) <span class="ruby-comment">#=&gt; 1</span>
+ <span class="ruby-value">3</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>) <span class="ruby-comment">#=&gt; 2</span>
+<span class="ruby-comment"># With beginless and endless ranges:</span>
+<span class="ruby-value">-1</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span>)  <span class="ruby-comment">#=&gt; 0</span>
+ <span class="ruby-value">3</span>.<span class="ruby-identifier">clamp</span>(<span class="ruby-operator">..</span><span class="ruby-value">2</span>)  <span class="ruby-comment">#=&gt; 2</span>
+</pre>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Complex.html"><code>Complex</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added Complex#&lt;=&gt;. So <code>0 &lt;=&gt; 0i</code> will not raise <a href="NoMethodError.html"><code>NoMethodError</code></a>. [Bug #15857]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Dir.html"><code>Dir</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Modified methods
+<dd><ul><li>
+<p><a href="Dir.html#method-c-glob"><code>Dir.glob</code></a> and <a href="Dir.html#method-c-5B-5D"><code>Dir.[]</code></a> no longer allow NUL-separated glob pattern. Use <a href="Array.html"><code>Array</code></a> instead.  [Feature #14643]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Encoding.html"><code>Encoding</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New encoding
+<dd><ul><li>
+<p>Added new encoding CESU-8. [Feature #15931]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Enumerable.html"><code>Enumerable</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New methods
+<dd><ul><li>
+<p>Added <a href="Enumerable.html#method-i-filter_map"><code>Enumerable#filter_map</code></a>.  [Feature #15323]</p>
+
+<pre class="ruby">[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>].<span class="ruby-identifier">filter_map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">odd?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span> } <span class="ruby-comment">#=&gt; [&quot;1&quot;, &quot;3&quot;]</span>
+</pre>
+</li><li>
+<p>Added <a href="Enumerable.html#method-i-tally"><code>Enumerable#tally</code></a>.  [Feature #11076]</p>
+
+<pre class="ruby">[<span class="ruby-string">&quot;A&quot;</span>, <span class="ruby-string">&quot;B&quot;</span>, <span class="ruby-string">&quot;C&quot;</span>, <span class="ruby-string">&quot;B&quot;</span>, <span class="ruby-string">&quot;A&quot;</span>].<span class="ruby-identifier">tally</span> <span class="ruby-comment">#=&gt; {&quot;A&quot;=&gt;2, &quot;B&quot;=&gt;2, &quot;C&quot;=&gt;1}</span>
+</pre>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Enumerator.html"><code>Enumerator</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New methods
+<dd><ul><li>
+<p>Added <a href="Enumerator.html#method-c-produce"><code>Enumerator.produce</code></a> to generate an <a href="Enumerator.html"><code>Enumerator</code></a> from any custom data transformation.  [Feature #14781]</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;date&quot;</span>
+<span class="ruby-identifier">dates</span> = <span class="ruby-constant">Enumerator</span>.<span class="ruby-identifier">produce</span>(<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:succ</span>) <span class="ruby-comment">#=&gt; infinite sequence of dates</span>
+<span class="ruby-identifier">dates</span>.<span class="ruby-identifier">detect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:tuesday?</span>) <span class="ruby-comment">#=&gt; next Tuesday</span>
+</pre>
+</li><li>
+<p>Added <a href="Enumerator/Lazy.html#method-i-eager"><code>Enumerator::Lazy#eager</code></a> that generates a non-lazy enumerator from a lazy enumerator.  [Feature #15901]</p>
+
+<pre class="ruby"><span class="ruby-identifier">a</span> = <span class="ruby-node">%w(foo bar baz)</span>
+<span class="ruby-identifier">e</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">lazy</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">upcase</span> }.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;!&quot;</span> }.<span class="ruby-identifier">eager</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span>               <span class="ruby-comment">#=&gt; Enumerator</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;?&quot;</span> }  <span class="ruby-comment">#=&gt; [&quot;FOO!?&quot;, &quot;BAR!?&quot;, &quot;BAZ!?&quot;]</span>
+</pre>
+</li><li>
+<p>Added <a href="Enumerator/Yielder.html#method-i-to_proc"><code>Enumerator::Yielder#to_proc</code></a> so that a Yielder object can be directly passed to another method as a block argument.  [Feature #15618]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Fiber.html"><code>Fiber</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <a href="Fiber.html#method-i-raise"><code>Fiber#raise</code></a> that behaves like <a href="Fiber.html#method-i-resume"><code>Fiber#resume</code></a> but raises an exception on the resumed fiber.  [Feature #10344]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="File.html"><code>File</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Modified method
+<dd><ul><li>
+<p><a href="File.html#method-c-extname"><code>File.extname</code></a> now returns a dot string for names ending with a dot on non-Windows platforms.  [Bug #15267]</p>
+
+<pre class="ruby"><span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-string">&quot;foo.&quot;</span>) <span class="ruby-comment">#=&gt; &quot;.&quot;</span>
+</pre>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="FrozenError.html"><code>FrozenError</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <a href="FrozenError.html#method-i-receiver"><code>FrozenError#receiver</code></a> to return the frozen object on which modification was attempted.  To set this object when raising <a href="FrozenError.html"><code>FrozenError</code></a> in Ruby code, <a href="FrozenError.html#method-c-new"><code>FrozenError.new</code></a> accepts a <code>:receiver</code> option.  [Feature #15751]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="GC.html"><code>GC</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <a href="GC.html#method-c-compact"><code>GC.compact</code></a> method for compacting the heap. This function compacts live objects in the heap so that fewer pages may be used, and the heap may be more CoW (copy-on-write) friendly. [Feature #15626]</p>
+
+<p>Details on the algorithm and caveats can be found here: <a href="https://bugs.ruby-lang.org/issues/15626">bugs.ruby-lang.org/issues/15626</a></p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="IO.html"><code>IO</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <a href="IO.html#method-i-set_encoding_by_bom"><code>IO#set_encoding_by_bom</code></a> to check the BOM and set the external encoding.  [Bug #15210]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Integer.html"><code>Integer</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Modified method
+<dd><ul><li>
+<p><a href="Integer.html#method-i-5B-5D"><code>Integer#[]</code></a> now supports range operations.  [Feature #8842]</p>
+
+<pre class="ruby"><span class="ruby-value">0b01001101</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>]  <span class="ruby-comment">#=&gt; 0b0011</span>
+<span class="ruby-value">0b01001100</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>]  <span class="ruby-comment">#=&gt; 0b0011</span>
+<span class="ruby-value">0b01001100</span>[<span class="ruby-value">2</span><span class="ruby-operator">...</span><span class="ruby-value">6</span>] <span class="ruby-comment">#=&gt; 0b0011</span>
+<span class="ruby-comment">#   ^^^^</span>
+</pre>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Method.html"><code>Method</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Modified method
+<dd><ul><li>
+<p><a href="Method.html#method-i-inspect"><code>Method#inspect</code></a> shows more information. [Feature #14145]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Module.html"><code>Module</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New methods
+<dd><ul><li>
+<p>Added <a href="Module.html#method-i-const_source_location"><code>Module#const_source_location</code></a> to retrieve the location where a constant is defined.  [Feature #10771]</p>
+</li><li>
+<p>Added <a href="Module.html#method-i-ruby2_keywords"><code>Module#ruby2_keywords</code></a> for marking a method as passing keyword arguments through a regular argument splat, useful when delegating all arguments to another method in a way that can be backwards compatible with older Ruby versions.  [Bug #16154]</p>
+</li></ul>
+</dd><dt>Modified methods
+<dd><ul><li>
+<p><a href="Module.html#method-i-autoload-3F"><code>Module#autoload?</code></a> now takes an <code>inherit</code> optional argument, like <a href="Module.html#method-i-const_defined-3F"><code>Module#const_defined?</code></a>.  [Feature #15777]</p>
+</li><li>
+<p><a href="Module.html#method-i-name"><code>Module#name</code></a> now always returns a frozen <a href="String.html"><code>String</code></a>. The returned <a href="String.html"><code>String</code></a> is always the same for a given <a href="Module.html"><code>Module</code></a>. This change is experimental. [Feature #16150]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="NilClass.html"><code>NilClass</code></a> / <a href="TrueClass.html"><code>TrueClass</code></a> / <a href="FalseClass.html"><code>FalseClass</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Modified methods
+<dd><ul><li>
+<p><a href="NilClass.html#method-i-to_s"><code>NilClass#to_s</code></a>, <a href="TrueClass.html#method-i-to_s"><code>TrueClass#to_s</code></a>, and <a href="FalseClass.html#method-i-to_s"><code>FalseClass#to_s</code></a> now always return a frozen <a href="String.html"><code>String</code></a>. The returned <a href="String.html"><code>String</code></a> is always the same for each of these values. This change is experimental. [Feature #16150]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="ObjectSpace/WeakMap.html"><code>ObjectSpace::WeakMap</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Modified method
+<dd><ul><li>
+<p><a href="ObjectSpace/WeakMap.html#method-i-5B-5D-3D"><code>ObjectSpace::WeakMap#[]=</code></a> now accepts special objects as either key or values.  [Feature #16035]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Proc.html"><code>Proc</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <a href="Proc.html#method-i-ruby2_keywords"><code>Proc#ruby2_keywords</code></a> for marking the proc as passing keyword arguments through a regular argument splat, useful when delegating all arguments to another method or proc in a way that can be backwards compatible with older Ruby versions.  [Feature #16404]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Range.html"><code>Range</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <a href="Range.html#method-i-minmax"><code>Range#minmax</code></a>, with a faster implementation than <a href="Enumerable.html#method-i-minmax"><code>Enumerable#minmax</code></a>. It returns a maximum that now corresponds to <a href="Range.html#method-i-max"><code>Range#max</code></a>. [Bug #15807]</p>
+</li></ul>
+</dd><dt>Modified method
+<dd><ul><li>
+<p><a href="Range.html#method-i-3D-3D-3D"><code>Range#===</code></a> now uses <a href="Range.html#method-i-cover-3F"><code>Range#cover?</code></a> for <a href="String.html"><code>String</code></a> arguments, too (in Ruby 2.6, it was changed from <a href="Range.html#method-i-include-3F"><code>Range#include?</code></a> for all types except strings). [Bug #15449]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="RubyVM.html"><code>RubyVM</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Removed method
+<dd><ul><li>
+<p><code>RubyVM.resolve_feature_path</code> moved to <code>$LOAD_PATH.resolve_feature_path</code>.  [Feature #15903] [Feature #15230]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="String.html"><code>String</code></a>
+<dd><dl class="rdoc-list note-list"><dt>Unicode
+<dd><ul><li>
+<p>Update Unicode version and Emoji version from 11.0.0 to 12.0.0.  [Feature #15321]</p>
+</li><li>
+<p>Update Unicode version to 12.1.0, adding support for U+32FF SQUARE ERA NAME REIWA.  [Feature #15195]</p>
+</li><li>
+<p>Update Unicode Emoji version to 12.1. [Feature #16272]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Symbol.html"><code>Symbol</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New methods
+<dd><ul><li>
+<p>Added <a href="Symbol.html#method-i-start_with-3F"><code>Symbol#start_with?</code></a> and <a href="Symbol.html#method-i-end_with-3F"><code>Symbol#end_with?</code></a> methods.  [Feature #16348]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Time.html"><code>Time</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New methods
+<dd><ul><li>
+<p>Added <a href="Time.html#method-i-ceil"><code>Time#ceil</code></a> method.  [Feature #15772]</p>
+</li><li>
+<p>Added <a href="Time.html#method-i-floor"><code>Time#floor</code></a> method.  [Feature #15653]</p>
+</li></ul>
+</dd><dt>Modified method
+<dd><ul><li>
+<p><a href="Time.html#method-i-inspect"><code>Time#inspect</code></a> is separated from <a href="Time.html#method-i-to_s"><code>Time#to_s</code></a> and it shows the time&#39;s sub second.  [Feature #15958]</p>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="UnboundMethod.html"><code>UnboundMethod</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <a href="UnboundMethod.html#method-i-bind_call"><code>UnboundMethod#bind_call</code></a> method.  [Feature #15955]</p>
+
+<p><code>umethod.bind_call(obj, ...)</code> is semantically equivalent to <code>umethod.bind(obj).call(...)</code>.  This idiom is used in some libraries to call a method that is overridden.  The added method does the same without allocation of an intermediate <a href="Method.html"><code>Method</code></a> object.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Foo</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_1</span>(<span class="ruby-identifier">x</span>)
+    <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Bar</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Foo</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_1</span>(<span class="ruby-identifier">x</span>) <span class="ruby-comment"># override</span>
+    <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">Bar</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">add_1</span>(<span class="ruby-value">1</span>) <span class="ruby-comment">#=&gt; 3</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Foo</span>.<span class="ruby-identifier">instance_method</span>(<span class="ruby-value">:add_1</span>).<span class="ruby-identifier">bind</span>(<span class="ruby-identifier">obj</span>).<span class="ruby-identifier">call</span>(<span class="ruby-value">1</span>) <span class="ruby-comment">#=&gt; 2</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Foo</span>.<span class="ruby-identifier">instance_method</span>(<span class="ruby-value">:add_1</span>).<span class="ruby-identifier">bind_call</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-value">1</span>) <span class="ruby-comment">#=&gt; 2</span>
+</pre>
+</li></ul>
+</dd></dl>
+</dd><dt><a href="Warning.html"><code>Warning</code></a>
+<dd><dl class="rdoc-list note-list"><dt>New methods
+<dd><ul><li>
+<p>Added <a href="Warning.html#method-c-5B-5D"><code>Warning.[]</code></a> and <a href="Warning.html#method-c-5B-5D-3D"><code>Warning.[]=</code></a> to manage emitting/suppressing some categories of warnings.  [Feature #16345] [Feature #16420]</p>
+</li></ul>
+</dd></dl>
+</dd><dt>$LOAD_PATH
+<dd><dl class="rdoc-list note-list"><dt>New method
+<dd><ul><li>
+<p>Added <code>$LOAD_PATH.resolve_feature_path</code>.  [Feature #15903] [Feature #15230]</p>
+</li></ul>
+</dd></dl>
+</dd></dl>
+
+<h3 id="label-Stdlib+updates+-28outstanding+ones+only-29">Stdlib updates (outstanding ones only)<span><a href="#label-Stdlib+updates+-28outstanding+ones+only-29">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<dl class="rdoc-list note-list"><dt><a href="Bundler.html"><code>Bundler</code></a>
+<dd><ul><li>
+<p>Upgrade to <a href="Bundler.html"><code>Bundler</code></a> 2.1.2. See <a href="https://github.com/bundler/bundler/releases/tag/v2.1.2">github.com/bundler/bundler/releases/tag/v2.1.2</a></p>
+</li></ul>
+</dd><dt><a href="CGI.html"><code>CGI</code></a>
+<dd><ul><li>
+<p><a href="CGI/Util.html#method-i-escapeHTML"><code>CGI.escapeHTML</code></a> becomes 2~5x faster when there is at least one escaped character. See <a href="https://github.com/ruby/ruby/pull/2226">github.com/ruby/ruby/pull/2226</a></p>
+</li></ul>
+</dd><dt><a href="CSV.html"><code>CSV</code></a>
+<dd><ul><li>
+<p>Upgrade to 3.1.2. See <a href="https://github.com/ruby/csv/blob/master/NEWS.md">github.com/ruby/csv/blob/master/NEWS.md</a>.</p>
+</li></ul>
+</dd><dt><a href="Date.html"><code>Date</code></a>
+<dd><ul><li>
+<p><a href="Date.html#method-c-jisx0301"><code>Date.jisx0301</code></a>, <a href="Date.html#method-i-jisx0301"><code>Date#jisx0301</code></a>, and <a href="Date.html#method-c-parse"><code>Date.parse</code></a> support the new Japanese era.  [Feature #15742]</p>
+</li></ul>
+</dd><dt><a href="Delegator.html"><code>Delegator</code></a>
+<dd><ul><li>
+<p>Object#DelegateClass accepts a block and module_evals it in the context of the returned class, similar to <a href="Class.html#method-i-new"><code>Class.new</code></a> and <a href="Struct.html#method-c-new"><code>Struct.new</code></a>.</p>
+</li></ul>
+</dd><dt><a href="ERB.html"><code>ERB</code></a>
+<dd><ul><li>
+<p>Prohibit marshaling <a href="ERB.html"><code>ERB</code></a> instance.</p>
+</li></ul>
+</dd><dt>IRB
+<dd><ul><li>
+<p>Introduce syntax highlighting inspired by the Pry gem to <a href="Binding.html#method-i-irb"><code>Binding#irb</code></a> source lines, REPL input, and inspect output of some core-class objects.</p>
+</li><li>
+<p>Introduce multiline editing mode provided by <a href="Reline.html"><code>Reline</code></a>.</p>
+</li><li>
+<p>Show documentation when completion.</p>
+</li><li>
+<p>Enable auto indent and save/load history by default.</p>
+</li></ul>
+</dd><dt><a href="JSON.html"><code>JSON</code></a>
+<dd><ul><li>
+<p>Upgrade to 2.3.0.</p>
+</li></ul>
+</dd><dt><a href="Net/FTP.html"><code>Net::FTP</code></a>
+<dd><ul><li>
+<p>Add <a href="Net/FTP.html#method-i-features"><code>Net::FTP#features</code></a> to check available features, and <a href="Net/FTP.html#method-i-option"><code>Net::FTP#option</code></a> to enable/disable each of them.  [Feature #15964]</p>
+</li></ul>
+</dd><dt><a href="Net/HTTP.html"><code>Net::HTTP</code></a>
+<dd><ul><li>
+<p>Add <code>ipaddr</code> optional parameter to <a href="Net/HTTP.html#method-i-start"><code>Net::HTTP#start</code></a> to replace the address for the TCP/IP connection. [Feature #5180]</p>
+</li></ul>
+</dd><dt><a href="Net/IMAP.html"><code>Net::IMAP</code></a>
+<dd><ul><li>
+<p>Add Server Name Indication (SNI) support.  [Feature #15594]</p>
+</li></ul>
+</dd><dt>open-uri
+<dd><ul><li>
+<p>Warn open-uri&#39;s “open” method at <a href="Kernel.html"><code>Kernel</code></a>. Use <a href="URI.html#method-c-open"><code>URI.open</code></a> instead.  [Misc #15893]</p>
+</li><li>
+<p>The default charset of “text/*” media type is UTF-8 instead of ISO-8859-1.  [Bug #15933]</p>
+</li></ul>
+</dd><dt><a href="OptionParser.html"><code>OptionParser</code></a>
+<dd><ul><li>
+<p>Now show “Did you mean?” for unknown options.  [Feature #16256]</p>
+
+<p>test.rb:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;optparse&quot;</span>
+<span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-string">&quot;-f&quot;</span>, <span class="ruby-string">&quot;--foo&quot;</span>, <span class="ruby-string">&quot;foo&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> }
+  <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-string">&quot;-b&quot;</span>, <span class="ruby-string">&quot;--bar&quot;</span>, <span class="ruby-string">&quot;bar&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> }
+  <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-string">&quot;-c&quot;</span>, <span class="ruby-string">&quot;--baz&quot;</span>, <span class="ruby-string">&quot;baz&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> }
+<span class="ruby-keyword">end</span>.<span class="ruby-identifier">parse!</span>
+</pre>
+
+<p>example:</p>
+
+<pre>$ ruby test.rb --baa
+Traceback (most recent call last):
+test.rb:7:in `&lt;main&gt;&#39;: invalid option: --baa (OptionParser::InvalidOption)
+Did you mean?  baz
+               bar</pre>
+</li></ul>
+</dd><dt><a href="Pathname.html"><code>Pathname</code></a>
+<dd><ul><li>
+<p><a href="Pathname.html#method-c-glob"><code>Pathname.glob</code></a> now delegates 3 arguments to <a href="Dir.html#method-c-glob"><code>Dir.glob</code></a> to accept <code>base</code> keyword. [Feature #14405]</p>
+</li></ul>
+</dd><dt><a href="Racc.html"><code>Racc</code></a>
+<dd><ul><li>
+<p>Merge 1.4.15 from upstream repository and added cli of racc.</p>
+</li></ul>
+</dd><dt><a href="Reline.html"><code>Reline</code></a>
+<dd><ul><li>
+<p>New stdlib that is compatible with the readline stdlib but is implemented in pure Ruby. It also provides a multiline editing mode.</p>
+</li></ul>
+</dd><dt><a href="REXML.html"><code>REXML</code></a>
+<dd><ul><li>
+<p>Upgrade to 3.2.3. See <a href="https://github.com/ruby/rexml/blob/master/NEWS.md">github.com/ruby/rexml/blob/master/NEWS.md</a>.</p>
+</li></ul>
+</dd><dt><a href="RSS.html"><code>RSS</code></a>
+<dd><ul><li>
+<p>Upgrade to <a href="RSS.html"><code>RSS</code></a> 0.2.8. See <a href="https://github.com/ruby/rss/blob/master/NEWS.md">github.com/ruby/rss/blob/master/NEWS.md</a>.</p>
+</li></ul>
+</dd><dt>RubyGems
+<dd><ul><li>
+<p>Upgrade to RubyGems 3.1.2.</p>
+<ul><li>
+<p><a href="https://github.com/rubygems/rubygems/releases/tag/v3.1.0">github.com/rubygems/rubygems/releases/tag/v3.1.0</a></p>
+</li><li>
+<p><a href="https://github.com/rubygems/rubygems/releases/tag/v3.1.1">github.com/rubygems/rubygems/releases/tag/v3.1.1</a></p>
+</li><li>
+<p><a href="https://github.com/rubygems/rubygems/releases/tag/v3.1.2">github.com/rubygems/rubygems/releases/tag/v3.1.2</a></p>
+</li></ul>
+</li></ul>
+</dd><dt><a href="StringScanner.html"><code>StringScanner</code></a>
+<dd><ul><li>
+<p>Upgrade to 1.0.3. See <a href="https://github.com/ruby/strscan/blob/master/NEWS.md">github.com/ruby/strscan/blob/master/NEWS.md</a>.</p>
+</li></ul>
+</dd></dl>
+
+<h3 id="label-Compatibility+issues+-28excluding+feature+bug+fixes-29">Compatibility issues (excluding feature bug fixes)<span><a href="#label-Compatibility+issues+-28excluding+feature+bug+fixes-29">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>The following libraries are no longer bundled gems. Install corresponding gems to use these features.</p>
+<ul><li>
+<p>CMath (cmath gem)</p>
+</li><li>
+<p>Scanf (scanf gem)</p>
+</li><li>
+<p>Shell (shell gem)</p>
+</li><li>
+<p>Synchronizer (sync gem)</p>
+</li><li>
+<p>ThreadsWait (thwait gem)</p>
+</li><li>
+<p>E2MM (e2mmap gem)</p>
+</li></ul>
+</li></ul>
+<dl class="rdoc-list note-list"><dt><a href="Proc.html"><code>Proc</code></a>
+<dd><ul><li>
+<p>The <a href="Proc.html#method-i-to_s"><code>Proc#to_s</code></a> format was changed. [Feature #16101]</p>
+</li></ul>
+</dd><dt><a href="Range.html"><code>Range</code></a>
+<dd><ul><li>
+<p><a href="Range.html#method-i-minmax"><code>Range#minmax</code></a> used to iterate on the range to determine the maximum. It now uses the same algorithm as <a href="Range.html#method-i-max"><code>Range#max</code></a>. In rare cases (e.g. ranges of Floats or Strings), this may yield different results. [Bug #15807]</p>
+</li></ul>
+</dd></dl>
+
+<h3 id="label-Stdlib+compatibility+issues+-28excluding+feature+bug+fixes-29">Stdlib compatibility issues (excluding feature bug fixes)<span><a href="#label-Stdlib+compatibility+issues+-28excluding+feature+bug+fixes-29">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Promote stdlib to default gems</p>
+<ul><li>
+<p>The following default gems were published on rubygems.org</p>
+<ul><li>
+<p>benchmark</p>
+</li><li>
+<p>cgi</p>
+</li><li>
+<p>delegate</p>
+</li><li>
+<p>getoptlong</p>
+</li><li>
+<p>net-pop</p>
+</li><li>
+<p>net-smtp</p>
+</li><li>
+<p>open3</p>
+</li><li>
+<p>pstore</p>
+</li><li>
+<p>readline</p>
+</li><li>
+<p>readline-ext</p>
+</li><li>
+<p>singleton</p>
+</li></ul>
+</li><li>
+<p>The following default gems were only promoted at ruby-core, but not yet published on rubygems.org.</p>
+<ul><li>
+<p>monitor</p>
+</li><li>
+<p>observer</p>
+</li><li>
+<p>timeout</p>
+</li><li>
+<p>tracer</p>
+</li><li>
+<p>uri</p>
+</li><li>
+<p>yaml</p>
+</li></ul>
+</li></ul>
+</li><li>
+<p>The <code>did_you_mean</code> gem has been promoted up to a default gem from a bundled gem</p>
+</li></ul>
+<dl class="rdoc-list note-list"><dt>pathname
+<dd><ul><li>
+<p>Kernel#Pathname when called with a <a href="Pathname.html"><code>Pathname</code></a> argument now returns the argument instead of creating a new <a href="Pathname.html"><code>Pathname</code></a>. This is more similar to other <a href="Kernel.html"><code>Kernel</code></a> methods, but can break code that modifies the return value and expects the argument not to be modified.</p>
+</li></ul>
+</dd><dt>profile.rb, Profiler__
+<dd><ul><li>
+<p>Removed from standard library. It was unmaintained since Ruby 2.0.0.</p>
+</li></ul>
+</dd></dl>
+
+<h3 id="label-C+API+updates">C API updates<span><a href="#label-C+API+updates">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Many <code>*_kw</code> functions have been added for setting whether the final argument being passed should be treated as keywords. You may need to switch to these functions to avoid keyword argument separation warnings, and to ensure correct behavior in Ruby 3.</p>
+</li><li>
+<p>The <code>:</code> character in rb_scan_args format string is now treated as keyword arguments. Passing a positional hash instead of keyword arguments will emit a deprecation warning.</p>
+</li><li>
+<p>C API declarations with <code>ANYARGS</code> are changed not to use <code>ANYARGS</code>. See <a href="https://github.com/ruby/ruby/pull/2404">github.com/ruby/ruby/pull/2404</a></p>
+</li></ul>
+
+<h3 id="label-Implementation+improvements">Implementation improvements<span><a href="#label-Implementation+improvements">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<dl class="rdoc-list note-list"><dt><a href="Fiber.html"><code>Fiber</code></a>
+<dd><ul><li>
+<p>Allow selecting different coroutine implementations by using <code>--with-coroutine=</code>, e.g.</p>
+
+<pre>$ ./configure --with-coroutine=ucontext
+$ ./configure --with-coroutine=copy</pre>
+</li><li>
+<p>Replace previous stack cache with fiber pool cache. The fiber pool allocates many stacks in a single memory region. Stack allocation becomes O(log N) and fiber creation is amortized O(1). Around 10x performance improvement was measured in micro-benchmarks. <a href="https://github.com/ruby/ruby/pull/2224">github.com/ruby/ruby/pull/2224</a></p>
+</li></ul>
+</dd><dt><a href="File.html"><code>File</code></a>
+<dd><ul><li>
+<p><a href="File.html#method-c-realpath"><code>File.realpath</code></a> now uses realpath(3) on many platforms, which can significantly improve performance. [Feature #15797]</p>
+</li></ul>
+</dd><dt><a href="Hash.html"><code>Hash</code></a>
+<dd><ul><li>
+<p>Change data structure of small <a href="Hash.html"><code>Hash</code></a> objects. [Feature #15602]</p>
+</li></ul>
+</dd><dt>Monitor
+<dd><ul><li>
+<p>Monitor class is written in C-extension. [Feature #16255]</p>
+</li></ul>
+</dd><dt><a href="Thread.html"><code>Thread</code></a>
+<dd><ul><li>
+<p>VM stack memory allocation is now combined with native thread stack, improving thread allocation performance and reducing allocation related failures. Around 10x performance improvement was measured in micro-benchmarks.</p>
+</li></ul>
+</dd><dt>JIT
+<dd><ul><li>
+<p>JIT-ed code is recompiled to less-optimized code when an optimization assumption is invalidated.</p>
+</li><li>
+<p><a href="Method.html"><code>Method</code></a> inlining is performed when a method is considered as pure. This optimization is still experimental and many methods are NOT considered as pure yet.</p>
+</li><li>
+<p>The default value of <code>--jit-max-cache</code> is changed from 1,000 to 100.</p>
+</li><li>
+<p>The default value of <code>--jit-min-calls</code> is changed from 5 to 10,000.</p>
+</li></ul>
+</dd><dt><a href="RubyVM.html"><code>RubyVM</code></a>
+<dd><ul><li>
+<p>Per-call-site method cache, which has been there since around 1.9, was improved: cache hit rate raised from 89% to 94%. See <a href="https://github.com/ruby/ruby/pull/2583">github.com/ruby/ruby/pull/2583</a></p>
+</li></ul>
+</dd><dt><a href="RubyVM/InstructionSequence.html"><code>RubyVM::InstructionSequence</code></a>
+<dd><ul><li>
+<p><a href="RubyVM/InstructionSequence.html#method-i-to_binary"><code>RubyVM::InstructionSequence#to_binary</code></a> method generates compiled binary. The binary size is reduced. [Feature #16163]</p>
+</li></ul>
+</dd></dl>
+
+<h3 id="label-Miscellaneous+changes">Miscellaneous changes<span><a href="#label-Miscellaneous+changes">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Support for IA64 architecture has been removed. Hardware for testing was difficult to find, native fiber code is difficult to implement, and it added non-trivial complexity to the interpreter. [Feature #15894]</p>
+</li><li>
+<p>Require compilers to support C99. [Misc #15347]</p>
+<ul><li>
+<p>Details of our dialect: <a href="https://bugs.ruby-lang.org/projects/ruby-trunk/wiki/C99">bugs.ruby-lang.org/projects/ruby-trunk/wiki/C99</a></p>
+</li></ul>
+</li><li>
+<p>Ruby&#39;s upstream repository is changed from Subversion to Git.</p>
+<ul><li>
+<p><a href="https://git.ruby-lang.org/ruby.git">git.ruby-lang.org/ruby.git</a></p>
+</li><li>
+<p>RUBY_REVISION class is changed from <a href="Integer.html"><code>Integer</code></a> to <a href="String.html"><code>String</code></a>.</p>
+</li><li>
+<p>RUBY_DESCRIPTION includes Git revision instead of Subversion&#39;s one.</p>
+</li></ul>
+</li><li>
+<p>Support built-in methods in Ruby with the <code>__builtin_</code> syntax. [Feature #16254]</p>
+
+<p>Some methods are defined in *.rb (such as trace_point.rb). For example, it is easy to define a method which accepts keyword arguments.</p>
+</li></ul>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

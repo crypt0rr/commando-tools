@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module JSON - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-JSON-label-JavaScript+Object+Notation+-28JSON-29">JavaScript Object Notation (JSON)</a>
+    <li><a href="#module-JSON-label-Parsing+JSON">Parsing JSON</a>
+    <li><a href="#module-JSON-label-Generating+JSON">Generating JSON</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-5B-5D">::[]</a>
+    
+    <li ><a href="#method-c-iconv">::iconv</a>
+    
+    <li ><a href="#method-c-restore">::restore</a>
+    
+    <li ><a href="#method-i-dump">#dump</a>
+    
+    <li ><a href="#method-i-fast_generate">#fast_generate</a>
+    
+    <li ><a href="#method-i-generate">#generate</a>
+    
+    <li ><a href="#method-i-load">#load</a>
+    
+    <li ><a href="#method-i-parse">#parse</a>
+    
+    <li ><a href="#method-i-parse-21">#parse!</a>
+    
+    <li ><a href="#method-i-pretty_generate">#pretty_generate</a>
+    
+    <li ><a href="#method-i-recurse_proc">#recurse_proc</a>
+    
+    <li ><a href="#method-i-restore">#restore</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-JSON">
+  <h1 id="module-JSON" class="module">
+    module JSON
+  </h1>
+
+  <section class="description">
+    
+<h1 id="module-JSON-label-JavaScript+Object+Notation+-28JSON-29">JavaScript <a href="Object.html"><code>Object</code></a> Notation (<a href="JSON.html"><code>JSON</code></a>)<span><a href="#module-JSON-label-JavaScript+Object+Notation+-28JSON-29">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><a href="JSON.html"><code>JSON</code></a> is a lightweight data-interchange format. It is easy for us humans to read and write. Plus, equally simple for machines to generate or parse. <a href="JSON.html"><code>JSON</code></a> is completely language agnostic, making it the ideal interchange format.</p>
+
+<p>Built on two universally available structures:</p>
+
+<pre>1. A collection of name/value pairs. Often referred to as an _object_, hash table, record, struct, keyed list, or associative array.
+2. An ordered list of values. More commonly called an _array_, vector, sequence or list.</pre>
+
+<p>To read more about <a href="JSON.html"><code>JSON</code></a> visit: <a href="http://json.org">json.org</a></p>
+
+<h2 id="module-JSON-label-Parsing+JSON">Parsing <a href="JSON.html"><code>JSON</code></a><span><a href="#module-JSON-label-Parsing+JSON">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To parse a <a href="JSON.html"><code>JSON</code></a> string received by another application or generated within your existing application:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;json&#39;</span>
+
+<span class="ruby-identifier">my_hash</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-string">&#39;{&quot;hello&quot;: &quot;goodbye&quot;}&#39;</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">my_hash</span>[<span class="ruby-string">&quot;hello&quot;</span>] <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;goodbye&quot;</span>
+</pre>
+
+<p>Notice the extra quotes <code>&#39;&#39;</code> around the hash notation. Ruby expects the argument to be a string and can&#39;t convert objects like a hash or array.</p>
+
+<p>Ruby converts your string into a hash</p>
+
+<h2 id="module-JSON-label-Generating+JSON">Generating <a href="JSON.html"><code>JSON</code></a><span><a href="#module-JSON-label-Generating+JSON">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Creating a <a href="JSON.html"><code>JSON</code></a> string for communication or serialization is just as simple.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;json&#39;</span>
+
+<span class="ruby-identifier">my_hash</span> = {<span class="ruby-value">:hello</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;goodbye&quot;</span>}
+<span class="ruby-identifier">puts</span> <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">my_hash</span>) <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;{\&quot;hello\&quot;:\&quot;goodbye\&quot;}&quot;</span>
+</pre>
+
+<p>Or an alternative way:</p>
+
+<pre>require &#39;json&#39;
+puts {:hello =&gt; &quot;goodbye&quot;}.to_json =&gt; &quot;{\&quot;hello\&quot;:\&quot;goodbye\&quot;}&quot;</pre>
+
+<p><code>JSON.generate</code> only allows objects or arrays to be converted to <a href="JSON.html"><code>JSON</code></a> syntax. <code>to_json</code>, however, accepts many Ruby classes even though it acts only as a method for serialization:</p>
+
+<pre>require &#39;json&#39;
+
+1.to_json =&gt; &quot;1&quot;</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Infinity">Infinity
+        
+        <dd>
+        
+      
+        <dt id="JSON_LOADED">JSON_LOADED
+        
+        <dd>
+        
+      
+        <dt id="MinusInfinity">MinusInfinity
+        
+        <dd>
+        
+      
+        <dt id="NaN">NaN
+        
+        <dd>
+        
+      
+        <dt id="UnparserError">UnparserError
+        
+        <dd><p>This exception is raised if a generator or unparser error occurs.</p>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd><p><a href="JSON.html"><code>JSON</code></a> version</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-c-create_id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">create_id</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>This is create identifier, which is used to decide if the <em>json_create</em> hook of a class should be called. It defaults to &#39;json_class&#39;.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-dump_default_options" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">dump_default_options</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The global default options for the <a href="JSON.html#method-i-dump"><code>JSON.dump</code></a> method:</p>
+
+<pre>:max_nesting: false
+:allow_nan: true
+:allow_blank: true</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-generator" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">generator</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Returns the <a href="JSON.html"><code>JSON</code></a> generator module that is used by <a href="JSON.html"><code>JSON</code></a>. This is either <a href="JSON/Ext/Generator.html"><code>JSON::Ext::Generator</code></a> or JSON::Pure::Generator.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-load_default_options" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">load_default_options</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The global default options for the <a href="JSON.html#method-i-load"><code>JSON.load</code></a> method:</p>
+
+<pre>:max_nesting: false
+:allow_nan: true
+:allow_blank: true</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-parser" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">parser</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Returns the <a href="JSON.html"><code>JSON</code></a> parser class that is used by <a href="JSON.html"><code>JSON</code></a>. This is either <a href="JSON/Ext/Parser.html"><code>JSON::Ext::Parser</code></a> or JSON::Pure::Parser.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-state" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">state</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Returns the <a href="JSON.html"><code>JSON</code></a> generator state class that is used by <a href="JSON.html"><code>JSON</code></a>. This is either <a href="JSON/Ext/Generator/State.html"><code>JSON::Ext::Generator::State</code></a> or JSON::Pure::Generator::State.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-5B-5D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(object, opts = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If <em>object</em> is string-like, parse the string and return the parsed result as a Ruby data structure. Otherwise generate a <a href="JSON.html"><code>JSON</code></a> text from the Ruby data structure object and return it.</p>
+
+<p>The <em>opts</em> argument is passed through to generate/parse respectively. See generate and parse for their documentation.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]</span>(<span class="ruby-identifier">object</span>, <span class="ruby-identifier">opts</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_str</span>
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">object</span>.<span class="ruby-identifier">to_str</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">object</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-iconv" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">iconv</span><span
+            class="method-args">(to, from, string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Encodes string using Ruby&#39;s <em>String.encode</em></p>
+          
+          
+
+          
+          <div class="method-source-code" id="iconv-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 406</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">iconv</span>(<span class="ruby-identifier">to</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">string</span>)
+  <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">to</span>, <span class="ruby-identifier">from</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-restore" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">restore</span><span
+            class="method-args">(source, proc = nil, options = {})</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="JSON.html#method-i-load">load</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-dump" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump</span><span
+            class="method-args">(obj, anIO = nil, limit = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Dumps <em>obj</em> as a <a href="JSON.html"><code>JSON</code></a> string, i.e. calls generate on the object and returns the result.</p>
+
+<p>If anIO (an IO-like object or an object that responds to the write method) was given, the resulting <a href="JSON.html"><code>JSON</code></a> is written to it.</p>
+
+<p>If the number of nested arrays or objects exceeds <em>limit</em>, an <a href="ArgumentError.html"><code>ArgumentError</code></a> exception is raised. This argument is similar (but not exactly the same!) to the <em>limit</em> argument in <a href="Marshal.html#method-c-dump"><code>Marshal.dump</code></a>.</p>
+
+<p>The default options for the generator can be changed via the <a href="JSON.html#attribute-c-dump_default_options"><code>dump_default_options</code></a> method.</p>
+
+<p>This method is part of the implementation of the load/dump interface of <a href="Marshal.html"><code>Marshal</code></a> and YAML.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 384</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dump</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">anIO</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">anIO</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">limit</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">anIO</span> = <span class="ruby-identifier">anIO</span>.<span class="ruby-identifier">to_io</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">anIO</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:to_io</span>)
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">anIO</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:write</span>)
+      <span class="ruby-identifier">limit</span> = <span class="ruby-identifier">anIO</span>
+      <span class="ruby-identifier">anIO</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">opts</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">dump_default_options</span>
+  <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:max_nesting</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">limit</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">limit</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">generate</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">anIO</span>
+    <span class="ruby-identifier">anIO</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">result</span>
+    <span class="ruby-identifier">anIO</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">JSON</span><span class="ruby-operator">::</span><span class="ruby-constant">NestingError</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;exceed depth limit&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fast_generate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fast_generate</span><span
+            class="method-args">(obj, opts = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generate a <a href="JSON.html"><code>JSON</code></a> document from the Ruby data structure <em>obj</em> and return it. This method disables the checks for circles in Ruby objects.</p>
+
+<p><strong>WARNING</strong>: Be careful not to pass any Ruby data structures with circles as <em>obj</em> argument because this will cause <a href="JSON.html"><code>JSON</code></a> to go into an infinite loop.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fast_generate-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fast_generate</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">State</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">opts</span>
+    <span class="ruby-identifier">state</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>, <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">state</span> = <span class="ruby-constant">FAST_STATE_PROTOTYPE</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_hash</span>
+      <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_hash</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_h</span>
+      <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_h</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;can&#39;t convert #{opts.class} into Hash&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">state</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-generate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate</span><span
+            class="method-args">(obj, opts = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generate a <a href="JSON.html"><code>JSON</code></a> document from the Ruby data structure <em>obj</em> and return it. <em>state</em> is * a JSON::State object,</p>
+<ul><li>
+<p>or a <a href="Hash.html"><code>Hash</code></a> like object (responding to to_hash),</p>
+</li><li>
+<p>an object convertible into a hash by a to_h method,</p>
+</li></ul>
+
+<p>that is used as or to configure a State object.</p>
+
+<p>It defaults to a state object, that creates the shortest possible <a href="JSON.html"><code>JSON</code></a> text in one line, checks for circular data structures and doesn&#39;t allow <a href="JSON.html#NaN"><code>NaN</code></a>, <a href="JSON.html#Infinity"><code>Infinity</code></a>, and -Infinity.</p>
+
+<p>A <em>state</em> hash can have the following keys:</p>
+<ul><li>
+<p><strong>indent</strong>: a string used to indent levels (default: &#39;&#39;),</p>
+</li><li>
+<p><strong>space</strong>: a string that is put after, a : or , delimiter (default: &#39;&#39;),</p>
+</li><li>
+<p><strong>space_before</strong>: a string that is put before a : pair delimiter (default: &#39;&#39;),</p>
+</li><li>
+<p><strong>object_nl</strong>: a string that is put at the end of a <a href="JSON.html"><code>JSON</code></a> object (default: &#39;&#39;),</p>
+</li><li>
+<p><strong>array_nl</strong>: a string that is put at the end of a <a href="JSON.html"><code>JSON</code></a> array (default: &#39;&#39;),</p>
+</li><li>
+<p><strong>allow_nan</strong>: true if <a href="JSON.html#NaN"><code>NaN</code></a>, <a href="JSON.html#Infinity"><code>Infinity</code></a>, and -Infinity should be generated, otherwise an exception is thrown if these values are encountered. This options defaults to false.</p>
+</li><li>
+<p><strong>max_nesting</strong>: The maximum depth of nesting allowed in the data structures from which <a href="JSON.html"><code>JSON</code></a> is to be generated. Disable depth checking with :max_nesting =&gt; false, it defaults to 100.</p>
+</li></ul>
+
+<p>See also the <a href="JSON.html#method-i-fast_generate"><code>fast_generate</code></a> for the fastest creation method with the least amount of sanity checks, and the <a href="JSON.html#method-i-pretty_generate"><code>pretty_generate</code></a> method for some defaults for pretty output.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="generate-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 208</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">State</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">opts</span>
+    <span class="ruby-identifier">state</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>, <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">state</span> = <span class="ruby-constant">SAFE_STATE_PROTOTYPE</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_hash</span>
+      <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_hash</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_h</span>
+      <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_h</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;can&#39;t convert #{opts.class} into Hash&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">state</span> = <span class="ruby-identifier">state</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">state</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load</span><span
+            class="method-args">(source, proc = nil, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Load a ruby data structure from a <a href="JSON.html"><code>JSON</code></a> <em>source</em> and return it. A source can either be a string-like object, an IO-like object, or an object responding to the read method. If <em>proc</em> was given, it will be called with any nested Ruby object as an argument recursively in depth first order. To modify the default options pass in the optional <em>options</em> argument as well.</p>
+
+<p>BEWARE: This method is meant to serialise data from trusted user input, like from your own database server or clients under your control, it could be dangerous to allow untrusted users to pass <a href="JSON.html"><code>JSON</code></a> sources into it. The default options for the parser can be changed via the <a href="JSON.html#attribute-c-load_default_options"><code>load_default_options</code></a> method.</p>
+
+<p>This method is part of the implementation of the load/dump interface of <a href="Marshal.html"><code>Marshal</code></a> and YAML.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="load-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 323</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">proc</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">load_default_options</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">options</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_str</span>
+    <span class="ruby-identifier">source</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">to_str</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_io</span>
+    <span class="ruby-identifier">source</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">to_io</span>.<span class="ruby-identifier">read</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:read</span>)
+    <span class="ruby-identifier">source</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">read</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-value">:allow_blank</span>] <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">source</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">empty?</span>)
+    <span class="ruby-identifier">source</span> = <span class="ruby-string">&#39;null&#39;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-identifier">recurse_proc</span>(<span class="ruby-identifier">result</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">proc</span>
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="JSON.html#method-i-restore">restore</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse</span><span
+            class="method-args">(source, opts = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parse the <a href="JSON.html"><code>JSON</code></a> document <em>source</em> into a Ruby data structure and return it.</p>
+
+<p><em>opts</em> can have the following keys:</p>
+<ul><li>
+<p><strong>max_nesting</strong>: The maximum depth of nesting allowed in the parsed data structures. Disable depth checking with :max_nesting =&gt; false. It defaults to 100.</p>
+</li><li>
+<p><strong>allow_nan</strong>: If set to true, allow <a href="JSON.html#NaN"><code>NaN</code></a>, <a href="JSON.html#Infinity"><code>Infinity</code></a> and -Infinity in defiance of RFC 7159 to be parsed by the Parser. This option defaults to false.</p>
+</li><li>
+<p><strong>symbolize_names</strong>: If set to true, returns symbols for the names (keys) in a <a href="JSON.html"><code>JSON</code></a> object. Otherwise strings are returned. Strings are the default.</p>
+</li><li>
+<p><strong>create_additions</strong>: If set to false, the Parser doesn&#39;t create additions even if a matching class and <a href="JSON.html#attribute-c-create_id"><code>create_id</code></a> was found. This option defaults to false.</p>
+</li><li>
+<p><strong>object_class</strong>: Defaults to <a href="Hash.html"><code>Hash</code></a></p>
+</li><li>
+<p><strong>array_class</strong>: Defaults to <a href="Array.html"><code>Array</code></a></p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">opts</span> = {})
+  <span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">source</span>, <span class="ruby-operator">**</span>(<span class="ruby-identifier">opts</span><span class="ruby-operator">||</span>{})).<span class="ruby-identifier">parse</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse!</span><span
+            class="method-args">(source, opts = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parse the <a href="JSON.html"><code>JSON</code></a> document <em>source</em> into a Ruby data structure and return it. The bang version of the parse method defaults to the more dangerous values for the <em>opts</em> hash, so be sure only to parse trusted <em>source</em> documents.</p>
+
+<p><em>opts</em> can have the following keys:</p>
+<ul><li>
+<p><strong>max_nesting</strong>: The maximum depth of nesting allowed in the parsed data structures. Enable depth checking with :max_nesting =&gt; anInteger. The parse! methods defaults to not doing max depth checking: This can be dangerous if someone wants to fill up your stack.</p>
+</li><li>
+<p><strong>allow_nan</strong>: If set to true, allow <a href="JSON.html#NaN"><code>NaN</code></a>, <a href="JSON.html#Infinity"><code>Infinity</code></a>, and -Infinity in defiance of RFC 7159 to be parsed by the Parser. This option defaults to true.</p>
+</li><li>
+<p><strong>create_additions</strong>: If set to false, the Parser doesn&#39;t create additions even if a matching class and <a href="JSON.html#attribute-c-create_id"><code>create_id</code></a> was found. This option defaults to false.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="parse-21-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse!</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">opts</span> = {})
+  <span class="ruby-identifier">opts</span> = {
+    <span class="ruby-value">:max_nesting</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-value">:allow_nan</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+  }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">source</span>, <span class="ruby-operator">**</span>(<span class="ruby-identifier">opts</span><span class="ruby-operator">||</span>{})).<span class="ruby-identifier">parse</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pretty_generate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pretty_generate</span><span
+            class="method-args">(obj, opts = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generate a <a href="JSON.html"><code>JSON</code></a> document from the Ruby data structure <em>obj</em> and return it. The returned document is a prettier form of the document returned by unparse.</p>
+
+<p>The <em>opts</em> argument can be used to configure the generator. See the generate method for a more detailed explanation.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pretty_generate-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 270</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pretty_generate</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">State</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">opts</span>
+    <span class="ruby-identifier">state</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>, <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">state</span> = <span class="ruby-constant">PRETTY_STATE_PROTOTYPE</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_hash</span>
+      <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_hash</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:to_h</span>
+      <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_h</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;can&#39;t convert #{opts.class} into Hash&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">state</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-recurse_proc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recurse_proc</span><span
+            class="method-args">(result, &amp;proc)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Recursively calls passed <em>Proc</em> if the parsed data structure is an <em>Array</em> or <em>Hash</em></p>
+          
+          
+
+          
+          <div class="method-source-code" id="recurse_proc-source">
+            <pre><span class="ruby-comment"># File ext/json/lib/json/common.rb, line 341</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">recurse_proc</span>(<span class="ruby-identifier">result</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">recurse_proc</span> <span class="ruby-identifier">x</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> }
+    <span class="ruby-identifier">proc</span>.<span class="ruby-identifier">call</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">recurse_proc</span> <span class="ruby-identifier">x</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>; <span class="ruby-identifier">recurse_proc</span> <span class="ruby-identifier">y</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span> }
+    <span class="ruby-identifier">proc</span>.<span class="ruby-identifier">call</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">proc</span>.<span class="ruby-identifier">call</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-restore" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">restore</span><span
+            class="method-args">(source, proc = nil, options = {})</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="JSON.html#method-i-load">load</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

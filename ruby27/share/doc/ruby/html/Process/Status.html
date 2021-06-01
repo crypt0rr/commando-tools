@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Process::Status - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-26">#&amp;</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-3E-3E">#&gt;&gt;</a>
+    
+    <li ><a href="#method-i-coredump-3F">#coredump?</a>
+    
+    <li ><a href="#method-i-exited-3F">#exited?</a>
+    
+    <li ><a href="#method-i-exitstatus">#exitstatus</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-pid">#pid</a>
+    
+    <li ><a href="#method-i-signaled-3F">#signaled?</a>
+    
+    <li ><a href="#method-i-stopped-3F">#stopped?</a>
+    
+    <li ><a href="#method-i-stopsig">#stopsig</a>
+    
+    <li ><a href="#method-i-success-3F">#success?</a>
+    
+    <li ><a href="#method-i-termsig">#termsig</a>
+    
+    <li ><a href="#method-i-to_i">#to_i</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Process::Status">
+  <h1 id="class-Process::Status" class="class">
+    class Process::Status
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Status.html"><code>Process::Status</code></a> encapsulates the information on the status of a running or terminated system process. The built-in variable <code>$?</code> is either <code>nil</code> or a <a href="Status.html"><code>Process::Status</code></a> object.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fork</span> { <span class="ruby-identifier">exit</span> <span class="ruby-value">99</span> }   <span class="ruby-comment">#=&gt; 26557</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>       <span class="ruby-comment">#=&gt; 26557</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">class</span>           <span class="ruby-comment">#=&gt; Process::Status</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">to_i</span>            <span class="ruby-comment">#=&gt; 25344</span>
+<span class="ruby-identifier">$?</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">8</span>            <span class="ruby-comment">#=&gt; 99</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">stopped?</span>        <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exited?</span>         <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span>      <span class="ruby-comment">#=&gt; 99</span>
+</pre>
+
+<p>Posix systems record information on processes using a 16-bit integer.  The lower bits record the process status (stopped, exited, signaled) and the upper bits possibly contain additional information (for example the program&#39;s return code in the case of exited processes). Pre Ruby 1.8, these bits were exposed directly to the Ruby program. Ruby now encapsulates these in a <a href="Status.html"><code>Process::Status</code></a> object. To maximize compatibility, however, these objects retain a bit-oriented interface. In the descriptions that follow, when we talk about the integer value of <em>stat</em>, we&#39;re referring to this 16 bit value.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-26" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stat &amp; num   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Logical AND of the bits in <em>stat</em> with <em>num</em>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fork</span> { <span class="ruby-identifier">exit</span> <span class="ruby-value">0x37</span> }
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>
+<span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;%04x&#39;</span>, <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">to_i</span>)       <span class="ruby-comment">#=&gt; &quot;3700&quot;</span>
+<span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;%04x&#39;</span>, <span class="ruby-identifier">$?</span> <span class="ruby-operator">&amp;</span> <span class="ruby-value">0x1e00</span>)   <span class="ruby-comment">#=&gt; &quot;1600&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="26-source">
+            <pre>static VALUE
+pst_bitand(VALUE st1, VALUE st2)
+{
+    int status = PST2INT(st1) &amp; NUM2INT(st2);
+
+    return INT2NUM(status);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stat == other   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the integer value of <em>stat</em> equals <em>other</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>static VALUE
+pst_equal(VALUE st1, VALUE st2)
+{
+    if (st1 == st2) return Qtrue;
+    return rb_equal(pst_to_i(st1), st2);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3E-3E" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stat &gt;&gt; num   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Shift the bits in <em>stat</em> right <em>num</em> places.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fork</span> { <span class="ruby-identifier">exit</span> <span class="ruby-value">99</span> }   <span class="ruby-comment">#=&gt; 26563</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>       <span class="ruby-comment">#=&gt; 26563</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">to_i</span>            <span class="ruby-comment">#=&gt; 25344</span>
+<span class="ruby-identifier">$?</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">8</span>            <span class="ruby-comment">#=&gt; 99</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3E-3E-source">
+            <pre>static VALUE
+pst_rshift(VALUE st1, VALUE st2)
+{
+    int status = PST2INT(st1) &gt;&gt; NUM2INT(st2);
+
+    return INT2NUM(status);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-coredump-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            coredump?   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <em>stat</em> generated a coredump when it terminated. Not available on all platforms.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="coredump-3F-source">
+            <pre>static VALUE
+pst_wcoredump(VALUE st)
+{
+#ifdef WCOREDUMP
+    int status = PST2INT(st);
+
+    if (WCOREDUMP(status))
+        return Qtrue;
+    else
+        return Qfalse;
+#else
+    return Qfalse;
+#endif
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-exited-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            exited?   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <em>stat</em> exited normally (for example using an <code>exit()</code> call or finishing the program).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exited-3F-source">
+            <pre>static VALUE
+pst_wifexited(VALUE st)
+{
+    int status = PST2INT(st);
+
+    if (WIFEXITED(status))
+        return Qtrue;
+    else
+        return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-exitstatus" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            exitstatus   &rarr; integer or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the least significant eight bits of the return code of <em>stat</em>. Only available if <a href="Status.html#method-i-exited-3F"><code>exited?</code></a> is <code>true</code>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fork</span> { }           <span class="ruby-comment">#=&gt; 26572</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>       <span class="ruby-comment">#=&gt; 26572</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exited?</span>         <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span>      <span class="ruby-comment">#=&gt; 0</span>
+
+<span class="ruby-identifier">fork</span> { <span class="ruby-identifier">exit</span> <span class="ruby-value">99</span> }   <span class="ruby-comment">#=&gt; 26573</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>       <span class="ruby-comment">#=&gt; 26573</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exited?</span>         <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span>      <span class="ruby-comment">#=&gt; 99</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="exitstatus-source">
+            <pre>static VALUE
+pst_wexitstatus(VALUE st)
+{
+    int status = PST2INT(st);
+
+    if (WIFEXITED(status))
+        return INT2NUM(WEXITSTATUS(status));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect   &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Override the inspection method.</p>
+
+<pre class="ruby"><span class="ruby-identifier">system</span>(<span class="ruby-string">&quot;false&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">inspect</span> <span class="ruby-comment">#=&gt; &quot;#&lt;Process::Status: pid 12861 exit 1&gt;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+pst_inspect(VALUE st)
+{
+    rb_pid_t pid;
+    int status;
+    VALUE vpid, str;
+
+    vpid = pst_pid(st);
+    if (NIL_P(vpid)) {
+        return rb_sprintf(&quot;#&lt;%s: uninitialized&gt;&quot;, rb_class2name(CLASS_OF(st)));
+    }
+    pid = NUM2PIDT(vpid);
+    status = PST2INT(st);
+
+    str = rb_sprintf(&quot;#&lt;%s: &quot;, rb_class2name(CLASS_OF(st)));
+    pst_message(str, pid, status);
+    rb_str_cat2(str, &quot;&gt;&quot;);
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pid" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            pid   &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the process ID that this status object represents.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fork</span> { <span class="ruby-identifier">exit</span> }   <span class="ruby-comment">#=&gt; 26569</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>    <span class="ruby-comment">#=&gt; 26569</span>
+<span class="ruby-identifier">$?</span>.<span class="ruby-identifier">pid</span>          <span class="ruby-comment">#=&gt; 26569</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="pid-source">
+            <pre>static VALUE
+pst_pid(VALUE st)
+{
+    return rb_attr_get(st, id_pid);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-signaled-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            signaled?   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <em>stat</em> terminated because of an uncaught signal.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="signaled-3F-source">
+            <pre>static VALUE
+pst_wifsignaled(VALUE st)
+{
+    int status = PST2INT(st);
+
+    if (WIFSIGNALED(status))
+        return Qtrue;
+    else
+        return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stopped-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stopped?   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if this process is stopped. This is only returned if the corresponding wait call had the Process::WUNTRACED flag set.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stopped-3F-source">
+            <pre>static VALUE
+pst_wifstopped(VALUE st)
+{
+    int status = PST2INT(st);
+
+    if (WIFSTOPPED(status))
+        return Qtrue;
+    else
+        return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stopsig" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stopsig   &rarr; integer or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of the signal that caused <em>stat</em> to stop (or <code>nil</code> if self is not stopped).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stopsig-source">
+            <pre>static VALUE
+pst_wstopsig(VALUE st)
+{
+    int status = PST2INT(st);
+
+    if (WIFSTOPPED(status))
+        return INT2NUM(WSTOPSIG(status));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-success-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            success?   &rarr; true, false or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if <em>stat</em> is successful, <code>false</code> if not. Returns <code>nil</code> if <a href="Status.html#method-i-exited-3F"><code>exited?</code></a> is not <code>true</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="success-3F-source">
+            <pre>static VALUE
+pst_success_p(VALUE st)
+{
+    int status = PST2INT(st);
+
+    if (!WIFEXITED(status))
+        return Qnil;
+    return WEXITSTATUS(status) == EXIT_SUCCESS ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-termsig" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            termsig   &rarr; integer or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of the signal that caused <em>stat</em> to terminate (or <code>nil</code> if self was not terminated by an uncaught signal).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="termsig-source">
+            <pre>static VALUE
+pst_wtermsig(VALUE st)
+{
+    int status = PST2INT(st);
+
+    if (WIFSIGNALED(status))
+        return INT2NUM(WTERMSIG(status));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_i" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_i     &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the bits in <em>stat</em> as a <a href="../Integer.html"><code>Integer</code></a>. Poking around in these bits is platform dependent.</p>
+
+<pre class="ruby"><span class="ruby-identifier">fork</span> { <span class="ruby-identifier">exit</span> <span class="ruby-value">0xab</span> }         <span class="ruby-comment">#=&gt; 26566</span>
+<span class="ruby-constant">Process</span>.<span class="ruby-identifier">wait</span>               <span class="ruby-comment">#=&gt; 26566</span>
+<span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;%04x&#39;</span>, <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">to_i</span>)   <span class="ruby-comment">#=&gt; &quot;ab00&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_i-source">
+            <pre>static VALUE
+pst_to_i(VALUE st)
+{
+    return rb_ivar_get(st, id_status);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s   &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Show pid and exit status as a string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">system</span>(<span class="ruby-string">&quot;false&quot;</span>)
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">to_s</span>         <span class="ruby-comment">#=&gt; &quot;pid 12766 exit 1&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+pst_to_s(VALUE st)
+{
+    rb_pid_t pid;
+    int status;
+    VALUE str;
+
+    pid = NUM2PIDT(pst_pid(st));
+    status = PST2INT(st);
+
+    str = rb_str_buf_new(0);
+    pst_message(str, pid, status);
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Fiddle::CParser - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-compact">#compact</a>
+    
+    <li ><a href="#method-i-parse_ctype">#parse_ctype</a>
+    
+    <li ><a href="#method-i-parse_signature">#parse_signature</a>
+    
+    <li ><a href="#method-i-parse_struct_signature">#parse_struct_signature</a>
+    
+    <li ><a href="#method-i-split_arguments">#split_arguments</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Fiddle::CParser">
+  <h1 id="module-Fiddle::CParser" class="module">
+    module Fiddle::CParser
+  </h1>
+
+  <section class="description">
+    
+<p>A mixin that provides methods for parsing C struct and prototype signatures.</p>
+
+<h2 id="module-Fiddle::CParser-label-Example">Example<span><a href="#module-Fiddle::CParser-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fiddle/import&#39;</span>
+
+<span class="ruby-identifier">include</span> <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">CParser</span>
+  <span class="ruby-comment">#=&gt; Object</span>
+
+<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-string">&#39;int&#39;</span>)
+  <span class="ruby-comment">#=&gt; Fiddle::TYPE_INT</span>
+
+<span class="ruby-identifier">parse_struct_signature</span>([<span class="ruby-string">&#39;int i&#39;</span>, <span class="ruby-string">&#39;char c&#39;</span>])
+  <span class="ruby-comment">#=&gt; [[Fiddle::TYPE_INT, Fiddle::TYPE_CHAR], [&quot;i&quot;, &quot;c&quot;]]</span>
+
+<span class="ruby-identifier">parse_signature</span>(<span class="ruby-string">&#39;double sum(double, double)&#39;</span>)
+  <span class="ruby-comment">#=&gt; [&quot;sum&quot;, Fiddle::TYPE_DOUBLE, [Fiddle::TYPE_DOUBLE, Fiddle::TYPE_DOUBLE]]</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-parse_ctype" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_ctype</span><span
+            class="method-args">(ty, tymap=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given a <a href="../String.html"><code>String</code></a> of C type <code>ty</code>, returns the corresponding <a href="../Fiddle.html"><code>Fiddle</code></a> constant.</p>
+
+<p><code>ty</code> can also accept an <a href="../Array.html"><code>Array</code></a> of C type Strings, and will be returned in a corresponding <a href="../Array.html"><code>Array</code></a>.</p>
+
+<p>If <a href="../Hash.html"><code>Hash</code></a> <code>tymap</code> is provided, <code>ty</code> is expected to be the key, and the value will be the C type to be looked up.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fiddle/import&#39;</span>
+
+<span class="ruby-identifier">include</span> <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">CParser</span>
+  <span class="ruby-comment">#=&gt; Object</span>
+
+<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-string">&#39;int&#39;</span>)
+  <span class="ruby-comment">#=&gt; Fiddle::TYPE_INT</span>
+
+<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-string">&#39;double diff&#39;</span>)
+  <span class="ruby-comment">#=&gt; Fiddle::TYPE_DOUBLE</span>
+
+<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-string">&#39;unsigned char byte&#39;</span>)
+  <span class="ruby-comment">#=&gt; -Fiddle::TYPE_CHAR</span>
+
+<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-string">&#39;const char* const argv[]&#39;</span>)
+  <span class="ruby-comment">#=&gt; -Fiddle::TYPE_VOIDP</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="parse_ctype-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/cparser.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_ctype</span>(<span class="ruby-identifier">ty</span>, <span class="ruby-identifier">tymap</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">tymap</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">ty</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-keyword">return</span> [<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">ty</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">tymap</span>), <span class="ruby-identifier">ty</span>[<span class="ruby-value">1</span>]]
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;void&#39;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_VOID</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:(?:signed\s+)?long\s+long(?:\s+int\s+)?|int64_t)(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">if</span>( <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">TYPE_LONG_LONG</span>) )
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_LONG_LONG</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-constant">RuntimeError</span>, <span class="ruby-node">&quot;unsupported type: #{ty}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:unsigned\s+long\s+long(?:\s+int\s+)?|uint64_t)(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">if</span>( <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">TYPE_LONG_LONG</span>) )
+      <span class="ruby-keyword">return</span> <span class="ruby-operator">-</span><span class="ruby-constant">TYPE_LONG_LONG</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-constant">RuntimeError</span>, <span class="ruby-node">&quot;unsupported type: #{ty}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:signed\s+)?long(?:\s+int\s+)?(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_LONG</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^unsigned\s+long(?:\s+int\s+)?(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-operator">-</span><span class="ruby-constant">TYPE_LONG</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:signed\s+)?int(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_INT</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:unsigned\s+int|uint)(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-operator">-</span><span class="ruby-constant">TYPE_INT</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:signed\s+)?short(?:\s+int\s+)?(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_SHORT</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^unsigned\s+short(?:\s+int\s+)?(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-operator">-</span><span class="ruby-constant">TYPE_SHORT</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:signed\s+)?char(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_CHAR</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^unsigned\s+char(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span>  <span class="ruby-operator">-</span><span class="ruby-constant">TYPE_CHAR</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^float(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_FLOAT</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^double(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_DOUBLE</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^size_t(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_SIZE_T</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^ssize_t(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_SSIZE_T</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^ptrdiff_t(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_PTRDIFF_T</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^intptr_t(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_INTPTR_T</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^uintptr_t(?:\s+\w+)?$/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_UINTPTR_T</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\*/</span>, <span class="ruby-regexp">/\[[\s\d]*\]/</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">TYPE_VOIDP</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">ty</span> = <span class="ruby-identifier">ty</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39; &#39;</span>, <span class="ruby-value">2</span>)[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">if</span>( <span class="ruby-identifier">tymap</span>[<span class="ruby-identifier">ty</span>] )
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">tymap</span>[<span class="ruby-identifier">ty</span>], <span class="ruby-identifier">tymap</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-constant">DLError</span>, <span class="ruby-node">&quot;unknown type: #{ty}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_signature" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_signature</span><span
+            class="method-args">(signature, tymap=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parses a C prototype signature</p>
+
+<p>If <a href="../Hash.html"><code>Hash</code></a> <code>tymap</code> is provided, the return value and the arguments from the <code>signature</code> are expected to be keys, and the value will be the C type to be looked up.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fiddle/import&#39;</span>
+
+<span class="ruby-identifier">include</span> <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">CParser</span>
+  <span class="ruby-comment">#=&gt; Object</span>
+
+<span class="ruby-identifier">parse_signature</span>(<span class="ruby-string">&#39;double sum(double, double)&#39;</span>)
+  <span class="ruby-comment">#=&gt; [&quot;sum&quot;, Fiddle::TYPE_DOUBLE, [Fiddle::TYPE_DOUBLE, Fiddle::TYPE_DOUBLE]]</span>
+
+<span class="ruby-identifier">parse_signature</span>(<span class="ruby-string">&#39;void update(void (*cb)(int code))&#39;</span>)
+  <span class="ruby-comment">#=&gt; [&quot;update&quot;, Fiddle::TYPE_VOID, [Fiddle::TYPE_VOIDP]]</span>
+
+<span class="ruby-identifier">parse_signature</span>(<span class="ruby-string">&#39;char (*getbuffer(void))[80]&#39;</span>)
+  <span class="ruby-comment">#=&gt; [&quot;getbuffer&quot;, Fiddle::TYPE_VOIDP, []]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="parse_signature-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/cparser.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_signature</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-identifier">tymap</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">tymap</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">compact</span>(<span class="ruby-identifier">signature</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(?:[\w\*\s]+)\(\*(\w+)\((.*?)\)\)(?:\[\w*\]|\(.*?\));?$/</span>
+    <span class="ruby-identifier">func</span>, <span class="ruby-identifier">args</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
+    <span class="ruby-keyword">return</span> [<span class="ruby-identifier">func</span>, <span class="ruby-constant">TYPE_VOIDP</span>, <span class="ruby-identifier">split_arguments</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">arg</span>, <span class="ruby-identifier">tymap</span>)}]
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^([\w\*\s]+[\*\s])(\w+)\((.*?)\);?$/</span>
+    <span class="ruby-identifier">ret</span>, <span class="ruby-identifier">func</span>, <span class="ruby-identifier">args</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">strip</span>, <span class="ruby-node">$2</span>, <span class="ruby-node">$3</span>
+    <span class="ruby-keyword">return</span> [<span class="ruby-identifier">func</span>, <span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">ret</span>, <span class="ruby-identifier">tymap</span>), <span class="ruby-identifier">split_arguments</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">arg</span>, <span class="ruby-identifier">tymap</span>)}]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span>(<span class="ruby-constant">RuntimeError</span>,<span class="ruby-node">&quot;can&#39;t parse the function prototype: #{signature}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse_struct_signature" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_struct_signature</span><span
+            class="method-args">(signature, tymap=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parses a C struct&#39;s members</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fiddle/import&#39;</span>
+
+<span class="ruby-identifier">include</span> <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">CParser</span>
+  <span class="ruby-comment">#=&gt; Object</span>
+
+<span class="ruby-identifier">parse_struct_signature</span>([<span class="ruby-string">&#39;int i&#39;</span>, <span class="ruby-string">&#39;char c&#39;</span>])
+  <span class="ruby-comment">#=&gt; [[Fiddle::TYPE_INT, Fiddle::TYPE_CHAR], [&quot;i&quot;, &quot;c&quot;]]</span>
+
+<span class="ruby-identifier">parse_struct_signature</span>([<span class="ruby-string">&#39;char buffer[80]&#39;</span>])
+  <span class="ruby-comment">#=&gt; [[[Fiddle::TYPE_CHAR, 80]], [&quot;buffer&quot;]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="parse_struct_signature-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/cparser.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_struct_signature</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-identifier">tymap</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">signature</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-identifier">signature</span> = <span class="ruby-identifier">split_arguments</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-regexp">/[,;]/</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">mems</span> = []
+  <span class="ruby-identifier">tys</span>  = []
+  <span class="ruby-identifier">signature</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">msig</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">msig</span> = <span class="ruby-identifier">compact</span>(<span class="ruby-identifier">msig</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">msig</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^[\w\*\s]+[\*\s](\w+)$/</span>
+      <span class="ruby-identifier">mems</span>.<span class="ruby-identifier">push</span>(<span class="ruby-node">$1</span>)
+      <span class="ruby-identifier">tys</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">msig</span>, <span class="ruby-identifier">tymap</span>))
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^[\w\*\s]+\(\*(\w+)\)\(.*?\)$/</span>
+      <span class="ruby-identifier">mems</span>.<span class="ruby-identifier">push</span>(<span class="ruby-node">$1</span>)
+      <span class="ruby-identifier">tys</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">msig</span>, <span class="ruby-identifier">tymap</span>))
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^([\w\*\s]+[\*\s])(\w+)\[(\d+)\]$/</span>
+      <span class="ruby-identifier">mems</span>.<span class="ruby-identifier">push</span>(<span class="ruby-node">$2</span>)
+      <span class="ruby-identifier">tys</span>.<span class="ruby-identifier">push</span>([<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-node">$1</span>.<span class="ruby-identifier">strip</span>, <span class="ruby-identifier">tymap</span>), <span class="ruby-node">$3</span>.<span class="ruby-identifier">to_i</span>])
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^([\w\*\s]+)\[(\d+)\](\w+)$/</span>
+      <span class="ruby-identifier">mems</span>.<span class="ruby-identifier">push</span>(<span class="ruby-node">$3</span>)
+      <span class="ruby-identifier">tys</span>.<span class="ruby-identifier">push</span>([<span class="ruby-identifier">parse_ctype</span>(<span class="ruby-node">$1</span>.<span class="ruby-identifier">strip</span>, <span class="ruby-identifier">tymap</span>), <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>])
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-constant">RuntimeError</span>,<span class="ruby-node">&quot;can&#39;t parse the struct member: #{msig}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  }
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">tys</span>, <span class="ruby-identifier">mems</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-compact" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compact</span><span
+            class="method-args">(signature)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="compact-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/cparser.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compact</span>(<span class="ruby-identifier">signature</span>)
+  <span class="ruby-identifier">signature</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s+/</span>, <span class="ruby-string">&#39; &#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s*([\(\)\[\]\*,;])\s*/</span>, <span class="ruby-string">&#39;\1&#39;</span>).<span class="ruby-identifier">strip</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-split_arguments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">split_arguments</span><span
+            class="method-args">(arguments, sep=&#39;,&#39;)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="split_arguments-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/cparser.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">split_arguments</span>(<span class="ruby-identifier">arguments</span>, <span class="ruby-identifier">sep</span>=<span class="ruby-string">&#39;,&#39;</span>)
+  <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> <span class="ruby-identifier">arguments</span>.<span class="ruby-identifier">strip</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;void&#39;</span>
+  <span class="ruby-identifier">arguments</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/([\w\*\s]+\(\*\w*\)\(.*?\)|[\w\*\s\[\]]+)(?:#{sep}\s*|$)/</span>).<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>[<span class="ruby-value">0</span>]}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

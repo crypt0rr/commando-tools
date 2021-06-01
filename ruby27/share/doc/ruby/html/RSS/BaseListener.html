@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class RSS::BaseListener - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="Utils.html">RSS::Utils</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-available_tags">::available_tags</a>
+    
+    <li ><a href="#method-c-class_name">::class_name</a>
+    
+    <li ><a href="#method-c-def_get_text_element">::def_get_text_element</a>
+    
+    <li ><a href="#method-c-getter">::getter</a>
+    
+    <li ><a href="#method-c-install_accessor_base">::install_accessor_base</a>
+    
+    <li ><a href="#method-c-install_class_name">::install_class_name</a>
+    
+    <li ><a href="#method-c-install_get_text_element">::install_get_text_element</a>
+    
+    <li ><a href="#method-c-raise_for_undefined_entity-3F">::raise_for_undefined_entity?</a>
+    
+    <li ><a href="#method-c-register_uri">::register_uri</a>
+    
+    <li ><a href="#method-c-setter">::setter</a>
+    
+    <li ><a href="#method-c-uri_registered-3F">::uri_registered?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-RSS::BaseListener">
+  <h1 id="class-RSS::BaseListener" class="class">
+    class RSS::BaseListener
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-available_tags" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">available_tags</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the tag_names for setters associated with uri</p>
+          
+          
+
+          
+          <div class="method-source-code" id="available_tags-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 215</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">available_tags</span>(<span class="ruby-identifier">uri</span>)
+  (<span class="ruby-identifier">@@accessor_bases</span>[<span class="ruby-identifier">uri</span>] <span class="ruby-operator">||</span> {}).<span class="ruby-identifier">keys</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-class_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">class_name</span><span
+            class="method-args">(uri, tag_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>retrieve <a href="BaseListener.html#method-c-class_name"><code>class_name</code></a> for the supplied uri and tag_name If it doesn&#39;t exist, capitalize the tag_name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="class_name-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 238</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">class_name</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">tag_name</span>)
+  <span class="ruby-identifier">name</span> = (<span class="ruby-identifier">@@class_names</span>[<span class="ruby-identifier">uri</span>] <span class="ruby-operator">||</span> {})[<span class="ruby-identifier">tag_name</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>
+
+  <span class="ruby-identifier">tag_name</span> = <span class="ruby-identifier">tag_name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[_\-]([a-z]?)/</span>) {<span class="ruby-node">$1</span>.<span class="ruby-identifier">upcase</span>}
+  <span class="ruby-identifier">tag_name</span>[<span class="ruby-value">0</span>, <span class="ruby-value">1</span>].<span class="ruby-identifier">upcase</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">tag_name</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getter</span><span
+            class="method-args">(uri, tag_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="getter-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 210</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getter</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">tag_name</span>)
+  (<span class="ruby-identifier">@@accessor_bases</span>[<span class="ruby-identifier">uri</span>] <span class="ruby-operator">||</span> {})[<span class="ruby-identifier">tag_name</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-install_class_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_class_name</span><span
+            class="method-args">(uri, tag_name, class_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>record <a href="BaseListener.html#method-c-class_name"><code>class_name</code></a> for the supplied uri and tag_name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="install_class_name-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">install_class_name</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">tag_name</span>, <span class="ruby-identifier">class_name</span>)
+  <span class="ruby-identifier">@@class_names</span>[<span class="ruby-identifier">uri</span>] <span class="ruby-operator">||=</span> {}
+  <span class="ruby-identifier">@@class_names</span>[<span class="ruby-identifier">uri</span>][<span class="ruby-identifier">tag_name</span>] = <span class="ruby-identifier">class_name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-install_get_text_element" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_get_text_element</span><span
+            class="method-args">(uri, name, accessor_base)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_get_text_element-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">install_get_text_element</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">accessor_base</span>)
+  <span class="ruby-identifier">install_accessor_base</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">accessor_base</span>)
+  <span class="ruby-identifier">def_get_text_element</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">get_file_and_line_from_caller</span>(<span class="ruby-value">1</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-raise_for_undefined_entity-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">raise_for_undefined_entity?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="raise_for_undefined_entity-3F-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 251</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">raise_for_undefined_entity?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-register_uri" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register_uri</span><span
+            class="method-args">(uri, name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>register uri against this name.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="register_uri-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 220</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">register_uri</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">@@registered_uris</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||=</span> {}
+  <span class="ruby-identifier">@@registered_uris</span>[<span class="ruby-identifier">name</span>][<span class="ruby-identifier">uri</span>] = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-setter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">setter</span><span
+            class="method-args">(uri, tag_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the setter for the uri, tag_name pair, or nil.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="setter-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 201</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">setter</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">tag_name</span>)
+  <span class="ruby-identifier">_getter</span> = <span class="ruby-identifier">getter</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">tag_name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">_getter</span>
+    <span class="ruby-node">&quot;#{_getter}=&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-uri_registered-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">uri_registered?</span><span
+            class="method-args">(uri, name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>test if this uri is registered against this name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="uri_registered-3F-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 226</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uri_registered?</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">@@registered_uris</span>[<span class="ruby-identifier">name</span>].<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">uri</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-def_get_text_element" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">def_get_text_element</span><span
+            class="method-args">(uri, element_name, file, line)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="def_get_text_element-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 262</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">def_get_text_element</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">element_name</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>)
+  <span class="ruby-identifier">register_uri</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">element_name</span>)
+  <span class="ruby-identifier">method_name</span> = <span class="ruby-node">&quot;start_#{element_name}&quot;</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">private_method_defined?</span>(<span class="ruby-identifier">method_name</span>)
+    <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">method_name</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">uri</span> = <span class="ruby-identifier">_ns</span>(<span class="ruby-identifier">ns</span>, <span class="ruby-identifier">prefix</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">uri_registered?</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">element_name</span>)
+        <span class="ruby-identifier">start_get_text_element</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">ns</span>, <span class="ruby-identifier">uri</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">start_else_element</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">ns</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">private</span>(<span class="ruby-identifier">method_name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-install_accessor_base" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_accessor_base</span><span
+            class="method-args">(uri, tag_name, accessor_base)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>set the accessor for the uri, tag_name pair</p>
+          
+          
+
+          
+          <div class="method-source-code" id="install_accessor_base-source">
+            <pre><span class="ruby-comment"># File lib/rss/parser.rb, line 257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">install_accessor_base</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">tag_name</span>, <span class="ruby-identifier">accessor_base</span>)
+  <span class="ruby-identifier">@@accessor_bases</span>[<span class="ruby-identifier">uri</span>] <span class="ruby-operator">||=</span> {}
+  <span class="ruby-identifier">@@accessor_bases</span>[<span class="ruby-identifier">uri</span>][<span class="ruby-identifier">tag_name</span>] = <span class="ruby-identifier">accessor_base</span>.<span class="ruby-identifier">chomp</span>(<span class="ruby-string">&quot;=&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

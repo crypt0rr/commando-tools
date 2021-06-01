@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::ConnectionPool::TimedStack - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-connection_stored-3F">#connection_stored?</a>
+    
+    <li ><a href="#method-i-empty-3F">#empty?</a>
+    
+    <li ><a href="#method-i-fetch_connection">#fetch_connection</a>
+    
+    <li ><a href="#method-i-length">#length</a>
+    
+    <li ><a href="#method-i-pop">#pop</a>
+    
+    <li ><a href="#method-i-push">#push</a>
+    
+    <li ><a href="#method-i-shutdown">#shutdown</a>
+    
+    <li ><a href="#method-i-shutdown_connections">#shutdown_connections</a>
+    
+    <li ><a href="#method-i-store_connection">#store_connection</a>
+    
+    <li ><a href="#method-i-try_create">#try_create</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::ConnectionPool::TimedStack">
+  <h1 id="class-Bundler::ConnectionPool::TimedStack" class="class">
+    class Bundler::ConnectionPool::TimedStack
+  </h1>
+
+  <section class="description">
+    
+<p>Examples:</p>
+
+<pre class="ruby"><span class="ruby-identifier">ts</span> = <span class="ruby-constant">TimedStack</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>) { <span class="ruby-constant">MyConnection</span>.<span class="ruby-identifier">new</span> }
+
+<span class="ruby-comment"># fetch a connection</span>
+<span class="ruby-identifier">conn</span> = <span class="ruby-identifier">ts</span>.<span class="ruby-identifier">pop</span>
+
+<span class="ruby-comment"># return a connection</span>
+<span class="ruby-identifier">ts</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">conn</span>
+
+<span class="ruby-identifier">conn</span> = <span class="ruby-identifier">ts</span>.<span class="ruby-identifier">pop</span>
+<span class="ruby-identifier">ts</span>.<span class="ruby-identifier">pop</span> <span class="ruby-value">timeout:</span> <span class="ruby-value">5</span>
+<span class="ruby-comment">#=&gt; raises Timeout::Error after 5 seconds</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-max" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">max</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(size = 0, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new pool with <code>size</code> connections that are created from the given <code>block</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">size</span> = <span class="ruby-value">0</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-ivar">@create_block</span> = <span class="ruby-identifier">block</span>
+  <span class="ruby-ivar">@created</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@que</span> = []
+  <span class="ruby-ivar">@max</span> = <span class="ruby-identifier">size</span>
+  <span class="ruby-ivar">@mutex</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@resource</span> = <span class="ruby-constant">ConditionVariable</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@shutdown_block</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;&lt;</span><span
+            class="method-args">(obj, options = {})</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="TimedStack.html#method-i-push">push</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-empty-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">empty?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if there are no available connections.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="empty-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">empty?</span>
+  (<span class="ruby-ivar">@created</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@que</span>.<span class="ruby-identifier">length</span>) <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@max</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-length" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">length</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The number of connections available on the stack.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="length-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">length</span>
+  <span class="ruby-ivar">@max</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@created</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@que</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pop</span><span
+            class="method-args">(timeout = 0.5, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves a connection from the stack.  If a connection is available it is immediately returned.  If no connection is available within the given timeout a <a href="../../Timeout/Error.html"><code>Timeout::Error</code></a> is raised.</p>
+
+<p><code>:timeout</code> is the only checked entry in <code>options</code> and is preferred over the <code>timeout</code> argument (which will be removed in a future release).  Other options may be used by subclasses that extend <a href="TimedStack.html"><code>TimedStack</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pop-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pop</span>(<span class="ruby-identifier">timeout</span> = <span class="ruby-value">0.5</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span>, <span class="ruby-identifier">timeout</span> = <span class="ruby-identifier">timeout</span>, <span class="ruby-value">0.5</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Hash</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">timeout</span>
+  <span class="ruby-identifier">timeout</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">fetch</span> <span class="ruby-value">:timeout</span>, <span class="ruby-identifier">timeout</span>
+
+  <span class="ruby-identifier">deadline</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">ConnectionPool</span>.<span class="ruby-identifier">monotonic_time</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">timeout</span>
+  <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">ConnectionPool</span><span class="ruby-operator">::</span><span class="ruby-constant">PoolShuttingDownError</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@shutdown_block</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">fetch_connection</span>(<span class="ruby-identifier">options</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">connection_stored?</span>(<span class="ruby-identifier">options</span>)
+
+      <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">try_create</span>(<span class="ruby-identifier">options</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">connection</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">connection</span>
+
+      <span class="ruby-identifier">to_wait</span> = <span class="ruby-identifier">deadline</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">ConnectionPool</span>.<span class="ruby-identifier">monotonic_time</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Timeout</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;Waited #{timeout} sec&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">to_wait</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@resource</span>.<span class="ruby-identifier">wait</span>(<span class="ruby-ivar">@mutex</span>, <span class="ruby-identifier">to_wait</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-push" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">push</span><span
+            class="method-args">(obj, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>obj</code> to the stack.  <code>options</code> is ignored in <a href="TimedStack.html"><code>TimedStack</code></a> but may be used by subclasses that extend <a href="TimedStack.html"><code>TimedStack</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="push-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">push</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@shutdown_block</span>
+      <span class="ruby-ivar">@shutdown_block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">obj</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">store_connection</span> <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">options</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-ivar">@resource</span>.<span class="ruby-identifier">broadcast</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="TimedStack.html#method-i-3C-3C">&lt;&lt;</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-shutdown" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">shutdown</span><span
+            class="method-args">(&amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Shuts down the <a href="TimedStack.html"><code>TimedStack</code></a> which prevents connections from being checked out.  The <code>block</code> is called once for each connection on the stack.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="shutdown-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">shutdown</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;shutdown must receive a block&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@shutdown_block</span> = <span class="ruby-identifier">block</span>
+    <span class="ruby-ivar">@resource</span>.<span class="ruby-identifier">broadcast</span>
+
+    <span class="ruby-identifier">shutdown_connections</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-connection_stored-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">connection_stored?</span><span
+            class="method-args">(options = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is an extension point for <a href="TimedStack.html"><code>TimedStack</code></a> and is called with a mutex.</p>
+
+<p>This method must returns true if a connection is available on the stack.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="connection_stored-3F-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">connection_stored?</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-operator">!</span><span class="ruby-ivar">@que</span>.<span class="ruby-identifier">empty?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_connection" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_connection</span><span
+            class="method-args">(options = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is an extension point for <a href="TimedStack.html"><code>TimedStack</code></a> and is called with a mutex.</p>
+
+<p>This method must return a connection from the stack.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_connection-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fetch_connection</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@que</span>.<span class="ruby-identifier">pop</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-shutdown_connections" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">shutdown_connections</span><span
+            class="method-args">(options = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is an extension point for <a href="TimedStack.html"><code>TimedStack</code></a> and is called with a mutex.</p>
+
+<p>This method must shut down all connections on the stack.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="shutdown_connections-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">shutdown_connections</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">connection_stored?</span>(<span class="ruby-identifier">options</span>)
+    <span class="ruby-identifier">conn</span> = <span class="ruby-identifier">fetch_connection</span>(<span class="ruby-identifier">options</span>)
+    <span class="ruby-ivar">@shutdown_block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">conn</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-store_connection" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">store_connection</span><span
+            class="method-args">(obj, options = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is an extension point for <a href="TimedStack.html"><code>TimedStack</code></a> and is called with a mutex.</p>
+
+<p>This method must return <code>obj</code> to the stack.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="store_connection-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">store_connection</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@que</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">obj</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-try_create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">try_create</span><span
+            class="method-args">(options = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is an extension point for <a href="TimedStack.html"><code>TimedStack</code></a> and is called with a mutex.</p>
+
+<p>This method must create a connection if and only if the total number of connections allowed has not been met.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="try_create-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">try_create</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@created</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@max</span>
+    <span class="ruby-identifier">object</span> = <span class="ruby-ivar">@create_block</span>.<span class="ruby-identifier">call</span>
+    <span class="ruby-ivar">@created</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">object</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

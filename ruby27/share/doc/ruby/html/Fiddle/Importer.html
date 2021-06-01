@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Fiddle::Importer - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../Fiddle.html">Fiddle</a>
+  
+  
+  
+    <li><a class="include" href="CParser.html">Fiddle::CParser</a>
+  
+  
+  </ul>
+</div>
+
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="Importer.html">Fiddle::Importer</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    
+    <li ><a href="#method-i-bind">#bind</a>
+    
+    <li ><a href="#method-i-bind_function">#bind_function</a>
+    
+    <li ><a href="#method-i-create_value">#create_value</a>
+    
+    <li ><a href="#method-i-dlload">#dlload</a>
+    
+    <li ><a href="#method-i-extern">#extern</a>
+    
+    <li ><a href="#method-i-handler">#handler</a>
+    
+    <li ><a href="#method-i-import_function">#import_function</a>
+    
+    <li ><a href="#method-i-import_symbol">#import_symbol</a>
+    
+    <li ><a href="#method-i-import_value">#import_value</a>
+    
+    <li ><a href="#method-i-parse_bind_options">#parse_bind_options</a>
+    
+    <li ><a href="#method-i-sizeof">#sizeof</a>
+    
+    <li ><a href="#method-i-struct">#struct</a>
+    
+    <li ><a href="#method-i-typealias">#typealias</a>
+    
+    <li ><a href="#method-i-union">#union</a>
+    
+    <li ><a href="#method-i-value">#value</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Fiddle::Importer">
+  <h1 id="module-Fiddle::Importer" class="module">
+    module Fiddle::Importer
+  </h1>
+
+  <section class="description">
+    
+<p>A DSL that provides the means to dynamically load libraries and build modules around them including calling extern functions within the C library that has been loaded.</p>
+
+<h2 id="module-Fiddle::Importer-label-Example">Example<span><a href="#module-Fiddle::Importer-label-Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fiddle&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fiddle/import&#39;</span>
+
+<span class="ruby-keyword">module</span> <span class="ruby-constant">LibSum</span>
+  <span class="ruby-identifier">extend</span> <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Importer</span>
+  <span class="ruby-identifier">dlload</span> <span class="ruby-string">&#39;./libsum.so&#39;</span>
+  <span class="ruby-identifier">extern</span> <span class="ruby-string">&#39;double sum(double*, int)&#39;</span>
+  <span class="ruby-identifier">extern</span> <span class="ruby-string">&#39;double split(double)&#39;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-type_alias" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">type_alias</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the function mapped to <code>name</code>, that was created by either <a href="Importer.html#method-i-extern"><code>Fiddle::Importer.extern</code></a> or <a href="Importer.html#method-i-bind"><code>Fiddle::Importer.bind</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 237</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-ivar">@func_map</span>[<span class="ruby-identifier">name</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bind" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bind</span><span
+            class="method-args">(signature, *opts, &amp;blk)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a global method from the given C <code>signature</code> using the given <code>opts</code> as bind parameters with the given block.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="bind-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 193</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bind</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>)
+      <span class="ruby-identifier">name</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">argtype</span> = <span class="ruby-identifier">parse_signature</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-identifier">type_alias</span>)
+      <span class="ruby-identifier">h</span> = <span class="ruby-identifier">parse_bind_options</span>(<span class="ruby-identifier">opts</span>)
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">h</span>[<span class="ruby-value">:callback_type</span>]
+      <span class="ruby-keyword">when</span> <span class="ruby-value">:bind</span>, <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">f</span> = <span class="ruby-identifier">bind_function</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">argtype</span>, <span class="ruby-identifier">h</span>[<span class="ruby-value">:call_type</span>], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span>(<span class="ruby-constant">RuntimeError</span>, <span class="ruby-node">&quot;unknown callback type: #{h[:callback_type]}&quot;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@func_map</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">f</span>
+      <span class="ruby-comment">#define_method(name){|*args,&amp;block| f.call(*args,&amp;block)}</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-regexp">/^(.+?):(\d+)/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">caller</span>.<span class="ruby-identifier">first</span>
+        <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword">rescue</span>
+        <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span> = <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span><span class="ruby-value">+3</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">module_eval</span>(<span class="ruby-identifier">&lt;&lt;-EOS</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>)
+<span class="ruby-value">        def #{name}(*args,&amp;block)
+          @func_map[&#39;#{name}&#39;].call(*args,&amp;block)
+        end
+</span><span class="ruby-identifier">      EOS</span>
+      <span class="ruby-identifier">module_function</span>(<span class="ruby-identifier">name</span>)
+      <span class="ruby-identifier">f</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bind_function" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bind_function</span><span
+            class="method-args">(name, ctype, argtype, call_type = nil, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new closure wrapper for the <code>name</code> function.</p>
+<ul><li>
+<p><code>ctype</code> is the return type of the function</p>
+</li><li>
+<p><code>argtype</code> is an <a href="../Array.html"><code>Array</code></a> of arguments, passed to the callback function</p>
+</li><li>
+<p><code>call_type</code> is the abi of the closure</p>
+</li><li>
+<p><code>block</code> is passed to the callback</p>
+</li></ul>
+
+<p>See <a href="Closure.html"><code>Fiddle::Closure</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="bind_function-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 313</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bind_function</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">argtype</span>, <span class="ruby-identifier">call_type</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">abi</span> = <span class="ruby-constant">CALL_TYPE_TO_ABI</span>[<span class="ruby-identifier">call_type</span>]
+  <span class="ruby-identifier">closure</span> = <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">Closure</span>) {
+    <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:call</span>, <span class="ruby-identifier">block</span>)
+  }.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">argtype</span>, <span class="ruby-identifier">abi</span>)
+
+  <span class="ruby-constant">Function</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">closure</span>, <span class="ruby-identifier">argtype</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">abi</span>, <span class="ruby-value">name:</span> <span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_value</span><span
+            class="method-args">(ty, val=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a class to wrap the C struct with the value <code>ty</code></p>
+
+<p>See also <a href="Importer.html#method-i-struct"><code>Fiddle::Importer.struct</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_value-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 244</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_value</span>(<span class="ruby-identifier">ty</span>, <span class="ruby-identifier">val</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">s</span> = <span class="ruby-identifier">struct</span>([<span class="ruby-identifier">ty</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; value&quot;</span>])
+  <span class="ruby-identifier">ptr</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">malloc</span>()
+  <span class="ruby-keyword">if</span>( <span class="ruby-identifier">val</span> )
+    <span class="ruby-identifier">ptr</span>.<span class="ruby-identifier">value</span> = <span class="ruby-identifier">val</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ptr</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Importer.html#method-i-value">value</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dlload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dlload</span><span
+            class="method-args">(*libs)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates an array of handlers for the given <code>libs</code>, can be an instance of <a href="Handle.html"><code>Fiddle::Handle</code></a>, <a href="Importer.html"><code>Fiddle::Importer</code></a>, or will create a new instance of <a href="Handle.html"><code>Fiddle::Handle</code></a> using <a href="../Fiddle.html#method-c-dlopen"><code>Fiddle.dlopen</code></a></p>
+
+<p>Raises a <a href="DLError.html"><code>DLError</code></a> if the library cannot be loaded.</p>
+
+<p>See <a href="../Fiddle.html#method-c-dlopen"><code>Fiddle.dlopen</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="dlload-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dlload</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">libs</span>)
+  <span class="ruby-identifier">handles</span> = <span class="ruby-identifier">libs</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">lib</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">lib</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Handle</span>
+      <span class="ruby-identifier">lib</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Importer</span>
+      <span class="ruby-identifier">lib</span>.<span class="ruby-identifier">handlers</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-constant">Fiddle</span>.<span class="ruby-identifier">dlopen</span>(<span class="ruby-identifier">lib</span>)
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">DLError</span>
+        <span class="ruby-identifier">raise</span>(<span class="ruby-constant">DLError</span>, <span class="ruby-node">&quot;can&#39;t load #{lib}&quot;</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  }.<span class="ruby-identifier">flatten</span>()
+  <span class="ruby-ivar">@handler</span> = <span class="ruby-constant">CompositeHandler</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">handles</span>)
+  <span class="ruby-ivar">@func_map</span> = {}
+  <span class="ruby-ivar">@type_alias</span> = {}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-extern" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extern</span><span
+            class="method-args">(signature, *opts)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a global method from the given C <code>signature</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="extern-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 169</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">extern</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
+      <span class="ruby-identifier">symname</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">argtype</span> = <span class="ruby-identifier">parse_signature</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-identifier">type_alias</span>)
+      <span class="ruby-identifier">opt</span> = <span class="ruby-identifier">parse_bind_options</span>(<span class="ruby-identifier">opts</span>)
+      <span class="ruby-identifier">f</span> = <span class="ruby-identifier">import_function</span>(<span class="ruby-identifier">symname</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">argtype</span>, <span class="ruby-identifier">opt</span>[<span class="ruby-value">:call_type</span>])
+      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">symname</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/@.+/</span>,<span class="ruby-string">&#39;&#39;</span>)
+      <span class="ruby-ivar">@func_map</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">f</span>
+      <span class="ruby-comment"># define_method(name){|*args,&amp;block| f.call(*args,&amp;block)}</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-regexp">/^(.+?):(\d+)/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">caller</span>.<span class="ruby-identifier">first</span>
+        <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword">rescue</span>
+        <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span> = <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span><span class="ruby-value">+3</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">module_eval</span>(<span class="ruby-identifier">&lt;&lt;-EOS</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>)
+<span class="ruby-value">        def #{name}(*args, &amp;block)
+          @func_map[&#39;#{name}&#39;].call(*args,&amp;block)
+        end
+</span><span class="ruby-identifier">      EOS</span>
+      <span class="ruby-identifier">module_function</span>(<span class="ruby-identifier">name</span>)
+      <span class="ruby-identifier">f</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handler" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handler</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The <a href="CompositeHandler.html"><code>Fiddle::CompositeHandler</code></a> instance</p>
+
+<p>Will raise an error if no handlers are open.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="handler-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 266</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handler</span>
+  (<span class="ruby-ivar">@handler</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">nil</span>) <span class="ruby-keyword">or</span> <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;call dlload before importing symbols and functions&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-import_function" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">import_function</span><span
+            class="method-args">(name, ctype, argtype, call_type = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new <a href="Function.html"><code>Fiddle::Function</code></a> instance at the memory address of the given <code>name</code> function.</p>
+
+<p>Raises a <a href="DLError.html"><code>DLError</code></a> if the <code>name</code> doesn&#39;t exist.</p>
+<ul><li>
+<p><code>argtype</code> is an <a href="../Array.html"><code>Array</code></a> of arguments, passed to the <code>name</code> function.</p>
+</li><li>
+<p><code>ctype</code> is the return type of the function</p>
+</li><li>
+<p><code>call_type</code> is the ABI of the function</p>
+</li></ul>
+
+<p>See also Fiddle:Function.new</p>
+
+<p>See <a href="CompositeHandler.html#method-i-sym"><code>Fiddle::CompositeHandler.sym</code></a> and Fiddle::Handler.sym</p>
+          
+          
+
+          
+          <div class="method-source-code" id="import_function-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 296</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">import_function</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-identifier">argtype</span>, <span class="ruby-identifier">call_type</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">addr</span> = <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">sym</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">if</span>( <span class="ruby-operator">!</span><span class="ruby-identifier">addr</span> )
+    <span class="ruby-identifier">raise</span>(<span class="ruby-constant">DLError</span>, <span class="ruby-node">&quot;cannot find the function: #{name}()&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Function</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">argtype</span>, <span class="ruby-identifier">ctype</span>, <span class="ruby-constant">CALL_TYPE_TO_ABI</span>[<span class="ruby-identifier">call_type</span>],
+               <span class="ruby-value">name:</span> <span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-import_symbol" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">import_symbol</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new <a href="Pointer.html"><code>Fiddle::Pointer</code></a> instance at the memory address of the given <code>name</code> symbol.</p>
+
+<p>Raises a <a href="DLError.html"><code>DLError</code></a> if the <code>name</code> doesn&#39;t exist.</p>
+
+<p>See <a href="CompositeHandler.html#method-i-sym"><code>Fiddle::CompositeHandler.sym</code></a> and <a href="Handle.html#method-c-sym"><code>Fiddle::Handle.sym</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="import_symbol-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 276</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">import_symbol</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">addr</span> = <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">sym</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">if</span>( <span class="ruby-operator">!</span><span class="ruby-identifier">addr</span> )
+    <span class="ruby-identifier">raise</span>(<span class="ruby-constant">DLError</span>, <span class="ruby-node">&quot;cannot find the symbol: #{name}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Pointer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">addr</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-import_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">import_value</span><span
+            class="method-args">(ty, addr)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new instance of the C struct with the value <code>ty</code> at the <code>addr</code> address.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="import_value-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 256</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">import_value</span>(<span class="ruby-identifier">ty</span>, <span class="ruby-identifier">addr</span>)
+  <span class="ruby-identifier">s</span> = <span class="ruby-identifier">struct</span>([<span class="ruby-identifier">ty</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; value&quot;</span>])
+  <span class="ruby-identifier">ptr</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">addr</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ptr</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sizeof" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sizeof</span><span
+            class="method-args">(ty)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the sizeof <code>ty</code>, using <a href="CParser.html#method-i-parse_ctype"><code>Fiddle::Importer.parse_ctype</code></a> to determine the C type and the appropriate <a href="../Fiddle.html"><code>Fiddle</code></a> constant.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sizeof-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sizeof</span>(<span class="ruby-identifier">ty</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">ty</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+    <span class="ruby-identifier">ty</span> = <span class="ruby-identifier">parse_ctype</span>(<span class="ruby-identifier">ty</span>, <span class="ruby-identifier">type_alias</span>).<span class="ruby-identifier">abs</span>()
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">ty</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TYPE_CHAR</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_CHAR</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TYPE_SHORT</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_SHORT</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TYPE_INT</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_INT</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TYPE_LONG</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_LONG</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TYPE_FLOAT</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_FLOAT</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TYPE_DOUBLE</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_DOUBLE</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TYPE_VOIDP</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_VOIDP</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">TYPE_LONG_LONG</span>) <span class="ruby-keyword">and</span>
+        <span class="ruby-identifier">ty</span> <span class="ruby-operator">==</span> <span class="ruby-constant">TYPE_LONG_LONG</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-constant">SIZEOF_LONG_LONG</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span>(<span class="ruby-constant">DLError</span>, <span class="ruby-node">&quot;unknown type: #{ty}&quot;</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Class</span>
+    <span class="ruby-keyword">if</span>( <span class="ruby-identifier">ty</span>.<span class="ruby-identifier">instance_methods</span>().<span class="ruby-identifier">include?</span>(<span class="ruby-value">:to_ptr</span>) )
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">ty</span>.<span class="ruby-identifier">size</span>()
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Pointer</span>[<span class="ruby-identifier">ty</span>].<span class="ruby-identifier">size</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-struct" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">struct</span><span
+            class="method-args">(signature)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a class to wrap the C struct described by <code>signature</code>.</p>
+
+<pre class="ruby"><span class="ruby-constant">MyStruct</span> = <span class="ruby-identifier">struct</span> [<span class="ruby-string">&#39;int i&#39;</span>, <span class="ruby-string">&#39;char c&#39;</span>]
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="struct-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 222</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">struct</span>(<span class="ruby-identifier">signature</span>)
+  <span class="ruby-identifier">tys</span>, <span class="ruby-identifier">mems</span> = <span class="ruby-identifier">parse_struct_signature</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-identifier">type_alias</span>)
+  <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">CStructBuilder</span>.<span class="ruby-identifier">create</span>(<span class="ruby-constant">CStruct</span>, <span class="ruby-identifier">tys</span>, <span class="ruby-identifier">mems</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-typealias" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">typealias</span><span
+            class="method-args">(alias_type, orig_type)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the type alias for <code>alias_type</code> as <code>orig_type</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="typealias-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">typealias</span>(<span class="ruby-identifier">alias_type</span>, <span class="ruby-identifier">orig_type</span>)
+  <span class="ruby-ivar">@type_alias</span>[<span class="ruby-identifier">alias_type</span>] = <span class="ruby-identifier">orig_type</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-union" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">union</span><span
+            class="method-args">(signature)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a class to wrap the C union described by <code>signature</code>.</p>
+
+<pre class="ruby"><span class="ruby-constant">MyUnion</span> = <span class="ruby-identifier">union</span> [<span class="ruby-string">&#39;int i&#39;</span>, <span class="ruby-string">&#39;char c&#39;</span>]
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="union-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">union</span>(<span class="ruby-identifier">signature</span>)
+  <span class="ruby-identifier">tys</span>, <span class="ruby-identifier">mems</span> = <span class="ruby-identifier">parse_struct_signature</span>(<span class="ruby-identifier">signature</span>, <span class="ruby-identifier">type_alias</span>)
+  <span class="ruby-constant">Fiddle</span><span class="ruby-operator">::</span><span class="ruby-constant">CStructBuilder</span>.<span class="ruby-identifier">create</span>(<span class="ruby-constant">CUnion</span>, <span class="ruby-identifier">tys</span>, <span class="ruby-identifier">mems</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-value" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">value</span><span
+            class="method-args">(ty, val=nil)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Importer.html#method-i-create_value">create_value</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-parse_bind_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_bind_options</span><span
+            class="method-args">(opts)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_bind_options-source">
+            <pre><span class="ruby-comment"># File ext/fiddle/lib/fiddle/import.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_bind_options</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-identifier">h</span> = {}
+  <span class="ruby-keyword">while</span>( <span class="ruby-identifier">opt</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">shift</span>() )
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">opt</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:stdcall</span>, <span class="ruby-value">:cdecl</span>
+      <span class="ruby-identifier">h</span>[<span class="ruby-value">:call_type</span>] = <span class="ruby-identifier">opt</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:carried</span>, <span class="ruby-value">:temp</span>, <span class="ruby-value">:temporal</span>, <span class="ruby-value">:bind</span>
+      <span class="ruby-identifier">h</span>[<span class="ruby-value">:callback_type</span>] = <span class="ruby-identifier">opt</span>
+      <span class="ruby-identifier">h</span>[<span class="ruby-value">:carrier</span>] = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">shift</span>()
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">h</span>[<span class="ruby-identifier">opt</span>] = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">h</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

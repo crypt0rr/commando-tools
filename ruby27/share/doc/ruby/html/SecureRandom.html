@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module SecureRandom - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-SecureRandom-label-Secure+random+number+generator+interface.">Secure random number generator interface.</a>
+    <li><a href="#module-SecureRandom-label-Examples">Examples</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-bytes">::bytes</a>
+    
+    <li ><a href="#method-c-gen_random">::gen_random</a>
+    
+    <li ><a href="#method-c-gen_random_openssl">::gen_random_openssl</a>
+    
+    <li ><a href="#method-c-gen_random_urandom">::gen_random_urandom</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-SecureRandom">
+  <h1 id="module-SecureRandom" class="module">
+    module SecureRandom
+  </h1>
+
+  <section class="description">
+    
+<h2 id="module-SecureRandom-label-Secure+random+number+generator+interface.">Secure random number generator interface.<span><a href="#module-SecureRandom-label-Secure+random+number+generator+interface.">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This library is an interface to secure random number generators which are suitable for generating session keys in HTTP cookies, etc.</p>
+
+<p>You can use this library in your application by requiring it:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;securerandom&#39;</span>
+</pre>
+
+<p>It supports the following secure random number generators:</p>
+<ul><li>
+<p>openssl</p>
+</li><li>
+<p>/dev/urandom</p>
+</li><li>
+<p>Win32</p>
+</li></ul>
+
+<p><a href="SecureRandom.html"><code>SecureRandom</code></a> is extended by the <a href="Random/Formatter.html"><code>Random::Formatter</code></a> module which defines the following methods:</p>
+<ul><li>
+<p>alphanumeric</p>
+</li><li>
+<p>base64</p>
+</li><li>
+<p>choose</p>
+</li><li>
+<p><a href="SecureRandom.html#method-c-gen_random"><code>gen_random</code></a></p>
+</li><li>
+<p>hex</p>
+</li><li>
+<p>rand</p>
+</li><li>
+<p>random_bytes</p>
+</li><li>
+<p>random_number</p>
+</li><li>
+<p>urlsafe_base64</p>
+</li><li>
+<p>uuid</p>
+</li></ul>
+
+<p>These methods are usable as class methods of <a href="SecureRandom.html"><code>SecureRandom</code></a> such as `SecureRandom.hex`.</p>
+
+<h3 id="module-SecureRandom-label-Examples">Examples<span><a href="#module-SecureRandom-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Generate random hexadecimal strings:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;securerandom&#39;</span>
+
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">hex</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;52750b30ffbc7de3b362&quot;</span>
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">hex</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;92b15d6c8dc4beb5f559&quot;</span>
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">hex</span>(<span class="ruby-value">13</span>) <span class="ruby-comment">#=&gt; &quot;39b290146bea6ce975c37cfc23&quot;</span>
+</pre>
+
+<p>Generate random base64 strings:</p>
+
+<pre class="ruby"><span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">base64</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;EcmTPZwWRAozdA==&quot;</span>
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">base64</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;KO1nIU+p9DKxGg==&quot;</span>
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">base64</span>(<span class="ruby-value">12</span>) <span class="ruby-comment">#=&gt; &quot;7kJSM/MzBJI+75j8&quot;</span>
+</pre>
+
+<p>Generate random binary strings:</p>
+
+<pre class="ruby"><span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">random_bytes</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;\016\t{\370g\310pbr\301&quot;</span>
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">random_bytes</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;\323U\030TO\234\357\020\a\337&quot;</span>
+</pre>
+
+<p>Generate alphanumeric strings:</p>
+
+<pre class="ruby"><span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">alphanumeric</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;S8baxMJnPl&quot;</span>
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">alphanumeric</span>(<span class="ruby-value">10</span>) <span class="ruby-comment">#=&gt; &quot;aOxAg8BAJe&quot;</span>
+</pre>
+
+<p>Generate UUIDs:</p>
+
+<pre class="ruby"><span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">uuid</span> <span class="ruby-comment">#=&gt; &quot;2d931510-d99f-494a-8c67-87feb05e1594&quot;</span>
+<span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">uuid</span> <span class="ruby-comment">#=&gt; &quot;bad85eb9-0713-4da7-8d36-07a8e4b00eab&quot;</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-bytes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bytes</span><span
+            class="method-args">(n)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="bytes-source">
+            <pre><span class="ruby-comment"># File lib/securerandom.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bytes</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">gen_random</span>(<span class="ruby-identifier">n</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-gen_random" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gen_random</span><span
+            class="method-args">(n)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="gen_random-source">
+            <pre><span class="ruby-comment"># File lib/securerandom.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">gen_random</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-identifier">ret</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">urandom</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;openssl&#39;</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-string">&quot;No random device&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@rng_chooser</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+          <span class="ruby-identifier">remove_method</span> <span class="ruby-value">:gen_random</span>
+          <span class="ruby-keyword">alias</span> <span class="ruby-identifier">gen_random</span> <span class="ruby-identifier">gen_random_openssl</span>
+          <span class="ruby-identifier">public</span> <span class="ruby-value">:gen_random</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">gen_random</span>(<span class="ruby-identifier">n</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@rng_chooser</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+        <span class="ruby-identifier">remove_method</span> <span class="ruby-value">:gen_random</span>
+        <span class="ruby-keyword">alias</span> <span class="ruby-identifier">gen_random</span> <span class="ruby-identifier">gen_random_urandom</span>
+        <span class="ruby-identifier">public</span> <span class="ruby-value">:gen_random</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">gen_random</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-gen_random_openssl" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gen_random_openssl</span><span
+            class="method-args">(n)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="gen_random_openssl-source">
+            <pre><span class="ruby-comment"># File lib/securerandom.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">gen_random_openssl</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-ivar">@pid</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-ivar">@pid</span>)
+  <span class="ruby-identifier">pid</span> = <span class="ruby-identifier">$$</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@pid</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">pid</span>
+    <span class="ruby-identifier">now</span> = <span class="ruby-constant">Process</span>.<span class="ruby-identifier">clock_gettime</span>(<span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">CLOCK_REALTIME</span>, <span class="ruby-value">:nanosecond</span>)
+    <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Random</span>.<span class="ruby-identifier">random_add</span>([<span class="ruby-identifier">now</span>, <span class="ruby-ivar">@pid</span>, <span class="ruby-identifier">pid</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;&quot;</span>), <span class="ruby-value">0.0</span>)
+    <span class="ruby-identifier">seed</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">urandom</span>(<span class="ruby-value">16</span>)
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">seed</span>)
+      <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Random</span>.<span class="ruby-identifier">random_add</span>(<span class="ruby-identifier">seed</span>, <span class="ruby-value">16</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@pid</span> = <span class="ruby-identifier">pid</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Random</span>.<span class="ruby-identifier">random_bytes</span>(<span class="ruby-identifier">n</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: gen_random
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-gen_random_urandom" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gen_random_urandom</span><span
+            class="method-args">(n)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="gen_random_urandom-source">
+            <pre><span class="ruby-comment"># File lib/securerandom.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">gen_random_urandom</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-identifier">ret</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">urandom</span>(<span class="ruby-identifier">n</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">ret</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-string">&quot;No random device&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;Unexpected partial read from random device: only #{ret.length} for #{n} bytes&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: gen_random
+        </div>
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

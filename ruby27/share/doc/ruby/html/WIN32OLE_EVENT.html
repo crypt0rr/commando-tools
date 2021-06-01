@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class WIN32OLE_EVENT - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-message_loop">::message_loop</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-handler">#handler</a>
+    
+    <li ><a href="#method-i-handler-3D">#handler=</a>
+    
+    <li ><a href="#method-i-off_event">#off_event</a>
+    
+    <li ><a href="#method-i-on_event">#on_event</a>
+    
+    <li ><a href="#method-i-on_event_with_outargs">#on_event_with_outargs</a>
+    
+    <li ><a href="#method-i-unadvise">#unadvise</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-WIN32OLE_EVENT">
+  <h1 id="class-WIN32OLE_EVENT" class="class">
+    class WIN32OLE_EVENT
+  </h1>
+
+  <section class="description">
+    
+<p><code>WIN32OLE_EVENT</code> objects controls OLE event.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-message_loop" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            message_loop
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Translates and dispatches Windows message.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="message_loop-source">
+            <pre>static VALUE
+fev_s_msg_loop(VALUE klass)
+{
+    ole_msg_loop();
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(ole, event) #&rarr; WIN32OLE_EVENT object.
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns OLE event object. The first argument specifies <a href="WIN32OLE.html"><code>WIN32OLE</code></a> object. The second argument specifies OLE event name.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ie</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;InternetExplorer.Application&#39;</span>)
+<span class="ruby-identifier">ev</span> = <span class="ruby-constant">WIN32OLE_EVENT</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ie</span>, <span class="ruby-string">&#39;DWebBrowserEvents&#39;</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+fev_initialize(int argc, VALUE *argv, VALUE self)
+{
+    ev_advise(argc, argv, self);
+    evs_push(self);
+    rb_ivar_set(self, id_events, rb_ary_new());
+    fev_set_handler(self, Qnil);
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-handler" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_EVENT#handler
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>returns handler object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="handler-source">
+            <pre>static VALUE
+fev_get_handler(VALUE self)
+{
+    return rb_ivar_get(self, rb_intern(&quot;handler&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handler-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_EVENT#handler=
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>sets event handler object. If handler object has onXXX method according to XXX event, then onXXX method is called when XXX event occurs.</p>
+
+<p>If handler object has method_missing and there is no method according to the event, then method_missing called and 1-st argument is event name.</p>
+
+<p>If handler object has onXXX method and there is block defined by <a href="WIN32OLE_EVENT.html#method-i-on_event"><code>WIN32OLE_EVENT#on_event</code></a>(&#39;XXX&#39;){}, then block is executed but handler object method is not called when XXX event occurs.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Handler</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">onStatusTextChange</span>(<span class="ruby-identifier">text</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;StatusTextChanged&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">onPropertyChange</span>(<span class="ruby-identifier">prop</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;PropertyChanged&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_missing</span>(<span class="ruby-identifier">ev</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">arg</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;other event #{ev}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">handler</span> = <span class="ruby-constant">Handler</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">ie</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;InternetExplorer.Application&#39;</span>)
+<span class="ruby-identifier">ev</span> = <span class="ruby-constant">WIN32OLE_EVENT</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ie</span>)
+<span class="ruby-identifier">ev</span>.<span class="ruby-identifier">on_event</span>(<span class="ruby-string">&quot;StatusTextChange&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;this block executed.&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;handler.onStatusTextChange method is not called.&quot;</span>
+}
+<span class="ruby-identifier">ev</span>.<span class="ruby-identifier">handler</span> = <span class="ruby-identifier">handler</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="handler-3D-source">
+            <pre>static VALUE
+fev_set_handler(VALUE self, VALUE val)
+{
+    return rb_ivar_set(self, rb_intern(&quot;handler&quot;), val);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-off_event" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_EVENT#off_event([event])
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>removes the callback of event.</p>
+
+<pre>ie = WIN32OLE.new(&#39;InternetExplorer.Application&#39;)
+ev = WIN32OLE_EVENT.new(ie)
+ev.on_event(&#39;BeforeNavigate2&#39;) {|*args|
+  args.last[6] = true
+}
+  ...
+ev.off_event(&#39;BeforeNavigate2&#39;)
+  ...</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="off_event-source">
+            <pre>static VALUE
+fev_off_event(int argc, VALUE *argv, VALUE self)
+{
+    VALUE event = Qnil;
+    VALUE events;
+
+    rb_scan_args(argc, argv, &quot;01&quot;, &amp;event);
+    if(!NIL_P(event)) {
+        if(!RB_TYPE_P(event, T_STRING) &amp;&amp; !RB_TYPE_P(event, T_SYMBOL)) {
+            rb_raise(rb_eTypeError, &quot;wrong argument type (expected String or Symbol)&quot;);
+        }
+        if (RB_TYPE_P(event, T_SYMBOL)) {
+            event = rb_sym2str(event);
+        }
+    }
+    events = rb_ivar_get(self, id_events);
+    if (NIL_P(events)) {
+        return Qnil;
+    }
+    ole_delete_event(events, event);
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-on_event" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_EVENT#on_event([event]){...}
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Defines the callback event. If argument is omitted, this method defines the callback of all events. If you want to modify reference argument in callback, return hash in callback. If you want to return value to OLE server as result of callback use `return&#39; or :return.</p>
+
+<pre>ie = WIN32OLE.new(&#39;InternetExplorer.Application&#39;)
+ev = WIN32OLE_EVENT.new(ie)
+ev.on_event(&quot;NavigateComplete&quot;) {|url| puts url}
+ev.on_event() {|ev, *args| puts &quot;#{ev} fired&quot;}
+
+ev.on_event(&quot;BeforeNavigate2&quot;) {|*args|
+  ...
+  # set true to BeforeNavigate reference argument `Cancel&#39;.
+  # Cancel is 7-th argument of BeforeNavigate,
+  # so you can use 6 as key of hash instead of &#39;Cancel&#39;.
+  # The argument is counted from 0.
+  # The hash key of 0 means first argument.)
+  {:Cancel =&gt; true}  # or {&#39;Cancel&#39; =&gt; true} or {6 =&gt; true}
+}
+
+ev.on_event(...) {|*args|
+  {:return =&gt; 1, :xxx =&gt; yyy}
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="on_event-source">
+            <pre>static VALUE
+fev_on_event(int argc, VALUE *argv, VALUE self)
+{
+    return ev_on_event(argc, argv, self, Qfalse);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-on_event_with_outargs" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_EVENT#on_event_with_outargs([event]){...}
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Defines the callback of event. If you want modify argument in callback, you could use this method instead of <a href="WIN32OLE_EVENT.html#method-i-on_event"><code>WIN32OLE_EVENT#on_event</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">ie</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;InternetExplorer.Application&#39;</span>)
+<span class="ruby-identifier">ev</span> = <span class="ruby-constant">WIN32OLE_EVENT</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ie</span>)
+<span class="ruby-identifier">ev</span>.<span class="ruby-identifier">on_event_with_outargs</span>(<span class="ruby-string">&#39;BeforeNavigate2&#39;</span>) {<span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>[<span class="ruby-value">6</span>] = <span class="ruby-keyword">true</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="on_event_with_outargs-source">
+            <pre>static VALUE
+fev_on_event_with_outargs(int argc, VALUE *argv, VALUE self)
+{
+    return ev_on_event(argc, argv, self, Qtrue);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unadvise" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_EVENT#unadvise &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>disconnects OLE server. If this method called, then the <a href="WIN32OLE_EVENT.html"><code>WIN32OLE_EVENT</code></a> object does not receive the OLE server event any more. This method is trial implementation.</p>
+
+<pre>ie = WIN32OLE.new(&#39;InternetExplorer.Application&#39;)
+ev = WIN32OLE_EVENT.new(ie)
+ev.on_event() {...}
+   ...
+ev.unadvise</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="unadvise-source">
+            <pre>static VALUE
+fev_unadvise(VALUE self)
+{
+    struct oleeventdata *poleev;
+    TypedData_Get_Struct(self, struct oleeventdata, &amp;oleevent_datatype, poleev);
+    if (poleev-&gt;pConnectionPoint) {
+        ole_msg_loop();
+        evs_delete(poleev-&gt;event_id);
+        poleev-&gt;pConnectionPoint-&gt;lpVtbl-&gt;Unadvise(poleev-&gt;pConnectionPoint, poleev-&gt;dwCookie);
+        OLE_RELEASE(poleev-&gt;pConnectionPoint);
+        poleev-&gt;pConnectionPoint = NULL;
+    }
+    OLE_FREE(poleev-&gt;pDispatch);
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

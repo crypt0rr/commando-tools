@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module TSort - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-TSort-label-A+Simple+Example">A Simple Example</a>
+    <li><a href="#module-TSort-label-A+More+Realistic+Example">A More Realistic Example</a>
+    <li><a href="#module-TSort-label-Bugs">Bugs</a>
+    <li><a href="#module-TSort-label-References">References</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-each_strongly_connected_component">::each_strongly_connected_component</a>
+    
+    <li ><a href="#method-c-each_strongly_connected_component_from">::each_strongly_connected_component_from</a>
+    
+    <li ><a href="#method-c-strongly_connected_components">::strongly_connected_components</a>
+    
+    <li ><a href="#method-c-tsort">::tsort</a>
+    
+    <li ><a href="#method-c-tsort_each">::tsort_each</a>
+    
+    <li ><a href="#method-i-each_strongly_connected_component">#each_strongly_connected_component</a>
+    
+    <li ><a href="#method-i-each_strongly_connected_component_from">#each_strongly_connected_component_from</a>
+    
+    <li ><a href="#method-i-strongly_connected_components">#strongly_connected_components</a>
+    
+    <li ><a href="#method-i-tsort">#tsort</a>
+    
+    <li ><a href="#method-i-tsort_each">#tsort_each</a>
+    
+    <li ><a href="#method-i-tsort_each_child">#tsort_each_child</a>
+    
+    <li ><a href="#method-i-tsort_each_node">#tsort_each_node</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-TSort">
+  <h1 id="module-TSort" class="module">
+    module TSort
+  </h1>
+
+  <section class="description">
+    
+<p><a href="TSort.html"><code>TSort</code></a> implements topological sorting using Tarjan&#39;s algorithm for strongly connected components.</p>
+
+<p><a href="TSort.html"><code>TSort</code></a> is designed to be able to be used with any object which can be interpreted as a directed graph.</p>
+
+<p><a href="TSort.html"><code>TSort</code></a> requires two methods to interpret an object as a graph, <a href="TSort.html#method-i-tsort_each_node"><code>tsort_each_node</code></a> and tsort_each_child.</p>
+<ul><li>
+<p><a href="TSort.html#method-i-tsort_each_node"><code>tsort_each_node</code></a> is used to iterate for all nodes over a graph.</p>
+</li><li>
+<p><a href="TSort.html#method-i-tsort_each_child"><code>tsort_each_child</code></a> is used to iterate for child nodes of a given node.</p>
+</li></ul>
+
+<p>The equality of nodes are defined by eql? and hash since <a href="TSort.html"><code>TSort</code></a> uses <a href="Hash.html"><code>Hash</code></a> internally.</p>
+
+<h2 id="module-TSort-label-A+Simple+Example">A Simple Example<span><a href="#module-TSort-label-A+Simple+Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The following example demonstrates how to mix the <a href="TSort.html"><code>TSort</code></a> module into an existing class (in this case, <a href="Hash.html"><code>Hash</code></a>). Here, we&#39;re treating each key in the hash as a node in the graph, and so we simply alias the required <a href="TSort.html#method-i-tsort_each_node"><code>tsort_each_node</code></a> method to Hash&#39;s each_key method. For each key in the hash, the associated value is an array of the node&#39;s child nodes. This choice in turn leads to our implementation of the required <a href="TSort.html#method-i-tsort_each_child"><code>tsort_each_child</code></a> method, which fetches the array of child nodes and then iterates over that array using the user-supplied block.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;tsort&#39;</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Hash</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">TSort</span>
+  <span class="ruby-keyword">alias</span> <span class="ruby-identifier">tsort_each_node</span> <span class="ruby-identifier">each_key</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">node</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">node</span>).<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+{<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}.<span class="ruby-identifier">tsort</span>
+<span class="ruby-comment">#=&gt; [3, 2, 1, 4]</span>
+
+{<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}.<span class="ruby-identifier">strongly_connected_components</span>
+<span class="ruby-comment">#=&gt; [[4], [2, 3], [1]]</span>
+</pre>
+
+<h2 id="module-TSort-label-A+More+Realistic+Example">A More Realistic Example<span><a href="#module-TSort-label-A+More+Realistic+Example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A very simple `make&#39; like tool can be implemented as follows:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;tsort&#39;</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Make</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+    <span class="ruby-ivar">@dep</span> = {}
+    <span class="ruby-ivar">@dep</span>.<span class="ruby-identifier">default</span> = []
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rule</span>(<span class="ruby-identifier">outputs</span>, <span class="ruby-identifier">inputs</span>=[], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">triple</span> = [<span class="ruby-identifier">outputs</span>, <span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">block</span>]
+    <span class="ruby-identifier">outputs</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@dep</span>[<span class="ruby-identifier">f</span>] = [<span class="ruby-identifier">triple</span>]}
+    <span class="ruby-ivar">@dep</span>[<span class="ruby-identifier">triple</span>] = <span class="ruby-identifier">inputs</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">build</span>(<span class="ruby-identifier">target</span>)
+    <span class="ruby-identifier">each_strongly_connected_component_from</span>(<span class="ruby-identifier">target</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">fs</span> = <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">delete_if</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-constant">Array</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">n</span>}
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TSort</span><span class="ruby-operator">::</span><span class="ruby-constant">Cyclic</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;cyclic dependencies: #{fs.join &#39;, &#39;}&quot;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">n</span> = <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">first</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-constant">Array</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">n</span>
+        <span class="ruby-identifier">outputs</span>, <span class="ruby-identifier">inputs</span>, <span class="ruby-identifier">block</span> = <span class="ruby-identifier">n</span>
+        <span class="ruby-identifier">inputs_time</span> = <span class="ruby-identifier">inputs</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">mtime</span> <span class="ruby-identifier">f</span>}.<span class="ruby-identifier">max</span>
+        <span class="ruby-keyword">begin</span>
+          <span class="ruby-identifier">outputs_time</span> = <span class="ruby-identifier">outputs</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">mtime</span> <span class="ruby-identifier">f</span>}.<span class="ruby-identifier">min</span>
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>
+          <span class="ruby-identifier">outputs_time</span> = <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">outputs_time</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">||</span>
+           <span class="ruby-identifier">inputs_time</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">outputs_time</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">inputs_time</span>
+          <span class="ruby-identifier">sleep</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">inputs_time</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">inputs_time</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_i</span>
+          <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">node</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-ivar">@dep</span>[<span class="ruby-identifier">node</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">TSort</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">command</span>(<span class="ruby-identifier">arg</span>)
+  <span class="ruby-identifier">print</span> <span class="ruby-identifier">arg</span>, <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-identifier">system</span> <span class="ruby-identifier">arg</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">m</span> = <span class="ruby-constant">Make</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">rule</span>(<span class="ruby-node">%w[t1]</span>) { <span class="ruby-identifier">command</span> <span class="ruby-string">&#39;date &gt; t1&#39;</span> }
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">rule</span>(<span class="ruby-node">%w[t2]</span>) { <span class="ruby-identifier">command</span> <span class="ruby-string">&#39;date &gt; t2&#39;</span> }
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">rule</span>(<span class="ruby-node">%w[t3]</span>) { <span class="ruby-identifier">command</span> <span class="ruby-string">&#39;date &gt; t3&#39;</span> }
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">rule</span>(<span class="ruby-node">%w[t4]</span>, <span class="ruby-node">%w[t1 t3]</span>) { <span class="ruby-identifier">command</span> <span class="ruby-string">&#39;cat t1 t3 &gt; t4&#39;</span> }
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">rule</span>(<span class="ruby-node">%w[t5]</span>, <span class="ruby-node">%w[t4 t2]</span>) { <span class="ruby-identifier">command</span> <span class="ruby-string">&#39;cat t4 t2 &gt; t5&#39;</span> }
+<span class="ruby-identifier">m</span>.<span class="ruby-identifier">build</span>(<span class="ruby-string">&#39;t5&#39;</span>)
+</pre>
+
+<h2 id="module-TSort-label-Bugs">Bugs<span><a href="#module-TSort-label-Bugs">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>&#39;tsort.rb&#39; is wrong name because this library uses Tarjan&#39;s algorithm for strongly connected components. Although &#39;strongly_connected_components.rb&#39; is correct but too long.</p>
+</li></ul>
+
+<h2 id="module-TSort-label-References">References<span><a href="#module-TSort-label-References">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ol style="list-style-type: upper-alpha"><li><ol style="list-style-type: upper-alpha"><li>
+<p>Tarjan, “Depth First Search and Linear Graph Algorithms”,</p>
+</li></ol>
+</li></ol>
+
+<p><em>SIAM Journal on Computing</em>, Vol. 1, No. 2, pp. 146-160, June 1972.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-each_strongly_connected_component" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_strongly_connected_component</span><span
+            class="method-args">(each_node, each_child) { |nodes| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The iterator version of the <a href="TSort.html#method-c-strongly_connected_components"><code>TSort.strongly_connected_components</code></a> method.</p>
+
+<p>The graph is represented by <em>each_node</em> and <em>each_child</em>. <em>each_node</em> should have <code>call</code> method which yields for each node in the graph. <em>each_child</em> should have <code>call</code> method which takes a node argument and yields for each child node.</p>
+
+<pre class="ruby"><span class="ruby-identifier">g</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">scc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">scc</span> }
+<span class="ruby-comment">#=&gt; [4]</span>
+<span class="ruby-comment">#   [2]</span>
+<span class="ruby-comment">#   [3]</span>
+<span class="ruby-comment">#   [1]</span>
+
+<span class="ruby-identifier">g</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">scc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">scc</span> }
+<span class="ruby-comment">#=&gt; [4]</span>
+<span class="ruby-comment">#   [2, 3]</span>
+<span class="ruby-comment">#   [1]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="each_strongly_connected_component-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 342</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier ruby-title">each_strongly_connected_component</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) <span class="ruby-comment"># :yields: nodes</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">to_enum</span>(<span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">id_map</span> = {}
+  <span class="ruby-identifier">stack</span> = []
+  <span class="ruby-identifier">each_node</span>.<span class="ruby-identifier">call</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">id_map</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">node</span>
+      <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component_from</span>(<span class="ruby-identifier">node</span>, <span class="ruby-identifier">each_child</span>, <span class="ruby-identifier">id_map</span>, <span class="ruby-identifier">stack</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">yield</span> <span class="ruby-identifier">c</span>
+      }
+    <span class="ruby-keyword">end</span>
+  }
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-each_strongly_connected_component_from" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_strongly_connected_component_from</span><span
+            class="method-args">(node, each_child, id_map={}, stack=[]) { |nodes| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over strongly connected components in a graph. The graph is represented by <em>node</em> and <em>each_child</em>.</p>
+
+<p><em>node</em> is the first node. <em>each_child</em> should have <code>call</code> method which takes a node argument and yields for each child node.</p>
+
+<p>Return value is unspecified.</p>
+
+<p>#TSort.each_strongly_connected_component_from is a class method and it doesn&#39;t need a class to represent a graph which includes <a href="TSort.html"><code>TSort</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">graph</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">graph</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component_from</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">each_child</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">scc</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">scc</span>
+}
+<span class="ruby-comment">#=&gt; [4]</span>
+<span class="ruby-comment">#   [2, 3]</span>
+<span class="ruby-comment">#   [1]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="each_strongly_connected_component_from-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 408</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier ruby-title">each_strongly_connected_component_from</span>(<span class="ruby-identifier">node</span>, <span class="ruby-identifier">each_child</span>, <span class="ruby-identifier">id_map</span>={}, <span class="ruby-identifier">stack</span>=[]) <span class="ruby-comment"># :yields: nodes</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">to_enum</span>(<span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">each_child</span>, <span class="ruby-identifier">id_map</span>, <span class="ruby-identifier">stack</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">minimum_id</span> = <span class="ruby-identifier">node_id</span> = <span class="ruby-identifier">id_map</span>[<span class="ruby-identifier">node</span>] = <span class="ruby-identifier">id_map</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-identifier">stack_length</span> = <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">stack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">node</span>
+
+  <span class="ruby-identifier">each_child</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">node</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">id_map</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">child</span>
+      <span class="ruby-identifier">child_id</span> = <span class="ruby-identifier">id_map</span>[<span class="ruby-identifier">child</span>]
+      <span class="ruby-identifier">minimum_id</span> = <span class="ruby-identifier">child_id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">child_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">child_id</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">minimum_id</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">sub_minimum_id</span> =
+        <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component_from</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">each_child</span>, <span class="ruby-identifier">id_map</span>, <span class="ruby-identifier">stack</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword">yield</span> <span class="ruby-identifier">c</span>
+        }
+      <span class="ruby-identifier">minimum_id</span> = <span class="ruby-identifier">sub_minimum_id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sub_minimum_id</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">minimum_id</span>
+    <span class="ruby-keyword">end</span>
+  }
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">node_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">minimum_id</span>
+    <span class="ruby-identifier">component</span> = <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-identifier">stack_length</span> <span class="ruby-operator">..</span> <span class="ruby-value">-1</span>)
+    <span class="ruby-identifier">component</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">id_map</span>[<span class="ruby-identifier">n</span>] = <span class="ruby-keyword">nil</span>}
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">component</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">minimum_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-strongly_connected_components" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">strongly_connected_components</span><span
+            class="method-args">(each_node, each_child)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns strongly connected components as an array of arrays of nodes. The array is sorted from children to parents. Each elements of the array represents a strongly connected component.</p>
+
+<p>The graph is represented by <em>each_node</em> and <em>each_child</em>. <em>each_node</em> should have <code>call</code> method which yields for each node in the graph. <em>each_child</em> should have <code>call</code> method which takes a node argument and yields for each child node.</p>
+
+<pre class="ruby"><span class="ruby-identifier">g</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">strongly_connected_components</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>)
+<span class="ruby-comment">#=&gt; [[4], [2], [3], [1]]</span>
+
+<span class="ruby-identifier">g</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">strongly_connected_components</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>)
+<span class="ruby-comment">#=&gt; [[4], [2, 3], [1]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="strongly_connected_components-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 280</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier ruby-title">strongly_connected_components</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>)
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>).<span class="ruby-identifier">to_a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-tsort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort</span><span
+            class="method-args">(each_node, each_child)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a topologically sorted array of nodes. The array is sorted from children to parents, i.e. the first element has no child and the last node has no parent.</p>
+
+<p>The graph is represented by <em>each_node</em> and <em>each_child</em>. <em>each_node</em> should have <code>call</code> method which yields for each node in the graph. <em>each_child</em> should have <code>call</code> method which takes a node argument and yields for each child node.</p>
+
+<p>If there is a cycle, <a href="TSort/Cyclic.html"><code>TSort::Cyclic</code></a> is raised.</p>
+
+<pre class="ruby"><span class="ruby-identifier">g</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">tsort</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) <span class="ruby-comment">#=&gt; [4, 2, 3, 1]</span>
+
+<span class="ruby-identifier">g</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">p</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">tsort</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) <span class="ruby-comment"># raises TSort::Cyclic</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier ruby-title">tsort</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>)
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">tsort_each</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>).<span class="ruby-identifier">to_a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-tsort_each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort_each</span><span
+            class="method-args">(each_node, each_child) { |node| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The iterator version of the <a href="TSort.html#method-c-tsort"><code>TSort.tsort</code></a> method.</p>
+
+<p>The graph is represented by <em>each_node</em> and <em>each_child</em>. <em>each_node</em> should have <code>call</code> method which yields for each node in the graph. <em>each_child</em> should have <code>call</code> method which takes a node argument and yields for each child node.</p>
+
+<pre class="ruby"><span class="ruby-identifier">g</span> = {<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]}
+<span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) }
+<span class="ruby-constant">TSort</span>.<span class="ruby-identifier">tsort_each</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">n</span> }
+<span class="ruby-comment">#=&gt; 4</span>
+<span class="ruby-comment">#   2</span>
+<span class="ruby-comment">#   3</span>
+<span class="ruby-comment">#   1</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort_each-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">TSort</span>.<span class="ruby-identifier ruby-title">tsort_each</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) <span class="ruby-comment"># :yields: node</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">to_enum</span>(<span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">component</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">component</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">component</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Cyclic</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;topological sort failed: #{component.inspect}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-each_strongly_connected_component" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_strongly_connected_component</span><span
+            class="method-args">() { |nodes| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The iterator version of the <a href="TSort.html#method-i-strongly_connected_components"><code>strongly_connected_components</code></a> method. <code><em>obj</em>.each_strongly_connected_component</code> is similar to <code><em>obj</em>.strongly_connected_components.each</code>, but modification of <em>obj</em> during the iteration may lead to unexpected results.</p>
+
+<p><a href="TSort.html#method-i-each_strongly_connected_component"><code>each_strongly_connected_component</code></a> returns <code>nil</code>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">G</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">TSort</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">g</span>)
+    <span class="ruby-ivar">@g</span> = <span class="ruby-identifier">g</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_node</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">graph</span>.<span class="ruby-identifier">each_strongly_connected_component</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">scc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">scc</span> }
+<span class="ruby-comment">#=&gt; [4]</span>
+<span class="ruby-comment">#   [2]</span>
+<span class="ruby-comment">#   [3]</span>
+<span class="ruby-comment">#   [1]</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">graph</span>.<span class="ruby-identifier">each_strongly_connected_component</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">scc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">scc</span> }
+<span class="ruby-comment">#=&gt; [4]</span>
+<span class="ruby-comment">#   [2, 3]</span>
+<span class="ruby-comment">#   [1]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="each_strongly_connected_component-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 313</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_strongly_connected_component</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yields: nodes</span>
+  <span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_node</span>)
+  <span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_child</span>)
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_strongly_connected_component_from" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_strongly_connected_component_from</span><span
+            class="method-args">(node, id_map={}, stack=[]) { |nodes| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over strongly connected component in the subgraph reachable from <em>node</em>.</p>
+
+<p>Return value is unspecified.</p>
+
+<p><a href="TSort.html#method-i-each_strongly_connected_component_from"><code>each_strongly_connected_component_from</code></a> doesn&#39;t call <a href="TSort.html#method-i-tsort_each_node"><code>tsort_each_node</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">G</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">TSort</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">g</span>)
+    <span class="ruby-ivar">@g</span> = <span class="ruby-identifier">g</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_node</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">graph</span>.<span class="ruby-identifier">each_strongly_connected_component_from</span>(<span class="ruby-value">2</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">scc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">scc</span> }
+<span class="ruby-comment">#=&gt; [4]</span>
+<span class="ruby-comment">#   [2]</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">graph</span>.<span class="ruby-identifier">each_strongly_connected_component_from</span>(<span class="ruby-value">2</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">scc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">scc</span> }
+<span class="ruby-comment">#=&gt; [4]</span>
+<span class="ruby-comment">#   [2, 3]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="each_strongly_connected_component_from-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 383</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_strongly_connected_component_from</span>(<span class="ruby-identifier">node</span>, <span class="ruby-identifier">id_map</span>={}, <span class="ruby-identifier">stack</span>=[], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yields: nodes</span>
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">each_strongly_connected_component_from</span>(<span class="ruby-identifier">node</span>, <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_child</span>), <span class="ruby-identifier">id_map</span>, <span class="ruby-identifier">stack</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-strongly_connected_components" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">strongly_connected_components</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns strongly connected components as an array of arrays of nodes. The array is sorted from children to parents. Each elements of the array represents a strongly connected component.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">G</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">TSort</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">g</span>)
+    <span class="ruby-ivar">@g</span> = <span class="ruby-identifier">g</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_node</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">strongly_connected_components</span> <span class="ruby-comment">#=&gt; [[4], [2], [3], [1]]</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">strongly_connected_components</span> <span class="ruby-comment">#=&gt; [[4], [2, 3], [1]]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="strongly_connected_components-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">strongly_connected_components</span>
+  <span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_node</span>)
+  <span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_child</span>)
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">strongly_connected_components</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tsort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a topologically sorted array of nodes. The array is sorted from children to parents, i.e. the first element has no child and the last node has no parent.</p>
+
+<p>If there is a cycle, <a href="TSort/Cyclic.html"><code>TSort::Cyclic</code></a> is raised.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">G</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">TSort</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">g</span>)
+    <span class="ruby-ivar">@g</span> = <span class="ruby-identifier">g</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_node</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">tsort</span> <span class="ruby-comment">#=&gt; [4, 2, 3, 1]</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">3</span>, <span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">tsort</span> <span class="ruby-comment"># raises TSort::Cyclic</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort</span>
+  <span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_node</span>)
+  <span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_child</span>)
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">tsort</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tsort_each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort_each</span><span
+            class="method-args">() { |node| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The iterator version of the <a href="TSort.html#method-i-tsort"><code>tsort</code></a> method. <code><em>obj</em>.tsort_each</code> is similar to <code><em>obj</em>.tsort.each</code>, but modification of <em>obj</em> during the iteration may lead to unexpected results.</p>
+
+<p><a href="TSort.html#method-i-tsort_each"><code>tsort_each</code></a> returns <code>nil</code>. If there is a cycle, <a href="TSort/Cyclic.html"><code>TSort::Cyclic</code></a> is raised.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">G</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">TSort</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">g</span>)
+    <span class="ruby-ivar">@g</span> = <span class="ruby-identifier">g</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>[<span class="ruby-identifier">n</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_node</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-ivar">@g</span>.<span class="ruby-identifier">each_key</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>) <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">graph</span> = <span class="ruby-constant">G</span>.<span class="ruby-identifier">new</span>({<span class="ruby-value">1</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">3</span>], <span class="ruby-value">2</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">4</span>], <span class="ruby-value">3</span><span class="ruby-operator">=&gt;</span>[<span class="ruby-value">2</span>, <span class="ruby-value">4</span>], <span class="ruby-value">4</span><span class="ruby-operator">=&gt;</span>[]})
+<span class="ruby-identifier">graph</span>.<span class="ruby-identifier">tsort_each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-identifier">n</span> }
+<span class="ruby-comment">#=&gt; 4</span>
+<span class="ruby-comment">#   2</span>
+<span class="ruby-comment">#   3</span>
+<span class="ruby-comment">#   1</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort_each-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 202</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment"># :yields: node</span>
+  <span class="ruby-identifier">each_node</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_node</span>)
+  <span class="ruby-identifier">each_child</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:tsort_each_child</span>)
+  <span class="ruby-constant">TSort</span>.<span class="ruby-identifier">tsort_each</span>(<span class="ruby-identifier">each_node</span>, <span class="ruby-identifier">each_child</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tsort_each_child" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort_each_child</span><span
+            class="method-args">(node) { |child| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Should be implemented by a extended class.</p>
+
+<p><a href="TSort.html#method-i-tsort_each_child"><code>tsort_each_child</code></a> is used to iterate for child nodes of <em>node</em>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort_each_child-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 449</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_child</span>(<span class="ruby-identifier">node</span>) <span class="ruby-comment"># :yields: child</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tsort_each_node" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tsort_each_node</span><span
+            class="method-args">() { |node| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Should be implemented by a extended class.</p>
+
+<p><a href="TSort.html#method-i-tsort_each_node"><code>tsort_each_node</code></a> is used to iterate for all nodes over a graph.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tsort_each_node-source">
+            <pre><span class="ruby-comment"># File lib/tsort.rb, line 441</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tsort_each_node</span> <span class="ruby-comment"># :yields: node</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

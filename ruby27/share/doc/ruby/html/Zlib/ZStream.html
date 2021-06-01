@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Zlib::ZStream - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-adler">#adler</a>
+    
+    <li ><a href="#method-i-avail_in">#avail_in</a>
+    
+    <li ><a href="#method-i-avail_out">#avail_out</a>
+    
+    <li ><a href="#method-i-avail_out-3D">#avail_out=</a>
+    
+    <li ><a href="#method-i-close">#close</a>
+    
+    <li ><a href="#method-i-closed-3F">#closed?</a>
+    
+    <li ><a href="#method-i-data_type">#data_type</a>
+    
+    <li ><a href="#method-i-end">#end</a>
+    
+    <li ><a href="#method-i-ended-3F">#ended?</a>
+    
+    <li ><a href="#method-i-finish">#finish</a>
+    
+    <li ><a href="#method-i-finished-3F">#finished?</a>
+    
+    <li ><a href="#method-i-flush_next_in">#flush_next_in</a>
+    
+    <li ><a href="#method-i-flush_next_out">#flush_next_out</a>
+    
+    <li ><a href="#method-i-reset">#reset</a>
+    
+    <li ><a href="#method-i-stream_end-3F">#stream_end?</a>
+    
+    <li ><a href="#method-i-total_in">#total_in</a>
+    
+    <li ><a href="#method-i-total_out">#total_out</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Zlib::ZStream">
+  <h1 id="class-Zlib::ZStream" class="class">
+    class Zlib::ZStream
+  </h1>
+
+  <section class="description">
+    
+<p><a href="ZStream.html"><code>Zlib::ZStream</code></a> is the abstract class for the stream which handles the compressed data. The operations are defined in the subclasses: <a href="Deflate.html"><code>Zlib::Deflate</code></a> for compression, and <a href="Inflate.html"><code>Zlib::Inflate</code></a> for decompression.</p>
+
+<p>An instance of <a href="ZStream.html"><code>Zlib::ZStream</code></a> has one stream (struct zstream in the source) and two variable-length buffers which associated to the input (next_in) of the stream and the output (next_out) of the stream. In this document, “input buffer” means the buffer for input, and “output buffer” means the buffer for output.</p>
+
+<p><a href="../Data.html"><code>Data</code></a> input into an instance of <a href="ZStream.html"><code>Zlib::ZStream</code></a> are temporally stored into the end of input buffer, and then data in input buffer are processed from the beginning of the buffer until no more output from the stream is produced (i.e. until <a href="ZStream.html#method-i-avail_out"><code>avail_out</code></a> &gt; 0 after processing).  During processing, output buffer is allocated and expanded automatically to hold all output data.</p>
+
+<p>Some particular instance methods consume the data in output buffer and return them as a <a href="../String.html"><code>String</code></a>.</p>
+
+<p>Here is an ascii art for describing above:</p>
+
+<pre>+================ an instance of Zlib::ZStream ================+
+||                                                            ||
+||     +--------+          +-------+          +--------+      ||
+||  +--| output |&lt;---------|zstream|&lt;---------| input  |&lt;--+  ||
+||  |  | buffer |  next_out+-------+next_in   | buffer |   |  ||
+||  |  +--------+                             +--------+   |  ||
+||  |                                                      |  ||
++===|======================================================|===+
+    |                                                      |
+    v                                                      |
+&quot;output data&quot;                                         &quot;input data&quot;</pre>
+
+<p>If an error occurs during processing input buffer, an exception which is a subclass of <a href="Error.html"><code>Zlib::Error</code></a> is raised.  At that time, both input and output buffer keep their conditions at the time when the error occurs.</p>
+
+<h2 id="class-Zlib::ZStream-label-Method+Catalogue"><a href="../Method.html"><code>Method</code></a> Catalogue<span><a href="#class-Zlib::ZStream-label-Method+Catalogue">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Many of the methods in this class are fairly low-level and unlikely to be of interest to users.  In fact, users are unlikely to use this class directly; rather they will be interested in <a href="Inflate.html"><code>Zlib::Inflate</code></a> and <a href="Deflate.html"><code>Zlib::Deflate</code></a>.</p>
+
+<p>The higher level methods are listed below.</p>
+<ul><li>
+<p><a href="ZStream.html#method-i-total_in"><code>total_in</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-total_out"><code>total_out</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-data_type"><code>data_type</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-adler"><code>adler</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-reset"><code>reset</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-finish"><code>finish</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-finished-3F"><code>finished?</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-close"><code>close</code></a></p>
+</li><li>
+<p><a href="ZStream.html#method-i-closed-3F"><code>closed?</code></a></p>
+</li></ul>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-adler" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adler</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the adler-32 checksum.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="adler-source">
+            <pre>static VALUE
+rb_zstream_adler(VALUE obj)
+{
+    return rb_uint2inum(get_zstream(obj)-&gt;stream.adler);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-avail_in" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">avail_in</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns bytes of data in the input buffer. Normally, returns 0.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="avail_in-source">
+            <pre>static VALUE
+rb_zstream_avail_in(VALUE obj)
+{
+    struct zstream *z;
+    TypedData_Get_Struct(obj, struct zstream, &amp;zstream_data_type, z);
+    return INT2FIX(NIL_P(z-&gt;input) ? 0 : (int)(RSTRING_LEN(z-&gt;input)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-avail_out" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">avail_out</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns number of bytes of free spaces in output buffer.  Because the free space is allocated automatically, this method returns 0 normally.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="avail_out-source">
+            <pre>static VALUE
+rb_zstream_avail_out(VALUE obj)
+{
+    struct zstream *z;
+    TypedData_Get_Struct(obj, struct zstream, &amp;zstream_data_type, z);
+    return rb_uint2inum(z-&gt;stream.avail_out);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-avail_out-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">avail_out=</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Allocates <code>size</code> bytes of free space in the output buffer. If there are more than <code>size</code> bytes already in the buffer, the buffer is truncated. Because free space is allocated automatically, you usually don&#39;t need to use this method.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="avail_out-3D-source">
+            <pre>static VALUE
+rb_zstream_set_avail_out(VALUE obj, VALUE size)
+{
+    struct zstream *z = get_zstream(obj);
+
+    zstream_expand_buffer_into(z, FIX2INT(size));
+    return size;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Closes the stream. All operations on the closed stream will raise an exception.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre>static VALUE
+rb_zstream_end(VALUE obj)
+{
+    zstream_end(get_zstream(obj));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-closed-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">closed?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the stream is closed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="closed-3F-source">
+            <pre>static VALUE
+rb_zstream_closed_p(VALUE obj)
+{
+    struct zstream *z;
+    TypedData_Get_Struct(obj, struct zstream, &amp;zstream_data_type, z);
+    return ZSTREAM_IS_READY(z) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-data_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data_type</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Guesses the type of the data which have been inputed into the stream. The returned value is either <code>BINARY</code>, <code>ASCII</code>, or <code>UNKNOWN</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="data_type-source">
+            <pre>static VALUE
+rb_zstream_data_type(VALUE obj)
+{
+    return INT2FIX(get_zstream(obj)-&gt;stream.data_type);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-end" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">end</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Closes the stream. All operations on the closed stream will raise an exception.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="end-source">
+            <pre>static VALUE
+rb_zstream_end(VALUE obj)
+{
+    zstream_end(get_zstream(obj));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ended-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ended?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the stream is closed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ended-3F-source">
+            <pre>static VALUE
+rb_zstream_closed_p(VALUE obj)
+{
+    struct zstream *z;
+    TypedData_Get_Struct(obj, struct zstream, &amp;zstream_data_type, z);
+    return ZSTREAM_IS_READY(z) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finish" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            finish                 &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            finish { |chunk| ... } &rarr; nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Finishes the stream and flushes output buffer.  If a block is given each chunk is yielded to the block until the input buffer has been flushed to the output buffer.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="finish-source">
+            <pre>static VALUE
+rb_zstream_finish(VALUE obj)
+{
+    struct zstream *z = get_zstream(obj);
+
+    zstream_run(z, (Bytef*)&quot;&quot;, 0, Z_FINISH);
+
+    return zstream_detach_buffer(z);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finished-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finished?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the stream is finished.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="finished-3F-source">
+            <pre>static VALUE
+rb_zstream_finished_p(VALUE obj)
+{
+    return ZSTREAM_IS_FINISHED(get_zstream(obj)) ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flush_next_in" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flush_next_in &rarr; input
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="flush_next_in-source">
+            <pre>static VALUE
+rb_zstream_flush_next_in(VALUE obj)
+{
+    struct zstream *z;
+    VALUE dst;
+
+    TypedData_Get_Struct(obj, struct zstream, &amp;zstream_data_type, z);
+    dst = zstream_detach_input(z);
+    return dst;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flush_next_out" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flush_next_out                 &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flush_next_out { |chunk| ... } &rarr; nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Flushes output buffer and returns all data in that buffer.  If a block is given each chunk is yielded to the block until the current output buffer has been flushed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="flush_next_out-source">
+            <pre>static VALUE
+rb_zstream_flush_next_out(VALUE obj)
+{
+    struct zstream *z;
+
+    TypedData_Get_Struct(obj, struct zstream, &amp;zstream_data_type, z);
+
+    return zstream_detach_buffer(z);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reset" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Resets and initializes the stream. All data in both input and output buffer are discarded.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reset-source">
+            <pre>static VALUE
+rb_zstream_reset(VALUE obj)
+{
+    zstream_reset(get_zstream(obj));
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stream_end-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stream_end?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the stream is finished.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stream_end-3F-source">
+            <pre>static VALUE
+rb_zstream_finished_p(VALUE obj)
+{
+    return ZSTREAM_IS_FINISHED(get_zstream(obj)) ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-total_in" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">total_in</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the total bytes of the input data to the stream.  FIXME</p>
+          
+          
+
+          
+          <div class="method-source-code" id="total_in-source">
+            <pre>static VALUE
+rb_zstream_total_in(VALUE obj)
+{
+    return rb_uint2inum(get_zstream(obj)-&gt;stream.total_in);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-total_out" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">total_out</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the total bytes of the output data from the stream.  FIXME</p>
+          
+          
+
+          
+          <div class="method-source-code" id="total_out-source">
+            <pre>static VALUE
+rb_zstream_total_out(VALUE obj)
+{
+    return rb_uint2inum(get_zstream(obj)-&gt;stream.total_out);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

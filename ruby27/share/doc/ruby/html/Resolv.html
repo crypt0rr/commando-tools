@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Resolv - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-each_address">::each_address</a>
+    
+    <li ><a href="#method-c-each_name">::each_name</a>
+    
+    <li ><a href="#method-c-getaddress">::getaddress</a>
+    
+    <li ><a href="#method-c-getaddresses">::getaddresses</a>
+    
+    <li ><a href="#method-c-getname">::getname</a>
+    
+    <li ><a href="#method-c-getnames">::getnames</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-each_address">#each_address</a>
+    
+    <li ><a href="#method-i-each_name">#each_name</a>
+    
+    <li ><a href="#method-i-getaddress">#getaddress</a>
+    
+    <li ><a href="#method-i-getaddresses">#getaddresses</a>
+    
+    <li ><a href="#method-i-getname">#getname</a>
+    
+    <li ><a href="#method-i-getnames">#getnames</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Resolv">
+  <h1 id="class-Resolv" class="class">
+    class Resolv
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Resolv.html"><code>Resolv</code></a> is a thread-aware <a href="Resolv/DNS.html"><code>DNS</code></a> resolver library written in Ruby.  <a href="Resolv.html"><code>Resolv</code></a> can handle multiple <a href="Resolv/DNS.html"><code>DNS</code></a> requests concurrently without blocking the entire Ruby interpreter.</p>
+
+<p>See also resolv-replace.rb to replace the libc resolver with <a href="Resolv.html"><code>Resolv</code></a>.</p>
+
+<p><a href="Resolv.html"><code>Resolv</code></a> can look up various <a href="Resolv/DNS.html"><code>DNS</code></a> resources using the <a href="Resolv/DNS.html"><code>DNS</code></a> module directly.</p>
+
+<p>Examples:</p>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> <span class="ruby-constant">Resolv</span>.<span class="ruby-identifier">getaddress</span> <span class="ruby-string">&quot;www.ruby-lang.org&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Resolv</span>.<span class="ruby-identifier">getname</span> <span class="ruby-string">&quot;210.251.121.214&quot;</span>
+
+<span class="ruby-constant">Resolv</span><span class="ruby-operator">::</span><span class="ruby-constant">DNS</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dns</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">ress</span> = <span class="ruby-identifier">dns</span>.<span class="ruby-identifier">getresources</span> <span class="ruby-string">&quot;www.ruby-lang.org&quot;</span>, <span class="ruby-constant">Resolv</span><span class="ruby-operator">::</span><span class="ruby-constant">DNS</span><span class="ruby-operator">::</span><span class="ruby-constant">Resource</span><span class="ruby-operator">::</span><span class="ruby-constant">IN</span><span class="ruby-operator">::</span><span class="ruby-constant">A</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">ress</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:address</span>)
+  <span class="ruby-identifier">ress</span> = <span class="ruby-identifier">dns</span>.<span class="ruby-identifier">getresources</span> <span class="ruby-string">&quot;ruby-lang.org&quot;</span>, <span class="ruby-constant">Resolv</span><span class="ruby-operator">::</span><span class="ruby-constant">DNS</span><span class="ruby-operator">::</span><span class="ruby-constant">Resource</span><span class="ruby-operator">::</span><span class="ruby-constant">IN</span><span class="ruby-operator">::</span><span class="ruby-constant">MX</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">ress</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">r</span>.<span class="ruby-identifier">exchange</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">r</span>.<span class="ruby-identifier">preference</span>] }
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="class-Resolv-label-Bugs">Bugs<span><a href="#class-Resolv-label-Bugs">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>NIS is not supported.</p>
+</li><li>
+<p>/etc/nsswitch.conf is not supported.</p>
+</li></ul>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="AddressRegex">AddressRegex
+        
+        <dd><p>Address <a href="Regexp.html"><code>Regexp</code></a> to use for matching IP addresses.</p>
+        
+      
+        <dt id="DefaultResolver">DefaultResolver
+        
+        <dd><p>Default resolver to use for <a href="Resolv.html"><code>Resolv</code></a> class methods.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-each_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_address</span><span
+            class="method-args">(name, &amp;block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all IP addresses for <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_address-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">each_address</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">DefaultResolver</span>.<span class="ruby-identifier">each_address</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-each_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_name</span><span
+            class="method-args">(address, &amp;proc)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all hostnames for <code>address</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_name-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">each_name</span>(<span class="ruby-identifier">address</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+  <span class="ruby-constant">DefaultResolver</span>.<span class="ruby-identifier">each_name</span>(<span class="ruby-identifier">address</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getaddress" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getaddress</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up the first IP address for <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getaddress-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">getaddress</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-constant">DefaultResolver</span>.<span class="ruby-identifier">getaddress</span>(<span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getaddresses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getaddresses</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up all IP address for <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getaddresses-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">getaddresses</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-constant">DefaultResolver</span>.<span class="ruby-identifier">getaddresses</span>(<span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getname</span><span
+            class="method-args">(address)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up the hostname of <code>address</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getname-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">getname</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-constant">DefaultResolver</span>.<span class="ruby-identifier">getname</span>(<span class="ruby-identifier">address</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getnames" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getnames</span><span
+            class="method-args">(address)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up all hostnames for <code>address</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getnames-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">getnames</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-constant">DefaultResolver</span>.<span class="ruby-identifier">getnames</span>(<span class="ruby-identifier">address</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(resolvers=[Hosts.new, DNS.new])</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Resolv.html"><code>Resolv</code></a> using <code>resolvers</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">resolvers</span>=[<span class="ruby-constant">Hosts</span>.<span class="ruby-identifier">new</span>, <span class="ruby-constant">DNS</span>.<span class="ruby-identifier">new</span>])
+  <span class="ruby-ivar">@resolvers</span> = <span class="ruby-identifier">resolvers</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-each_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_address</span><span
+            class="method-args">(name) { |name| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all IP addresses for <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_address-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_address</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">AddressRegex</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">yielded</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@resolvers</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">each_address</span>(<span class="ruby-identifier">name</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">address</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">yielded</span> = <span class="ruby-keyword">true</span>
+    }
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">yielded</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_name</span><span
+            class="method-args">(address) { |name| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over all hostnames for <code>address</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="each_name-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each_name</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-identifier">yielded</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@resolvers</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">each_name</span>(<span class="ruby-identifier">address</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">yielded</span> = <span class="ruby-keyword">true</span>
+    }
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">yielded</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getaddress" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getaddress</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up the first IP address for <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getaddress-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getaddress</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">each_address</span>(<span class="ruby-identifier">name</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">address</span>}
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ResolvError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;no address for #{name}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getaddresses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getaddresses</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up all IP address for <code>name</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getaddresses-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getaddresses</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">ret</span> = []
+  <span class="ruby-identifier">each_address</span>(<span class="ruby-identifier">name</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">address</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">address</span>}
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getname</span><span
+            class="method-args">(address)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up the hostname of <code>address</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getname-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getname</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-identifier">each_name</span>(<span class="ruby-identifier">address</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-keyword">return</span> <span class="ruby-identifier">name</span>}
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ResolvError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;no name for #{address}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getnames" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getnames</span><span
+            class="method-args">(address)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Looks up all hostnames for <code>address</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getnames-source">
+            <pre><span class="ruby-comment"># File lib/resolv.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getnames</span>(<span class="ruby-identifier">address</span>)
+  <span class="ruby-identifier">ret</span> = []
+  <span class="ruby-identifier">each_name</span>(<span class="ruby-identifier">address</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">name</span>}
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

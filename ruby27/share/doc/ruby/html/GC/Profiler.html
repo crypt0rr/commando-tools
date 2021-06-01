@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module GC::Profiler - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-clear">::clear</a>
+    
+    <li ><a href="#method-c-disable">::disable</a>
+    
+    <li ><a href="#method-c-enable">::enable</a>
+    
+    <li ><a href="#method-c-enabled-3F">::enabled?</a>
+    
+    <li ><a href="#method-c-raw_data">::raw_data</a>
+    
+    <li ><a href="#method-c-report">::report</a>
+    
+    <li ><a href="#method-c-result">::result</a>
+    
+    <li ><a href="#method-c-total_time">::total_time</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-GC::Profiler">
+  <h1 id="module-GC::Profiler" class="module">
+    module GC::Profiler
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="../GC.html"><code>GC</code></a> profiler provides access to information on <a href="../GC.html"><code>GC</code></a> runs including time, length and object space size.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-constant">GC</span><span class="ruby-operator">::</span><span class="ruby-constant">Profiler</span>.<span class="ruby-identifier">enable</span>
+
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rdoc/rdoc&#39;</span>
+
+<span class="ruby-constant">GC</span><span class="ruby-operator">::</span><span class="ruby-constant">Profiler</span>.<span class="ruby-identifier">report</span>
+
+<span class="ruby-constant">GC</span><span class="ruby-operator">::</span><span class="ruby-constant">Profiler</span>.<span class="ruby-identifier">disable</span>
+</pre>
+
+<p>See also <a href="../GC.html#method-c-count"><code>GC.count</code></a>, <a href="../GC.html#method-c-malloc_allocated_size"><code>GC.malloc_allocated_size</code></a> and <a href="../GC.html#method-c-malloc_allocations"><code>GC.malloc_allocations</code></a></p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-clear" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.clear          &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Clears the <a href="../GC.html"><code>GC</code></a> profiler data.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="clear-source">
+            <pre>static VALUE
+gc_profile_clear(VALUE _)
+{
+    rb_objspace_t *objspace = &amp;rb_objspace;
+    void *p = objspace-&gt;profile.records;
+    objspace-&gt;profile.records = NULL;
+    objspace-&gt;profile.size = 0;
+    objspace-&gt;profile.next_index = 0;
+    objspace-&gt;profile.current_record = 0;
+    if (p) {
+        free(p);
+    }
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-disable" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.disable      &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Stops the <a href="../GC.html"><code>GC</code></a> profiler.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="disable-source">
+            <pre>static VALUE
+gc_profile_disable(VALUE _)
+{
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    objspace-&gt;profile.run = FALSE;
+    objspace-&gt;profile.current_record = 0;
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-enable" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.enable       &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Starts the <a href="../GC.html"><code>GC</code></a> profiler.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enable-source">
+            <pre>static VALUE
+gc_profile_enable(VALUE _)
+{
+    rb_objspace_t *objspace = &amp;rb_objspace;
+    objspace-&gt;profile.run = TRUE;
+    objspace-&gt;profile.current_record = 0;
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-enabled-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.enabled?     &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>The current status of <a href="../GC.html"><code>GC</code></a> profile mode.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enabled-3F-source">
+            <pre>static VALUE
+gc_profile_enable_get(VALUE self)
+{
+    rb_objspace_t *objspace = &amp;rb_objspace;
+    return objspace-&gt;profile.run ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-raw_data" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.raw_data    &rarr; [Hash, ...]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an <a href="../Array.html"><code>Array</code></a> of individual raw profile data Hashes ordered from earliest to latest by <code>:GC_INVOKE_TIME</code>.</p>
+
+<p>For example:</p>
+
+<pre class="ruby">[
+  {
+     <span class="ruby-value">:GC_TIME</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">1.3000000000000858e-05</span>,
+     <span class="ruby-value">:GC_INVOKE_TIME</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0.010634999999999999</span>,
+     <span class="ruby-value">:HEAP_USE_SIZE</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">289640</span>,
+     <span class="ruby-value">:HEAP_TOTAL_SIZE</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">588960</span>,
+     <span class="ruby-value">:HEAP_TOTAL_OBJECTS</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">14724</span>,
+     <span class="ruby-value">:GC_IS_MARKED</span><span class="ruby-operator">=&gt;</span><span class="ruby-keyword">false</span>
+  },
+  <span class="ruby-comment"># ...</span>
+]
+</pre>
+
+<p>The keys mean:</p>
+<dl class="rdoc-list note-list"><dt><code>:GC_TIME</code>
+<dd>
+<p><a href="../Time.html"><code>Time</code></a> elapsed in seconds for this <a href="../GC.html"><code>GC</code></a> run</p>
+</dd><dt><code>:GC_INVOKE_TIME</code>
+<dd>
+<p><a href="../Time.html"><code>Time</code></a> elapsed in seconds from startup to when the <a href="../GC.html"><code>GC</code></a> was invoked</p>
+</dd><dt><code>:HEAP_USE_SIZE</code>
+<dd>
+<p>Total bytes of heap used</p>
+</dd><dt><code>:HEAP_TOTAL_SIZE</code>
+<dd>
+<p>Total size of heap in bytes</p>
+</dd><dt><code>:HEAP_TOTAL_OBJECTS</code>
+<dd>
+<p>Total number of objects</p>
+</dd><dt><code>:GC_IS_MARKED</code>
+<dd>
+<p>Returns <code>true</code> if the <a href="../GC.html"><code>GC</code></a> is in mark phase</p>
+</dd></dl>
+
+<p>If ruby was built with <code>GC_PROFILE_MORE_DETAIL</code>, you will also have access to the following hash keys:</p>
+<dl class="rdoc-list note-list"><dt><code>:GC_MARK_TIME</code>
+<dt><code>:GC_SWEEP_TIME</code>
+<dt><code>:ALLOCATE_INCREASE</code>
+<dt><code>:ALLOCATE_LIMIT</code>
+<dt><code>:HEAP_USE_PAGES</code>
+<dt><code>:HEAP_LIVE_OBJECTS</code>
+<dt><code>:HEAP_FREE_OBJECTS</code>
+<dt><code>:HAVE_FINALIZE</code>
+<dd></dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="raw_data-source">
+            <pre>static VALUE
+gc_profile_record_get(VALUE _)
+{
+    VALUE prof;
+    VALUE gc_profile = rb_ary_new();
+    size_t i;
+    rb_objspace_t *objspace = (&amp;rb_objspace);
+
+    if (!objspace-&gt;profile.run) {
+        return Qnil;
+    }
+
+    for (i =0; i &lt; objspace-&gt;profile.next_index; i++) {
+        gc_profile_record *record = &amp;objspace-&gt;profile.records[i];
+
+        prof = rb_hash_new();
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;GC_FLAGS&quot;)), gc_info_decode(0, rb_hash_new(), record-&gt;flags));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;GC_TIME&quot;)), DBL2NUM(record-&gt;gc_time));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;GC_INVOKE_TIME&quot;)), DBL2NUM(record-&gt;gc_invoke_time));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;HEAP_USE_SIZE&quot;)), SIZET2NUM(record-&gt;heap_use_size));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;HEAP_TOTAL_SIZE&quot;)), SIZET2NUM(record-&gt;heap_total_size));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;HEAP_TOTAL_OBJECTS&quot;)), SIZET2NUM(record-&gt;heap_total_objects));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;GC_IS_MARKED&quot;)), Qtrue);
+#if GC_PROFILE_MORE_DETAIL
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;GC_MARK_TIME&quot;)), DBL2NUM(record-&gt;gc_mark_time));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;GC_SWEEP_TIME&quot;)), DBL2NUM(record-&gt;gc_sweep_time));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;ALLOCATE_INCREASE&quot;)), SIZET2NUM(record-&gt;allocate_increase));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;ALLOCATE_LIMIT&quot;)), SIZET2NUM(record-&gt;allocate_limit));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;HEAP_USE_PAGES&quot;)), SIZET2NUM(record-&gt;heap_use_pages));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;HEAP_LIVE_OBJECTS&quot;)), SIZET2NUM(record-&gt;heap_live_objects));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;HEAP_FREE_OBJECTS&quot;)), SIZET2NUM(record-&gt;heap_free_objects));
+
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;REMOVING_OBJECTS&quot;)), SIZET2NUM(record-&gt;removing_objects));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;EMPTY_OBJECTS&quot;)), SIZET2NUM(record-&gt;empty_objects));
+
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;HAVE_FINALIZE&quot;)), (record-&gt;flags &amp; GPR_FLAG_HAVE_FINALIZE) ? Qtrue : Qfalse);
+#endif
+
+#if RGENGC_PROFILE &gt; 0
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;OLD_OBJECTS&quot;)), SIZET2NUM(record-&gt;old_objects));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;REMEMBERED_NORMAL_OBJECTS&quot;)), SIZET2NUM(record-&gt;remembered_normal_objects));
+        rb_hash_aset(prof, ID2SYM(rb_intern(&quot;REMEMBERED_SHADY_OBJECTS&quot;)), SIZET2NUM(record-&gt;remembered_shady_objects));
+#endif
+        rb_ary_push(gc_profile, prof);
+    }
+
+    return gc_profile;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-report" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.report
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.report(io)
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Writes the <a href="Profiler.html#method-c-result"><code>GC::Profiler.result</code></a> to <code>$stdout</code> or the given <a href="../IO.html"><code>IO</code></a> object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="report-source">
+            <pre>static VALUE
+gc_profile_report(int argc, VALUE *argv, VALUE self)
+{
+    VALUE out;
+
+    out = (!rb_check_arity(argc, 0, 1) ? rb_stdout : argv[0]);
+    gc_profile_dump_on(out, rb_io_write);
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-result" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.result  &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a profile data report such as:</p>
+
+<pre>GC 1 invokes.
+Index    Invoke Time(sec)       Use Size(byte)     Total Size(byte)         Total Object                    GC time(ms)
+    1               0.012               159240               212940                10647         0.00000000000001530000</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="result-source">
+            <pre>static VALUE
+gc_profile_result(VALUE _)
+{
+    VALUE str = rb_str_buf_new(0);
+    gc_profile_dump_on(str, rb_str_buf_append);
+    return str;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-total_time" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            GC::Profiler.total_time  &rarr; float
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>The total time used for garbage collection in seconds</p>
+          
+          
+
+          
+          <div class="method-source-code" id="total_time-source">
+            <pre>static VALUE
+gc_profile_total_time(VALUE self)
+{
+    double time = 0;
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    if (objspace-&gt;profile.run &amp;&amp; objspace-&gt;profile.next_index &gt; 0) {
+        size_t i;
+        size_t count = objspace-&gt;profile.next_index;
+
+        for (i = 0; i &lt; count; i++) {
+            time += objspace-&gt;profile.records[i].gc_time;
+        }
+    }
+    return DBL2NUM(time);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

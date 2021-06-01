@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Marshal - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-Marshal-label-Security+considerations">Security considerations</a>
+    <li><a href="#module-Marshal-label-marshal_dump+and+marshal_load">marshal_dump and marshal_load</a>
+    <li><a href="#module-Marshal-label-_dump+and+_load">_dump and _load</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-dump">::dump</a>
+    
+    <li ><a href="#method-c-load">::load</a>
+    
+    <li ><a href="#method-c-restore">::restore</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Marshal">
+  <h1 id="module-Marshal" class="module">
+    module Marshal
+  </h1>
+
+  <section class="description">
+    
+<p>The marshaling library converts collections of Ruby objects into a byte stream, allowing them to be stored outside the currently active script. This data may subsequently be read and the original objects reconstituted.</p>
+
+<p>Marshaled data has major and minor version numbers stored along with the object information. In normal use, marshaling can only load data written with the same major version number and an equal or lower minor version number. If Ruby&#39;s “verbose&#39;&#39; flag is set (normally using -d, -v, -w, or –verbose) the major and minor numbers must match exactly. <a href="Marshal.html"><code>Marshal</code></a> versioning is independent of Ruby&#39;s version numbers. You can extract the version by reading the first two bytes of marshaled data.</p>
+
+<pre class="ruby"><span class="ruby-identifier">str</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-string">&quot;thing&quot;</span>)
+<span class="ruby-constant">RUBY_VERSION</span>   <span class="ruby-comment">#=&gt; &quot;1.9.0&quot;</span>
+<span class="ruby-identifier">str</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">ord</span>     <span class="ruby-comment">#=&gt; 4</span>
+<span class="ruby-identifier">str</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">ord</span>     <span class="ruby-comment">#=&gt; 8</span>
+</pre>
+
+<p>Some objects cannot be dumped: if the objects to be dumped include bindings, procedure or method objects, instances of class <a href="IO.html"><code>IO</code></a>, or singleton objects, a <a href="TypeError.html"><code>TypeError</code></a> will be raised.</p>
+
+<p>If your class has special serialization needs (for example, if you want to serialize in some specific format), or if it contains objects that would otherwise not be serializable, you can implement your own serialization strategy.</p>
+
+<p>There are two methods of doing this, your object can define either marshal_dump and marshal_load or _dump and _load.  marshal_dump will take precedence over _dump if both are defined.  marshal_dump may result in smaller <a href="Marshal.html"><code>Marshal</code></a> strings.</p>
+
+<h2 id="module-Marshal-label-Security+considerations">Security considerations<span><a href="#module-Marshal-label-Security+considerations">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>By design, <a href="Marshal.html#method-c-load"><code>Marshal.load</code></a> can deserialize almost any class loaded into the Ruby process. In many cases this can lead to remote code execution if the <a href="Marshal.html"><code>Marshal</code></a> data is loaded from an untrusted source.</p>
+
+<p>As a result, <a href="Marshal.html#method-c-load"><code>Marshal.load</code></a> is not suitable as a general purpose serialization format and you should never unmarshal user supplied input or other untrusted data.</p>
+
+<p>If you need to deserialize untrusted data, use <a href="JSON.html"><code>JSON</code></a> or another serialization format that is only able to load simple, &#39;primitive&#39; types such as <a href="String.html"><code>String</code></a>, <a href="Array.html"><code>Array</code></a>, <a href="Hash.html"><code>Hash</code></a>, etc. Never allow user input to specify arbitrary types to deserialize into.</p>
+
+<h2 id="module-Marshal-label-marshal_dump+and+marshal_load">marshal_dump and marshal_load<span><a href="#module-Marshal-label-marshal_dump+and+marshal_load">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>When dumping an object the method marshal_dump will be called. marshal_dump must return a result containing the information necessary for marshal_load to reconstitute the object.  The result can be any object.</p>
+
+<p>When loading an object dumped using marshal_dump the object is first allocated then marshal_load is called with the result from marshal_dump. marshal_load must recreate the object from the information in the result.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyObj</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>, <span class="ruby-identifier">data</span>
+    <span class="ruby-ivar">@name</span>    = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">version</span>
+    <span class="ruby-ivar">@data</span>    = <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_dump</span>
+    [<span class="ruby-ivar">@name</span>, <span class="ruby-ivar">@version</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_load</span> <span class="ruby-identifier">array</span>
+    <span class="ruby-ivar">@name</span>, <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">array</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="module-Marshal-label-_dump+and+_load">_dump and _load<span><a href="#module-Marshal-label-_dump+and+_load">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Use _dump and _load when you need to allocate the object you&#39;re restoring yourself.</p>
+
+<p>When dumping an object the instance method _dump is called with an <a href="Integer.html"><code>Integer</code></a> which indicates the maximum depth of objects to dump (a value of -1 implies that you should disable depth checking).  _dump must return a <a href="String.html"><code>String</code></a> containing the information necessary to reconstitute the object.</p>
+
+<p>The class method _load should take a <a href="String.html"><code>String</code></a> and use it to return an object of the same class.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyObj</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>, <span class="ruby-identifier">data</span>
+    <span class="ruby-ivar">@name</span>    = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">version</span>
+    <span class="ruby-ivar">@data</span>    = <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_dump</span> <span class="ruby-identifier">level</span>
+    [<span class="ruby-ivar">@name</span>, <span class="ruby-ivar">@version</span>].<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;:&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">_load</span> <span class="ruby-identifier">args</span>
+    <span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;:&#39;</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Since <a href="Marshal.html#method-c-dump"><code>Marshal.dump</code></a> outputs a string you can have _dump return a <a href="Marshal.html"><code>Marshal</code></a> string which is Marshal.loaded in _load for complex objects.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="MAJOR_VERSION">MAJOR_VERSION
+        
+        <dd><p>major version</p>
+        
+      
+        <dt id="MINOR_VERSION">MINOR_VERSION
+        
+        <dd><p>minor version</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-dump" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dump( obj [, anIO] , limit=-1 ) &rarr; anIO
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Serializes obj and all descendant objects. If anIO is specified, the serialized data will be written to it, otherwise the data will be returned as a <a href="String.html"><code>String</code></a>. If limit is specified, the traversal of subobjects will be limited to that depth. If limit is negative, no checking of depth will be performed.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Klass</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">str</span>)
+    <span class="ruby-ivar">@str</span> = <span class="ruby-identifier">str</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">say_hello</span>
+    <span class="ruby-ivar">@str</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>(produces no output)</p>
+
+<pre class="ruby"><span class="ruby-identifier">o</span> = <span class="ruby-constant">Klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;hello\n&quot;</span>)
+<span class="ruby-identifier">data</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">o</span>)
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">data</span>)
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">say_hello</span>  <span class="ruby-comment">#=&gt; &quot;hello\n&quot;</span>
+</pre>
+
+<p><a href="Marshal.html"><code>Marshal</code></a> can&#39;t dump following objects:</p>
+<ul><li>
+<p>anonymous Class/Module.</p>
+</li><li>
+<p>objects which are related to system (ex: <a href="Dir.html"><code>Dir</code></a>, <a href="File/Stat.html"><code>File::Stat</code></a>, <a href="IO.html"><code>IO</code></a>, <a href="File.html"><code>File</code></a>, <a href="Socket.html"><code>Socket</code></a> and so on)</p>
+</li><li>
+<p>an instance of <a href="MatchData.html"><code>MatchData</code></a>, <a href="Data.html"><code>Data</code></a>, <a href="Method.html"><code>Method</code></a>, <a href="UnboundMethod.html"><code>UnboundMethod</code></a>, <a href="Proc.html"><code>Proc</code></a>, <a href="Thread.html"><code>Thread</code></a>, <a href="ThreadGroup.html"><code>ThreadGroup</code></a>, <a href="Continuation.html"><code>Continuation</code></a></p>
+</li><li>
+<p>objects which define singleton methods</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="dump-source">
+            <pre>static VALUE
+marshal_dump(int argc, VALUE *argv, VALUE _)
+{
+    VALUE obj, port, a1, a2;
+    int limit = -1;
+
+    port = Qnil;
+    rb_scan_args(argc, argv, &quot;12&quot;, &amp;obj, &amp;a1, &amp;a2);
+    if (argc == 3) {
+        if (!NIL_P(a2)) limit = NUM2INT(a2);
+        if (NIL_P(a1)) io_needed();
+        port = a1;
+    }
+    else if (argc == 2) {
+        if (FIXNUM_P(a1)) limit = FIX2INT(a1);
+        else if (NIL_P(a1)) io_needed();
+        else port = a1;
+    }
+    return rb_marshal_dump_limited(obj, port, limit);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-load" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            load( source [, proc] ) &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the result of converting the serialized data in source into a Ruby object (possibly with associated subordinate objects). source may be either an instance of <a href="IO.html"><code>IO</code></a> or an object that responds to to_str. If proc is specified, each object will be passed to the proc, as the object is being deserialized.</p>
+
+<p>Never pass untrusted data (including user supplied input) to this method. Please see the overview for further details.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="load-source">
+            <pre>static VALUE
+marshal_load(int argc, VALUE *argv, VALUE _)
+{
+    VALUE port, proc;
+
+    rb_check_arity(argc, 1, 2);
+    port = argv[0];
+    proc = argc &gt; 1 ? argv[1] : Qnil;
+    return rb_marshal_load_with_proc(port, proc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-restore" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            restore( source [, proc] ) &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the result of converting the serialized data in source into a Ruby object (possibly with associated subordinate objects). source may be either an instance of <a href="IO.html"><code>IO</code></a> or an object that responds to to_str. If proc is specified, each object will be passed to the proc, as the object is being deserialized.</p>
+
+<p>Never pass untrusted data (including user supplied input) to this method. Please see the overview for further details.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="restore-source">
+            <pre>static VALUE
+marshal_load(int argc, VALUE *argv, VALUE _)
+{
+    VALUE port, proc;
+
+    rb_check_arity(argc, 1, 2);
+    port = argv[0];
+    proc = argc &gt; 1 ? argv[1] : Qnil;
+    return rb_marshal_load_with_proc(port, proc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

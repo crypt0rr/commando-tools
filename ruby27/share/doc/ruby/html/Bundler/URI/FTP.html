@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::URI::FTP - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Generic
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-build">::build</a>
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-check_typecode">#check_typecode</a>
+    
+    <li ><a href="#method-i-path">#path</a>
+    
+    <li class="calls-super" ><a href="#method-i-set_path">#set_path</a>
+    
+    <li ><a href="#method-i-set_typecode">#set_typecode</a>
+    
+    <li class="calls-super" ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-typecode-3D">#typecode=</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::URI::FTP">
+  <h1 id="class-Bundler::URI::FTP" class="class">
+    class Bundler::URI::FTP
+  </h1>
+
+  <section class="description">
+    
+<p><a href="FTP.html"><code>FTP</code></a> <a href="../URI.html"><code>Bundler::URI</code></a> syntax is defined by RFC1738 section 3.2.</p>
+
+<p>This class will be redesigned because of difference of implementations; the structure of its path. draft-hoffman-ftp-uri-04 is a draft but it is a good summary about the de facto spec. <a href="http://tools.ietf.org/html/draft-hoffman-ftp-uri-04">tools.ietf.org/html/draft-hoffman-ftp-uri-04</a></p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="COMPONENT">COMPONENT
+        
+        <dd><p>An <a href="../../Array.html"><code>Array</code></a> of the available components for <a href="FTP.html"><code>Bundler::URI::FTP</code></a>.</p>
+        
+      
+        <dt id="DEFAULT_PORT">DEFAULT_PORT
+        
+        <dd><p>A Default port of 21 for <a href="FTP.html"><code>Bundler::URI::FTP</code></a>.</p>
+        
+      
+        <dt id="TYPECODE">TYPECODE
+        
+        <dd><p>Typecode is “a”, “i”, or “d”.</p>
+<ul><li>
+<p>“a” indicates a text file (the <a href="FTP.html"><code>FTP</code></a> command was ASCII)</p>
+</li><li>
+<p>“i” indicates a binary file (<a href="FTP.html"><code>FTP</code></a> command IMAGE)</p>
+</li><li>
+<p>“d” indicates the contents of a directory should be displayed</p>
+</li></ul>
+        
+      
+        <dt id="TYPECODE_PREFIX">TYPECODE_PREFIX
+        
+        <dd><p>Typecode prefix “;type=”.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-typecode" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">typecode</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>typecode accessor.</p>
+
+<p>See <a href="FTP.html#COMPONENT"><code>Bundler::URI::FTP::COMPONENT</code></a>.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-build" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-c-build-label-Description">Description<span><a href="#method-c-build-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Creates a new <a href="FTP.html"><code>Bundler::URI::FTP</code></a> object from components, with syntax checking.</p>
+
+<p>The components accepted are <code>userinfo</code>, <code>host</code>, <code>port</code>, <code>path</code>, and <code>typecode</code>.</p>
+
+<p>The components should be provided either as an <a href="../../Array.html"><code>Array</code></a>, or as a <a href="../../Hash.html"><code>Hash</code></a> with keys formed by preceding the component names with a colon.</p>
+
+<p>If an <a href="../../Array.html"><code>Array</code></a> is used, the components must be passed in the order <code>[userinfo, host, port, path, typecode]</code>.</p>
+
+<p>If the path supplied is absolute, it will be escaped in order to make it absolute in the <a href="../URI.html"><code>Bundler::URI</code></a>.</p>
+
+<p>Examples:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;bundler/vendor/uri/lib/uri&#39;</span>
+
+<span class="ruby-identifier">uri1</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">FTP</span>.<span class="ruby-identifier">build</span>([<span class="ruby-string">&#39;user:password&#39;</span>, <span class="ruby-string">&#39;ftp.example.com&#39;</span>, <span class="ruby-keyword">nil</span>,
+  <span class="ruby-string">&#39;/path/file.zip&#39;</span>, <span class="ruby-string">&#39;i&#39;</span>])
+<span class="ruby-identifier">uri1</span>.<span class="ruby-identifier">to_s</span>  <span class="ruby-comment"># =&gt; &quot;ftp://user:password@ftp.example.com/%2Fpath/file.zip;type=i&quot;</span>
+
+<span class="ruby-identifier">uri2</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">FTP</span>.<span class="ruby-identifier">build</span>({<span class="ruby-value">:host</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;ftp.example.com&#39;</span>,
+  <span class="ruby-value">:path</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;ruby/src&#39;</span>})
+<span class="ruby-identifier">uri2</span>.<span class="ruby-identifier">to_s</span>  <span class="ruby-comment"># =&gt; &quot;ftp://ftp.example.com/ruby/src&quot;</span>
+</pre>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="build-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build</span>(<span class="ruby-identifier">args</span>)
+
+  <span class="ruby-comment"># Fix the incoming path to be generic URL syntax</span>
+  <span class="ruby-comment"># FTP path  -&gt;  URL path</span>
+  <span class="ruby-comment"># foo/bar       /foo/bar</span>
+  <span class="ruby-comment"># /foo/bar      /%2Ffoo/bar</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Array</span>)
+    <span class="ruby-identifier">args</span>[<span class="ruby-value">3</span>] = <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">3</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&#39;%2F&#39;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">args</span>[<span class="ruby-value">:path</span>] = <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:path</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&#39;%2F&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">tmp</span> = <span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-identifier">make_components_hash</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">args</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">tmp</span>[<span class="ruby-value">:typecode</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">tmp</span>[<span class="ruby-value">:typecode</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">tmp</span>[<span class="ruby-value">:typecode</span>] = <span class="ruby-constant">TYPECODE_PREFIX</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">tmp</span>[<span class="ruby-value">:typecode</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">tmp</span>[<span class="ruby-value">:path</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tmp</span>[<span class="ruby-value">:typecode</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">super</span>(<span class="ruby-identifier">tmp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(scheme, userinfo, host, port, registry, path, opaque, query, fragment, parser = nil, arg_check = false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-c-new-label-Description">Description<span><a href="#method-c-new-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Creates a new <a href="FTP.html"><code>Bundler::URI::FTP</code></a> object from generic URL components with no syntax checking.</p>
+
+<p>Unlike build(), this method does not escape the path component as required by RFC1738; instead it is treated as per RFC2396.</p>
+
+<p>Arguments are <code>scheme</code>, <code>userinfo</code>, <code>host</code>, <code>port</code>, <code>registry</code>, <code>path</code>, <code>opaque</code>, <code>query</code>, and <code>fragment</code>, in that order.</p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">scheme</span>,
+               <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">registry</span>,
+               <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opaque</span>,
+               <span class="ruby-identifier">query</span>,
+               <span class="ruby-identifier">fragment</span>,
+               <span class="ruby-identifier">parser</span> = <span class="ruby-keyword">nil</span>,
+               <span class="ruby-identifier">arg_check</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidURIError</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>,<span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-identifier">path</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/^%2F/</span>,<span class="ruby-string">&#39;/&#39;</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">registry</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opaque</span>,
+        <span class="ruby-identifier">query</span>, <span class="ruby-identifier">fragment</span>, <span class="ruby-identifier">parser</span>, <span class="ruby-identifier">arg_check</span>)
+  <span class="ruby-ivar">@typecode</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">tmp</span> = <span class="ruby-ivar">@path</span>.<span class="ruby-identifier">index</span>(<span class="ruby-constant">TYPECODE_PREFIX</span>)
+    <span class="ruby-identifier">typecode</span> = <span class="ruby-ivar">@path</span>[<span class="ruby-identifier">tmp</span> <span class="ruby-operator">+</span> <span class="ruby-constant">TYPECODE_PREFIX</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+    <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@path</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">tmp</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>]
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">arg_check</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">typecode</span> = <span class="ruby-identifier">typecode</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_typecode</span>(<span class="ruby-identifier">typecode</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">path</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the path from an <a href="FTP.html"><code>FTP</code></a> <a href="../URI.html"><code>Bundler::URI</code></a>.</p>
+
+<p>RFC 1738 specifically states that the path for an <a href="FTP.html"><code>FTP</code></a> <a href="../URI.html"><code>Bundler::URI</code></a> does not include the / which separates the <a href="../URI.html"><code>Bundler::URI</code></a> path from the <a href="../URI.html"><code>Bundler::URI</code></a> host. Example:</p>
+
+<p><code>ftp://ftp.example.com/pub/ruby</code></p>
+
+<p>The above <a href="../URI.html"><code>Bundler::URI</code></a> indicates that the client should connect to ftp.example.com then cd to pub/ruby from the initial login directory.</p>
+
+<p>If you want to cd to an absolute directory, you must include an escaped / (%2F) in the path. Example:</p>
+
+<p><code>ftp://ftp.example.com/%2Fpub/ruby</code></p>
+
+<p>This method will then return “/pub/ruby”.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="path-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 241</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">path</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@path</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>,<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^%2F/</span>,<span class="ruby-string">&#39;/&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a <a href="../../String.html"><code>String</code></a> representation of the <a href="FTP.html"><code>Bundler::URI::FTP</code></a>.</p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 252</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_s</span>
+  <span class="ruby-identifier">save_path</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@typecode</span>
+    <span class="ruby-identifier">save_path</span> = <span class="ruby-ivar">@path</span>
+    <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-constant">TYPECODE_PREFIX</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@typecode</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">str</span> = <span class="ruby-keyword">super</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@typecode</span>
+    <span class="ruby-ivar">@path</span> = <span class="ruby-identifier">save_path</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">str</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-typecode-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">typecode=</span><span
+            class="method-args">(typecode)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-i-typecode-3D-label-Args">Args<span><a href="#method-i-typecode-3D-label-Args">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>v</code>
+<dd>
+<p><a href="../../String.html"><code>String</code></a></p>
+</dd></dl>
+
+<h2 id="method-i-typecode-3D-label-Description">Description<span><a href="#method-i-typecode-3D-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Public setter for the typecode <code>v</code> (with validation).</p>
+
+<p>See also <a href="FTP.html#method-i-check_typecode"><code>Bundler::URI::FTP.check_typecode</code></a>.</p>
+
+<h2 id="method-i-typecode-3D-label-Usage">Usage<span><a href="#method-i-typecode-3D-label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;bundler/vendor/uri/lib/uri&#39;</span>
+
+<span class="ruby-identifier">uri</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-string">&quot;ftp://john@ftp.example.com/my_file.img&quot;</span>)
+<span class="ruby-comment">#=&gt; #&lt;Bundler::URI::FTP ftp://john@ftp.example.com/my_file.img&gt;</span>
+<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">typecode</span> = <span class="ruby-string">&quot;i&quot;</span>
+<span class="ruby-identifier">uri</span>
+<span class="ruby-comment">#=&gt; #&lt;Bundler::URI::FTP ftp://john@ftp.example.com/my_file.img;type=i&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="typecode-3D-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">typecode=</span>(<span class="ruby-identifier">typecode</span>)
+  <span class="ruby-identifier">check_typecode</span>(<span class="ruby-identifier">typecode</span>)
+  <span class="ruby-identifier">set_typecode</span>(<span class="ruby-identifier">typecode</span>)
+  <span class="ruby-identifier">typecode</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-set_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_path</span><span
+            class="method-args">(v)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Private setter for the path of the <a href="FTP.html"><code>Bundler::URI::FTP</code></a>.</p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="set_path-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_path</span>(<span class="ruby-identifier">v</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-string">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&quot;%2F&quot;</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_typecode" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_typecode</span><span
+            class="method-args">(v)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Private setter for the typecode <code>v</code>.</p>
+
+<p>See also <a href="FTP.html#method-i-typecode-3D"><code>Bundler::URI::FTP.typecode=</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_typecode-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 181</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_typecode</span>(<span class="ruby-identifier">v</span>)
+  <span class="ruby-ivar">@typecode</span> = <span class="ruby-identifier">v</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-check_typecode" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_typecode</span><span
+            class="method-args">(v)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates typecode <code>v</code>, returns <code>true</code> or <code>false</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="check_typecode-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/ftp.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check_typecode</span>(<span class="ruby-identifier">v</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">TYPECODE</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">v</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidComponentError</span>,
+      <span class="ruby-node">&quot;bad typecode(expected #{TYPECODE.join(&#39;, &#39;)}): #{v}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

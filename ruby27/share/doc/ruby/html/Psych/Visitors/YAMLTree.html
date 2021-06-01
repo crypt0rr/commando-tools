@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Psych::Visitors::YAMLTree - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Visitor.html">Psych::Visitors::Visitor</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-create">::create</a>
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-accept">#accept</a>
+    
+    <li ><a href="#method-i-binary-3F">#binary?</a>
+    
+    <li ><a href="#method-i-dump_coder">#dump_coder</a>
+    
+    <li ><a href="#method-i-dump_exception">#dump_exception</a>
+    
+    <li ><a href="#method-i-dump_ivars">#dump_ivars</a>
+    
+    <li ><a href="#method-i-dump_list">#dump_list</a>
+    
+    <li ><a href="#method-i-emit_coder">#emit_coder</a>
+    
+    <li ><a href="#method-i-finish">#finish</a>
+    
+    <li ><a href="#method-i-format_time">#format_time</a>
+    
+    <li ><a href="#method-i-private_iv_get">#private_iv_get</a>
+    
+    <li ><a href="#method-i-push">#push</a>
+    
+    <li ><a href="#method-i-register">#register</a>
+    
+    <li ><a href="#method-i-start">#start</a>
+    
+    <li ><a href="#method-i-tree">#tree</a>
+    
+    <li ><a href="#method-i-visit_Array">#visit_Array</a>
+    
+    <li ><a href="#method-i-visit_BasicObject">#visit_BasicObject</a>
+    
+    <li ><a href="#method-i-visit_BigDecimal">#visit_BigDecimal</a>
+    
+    <li ><a href="#method-i-visit_Class">#visit_Class</a>
+    
+    <li ><a href="#method-i-visit_Complex">#visit_Complex</a>
+    
+    <li ><a href="#method-i-visit_Date">#visit_Date</a>
+    
+    <li ><a href="#method-i-visit_DateTime">#visit_DateTime</a>
+    
+    <li ><a href="#method-i-visit_Delegator">#visit_Delegator</a>
+    
+    <li ><a href="#method-i-visit_Encoding">#visit_Encoding</a>
+    
+    <li ><a href="#method-i-visit_Enumerator">#visit_Enumerator</a>
+    
+    <li ><a href="#method-i-visit_Exception">#visit_Exception</a>
+    
+    <li ><a href="#method-i-visit_FalseClass">#visit_FalseClass</a>
+    
+    <li ><a href="#method-i-visit_Float">#visit_Float</a>
+    
+    <li ><a href="#method-i-visit_Hash">#visit_Hash</a>
+    
+    <li ><a href="#method-i-visit_Integer">#visit_Integer</a>
+    
+    <li ><a href="#method-i-visit_Module">#visit_Module</a>
+    
+    <li ><a href="#method-i-visit_NameError">#visit_NameError</a>
+    
+    <li ><a href="#method-i-visit_NilClass">#visit_NilClass</a>
+    
+    <li ><a href="#method-i-visit_Object">#visit_Object</a>
+    
+    <li ><a href="#method-i-visit_Psych_Omap">#visit_Psych_Omap</a>
+    
+    <li ><a href="#method-i-visit_Psych_Set">#visit_Psych_Set</a>
+    
+    <li ><a href="#method-i-visit_Range">#visit_Range</a>
+    
+    <li ><a href="#method-i-visit_Rational">#visit_Rational</a>
+    
+    <li ><a href="#method-i-visit_Regexp">#visit_Regexp</a>
+    
+    <li ><a href="#method-i-visit_String">#visit_String</a>
+    
+    <li ><a href="#method-i-visit_Struct">#visit_Struct</a>
+    
+    <li ><a href="#method-i-visit_Symbol">#visit_Symbol</a>
+    
+    <li ><a href="#method-i-visit_Time">#visit_Time</a>
+    
+    <li ><a href="#method-i-visit_TrueClass">#visit_TrueClass</a>
+    
+    <li ><a href="#method-i-visit_array_subclass">#visit_array_subclass</a>
+    
+    <li ><a href="#method-i-visit_hash_subclass">#visit_hash_subclass</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Psych::Visitors::YAMLTree">
+  <h1 id="class-Psych::Visitors::YAMLTree" class="class">
+    class Psych::Visitors::YAMLTree
+  </h1>
+
+  <section class="description">
+    
+<p><a href="YAMLTree.html"><code>YAMLTree</code></a> builds a YAML ast given a Ruby object.  For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">builder</span> = <span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">Visitors</span><span class="ruby-operator">::</span><span class="ruby-constant">YAMLTree</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">builder</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:foo</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;bar&#39;</span> }
+<span class="ruby-identifier">builder</span>.<span class="ruby-identifier">tree</span> <span class="ruby-comment"># =&gt; #&lt;Psych::Nodes::Stream .. }</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-finished" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">finished</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-finished-3F" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">finished?</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-started" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">started</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-started-3F" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">started?</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">create</span> <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">emitter</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">emitter</span>      <span class="ruby-operator">||=</span> <span class="ruby-constant">TreeBuilder</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">class_loader</span> = <span class="ruby-constant">ClassLoader</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">ss</span>           = <span class="ruby-constant">ScalarScanner</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">class_loader</span>
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">emitter</span>, <span class="ruby-identifier">ss</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(emitter, ss, options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../../BasicObject.html#method-c-new"><code>BasicObject::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">emitter</span>, <span class="ruby-identifier">ss</span>, <span class="ruby-identifier">options</span>
+  <span class="ruby-keyword">super</span>()
+  <span class="ruby-ivar">@started</span>    = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@finished</span>   = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@emitter</span>    = <span class="ruby-identifier">emitter</span>
+  <span class="ruby-ivar">@st</span>         = <span class="ruby-constant">Registrar</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@ss</span>         = <span class="ruby-identifier">ss</span>
+  <span class="ruby-ivar">@options</span>    = <span class="ruby-identifier">options</span>
+  <span class="ruby-ivar">@line_width</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:line_width</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@line_width</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@line_width</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@line_width</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1</span>
+      <span class="ruby-comment"># Treat -1 as unlimited line-width, same as libyaml does.</span>
+      <span class="ruby-ivar">@line_width</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">fail</span>(<span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Invalid line_width #{@line_width}, must be non-negative or -1 for unlimited.&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@coders</span>     = []
+
+  <span class="ruby-ivar">@dispatch_cache</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">method</span> = <span class="ruby-node">&quot;visit_#{(klass.name || &#39;&#39;).split(&#39;::&#39;).join(&#39;_&#39;)}&quot;</span>
+
+    <span class="ruby-identifier">method</span> = <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">superclass</span>]
+
+    <span class="ruby-identifier">raise</span>(<span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;Can&#39;t dump #{target.class}&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">method</span>
+
+    <span class="ruby-identifier">h</span>[<span class="ruby-identifier">klass</span>] = <span class="ruby-identifier">method</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;&lt;</span><span
+            class="method-args">(object)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="YAMLTree.html#method-i-push">push</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-accept" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">accept</span><span
+            class="method-args">(target)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="accept-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">accept</span> <span class="ruby-identifier">target</span>
+  <span class="ruby-comment"># return any aliases we find</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">target</span>
+    <span class="ruby-identifier">oid</span>         = <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">id_for</span> <span class="ruby-identifier">target</span>
+    <span class="ruby-identifier">node</span>        = <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">node_for</span> <span class="ruby-identifier">target</span>
+    <span class="ruby-identifier">anchor</span>      = <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">node</span>.<span class="ruby-identifier">anchor</span> = <span class="ruby-identifier">anchor</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">alias</span> <span class="ruby-identifier">anchor</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">target</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:encode_with</span>)
+    <span class="ruby-identifier">dump_coder</span> <span class="ruby-identifier">target</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">send</span>(<span class="ruby-ivar">@dispatch_cache</span>[<span class="ruby-identifier">target</span>.<span class="ruby-identifier">class</span>], <span class="ruby-identifier">target</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finish" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finish</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="finish-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">finish</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_stream</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@finished</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-push" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">push</span><span
+            class="method-args">(object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="push-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">push</span> <span class="ruby-identifier">object</span>
+  <span class="ruby-identifier">start</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">started?</span>
+  <span class="ruby-identifier">version</span> = []
+  <span class="ruby-identifier">version</span> = [<span class="ruby-value">1</span>,<span class="ruby-value">1</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:header</span>]
+
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:version</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">version</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:version</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+    <span class="ruby-identifier">version</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:version</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;.&#39;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span> }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">version</span> = [<span class="ruby-value">1</span>,<span class="ruby-value">1</span>]
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">key?</span> <span class="ruby-value">:version</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_document</span> <span class="ruby-identifier">version</span>, [], <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">accept</span> <span class="ruby-identifier">object</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_document</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">streaming?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="YAMLTree.html#method-i-3C-3C">&lt;&lt;</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start</span><span
+            class="method-args">(encoding = Nodes::Stream::UTF8)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">start</span> <span class="ruby-identifier">encoding</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Stream</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF8</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_stream</span>(<span class="ruby-identifier">encoding</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@started</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tree" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tree</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="tree-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tree</span>
+  <span class="ruby-identifier">finish</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">finished?</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">root</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Array</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Array-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 349</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Array</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-operator">::</span><span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">visit_Enumerator</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">visit_array_subclass</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_BasicObject" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_BasicObject</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_BasicObject-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 375</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_BasicObject</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">tag</span> = <span class="ruby-constant">Psych</span>.<span class="ruby-identifier">dump_tags</span>[<span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span>]
+  <span class="ruby-identifier">tag</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;!ruby/marshalable:#{o.class.name}&quot;</span>
+
+  <span class="ruby-identifier">map</span> = <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+  <span class="ruby-identifier">register</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">map</span>)
+
+  <span class="ruby-identifier">o</span>.<span class="ruby-identifier">marshal_dump</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-value">:accept</span>))
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_BigDecimal" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_BigDecimal</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_BigDecimal-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 251</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_BigDecimal</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">_dump</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/object:BigDecimal&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Class</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Class-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 312</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Class</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;can&#39;t dump anonymous class: #{o}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>(<span class="ruby-identifier">o</span>.<span class="ruby-identifier">name</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/class&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_QUOTED</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Complex" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Complex</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Complex-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Complex</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/object:Complex&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+
+  [<span class="ruby-string">&#39;real&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">real</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-string">&#39;image&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">imag</span>.<span class="ruby-identifier">to_s</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">m</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Date" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Date</span><span
+            class="method-args">(o)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="YAMLTree.html#method-i-visit_Integer">visit_Integer</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-visit_DateTime" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_DateTime</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_DateTime-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_DateTime</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">formatted</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">offset</span>.<span class="ruby-identifier">zero?</span>
+                <span class="ruby-identifier">o</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%Y-%m-%d %H:%M:%S.%9N Z&quot;</span>.<span class="ruby-identifier">freeze</span>)
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">o</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%Y-%m-%d %H:%M:%S.%9N %:z&quot;</span>.<span class="ruby-identifier">freeze</span>)
+              <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">tag</span> = <span class="ruby-string">&#39;!ruby/object:DateTime&#39;</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>(<span class="ruby-identifier">formatted</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Delegator" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Delegator</span><span
+            class="method-args">(o)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="YAMLTree.html#method-i-visit_Object">visit_Object</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-visit_Encoding" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Encoding</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Encoding-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Encoding</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">tag</span> = <span class="ruby-string">&quot;!ruby/encoding&quot;</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">name</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Enumerator" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Enumerator</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Enumerator-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 357</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Enumerator</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_sequence</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Sequence</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+  <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">accept</span> <span class="ruby-identifier">c</span> }
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_sequence</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Exception" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Exception</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Exception-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Exception</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">dump_exception</span> <span class="ruby-identifier">o</span>, <span class="ruby-identifier">private_iv_get</span>(<span class="ruby-identifier">o</span>, <span class="ruby-string">&#39;mesg&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_FalseClass" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_FalseClass</span><span
+            class="method-args">(o)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="YAMLTree.html#method-i-visit_Integer">visit_Integer</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-visit_Float" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Float</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Float-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 240</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Float</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">nan?</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-string">&#39;.nan&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">infinite?</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>((<span class="ruby-identifier">o</span>.<span class="ruby-identifier">infinite?</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;.inf&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;-.inf&#39;</span>),
+      <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Hash</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Hash-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 325</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Hash</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-operator">::</span><span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">register</span>(<span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>))
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">k</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">v</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">visit_hash_subclass</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Integer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Integer</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Integer-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 233</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Integer</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="YAMLTree.html#method-i-visit_TrueClass">visit_TrueClass</a>, <a href="YAMLTree.html#method-i-visit_FalseClass">visit_FalseClass</a>, <a href="YAMLTree.html#method-i-visit_Date">visit_Date</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Module" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Module</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Module-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 307</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Module</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;can&#39;t dump anonymous module: #{o}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>(<span class="ruby-identifier">o</span>.<span class="ruby-identifier">name</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/module&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_QUOTED</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_NameError" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_NameError</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_NameError-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_NameError</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">dump_exception</span> <span class="ruby-identifier">o</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_NilClass" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_NilClass</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_NilClass-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 363</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_NilClass</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>(<span class="ruby-string">&#39;&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;tag:yaml.org,2002:null&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Object</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Object-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Object</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">tag</span> = <span class="ruby-constant">Psych</span>.<span class="ruby-identifier">dump_tags</span>[<span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span>]
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tag</span>
+    <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Object</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">tag</span>   = [<span class="ruby-string">&#39;!ruby/object&#39;</span>, <span class="ruby-identifier">klass</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;:&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">map</span> = <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+  <span class="ruby-identifier">register</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">map</span>)
+
+  <span class="ruby-identifier">dump_ivars</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="YAMLTree.html#method-i-visit_Delegator">visit_Delegator</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Psych_Omap" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Psych_Omap</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Psych_Omap-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Psych_Omap</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">seq</span> = <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_sequence</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;tag:yaml.org,2002:omap&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Sequence</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+  <span class="ruby-identifier">register</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">seq</span>)
+
+  <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">visit_Hash</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">v</span> }
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_sequence</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Psych_Set" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Psych_Set</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Psych_Set-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 338</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Psych_Set</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">register</span>(<span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!set&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>))
+
+  <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-identifier">k</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-identifier">v</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Range" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Range</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Range-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 317</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Range</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/range&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+  [<span class="ruby-string">&#39;begin&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">begin</span>, <span class="ruby-string">&#39;end&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">end</span>, <span class="ruby-string">&#39;excl&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">exclude_end?</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-identifier">m</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Rational" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Rational</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Rational-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 210</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Rational</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/object:Rational&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+
+  [
+    <span class="ruby-string">&#39;denominator&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">denominator</span>.<span class="ruby-identifier">to_s</span>,
+    <span class="ruby-string">&#39;numerator&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">numerator</span>.<span class="ruby-identifier">to_s</span>
+  ].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">m</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Regexp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Regexp</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Regexp-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Regexp</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>(<span class="ruby-identifier">o</span>.<span class="ruby-identifier">inspect</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/regexp&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_String" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_String</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_String-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 255</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_String</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">plain</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">quote</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">style</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">PLAIN</span>
+  <span class="ruby-identifier">tag</span>   = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">binary?</span>(<span class="ruby-identifier">o</span>)
+    <span class="ruby-identifier">o</span>     = [<span class="ruby-identifier">o</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;m0&#39;</span>)
+    <span class="ruby-identifier">tag</span>   = <span class="ruby-string">&#39;!binary&#39;</span> <span class="ruby-comment"># FIXME: change to below when syck is removed</span>
+    <span class="ruby-comment">#tag   = &#39;tag:yaml.org,2002:binary&#39;</span>
+    <span class="ruby-identifier">style</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">LITERAL</span>
+    <span class="ruby-identifier">plain</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">quote</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">o</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\n(?!\Z)/</span>  <span class="ruby-comment"># match \n except blank line at the end of string</span>
+    <span class="ruby-identifier">style</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">LITERAL</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">o</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;&lt;&lt;&#39;</span>
+    <span class="ruby-identifier">style</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_QUOTED</span>
+    <span class="ruby-identifier">tag</span>   = <span class="ruby-string">&#39;tag:yaml.org,2002:str&#39;</span>
+    <span class="ruby-identifier">plain</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">quote</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@line_width</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@line_width</span>
+    <span class="ruby-identifier">style</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">FOLDED</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">o</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^[^[:word:]][^&quot;]*$/</span>
+    <span class="ruby-identifier">style</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">DOUBLE_QUOTED</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-keyword">not</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@ss</span>.<span class="ruby-identifier">tokenize</span>(<span class="ruby-identifier">o</span>) <span class="ruby-keyword">or</span> <span class="ruby-regexp">/\A0[0-7]*[89]/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">o</span>
+    <span class="ruby-identifier">style</span> = <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_QUOTED</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">is_primitive</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-operator">::</span><span class="ruby-constant">String</span>
+  <span class="ruby-identifier">ivars</span> = <span class="ruby-identifier">is_primitive</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variables</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ivars</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">is_primitive</span>
+      <span class="ruby-identifier">tag</span> = <span class="ruby-node">&quot;!ruby/string:#{o.class}&quot;</span>
+      <span class="ruby-identifier">plain</span> = <span class="ruby-keyword">false</span>
+      <span class="ruby-identifier">quote</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">o</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">plain</span>, <span class="ruby-identifier">quote</span>, <span class="ruby-identifier">style</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">maptag</span> = <span class="ruby-string">&#39;!ruby/string&#39;</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">maptag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;:#{o.class}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-operator">::</span><span class="ruby-constant">String</span>
+
+    <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">maptag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-string">&#39;str&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">o</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">plain</span>, <span class="ruby-identifier">quote</span>, <span class="ruby-identifier">style</span>
+
+    <span class="ruby-identifier">dump_ivars</span> <span class="ruby-identifier">o</span>
+
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Struct" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Struct</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Struct-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Struct</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">tag</span> = [<span class="ruby-string">&#39;!ruby/struct&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;:&#39;</span>)
+
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+  <span class="ruby-identifier">o</span>.<span class="ruby-identifier">members</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-identifier">o</span>[<span class="ruby-identifier">member</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">dump_ivars</span> <span class="ruby-identifier">o</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Symbol" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Symbol</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Symbol-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 367</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Symbol</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;!ruby/symbol&#39;</span>, <span class="ruby-keyword">false</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-node">&quot;:#{o}&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_Time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_Time</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_Time-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 205</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_Time</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">formatted</span> = <span class="ruby-identifier">format_time</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>(<span class="ruby-identifier">formatted</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_TrueClass" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_TrueClass</span><span
+            class="method-args">(o)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="YAMLTree.html#method-i-visit_Integer">visit_Integer</a>
+        </div>
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-binary-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">binary?</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="binary-3F-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 389</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">binary?</span> <span class="ruby-identifier">string</span>
+  <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ASCII_8BIT</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">string</span>.<span class="ruby-identifier">ascii_only?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_coder" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_coder</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_coder-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 496</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dump_coder</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-ivar">@coders</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">tag</span> = <span class="ruby-constant">Psych</span>.<span class="ruby-identifier">dump_tags</span>[<span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span>]
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tag</span>
+    <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Object</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">tag</span>   = [<span class="ruby-string">&#39;!ruby/object&#39;</span>, <span class="ruby-identifier">klass</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;:&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">c</span> = <span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">Coder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tag</span>)
+  <span class="ruby-identifier">o</span>.<span class="ruby-identifier">encode_with</span>(<span class="ruby-identifier">c</span>)
+  <span class="ruby-identifier">emit_coder</span> <span class="ruby-identifier">c</span>, <span class="ruby-identifier">o</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_exception" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_exception</span><span
+            class="method-args">(o, msg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_exception-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 465</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dump_exception</span> <span class="ruby-identifier">o</span>, <span class="ruby-identifier">msg</span>
+  <span class="ruby-identifier">tag</span> = [<span class="ruby-string">&#39;!ruby/exception&#39;</span>, <span class="ruby-identifier">o</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>].<span class="ruby-identifier">join</span> <span class="ruby-string">&#39;:&#39;</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span> <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">msg</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-string">&#39;message&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-identifier">msg</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-string">&#39;backtrace&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-identifier">accept</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">backtrace</span>
+
+  <span class="ruby-identifier">dump_ivars</span> <span class="ruby-identifier">o</span>
+
+  <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_ivars" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_ivars</span><span
+            class="method-args">(target)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_ivars-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 531</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dump_ivars</span> <span class="ruby-identifier">target</span>
+  <span class="ruby-identifier">target</span>.<span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">iv</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span>(<span class="ruby-node">&quot;#{iv.to_s.sub(/^@/, &#39;&#39;)}&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>)
+    <span class="ruby-identifier">accept</span> <span class="ruby-identifier">target</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">iv</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_list</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_list-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 462</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dump_list</span> <span class="ruby-identifier">o</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-emit_coder" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">emit_coder</span><span
+            class="method-args">(c, o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="emit_coder-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 509</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">emit_coder</span> <span class="ruby-identifier">c</span>, <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">type</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:scalar</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">scalar</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">scalar</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">nil?</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Scalar</span><span class="ruby-operator">::</span><span class="ruby-constant">ANY</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:seq</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_sequence</span> <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">nil?</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Sequence</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>
+    <span class="ruby-identifier">c</span>.<span class="ruby-identifier">seq</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">thing</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">thing</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_sequence</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:map</span>
+    <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">implicit</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">style</span>)
+    <span class="ruby-identifier">c</span>.<span class="ruby-identifier">map</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">k</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">v</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:object</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">object</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-format_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">format_time</span><span
+            class="method-args">(time)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="format_time-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 483</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">format_time</span> <span class="ruby-identifier">time</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">utc?</span>
+    <span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%Y-%m-%d %H:%M:%S.%9N Z&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%Y-%m-%d %H:%M:%S.%9N %:z&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-private_iv_get" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            private_iv_get(target, prop)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Get the private instance variable <code>prop</code> from <code>target</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="private_iv_get-source">
+            <pre>static VALUE private_iv_get(VALUE self, VALUE target, VALUE prop)
+{
+    return rb_attr_get(target, rb_intern(StringValueCStr(prop)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-register" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register</span><span
+            class="method-args">(target, yaml_obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="register-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 491</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">register</span> <span class="ruby-identifier">target</span>, <span class="ruby-identifier">yaml_obj</span>
+  <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">register</span> <span class="ruby-identifier">target</span>, <span class="ruby-identifier">yaml_obj</span>
+  <span class="ruby-identifier">yaml_obj</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_array_subclass" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_array_subclass</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_array_subclass-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 393</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_array_subclass</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">tag</span> = <span class="ruby-node">&quot;!ruby/array:#{o.class}&quot;</span>
+  <span class="ruby-identifier">ivars</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variables</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ivars</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">node</span> = <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_sequence</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Sequence</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+    <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-identifier">node</span>
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">accept</span> <span class="ruby-identifier">c</span> }
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_sequence</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">node</span> = <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Sequence</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+    <span class="ruby-identifier">register</span> <span class="ruby-identifier">o</span>, <span class="ruby-identifier">node</span>
+
+    <span class="ruby-comment"># Dump the internal list</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-string">&#39;internal&#39;</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_sequence</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Sequence</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">accept</span> <span class="ruby-identifier">c</span> }
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_sequence</span>
+
+    <span class="ruby-comment"># Dump the ivars</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-string">&#39;ivars&#39;</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Sequence</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+    <span class="ruby-identifier">ivars</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ivar</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">ivar</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">ivar</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-visit_hash_subclass" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">visit_hash_subclass</span><span
+            class="method-args">(o)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="visit_hash_subclass-source">
+            <pre><span class="ruby-comment"># File ext/psych/lib/psych/visitors/yaml_tree.rb, line 424</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visit_hash_subclass</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-identifier">ivars</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variables</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ivars</span>.<span class="ruby-identifier">any?</span>
+    <span class="ruby-identifier">tag</span> = <span class="ruby-node">&quot;!ruby/hash-with-ivars:#{o.class}&quot;</span>
+    <span class="ruby-identifier">node</span> = <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+    <span class="ruby-identifier">register</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">node</span>)
+
+    <span class="ruby-comment"># Dump the ivars</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-string">&#39;ivars&#39;</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span> <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ivar</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">ivar</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">ivar</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+
+    <span class="ruby-comment"># Dump the elements</span>
+    <span class="ruby-identifier">accept</span> <span class="ruby-string">&#39;elements&#39;</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span> <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">true</span>, <span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">k</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">v</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">tag</span> = <span class="ruby-node">&quot;!ruby/hash:#{o.class}&quot;</span>
+    <span class="ruby-identifier">node</span> = <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">start_mapping</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-keyword">false</span>, <span class="ruby-constant">Psych</span><span class="ruby-operator">::</span><span class="ruby-constant">Nodes</span><span class="ruby-operator">::</span><span class="ruby-constant">Mapping</span><span class="ruby-operator">::</span><span class="ruby-constant">BLOCK</span>)
+    <span class="ruby-identifier">register</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">node</span>)
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">k</span>
+      <span class="ruby-identifier">accept</span> <span class="ruby-identifier">v</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@emitter</span>.<span class="ruby-identifier">end_mapping</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

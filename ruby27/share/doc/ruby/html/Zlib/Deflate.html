@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Zlib::Deflate - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ZStream.html">Zlib::ZStream</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-deflate">::deflate</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li ><a href="#method-i-deflate">#deflate</a>
+    
+    <li ><a href="#method-i-flush">#flush</a>
+    
+    <li ><a href="#method-i-initialize_copy">#initialize_copy</a>
+    
+    <li ><a href="#method-i-params">#params</a>
+    
+    <li ><a href="#method-i-set_dictionary">#set_dictionary</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Zlib::Deflate">
+  <h1 id="class-Zlib::Deflate" class="class">
+    class Zlib::Deflate
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Deflate.html"><code>Zlib::Deflate</code></a> is the class for compressing data.  See <a href="ZStream.html"><code>Zlib::ZStream</code></a> for more information.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-deflate" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            deflate(string[, level])
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Zlib::Deflate.deflate(string[, level])
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Compresses the given <code>string</code>. Valid values of level are Zlib::NO_COMPRESSION, Zlib::BEST_SPEED, Zlib::BEST_COMPRESSION, Zlib::DEFAULT_COMPRESSION, or an integer from 0 to 9.</p>
+
+<p>This method is almost equivalent to the following code:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deflate</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">level</span>)
+  <span class="ruby-identifier">z</span> = <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Deflate</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">level</span>)
+  <span class="ruby-identifier">dst</span> = <span class="ruby-identifier">z</span>.<span class="ruby-identifier">deflate</span>(<span class="ruby-identifier">string</span>, <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">FINISH</span>)
+  <span class="ruby-identifier">z</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-identifier">dst</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>See also <a href="../Zlib.html#method-c-inflate"><code>Zlib.inflate</code></a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="deflate-source">
+            <pre>static VALUE
+rb_deflate_s_deflate(int argc, VALUE *argv, VALUE klass)
+{
+    struct zstream z;
+    VALUE src, level, dst, args[2];
+    int err, lev;
+
+    rb_scan_args(argc, argv, &quot;11&quot;, &amp;src, &amp;level);
+
+    lev = ARG_LEVEL(level);
+    StringValue(src);
+    zstream_init_deflate(&amp;z);
+    err = deflateInit(&amp;z.stream, lev);
+    if (err != Z_OK) {
+        raise_zlib_error(err, z.stream.msg);
+    }
+    ZSTREAM_READY(&amp;z);
+
+    args[0] = (VALUE)&amp;z;
+    args[1] = src;
+    dst = rb_ensure(deflate_run, (VALUE)args, zstream_ensure_end, (VALUE)&amp;z);
+
+    return dst;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            Zlib::Deflate.new(level=DEFAULT_COMPRESSION, window_bits=MAX_WBITS, mem_level=DEF_MEM_LEVEL, strategy=DEFAULT_STRATEGY)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new deflate stream for compression. If a given argument is nil, the default value of that argument is used.</p>
+
+<p>The <code>level</code> sets the compression level for the deflate stream between 0 (no compression) and 9 (best compression). The following constants have been defined to make code more readable:</p>
+<ul><li>
+<p>Zlib::DEFAULT_COMPRESSION</p>
+</li><li>
+<p>Zlib::NO_COMPRESSION</p>
+</li><li>
+<p>Zlib::BEST_SPEED</p>
+</li><li>
+<p>Zlib::BEST_COMPRESSION</p>
+</li></ul>
+
+<p>See <a href="http://www.zlib.net/manual.html#Constants">www.zlib.net/manual.html#Constants</a> for further information.</p>
+
+<p>The <code>window_bits</code> sets the size of the history buffer and should be between 8 and 15.  Larger values of this parameter result in better compression at the expense of memory usage.</p>
+
+<p>The <code>mem_level</code> specifies how much memory should be allocated for the internal compression state.  1 uses minimum memory but is slow and reduces compression ratio while 9 uses maximum memory for optimal speed.  The default value is 8. Two constants are defined:</p>
+<ul><li>
+<p>Zlib::DEF_MEM_LEVEL</p>
+</li><li>
+<p>Zlib::MAX_MEM_LEVEL</p>
+</li></ul>
+
+<p>The <code>strategy</code> sets the deflate compression strategy.  The following strategies are available:</p>
+<dl class="rdoc-list note-list"><dt>Zlib::DEFAULT_STRATEGY
+<dd>
+<p>For normal data</p>
+</dd><dt>Zlib::FILTERED
+<dd>
+<p>For data produced by a filter or predictor</p>
+</dd><dt>Zlib::FIXED
+<dd>
+<p>Prevents dynamic Huffman codes</p>
+</dd><dt>Zlib::HUFFMAN_ONLY
+<dd>
+<p>Prevents string matching</p>
+</dd><dt>Zlib::RLE
+<dd>
+<p>Designed for better compression of PNG image data</p>
+</dd></dl>
+
+<p>See the constants for further description.</p>
+
+<h2 id="method-c-new-label-Examples">Examples<span><a href="#method-c-new-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="method-c-new-label-Basic">Basic<span><a href="#method-c-new-label-Basic">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">open</span> <span class="ruby-string">&quot;compressed.file&quot;</span>, <span class="ruby-string">&quot;w+&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">io</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Deflate</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">deflate</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&quot;big.file&quot;</span>))
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h3 id="method-c-new-label-Custom+compression">Custom compression<span><a href="#method-c-new-label-Custom+compression">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">open</span> <span class="ruby-string">&quot;compressed.file&quot;</span>, <span class="ruby-string">&quot;w+&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">compressed_io</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">deflate</span> = <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Deflate</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">BEST_COMPRESSION</span>,
+                              <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX_WBITS</span>,
+                              <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX_MEM_LEVEL</span>,
+                              <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">HUFFMAN_ONLY</span>)
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">open</span> <span class="ruby-string">&quot;big.file&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">big_io</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">until</span> <span class="ruby-identifier">big_io</span>.<span class="ruby-identifier">eof?</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">compressed_io</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">zd</span>.<span class="ruby-identifier">deflate</span>(<span class="ruby-identifier">big_io</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">16384</span>))
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">deflate</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>While this example will work, for best optimization review the flags for your specific time, memory usage and output space requirements.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rb_deflate_initialize(int argc, VALUE *argv, VALUE obj)
+{
+    struct zstream *z;
+    VALUE level, wbits, memlevel, strategy;
+    int err;
+
+    rb_scan_args(argc, argv, &quot;04&quot;, &amp;level, &amp;wbits, &amp;memlevel, &amp;strategy);
+    TypedData_Get_Struct(obj, struct zstream, &amp;zstream_data_type, z);
+
+    err = deflateInit2(&amp;z-&gt;stream, ARG_LEVEL(level), Z_DEFLATED,
+                       ARG_WBITS(wbits), ARG_MEMLEVEL(memlevel),
+                       ARG_STRATEGY(strategy));
+    if (err != Z_OK) {
+        raise_zlib_error(err, z-&gt;stream.msg);
+    }
+    ZSTREAM_READY(z);
+
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-3C-3C" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            &lt;&lt; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Inputs <code>string</code> into the deflate stream just like <a href="Deflate.html#method-i-deflate"><code>Zlib::Deflate#deflate</code></a>, but returns the <a href="Deflate.html"><code>Zlib::Deflate</code></a> object itself.  The output from the stream is preserved in output buffer.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3C-3C-source">
+            <pre>static VALUE
+rb_deflate_addstr(VALUE obj, VALUE src)
+{
+    do_deflate(get_zstream(obj), src, Z_NO_FLUSH);
+    return obj;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-deflate" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            deflate(string, flush = Zlib::NO_FLUSH)                 &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            deflate(string, flush = Zlib::NO_FLUSH) { |chunk| ... } &rarr; nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Inputs <code>string</code> into the deflate stream and returns the output from the stream.  On calling this method, both the input and the output buffers of the stream are flushed.  If <code>string</code> is nil, this method finishes the stream, just like <a href="ZStream.html#method-i-finish"><code>Zlib::ZStream#finish</code></a>.</p>
+
+<p>If a block is given consecutive deflated chunks from the <code>string</code> are yielded to the block and <code>nil</code> is returned.</p>
+
+<p>The <code>flush</code> parameter specifies the flush mode.  The following constants may be used:</p>
+<dl class="rdoc-list note-list"><dt>Zlib::NO_FLUSH
+<dd>
+<p>The default</p>
+</dd><dt>Zlib::SYNC_FLUSH
+<dd>
+<p>Flushes the output to a byte boundary</p>
+</dd><dt>Zlib::FULL_FLUSH
+<dd>
+<p>SYNC_FLUSH + resets the compression state</p>
+</dd><dt>Zlib::FINISH
+<dd>
+<p>Pending input is processed, pending output is flushed.</p>
+</dd></dl>
+
+<p>See the constants for further description.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="deflate-source">
+            <pre>static VALUE
+rb_deflate_deflate(int argc, VALUE *argv, VALUE obj)
+{
+    struct zstream *z = get_zstream(obj);
+    VALUE src, flush;
+
+    rb_scan_args(argc, argv, &quot;11&quot;, &amp;src, &amp;flush);
+    do_deflate(z, src, ARG_FLUSH(flush));
+
+    return zstream_detach_buffer(z);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flush" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flush(flush = Zlib::SYNC_FLUSH)                 &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            flush(flush = Zlib::SYNC_FLUSH) { |chunk| ... } &rarr; nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>This method is equivalent to <code>deflate(&#39;&#39;, flush)</code>. This method is just provided to improve the readability of your Ruby program.  If a block is given chunks of deflate output are yielded to the block until the buffer is flushed.</p>
+
+<p>See <a href="Deflate.html#method-i-deflate"><code>Zlib::Deflate#deflate</code></a> for detail on the <code>flush</code> constants NO_FLUSH, SYNC_FLUSH, FULL_FLUSH and FINISH.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="flush-source">
+            <pre>static VALUE
+rb_deflate_flush(int argc, VALUE *argv, VALUE obj)
+{
+    struct zstream *z = get_zstream(obj);
+    VALUE v_flush;
+    int flush;
+
+    rb_scan_args(argc, argv, &quot;01&quot;, &amp;v_flush);
+    flush = FIXNUMARG(v_flush, Z_SYNC_FLUSH);
+    if (flush != Z_NO_FLUSH) {  /* prevent Z_BUF_ERROR */
+        zstream_run(z, (Bytef*)&quot;&quot;, 0, flush);
+    }
+
+    return zstream_detach_buffer(z);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initialize_copy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_copy</span><span
+            class="method-args">(p1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Duplicates the deflate stream.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_copy-source">
+            <pre>static VALUE
+rb_deflate_init_copy(VALUE self, VALUE orig)
+{
+    struct zstream *z1, *z2;
+    int err;
+
+    TypedData_Get_Struct(self, struct zstream, &amp;zstream_data_type, z1);
+    z2 = get_zstream(orig);
+
+    if (z1 == z2) return self;
+    err = deflateCopy(&amp;z1-&gt;stream, &amp;z2-&gt;stream);
+    if (err != Z_OK) {
+        raise_zlib_error(err, 0);
+    }
+    z1-&gt;input = NIL_P(z2-&gt;input) ? Qnil : rb_str_dup(z2-&gt;input);
+    z1-&gt;buf   = NIL_P(z2-&gt;buf)   ? Qnil : rb_str_dup(z2-&gt;buf);
+    z1-&gt;flags = z2-&gt;flags;
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-params" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            params(level, strategy)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Changes the parameters of the deflate stream to allow changes between different types of data that require different types of compression.  Any unprocessed data is flushed before changing the params.</p>
+
+<p>See <a href="Deflate.html#method-c-new"><code>Zlib::Deflate.new</code></a> for a description of <code>level</code> and <code>strategy</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="params-source">
+            <pre>static VALUE
+rb_deflate_params(VALUE obj, VALUE v_level, VALUE v_strategy)
+{
+    struct zstream *z = get_zstream(obj);
+    int level, strategy;
+    int err;
+    uInt n;
+    long filled;
+
+    level = ARG_LEVEL(v_level);
+    strategy = ARG_STRATEGY(v_strategy);
+
+    n = z-&gt;stream.avail_out;
+    err = deflateParams(&amp;z-&gt;stream, level, strategy);
+    filled = n - z-&gt;stream.avail_out;
+    while (err == Z_BUF_ERROR) {
+        rb_warning(&quot;deflateParams() returned Z_BUF_ERROR&quot;);
+        zstream_expand_buffer(z);
+        rb_str_set_len(z-&gt;buf, RSTRING_LEN(z-&gt;buf) + filled);
+        n = z-&gt;stream.avail_out;
+        err = deflateParams(&amp;z-&gt;stream, level, strategy);
+        filled = n - z-&gt;stream.avail_out;
+    }
+    if (err != Z_OK) {
+        raise_zlib_error(err, z-&gt;stream.msg);
+    }
+    rb_str_set_len(z-&gt;buf, RSTRING_LEN(z-&gt;buf) + filled);
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_dictionary" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            set_dictionary(string)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets the preset dictionary and returns <code>string</code>. This method is available just only after <a href="Deflate.html#method-c-new"><code>Zlib::Deflate.new</code></a> or <a href="ZStream.html#method-i-reset"><code>Zlib::ZStream#reset</code></a> method was called. See zlib.h for details.</p>
+
+<p>Can raise errors of Z_STREAM_ERROR if a parameter is invalid (such as NULL dictionary) or the stream state is inconsistent, Z_DATA_ERROR if the given dictionary doesn&#39;t match the expected one (incorrect adler32 value)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_dictionary-source">
+            <pre>static VALUE
+rb_deflate_set_dictionary(VALUE obj, VALUE dic)
+{
+    struct zstream *z = get_zstream(obj);
+    VALUE src = dic;
+    int err;
+
+    StringValue(src);
+    err = deflateSetDictionary(&amp;z-&gt;stream,
+                               (Bytef*)RSTRING_PTR(src), RSTRING_LENINT(src));
+    if (err != Z_OK) {
+        raise_zlib_error(err, z-&gt;stream.msg);
+    }
+
+    return dic;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

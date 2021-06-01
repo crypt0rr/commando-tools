@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::URI::RFC2396_Parser - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="RFC2396_REGEXP.html">Bundler::URI::RFC2396_REGEXP</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-convert_to_uri">#convert_to_uri</a>
+    
+    <li ><a href="#method-i-escape">#escape</a>
+    
+    <li ><a href="#method-i-extract">#extract</a>
+    
+    <li ><a href="#method-i-initialize_pattern">#initialize_pattern</a>
+    
+    <li ><a href="#method-i-initialize_regexp">#initialize_regexp</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-join">#join</a>
+    
+    <li ><a href="#method-i-make_regexp">#make_regexp</a>
+    
+    <li ><a href="#method-i-parse">#parse</a>
+    
+    <li ><a href="#method-i-split">#split</a>
+    
+    <li ><a href="#method-i-unescape">#unescape</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::URI::RFC2396_Parser">
+  <h1 id="class-Bundler::URI::RFC2396_Parser" class="class">
+    class Bundler::URI::RFC2396_Parser
+  </h1>
+
+  <section class="description">
+    
+<p><a href="../../Class.html"><code>Class</code></a> that parses String&#39;s into Bundler::URI&#39;s.</p>
+
+<p>It contains a <a href="../../Hash.html"><code>Hash</code></a> set of patterns and Regexp&#39;s that match and validate.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-pattern" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">pattern</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The <a href="../../Hash.html"><code>Hash</code></a> of patterns.</p>
+
+<p>See also <a href="RFC2396_Parser.html#method-i-initialize_pattern"><code>Bundler::URI::Parser.initialize_pattern</code></a>.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-regexp" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">regexp</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The <a href="../../Hash.html"><code>Hash</code></a> of <a href="../../Regexp.html"><code>Regexp</code></a>.</p>
+
+<p>See also <a href="RFC2396_Parser.html#method-i-initialize_regexp"><code>Bundler::URI::Parser.initialize_regexp</code></a>.</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(opts = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-c-new-label-Synopsis">Synopsis<span><a href="#method-c-new-label-Synopsis">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>([<span class="ruby-identifier">opts</span>])
+</pre>
+
+<h2 id="method-c-new-label-Args">Args<span><a href="#method-c-new-label-Args">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The constructor accepts a hash as options for parser. Keys of options are pattern names of <a href="../URI.html"><code>Bundler::URI</code></a> components and values of options are pattern strings. The constructor generates set of regexps for parsing URIs.</p>
+
+<p>You can use the following keys:</p>
+
+<pre>* :ESCAPED (Bundler::URI::PATTERN::ESCAPED in default)
+* :UNRESERVED (Bundler::URI::PATTERN::UNRESERVED in default)
+* :DOMLABEL (Bundler::URI::PATTERN::DOMLABEL in default)
+* :TOPLABEL (Bundler::URI::PATTERN::TOPLABEL in default)
+* :HOSTNAME (Bundler::URI::PATTERN::HOSTNAME in default)</pre>
+
+<h2 id="method-c-new-label-Examples">Examples<span><a href="#method-c-new-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:ESCAPED</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;(?:%[a-fA-F0-9]{2}|%u[a-fA-F0-9]{4})&quot;</span>)
+<span class="ruby-identifier">u</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-string">&quot;http://example.jp/%uABCD&quot;</span>) <span class="ruby-comment">#=&gt; #&lt;Bundler::URI::HTTP http://example.jp/%uABCD&gt;</span>
+<span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">u</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-comment">#=&gt; raises Bundler::URI::InvalidURIError</span>
+
+<span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;http://example.com/ABCD&quot;</span>
+<span class="ruby-identifier">u1</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">s</span>) <span class="ruby-comment">#=&gt; #&lt;Bundler::URI::HTTP http://example.com/ABCD&gt;</span>
+<span class="ruby-identifier">u2</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">s</span>) <span class="ruby-comment">#=&gt; #&lt;Bundler::URI::HTTP http://example.com/ABCD&gt;</span>
+<span class="ruby-identifier">u1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">u2</span> <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">u1</span>.<span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">u2</span>) <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">opts</span> = {})
+  <span class="ruby-ivar">@pattern</span> = <span class="ruby-identifier">initialize_pattern</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-ivar">@pattern</span>.<span class="ruby-identifier">each_value</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:freeze</span>)
+  <span class="ruby-ivar">@pattern</span>.<span class="ruby-identifier">freeze</span>
+
+  <span class="ruby-ivar">@regexp</span> = <span class="ruby-identifier">initialize_regexp</span>(<span class="ruby-ivar">@pattern</span>)
+  <span class="ruby-ivar">@regexp</span>.<span class="ruby-identifier">each_value</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:freeze</span>)
+  <span class="ruby-ivar">@regexp</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-escape" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            escape( str )
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            escape( str, unsafe )
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-i-escape-label-Args">Args<span><a href="#method-i-escape-label-Args">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>str</code>
+<dd>
+<p><a href="../../String.html"><code>String</code></a> to make safe</p>
+</dd><dt><code>unsafe</code>
+<dd>
+<p><a href="../../Regexp.html"><code>Regexp</code></a> to apply. Defaults to <a href=":UNSAFE">self.regexp</a></p>
+</dd></dl>
+
+<h2 id="method-i-escape-label-Description">Description<span><a href="#method-i-escape-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Constructs a safe <a href="../../String.html"><code>String</code></a> from <code>str</code>, removing unsafe characters, replacing them with codes.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="escape-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 300</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">escape</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">unsafe</span> = <span class="ruby-ivar">@regexp</span>[<span class="ruby-value">:UNSAFE</span>])
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">unsafe</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Regexp</span>)
+    <span class="ruby-comment"># perhaps unsafe is String object</span>
+    <span class="ruby-identifier">unsafe</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;[#{Regexp.quote(unsafe)}]&quot;</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">unsafe</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">us</span> = <span class="ruby-node">$&amp;</span>
+    <span class="ruby-identifier">tmp</span> = <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">us</span>.<span class="ruby-identifier">each_byte</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">uc</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">tmp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;%%%02X&#39;</span>, <span class="ruby-identifier">uc</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">tmp</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">US_ASCII</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-extract" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            extract( str )
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            extract( str, schemes )
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            extract( str, schemes ) {|item| block }
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-i-extract-label-Args">Args<span><a href="#method-i-extract-label-Args">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>str</code>
+<dd>
+<p><a href="../../String.html"><code>String</code></a> to search</p>
+</dd><dt><code>schemes</code>
+<dd>
+<p>Patterns to apply to <code>str</code></p>
+</dd></dl>
+
+<h2 id="method-i-extract-label-Description">Description<span><a href="#method-i-extract-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Attempts to parse and merge a set of URIs. If no <code>block</code> given, then returns the result, else it calls <code>block</code> for each element in result.</p>
+
+<p>See also <a href="RFC2396_Parser.html#method-i-make_regexp"><code>Bundler::URI::Parser.make_regexp</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="extract-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 262</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">extract</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">schemes</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">make_regexp</span>(<span class="ruby-identifier">schemes</span>)) { <span class="ruby-keyword">yield</span> <span class="ruby-node">$&amp;</span> }
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">result</span> = []
+    <span class="ruby-identifier">str</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">make_regexp</span>(<span class="ruby-identifier">schemes</span>)) { <span class="ruby-identifier">result</span>.<span class="ruby-identifier">push</span> <span class="ruby-node">$&amp;</span> }
+    <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 338</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+  <span class="ruby-identifier">@@to_s</span>.<span class="ruby-identifier">bind_call</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-join" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">join</span><span
+            class="method-args">(*uris)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-i-join-label-Args">Args<span><a href="#method-i-join-label-Args">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>uris</code>
+<dd>
+<p>an <a href="../../Array.html"><code>Array</code></a> of Strings</p>
+</dd></dl>
+
+<h2 id="method-i-join-label-Description">Description<span><a href="#method-i-join-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Attempts to parse and merge a set of URIs.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="join-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 236</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">join</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">uris</span>)
+  <span class="ruby-identifier">uris</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">convert_to_uri</span>(<span class="ruby-identifier">uris</span>[<span class="ruby-value">0</span>])
+  <span class="ruby-identifier">uris</span>.<span class="ruby-identifier">inject</span> <span class="ruby-value">:merge</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-make_regexp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_regexp</span><span
+            class="method-args">(schemes = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <a href="../../Regexp.html"><code>Regexp</code></a> that is default <a href=":ABS_URI_REF">self.regexp</a>, unless <code>schemes</code> is provided. Then it is a <a href="../../Regexp.html#method-c-union"><code>Regexp.union</code></a> with <a href=":X_ABS_URI">self.pattern</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="make_regexp-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 275</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_regexp</span>(<span class="ruby-identifier">schemes</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">schemes</span>
+    <span class="ruby-ivar">@regexp</span>[<span class="ruby-value">:ABS_URI_REF</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-regexp">/(?=#{Regexp.union(*schemes)}:)#{@pattern[:X_ABS_URI]}/x</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-i-parse-label-Args">Args<span><a href="#method-i-parse-label-Args">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>uri</code>
+<dd>
+<p><a href="../../String.html"><code>String</code></a></p>
+</dd></dl>
+
+<h2 id="method-i-parse-label-Description">Description<span><a href="#method-i-parse-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Parses <code>uri</code> and constructs either matching <a href="../URI.html"><code>Bundler::URI</code></a> scheme object (<a href="File.html"><code>File</code></a>, <a href="FTP.html"><code>FTP</code></a>, <a href="HTTP.html"><code>HTTP</code></a>, <a href="HTTPS.html"><code>HTTPS</code></a>, <a href="LDAP.html"><code>LDAP</code></a>, <a href="LDAPS.html"><code>LDAPS</code></a>, or <a href="MailTo.html"><code>MailTo</code></a>) or <a href="Generic.html"><code>Bundler::URI::Generic</code></a>.</p>
+
+<h2 id="method-i-parse-label-Usage">Usage<span><a href="#method-i-parse-label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">p</span> = <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">p</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-string">&quot;ldap://ldap.example.com/dc=example?user=john&quot;</span>)
+<span class="ruby-comment">#=&gt; #&lt;Bundler::URI::LDAP ldap://ldap.example.com/dc=example?user=john&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 210</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>,
+    <span class="ruby-identifier">registry</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opaque</span>, <span class="ruby-identifier">query</span>, <span class="ruby-identifier">fragment</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">split</span>(<span class="ruby-identifier">uri</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">scheme</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">scheme_list</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">scheme</span>.<span class="ruby-identifier">upcase</span>)
+    <span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">scheme_list</span>[<span class="ruby-identifier">scheme</span>.<span class="ruby-identifier">upcase</span>].<span class="ruby-identifier">new</span>(<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>,
+                                       <span class="ruby-identifier">registry</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opaque</span>, <span class="ruby-identifier">query</span>,
+                                       <span class="ruby-identifier">fragment</span>, <span class="ruby-keyword">self</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Generic</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>,
+                <span class="ruby-identifier">registry</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">opaque</span>, <span class="ruby-identifier">query</span>,
+                <span class="ruby-identifier">fragment</span>, <span class="ruby-keyword">self</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-split" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">split</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a split <a href="../URI.html"><code>Bundler::URI</code></a> against <a href=":ABS_URI">regexp</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="split-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">split</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">uri</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-comment"># null uri</span>
+
+  <span class="ruby-keyword">when</span> <span class="ruby-ivar">@regexp</span>[<span class="ruby-value">:ABS_URI</span>]
+    <span class="ruby-identifier">scheme</span>, <span class="ruby-identifier">opaque</span>, <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>,
+      <span class="ruby-identifier">registry</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">query</span>, <span class="ruby-identifier">fragment</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+
+    <span class="ruby-comment"># Bundler::URI-reference = [ absoluteURI | relativeURI ] [ &quot;#&quot; fragment ]</span>
+
+    <span class="ruby-comment"># absoluteURI   = scheme &quot;:&quot; ( hier_part | opaque_part )</span>
+    <span class="ruby-comment"># hier_part     = ( net_path | abs_path ) [ &quot;?&quot; query ]</span>
+    <span class="ruby-comment"># opaque_part   = uric_no_slash *uric</span>
+
+    <span class="ruby-comment"># abs_path      = &quot;/&quot;  path_segments</span>
+    <span class="ruby-comment"># net_path      = &quot;//&quot; authority [ abs_path ]</span>
+
+    <span class="ruby-comment"># authority     = server | reg_name</span>
+    <span class="ruby-comment"># server        = [ [ userinfo &quot;@&quot; ] hostport ]</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">scheme</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidURIError</span>,
+        <span class="ruby-node">&quot;bad Bundler::URI(absolute but no scheme): #{uri}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opaque</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">path</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">host</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">registry</span>))
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidURIError</span>,
+        <span class="ruby-node">&quot;bad Bundler::URI(absolute but no path): #{uri}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">when</span> <span class="ruby-ivar">@regexp</span>[<span class="ruby-value">:REL_URI</span>]
+    <span class="ruby-identifier">scheme</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">opaque</span> = <span class="ruby-keyword">nil</span>
+
+    <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">registry</span>,
+      <span class="ruby-identifier">rel_segment</span>, <span class="ruby-identifier">abs_path</span>, <span class="ruby-identifier">query</span>, <span class="ruby-identifier">fragment</span> = <span class="ruby-identifier">$~</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">rel_segment</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">abs_path</span>
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">rel_segment</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">abs_path</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">rel_segment</span>
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">rel_segment</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">abs_path</span>
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">abs_path</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Bundler::URI-reference = [ absoluteURI | relativeURI ] [ &quot;#&quot; fragment ]</span>
+
+    <span class="ruby-comment"># relativeURI   = ( net_path | abs_path | rel_path ) [ &quot;?&quot; query ]</span>
+
+    <span class="ruby-comment"># net_path      = &quot;//&quot; authority [ abs_path ]</span>
+    <span class="ruby-comment"># abs_path      = &quot;/&quot;  path_segments</span>
+    <span class="ruby-comment"># rel_path      = rel_segment [ abs_path ]</span>
+
+    <span class="ruby-comment"># authority     = server | reg_name</span>
+    <span class="ruby-comment"># server        = [ [ userinfo &quot;@&quot; ] hostport ]</span>
+
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidURIError</span>, <span class="ruby-node">&quot;bad Bundler::URI(is not Bundler::URI?): #{uri}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">path</span> = <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">path</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opaque</span> <span class="ruby-comment"># (see RFC2396 Section 5.2)</span>
+  <span class="ruby-identifier">ret</span> = [
+    <span class="ruby-identifier">scheme</span>,
+    <span class="ruby-identifier">userinfo</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>,         <span class="ruby-comment"># X</span>
+    <span class="ruby-identifier">registry</span>,                     <span class="ruby-comment"># X</span>
+    <span class="ruby-identifier">path</span>,                         <span class="ruby-comment"># Y</span>
+    <span class="ruby-identifier">opaque</span>,                       <span class="ruby-comment"># Y</span>
+    <span class="ruby-identifier">query</span>,
+    <span class="ruby-identifier">fragment</span>
+  ]
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unescape" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            unescape( str )
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            unescape( str, escaped )
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-i-unescape-label-Args">Args<span><a href="#method-i-unescape-label-Args">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt><code>str</code>
+<dd>
+<p><a href="../../String.html"><code>String</code></a> to remove escapes from</p>
+</dd><dt><code>escaped</code>
+<dd>
+<p><a href="../../Regexp.html"><code>Regexp</code></a> to apply. Defaults to <a href=":ESCAPED">self.regexp</a></p>
+</dd></dl>
+
+<h2 id="method-i-unescape-label-Description">Description<span><a href="#method-i-unescape-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Removes escapes from <code>str</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unescape-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 331</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unescape</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">escaped</span> = <span class="ruby-ivar">@regexp</span>[<span class="ruby-value">:ESCAPED</span>])
+  <span class="ruby-identifier">enc</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">encoding</span>
+  <span class="ruby-identifier">enc</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">enc</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">US_ASCII</span>
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">escaped</span>) { [<span class="ruby-node">$&amp;</span>[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;H2&#39;</span>).<span class="ruby-identifier">force_encoding</span>(<span class="ruby-identifier">enc</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-convert_to_uri" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_to_uri</span><span
+            class="method-args">(uri)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="convert_to_uri-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 534</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">convert_to_uri</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Bundler</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span><span class="ruby-operator">::</span><span class="ruby-constant">Generic</span>)
+    <span class="ruby-identifier">uri</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">uri</span> = <span class="ruby-constant">String</span>.<span class="ruby-identifier">try_convert</span>(<span class="ruby-identifier">uri</span>)
+    <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>,
+      <span class="ruby-string">&quot;bad argument (expected Bundler::URI object or Bundler::URI string)&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initialize_pattern" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_pattern</span><span
+            class="method-args">(opts = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Constructs the default <a href="../../Hash.html"><code>Hash</code></a> of patterns.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_pattern-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 345</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize_pattern</span>(<span class="ruby-identifier">opts</span> = {})
+  <span class="ruby-identifier">ret</span> = {}
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:ESCAPED</span>] = <span class="ruby-identifier">escaped</span> = (<span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:ESCAPED</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">PATTERN</span><span class="ruby-operator">::</span><span class="ruby-constant">ESCAPED</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:UNRESERVED</span>] = <span class="ruby-identifier">unreserved</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:UNRESERVED</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">PATTERN</span><span class="ruby-operator">::</span><span class="ruby-constant">UNRESERVED</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:RESERVED</span>] = <span class="ruby-identifier">reserved</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:RESERVED</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">PATTERN</span><span class="ruby-operator">::</span><span class="ruby-constant">RESERVED</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:DOMLABEL</span>] = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:DOMLABEL</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">PATTERN</span><span class="ruby-operator">::</span><span class="ruby-constant">DOMLABEL</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:TOPLABEL</span>] = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:TOPLABEL</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">PATTERN</span><span class="ruby-operator">::</span><span class="ruby-constant">TOPLABEL</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:HOSTNAME</span>] = <span class="ruby-identifier">hostname</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:HOSTNAME</span>)
+
+  <span class="ruby-comment"># RFC 2396 (Bundler::URI Generic Syntax)</span>
+  <span class="ruby-comment"># RFC 2732 (IPv6 Literal Addresses in URL&#39;s)</span>
+  <span class="ruby-comment"># RFC 2373 (IPv6 Addressing Architecture)</span>
+
+  <span class="ruby-comment"># uric          = reserved | unreserved | escaped</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:URIC</span>] = <span class="ruby-identifier">uric</span> = <span class="ruby-node">&quot;(?:[#{unreserved}#{reserved}]|#{escaped})&quot;</span>
+  <span class="ruby-comment"># uric_no_slash = unreserved | escaped | &quot;;&quot; | &quot;?&quot; | &quot;:&quot; | &quot;@&quot; |</span>
+  <span class="ruby-comment">#                 &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot; | &quot;$&quot; | &quot;,&quot;</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:URIC_NO_SLASH</span>] = <span class="ruby-identifier">uric_no_slash</span> = <span class="ruby-node">&quot;(?:[#{unreserved};?:@&amp;=+$,]|#{escaped})&quot;</span>
+  <span class="ruby-comment"># query         = *uric</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:QUERY</span>] = <span class="ruby-identifier">query</span> = <span class="ruby-node">&quot;#{uric}*&quot;</span>
+  <span class="ruby-comment"># fragment      = *uric</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:FRAGMENT</span>] = <span class="ruby-identifier">fragment</span> = <span class="ruby-node">&quot;#{uric}*&quot;</span>
+
+  <span class="ruby-comment"># hostname      = *( domainlabel &quot;.&quot; ) toplabel [ &quot;.&quot; ]</span>
+  <span class="ruby-comment"># reg-name      = *( unreserved / pct-encoded / sub-delims ) # RFC3986</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">hostname</span>
+    <span class="ruby-identifier">ret</span>[<span class="ruby-value">:HOSTNAME</span>] = <span class="ruby-identifier">hostname</span> = <span class="ruby-string">&quot;(?:[a-zA-Z0-9\\-.]|%\\h\\h)+&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># RFC 2373, APPENDIX B:</span>
+  <span class="ruby-comment"># IPv6address = hexpart [ &quot;:&quot; IPv4address ]</span>
+  <span class="ruby-comment"># IPv4address   = 1*3DIGIT &quot;.&quot; 1*3DIGIT &quot;.&quot; 1*3DIGIT &quot;.&quot; 1*3DIGIT</span>
+  <span class="ruby-comment"># hexpart = hexseq | hexseq &quot;::&quot; [ hexseq ] | &quot;::&quot; [ hexseq ]</span>
+  <span class="ruby-comment"># hexseq  = hex4 *( &quot;:&quot; hex4)</span>
+  <span class="ruby-comment"># hex4    = 1*4HEXDIG</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># XXX: This definition has a flaw. &quot;::&quot; + IPv4address must be</span>
+  <span class="ruby-comment"># allowed too.  Here is a replacement.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># IPv4address = 1*3DIGIT &quot;.&quot; 1*3DIGIT &quot;.&quot; 1*3DIGIT &quot;.&quot; 1*3DIGIT</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:IPV4ADDR</span>] = <span class="ruby-identifier">ipv4addr</span> = <span class="ruby-string">&quot;\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}&quot;</span>
+  <span class="ruby-comment"># hex4     = 1*4HEXDIG</span>
+  <span class="ruby-identifier">hex4</span> = <span class="ruby-node">&quot;[#{PATTERN::HEX}]{1,4}&quot;</span>
+  <span class="ruby-comment"># lastpart = hex4 | IPv4address</span>
+  <span class="ruby-identifier">lastpart</span> = <span class="ruby-node">&quot;(?:#{hex4}|#{ipv4addr})&quot;</span>
+  <span class="ruby-comment"># hexseq1  = *( hex4 &quot;:&quot; ) hex4</span>
+  <span class="ruby-identifier">hexseq1</span> = <span class="ruby-node">&quot;(?:#{hex4}:)*#{hex4}&quot;</span>
+  <span class="ruby-comment"># hexseq2  = *( hex4 &quot;:&quot; ) lastpart</span>
+  <span class="ruby-identifier">hexseq2</span> = <span class="ruby-node">&quot;(?:#{hex4}:)*#{lastpart}&quot;</span>
+  <span class="ruby-comment"># IPv6address = hexseq2 | [ hexseq1 ] &quot;::&quot; [ hexseq2 ]</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:IPV6ADDR</span>] = <span class="ruby-identifier">ipv6addr</span> = <span class="ruby-node">&quot;(?:#{hexseq2}|(?:#{hexseq1})?::(?:#{hexseq2})?)&quot;</span>
+
+  <span class="ruby-comment"># IPv6prefix  = ( hexseq1 | [ hexseq1 ] &quot;::&quot; [ hexseq1 ] ) &quot;/&quot; 1*2DIGIT</span>
+  <span class="ruby-comment"># unused</span>
+
+  <span class="ruby-comment"># ipv6reference = &quot;[&quot; IPv6address &quot;]&quot; (RFC 2732)</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:IPV6REF</span>] = <span class="ruby-identifier">ipv6ref</span> = <span class="ruby-node">&quot;\\[#{ipv6addr}\\]&quot;</span>
+
+  <span class="ruby-comment"># host          = hostname | IPv4address</span>
+  <span class="ruby-comment"># host          = hostname | IPv4address | IPv6reference (RFC 2732)</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:HOST</span>] = <span class="ruby-identifier">host</span> = <span class="ruby-node">&quot;(?:#{hostname}|#{ipv4addr}|#{ipv6ref})&quot;</span>
+  <span class="ruby-comment"># port          = *digit</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:PORT</span>] = <span class="ruby-identifier">port</span> = <span class="ruby-string">&#39;\d*&#39;</span>
+  <span class="ruby-comment"># hostport      = host [ &quot;:&quot; port ]</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:HOSTPORT</span>] = <span class="ruby-identifier">hostport</span> = <span class="ruby-node">&quot;#{host}(?::#{port})?&quot;</span>
+
+  <span class="ruby-comment"># userinfo      = *( unreserved | escaped |</span>
+  <span class="ruby-comment">#                    &quot;;&quot; | &quot;:&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot; | &quot;$&quot; | &quot;,&quot; )</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:USERINFO</span>] = <span class="ruby-identifier">userinfo</span> = <span class="ruby-node">&quot;(?:[#{unreserved};:&amp;=+$,]|#{escaped})*&quot;</span>
+
+  <span class="ruby-comment"># pchar         = unreserved | escaped |</span>
+  <span class="ruby-comment">#                 &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot; | &quot;$&quot; | &quot;,&quot;</span>
+  <span class="ruby-identifier">pchar</span> = <span class="ruby-node">&quot;(?:[#{unreserved}:@&amp;=+$,]|#{escaped})&quot;</span>
+  <span class="ruby-comment"># param         = *pchar</span>
+  <span class="ruby-identifier">param</span> = <span class="ruby-node">&quot;#{pchar}*&quot;</span>
+  <span class="ruby-comment"># segment       = *pchar *( &quot;;&quot; param )</span>
+  <span class="ruby-identifier">segment</span> = <span class="ruby-node">&quot;#{pchar}*(?:;#{param})*&quot;</span>
+  <span class="ruby-comment"># path_segments = segment *( &quot;/&quot; segment )</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:PATH_SEGMENTS</span>] = <span class="ruby-identifier">path_segments</span> = <span class="ruby-node">&quot;#{segment}(?:/#{segment})*&quot;</span>
+
+  <span class="ruby-comment"># server        = [ [ userinfo &quot;@&quot; ] hostport ]</span>
+  <span class="ruby-identifier">server</span> = <span class="ruby-node">&quot;(?:#{userinfo}@)?#{hostport}&quot;</span>
+  <span class="ruby-comment"># reg_name      = 1*( unreserved | escaped | &quot;$&quot; | &quot;,&quot; |</span>
+  <span class="ruby-comment">#                     &quot;;&quot; | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot; )</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REG_NAME</span>] = <span class="ruby-identifier">reg_name</span> = <span class="ruby-node">&quot;(?:[#{unreserved}$,;:@&amp;=+]|#{escaped})+&quot;</span>
+  <span class="ruby-comment"># authority     = server | reg_name</span>
+  <span class="ruby-identifier">authority</span> = <span class="ruby-node">&quot;(?:#{server}|#{reg_name})&quot;</span>
+
+  <span class="ruby-comment"># rel_segment   = 1*( unreserved | escaped |</span>
+  <span class="ruby-comment">#                     &quot;;&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; | &quot;+&quot; | &quot;$&quot; | &quot;,&quot; )</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REL_SEGMENT</span>] = <span class="ruby-identifier">rel_segment</span> = <span class="ruby-node">&quot;(?:[#{unreserved};@&amp;=+$,]|#{escaped})+&quot;</span>
+
+  <span class="ruby-comment"># scheme        = alpha *( alpha | digit | &quot;+&quot; | &quot;-&quot; | &quot;.&quot; )</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:SCHEME</span>] = <span class="ruby-identifier">scheme</span> = <span class="ruby-node">&quot;[#{PATTERN::ALPHA}][\\-+.#{PATTERN::ALPHA}\\d]*&quot;</span>
+
+  <span class="ruby-comment"># abs_path      = &quot;/&quot;  path_segments</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:ABS_PATH</span>] = <span class="ruby-identifier">abs_path</span> = <span class="ruby-node">&quot;/#{path_segments}&quot;</span>
+  <span class="ruby-comment"># rel_path      = rel_segment [ abs_path ]</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REL_PATH</span>] = <span class="ruby-identifier">rel_path</span> = <span class="ruby-node">&quot;#{rel_segment}(?:#{abs_path})?&quot;</span>
+  <span class="ruby-comment"># net_path      = &quot;//&quot; authority [ abs_path ]</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:NET_PATH</span>] = <span class="ruby-identifier">net_path</span> = <span class="ruby-node">&quot;//#{authority}(?:#{abs_path})?&quot;</span>
+
+  <span class="ruby-comment"># hier_part     = ( net_path | abs_path ) [ &quot;?&quot; query ]</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:HIER_PART</span>] = <span class="ruby-identifier">hier_part</span> = <span class="ruby-node">&quot;(?:#{net_path}|#{abs_path})(?:\\?(?:#{query}))?&quot;</span>
+  <span class="ruby-comment"># opaque_part   = uric_no_slash *uric</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:OPAQUE_PART</span>] = <span class="ruby-identifier">opaque_part</span> = <span class="ruby-node">&quot;#{uric_no_slash}#{uric}*&quot;</span>
+
+  <span class="ruby-comment"># absoluteURI   = scheme &quot;:&quot; ( hier_part | opaque_part )</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:ABS_URI</span>] = <span class="ruby-identifier">abs_uri</span> = <span class="ruby-node">&quot;#{scheme}:(?:#{hier_part}|#{opaque_part})&quot;</span>
+  <span class="ruby-comment"># relativeURI   = ( net_path | abs_path | rel_path ) [ &quot;?&quot; query ]</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REL_URI</span>] = <span class="ruby-identifier">rel_uri</span> = <span class="ruby-node">&quot;(?:#{net_path}|#{abs_path}|#{rel_path})(?:\\?#{query})?&quot;</span>
+
+  <span class="ruby-comment"># Bundler::URI-reference = [ absoluteURI | relativeURI ] [ &quot;#&quot; fragment ]</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:URI_REF</span>] = <span class="ruby-node">&quot;(?:#{abs_uri}|#{rel_uri})?(?:##{fragment})?&quot;</span>
+
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:X_ABS_URI</span>] = <span class="ruby-node">&quot;
+    (#{scheme}):                           (?# 1: scheme)
+    (?:
+       (#{opaque_part})                    (?# 2: opaque)
+    |
+       (?:(?:
+         //(?:
+             (?:(?:(#{userinfo})@)?        (?# 3: userinfo)
+               (?:(#{host})(?::(\\d*))?))? (?# 4: host, 5: port)
+           |
+             (#{reg_name})                 (?# 6: registry)
+           )
+         |
+         (?!//))                           (?# XXX: &#39;//&#39; is the mark for hostport)
+         (#{abs_path})?                    (?# 7: path)
+       )(?:\\?(#{query}))?                 (?# 8: query)
+    )
+    (?:\\#(#{fragment}))?                  (?# 9: fragment)
+  &quot;</span>
+
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:X_REL_URI</span>] = <span class="ruby-node">&quot;
+    (?:
+      (?:
+        //
+        (?:
+          (?:(#{userinfo})@)?       (?# 1: userinfo)
+            (#{host})?(?::(\\d*))?  (?# 2: host, 3: port)
+        |
+          (#{reg_name})             (?# 4: registry)
+        )
+      )
+    |
+      (#{rel_segment})              (?# 5: rel_segment)
+    )?
+    (#{abs_path})?                  (?# 6: abs_path)
+    (?:\\?(#{query}))?              (?# 7: query)
+    (?:\\#(#{fragment}))?           (?# 8: fragment)
+  &quot;</span>
+
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initialize_regexp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_regexp</span><span
+            class="method-args">(pattern)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Constructs the default <a href="../../Hash.html"><code>Hash</code></a> of Regexp&#39;s.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_regexp-source">
+            <pre><span class="ruby-comment"># File lib/bundler/vendor/uri/lib/uri/rfc2396_parser.rb, line 503</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize_regexp</span>(<span class="ruby-identifier">pattern</span>)
+  <span class="ruby-identifier">ret</span> = {}
+
+  <span class="ruby-comment"># for Bundler::URI::split</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:ABS_URI</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;\A\s*&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">pattern</span>[<span class="ruby-value">:X_ABS_URI</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&#39;\s*\z&#39;</span>, <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENDED</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REL_URI</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;\A\s*&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">pattern</span>[<span class="ruby-value">:X_REL_URI</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&#39;\s*\z&#39;</span>, <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENDED</span>)
+
+  <span class="ruby-comment"># for Bundler::URI::extract</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:URI_REF</span>]     = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pattern</span>[<span class="ruby-value">:URI_REF</span>])
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:ABS_URI_REF</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pattern</span>[<span class="ruby-value">:X_ABS_URI</span>], <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENDED</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REL_URI_REF</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pattern</span>[<span class="ruby-value">:X_REL_URI</span>], <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">EXTENDED</span>)
+
+  <span class="ruby-comment"># for Bundler::URI::escape/unescape</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:ESCAPED</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pattern</span>[<span class="ruby-value">:ESCAPED</span>])
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:UNSAFE</span>]  = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;[^#{pattern[:UNRESERVED]}#{pattern[:RESERVED]}]&quot;</span>)
+
+  <span class="ruby-comment"># for Generic#initialize</span>
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:SCHEME</span>]   = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:SCHEME]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:USERINFO</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:USERINFO]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:HOST</span>]     = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:HOST]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:PORT</span>]     = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:PORT]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:OPAQUE</span>]   = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:OPAQUE_PART]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REGISTRY</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:REG_NAME]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:ABS_PATH</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:ABS_PATH]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:REL_PATH</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:REL_PATH]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:QUERY</span>]    = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:QUERY]}\\z&quot;</span>)
+  <span class="ruby-identifier">ret</span>[<span class="ruby-value">:FRAGMENT</span>] = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\A#{pattern[:FRAGMENT]}\\z&quot;</span>)
+
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Bundler::Injector - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-inject">::inject</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-remove">::remove</a>
+    
+    <li ><a href="#method-i-append_to">#append_to</a>
+    
+    <li ><a href="#method-i-build_gem_lines">#build_gem_lines</a>
+    
+    <li ><a href="#method-i-conservative_version">#conservative_version</a>
+    
+    <li ><a href="#method-i-cross_check_for_errors">#cross_check_for_errors</a>
+    
+    <li ><a href="#method-i-inject">#inject</a>
+    
+    <li ><a href="#method-i-remove">#remove</a>
+    
+    <li ><a href="#method-i-remove_deps">#remove_deps</a>
+    
+    <li ><a href="#method-i-remove_gems_from_dependencies">#remove_gems_from_dependencies</a>
+    
+    <li ><a href="#method-i-remove_gems_from_gemfile">#remove_gems_from_gemfile</a>
+    
+    <li ><a href="#method-i-remove_nested_blocks">#remove_nested_blocks</a>
+    
+    <li ><a href="#method-i-show_warning">#show_warning</a>
+    
+    <li ><a href="#method-i-version_prefix">#version_prefix</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Bundler::Injector">
+  <h1 id="class-Bundler::Injector" class="class">
+    class Bundler::Injector
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="INJECTED_GEMS">INJECTED_GEMS
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-inject" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inject</span><span
+            class="method-args">(new_deps, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inject-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">inject</span>(<span class="ruby-identifier">new_deps</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">injector</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">new_deps</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">injector</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">default_gemfile</span>, <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">default_lockfile</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(deps, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">deps</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@deps</span> = <span class="ruby-identifier">deps</span>
+  <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-remove" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove</span><span
+            class="method-args">(gems, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remove-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">remove</span>(<span class="ruby-identifier">gems</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">injector</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">gems</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">injector</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">default_gemfile</span>, <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">default_lockfile</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-inject" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inject</span><span
+            class="method-args">(gemfile_path, lockfile_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Pathname] gemfile_path The Gemfile in which to inject the new dependency. @param [Pathname] lockfile_path The lockfile in which to inject the new dependency. @return [Array]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="inject-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inject</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">lockfile_path</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">frozen_bundle?</span>
+    <span class="ruby-comment"># ensure the lock and Gemfile are synced</span>
+    <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">definition</span>.<span class="ruby-identifier">ensure_equivalent_gemfile_and_lockfile</span>(<span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># temporarily unfreeze</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">settings</span>.<span class="ruby-identifier">temporary</span>(<span class="ruby-value">:deployment</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:frozen</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-comment"># evaluate the Gemfile we have now</span>
+    <span class="ruby-identifier">builder</span> = <span class="ruby-constant">Dsl</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">eval_gemfile</span>(<span class="ruby-identifier">gemfile_path</span>)
+
+    <span class="ruby-comment"># don&#39;t inject any gems that are already in the Gemfile</span>
+    <span class="ruby-ivar">@deps</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">dependencies</span>
+
+    <span class="ruby-comment"># add new deps to the end of the in-memory Gemfile</span>
+    <span class="ruby-comment"># Set conservative versioning to false because</span>
+    <span class="ruby-comment"># we want to let the resolver resolve the version first</span>
+    <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">eval_gemfile</span>(<span class="ruby-constant">INJECTED_GEMS</span>, <span class="ruby-identifier">build_gem_lines</span>(<span class="ruby-keyword">false</span>)) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@deps</span>.<span class="ruby-identifier">any?</span>
+
+    <span class="ruby-comment"># resolve to see if the new deps broke anything</span>
+    <span class="ruby-ivar">@definition</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">to_definition</span>(<span class="ruby-identifier">lockfile_path</span>, {})
+    <span class="ruby-ivar">@definition</span>.<span class="ruby-identifier">resolve_remotely!</span>
+
+    <span class="ruby-comment"># since nothing broke, we can add those gems to the gemfile</span>
+    <span class="ruby-identifier">append_to</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">build_gem_lines</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-value">:conservative_versioning</span>])) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@deps</span>.<span class="ruby-identifier">any?</span>
+
+    <span class="ruby-comment"># since we resolved successfully, write out the lockfile</span>
+    <span class="ruby-ivar">@definition</span>.<span class="ruby-identifier">lock</span>(<span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">default_lockfile</span>)
+
+    <span class="ruby-comment"># invalidate the cached Bundler.definition</span>
+    <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">reset_paths!</span>
+
+    <span class="ruby-comment"># return an array of the deps that we added</span>
+    <span class="ruby-ivar">@deps</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove</span><span
+            class="method-args">(gemfile_path, lockfile_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Pathname] gemfile_path The Gemfile from which to remove dependencies. @param [Pathname] lockfile_path The lockfile from which to remove dependencies. @return [Array]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">lockfile_path</span>)
+  <span class="ruby-comment"># remove gems from each gemfiles we have</span>
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">definition</span>.<span class="ruby-identifier">gemfiles</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">deps</span> = <span class="ruby-identifier">remove_deps</span>(<span class="ruby-identifier">path</span>)
+
+    <span class="ruby-identifier">show_warning</span>(<span class="ruby-string">&quot;No gems were removed from the gemfile.&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">deps</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-identifier">deps</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">confirm</span> <span class="ruby-node">&quot;#{SharedHelpers.pretty_dependency(dep, false)} was removed.&quot;</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-append_to" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">append_to</span><span
+            class="method-args">(gemfile_path, new_gem_lines)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="append_to-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">append_to</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">new_gem_lines</span>)
+  <span class="ruby-identifier">gemfile_path</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;a&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">new_gem_lines</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-build_gem_lines" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_gem_lines</span><span
+            class="method-args">(conservative_versioning)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="build_gem_lines-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">build_gem_lines</span>(<span class="ruby-identifier">conservative_versioning</span>)
+  <span class="ruby-ivar">@deps</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">dump</span>
+
+    <span class="ruby-identifier">requirement</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">conservative_versioning</span>
+      <span class="ruby-node">&quot;, \&quot;#{conservative_version(@definition.specs[d.name][0])}\&quot;&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-node">&quot;, #{d.requirement.as_list.map(&amp;:dump).join(&quot;, &quot;)}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">groups</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Array</span>(<span class="ruby-value">:default</span>)
+      <span class="ruby-identifier">group</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">groups</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;, :group =&gt; #{d.groups.first.inspect}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;, :groups =&gt; #{d.groups.inspect}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">source</span> = <span class="ruby-node">&quot;, :source =&gt; \&quot;#{d.source}\&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">source</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">git</span> = <span class="ruby-node">&quot;, :git =&gt; \&quot;#{d.git}\&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">git</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">branch</span> = <span class="ruby-node">&quot;, :branch =&gt; \&quot;#{d.branch}\&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">branch</span>.<span class="ruby-identifier">nil?</span>
+
+    <span class="ruby-node">%(gem #{name}#{requirement}#{group}#{source}#{git}#{branch})</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-conservative_version" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">conservative_version</span><span
+            class="method-args">(spec)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="conservative_version-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">conservative_version</span>(<span class="ruby-identifier">spec</span>)
+  <span class="ruby-identifier">version</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&gt;= 0&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">segments</span> = <span class="ruby-identifier">version</span>.<span class="ruby-identifier">segments</span>
+  <span class="ruby-identifier">seg_end_index</span> = <span class="ruby-identifier">version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Version</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;1.0&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">2</span>
+
+  <span class="ruby-identifier">prerelease_suffix</span> = <span class="ruby-identifier">version</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">version</span>.<span class="ruby-identifier">release</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">prerelease?</span>
+  <span class="ruby-node">&quot;#{version_prefix}#{segments[0..seg_end_index].join(&quot;.&quot;)}#{prerelease_suffix}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cross_check_for_errors" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cross_check_for_errors</span><span
+            class="method-args">(gemfile_path, original_deps, removed_deps, initial_gemfile)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Pathname] gemfile_path   The Gemfile from which to remove dependencies. @param [Array] original_deps     <a href="../Array.html"><code>Array</code></a> of original dependencies. @param [Array] removed_deps      <a href="../Array.html"><code>Array</code></a> of removed dependencies. @param [Array] initial_gemfile   Contents of original Gemfile before any operation.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="cross_check_for_errors-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 226</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cross_check_for_errors</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">original_deps</span>, <span class="ruby-identifier">removed_deps</span>, <span class="ruby-identifier">initial_gemfile</span>)
+  <span class="ruby-comment"># evaluate the new gemfile to look for any failure cases</span>
+  <span class="ruby-identifier">builder</span> = <span class="ruby-constant">Dsl</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">eval_gemfile</span>(<span class="ruby-identifier">gemfile_path</span>)
+
+  <span class="ruby-comment"># record gems which were removed but not requested</span>
+  <span class="ruby-identifier">extra_removed_gems</span> = <span class="ruby-identifier">original_deps</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">dependencies</span>
+
+  <span class="ruby-comment"># if some extra gems were removed then raise error</span>
+  <span class="ruby-comment"># and revert Gemfile to original</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">extra_removed_gems</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-constant">SharedHelpers</span>.<span class="ruby-identifier">write_to_gemfile</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">initial_gemfile</span>.<span class="ruby-identifier">join</span>)
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidOption</span>, <span class="ruby-node">&quot;Gems could not be removed. #{extra_removed_gems.join(&quot;, &quot;)} would also have been removed. Bundler cannot continue.&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># record gems which could not be removed due to some reasons</span>
+  <span class="ruby-identifier">errored_deps</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">gemfile</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">gemfile_path</span> } <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">removed_deps</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">gemfile</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">gemfile_path</span> }
+
+  <span class="ruby-identifier">show_warning</span> <span class="ruby-node">&quot;#{errored_deps.map(&amp;:name).join(&quot;, &quot;)} could not be removed.&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">errored_deps</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-comment"># return actual removed dependencies</span>
+  <span class="ruby-identifier">removed_deps</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">errored_deps</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_deps" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_deps</span><span
+            class="method-args">(gemfile_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>evaluates a gemfile to remove the specified gem from it.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_deps-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove_deps</span>(<span class="ruby-identifier">gemfile_path</span>)
+  <span class="ruby-identifier">initial_gemfile</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-identifier">gemfile_path</span>)
+
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Removing gems from #{gemfile_path}&quot;</span>
+
+  <span class="ruby-comment"># evaluate the Gemfile we have</span>
+  <span class="ruby-identifier">builder</span> = <span class="ruby-constant">Dsl</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">eval_gemfile</span>(<span class="ruby-identifier">gemfile_path</span>)
+
+  <span class="ruby-identifier">removed_deps</span> = <span class="ruby-identifier">remove_gems_from_dependencies</span>(<span class="ruby-identifier">builder</span>, <span class="ruby-ivar">@deps</span>, <span class="ruby-identifier">gemfile_path</span>)
+
+  <span class="ruby-comment"># abort the operation if no gems were removed</span>
+  <span class="ruby-comment"># no need to operate on gemfile further</span>
+  <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> <span class="ruby-identifier">removed_deps</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">cleaned_gemfile</span> = <span class="ruby-identifier">remove_gems_from_gemfile</span>(<span class="ruby-ivar">@deps</span>, <span class="ruby-identifier">gemfile_path</span>)
+
+  <span class="ruby-constant">SharedHelpers</span>.<span class="ruby-identifier">write_to_gemfile</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">cleaned_gemfile</span>)
+
+  <span class="ruby-comment"># check for errors</span>
+  <span class="ruby-comment"># including extra gems being removed</span>
+  <span class="ruby-comment"># or some gems not being removed</span>
+  <span class="ruby-comment"># and return the actual removed deps</span>
+  <span class="ruby-identifier">cross_check_for_errors</span>(<span class="ruby-identifier">gemfile_path</span>, <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">dependencies</span>, <span class="ruby-identifier">removed_deps</span>, <span class="ruby-identifier">initial_gemfile</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_gems_from_dependencies" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_gems_from_dependencies</span><span
+            class="method-args">(builder, gems, gemfile_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Dsl]      builder <a href="Dsl.html"><code>Dsl</code></a> object of current Gemfile. @param [Array]    gems <a href="../Array.html"><code>Array</code></a> of names of gems to be removed. @param [Pathname] gemfile_path Path of the Gemfile. @return [Array]   <a href="../Array.html"><code>Array</code></a> of removed dependencies.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_gems_from_dependencies-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove_gems_from_dependencies</span>(<span class="ruby-identifier">builder</span>, <span class="ruby-identifier">gems</span>, <span class="ruby-identifier">gemfile_path</span>)
+  <span class="ruby-identifier">removed_deps</span> = []
+
+  <span class="ruby-identifier">gems</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gem_name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">deleted_dep</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">find</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">gem_name</span> }
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">deleted_dep</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">GemfileError</span>, <span class="ruby-node">&quot;`#{gem_name}` is not specified in #{gemfile_path} so it could not be removed.&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">deleted_dep</span>)
+
+    <span class="ruby-identifier">removed_deps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">deleted_dep</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">removed_deps</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_gems_from_gemfile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_gems_from_gemfile</span><span
+            class="method-args">(gems, gemfile_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Array] gems            <a href="../Array.html"><code>Array</code></a> of names of gems to be removed. @param [Pathname] gemfile_path The Gemfile from which to remove dependencies.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_gems_from_gemfile-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove_gems_from_gemfile</span>(<span class="ruby-identifier">gems</span>, <span class="ruby-identifier">gemfile_path</span>)
+  <span class="ruby-identifier">patterns</span> = <span class="ruby-regexp">/gem\s+([&#39;&quot;])#{Regexp.union(gems)}\1|gem\s*\(([&#39;&quot;])#{Regexp.union(gems)}\2\)/</span>
+
+  <span class="ruby-comment"># remove lines which match the regex</span>
+  <span class="ruby-identifier">new_gemfile</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-identifier">gemfile_path</span>).<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">patterns</span>) }
+
+  <span class="ruby-comment"># remove lone \n and append them with other strings</span>
+  <span class="ruby-identifier">new_gemfile</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_line</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_gemfile</span>[<span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;\n&quot;</span>
+      <span class="ruby-identifier">new_gemfile</span>[<span class="ruby-identifier">index</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">new_gemfile</span>[<span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>]
+      <span class="ruby-identifier">new_gemfile</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-node">%w[group source env install_if]</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">block</span><span class="ruby-operator">|</span> <span class="ruby-identifier">remove_nested_blocks</span>(<span class="ruby-identifier">new_gemfile</span>, <span class="ruby-identifier">block</span>) }
+
+  <span class="ruby-identifier">new_gemfile</span>.<span class="ruby-identifier">join</span>.<span class="ruby-identifier">chomp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_nested_blocks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_nested_blocks</span><span
+            class="method-args">(gemfile, block_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [Array] gemfile       <a href="../Array.html"><code>Array</code></a> of gemfile contents. @param [String] block_name   Name of block name to look for.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_nested_blocks-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 201</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove_nested_blocks</span>(<span class="ruby-identifier">gemfile</span>, <span class="ruby-identifier">block_name</span>)
+  <span class="ruby-identifier">nested_blocks</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-comment"># count number of nested blocks</span>
+  <span class="ruby-identifier">gemfile</span>.<span class="ruby-identifier">each_with_index</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">line</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span> <span class="ruby-identifier">nested_blocks</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">gemfile</span>[<span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">gemfile</span>[<span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">block_name</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">block_name</span>) }
+
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">nested_blocks</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">nested_blocks</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+
+    <span class="ruby-identifier">gemfile</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-operator">!</span><span class="ruby-identifier">line</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-identifier">block_name</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">gemfile</span>[<span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^\s*end\s*$/</span>
+        <span class="ruby-identifier">gemfile</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">gemfile</span>[<span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>] = <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">gemfile</span>.<span class="ruby-identifier">compact!</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show_warning" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_warning</span><span
+            class="method-args">(message)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="show_warning-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 251</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show_warning</span>(<span class="ruby-identifier">message</span>)
+  <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">info</span> <span class="ruby-constant">Bundler</span>.<span class="ruby-identifier">ui</span>.<span class="ruby-identifier">add_color</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value">:yellow</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-version_prefix" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">version_prefix</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="version_prefix-source">
+            <pre><span class="ruby-comment"># File lib/bundler/injector.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">version_prefix</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:strict</span>]
+    <span class="ruby-string">&quot;= &quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:optimistic</span>]
+    <span class="ruby-string">&quot;&gt;= &quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;~&gt; &quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

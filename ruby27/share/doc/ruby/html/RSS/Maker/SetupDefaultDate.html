@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module RSS::Maker::SetupDefaultDate - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-_parse_date_if_needed">#_parse_date_if_needed</a>
+    
+    <li class="calls-super" ><a href="#method-i-_set_default_values">#_set_default_values</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-RSS::Maker::SetupDefaultDate">
+  <h1 id="module-RSS::Maker::SetupDefaultDate" class="module">
+    module RSS::Maker::SetupDefaultDate
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-_parse_date_if_needed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_parse_date_if_needed</span><span
+            class="method-args">(date_value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_parse_date_if_needed-source">
+            <pre><span class="ruby-comment"># File lib/rss/maker/base.rb, line 375</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_parse_date_if_needed</span>(<span class="ruby-identifier">date_value</span>)
+  <span class="ruby-identifier">date_value</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">date_value</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">date_value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+  <span class="ruby-identifier">date_value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-_set_default_values" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_set_default_values</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="_set_default_values-source">
+            <pre><span class="ruby-comment"># File lib/rss/maker/base.rb, line 357</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">_set_default_values</span>
+  <span class="ruby-identifier">keep</span> = {
+    <span class="ruby-value">:date</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">date</span>,
+    <span class="ruby-value">:dc_dates</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">dc_dates</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">dup</span>,
+  }
+  <span class="ruby-identifier">_date</span> = <span class="ruby-identifier">_parse_date_if_needed</span>(<span class="ruby-identifier">date</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">_date</span> <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">dc_dates</span>.<span class="ruby-identifier">any?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">dc_date</span><span class="ruby-operator">|</span> <span class="ruby-identifier">dc_date</span>.<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">_date</span>}
+    <span class="ruby-identifier">dc_date</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">DublinCoreDates</span><span class="ruby-operator">::</span><span class="ruby-constant">DublinCoreDate</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>)
+    <span class="ruby-identifier">dc_date</span>.<span class="ruby-identifier">value</span> = <span class="ruby-identifier">_date</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">dc_dates</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">dc_date</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dc_date</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span> = <span class="ruby-identifier">keep</span>[<span class="ruby-value">:date</span>]
+  <span class="ruby-identifier">dc_dates</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">keep</span>[<span class="ruby-value">:dc_dates</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

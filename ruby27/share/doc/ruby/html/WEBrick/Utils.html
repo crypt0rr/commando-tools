@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module WEBrick::Utils - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-create_listeners">::create_listeners</a>
+    
+    <li ><a href="#method-c-create_self_signed_cert">::create_self_signed_cert</a>
+    
+    <li ><a href="#method-c-getservername">::getservername</a>
+    
+    <li ><a href="#method-c-random_string">::random_string</a>
+    
+    <li ><a href="#method-c-set_close_on_exec">::set_close_on_exec</a>
+    
+    <li ><a href="#method-c-set_non_blocking">::set_non_blocking</a>
+    
+    <li ><a href="#method-c-su">::su</a>
+    
+    <li ><a href="#method-c-timeout">::timeout</a>
+    
+    <li ><a href="#method-i-create_listeners">#create_listeners</a>
+    
+    <li ><a href="#method-i-create_self_signed_cert">#create_self_signed_cert</a>
+    
+    <li ><a href="#method-i-getservername">#getservername</a>
+    
+    <li ><a href="#method-i-random_string">#random_string</a>
+    
+    <li ><a href="#method-i-set_close_on_exec">#set_close_on_exec</a>
+    
+    <li ><a href="#method-i-set_non_blocking">#set_non_blocking</a>
+    
+    <li ><a href="#method-i-su">#su</a>
+    
+    <li ><a href="#method-i-timeout">#timeout</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-WEBrick::Utils">
+  <h1 id="module-WEBrick::Utils" class="module">
+    module WEBrick::Utils
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="RAND_CHARS">RAND_CHARS
+        
+        <dd><p>Characters used to generate random strings</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-create_listeners" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_listeners</span><span
+            class="method-args">(address, port)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates TCP server sockets bound to <code>address</code>:<code>port</code> and returns them.</p>
+
+<p>It will create IPV4 and IPV6 sockets on all interfaces.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_listeners-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_listeners</span>(<span class="ruby-identifier">address</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">port</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;must specify port&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">sockets</span> = <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">tcp_server_sockets</span>(<span class="ruby-identifier">address</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-identifier">sockets</span> = <span class="ruby-identifier">sockets</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">s</span>.<span class="ruby-identifier">autoclose</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">ts</span> = <span class="ruby-constant">TCPServer</span>.<span class="ruby-identifier">for_fd</span>(<span class="ruby-identifier">s</span>.<span class="ruby-identifier">fileno</span>)
+    <span class="ruby-identifier">s</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-identifier">ts</span>
+  }
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">sockets</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-create_self_signed_cert" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_self_signed_cert</span><span
+            class="method-args">(bits, cn, comment)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a self-signed certificate with the given number of <code>bits</code>, the issuer <code>cn</code> and a <code>comment</code> to be stored in the certificate.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_self_signed_cert-source">
+            <pre><span class="ruby-comment"># File lib/webrick/ssl.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_self_signed_cert</span>(<span class="ruby-identifier">bits</span>, <span class="ruby-identifier">cn</span>, <span class="ruby-identifier">comment</span>)
+  <span class="ruby-identifier">rsa</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bits</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">p</span>, <span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">p</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;.&quot;</span>  <span class="ruby-comment"># BN_generate_prime</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;+&quot;</span>  <span class="ruby-comment"># BN_generate_prime</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;*&quot;</span>  <span class="ruby-comment"># searching good prime,</span>
+                              <span class="ruby-comment"># n = #of try,</span>
+                              <span class="ruby-comment"># but also data from BN_generate_prime</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-comment"># found good prime, n==0 - p, n==1 - q,</span>
+                              <span class="ruby-comment"># but also data from BN_generate_prime</span>
+    <span class="ruby-keyword">else</span>;   <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;*&quot;</span>  <span class="ruby-comment"># BN_generate_prime</span>
+    <span class="ruby-keyword">end</span>
+  }
+  <span class="ruby-identifier">cert</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Certificate</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">version</span> = <span class="ruby-value">2</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">serial</span> = <span class="ruby-value">1</span>
+  <span class="ruby-identifier">name</span> = (<span class="ruby-identifier">cn</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Name</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cn</span>)
+                              <span class="ruby-operator">:</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Name</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">cn</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">subject</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">issuer</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">not_before</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">not_after</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">+</span> (<span class="ruby-value">365</span><span class="ruby-operator">*</span><span class="ruby-value">24</span><span class="ruby-operator">*</span><span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">public_key</span> = <span class="ruby-identifier">rsa</span>.<span class="ruby-identifier">public_key</span>
+
+  <span class="ruby-identifier">ef</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtensionFactory</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>,<span class="ruby-identifier">cert</span>)
+  <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">issuer_certificate</span> = <span class="ruby-identifier">cert</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">extensions</span> = [
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;basicConstraints&quot;</span>,<span class="ruby-string">&quot;CA:FALSE&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;keyUsage&quot;</span>, <span class="ruby-string">&quot;keyEncipherment&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;subjectKeyIdentifier&quot;</span>, <span class="ruby-string">&quot;hash&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;extendedKeyUsage&quot;</span>, <span class="ruby-string">&quot;serverAuth&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;nsComment&quot;</span>, <span class="ruby-identifier">comment</span>),
+  ]
+  <span class="ruby-identifier">aki</span> = <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;authorityKeyIdentifier&quot;</span>,
+                            <span class="ruby-string">&quot;keyid:always,issuer:always&quot;</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">add_extension</span>(<span class="ruby-identifier">aki</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">sign</span>(<span class="ruby-identifier">rsa</span>, <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">new</span>)
+
+  <span class="ruby-keyword">return</span> [ <span class="ruby-identifier">cert</span>, <span class="ruby-identifier">rsa</span> ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getservername" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getservername</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The server hostname</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getservername-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getservername</span>
+  <span class="ruby-identifier">host</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-identifier">gethostname</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-identifier">gethostbyname</span>(<span class="ruby-identifier">host</span>)[<span class="ruby-value">0</span>]
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-identifier">host</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-random_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_string</span><span
+            class="method-args">(len)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generates a random string of length <code>len</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="random_string-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">random_string</span>(<span class="ruby-identifier">len</span>)
+  <span class="ruby-identifier">rand_max</span> = <span class="ruby-constant">RAND_CHARS</span>.<span class="ruby-identifier">bytesize</span>
+  <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">len</span>.<span class="ruby-identifier">times</span>{ <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">RAND_CHARS</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">rand_max</span>)] }
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-set_close_on_exec" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_close_on_exec</span><span
+            class="method-args">(io)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the close on exec flag for <code>io</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_close_on_exec-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_close_on_exec</span>(<span class="ruby-identifier">io</span>)
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">close_on_exec</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:close_on_exec=</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-set_non_blocking" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_non_blocking</span><span
+            class="method-args">(io)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets <a href="../IO.html"><code>IO</code></a> operations on <code>io</code> to be non-blocking</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_non_blocking-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_non_blocking</span>(<span class="ruby-identifier">io</span>)
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">nonblock</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:nonblock=</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-su" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">su</span><span
+            class="method-args">(user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Changes the process&#39;s uid and gid to the ones of <code>user</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="su-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">su</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">pw</span> = <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-identifier">user</span>)
+    <span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-identifier">initgroups</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">pw</span>.<span class="ruby-identifier">gid</span>)
+    <span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">Sys</span><span class="ruby-operator">::</span><span class="ruby-identifier">setgid</span>(<span class="ruby-identifier">pw</span>.<span class="ruby-identifier">gid</span>)
+    <span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">Sys</span><span class="ruby-operator">::</span><span class="ruby-identifier">setuid</span>(<span class="ruby-identifier">pw</span>.<span class="ruby-identifier">uid</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">warn</span>(<span class="ruby-string">&quot;WEBrick::Utils::su doesn&#39;t work on this platform&quot;</span>, <span class="ruby-value">uplevel:</span> <span class="ruby-value">1</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-timeout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">timeout</span><span
+            class="method-args">(seconds, exception=Timeout::Error) { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Executes the passed block and raises <code>exception</code> if execution takes more than <code>seconds</code>.</p>
+
+<p>If <code>seconds</code> is zero or nil, simply executes the block</p>
+          
+          
+
+          
+          <div class="method-source-code" id="timeout-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 258</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">timeout</span>(<span class="ruby-identifier">seconds</span>, <span class="ruby-identifier">exception</span>=<span class="ruby-constant">Timeout</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">yield</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">zero?</span>
+  <span class="ruby-comment"># raise ThreadError, &quot;timeout within critical session&quot; if Thread.critical</span>
+  <span class="ruby-identifier">id</span> = <span class="ruby-constant">TimeoutHandler</span>.<span class="ruby-identifier">register</span>(<span class="ruby-identifier">seconds</span>, <span class="ruby-identifier">exception</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">seconds</span>)
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-constant">TimeoutHandler</span>.<span class="ruby-identifier">cancel</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-create_listeners" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_listeners</span><span
+            class="method-args">(address, port)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates TCP server sockets bound to <code>address</code>:<code>port</code> and returns them.</p>
+
+<p>It will create IPV4 and IPV6 sockets on all interfaces.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_listeners-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_listeners</span>(<span class="ruby-identifier">address</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">port</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;must specify port&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">sockets</span> = <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">tcp_server_sockets</span>(<span class="ruby-identifier">address</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-identifier">sockets</span> = <span class="ruby-identifier">sockets</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">s</span>.<span class="ruby-identifier">autoclose</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">ts</span> = <span class="ruby-constant">TCPServer</span>.<span class="ruby-identifier">for_fd</span>(<span class="ruby-identifier">s</span>.<span class="ruby-identifier">fileno</span>)
+    <span class="ruby-identifier">s</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-identifier">ts</span>
+  }
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">sockets</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_self_signed_cert" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_self_signed_cert</span><span
+            class="method-args">(bits, cn, comment)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a self-signed certificate with the given number of <code>bits</code>, the issuer <code>cn</code> and a <code>comment</code> to be stored in the certificate.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_self_signed_cert-source">
+            <pre><span class="ruby-comment"># File lib/webrick/ssl.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_self_signed_cert</span>(<span class="ruby-identifier">bits</span>, <span class="ruby-identifier">cn</span>, <span class="ruby-identifier">comment</span>)
+  <span class="ruby-identifier">rsa</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bits</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">p</span>, <span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">p</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;.&quot;</span>  <span class="ruby-comment"># BN_generate_prime</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;+&quot;</span>  <span class="ruby-comment"># BN_generate_prime</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;*&quot;</span>  <span class="ruby-comment"># searching good prime,</span>
+                              <span class="ruby-comment"># n = #of try,</span>
+                              <span class="ruby-comment"># but also data from BN_generate_prime</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span>; <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-comment"># found good prime, n==0 - p, n==1 - q,</span>
+                              <span class="ruby-comment"># but also data from BN_generate_prime</span>
+    <span class="ruby-keyword">else</span>;   <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">putc</span> <span class="ruby-string">&quot;*&quot;</span>  <span class="ruby-comment"># BN_generate_prime</span>
+    <span class="ruby-keyword">end</span>
+  }
+  <span class="ruby-identifier">cert</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Certificate</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">version</span> = <span class="ruby-value">2</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">serial</span> = <span class="ruby-value">1</span>
+  <span class="ruby-identifier">name</span> = (<span class="ruby-identifier">cn</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Name</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cn</span>)
+                              <span class="ruby-operator">:</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">Name</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">cn</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">subject</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">issuer</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">not_before</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">not_after</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">+</span> (<span class="ruby-value">365</span><span class="ruby-operator">*</span><span class="ruby-value">24</span><span class="ruby-operator">*</span><span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">public_key</span> = <span class="ruby-identifier">rsa</span>.<span class="ruby-identifier">public_key</span>
+
+  <span class="ruby-identifier">ef</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">X509</span><span class="ruby-operator">::</span><span class="ruby-constant">ExtensionFactory</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>,<span class="ruby-identifier">cert</span>)
+  <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">issuer_certificate</span> = <span class="ruby-identifier">cert</span>
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">extensions</span> = [
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;basicConstraints&quot;</span>,<span class="ruby-string">&quot;CA:FALSE&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;keyUsage&quot;</span>, <span class="ruby-string">&quot;keyEncipherment&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;subjectKeyIdentifier&quot;</span>, <span class="ruby-string">&quot;hash&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;extendedKeyUsage&quot;</span>, <span class="ruby-string">&quot;serverAuth&quot;</span>),
+    <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;nsComment&quot;</span>, <span class="ruby-identifier">comment</span>),
+  ]
+  <span class="ruby-identifier">aki</span> = <span class="ruby-identifier">ef</span>.<span class="ruby-identifier">create_extension</span>(<span class="ruby-string">&quot;authorityKeyIdentifier&quot;</span>,
+                            <span class="ruby-string">&quot;keyid:always,issuer:always&quot;</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">add_extension</span>(<span class="ruby-identifier">aki</span>)
+  <span class="ruby-identifier">cert</span>.<span class="ruby-identifier">sign</span>(<span class="ruby-identifier">rsa</span>, <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">new</span>)
+
+  <span class="ruby-keyword">return</span> [ <span class="ruby-identifier">cert</span>, <span class="ruby-identifier">rsa</span> ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getservername" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getservername</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The server hostname</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getservername-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getservername</span>
+  <span class="ruby-identifier">host</span> = <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-identifier">gethostname</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-identifier">gethostbyname</span>(<span class="ruby-identifier">host</span>)[<span class="ruby-value">0</span>]
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-identifier">host</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-random_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_string</span><span
+            class="method-args">(len)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generates a random string of length <code>len</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="random_string-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">random_string</span>(<span class="ruby-identifier">len</span>)
+  <span class="ruby-identifier">rand_max</span> = <span class="ruby-constant">RAND_CHARS</span>.<span class="ruby-identifier">bytesize</span>
+  <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">len</span>.<span class="ruby-identifier">times</span>{ <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">RAND_CHARS</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">rand_max</span>)] }
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_close_on_exec" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_close_on_exec</span><span
+            class="method-args">(io)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the close on exec flag for <code>io</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_close_on_exec-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_close_on_exec</span>(<span class="ruby-identifier">io</span>)
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">close_on_exec</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:close_on_exec=</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_non_blocking" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_non_blocking</span><span
+            class="method-args">(io)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets <a href="../IO.html"><code>IO</code></a> operations on <code>io</code> to be non-blocking</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_non_blocking-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_non_blocking</span>(<span class="ruby-identifier">io</span>)
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">nonblock</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:nonblock=</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-su" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">su</span><span
+            class="method-args">(user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Changes the process&#39;s uid and gid to the ones of <code>user</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="su-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">su</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">pw</span> = <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-identifier">user</span>)
+    <span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-identifier">initgroups</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">pw</span>.<span class="ruby-identifier">gid</span>)
+    <span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">Sys</span><span class="ruby-operator">::</span><span class="ruby-identifier">setgid</span>(<span class="ruby-identifier">pw</span>.<span class="ruby-identifier">gid</span>)
+    <span class="ruby-constant">Process</span><span class="ruby-operator">::</span><span class="ruby-constant">Sys</span><span class="ruby-operator">::</span><span class="ruby-identifier">setuid</span>(<span class="ruby-identifier">pw</span>.<span class="ruby-identifier">uid</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">warn</span>(<span class="ruby-string">&quot;WEBrick::Utils::su doesn&#39;t work on this platform&quot;</span>, <span class="ruby-value">uplevel:</span> <span class="ruby-value">1</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-timeout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">timeout</span><span
+            class="method-args">(seconds, exception=Timeout::Error) { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Executes the passed block and raises <code>exception</code> if execution takes more than <code>seconds</code>.</p>
+
+<p>If <code>seconds</code> is zero or nil, simply executes the block</p>
+          
+          
+
+          
+          <div class="method-source-code" id="timeout-source">
+            <pre><span class="ruby-comment"># File lib/webrick/utils.rb, line 258</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">timeout</span>(<span class="ruby-identifier">seconds</span>, <span class="ruby-identifier">exception</span>=<span class="ruby-constant">Timeout</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">yield</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">zero?</span>
+  <span class="ruby-comment"># raise ThreadError, &quot;timeout within critical session&quot; if Thread.critical</span>
+  <span class="ruby-identifier">id</span> = <span class="ruby-constant">TimeoutHandler</span>.<span class="ruby-identifier">register</span>(<span class="ruby-identifier">seconds</span>, <span class="ruby-identifier">exception</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">seconds</span>)
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-constant">TimeoutHandler</span>.<span class="ruby-identifier">cancel</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

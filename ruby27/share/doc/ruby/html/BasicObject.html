@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class BasicObject - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-21">#!</a>
+    
+    <li ><a href="#method-i-21-3D">#!=</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-__id__">#__id__</a>
+    
+    <li ><a href="#method-i-__send__">#__send__</a>
+    
+    <li ><a href="#method-i-equal-3F">#equal?</a>
+    
+    <li ><a href="#method-i-instance_eval">#instance_eval</a>
+    
+    <li ><a href="#method-i-instance_exec">#instance_exec</a>
+    
+    <li ><a href="#method-i-method_missing">#method_missing</a>
+    
+    <li ><a href="#method-i-singleton_method_added">#singleton_method_added</a>
+    
+    <li ><a href="#method-i-singleton_method_removed">#singleton_method_removed</a>
+    
+    <li ><a href="#method-i-singleton_method_undefined">#singleton_method_undefined</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-BasicObject">
+  <h1 id="class-BasicObject" class="class">
+    class BasicObject
+  </h1>
+
+  <section class="description">
+    
+<p><a href="BasicObject.html"><code>BasicObject</code></a> is the parent class of all classes in Ruby.  It&#39;s an explicit blank class.</p>
+
+<p><a href="BasicObject.html"><code>BasicObject</code></a> can be used for creating object hierarchies independent of Ruby&#39;s object hierarchy, proxy objects like the <a href="Delegator.html"><code>Delegator</code></a> class, or other uses where namespace pollution from Ruby&#39;s methods and classes must be avoided.</p>
+
+<p>To avoid polluting <a href="BasicObject.html"><code>BasicObject</code></a> for other users an appropriately named subclass of <a href="BasicObject.html"><code>BasicObject</code></a> should be created instead of directly modifying BasicObject:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyObjectSystem</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">BasicObject</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><a href="BasicObject.html"><code>BasicObject</code></a> does not include <a href="Kernel.html"><code>Kernel</code></a> (for methods like <code>puts</code>) and <a href="BasicObject.html"><code>BasicObject</code></a> is outside of the namespace of the standard library so common classes will not be found without using a full class path.</p>
+
+<p>A variety of strategies can be used to provide useful portions of the standard library to subclasses of <a href="BasicObject.html"><code>BasicObject</code></a>.  A subclass could <code>include Kernel</code> to obtain <code>puts</code>, <code>exit</code>, etc.  A custom Kernel-like module could be created and included or delegation can be used via <a href="BasicObject.html#method-i-method_missing"><code>method_missing</code></a>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyObjectSystem</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">BasicObject</span>
+  <span class="ruby-constant">DELEGATE</span> = [<span class="ruby-value">:puts</span>, <span class="ruby-value">:p</span>]
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_missing</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">super</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">DELEGATE</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">name</span>
+    <span class="ruby-operator">::</span><span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">respond_to_missing?</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">include_private</span> = <span class="ruby-keyword">false</span>)
+    <span class="ruby-constant">DELEGATE</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword">or</span> <span class="ruby-keyword">super</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Access to classes and modules from the Ruby standard library can be obtained in a <a href="BasicObject.html"><code>BasicObject</code></a> subclass by referencing the desired constant from the root like <code>::File</code> or <code>::Enumerator</code>. Like <a href="BasicObject.html#method-i-method_missing"><code>method_missing</code></a>, const_missing can be used to delegate constant lookup to <code>Object</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyObjectSystem</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">BasicObject</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">const_missing</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-operator">::</span><span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rb_obj_dummy0(VALUE _)
+{
+    return rb_obj_dummy();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-21" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            !obj    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Boolean negate.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="21-source">
+            <pre>MJIT_FUNC_EXPORTED VALUE
+rb_obj_not(VALUE obj)
+{
+    return RTEST(obj) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-21-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            obj != other        &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if two objects are not-equal, otherwise false.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="21-3D-source">
+            <pre>MJIT_FUNC_EXPORTED VALUE
+rb_obj_not_equal(VALUE obj1, VALUE obj2)
+{
+    VALUE result = rb_funcall(obj1, id_eq, 1, obj2);
+    return RTEST(result) ? Qfalse : Qtrue;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            obj == other        &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Equality — At the <a href="Object.html"><code>Object</code></a> level, #== returns <code>true</code> only if <code>obj</code> and <code>other</code> are the same object.  Typically, this method is overridden in descendant classes to provide class-specific meaning.</p>
+
+<p>Unlike #==, the <a href="BasicObject.html#method-i-equal-3F"><code>equal?</code></a> method should never be overridden by subclasses as it is used to determine object identity (that is, <code>a.equal?(b)</code> if and only if <code>a</code> is the same object as <code>b</code>):</p>
+
+<pre class="ruby"><span class="ruby-identifier">obj</span> = <span class="ruby-string">&quot;a&quot;</span>
+<span class="ruby-identifier">other</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">dup</span>
+
+<span class="ruby-identifier">obj</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>      <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">equal?</span> <span class="ruby-identifier">other</span>  <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">equal?</span> <span class="ruby-identifier">obj</span>    <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>The eql? method returns <code>true</code> if <code>obj</code> and <code>other</code> refer to the same hash key.  This is used by <a href="Hash.html"><code>Hash</code></a> to test members for equality.  For any pair of objects where eql? returns <code>true</code>, the hash value of both objects must be equal. So any subclass that overrides eql? should also override hash appropriately.</p>
+
+<p>For objects of class <a href="Object.html"><code>Object</code></a>, eql?  is synonymous with #==.  Subclasses normally continue this tradition by aliasing eql? to their overridden #== method, but there are exceptions. <a href="Numeric.html"><code>Numeric</code></a> types, for example, perform type conversion across #==, but not across eql?, so:</p>
+
+<pre class="ruby"><span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-value">1.0</span>     <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">1</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-value">1.0</span>   <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre>MJIT_FUNC_EXPORTED VALUE
+rb_obj_equal(VALUE obj1, VALUE obj2)
+{
+    if (obj1 == obj2) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-__id__" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            __id__       &rarr; integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            object_id    &rarr; integer
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an integer identifier for <code>obj</code>.</p>
+
+<p>The same number will be returned on all calls to <code>object_id</code> for a given object, and no two active objects will share an id.</p>
+
+<p>Note: that some objects of builtin classes are reused for optimization. This is the case for immediate values and frozen string literals.</p>
+
+<p><a href="BasicObject.html"><code>BasicObject</code></a> implements +__id__+, <a href="Kernel.html"><code>Kernel</code></a> implements <code>object_id</code>.</p>
+
+<p>Immediate values are not passed by reference but are passed by value: <code>nil</code>, <code>true</code>, <code>false</code>, Fixnums, Symbols, and some Floats.</p>
+
+<pre class="ruby"><span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">object_id</span>  <span class="ruby-operator">==</span> <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">object_id</span>  <span class="ruby-comment"># =&gt; false</span>
+(<span class="ruby-value">21</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>).<span class="ruby-identifier">object_id</span>    <span class="ruby-operator">==</span> (<span class="ruby-value">21</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>).<span class="ruby-identifier">object_id</span>    <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-string">&quot;hello&quot;</span>.<span class="ruby-identifier">object_id</span>     <span class="ruby-operator">==</span> <span class="ruby-string">&quot;hello&quot;</span>.<span class="ruby-identifier">object_id</span>     <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-string">&quot;hi&quot;</span>.<span class="ruby-identifier">freeze</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;hi&quot;</span>.<span class="ruby-identifier">freeze</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-comment"># =&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="__id__-source">
+            <pre>VALUE
+rb_obj_id(VALUE obj)
+{
+    /*
+     *                32-bit VALUE space
+     *          MSB ------------------------ LSB
+     *  false   00000000000000000000000000000000
+     *  true    00000000000000000000000000000010
+     *  nil     00000000000000000000000000000100
+     *  undef   00000000000000000000000000000110
+     *  symbol  ssssssssssssssssssssssss00001110
+     *  object  oooooooooooooooooooooooooooooo00        = 0 (mod sizeof(RVALUE))
+     *  fixnum  fffffffffffffffffffffffffffffff1
+     *
+     *                    object_id space
+     *                                       LSB
+     *  false   00000000000000000000000000000000
+     *  true    00000000000000000000000000000010
+     *  nil     00000000000000000000000000000100
+     *  undef   00000000000000000000000000000110
+     *  symbol   000SSSSSSSSSSSSSSSSSSSSSSSSSSS0        S...S % A = 4 (S...S = s...s * A + 4)
+     *  object   oooooooooooooooooooooooooooooo0        o...o % A = 0
+     *  fixnum  fffffffffffffffffffffffffffffff1        bignum if required
+     *
+     *  where A = sizeof(RVALUE)/4
+     *
+     *  sizeof(RVALUE) is
+     *  20 if 32-bit, double is 4-byte aligned
+     *  24 if 32-bit, double is 8-byte aligned
+     *  40 if 64-bit
+     */
+
+    return rb_find_object_id(obj, cached_object_id);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-__send__" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            send(symbol [, args...])       &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            __send__(symbol [, args...])   &rarr; obj
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            send(string [, args...])       &rarr; obj
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            __send__(string [, args...])   &rarr; obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invokes the method identified by <em>symbol</em>, passing it any arguments specified. You can use <code>__send__</code> if the name <code>send</code> clashes with an existing method in <em>obj</em>. When the method is identified by a string, the string is converted to a symbol.</p>
+
+<p><a href="BasicObject.html"><code>BasicObject</code></a> implements +__send__+, <a href="Kernel.html"><code>Kernel</code></a> implements <code>send</code>.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Klass</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hello</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-string">&quot;Hello &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">k</span> = <span class="ruby-constant">Klass</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">k</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:hello</span>, <span class="ruby-string">&quot;gentle&quot;</span>, <span class="ruby-string">&quot;readers&quot;</span>   <span class="ruby-comment">#=&gt; &quot;Hello gentle readers&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="__send__-source">
+            <pre>VALUE
+rb_f_send(int argc, VALUE *argv, VALUE recv)
+{
+    return send_internal_kw(argc, argv, recv, CALL_FCALL);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-equal-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            equal?(other)   &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Equality — At the <a href="Object.html"><code>Object</code></a> level, #== returns <code>true</code> only if <code>obj</code> and <code>other</code> are the same object.  Typically, this method is overridden in descendant classes to provide class-specific meaning.</p>
+
+<p>Unlike #==, the <a href="BasicObject.html#method-i-equal-3F"><code>equal?</code></a> method should never be overridden by subclasses as it is used to determine object identity (that is, <code>a.equal?(b)</code> if and only if <code>a</code> is the same object as <code>b</code>):</p>
+
+<pre class="ruby"><span class="ruby-identifier">obj</span> = <span class="ruby-string">&quot;a&quot;</span>
+<span class="ruby-identifier">other</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">dup</span>
+
+<span class="ruby-identifier">obj</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>      <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">equal?</span> <span class="ruby-identifier">other</span>  <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">equal?</span> <span class="ruby-identifier">obj</span>    <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>The eql? method returns <code>true</code> if <code>obj</code> and <code>other</code> refer to the same hash key.  This is used by <a href="Hash.html"><code>Hash</code></a> to test members for equality.  For any pair of objects where eql? returns <code>true</code>, the hash value of both objects must be equal. So any subclass that overrides eql? should also override hash appropriately.</p>
+
+<p>For objects of class <a href="Object.html"><code>Object</code></a>, eql?  is synonymous with #==.  Subclasses normally continue this tradition by aliasing eql? to their overridden #== method, but there are exceptions. <a href="Numeric.html"><code>Numeric</code></a> types, for example, perform type conversion across #==, but not across eql?, so:</p>
+
+<pre class="ruby"><span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-value">1.0</span>     <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-value">1</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-value">1.0</span>   <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="equal-3F-source">
+            <pre>MJIT_FUNC_EXPORTED VALUE
+rb_obj_equal(VALUE obj1, VALUE obj2)
+{
+    if (obj1 == obj2) return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-instance_eval" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            instance_eval(string [, filename [, lineno]] )   &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            instance_eval {|obj| block }                     &rarr; obj
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates a string containing Ruby source code, or the given block, within the context of the receiver (<em>obj</em>). In order to set the context, the variable <code>self</code> is set to <em>obj</em> while the code is executing, giving the code access to <em>obj</em>&#39;s instance variables and private methods.</p>
+
+<p>When <code>instance_eval</code> is given a block, <em>obj</em> is also passed in as the block&#39;s only argument.</p>
+
+<p>When <code>instance_eval</code> is given a <code>String</code>, the optional second and third parameters supply a filename and starting line number that are used when reporting compilation errors.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">KlassWithSecret</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+    <span class="ruby-ivar">@secret</span> = <span class="ruby-value">99</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">private</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">the_secret</span>
+    <span class="ruby-node">&quot;Ssssh! The secret is #{@secret}.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">k</span> = <span class="ruby-constant">KlassWithSecret</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">k</span>.<span class="ruby-identifier">instance_eval</span> { <span class="ruby-ivar">@secret</span> }          <span class="ruby-comment">#=&gt; 99</span>
+<span class="ruby-identifier">k</span>.<span class="ruby-identifier">instance_eval</span> { <span class="ruby-identifier">the_secret</span> }       <span class="ruby-comment">#=&gt; &quot;Ssssh! The secret is 99.&quot;</span>
+<span class="ruby-identifier">k</span>.<span class="ruby-identifier">instance_eval</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span> <span class="ruby-identifier">obj</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span> } <span class="ruby-comment">#=&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="instance_eval-source">
+            <pre>static VALUE
+rb_obj_instance_eval_internal(int argc, const VALUE *argv, VALUE self)
+{
+    VALUE klass = singleton_class_for_eval(self);
+    return specific_eval(argc, argv, klass, self, RB_PASS_CALLED_KEYWORDS);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-instance_exec" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            instance_exec(arg...) {|var...| block }                       &rarr; obj
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Executes the given block within the context of the receiver (<em>obj</em>). In order to set the context, the variable <code>self</code> is set to <em>obj</em> while the code is executing, giving the code access to <em>obj</em>&#39;s instance variables.  Arguments are passed as block parameters.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">KlassWithSecret</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+    <span class="ruby-ivar">@secret</span> = <span class="ruby-value">99</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">k</span> = <span class="ruby-constant">KlassWithSecret</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">k</span>.<span class="ruby-identifier">instance_exec</span>(<span class="ruby-value">5</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@secret</span><span class="ruby-operator">+</span><span class="ruby-identifier">x</span> }   <span class="ruby-comment">#=&gt; 104</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="instance_exec-source">
+            <pre>static VALUE
+rb_obj_instance_exec_internal(int argc, const VALUE *argv, VALUE self)
+{
+    VALUE klass = singleton_class_for_eval(self);
+    return yield_under(klass, self, argc, argv, RB_PASS_CALLED_KEYWORDS);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-method_missing" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            method_missing(symbol [, *args] )   &rarr; result
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invoked by Ruby when <em>obj</em> is sent a message it cannot handle. <em>symbol</em> is the symbol for the method called, and <em>args</em> are any arguments that were passed to it. By default, the interpreter raises an error when this method is called. However, it is possible to override the method to provide more dynamic behavior. If it is decided that a particular method should not be handled, then <em>super</em> should be called, so that ancestors can pick up the missing method. The example below creates a class <code>Roman</code>, which responds to methods with names consisting of roman numerals, returning the corresponding integer values.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Roman</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">roman_to_int</span>(<span class="ruby-identifier">str</span>)
+    <span class="ruby-comment"># ...</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_missing</span>(<span class="ruby-identifier">symbol</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">str</span> = <span class="ruby-identifier">symbol</span>.<span class="ruby-identifier">id2name</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">roman_to_int</span>(<span class="ruby-identifier">str</span>)
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-keyword">super</span>(<span class="ruby-identifier">symbol</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Roman</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">iv</span>      <span class="ruby-comment">#=&gt; 4</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">xxiii</span>   <span class="ruby-comment">#=&gt; 23</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">mm</span>      <span class="ruby-comment">#=&gt; 2000</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">foo</span>     <span class="ruby-comment">#=&gt; NoMethodError</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="method_missing-source">
+            <pre>static VALUE
+rb_method_missing(int argc, const VALUE *argv, VALUE obj)
+{
+    rb_execution_context_t *ec = GET_EC();
+    raise_method_missing(ec, argc, argv, obj, ec-&gt;method_missing_reason);
+    UNREACHABLE_RETURN(Qnil);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-singleton_method_added" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            singleton_method_added(symbol)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invoked as a callback whenever a singleton method is added to the receiver.</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">Chatty</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">Chatty</span>.<span class="ruby-identifier ruby-title">singleton_method_added</span>(<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Adding #{id.id2name}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">one</span>()     <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">two</span>()          <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">Chatty</span>.<span class="ruby-identifier ruby-title">three</span>() <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><em>produces:</em></p>
+
+<pre class="ruby"><span class="ruby-constant">Adding</span> <span class="ruby-identifier">singleton_method_added</span>
+<span class="ruby-constant">Adding</span> <span class="ruby-identifier">one</span>
+<span class="ruby-constant">Adding</span> <span class="ruby-identifier">three</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="singleton_method_added-source">
+            <pre>static VALUE
+rb_obj_dummy1(VALUE _x, VALUE _y)
+{
+    return rb_obj_dummy();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-singleton_method_removed" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            singleton_method_removed(symbol)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invoked as a callback whenever a singleton method is removed from the receiver.</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">Chatty</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">Chatty</span>.<span class="ruby-identifier ruby-title">singleton_method_removed</span>(<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Removing #{id.id2name}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">one</span>()     <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">two</span>()          <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">Chatty</span>.<span class="ruby-identifier ruby-title">three</span>() <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+    <span class="ruby-identifier">remove_method</span> <span class="ruby-value">:three</span>
+    <span class="ruby-identifier">remove_method</span> <span class="ruby-value">:one</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><em>produces:</em></p>
+
+<pre class="ruby"><span class="ruby-constant">Removing</span> <span class="ruby-identifier">three</span>
+<span class="ruby-constant">Removing</span> <span class="ruby-identifier">one</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="singleton_method_removed-source">
+            <pre>static VALUE
+rb_obj_dummy1(VALUE _x, VALUE _y)
+{
+    return rb_obj_dummy();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-singleton_method_undefined" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            singleton_method_undefined(symbol)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Invoked as a callback whenever a singleton method is undefined in the receiver.</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">Chatty</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">Chatty</span>.<span class="ruby-identifier ruby-title">singleton_method_undefined</span>(<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Undefining #{id.id2name}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">Chatty</span>.<span class="ruby-identifier ruby-title">one</span>()   <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+     <span class="ruby-identifier">undef_method</span>(<span class="ruby-value">:one</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><em>produces:</em></p>
+
+<pre class="ruby"><span class="ruby-constant">Undefining</span> <span class="ruby-identifier">one</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="singleton_method_undefined-source">
+            <pre>static VALUE
+rb_obj_dummy1(VALUE _x, VALUE _y)
+{
+    return rb_obj_dummy();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module GC - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-add_stress_to_class">::add_stress_to_class</a>
+    
+    <li ><a href="#method-c-compact">::compact</a>
+    
+    <li ><a href="#method-c-count">::count</a>
+    
+    <li ><a href="#method-c-disable">::disable</a>
+    
+    <li ><a href="#method-c-enable">::enable</a>
+    
+    <li ><a href="#method-c-latest_gc_info">::latest_gc_info</a>
+    
+    <li ><a href="#method-c-malloc_allocated_size">::malloc_allocated_size</a>
+    
+    <li ><a href="#method-c-malloc_allocations">::malloc_allocations</a>
+    
+    <li ><a href="#method-c-remove_stress_to_class">::remove_stress_to_class</a>
+    
+    <li ><a href="#method-c-start">::start</a>
+    
+    <li ><a href="#method-c-stat">::stat</a>
+    
+    <li ><a href="#method-c-stress">::stress</a>
+    
+    <li ><a href="#method-c-stress-3D">::stress=</a>
+    
+    <li ><a href="#method-c-verify_compaction_references">::verify_compaction_references</a>
+    
+    <li ><a href="#method-c-verify_internal_consistency">::verify_internal_consistency</a>
+    
+    <li ><a href="#method-c-verify_transient_heap_internal_consistency">::verify_transient_heap_internal_consistency</a>
+    
+    <li ><a href="#method-i-garbage_collect">#garbage_collect</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-GC">
+  <h1 id="module-GC" class="module">
+    module GC
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="GC.html"><code>GC</code></a> module provides an interface to Ruby&#39;s mark and sweep garbage collection mechanism.</p>
+
+<p>Some of the underlying methods are also available via the <a href="ObjectSpace.html"><code>ObjectSpace</code></a> module.</p>
+
+<p>You may obtain information about the operation of the <a href="GC.html"><code>GC</code></a> through <a href="GC/Profiler.html"><code>GC::Profiler</code></a>.</p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="INTERNAL_CONSTANTS">INTERNAL_CONSTANTS
+        
+        <dd><p>internal constants</p>
+        
+      
+        <dt id="OPTS">OPTS
+        
+        <dd><p><a href="GC.html"><code>GC</code></a> build options</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-add_stress_to_class" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            add_stress_to_class(class[, ...])
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Raises <a href="NoMemoryError.html"><code>NoMemoryError</code></a> when allocating an instance of the given classes.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_stress_to_class-source">
+            <pre>static VALUE
+rb_gcdebug_add_stress_to_class(int argc, VALUE *argv, VALUE self)
+{
+    rb_objspace_t *objspace = &amp;rb_objspace;
+
+    if (!stress_to_class) {
+        stress_to_class = rb_ary_tmp_new(argc);
+    }
+    rb_ary_cat(stress_to_class, argv, argc);
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-compact" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compact</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="compact-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">compact</span>
+  <span class="ruby-identifier">__builtin_rb_gc_compact</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-count" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            count &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>The number of times <a href="GC.html"><code>GC</code></a> occurred.</p>
+
+<p>It returns the number of times <a href="GC.html"><code>GC</code></a> occurred since the process started.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="count-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">count</span>
+  <span class="ruby-identifier">__builtin_gc_count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-disable" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            disable    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Disables garbage collection, returning <code>true</code> if garbage collection was already disabled.</p>
+
+<pre class="ruby"><span class="ruby-constant">GC</span>.<span class="ruby-identifier">disable</span>   <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-constant">GC</span>.<span class="ruby-identifier">disable</span>   <span class="ruby-comment">#=&gt; true</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="disable-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">disable</span>
+  <span class="ruby-identifier">__builtin_gc_disable</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-enable" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            enable    &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Enables garbage collection, returning <code>true</code> if garbage collection was previously disabled.</p>
+
+<pre class="ruby"><span class="ruby-constant">GC</span>.<span class="ruby-identifier">disable</span>   <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-constant">GC</span>.<span class="ruby-identifier">enable</span>    <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-constant">GC</span>.<span class="ruby-identifier">enable</span>    <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="enable-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">enable</span>
+  <span class="ruby-identifier">__builtin_gc_enable</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-latest_gc_info" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            latest_gc_info -&gt; {:gc_by&rarr;:newobj}
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            latest_gc_info(hash) &rarr; hash
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            latest_gc_info(:major_by) &rarr; :malloc
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns information about the most recent garbage collection.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="latest_gc_info-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">latest_gc_info</span> <span class="ruby-identifier">hash_or_key</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">__builtin_gc_latest_gc_info</span> <span class="ruby-identifier">hash_or_key</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-malloc_allocated_size" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            malloc_allocated_size &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the size of memory allocated by malloc().</p>
+
+<p>Only available if ruby was built with <code>CALC_EXACT_MALLOC_SIZE</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="malloc_allocated_size-source">
+            <pre>static VALUE
+gc_malloc_allocated_size(VALUE self)
+{
+    return UINT2NUM(rb_objspace.malloc_params.allocated_size);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-malloc_allocations" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            malloc_allocations &rarr; Integer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the number of malloc() allocations.</p>
+
+<p>Only available if ruby was built with <code>CALC_EXACT_MALLOC_SIZE</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="malloc_allocations-source">
+            <pre>static VALUE
+gc_malloc_allocations(VALUE self)
+{
+    return UINT2NUM(rb_objspace.malloc_params.allocations);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-remove_stress_to_class" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            remove_stress_to_class(class[, ...])
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>No longer raises <a href="NoMemoryError.html"><code>NoMemoryError</code></a> when allocating an instance of the given classes.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_stress_to_class-source">
+            <pre>static VALUE
+rb_gcdebug_remove_stress_to_class(int argc, VALUE *argv, VALUE self)
+{
+    rb_objspace_t *objspace = &amp;rb_objspace;
+    int i;
+
+    if (stress_to_class) {
+        for (i = 0; i &lt; argc; ++i) {
+            rb_ary_delete_same(stress_to_class, argv[i]);
+        }
+        if (RARRAY_LEN(stress_to_class) == 0) {
+            stress_to_class = 0;
+        }
+    }
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-start" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            start                     &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            garbage_collect  &rarr; nil
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            include GC; garbage_collect  &rarr; nil
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            start(full_mark: true, immediate_sweep: true)           &rarr; nil
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            garbage_collect(full_mark: true, immediate_sweep: true) &rarr; nil
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            include GC; garbage_collect(full_mark: true, immediate_sweep: true) &rarr; nil
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Initiates garbage collection, even if manually disabled.</p>
+
+<p>This method is defined with keyword arguments that default to true:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-constant">GC</span>.<span class="ruby-identifier ruby-title">start</span>(<span class="ruby-value">full_mark:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">immediate_sweep:</span> <span class="ruby-keyword">true</span>); <span class="ruby-keyword">end</span>
+</pre>
+
+<p>Use full_mark: false to perform a minor <a href="GC.html"><code>GC</code></a>. Use immediate_sweep: false to defer sweeping (use lazy sweep).</p>
+
+<p>Note: These keyword arguments are implementation and version dependent. They are not guaranteed to be future-compatible, and may be ignored if the underlying implementation does not support them.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="start-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">start</span> <span class="ruby-value">full_mark:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">immediate_mark:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">immediate_sweep:</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">__builtin_gc_start_internal</span> <span class="ruby-identifier">full_mark</span>, <span class="ruby-identifier">immediate_mark</span>, <span class="ruby-identifier">immediate_sweep</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-stat" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stat &rarr; Hash
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stat(hash) &rarr; hash
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stat(:key) &rarr; Numeric
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a <a href="Hash.html"><code>Hash</code></a> containing information about the <a href="GC.html"><code>GC</code></a>.</p>
+
+<p>The hash includes information about internal statistics about <a href="GC.html"><code>GC</code></a> such as:</p>
+
+<pre class="ruby">{
+    <span class="ruby-value">:count</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:heap_allocated_pages</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">24</span>,
+    <span class="ruby-value">:heap_sorted_length</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">24</span>,
+    <span class="ruby-value">:heap_allocatable_pages</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:heap_available_slots</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">9783</span>,
+    <span class="ruby-value">:heap_live_slots</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">7713</span>,
+    <span class="ruby-value">:heap_free_slots</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">2070</span>,
+    <span class="ruby-value">:heap_final_slots</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:heap_marked_slots</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:heap_eden_pages</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">24</span>,
+    <span class="ruby-value">:heap_tomb_pages</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:total_allocated_pages</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">24</span>,
+    <span class="ruby-value">:total_freed_pages</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:total_allocated_objects</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">7796</span>,
+    <span class="ruby-value">:total_freed_objects</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">83</span>,
+    <span class="ruby-value">:malloc_increase_bytes</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">2389312</span>,
+    <span class="ruby-value">:malloc_increase_bytes_limit</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">16777216</span>,
+    <span class="ruby-value">:minor_gc_count</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:major_gc_count</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:remembered_wb_unprotected_objects</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:remembered_wb_unprotected_objects_limit</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:old_objects</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:old_objects_limit</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">0</span>,
+    <span class="ruby-value">:oldmalloc_increase_bytes</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">2389760</span>,
+    <span class="ruby-value">:oldmalloc_increase_bytes_limit</span><span class="ruby-operator">=&gt;</span><span class="ruby-value">16777216</span>
+}
+</pre>
+
+<p>The contents of the hash are implementation specific and may be changed in the future.</p>
+
+<p>This method is only expected to work on C Ruby.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stat-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">stat</span> <span class="ruby-identifier">hash_or_key</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">__builtin_gc_stat</span> <span class="ruby-identifier">hash_or_key</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-stress" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stress            &rarr; integer, true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns current status of <a href="GC.html"><code>GC</code></a> stress mode.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stress-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">stress</span>
+  <span class="ruby-identifier">__builtin_gc_stress_get</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-stress-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            stress = flag          &rarr; flag
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Updates the <a href="GC.html"><code>GC</code></a> stress mode.</p>
+
+<p>When stress mode is enabled, the <a href="GC.html"><code>GC</code></a> is invoked at every <a href="GC.html"><code>GC</code></a> opportunity: all memory and object allocations.</p>
+
+<p>Enabling stress mode will degrade performance, it is only for debugging.</p>
+
+<p>flag can be true, false, or an integer bit-ORed following flags.</p>
+
+<pre class="ruby"><span class="ruby-value">0x01</span><span class="ruby-operator">::</span> <span class="ruby-identifier">no</span> <span class="ruby-identifier">major</span> <span class="ruby-constant">GC</span>
+<span class="ruby-value">0x02</span><span class="ruby-operator">::</span> <span class="ruby-identifier">no</span> <span class="ruby-identifier">immediate</span> <span class="ruby-identifier">sweep</span>
+<span class="ruby-value">0x04</span><span class="ruby-operator">::</span> <span class="ruby-identifier">full</span> <span class="ruby-identifier">mark</span> <span class="ruby-identifier">after</span> <span class="ruby-identifier">malloc</span><span class="ruby-operator">/</span><span class="ruby-identifier">calloc</span><span class="ruby-operator">/</span><span class="ruby-identifier">realloc</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="stress-3D-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">stress=</span>(<span class="ruby-identifier">flag</span>)
+  <span class="ruby-identifier">__builtin_gc_stress_set_m</span> <span class="ruby-identifier">flag</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-verify_compaction_references" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            verify_compaction_references(toward: nil, double_heap: nil) &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Verify compaction reference consistency.</p>
+
+<p>This method is implementation specific.  During compaction, objects that were moved are replaced with T_MOVED objects.  No object should have a reference to a T_MOVED object after compaction.</p>
+
+<p>This function doubles the heap to ensure room to move all objects, compacts the heap to make sure everything moves, updates all references, then performs a full <a href="GC.html"><code>GC</code></a>.  If any object contains a reference to a T_MOVED object, that object should be pushed on the mark stack, and will make a SEGV.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verify_compaction_references-source">
+            <pre>static VALUE
+gc_verify_compaction_references(int argc, VALUE *argv, VALUE mod)
+{
+    rb_objspace_t *objspace = &amp;rb_objspace;
+    int use_toward_empty = FALSE;
+    int use_double_pages = FALSE;
+
+    if (dont_gc) return Qnil;
+
+    VALUE opt = Qnil;
+    static ID keyword_ids[2];
+    VALUE kwvals[2];
+
+    kwvals[1] = Qtrue;
+
+    rb_scan_args(argc, argv, &quot;0:&quot;, &amp;opt);
+
+    if (!NIL_P(opt)) {
+        if (!keyword_ids[0]) {
+            keyword_ids[0] = rb_intern(&quot;toward&quot;);
+            keyword_ids[1] = rb_intern(&quot;double_heap&quot;);
+        }
+
+        rb_get_kwargs(opt, keyword_ids, 0, 2, kwvals);
+        if (kwvals[0] != Qundef &amp;&amp; rb_intern(&quot;empty&quot;) == rb_sym2id(kwvals[0])) {
+            use_toward_empty = TRUE;
+        }
+        if (kwvals[1] != Qundef &amp;&amp; RTEST(kwvals[1])) {
+            use_double_pages = TRUE;
+        }
+    }
+
+    gc_compact(objspace, use_toward_empty, use_double_pages, TRUE);
+    return gc_compact_stats(objspace);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-verify_internal_consistency" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            verify_internal_consistency                  &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Verify internal consistency.</p>
+
+<p>This method is implementation specific. Now this method checks generational consistency if RGenGC is supported.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verify_internal_consistency-source">
+            <pre>static VALUE
+gc_verify_internal_consistency_m(VALUE dummy)
+{
+    gc_verify_internal_consistency(&amp;rb_objspace);
+
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-verify_transient_heap_internal_consistency" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify_transient_heap_internal_consistency</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="verify_transient_heap_internal_consistency-source">
+            <pre>static VALUE
+gc_verify_transient_heap_internal_consistency(VALUE dmy)
+{
+    rb_transient_heap_verify();
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-garbage_collect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">garbage_collect</span><span
+            class="method-args">(full_mark: true, immediate_mark: true, immediate_sweep: true)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="garbage_collect-source">
+            <pre><span class="ruby-comment"># File gc.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">garbage_collect</span> <span class="ruby-value">full_mark:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">immediate_mark:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">immediate_sweep:</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">__builtin_gc_start_internal</span> <span class="ruby-identifier">full_mark</span>, <span class="ruby-identifier">immediate_mark</span>, <span class="ruby-identifier">immediate_sweep</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

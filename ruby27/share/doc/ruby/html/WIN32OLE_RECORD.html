@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class WIN32OLE_RECORD - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-method_missing">#method_missing</a>
+    
+    <li ><a href="#method-i-ole_instance_variable_get">#ole_instance_variable_get</a>
+    
+    <li ><a href="#method-i-ole_instance_variable_set">#ole_instance_variable_set</a>
+    
+    <li ><a href="#method-i-to_h">#to_h</a>
+    
+    <li ><a href="#method-i-typename">#typename</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-WIN32OLE_RECORD">
+  <h1 id="class-WIN32OLE_RECORD" class="class">
+    class WIN32OLE_RECORD
+  </h1>
+
+  <section class="description">
+    
+<p><code>WIN32OLE_RECORD</code> objects represents VT_RECORD OLE variant. Win32OLE returns <a href="WIN32OLE_RECORD.html"><code>WIN32OLE_RECORD</code></a> object if the result value of invoking OLE methods.</p>
+
+<p>If COM server in VB.NET ComServer project is the following:</p>
+
+<pre>Imports System.Runtime.InteropServices
+Public Class ComClass
+    Public Structure Book
+        &lt;MarshalAs(UnmanagedType.BStr)&gt; _
+        Public title As String
+        Public cost As Integer
+    End Structure
+    Public Function getBook() As Book
+        Dim book As New Book
+        book.title = &quot;The Ruby Book&quot;
+        book.cost = 20
+        Return book
+    End Function
+End Class</pre>
+
+<p>then, you can retrieve getBook return value from the following Ruby script:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;win32ole&#39;</span>
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">book</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">getBook</span>
+<span class="ruby-identifier">book</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment"># =&gt; WIN32OLE_RECORD</span>
+<span class="ruby-identifier">book</span>.<span class="ruby-identifier">title</span> <span class="ruby-comment"># =&gt; &quot;The Ruby Book&quot;</span>
+<span class="ruby-identifier">book</span>.<span class="ruby-identifier">cost</span>  <span class="ruby-comment"># =&gt; 20</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(typename, obj) &rarr; WIN32OLE_RECORD object
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns <a href="WIN32OLE_RECORD.html"><code>WIN32OLE_RECORD</code></a> object. The first argument is struct name (<a href="String.html"><code>String</code></a> or <a href="Symbol.html"><code>Symbol</code></a>). The second parameter obj should be <a href="WIN32OLE.html"><code>WIN32OLE</code></a> object or <a href="WIN32OLE_TYPELIB.html"><code>WIN32OLE_TYPELIB</code></a> object. If COM server in VB.NET ComServer project is the following:</p>
+
+<pre>Imports System.Runtime.InteropServices
+Public Class ComClass
+    Public Structure Book
+        &lt;MarshalAs(UnmanagedType.BStr)&gt; _
+        Public title As String
+        Public cost As Integer
+    End Structure
+End Class</pre>
+
+<p>then, you can create <a href="WIN32OLE_RECORD.html"><code>WIN32OLE_RECORD</code></a> object is as following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;win32ole&#39;</span>
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">book1</span> = <span class="ruby-constant">WIN32OLE_RECORD</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Book&#39;</span>, <span class="ruby-identifier">obj</span>) <span class="ruby-comment"># =&gt; WIN32OLE_RECORD object</span>
+<span class="ruby-identifier">tlib</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">ole_typelib</span>
+<span class="ruby-identifier">book2</span> = <span class="ruby-constant">WIN32OLE_RECORD</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Book&#39;</span>, <span class="ruby-identifier">tlib</span>) <span class="ruby-comment"># =&gt; WIN32OLE_RECORD object</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+folerecord_initialize(VALUE self, VALUE typename, VALUE oleobj) {
+    HRESULT hr;
+    ITypeLib *pTypeLib = NULL;
+    IRecordInfo *pri = NULL;
+
+    if (!RB_TYPE_P(typename, T_STRING) &amp;&amp; !RB_TYPE_P(typename, T_SYMBOL)) {
+        rb_raise(rb_eArgError, &quot;1st argument should be String or Symbol&quot;);
+    }
+    if (RB_TYPE_P(typename, T_SYMBOL)) {
+        typename = rb_sym2str(typename);
+    }
+
+    hr = S_OK;
+    if(rb_obj_is_kind_of(oleobj, cWIN32OLE)) {
+        hr = typelib_from_val(oleobj, &amp;pTypeLib);
+    } else if (rb_obj_is_kind_of(oleobj, cWIN32OLE_TYPELIB)) {
+        pTypeLib = itypelib(oleobj);
+        OLE_ADDREF(pTypeLib);
+        if (pTypeLib) {
+            hr = S_OK;
+        } else {
+            hr = E_FAIL;
+        }
+    } else {
+        rb_raise(rb_eArgError, &quot;2nd argument should be WIN32OLE object or WIN32OLE_TYPELIB object&quot;);
+    }
+
+    if (FAILED(hr)) {
+        ole_raise(hr, eWIN32OLERuntimeError, &quot;fail to query ITypeLib interface&quot;);
+    }
+
+    hr = recordinfo_from_itypelib(pTypeLib, typename, &amp;pri);
+    OLE_RELEASE(pTypeLib);
+    if (FAILED(hr)) {
+        ole_raise(hr, eWIN32OLERuntimeError, &quot;fail to query IRecordInfo interface for `%s&#39;&quot;, StringValuePtr(typename));
+    }
+
+    olerecord_set_ivar(self, pri, NULL);
+
+    return self;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_RECORD#inspect &rarr; String
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the OLE struct name and member name and the value of member</p>
+
+<p>If COM server in VB.NET ComServer project is the following:</p>
+
+<pre>Imports System.Runtime.InteropServices
+Public Class ComClass
+    &lt;MarshalAs(UnmanagedType.BStr)&gt; _
+    Public title As String
+    Public cost As Integer
+End Class</pre>
+
+<p>then</p>
+
+<pre class="ruby"><span class="ruby-identifier">srver</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE_RECORD</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Book&#39;</span>, <span class="ruby-identifier">server</span>)
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">inspect</span> <span class="ruby-comment"># =&gt; &lt;WIN32OLE_RECORD(ComClass) {&quot;title&quot; =&gt; nil, &quot;cost&quot; =&gt; nil}&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+folerecord_inspect(VALUE self)
+{
+    VALUE tname;
+    VALUE field;
+    tname = folerecord_typename(self);
+    if (tname == Qnil) {
+        tname = rb_inspect(tname);
+    }
+    field = rb_inspect(folerecord_to_h(self));
+    return rb_sprintf(&quot;#&lt;WIN32OLE_RECORD(%&quot;PRIsVALUE&quot;) %&quot;PRIsVALUE&quot;&gt;&quot;,
+                      tname,
+                      field);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-method_missing" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_RECORD#method_missing(name)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns value specified by the member name of VT_RECORD OLE variable. Or sets value specified by the member name of VT_RECORD OLE variable. If the member name is not correct, <a href="KeyError.html"><code>KeyError</code></a> exception is raised.</p>
+
+<p>If COM server in VB.NET ComServer project is the following:</p>
+
+<pre>Imports System.Runtime.InteropServices
+Public Class ComClass
+    Public Structure Book
+        &lt;MarshalAs(UnmanagedType.BStr)&gt; _
+        Public title As String
+        Public cost As Integer
+    End Structure
+End Class</pre>
+
+<p>Then getting/setting value from Ruby is as the following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">book</span> = <span class="ruby-constant">WIN32OLE_RECORD</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Book&#39;</span>, <span class="ruby-identifier">obj</span>)
+<span class="ruby-identifier">book</span>.<span class="ruby-identifier">title</span> <span class="ruby-comment"># =&gt; nil ( book.method_missing(:title) is invoked. )</span>
+<span class="ruby-identifier">book</span>.<span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;Ruby&quot;</span> <span class="ruby-comment"># ( book.method_missing(:title=, &quot;Ruby&quot;) is invoked. )</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="method_missing-source">
+            <pre>static VALUE
+folerecord_method_missing(int argc, VALUE *argv, VALUE self)
+{
+    VALUE name;
+    rb_check_arity(argc, 1, 2);
+    name = rb_sym2str(argv[0]);
+
+#if SIZEOF_SIZE_T &gt; SIZEOF_LONG
+    {
+        size_t n = strlen(StringValueCStr(name));
+        if (n &gt;= LONG_MAX) {
+            rb_raise(rb_eRuntimeError, &quot;too long member name&quot;);
+        }
+    }
+#endif
+
+    if (argc == 1) {
+        return olerecord_ivar_get(self, name);
+    } else if (argc == 2) {
+        return olerecord_ivar_set(self, name, argv[1]);
+    }
+    return Qnil;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ole_instance_variable_get" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_RECORD#ole_instance_variable_get(name)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns value specified by the member name of VT_RECORD OLE object. If the member name is not correct, <a href="KeyError.html"><code>KeyError</code></a> exception is raised. If you can&#39;t access member variable of VT_RECORD OLE object directly, use this method.</p>
+
+<p>If COM server in VB.NET ComServer project is the following:</p>
+
+<pre class="ruby"><span class="ruby-constant">Imports</span> <span class="ruby-constant">System</span>.<span class="ruby-constant">Runtime</span>.<span class="ruby-constant">InteropServices</span>
+<span class="ruby-constant">Public</span> <span class="ruby-constant">Class</span> <span class="ruby-constant">ComClass</span>
+    <span class="ruby-constant">Public</span> <span class="ruby-constant">Structure</span> <span class="ruby-constant">ComObject</span>
+        <span class="ruby-constant">Public</span> <span class="ruby-identifier">object_id</span> <span class="ruby-constant">As</span> <span class="ruby-constant">Ineger</span>
+    <span class="ruby-constant">End</span> <span class="ruby-constant">Structure</span>
+<span class="ruby-constant">End</span> <span class="ruby-constant">Class</span>
+</pre>
+
+<p>and Ruby <a href="Object.html"><code>Object</code></a> class has title attribute:</p>
+
+<p>then accessing object_id of ComObject from Ruby is as the following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">srver</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE_RECORD</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComObject&#39;</span>, <span class="ruby-identifier">server</span>)
+<span class="ruby-comment"># obj.object_id returns Ruby Object#object_id</span>
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">ole_instance_variable_get</span>(<span class="ruby-value">:object_id</span>) <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ole_instance_variable_get-source">
+            <pre>static VALUE
+folerecord_ole_instance_variable_get(VALUE self, VALUE name)
+{
+    VALUE sname;
+    if(!RB_TYPE_P(name, T_STRING) &amp;&amp; !RB_TYPE_P(name, T_SYMBOL)) {
+        rb_raise(rb_eTypeError, &quot;wrong argument type (expected String or Symbol)&quot;);
+    }
+    sname = name;
+    if (RB_TYPE_P(name, T_SYMBOL)) {
+        sname = rb_sym2str(name);
+    }
+    return olerecord_ivar_get(self, sname);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ole_instance_variable_set" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_RECORD#ole_instance_variable_set(name, val)
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets value specified by the member name of VT_RECORD OLE object. If the member name is not correct, <a href="KeyError.html"><code>KeyError</code></a> exception is raised. If you can&#39;t set value of member of VT_RECORD OLE object directly, use this method.</p>
+
+<p>If COM server in VB.NET ComServer project is the following:</p>
+
+<pre>Imports System.Runtime.InteropServices
+Public Class ComClass
+    &lt;MarshalAs(UnmanagedType.BStr)&gt; _
+    Public title As String
+    Public cost As Integer
+End Class</pre>
+
+<p>then setting value of the `title&#39; member is as following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">srver</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE_RECORD</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Book&#39;</span>, <span class="ruby-identifier">server</span>)
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">ole_instance_variable_set</span>(<span class="ruby-value">:title</span>, <span class="ruby-string">&quot;The Ruby Book&quot;</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ole_instance_variable_set-source">
+            <pre>static VALUE
+folerecord_ole_instance_variable_set(VALUE self, VALUE name, VALUE val)
+{
+    VALUE sname;
+    if(!RB_TYPE_P(name, T_STRING) &amp;&amp; !RB_TYPE_P(name, T_SYMBOL)) {
+        rb_raise(rb_eTypeError, &quot;wrong argument type (expected String or Symbol)&quot;);
+    }
+    sname = name;
+    if (RB_TYPE_P(name, T_SYMBOL)) {
+        sname = rb_sym2str(name);
+    }
+    return olerecord_ivar_set(self, sname, val);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_h" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_RECORD#to_h #&rarr; Ruby Hash object.
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns Ruby <a href="Hash.html"><code>Hash</code></a> object which represents VT_RECORD variable. The keys of <a href="Hash.html"><code>Hash</code></a> object are member names of VT_RECORD OLE variable and the values of <a href="Hash.html"><code>Hash</code></a> object are values of VT_RECORD OLE variable.</p>
+
+<p>If COM server in VB.NET ComServer project is the following:</p>
+
+<pre>Imports System.Runtime.InteropServices
+Public Class ComClass
+    Public Structure Book
+        &lt;MarshalAs(UnmanagedType.BStr)&gt; _
+        Public title As String
+        Public cost As Integer
+    End Structure
+    Public Function getBook() As Book
+        Dim book As New Book
+        book.title = &quot;The Ruby Book&quot;
+        book.cost = 20
+        Return book
+    End Function
+End Class</pre>
+
+<p>then, the result of <a href="WIN32OLE_RECORD.html#method-i-to_h"><code>WIN32OLE_RECORD#to_h</code></a> is the following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;win32ole&#39;</span>
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">book</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">getBook</span>
+<span class="ruby-identifier">book</span>.<span class="ruby-identifier">to_h</span> <span class="ruby-comment"># =&gt; {&quot;title&quot;=&gt;&quot;The Ruby Book&quot;, &quot;cost&quot;=&gt;20}</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_h-source">
+            <pre>static VALUE
+folerecord_to_h(VALUE self)
+{
+    return rb_ivar_get(self, rb_intern(&quot;fields&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-typename" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            WIN32OLE_RECORD#typename #&rarr; String object
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the type name of VT_RECORD OLE variable.</p>
+
+<p>If COM server in VB.NET ComServer project is the following:</p>
+
+<pre>Imports System.Runtime.InteropServices
+Public Class ComClass
+    Public Structure Book
+        &lt;MarshalAs(UnmanagedType.BStr)&gt; _
+        Public title As String
+        Public cost As Integer
+    End Structure
+    Public Function getBook() As Book
+        Dim book As New Book
+        book.title = &quot;The Ruby Book&quot;
+        book.cost = 20
+        Return book
+    End Function
+End Class</pre>
+
+<p>then, the result of <a href="WIN32OLE_RECORD.html#method-i-typename"><code>WIN32OLE_RECORD#typename</code></a> is the following:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;win32ole&#39;</span>
+<span class="ruby-identifier">obj</span> = <span class="ruby-constant">WIN32OLE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ComServer.ComClass&#39;</span>)
+<span class="ruby-identifier">book</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">getBook</span>
+<span class="ruby-identifier">book</span>.<span class="ruby-identifier">typename</span> <span class="ruby-comment"># =&gt; &quot;Book&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="typename-source">
+            <pre>static VALUE
+folerecord_typename(VALUE self)
+{
+    return rb_ivar_get(self, rb_intern(&quot;typename&quot;));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

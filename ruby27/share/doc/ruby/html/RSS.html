@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module RSS - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#module-RSS-label-RSS+reading+and+writing">RSS reading and writing</a>
+    <li><a href="#module-RSS-label-Consuming+RSS">Consuming RSS</a>
+    <li><a href="#module-RSS-label-Producing+RSS">Producing RSS</a>
+    <li><a href="#module-RSS-label-Copyright">Copyright</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-RSS">
+  <h1 id="module-RSS" class="module">
+    module RSS
+  </h1>
+
+  <section class="description">
+    
+<h1 id="module-RSS-label-RSS+reading+and+writing"><a href="RSS.html"><code>RSS</code></a> reading and writing<span><a href="#module-RSS-label-RSS+reading+and+writing">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>Really Simple Syndication (<a href="RSS.html"><code>RSS</code></a>) is a family of formats that describe &#39;feeds,&#39; specially constructed <a href="RSS/XML.html"><code>XML</code></a> documents that allow an interested person to subscribe and receive updates from a particular web service. This portion of the standard library provides tooling to read and create these feeds.</p>
+
+<p>The standard library supports <a href="RSS.html"><code>RSS</code></a> 0.91, 1.0, 2.0, and <a href="RSS/Atom.html"><code>Atom</code></a>, a related format. Here are some links to the standards documents for these formats:</p>
+<ul><li>
+<p><a href="RSS.html"><code>RSS</code></a></p>
+<ul><li>
+<p><a href="http://www.rssboard.org/rss-0-9-1-netscape">0.9.1</a></p>
+</li><li>
+<p><a href="http://web.resource.org/rss/1.0/">1.0</a></p>
+</li><li>
+<p><a href="http://www.rssboard.org/rss-specification">2.0</a></p>
+</li></ul>
+</li><li>
+<p><a href="http://tools.ietf.org/html/rfc4287">Atom</a></p>
+</li></ul>
+
+<h2 id="module-RSS-label-Consuming+RSS">Consuming <a href="RSS.html"><code>RSS</code></a><span><a href="#module-RSS-label-Consuming+RSS">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If you&#39;d like to read someone&#39;s <a href="RSS.html"><code>RSS</code></a> feed with your Ruby code, you&#39;ve come to the right place. It&#39;s really easy to do this, but we&#39;ll need the help of open-uri:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rss&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;open-uri&#39;</span>
+
+<span class="ruby-identifier">url</span> = <span class="ruby-string">&#39;http://www.ruby-lang.org/en/feeds/news.rss&#39;</span>
+<span class="ruby-identifier">open</span>(<span class="ruby-identifier">url</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rss</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">feed</span> = <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">rss</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Title: #{feed.channel.title}&quot;</span>
+  <span class="ruby-identifier">feed</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Item: #{item.title}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>As you can see, the workhorse is RSS::Parser#parse, which takes the source of the feed and a parameter that performs validation on the feed. We get back an object that has all of the data from our feed, accessible through methods. This example shows getting the title out of the channel element, and looping through the list of items.</p>
+
+<h2 id="module-RSS-label-Producing+RSS">Producing <a href="RSS.html"><code>RSS</code></a><span><a href="#module-RSS-label-Producing+RSS">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Producing our own <a href="RSS.html"><code>RSS</code></a> feeds is easy as well. Let&#39;s make a very basic feed:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;rss&quot;</span>
+
+<span class="ruby-identifier">rss</span> = <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Maker</span>.<span class="ruby-identifier">make</span>(<span class="ruby-string">&quot;atom&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">maker</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">author</span> = <span class="ruby-string">&quot;matz&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">updated</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">about</span> = <span class="ruby-string">&quot;http://www.ruby-lang.org/en/feeds/news.rss&quot;</span>
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">channel</span>.<span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;Example Feed&quot;</span>
+
+  <span class="ruby-identifier">maker</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">new_item</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">link</span> = <span class="ruby-string">&quot;http://www.ruby-lang.org/en/news/2010/12/25/ruby-1-9-2-p136-is-released/&quot;</span>
+    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;Ruby 1.9.2-p136 is released&quot;</span>
+    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">updated</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">rss</span>
+</pre>
+
+<p>As you can see, this is a very Builder-like DSL. This code will spit out an <a href="RSS/Atom.html"><code>Atom</code></a> feed with one item. If we needed a second item, we&#39;d make another block with maker.items.new_item and build a second one.</p>
+
+<h2 id="module-RSS-label-Copyright">Copyright<span><a href="#module-RSS-label-Copyright">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Copyright © 2003-2007 Kouhei Sutou &lt;kou@cozmixng.org&gt;</p>
+
+<p>You can redistribute it and/or modify it under the same terms as Ruby.</p>
+
+<p>There is an additional tutorial by the author of <a href="RSS.html"><code>RSS</code></a> at: <a href="http://www.cozmixng.org/~rwiki/?cmd=view;name=RSS+Parser%3A%3ATutorial.en">www.cozmixng.org/~rwiki/?cmd=view;name=RSS+Parser%3A%3ATutorial.en</a></p>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="AVAILABLE_PARSERS">AVAILABLE_PARSERS
+        
+        <dd><p>The list of all available parsers, in constant form.</p>
+        
+      
+        <dt id="AVAILABLE_PARSER_LIBRARIES">AVAILABLE_PARSER_LIBRARIES
+        
+        <dd><p>The list of all available libraries for parsing.</p>
+        
+      
+        <dt id="CONTENT_PREFIX">CONTENT_PREFIX
+        
+        <dd><p>The prefix for the Content <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="CONTENT_URI">CONTENT_URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> of the Content specification.</p>
+        
+      
+        <dt id="DC_PREFIX">DC_PREFIX
+        
+        <dd><p>The prefix for the Dublin Core <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="DC_URI">DC_URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> of the Dublin Core specification.</p>
+        
+      
+        <dt id="DublincoreModel">DublincoreModel
+        
+        <dd><p>For backward compatibility</p>
+        
+      
+        <dt id="IMAGE_ELEMENTS">IMAGE_ELEMENTS
+        
+        <dd><p>This constant holds strings which contain the names of image elements, with the appropriate prefix.</p>
+        
+      
+        <dt id="IMAGE_PREFIX">IMAGE_PREFIX
+        
+        <dd><p>The prefix for the Image <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="IMAGE_URI">IMAGE_URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> for the Image specification.</p>
+        
+      
+        <dt id="ITUNES_PREFIX">ITUNES_PREFIX
+        
+        <dd><p>The prefix for the iTunes <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="ITUNES_URI">ITUNES_URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> of the iTunes specification.</p>
+        
+      
+        <dt id="SLASH_PREFIX">SLASH_PREFIX
+        
+        <dd><p>The prefix for the Slash <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="SLASH_URI">SLASH_URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> of the Slash specification.</p>
+        
+      
+        <dt id="SY_PREFIX">SY_PREFIX
+        
+        <dd><p>The prefix for the Syndication <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="SY_URI">SY_URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> of the Syndication specification.</p>
+        
+      
+        <dt id="TAXO_ELEMENTS">TAXO_ELEMENTS
+        
+        <dd><p>The listing of all the taxonomy elements, with the appropriate namespace.</p>
+        
+      
+        <dt id="TAXO_PREFIX">TAXO_PREFIX
+        
+        <dd><p>The prefix for the Taxonomy <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="TAXO_URI">TAXO_URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> for the specification of the Taxonomy <a href="RSS/XML.html"><code>XML</code></a> namespace.</p>
+        
+      
+        <dt id="URI">URI
+        
+        <dd><p>The <a href="URI.html"><code>URI</code></a> of the <a href="RSS.html"><code>RSS</code></a> 1.0 specification</p>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd><p>The current version of <a href="RSS.html"><code>RSS</code></a></p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

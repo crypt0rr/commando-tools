@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Encoding - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Encoding-label-Changing+an+encoding">Changing an encoding</a>
+    <li><a href="#class-Encoding-label-Script+encoding">Script encoding</a>
+    <li><a href="#class-Encoding-label-Locale+encoding">Locale encoding</a>
+    <li><a href="#class-Encoding-label-Filesystem+encoding">Filesystem encoding</a>
+    <li><a href="#class-Encoding-label-External+encoding">External encoding</a>
+    <li><a href="#class-Encoding-label-Internal+encoding">Internal encoding</a>
+    <li><a href="#class-Encoding-label-IO+encoding+example">IO encoding example</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-aliases">::aliases</a>
+    
+    <li ><a href="#method-c-compatible-3F">::compatible?</a>
+    
+    <li ><a href="#method-c-default_external">::default_external</a>
+    
+    <li ><a href="#method-c-default_external-3D">::default_external=</a>
+    
+    <li ><a href="#method-c-default_internal">::default_internal</a>
+    
+    <li ><a href="#method-c-default_internal-3D">::default_internal=</a>
+    
+    <li ><a href="#method-c-find">::find</a>
+    
+    <li ><a href="#method-c-list">::list</a>
+    
+    <li ><a href="#method-c-locale_charmap">::locale_charmap</a>
+    
+    <li ><a href="#method-c-name_list">::name_list</a>
+    
+    <li ><a href="#method-i-ascii_compatible-3F">#ascii_compatible?</a>
+    
+    <li ><a href="#method-i-dummy-3F">#dummy?</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-name">#name</a>
+    
+    <li ><a href="#method-i-names">#names</a>
+    
+    <li ><a href="#method-i-replicate">#replicate</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Encoding">
+  <h1 id="class-Encoding" class="class">
+    class Encoding
+  </h1>
+
+  <section class="description">
+    
+<p>An <a href="Encoding.html"><code>Encoding</code></a> instance represents a character encoding usable in Ruby. It is defined as a constant under the <a href="Encoding.html"><code>Encoding</code></a> namespace. It has a name and optionally, aliases:</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_8859_1</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-comment">#=&gt; &quot;ISO-8859-1&quot;</span>
+
+<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_8859_1</span>.<span class="ruby-identifier">names</span>
+<span class="ruby-comment">#=&gt; [&quot;ISO-8859-1&quot;, &quot;ISO8859-1&quot;]</span>
+</pre>
+
+<p>Ruby methods dealing with encodings return or accept <a href="Encoding.html"><code>Encoding</code></a> instances as arguments (when a method accepts an <a href="Encoding.html"><code>Encoding</code></a> instance as an argument, it can be passed an <a href="Encoding.html"><code>Encoding</code></a> name or alias instead).</p>
+
+<pre class="ruby"><span class="ruby-string">&quot;some string&quot;</span>.<span class="ruby-identifier">encoding</span>
+<span class="ruby-comment">#=&gt; #&lt;Encoding:UTF-8&gt;</span>
+
+<span class="ruby-identifier">string</span> = <span class="ruby-string">&quot;some string&quot;</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_8859_1</span>)
+<span class="ruby-comment">#=&gt; &quot;some string&quot;</span>
+<span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+<span class="ruby-comment">#=&gt; #&lt;Encoding:ISO-8859-1&gt;</span>
+
+<span class="ruby-string">&quot;some string&quot;</span>.<span class="ruby-identifier">encode</span> <span class="ruby-string">&quot;ISO-8859-1&quot;</span>
+<span class="ruby-comment">#=&gt; &quot;some string&quot;</span>
+</pre>
+
+<p>Encoding::ASCII_8BIT is a special encoding that is usually used for a byte string, not a character string. But as the name insists, its characters in the range of ASCII are considered as ASCII characters.  This is useful when you use ASCII-8BIT characters with other ASCII compatible characters.</p>
+
+<h2 id="class-Encoding-label-Changing+an+encoding">Changing an encoding<span><a href="#class-Encoding-label-Changing+an+encoding">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The associated <a href="Encoding.html"><code>Encoding</code></a> of a <a href="String.html"><code>String</code></a> can be changed in two different ways.</p>
+
+<p>First, it is possible to set the <a href="Encoding.html"><code>Encoding</code></a> of a string to a new <a href="Encoding.html"><code>Encoding</code></a> without changing the internal byte representation of the string, with <a href="String.html#method-i-force_encoding"><code>String#force_encoding</code></a>. This is how you can tell Ruby the correct encoding of a string.</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span>
+<span class="ruby-comment">#=&gt; &quot;R\xC3\xA9sum\xC3\xA9&quot;</span>
+<span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+<span class="ruby-comment">#=&gt; #&lt;Encoding:ISO-8859-1&gt;</span>
+<span class="ruby-identifier">string</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>)
+<span class="ruby-comment">#=&gt; &quot;R\u00E9sum\u00E9&quot;</span>
+</pre>
+
+<p>Second, it is possible to transcode a string, i.e. translate its internal byte representation to another encoding. Its associated encoding is also set to the other encoding. See <a href="String.html#method-i-encode"><code>String#encode</code></a> for the various forms of transcoding, and the <a href="Encoding/Converter.html"><code>Encoding::Converter</code></a> class for additional control over the transcoding process.</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span>
+<span class="ruby-comment">#=&gt; &quot;R\u00E9sum\u00E9&quot;</span>
+<span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+<span class="ruby-comment">#=&gt; #&lt;Encoding:UTF-8&gt;</span>
+<span class="ruby-identifier">string</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encode!</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_8859_1</span>)
+<span class="ruby-comment">#=&gt; &quot;R\xE9sum\xE9&quot;</span>
+<span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+<span class="ruby-comment">#=&gt; #&lt;Encoding::ISO-8859-1&gt;</span>
+</pre>
+
+<h2 id="class-Encoding-label-Script+encoding">Script encoding<span><a href="#class-Encoding-label-Script+encoding">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>All Ruby script code has an associated <a href="Encoding.html"><code>Encoding</code></a> which any <a href="String.html"><code>String</code></a> literal created in the source code will be associated to.</p>
+
+<p>The default script encoding is Encoding::UTF_8 after v2.0, but it can be changed by a magic comment on the first line of the source code file (or second line, if there is a shebang line on the first). The comment must contain the word <code>coding</code> or <code>encoding</code>, followed by a colon, space and the <a href="Encoding.html"><code>Encoding</code></a> name or alias:</p>
+
+<pre class="ruby"><span class="ruby-comment"># encoding: UTF-8</span>
+
+<span class="ruby-string">&quot;some string&quot;</span>.<span class="ruby-identifier">encoding</span>
+<span class="ruby-comment">#=&gt; #&lt;Encoding:UTF-8&gt;</span>
+</pre>
+
+<p>The <code>__ENCODING__</code> keyword returns the script encoding of the file which the keyword is written:</p>
+
+<pre class="ruby"><span class="ruby-comment"># encoding: ISO-8859-1</span>
+
+<span class="ruby-keyword">__ENCODING__</span>
+<span class="ruby-comment">#=&gt; #&lt;Encoding:ISO-8859-1&gt;</span>
+</pre>
+
+<p><code>ruby -K</code> will change the default locale encoding, but this is not recommended. Ruby source files should declare its script encoding by a magic comment even when they only depend on US-ASCII strings or regular expressions.</p>
+
+<h2 id="class-Encoding-label-Locale+encoding">Locale encoding<span><a href="#class-Encoding-label-Locale+encoding">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The default encoding of the environment. Usually derived from locale.</p>
+
+<p>see <a href="Encoding.html#method-c-locale_charmap"><code>Encoding.locale_charmap</code></a>, <a href="Encoding.html#method-c-find"><code>Encoding.find</code></a>(&#39;locale&#39;)</p>
+
+<h2 id="class-Encoding-label-Filesystem+encoding">Filesystem encoding<span><a href="#class-Encoding-label-Filesystem+encoding">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The default encoding of strings from the filesystem of the environment. This is used for strings of file names or paths.</p>
+
+<p>see <a href="Encoding.html#method-c-find"><code>Encoding.find</code></a>(&#39;filesystem&#39;)</p>
+
+<h2 id="class-Encoding-label-External+encoding">External encoding<span><a href="#class-Encoding-label-External+encoding">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Each <a href="IO.html"><code>IO</code></a> object has an external encoding which indicates the encoding that Ruby will use to read its data. By default Ruby sets the external encoding of an <a href="IO.html"><code>IO</code></a> object to the default external encoding. The default external encoding is set by locale encoding or the interpreter <code>-E</code> option. <a href="Encoding.html#method-c-default_external"><code>Encoding.default_external</code></a> returns the current value of the external encoding.</p>
+
+<pre>ENV[&quot;LANG&quot;]
+#=&gt; &quot;UTF-8&quot;
+Encoding.default_external
+#=&gt; #&lt;Encoding:UTF-8&gt;
+
+$ ruby -E ISO-8859-1 -e &quot;p Encoding.default_external&quot;
+#&lt;Encoding:ISO-8859-1&gt;
+
+$ LANG=C ruby -e &#39;p Encoding.default_external&#39;
+#&lt;Encoding:US-ASCII&gt;</pre>
+
+<p>The default external encoding may also be set through <a href="Encoding.html#method-c-default_external-3D"><code>Encoding.default_external=</code></a>, but you should not do this as strings created before and after the change will have inconsistent encodings.  Instead use <code>ruby -E</code> to invoke ruby with the correct external encoding.</p>
+
+<p>When you know that the actual encoding of the data of an <a href="IO.html"><code>IO</code></a> object is not the default external encoding, you can reset its external encoding with <a href="IO.html#method-i-set_encoding"><code>IO#set_encoding</code></a> or set it at <a href="IO.html"><code>IO</code></a> object creation (see <a href="IO.html#method-c-new"><code>IO.new</code></a> options).</p>
+
+<h2 id="class-Encoding-label-Internal+encoding">Internal encoding<span><a href="#class-Encoding-label-Internal+encoding">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To process the data of an <a href="IO.html"><code>IO</code></a> object which has an encoding different from its external encoding, you can set its internal encoding. Ruby will use this internal encoding to transcode the data when it is read from the <a href="IO.html"><code>IO</code></a> object.</p>
+
+<p>Conversely, when data is written to the <a href="IO.html"><code>IO</code></a> object it is transcoded from the internal encoding to the external encoding of the <a href="IO.html"><code>IO</code></a> object.</p>
+
+<p>The internal encoding of an <a href="IO.html"><code>IO</code></a> object can be set with <a href="IO.html#method-i-set_encoding"><code>IO#set_encoding</code></a> or at <a href="IO.html"><code>IO</code></a> object creation (see <a href="IO.html#method-c-new"><code>IO.new</code></a> options).</p>
+
+<p>The internal encoding is optional and when not set, the Ruby default internal encoding is used. If not explicitly set this default internal encoding is <code>nil</code> meaning that by default, no transcoding occurs.</p>
+
+<p>The default internal encoding can be set with the interpreter option <code>-E</code>. <a href="Encoding.html#method-c-default_internal"><code>Encoding.default_internal</code></a> returns the current internal encoding.</p>
+
+<pre>$ ruby -e &#39;p Encoding.default_internal&#39;
+nil
+
+$ ruby -E ISO-8859-1:UTF-8 -e &quot;p [Encoding.default_external, \
+  Encoding.default_internal]&quot;
+[#&lt;Encoding:ISO-8859-1&gt;, #&lt;Encoding:UTF-8&gt;]</pre>
+
+<p>The default internal encoding may also be set through <a href="Encoding.html#method-c-default_internal-3D"><code>Encoding.default_internal=</code></a>, but you should not do this as strings created before and after the change will have inconsistent encodings.  Instead use <code>ruby -E</code> to invoke ruby with the correct internal encoding.</p>
+
+<h2 id="class-Encoding-label-IO+encoding+example"><a href="IO.html"><code>IO</code></a> encoding example<span><a href="#class-Encoding-label-IO+encoding+example">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>In the following example a UTF-8 encoded string “Ru00E9sumu00E9” is transcoded for output to ISO-8859-1 encoding, then read back in and transcoded to UTF-8:</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span> = <span class="ruby-string">&quot;R\u00E9sum\u00E9&quot;</span>
+
+<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;transcoded.txt&quot;</span>, <span class="ruby-string">&quot;w:ISO-8859-1&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">string</span>)
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;raw text:&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">binread</span>(<span class="ruby-string">&quot;transcoded.txt&quot;</span>)
+<span class="ruby-identifier">puts</span>
+
+<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;transcoded.txt&quot;</span>, <span class="ruby-string">&quot;r:ISO-8859-1:UTF-8&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;transcoded text:&quot;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">read</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>While writing the file, the internal encoding is not specified as it is only necessary for reading.  While reading the file both the internal and external encoding must be specified to obtain the correct result.</p>
+
+<pre>$ ruby t.rb
+raw text:
+&quot;R\xE9sum\xE9&quot;
+
+transcoded text:
+&quot;R\u00E9sum\u00E9&quot;</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-aliases" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            aliases -&gt; {&quot;alias1&quot; =&gt; &quot;orig1&quot;, &quot;alias2&quot; &rarr; &quot;orig2&quot;, ...}
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the hash of available encoding alias and original encoding name.</p>
+
+<pre>Encoding.aliases
+#=&gt; {&quot;BINARY&quot;=&gt;&quot;ASCII-8BIT&quot;, &quot;ASCII&quot;=&gt;&quot;US-ASCII&quot;, &quot;ANSI_X3.4-1968&quot;=&gt;&quot;US-ASCII&quot;,
+      &quot;SJIS&quot;=&gt;&quot;Windows-31J&quot;, &quot;eucJP&quot;=&gt;&quot;EUC-JP&quot;, &quot;CP932&quot;=&gt;&quot;Windows-31J&quot;}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="aliases-source">
+            <pre>static VALUE
+rb_enc_aliases(VALUE klass)
+{
+    VALUE aliases[2];
+    aliases[0] = rb_hash_new();
+    aliases[1] = rb_ary_new();
+    st_foreach(enc_table.names, rb_enc_aliases_enc_i, (st_data_t)aliases);
+    return aliases[0];
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-compatible-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            compatible?(obj1, obj2) &rarr; enc or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Checks the compatibility of two objects.</p>
+
+<p>If the objects are both strings they are compatible when they are concatenatable.  The encoding of the concatenated string will be returned if they are compatible, nil if they are not.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">compatible?</span>(<span class="ruby-string">&quot;\xa1&quot;</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-string">&quot;iso-8859-1&quot;</span>), <span class="ruby-string">&quot;b&quot;</span>)
+<span class="ruby-comment">#=&gt; #&lt;Encoding:ISO-8859-1&gt;</span>
+
+<span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">compatible?</span>(
+  <span class="ruby-string">&quot;\xa1&quot;</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-string">&quot;iso-8859-1&quot;</span>),
+  <span class="ruby-string">&quot;\xa1\xa1&quot;</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-string">&quot;euc-jp&quot;</span>))
+<span class="ruby-comment">#=&gt; nil</span>
+</pre>
+
+<p>If the objects are non-strings their encodings are compatible when they have an encoding and:</p>
+<ul><li>
+<p>Either encoding is US-ASCII compatible</p>
+</li><li>
+<p>One of the encodings is a 7-bit encoding</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="compatible-3F-source">
+            <pre>static VALUE
+enc_compatible_p(VALUE klass, VALUE str1, VALUE str2)
+{
+    rb_encoding *enc;
+
+    if (!enc_capable(str1)) return Qnil;
+    if (!enc_capable(str2)) return Qnil;
+    enc = rb_enc_compatible(str1, str2);
+    if (!enc) return Qnil;
+    return rb_enc_from_encoding(enc);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-default_external" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            default_external &rarr; enc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns default external encoding.</p>
+
+<p>The default external encoding is used by default for strings created from the following locations:</p>
+<ul><li>
+<p><a href="CSV.html"><code>CSV</code></a></p>
+</li><li>
+<p><a href="File.html"><code>File</code></a> data read from disk</p>
+</li><li>
+<p><a href="SDBM.html"><code>SDBM</code></a></p>
+</li><li>
+<p><a href="StringIO.html"><code>StringIO</code></a></p>
+</li><li>
+<p><a href="Zlib/GzipReader.html"><code>Zlib::GzipReader</code></a></p>
+</li><li>
+<p><a href="Zlib/GzipWriter.html"><code>Zlib::GzipWriter</code></a></p>
+</li><li>
+<p><a href="String.html#method-i-inspect"><code>String#inspect</code></a></p>
+</li><li>
+<p><a href="Regexp.html#method-i-inspect"><code>Regexp#inspect</code></a></p>
+</li></ul>
+
+<p>While strings created from these locations will have this encoding, the encoding may not be valid.  Be sure to check <a href="String.html#method-i-valid_encoding-3F"><code>String#valid_encoding?</code></a>.</p>
+
+<p><a href="File.html"><code>File</code></a> data written to disk will be transcoded to the default external encoding when written.</p>
+
+<p>The default external encoding is initialized by the locale or -E option.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_external-source">
+            <pre>static VALUE
+get_default_external(VALUE klass)
+{
+    return rb_enc_default_external();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-default_external-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            default_external = enc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets default external encoding.  You should not set <a href="Encoding.html#method-c-default_external"><code>Encoding::default_external</code></a> in ruby code as strings created before changing the value may have a different encoding from strings created after the value was changed., instead you should use <code>ruby -E</code> to invoke ruby with the correct default_external.</p>
+
+<p>See <a href="Encoding.html#method-c-default_external"><code>Encoding::default_external</code></a> for information on how the default external encoding is used.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_external-3D-source">
+            <pre>static VALUE
+set_default_external(VALUE klass, VALUE encoding)
+{
+    rb_warning(&quot;setting Encoding.default_external&quot;);
+    rb_enc_set_default_external(encoding);
+    return encoding;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-default_internal" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            default_internal &rarr; enc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns default internal encoding.  Strings will be transcoded to the default internal encoding in the following places if the default internal encoding is not nil:</p>
+<ul><li>
+<p><a href="CSV.html"><code>CSV</code></a></p>
+</li><li>
+<p><a href="Etc.html#method-c-sysconfdir"><code>Etc.sysconfdir</code></a> and <a href="Etc.html#method-c-systmpdir"><code>Etc.systmpdir</code></a></p>
+</li><li>
+<p><a href="File.html"><code>File</code></a> data read from disk</p>
+</li><li>
+<p><a href="File.html"><code>File</code></a> names from <a href="Dir.html"><code>Dir</code></a></p>
+</li><li>
+<p><a href="Integer.html#method-i-chr"><code>Integer#chr</code></a></p>
+</li><li>
+<p><a href="String.html#method-i-inspect"><code>String#inspect</code></a> and <a href="Regexp.html#method-i-inspect"><code>Regexp#inspect</code></a></p>
+</li><li>
+<p>Strings returned from <a href="Readline.html"><code>Readline</code></a></p>
+</li><li>
+<p>Strings returned from <a href="SDBM.html"><code>SDBM</code></a></p>
+</li><li>
+<p><a href="Time.html#method-i-zone"><code>Time#zone</code></a></p>
+</li><li>
+<p>Values from <a href="ENV.html"><code>ENV</code></a></p>
+</li><li>
+<p>Values in ARGV including $PROGRAM_NAME</p>
+</li></ul>
+
+<p>Additionally <a href="String.html#method-i-encode"><code>String#encode</code></a> and <a href="String.html#method-i-encode-21"><code>String#encode!</code></a> use the default internal encoding if no encoding is given.</p>
+
+<p>The script encoding (__ENCODING__), not <a href="Encoding.html#method-c-default_internal"><code>default_internal</code></a>, is used as the encoding of created strings.</p>
+
+<p><a href="Encoding.html#method-c-default_internal"><code>Encoding::default_internal</code></a> is initialized by the source file&#39;s internal_encoding or -E option.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_internal-source">
+            <pre>static VALUE
+get_default_internal(VALUE klass)
+{
+    return rb_enc_default_internal();
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-default_internal-3D" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            default_internal = enc or nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Sets default internal encoding or removes default internal encoding when passed nil.  You should not set <a href="Encoding.html#method-c-default_internal"><code>Encoding::default_internal</code></a> in ruby code as strings created before changing the value may have a different encoding from strings created after the change.  Instead you should use <code>ruby -E</code> to invoke ruby with the correct default_internal.</p>
+
+<p>See <a href="Encoding.html#method-c-default_internal"><code>Encoding::default_internal</code></a> for information on how the default internal encoding is used.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_internal-3D-source">
+            <pre>static VALUE
+set_default_internal(VALUE klass, VALUE encoding)
+{
+    rb_warning(&quot;setting Encoding.default_internal&quot;);
+    rb_enc_set_default_internal(encoding);
+    return encoding;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            find(string) &rarr; enc
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Search the encoding with specified <em>name</em>. <em>name</em> should be a string.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">find</span>(<span class="ruby-string">&quot;US-ASCII&quot;</span>)  <span class="ruby-comment">#=&gt; #&lt;Encoding:US-ASCII&gt;</span>
+</pre>
+
+<p>Names which this method accept are encoding names and aliases including following special aliases</p>
+<dl class="rdoc-list note-list"><dt>“external”
+<dd>
+<p>default external encoding</p>
+</dd><dt>“internal”
+<dd>
+<p>default internal encoding</p>
+</dd><dt>“locale”
+<dd>
+<p>locale encoding</p>
+</dd><dt>“filesystem”
+<dd>
+<p>filesystem encoding</p>
+</dd></dl>
+
+<p>An <a href="ArgumentError.html"><code>ArgumentError</code></a> is raised when no encoding with <em>name</em>. Only <code>Encoding.find(&quot;internal&quot;)</code> however returns nil when no encoding named “internal”, in other words, when Ruby has no default internal encoding.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find-source">
+            <pre>static VALUE
+enc_find(VALUE klass, VALUE enc)
+{
+    int idx;
+    if (is_obj_encoding(enc))
+        return enc;
+    idx = str_to_encindex(enc);
+    if (idx == UNSPECIFIED_ENCODING) return Qnil;
+    return rb_enc_from_encoding_index(idx);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-list" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            list &rarr; [enc1, enc2, ...]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the list of loaded encodings.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">list</span>
+<span class="ruby-comment">#=&gt; [#&lt;Encoding:ASCII-8BIT&gt;, #&lt;Encoding:UTF-8&gt;,</span>
+      <span class="ruby-comment">#&lt;Encoding:ISO-2022-JP (dummy)&gt;]</span>
+
+<span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">find</span>(<span class="ruby-string">&quot;US-ASCII&quot;</span>)
+<span class="ruby-comment">#=&gt; #&lt;Encoding:US-ASCII&gt;</span>
+
+<span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">list</span>
+<span class="ruby-comment">#=&gt; [#&lt;Encoding:ASCII-8BIT&gt;, #&lt;Encoding:UTF-8&gt;,</span>
+      <span class="ruby-comment">#&lt;Encoding:US-ASCII&gt;, #&lt;Encoding:ISO-2022-JP (dummy)&gt;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre>static VALUE
+enc_list(VALUE klass)
+{
+    VALUE ary = rb_ary_new2(0);
+    rb_ary_replace(ary, rb_encoding_list);
+    return ary;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-locale_charmap" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            locale_charmap &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the locale charmap name. It returns nil if no appropriate information.</p>
+
+<pre class="ruby"><span class="ruby-constant">Debian</span> <span class="ruby-constant">GNU</span><span class="ruby-operator">/</span><span class="ruby-constant">Linux</span>
+  <span class="ruby-constant">LANG</span>=<span class="ruby-constant">C</span>
+    <span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">locale_charmap</span>  <span class="ruby-comment">#=&gt; &quot;ANSI_X3.4-1968&quot;</span>
+  <span class="ruby-constant">LANG</span>=<span class="ruby-identifier">ja_JP</span>.<span class="ruby-constant">EUC</span><span class="ruby-operator">-</span><span class="ruby-constant">JP</span>
+    <span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">locale_charmap</span>  <span class="ruby-comment">#=&gt; &quot;EUC-JP&quot;</span>
+
+<span class="ruby-constant">SunOS</span> <span class="ruby-value">5</span>
+  <span class="ruby-constant">LANG</span>=<span class="ruby-constant">C</span>
+    <span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">locale_charmap</span>  <span class="ruby-comment">#=&gt; &quot;646&quot;</span>
+  <span class="ruby-constant">LANG</span>=<span class="ruby-identifier">ja</span>
+    <span class="ruby-constant">Encoding</span>.<span class="ruby-identifier">locale_charmap</span>  <span class="ruby-comment">#=&gt; &quot;eucJP&quot;</span>
+</pre>
+
+<p>The result is highly platform dependent. So <a href="Encoding.html#method-c-find"><code>Encoding.find(Encoding.locale_charmap)</code></a> may cause an error. If you need some encoding object even for unknown locale, <a href="Encoding.html#method-c-find"><code>Encoding.find</code></a>("locale") can be used.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="locale_charmap-source">
+            <pre>VALUE
+rb_locale_charmap(VALUE klass)
+{
+#if NO_LOCALE_CHARMAP
+    return rb_usascii_str_new_cstr(&quot;US-ASCII&quot;);
+#else
+    return locale_charmap(rb_usascii_str_new_cstr);
+#endif
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-name_list" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            name_list &rarr; [&quot;enc1&quot;, &quot;enc2&quot;, ...]
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the list of available encoding names.</p>
+
+<pre>Encoding.name_list
+#=&gt; [&quot;US-ASCII&quot;, &quot;ASCII-8BIT&quot;, &quot;UTF-8&quot;,
+      &quot;ISO-8859-1&quot;, &quot;Shift_JIS&quot;, &quot;EUC-JP&quot;,
+      &quot;Windows-31J&quot;,
+      &quot;BINARY&quot;, &quot;CP932&quot;, &quot;eucJP&quot;]</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="name_list-source">
+            <pre>static VALUE
+rb_enc_name_list(VALUE klass)
+{
+    VALUE ary = rb_ary_new2(enc_table.names-&gt;num_entries);
+    st_foreach(enc_table.names, rb_enc_name_list_i, (st_data_t)ary);
+    return ary;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-ascii_compatible-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            ascii_compatible? &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns whether ASCII-compatible or not.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>.<span class="ruby-identifier">ascii_compatible?</span>     <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_16BE</span>.<span class="ruby-identifier">ascii_compatible?</span>  <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="ascii_compatible-3F-source">
+            <pre>static VALUE
+enc_ascii_compatible_p(VALUE enc)
+{
+    return rb_enc_asciicompat(must_encoding(enc)) ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dummy-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dummy? &rarr; true or false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns true for dummy encodings. A dummy encoding is an encoding for which character handling is not properly implemented. It is used for stateful encodings.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_2022_JP</span>.<span class="ruby-identifier">dummy?</span>       <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>.<span class="ruby-identifier">dummy?</span>             <span class="ruby-comment">#=&gt; false</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="dummy-3F-source">
+            <pre>static VALUE
+enc_dummy_p(VALUE enc)
+{
+    return ENC_DUMMY_P(must_encoding(enc)) ? Qtrue : Qfalse;
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            inspect &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string which represents the encoding for programmers.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>.<span class="ruby-identifier">inspect</span>       <span class="ruby-comment">#=&gt; &quot;#&lt;Encoding:UTF-8&gt;&quot;</span>
+<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_2022_JP</span>.<span class="ruby-identifier">inspect</span> <span class="ruby-comment">#=&gt; &quot;#&lt;Encoding:ISO-2022-JP (dummy)&gt;&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE
+enc_inspect(VALUE self)
+{
+    rb_encoding *enc;
+
+    if (!is_data_encoding(self)) {
+        not_encoding(self);
+    }
+    if (!(enc = DATA_PTR(self)) || rb_enc_from_index(rb_enc_to_index(enc)) != enc) {
+        rb_raise(rb_eTypeError, &quot;broken Encoding&quot;);
+    }
+    return rb_enc_sprintf(rb_usascii_encoding(),
+                          &quot;#&lt;%&quot;PRIsVALUE&quot;:%s%s%s&gt;&quot;, rb_obj_class(self),
+                          rb_enc_name(enc),
+                          (ENC_DUMMY_P(enc) ? &quot; (dummy)&quot; : &quot;&quot;),
+                          enc_autoload_p(enc) ? &quot; (autoload)&quot; : &quot;&quot;);
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-name" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            name &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the name of the encoding.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>.<span class="ruby-identifier">name</span>      <span class="ruby-comment">#=&gt; &quot;UTF-8&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="name-source">
+            <pre>static VALUE
+enc_name(VALUE self)
+{
+    return rb_fstring_cstr(rb_enc_name((rb_encoding*)DATA_PTR(self)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-names" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            names &rarr; array
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the list of name and aliases of the encoding.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">WINDOWS_31J</span>.<span class="ruby-identifier">names</span>  <span class="ruby-comment">#=&gt; [&quot;Windows-31J&quot;, &quot;CP932&quot;, &quot;csWindows31J&quot;, &quot;SJIS&quot;, &quot;PCK&quot;]</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="names-source">
+            <pre>static VALUE
+enc_names(VALUE self)
+{
+    VALUE args[2];
+
+    args[0] = (VALUE)rb_to_encoding_index(self);
+    args[1] = rb_ary_new2(0);
+    st_foreach(enc_table.names, enc_names_i, (st_data_t)args);
+    return args[1];
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-replicate" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            replicate(name) &rarr; encoding
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a replicated encoding of <em>enc</em> whose name is <em>name</em>. The new encoding should have the same byte structure of <em>enc</em>. If <em>name</em> is used by another encoding, raise <a href="ArgumentError.html"><code>ArgumentError</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="replicate-source">
+            <pre>static VALUE
+enc_replicate(VALUE encoding, VALUE name)
+{
+    return rb_enc_from_encoding_index(
+        rb_enc_replicate(StringValueCStr(name),
+                         rb_to_encoding(encoding)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s &rarr; string
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the name of the encoding.</p>
+
+<pre class="ruby"><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>.<span class="ruby-identifier">name</span>      <span class="ruby-comment">#=&gt; &quot;UTF-8&quot;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre>static VALUE
+enc_name(VALUE self)
+{
+    return rb_fstring_cstr(rb_enc_name((rb_encoding*)DATA_PTR(self)));
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
