@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Ractor - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-Ractor-label-Shareable+and+unshareable+objects">Shareable and unshareable objects</a>
+    <li><a href="#class-Ractor-label-Ractors+vs+threads">Ractors vs threads</a>
+    <li><a href="#class-Ractor-label-Note+on+code+examples">Note on code examples</a>
+    <li><a href="#class-Ractor-label-Reference">Reference</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="Object.html">Object</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-count">::count</a>
+    <li ><a href="#method-c-current">::current</a>
+    <li ><a href="#method-c-main">::main</a>
+    <li ><a href="#method-c-make_shareable">::make_shareable</a>
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-c-receive">::receive</a>
+    <li ><a href="#method-c-receive_if">::receive_if</a>
+    <li ><a href="#method-c-recv">::recv</a>
+    <li ><a href="#method-c-select">::select</a>
+    <li ><a href="#method-c-shareable-3F">::shareable?</a>
+    <li ><a href="#method-c-yield">::yield</a>
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    <li ><a href="#method-i-5B-5D">#[]</a>
+    <li ><a href="#method-i-5B-5D-3D">#[]=</a>
+    <li ><a href="#method-i-close_incoming">#close_incoming</a>
+    <li ><a href="#method-i-close_outgoing">#close_outgoing</a>
+    <li ><a href="#method-i-inspect">#inspect</a>
+    <li ><a href="#method-i-name">#name</a>
+    <li ><a href="#method-i-receive">#receive</a>
+    <li ><a href="#method-i-receive_if">#receive_if</a>
+    <li ><a href="#method-i-recv">#recv</a>
+    <li ><a href="#method-i-send">#send</a>
+    <li ><a href="#method-i-take">#take</a>
+    <li ><a href="#method-i-to_s">#to_s</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Ractor">
+  <h1 id="class-Ractor" class="class">
+    class Ractor
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Ractor.html"><code>Ractor</code></a> is a Actor-model abstraction for Ruby that provides thread-safe parallel execution.</p>
+
+<p><a href="Ractor.html#method-c-new"><code>Ractor.new</code></a> can make new <a href="Ractor.html"><code>Ractor</code></a> and it will run in parallel.</p>
+
+<pre class="ruby"><span class="ruby-comment"># The simplest ractor</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;I am in Ractor!&quot;</span>}
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment"># wait it to finish</span>
+<span class="ruby-comment"># here &quot;I am in Ractor!&quot; would be printed</span>
+</pre>
+
+<p>Ractors do not share usual objects, so the some kind of thread-safety concerns such as data-race, race-conditions are not available on multi-ractor programming.</p>
+
+<p>To achieve this, ractors severely limit object sharing between different ractors. For example, unlike threads, ractors can&#39;t access each other&#39;s objects, nor any objects through variables of the outer scope.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a</span> = <span class="ruby-value">1</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I am in Ractor! a=#{a}&quot;</span>}
+<span class="ruby-comment"># fails immediately with</span>
+<span class="ruby-comment"># ArgumentError (can not isolate a Proc because it accesses outer variables (a).)</span>
+</pre>
+
+<p>On CRuby (the default implementation), Global Virtual Machine Lock (GVL) is held per ractor, so ractors are performed in parallel without locking each other.</p>
+
+<p>Instead of accessing the shared state, the objects should be passed to and from ractors via sending and receiving objects as messages.</p>
+
+<pre class="ruby"><span class="ruby-identifier">a</span> = <span class="ruby-value">1</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">a_in_ractor</span> = <span class="ruby-identifier">receive</span> <span class="ruby-comment"># receive blocks till somebody will pass message</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I am in Ractor! a=#{a_in_ractor}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">a</span>)  <span class="ruby-comment"># pass it</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># here &quot;I am in Ractor! a=1&quot; would be printed</span>
+</pre>
+
+<p>There are two pairs of methods for sending/receiving messages:</p>
+<ul><li>
+<p><a href="Ractor.html#method-i-send"><code>Ractor#send</code></a> and <a href="Ractor.html#method-c-receive"><code>Ractor.receive</code></a> for when the <em>sender</em> knows the receiver (push);</p>
+</li><li>
+<p><a href="Ractor.html#method-c-yield"><code>Ractor.yield</code></a> and <a href="Ractor.html#method-i-take"><code>Ractor#take</code></a> for when the <em>receiver</em> knows the sender (pull);</p>
+</li></ul>
+
+<p>In addition to that, an argument to <a href="Ractor.html#method-c-new"><code>Ractor.new</code></a> would be passed to block and available there as if received by <a href="Ractor.html#method-c-receive"><code>Ractor.receive</code></a>, and the last block value would be sent outside of the ractor as if sent by <a href="Ractor.html#method-c-yield"><code>Ractor.yield</code></a>.</p>
+
+<p>A little demonstration on a classic ping-pong:</p>
+
+<pre class="ruby"><span class="ruby-identifier">server</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Server starts: #{self.inspect}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Server sends: ping&quot;</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;ping&#39;</span>                       <span class="ruby-comment"># The server doesn&#39;t know the receiver and sends to whoever interested</span>
+  <span class="ruby-identifier">received</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>                 <span class="ruby-comment"># The server doesn&#39;t know the sender and receives from whoever sent</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Server received: #{received}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">client</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">server</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">srv</span><span class="ruby-operator">|</span>        <span class="ruby-comment"># The server is sent inside client, and available as srv</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Client starts: #{self.inspect}&quot;</span>
+  <span class="ruby-identifier">received</span> = <span class="ruby-identifier">srv</span>.<span class="ruby-identifier">take</span>                       <span class="ruby-comment"># The Client takes a message specifically from the server</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Client received from &quot;</span> \
+       <span class="ruby-node">&quot;#{srv.inspect}: #{received}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Client sends to &quot;</span> \
+       <span class="ruby-node">&quot;#{srv.inspect}: pong&quot;</span>
+  <span class="ruby-identifier">srv</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&#39;pong&#39;</span>                           <span class="ruby-comment"># The client sends a message specifically to the server</span>
+<span class="ruby-keyword">end</span>
+
+[<span class="ruby-identifier">client</span>, <span class="ruby-identifier">server</span>].<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:take</span>)               <span class="ruby-comment"># Wait till they both finish</span>
+</pre>
+
+<p>This will output:</p>
+
+<pre>Server starts: #&lt;Ractor:#2 test.rb:1 running&gt;
+Server sends: ping
+Client starts: #&lt;Ractor:#3 test.rb:8 running&gt;
+Client received from #&lt;Ractor:#2 rac.rb:1 blocking&gt;: ping
+Client sends to #&lt;Ractor:#2 rac.rb:1 blocking&gt;: pong
+Server received: pong</pre>
+
+<p>It is said that <a href="Ractor.html"><code>Ractor</code></a> receives messages via the <em>incoming port</em>, and sends them to the <em>outgoing port</em>. Either one can be disabled with <a href="Ractor.html#method-i-close_incoming"><code>Ractor#close_incoming</code></a> and <a href="Ractor.html#method-i-close_outgoing"><code>Ractor#close_outgoing</code></a> respectively. If a ractor terminated, its ports will be closed automatically.</p>
+
+<h2 id="class-Ractor-label-Shareable+and+unshareable+objects">Shareable and unshareable objects<span><a href="#class-Ractor-label-Shareable+and+unshareable+objects">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>When the object is sent to and from the ractor, it is important to understand whether the object is shareable or unshareable. Most of objects are unshareable objects.</p>
+
+<p>Shareable objects are basically those which can be used by several threads without compromising thread-safety; e.g. immutable ones. <a href="Ractor.html#method-c-shareable-3F"><code>Ractor.shareable?</code></a> allows to check this, and <a href="Ractor.html#method-c-make_shareable"><code>Ractor.make_shareable</code></a> tries to make object shareable if it is not.</p>
+
+<pre class="ruby"><span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-value">1</span>)            <span class="ruby-comment">#=&gt; true -- numbers and other immutable basic values are</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-string">&#39;foo&#39;</span>)        <span class="ruby-comment">#=&gt; false, unless the string is frozen due to # freeze_string_literals: true</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-string">&#39;foo&#39;</span>.<span class="ruby-identifier">freeze</span>) <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-identifier">ary</span> = [<span class="ruby-string">&#39;hello&#39;</span>, <span class="ruby-string">&#39;world&#39;</span>]
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">frozen?</span>                 <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">ary</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">frozen?</span>              <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">make_shareable</span>(<span class="ruby-identifier">ary</span>)
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">frozen?</span>                 <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">ary</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">frozen?</span>              <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">ary</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">frozen?</span>              <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>When a shareable object is sent (via <a href="Ractor.html#method-i-send"><code>send</code></a> or <a href="Ractor.html#method-c-yield"><code>Ractor.yield</code></a>), no additional processing happens, and it just becomes usable by both ractors. When an unshareable object is sent, it can be either <em>copied</em> or <em>moved</em>. The first is the default, and it makes the object&#39;s full copy by deep cloning of non-shareable parts of its structure.</p>
+
+<pre class="ruby"><span class="ruby-identifier">data</span> = [<span class="ruby-string">&#39;foo&#39;</span>, <span class="ruby-string">&#39;bar&#39;</span>.<span class="ruby-identifier">freeze</span>]
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">data2</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;In ractor: #{data2.object_id}, #{data2[0].object_id}, #{data2[1].object_id}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">data</span>)
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Outside  : #{data.object_id}, #{data[0].object_id}, #{data[1].object_id}&quot;</span>
+</pre>
+
+<p>This will output:</p>
+
+<pre>In ractor: 340, 360, 320
+Outside  : 380, 400, 320</pre>
+
+<p>(Note that object id of both array and non-frozen string inside array have changed inside the ractor, showing it is different objects. But the second array&#39;s element, which is a shareable frozen string, has the same object_id.)</p>
+
+<p>Deep cloning of the objects may be slow, and sometimes impossible. Alternatively, <code>move: true</code> may be used on sending. This will <em>move</em> the object to the receiving ractor, making it inaccessible for a sending ractor.</p>
+
+<pre class="ruby"><span class="ruby-identifier">data</span> = [<span class="ruby-string">&#39;foo&#39;</span>, <span class="ruby-string">&#39;bar&#39;</span>]
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">data_in_ractor</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;In ractor: #{data_in_ractor.object_id}, #{data_in_ractor[0].object_id}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">data</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Outside: moved? #{Ractor::MovedObject === data}&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Outside: #{data.inspect}&quot;</span>
+</pre>
+
+<p>This will output:</p>
+
+<pre>In ractor: 100, 120
+Outside: moved? true
+test.rb:9:in `method_missing&#39;: can not send any methods to a moved object (Ractor::MovedError)</pre>
+
+<p>Notice that even <code>inspect</code> (and more basic methods like <code>__id__</code>) is inaccessible on a moved object.</p>
+
+<p>Besides frozen objects, there are shareable objects. <a href="Class.html"><code>Class</code></a> and <a href="Module.html"><code>Module</code></a> objects are shareable so the Class/Module definitons are shared between ractors. <a href="Ractor.html"><code>Ractor</code></a> objects are also shareable objects. All operations for the shareable mutable objects are thread-safe, so the thread-safety property will be kept. We can not define mutable shareable objects in Ruby, but C extensions can introduce them.</p>
+
+<p>It is prohibited to access instance variables of mutable shareable objects (especially Modules and classes) from ractors other than main:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-keyword">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+    <span class="ruby-identifier">attr_accessor</span> <span class="ruby-value">:tricky</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">C</span>.<span class="ruby-identifier">tricky</span> = <span class="ruby-string">&#39;test&#39;</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">C</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cls</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I see #{cls}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I can&#39;t see #{cls.tricky}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># I see C</span>
+<span class="ruby-comment"># can not access instance variables of classes/modules from non-main Ractors (RuntimeError)</span>
+</pre>
+
+<p>Ractors can access constants if they are shareable. The main <a href="Ractor.html"><code>Ractor</code></a> is the only one that can access non-shareable constants.</p>
+
+<pre class="ruby"><span class="ruby-constant">GOOD</span> = <span class="ruby-string">&#39;good&#39;</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-constant">BAD</span> = <span class="ruby-string">&#39;bad&#39;</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;GOOD=#{GOOD}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;BAD=#{BAD}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># GOOD=good</span>
+<span class="ruby-comment"># can not access non-shareable objects in constant Object::BAD by non-main Ractor. (NameError)</span>
+
+<span class="ruby-comment"># Consider the same C class from above</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I see #{C}&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I can&#39;t see #{C.tricky}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># I see C</span>
+<span class="ruby-comment"># can not access instance variables of classes/modules from non-main Ractors (RuntimeError)</span>
+</pre>
+
+<p>See also the description of <code># shareable_constant_value</code> pragma in Comments syntax explanation.</p>
+
+<h2 id="class-Ractor-label-Ractors+vs+threads">Ractors vs threads<span><a href="#class-Ractor-label-Ractors+vs+threads">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Each ractor creates its own thread. New threads can be created from inside ractor (and, on CRuby, sharing GVL with other threads of this ractor).</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-value">1</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Thread in ractor: a=#{a}&quot;</span>}.<span class="ruby-identifier">join</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Here &quot;Thread in ractor: a=1&quot; will be printed</span>
+</pre>
+
+<h2 id="class-Ractor-label-Note+on+code+examples">Note on code examples<span><a href="#class-Ractor-label-Note+on+code+examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>In examples below, sometimes we use the following method to wait till ractors that are not currently blocked will finish (or process till next blocking) method.</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">wait</span>
+  <span class="ruby-identifier">sleep</span>(<span class="ruby-value">0.1</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>It is **only for demonstration purposes** and shouldn&#39;t be used in a real code. Most of the times, just <a href="Ractor.html#method-i-take"><code>take</code></a> is used to wait till ractor will finish.</p>
+
+<h2 id="class-Ractor-label-Reference">Reference<span><a href="#class-Ractor-label-Reference">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>See Ractor desgin doc for more details.</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-count" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">count</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Returns total count of Ractors currently running.</p>
+
+<pre class="ruby"><span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">count</span>                   <span class="ruby-comment">#=&gt; 1</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">name:</span> <span class="ruby-string">&#39;example&#39;</span>) { <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span>(<span class="ruby-value">1</span>) }
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">count</span>                   <span class="ruby-comment">#=&gt; 2 (main + example ractor)</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>                         <span class="ruby-comment"># wait for Ractor.yield(1)</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>                         <span class="ruby-comment"># wait till r will finish</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">count</span>                   <span class="ruby-comment">#=&gt; 1</span>
+</pre>
+
+          <div class="method-source-code" id="count-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 287</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">count</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ULONG2NUM(GET_VM()-&gt;ractor.cnt);
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-current" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">current</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Returns the currently executing <a href="Ractor.html"><code>Ractor</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span> <span class="ruby-comment">#=&gt; #&lt;Ractor:#1 running&gt;</span>
+</pre>
+
+          <div class="method-source-code" id="current-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">current</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    rb_ractor_self(rb_ec_ractor_ptr(ec));
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-main" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">main</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>returns main ractor</p>
+
+          <div class="method-source-code" id="main-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 833</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">main</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    rb_ractor_self(GET_VM()-&gt;ractor.main_ractor);
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-make_shareable" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            make_shareable(obj, copy: false) &rarr; shareable_obj
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Make <code>obj</code> shareable between ractors.</p>
+
+<p><code>obj</code> and all the objects it refers to will be frozen, unless they are already shareable.</p>
+
+<p>If <code>copy</code> keyword is <code>true</code>, the method will copy objects before freezing them This is safer option but it can take be slower.</p>
+
+<p>Note that the specification and implementation of this method are not mature and may be changed in the future.</p>
+
+<pre class="ruby"><span class="ruby-identifier">obj</span> = [<span class="ruby-string">&#39;test&#39;</span>]
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-identifier">obj</span>)     <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">make_shareable</span>(<span class="ruby-identifier">obj</span>) <span class="ruby-comment">#=&gt; [&quot;test&quot;]</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-identifier">obj</span>)     <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">frozen?</span>                <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">obj</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">frozen?</span>             <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-comment"># Copy vs non-copy versions:</span>
+<span class="ruby-identifier">obj1</span> = [<span class="ruby-string">&#39;test&#39;</span>]
+<span class="ruby-identifier">obj1s</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">make_shareable</span>(<span class="ruby-identifier">obj1</span>)
+<span class="ruby-identifier">obj1</span>.<span class="ruby-identifier">frozen?</span>                        <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">obj1s</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">obj1</span>.<span class="ruby-identifier">object_id</span>   <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">obj2</span> = [<span class="ruby-string">&#39;test&#39;</span>]
+<span class="ruby-identifier">obj2s</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">make_shareable</span>(<span class="ruby-identifier">obj2</span>, <span class="ruby-value">copy:</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">frozen?</span>                        <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">obj2s</span>.<span class="ruby-identifier">frozen?</span>                       <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">obj2s</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">object_id</span>   <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">obj2s</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">obj2</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">object_id</span> <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>See also the “Shareable and unshareable objects” section in the <a href="Ractor.html"><code>Ractor</code></a> class docs.</p>
+
+          <div class="method-source-code" id="make_shareable-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 810</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">make_shareable</span> <span class="ruby-identifier">obj</span>, <span class="ruby-value">copy:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">copy</span>
+    <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+      rb_ractor_make_shareable_copy(obj);
+    }</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+      rb_ractor_make_shareable(obj);
+    }</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(*args, name: nil) {|*args| block } &rarr; ractor
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Create a new <a href="Ractor.html"><code>Ractor</code></a> with args and a block.</p>
+
+<p>A block (<a href="Proc.html"><code>Proc</code></a>) will be isolated (can&#39;t access to outer variables). <code>self</code> inside the block will refer to the current <a href="Ractor.html"><code>Ractor</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Hi, I am #{self.inspect}&quot;</span> }
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Prints &quot;Hi, I am #&lt;Ractor:#2 test.rb:1 running&gt;&quot;</span>
+</pre>
+
+<p><code>args</code> passed to the method would be propagated to block args by the same rules as objects passed through <a href="Ractor.html#method-i-send"><code>send</code></a>/Ractor.receive: if <code>args</code> are not shareable, they will be copied (via deep cloning, which might be inefficient).</p>
+
+<pre class="ruby"><span class="ruby-identifier">arg</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Passing: #{arg} (##{arg.object_id})&quot;</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">arg</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">received_arg</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{received_arg} (##{received_arg.object_id})&quot;</span>
+}
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Prints:</span>
+<span class="ruby-comment">#   Passing: [1, 2, 3] (#280)</span>
+<span class="ruby-comment">#   Received: [1, 2, 3] (#300)</span>
+</pre>
+
+<p>Ractor&#39;s <code>name</code> can be set for debugging purposes:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">name:</span> <span class="ruby-string">&#39;my ractor&#39;</span>) {}
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">r</span>
+<span class="ruby-comment">#=&gt; #&lt;Ractor:#3 my ractor test.rb:1 terminated&gt;</span>
+</pre>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 262</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-value">name:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">b</span> = <span class="ruby-identifier">block</span> <span class="ruby-comment"># TODO: builtin bug</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;must be called with a block&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block</span>
+  <span class="ruby-identifier">loc</span> = <span class="ruby-identifier">caller_locations</span>(<span class="ruby-value">1</span>, <span class="ruby-value">1</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">loc</span> = <span class="ruby-node">&quot;#{loc.path}:#{loc.lineno}&quot;</span>
+  <span class="ruby-identifier">__builtin_ractor_create</span>(<span class="ruby-identifier">loc</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">b</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-receive" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            receive &rarr; msg
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Receive an incoming message from the current Ractor&#39;s incoming port&#39;s queue, which was sent there by <a href="Ractor.html#method-i-send"><code>send</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">v1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{v1}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;message1&#39;</span>)
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Here will be printed: &quot;Received: message1&quot;</span>
+</pre>
+
+<p>Alternatively, private instance method <code>receive</code> may be used:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">v1</span> = <span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{v1}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;message1&#39;</span>)
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Here will be printed: &quot;Received: message1&quot;</span>
+</pre>
+
+<p>The method blocks if the queue is empty.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Before first receive&quot;</span>
+  <span class="ruby-identifier">v1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{v1}&quot;</span>
+  <span class="ruby-identifier">v2</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{v2}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">wait</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Still not received&quot;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;message1&#39;</span>)
+<span class="ruby-identifier">wait</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Still received only one&quot;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;message2&#39;</span>)
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+</pre>
+
+<p>Output:</p>
+
+<pre>Before first receive
+Still not received
+Received: message1
+Still received only one
+Received: message2</pre>
+
+<p>If <a href="Ractor.html#method-i-close_incoming"><code>close_incoming</code></a> was called on the ractor, the method raises <a href="Ractor/ClosedError.html"><code>Ractor::ClosedError</code></a> if there are no more messages in incoming queue:</p>
+
+<pre class="ruby"><span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">close_incoming</span>
+  <span class="ruby-identifier">receive</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">wait</span>
+<span class="ruby-comment"># in `receive&#39;: The incoming port is already closed =&gt; #&lt;Ractor:#2 test.rb:1 running&gt; (Ractor::ClosedError)</span>
+</pre>
+
+          <div class="method-source-code" id="receive-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 415</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">receive</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ractor_receive(ec, rb_ec_ractor_ptr(ec))
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+        <div class="aliases">
+          Also aliased as: <a href="Ractor.html#method-c-recv">recv</a>
+        </div>
+
+      </div>
+
+      <div id="method-c-receive_if" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            receive_if {|msg| block } &rarr; msg
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Receive only a specific message.</p>
+
+<p>Instead of <a href="Ractor.html#method-c-receive"><code>Ractor.receive</code></a>, <a href="Ractor.html#method-c-receive_if"><code>Ractor.receive_if</code></a> can provide a pattern by a block and you can choose the receiving message.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-regexp">/foo/</span>)} <span class="ruby-comment">#=&gt; &quot;foo3&quot;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-regexp">/bar/</span>)} <span class="ruby-comment">#=&gt; &quot;bar1&quot;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-regexp">/baz/</span>)} <span class="ruby-comment">#=&gt; &quot;baz2&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;bar1&quot;</span>
+<span class="ruby-identifier">r</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;baz2&quot;</span>
+<span class="ruby-identifier">r</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;foo3&quot;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+</pre>
+
+<p>This will output:</p>
+
+<pre class="ruby"><span class="ruby-identifier">foo3</span>
+<span class="ruby-identifier">bar1</span>
+<span class="ruby-identifier">baz2</span>
+</pre>
+
+<p>If the block returns a truthy value, the message will be removed from the incoming queue and returned. Otherwise, the messsage remains in the incoming queue and the following received messages are checked by the given block.</p>
+
+<p>If there are no messages left in the incoming queue, the method will block until new messages arrive.</p>
+
+<p>If the block is escaped by break/return/exception/throw, the message is removed from the incoming queue as if a truthy value had been returned.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">val</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)}
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received successfully: #{val}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">1</span>)
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-identifier">wait</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2 non-matching sent, nothing received&quot;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>([<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>])
+<span class="ruby-identifier">wait</span>
+</pre>
+
+<p>Prints:</p>
+
+<pre>2 non-matching sent, nothing received
+Received successfully: [1, 2, 3]</pre>
+
+<p>Note that you can not call receive/receive_if in the given block recursively. It means that you should not do any tasks in the block.</p>
+
+<pre class="ruby"><span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">true</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>}
+<span class="ruby-comment">#=&gt; `receive&#39;: can not call receive/receive_if recursively (Ractor::Error)</span>
+</pre>
+
+          <div class="method-source-code" id="receive_if-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 493</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">receive_if</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>
+  <span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">ractor_receive_if</span> <span class="ruby-identifier">b</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-recv" class="method-detail method-alias">
+
+        <div class="method-description">
+          
+
+        </div>
+
+
+        <div class="aliases">
+          Alias for: <a href="Ractor.html#method-c-receive">receive</a>
+        </div>
+      </div>
+
+      <div id="method-c-select" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            select(*ractors, [yield_value:, move: false]) &rarr; [ractor or symbol, obj]
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Waits for the first ractor to have something in its outgoing port, reads from this ractor, and returns that ractor and the object received.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;from 1&#39;</span>}
+<span class="ruby-identifier">r2</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;from 2&#39;</span>}
+
+<span class="ruby-identifier">r</span>, <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">r1</span>, <span class="ruby-identifier">r2</span>)
+
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;received #{obj.inspect} from #{r.inspect}&quot;</span>
+<span class="ruby-comment"># Prints: received &quot;from 1&quot; from #&lt;Ractor:#2 test.rb:1 running&gt;</span>
+</pre>
+
+<p>If one of the given ractors is the current ractor, and it would be selected, <code>r</code> will contain <code>:receive</code> symbol instead of the ractor object.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">main</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">main</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&#39;to main&#39;</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;from 1&#39;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r2</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;from 2&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r</span>, <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">r1</span>, <span class="ruby-identifier">r2</span>, <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;received #{obj.inspect} from #{r.inspect}&quot;</span>
+<span class="ruby-comment"># Prints: received &quot;to main&quot; from :receive</span>
+</pre>
+
+<p>If <code>yield_value</code> is provided, that value may be yielded if another <a href="Ractor.html"><code>Ractor</code></a> is calling <a href="Ractor.html#method-i-take"><code>take</code></a>. In this case, the pair <code>[:yield, nil]</code> would be returned:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">main</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received from main: #{main.take}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Trying to select&quot;</span>
+<span class="ruby-identifier">r</span>, <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">r1</span>, <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>, <span class="ruby-value">yield_value:</span> <span class="ruby-value">123</span>)
+<span class="ruby-identifier">wait</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received #{obj.inspect} from #{r.inspect}&quot;</span>
+</pre>
+
+<p>This will print:</p>
+
+<pre>Trying to select
+Received from main: 123
+Received nil from :yield</pre>
+
+<p><code>move</code> boolean flag defines whether yielded value should be copied (default) or moved.</p>
+
+          <div class="method-source-code" id="select-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 342</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">ractors</span>, <span class="ruby-value">yield_value:</span> <span class="ruby-identifier">yield_unspecified</span> = <span class="ruby-keyword">true</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;specify at least one ractor or `yield_value`&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">yield_unspecified</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">ractors</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">__builtin_cstmt!</span> <span class="ruby-string">%q{
+    const VALUE *rs = RARRAY_CONST_PTR_TRANSIENT(ractors);
+    VALUE rv;
+    VALUE v = ractor_select(ec, rs, RARRAY_LENINT(ractors),
+                            yield_unspecified == Qtrue ? Qundef : yield_value,
+                            (bool)RTEST(move) ? true : false, &amp;rv);
+    return rb_ary_new_from_args(2, rv, v);
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-shareable-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            shareable?(obj) &rarr; true | false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Checks if the object is shareable by ractors.</p>
+
+<pre class="ruby"><span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-value">1</span>)            <span class="ruby-comment">#=&gt; true -- numbers and other immutable basic values are frozen</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-string">&#39;foo&#39;</span>)        <span class="ruby-comment">#=&gt; false, unless the string is frozen due to # freeze_string_literals: true</span>
+<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">shareable?</span>(<span class="ruby-string">&#39;foo&#39;</span>.<span class="ruby-identifier">freeze</span>) <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>See also the “Shareable and unshareable objects” section in the <a href="Ractor.html"><code>Ractor</code></a> class docs.</p>
+
+          <div class="method-source-code" id="shareable-3F-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 769</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">shareable?</span> <span class="ruby-identifier">obj</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    rb_ractor_shareable_p(obj) ? Qtrue : Qfalse;
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-yield" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            yield(msg, move: false) &rarr; nil
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Send a message to the current ractor&#39;s outgoing port to be consumed by <a href="Ractor.html#method-i-take"><code>take</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;Hello from ractor&#39;</span>}
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Prints: &quot;Hello from ractor&quot;</span>
+</pre>
+
+<p>The method is blocking, and will return only when somebody consumes the sent message.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;Hello from ractor&#39;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Ractor: after yield&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">wait</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Still not taken&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+</pre>
+
+<p>This will print:</p>
+
+<pre>Still not taken
+Hello from ractor
+Ractor: after yield</pre>
+
+<p>If the outgoing port was closed with <a href="Ractor.html#method-i-close_outgoing"><code>close_outgoing</code></a>, the method will raise:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">close_outgoing</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;Hello from ractor&#39;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">wait</span>
+<span class="ruby-comment"># `yield&#39;: The outgoing-port is already closed (Ractor::ClosedError)</span>
+</pre>
+
+<p>The meaning of <code>move</code> argument is the same as for <a href="Ractor.html#method-i-send"><code>send</code></a>.</p>
+
+          <div class="method-source-code" id="yield-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 626</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-keyword">yield</span>(<span class="ruby-identifier ruby-title">obj</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ractor_yield(ec, rb_ec_ractor_ptr(ec), obj, move)
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-3C-3C" class="method-detail method-alias">
+
+        <div class="method-description">
+          
+
+        </div>
+
+
+        <div class="aliases">
+          Alias for: <a href="Ractor.html#method-i-send">send</a>
+        </div>
+      </div>
+
+      <div id="method-i-5B-5D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(sym)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>get a value from ractor-local storage</p>
+
+          <div class="method-source-code" id="5B-5D-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 823</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]</span>(<span class="ruby-identifier">sym</span>)
+  <span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">ractor_local_value</span>(<span class="ruby-identifier">sym</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-5B-5D-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">[]=</span><span
+            class="method-args">(sym, val)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>set a value in ractor-local storage</p>
+
+          <div class="method-source-code" id="5B-5D-3D-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 828</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">[]=</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">val</span>)
+  <span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">ractor_local_value_set</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">val</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-close_incoming" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            close_incoming &rarr; true | false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Closes the incoming port and returns its previous state. All further attempts to <a href="Ractor.html#method-c-receive"><code>Ractor.receive</code></a> in the ractor, and <a href="Ractor.html#method-i-send"><code>send</code></a> to the ractor will fail with <a href="Ractor/ClosedError.html"><code>Ractor::ClosedError</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">sleep</span>(<span class="ruby-value">500</span>)}
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">close_incoming</span>  <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">close_incoming</span>  <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-comment"># Ractor::ClosedError (The incoming-port is already closed)</span>
+</pre>
+
+          <div class="method-source-code" id="close_incoming-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 733</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">close_incoming</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ractor_close_incoming(ec, RACTOR_PTR(self));
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-close_outgoing" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            close_outgoing &rarr; true | false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Closes the outgoing port and returns its previous state. All further attempts to <a href="Ractor.html#method-c-yield"><code>Ractor.yield</code></a> in the ractor, and <a href="Ractor.html#method-i-take"><code>take</code></a> from the ractor will fail with <a href="Ractor/ClosedError.html"><code>Ractor::ClosedError</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">sleep</span>(<span class="ruby-value">500</span>)}
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">close_outgoing</span>  <span class="ruby-comment">#=&gt; false</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">close_outgoing</span>  <span class="ruby-comment">#=&gt; true</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Ractor::ClosedError (The outgoing-port is already closed)</span>
+</pre>
+
+          <div class="method-source-code" id="close_outgoing-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 752</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">close_outgoing</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ractor_close_outgoing(ec, RACTOR_PTR(self));
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-inspect" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 699</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inspect</span>
+  <span class="ruby-identifier">loc</span>  = <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{ RACTOR_PTR(self)-&gt;loc }</span>
+  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{ RACTOR_PTR(self)-&gt;name }</span>
+  <span class="ruby-identifier">id</span>   = <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{ INT2FIX(rb_ractor_id(RACTOR_PTR(self))) }</span>
+  <span class="ruby-identifier">status</span> = <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    rb_str_new2(ractor_status_str(RACTOR_PTR(self)-&gt;status_))
+  }</span>
+  <span class="ruby-node">&quot;#&lt;Ractor:##{id}#{name ? &#39; &#39;+name : &#39;&#39;}#{loc ? &quot; &quot; + loc : &#39;&#39;} #{status}&gt;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+        <div class="aliases">
+          Also aliased as: <a href="Ractor.html#method-i-to_s">to_s</a>
+        </div>
+
+      </div>
+
+      <div id="method-i-name" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>The name set in <a href="Ractor.html#method-c-new"><code>Ractor.new</code></a>, or <code>nil</code>.</p>
+
+          <div class="method-source-code" id="name-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 712</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">name</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{RACTOR_PTR(self)-&gt;name}</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-recv" class="method-detail method-alias">
+        <div class="method-heading">
+          <span class="method-name">recv</span><span
+            class="method-args">()</span>
+        </div>
+
+        <div class="method-description">
+          
+
+        </div>
+
+
+        <div class="aliases">
+          Alias for: <a href="Ractor.html#method-i-receive">receive</a>
+        </div>
+      </div>
+
+      <div id="method-i-send" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            send(msg, move: false) &rarr; self
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Send a message to a Ractor&#39;s incoming queue to be consumed by <a href="Ractor.html#method-c-receive"><code>Ractor.receive</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">value</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received #{value}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&#39;message&#39;</span>
+<span class="ruby-comment"># Prints: &quot;Received: message&quot;</span>
+</pre>
+
+<p>The method is non-blocking (will return immediately even if the ractor is not ready to receive anything):</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">sleep</span>(<span class="ruby-value">5</span>)}
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Sent successfully&quot;</span>
+<span class="ruby-comment"># Prints: &quot;Sent successfully&quot; immediately</span>
+</pre>
+
+<p>Attempt to send to ractor which already finished its execution will raise <a href="Ractor/ClosedError.html"><code>Ractor::ClosedError</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {}
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">r</span>
+<span class="ruby-comment"># &quot;#&lt;Ractor:#6 (irb):23 terminated&gt;&quot;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-comment"># Ractor::ClosedError (The incoming-port is already closed)</span>
+</pre>
+
+<p>If <a href="Ractor.html#method-i-close_incoming"><code>close_incoming</code></a> was called on the ractor, the method also raises <a href="Ractor/ClosedError.html"><code>Ractor::ClosedError</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> =  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">sleep</span>(<span class="ruby-value">500</span>)
+  <span class="ruby-identifier">receive</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">close_incoming</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-comment"># Ractor::ClosedError (The incoming-port is already closed)</span>
+<span class="ruby-comment"># The error would be raised immediately, not when ractor will try to receive</span>
+</pre>
+
+<p>If the <code>obj</code> is unshareable, by default it would be copied into ractor by deep cloning. If the <code>move: true</code> is passed, object is <em>moved</em> into ractor and becomes inaccessible to sender.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{receive}&quot;</span>}
+<span class="ruby-identifier">msg</span> = <span class="ruby-string">&#39;message&#39;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">msg</span>
+</pre>
+
+<p>This prints:</p>
+
+<pre>Received: message
+in `p&#39;: undefined method `inspect&#39; for #&lt;Ractor::MovedObject:0x000055c99b9b69b8&gt;</pre>
+
+<p>All references to the object and its parts will become invalid in sender.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{receive}&quot;</span>}
+<span class="ruby-identifier">s</span> = <span class="ruby-string">&#39;message&#39;</span>
+<span class="ruby-identifier">ary</span> = [<span class="ruby-identifier">s</span>]
+<span class="ruby-identifier">copy</span> = <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">dup</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">true</span>)
+
+<span class="ruby-identifier">s</span>.<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment"># Ractor::MovedError (can not send any methods to a moved object)</span>
+<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">class</span>
+<span class="ruby-comment"># Ractor::MovedError (can not send any methods to a moved object)</span>
+<span class="ruby-identifier">copy</span>.<span class="ruby-identifier">class</span>
+<span class="ruby-comment"># =&gt; Array, it is different object</span>
+<span class="ruby-identifier">copy</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">inspect</span>
+<span class="ruby-comment"># Ractor::MovedError (can not send any methods to a moved object)</span>
+<span class="ruby-comment"># ...but its item was still a reference to `s`, which was moved</span>
+</pre>
+
+<p>If the object was shareable, <code>move: true</code> has no effect on it:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Received: #{receive}&quot;</span>}
+<span class="ruby-identifier">s</span> = <span class="ruby-string">&#39;message&#39;</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">s</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-identifier">s</span>.<span class="ruby-identifier">inspect</span> <span class="ruby-comment">#=&gt; &quot;message&quot;, still available</span>
+</pre>
+
+          <div class="method-source-code" id="send-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 582</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ractor_send(ec, RACTOR_PTR(self), obj, move)
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+        <div class="aliases">
+          Also aliased as: <a href="Ractor.html#method-i-3C-3C">&lt;&lt;</a>
+        </div>
+
+      </div>
+
+      <div id="method-i-take" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            take &rarr; msg
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Take a message from ractor&#39;s outgoing port, which was put there by <a href="Ractor.html#method-c-yield"><code>Ractor.yield</code></a> or at ractor&#39;s finalization.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;explicit yield&#39;</span>
+  <span class="ruby-string">&#39;last value&#39;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; &#39;explicit yield&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; &#39;last value&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment"># Ractor::ClosedError (The outgoing-port is already closed)</span>
+</pre>
+
+<p>The fact that the last value is also put to outgoing port means that <code>take</code> can be used as some analog of <a href="Thread.html#method-i-join"><code>Thread#join</code></a> (“just wait till ractor finishes”), but don&#39;t forget it will raise if somebody had already consumed everything ractor have produced.</p>
+
+<p>If the outgoing port was closed with <a href="Ractor.html#method-i-close_outgoing"><code>close_outgoing</code></a>, the method will raise <a href="Ractor/ClosedError.html"><code>Ractor::ClosedError</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">sleep</span>(<span class="ruby-value">500</span>)
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;Hello from ractor&#39;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">close_outgoing</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-comment"># Ractor::ClosedError (The outgoing-port is already closed)</span>
+<span class="ruby-comment"># The error would be raised immediately, not when ractor will try to receive</span>
+</pre>
+
+<p>If an uncaught exception is raised in the <a href="Ractor.html"><code>Ractor</code></a>, it is propagated on take as a <a href="Ractor/RemoteError.html"><code>Ractor::RemoteError</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> {<span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Something weird happened&quot;</span>}
+
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">e</span>              <span class="ruby-comment">#  =&gt; #&lt;Ractor::RemoteError: thrown by remote Ractor.&gt;</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">ractor</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">r</span>  <span class="ruby-comment"># =&gt; true</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">cause</span>        <span class="ruby-comment"># =&gt; #&lt;RuntimeError: Something weird happened&gt;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p><a href="Ractor/ClosedError.html"><code>Ractor::ClosedError</code></a> is a descendant of <a href="StopIteration.html"><code>StopIteration</code></a>, so the closing of the ractor will break the loops without propagating the error:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-value">3</span>.<span class="ruby-identifier">times</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-node">&quot;message #{i}&quot;</span>}
+  <span class="ruby-string">&quot;finishing&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">loop</span> {<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Received: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>}
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Continue successfully&quot;</span>
+</pre>
+
+<p>This will print:</p>
+
+<pre>Received: message 0
+Received: message 1
+Received: message 2
+Received: finishing
+Continue successfully</pre>
+
+          <div class="method-source-code" id="take-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 693</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">take</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ractor_take(ec, RACTOR_PTR(self))
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-to_s" class="method-detail method-alias">
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+        </div>
+
+        <div class="method-description">
+          
+
+        </div>
+
+
+        <div class="aliases">
+          Alias for: <a href="Ractor.html#method-i-inspect">inspect</a>
+        </div>
+      </div>
+
+    </section>
+
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+      <div id="method-i-receive" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">receive</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>same as <a href="Ractor.html#method-c-receive"><code>Ractor.receive</code></a></p>
+
+          <div class="method-source-code" id="receive-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 426</span>
+        <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">receive</span>
+  <span class="ruby-identifier">__builtin_cexpr!</span> <span class="ruby-string">%q{
+    ractor_receive(ec, rb_ec_ractor_ptr(ec))
+  }</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+        <div class="aliases">
+          Also aliased as: <a href="Ractor.html#method-i-recv">recv</a>
+        </div>
+
+      </div>
+
+      <div id="method-i-receive_if" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">receive_if</span><span
+            class="method-args">(&amp;b)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="receive_if-source">
+            <pre><span class="ruby-comment"># File ractor.rb, line 497</span>
+        <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">receive_if</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>
+  <span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">ractor_receive_if</span> <span class="ruby-identifier">b</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

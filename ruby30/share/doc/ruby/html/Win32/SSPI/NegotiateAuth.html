@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Win32::SSPI::NegotiateAuth - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="../../Object.html">Object</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-c-proxy_auth_get">::proxy_auth_get</a>
+    <li ><a href="#method-i-clean_up">#clean_up</a>
+    <li ><a href="#method-i-complete_authentication">#complete_authentication</a>
+    <li ><a href="#method-i-encode_token">#encode_token</a>
+    <li ><a href="#method-i-get_credentials">#get_credentials</a>
+    <li ><a href="#method-i-get_initial_token">#get_initial_token</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Win32::SSPI::NegotiateAuth">
+  <h1 id="class-Win32::SSPI::NegotiateAuth" class="class">
+    class Win32::SSPI::NegotiateAuth
+  </h1>
+
+  <section class="description">
+    
+<p>Handles “Negotiate” type authentication. Geared towards authenticating with a proxy server over HTTP</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="B64_TOKEN_PREFIX">B64_TOKEN_PREFIX
+        <dd><p>NTLM tokens start with this header always. <a href="../../Encoding.html"><code>Encoding</code></a> alone adds “==” and newline, so remove those</p>
+        <dt id="REQUEST_FLAGS">REQUEST_FLAGS
+        <dd><p>Default request flags for <a href="../SSPI.html"><code>SSPI</code></a> functions</p>
+      </dl>
+    </section>
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-context" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">context</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-contextAttributes" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">contextAttributes</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-credentials" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">credentials</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-domain" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">domain</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-user" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(user = nil, domain = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Creates a new instance ready for authentication as the given user in the given domain. Defaults to current user and domain as defined by <a href=""USERDOMAIN"">ENV</a> and <a href=""USERNAME"">ENV</a> if no arguments are supplied.</p>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/sspi.rb, line 245</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">domain</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">domain</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;USERNAME&quot;</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;USERDOMAIN&quot;</span>].<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;A username or domain must be supplied since they cannot be retrieved from the environment&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span> <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;USERNAME&quot;</span>]
+  <span class="ruby-ivar">@domain</span> = <span class="ruby-identifier">domain</span> <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;USERDOMAIN&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-proxy_auth_get" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">proxy_auth_get</span><span
+            class="method-args">(http, path, user = nil, domain = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Given a connection and a request path, performs authentication as the current user and returns the response from a GET request. The connnection should be a <a href="../../Net/HTTP.html"><code>Net::HTTP</code></a> object, and it should have been constructed using the <a href="../../Net/HTTP.html"><code>Net::HTTP</code></a>.Proxy method, but anything that responds to “get” will work. If a user and domain are given, will authenticate as the given user. Returns the response received from the get method (usually <a href="../../Net/HTTPResponse.html"><code>Net::HTTPResponse</code></a>)</p>
+
+          <div class="method-source-code" id="proxy_auth_get-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/sspi.rb, line 230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">NegotiateAuth</span>.<span class="ruby-identifier ruby-title">proxy_auth_get</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">user</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">domain</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;http must respond to :get&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">http</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:get</span>)
+  <span class="ruby-identifier">nego_auth</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">user</span>, <span class="ruby-identifier">domain</span>
+
+  <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">get</span> <span class="ruby-identifier">path</span>, { <span class="ruby-string">&quot;Proxy-Authorization&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Negotiate &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">nego_auth</span>.<span class="ruby-identifier">get_initial_token</span> }
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>[<span class="ruby-string">&quot;Proxy-Authenticate&quot;</span>]
+    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">get</span> <span class="ruby-identifier">path</span>, { <span class="ruby-string">&quot;Proxy-Authorization&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Negotiate &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">nego_auth</span>.<span class="ruby-identifier">complete_authentication</span>(<span class="ruby-identifier">resp</span>[<span class="ruby-string">&quot;Proxy-Authenticate&quot;</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">strip</span>) }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">resp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-complete_authentication" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">complete_authentication</span><span
+            class="method-args">(token)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Takes a token and gets the next token in the Negotiate authentication chain. Token can be <a href="../../Base64.html"><code>Base64</code></a> encoded or not. The token can include the “Negotiate” header and it will be stripped. Does not indicate if SEC_I_CONTINUE or SEC_E_OK was returned. Token returned is <a href="../../Base64.html"><code>Base64</code></a> encoded w/ all new lines removed.</p>
+
+          <div class="method-source-code" id="complete_authentication-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/sspi.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">complete_authentication</span>(<span class="ruby-identifier">token</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;This object is no longer usable because its resources have been freed.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cleaned_up</span>
+
+  <span class="ruby-comment"># Nil token OK, just set it to empty string</span>
+  <span class="ruby-identifier">token</span> = <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;Negotiate&quot;</span>
+    <span class="ruby-comment"># If the Negotiate prefix is passed in, assume we are seeing &quot;Negotiate &lt;token&gt;&quot; and get the token.</span>
+    <span class="ruby-identifier">token</span> = <span class="ruby-identifier">token</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>).<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">include?</span> <span class="ruby-constant">B64_TOKEN_PREFIX</span>
+    <span class="ruby-comment"># indicates base64 encoded token</span>
+    <span class="ruby-identifier">token</span> = <span class="ruby-identifier">token</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-string">&quot;m&quot;</span>)[<span class="ruby-value">0</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">outputBuffer</span> = <span class="ruby-constant">SecurityBuffer</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-constant">SSPIResult</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">InitializeSecurityContext</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@credentials</span>.<span class="ruby-identifier">to_p</span>, <span class="ruby-ivar">@context</span>.<span class="ruby-identifier">to_p</span>, <span class="ruby-keyword">nil</span>,
+    <span class="ruby-constant">REQUEST_FLAGS</span>, <span class="ruby-value">0</span>, <span class="ruby-constant">SECURITY_NETWORK_DREP</span>, <span class="ruby-constant">SecurityBuffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">token</span>).<span class="ruby-identifier">to_p</span>, <span class="ruby-value">0</span>,
+    <span class="ruby-ivar">@context</span>.<span class="ruby-identifier">to_p</span>,
+    <span class="ruby-identifier">outputBuffer</span>.<span class="ruby-identifier">to_p</span>, <span class="ruby-ivar">@contextAttributes</span>, <span class="ruby-constant">TimeStamp</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">to_p</span>))
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">ok?</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">encode_token</span>(<span class="ruby-identifier">outputBuffer</span>.<span class="ruby-identifier">token</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Error: #{result.to_s}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-comment"># need to make sure we don&#39;t clean up if we&#39;ve already cleaned up.</span>
+  <span class="ruby-identifier">clean_up</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cleaned_up</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-get_initial_token" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">get_initial_token</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Gets the initial Negotiate token. Returns it as a base64 encoded string suitable for use in HTTP. Can be easily decoded, however.</p>
+
+          <div class="method-source-code" id="get_initial_token-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/sspi.rb, line 256</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_initial_token</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;This object is no longer usable because its resources have been freed.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cleaned_up</span>
+  <span class="ruby-identifier">get_credentials</span>
+
+  <span class="ruby-identifier">outputBuffer</span> = <span class="ruby-constant">SecurityBuffer</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@context</span> = <span class="ruby-constant">CtxtHandle</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@contextAttributes</span> = <span class="ruby-string">&quot;\0&quot;</span> <span class="ruby-operator">*</span> <span class="ruby-value">4</span>
+
+  <span class="ruby-identifier">result</span> = <span class="ruby-constant">SSPIResult</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">InitializeSecurityContextA</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@credentials</span>.<span class="ruby-identifier">to_p</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>,
+    <span class="ruby-constant">REQUEST_FLAGS</span>,<span class="ruby-value">0</span>, <span class="ruby-constant">SECURITY_NETWORK_DREP</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">0</span>, <span class="ruby-ivar">@context</span>.<span class="ruby-identifier">to_p</span>, <span class="ruby-identifier">outputBuffer</span>.<span class="ruby-identifier">to_p</span>, <span class="ruby-ivar">@contextAttributes</span>, <span class="ruby-constant">TimeStamp</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">to_p</span>))
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">ok?</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">encode_token</span>(<span class="ruby-identifier">outputBuffer</span>.<span class="ruby-identifier">token</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Error: #{result.to_s}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+      <div id="method-i-clean_up" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">clean_up</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="clean_up-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/sspi.rb, line 312</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clean_up</span>
+  <span class="ruby-comment"># free structures allocated</span>
+  <span class="ruby-ivar">@cleaned_up</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeCredentialsHandle</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@credentials</span>.<span class="ruby-identifier">to_p</span>)
+  <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">DeleteSecurityContext</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@context</span>.<span class="ruby-identifier">to_p</span>)
+  <span class="ruby-ivar">@context</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@credentials</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@contextAttributes</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-encode_token" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">encode_token</span><span
+            class="method-args">(t)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="encode_token-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/sspi.rb, line 332</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">encode_token</span>(<span class="ruby-identifier">t</span>)
+  <span class="ruby-comment"># encode64 will add newlines every 60 characters so we need to remove those.</span>
+  [<span class="ruby-identifier">t</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&quot;m&quot;</span>).<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-get_credentials" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">get_credentials</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Gets credentials based on user, domain or both. If both are nil, an error occurs</p>
+
+          <div class="method-source-code" id="get_credentials-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/sspi.rb, line 323</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_credentials</span>
+  <span class="ruby-ivar">@credentials</span> = <span class="ruby-constant">CredHandle</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">ts</span> = <span class="ruby-constant">TimeStamp</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@identity</span> = <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@domain</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-constant">SSPIResult</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">AcquireCredentialsHandleA</span>.<span class="ruby-identifier">call</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&quot;Negotiate&quot;</span>, <span class="ruby-constant">SECPKG_CRED_OUTBOUND</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">to_p</span>,
+    <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@credentials</span>.<span class="ruby-identifier">to_p</span>, <span class="ruby-identifier">ts</span>.<span class="ruby-identifier">to_p</span>))
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Error acquire credentials: #{result}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">ok?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

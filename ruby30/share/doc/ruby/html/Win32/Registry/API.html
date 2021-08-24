@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Win32::Registry::API - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+<div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+    <li><a class="include" href="Constants.html">Win32::Registry::Constants</a>
+  </ul>
+</div>
+
+    
+<div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    <li><a class="extend" href="../../Fiddle/Importer.html">Fiddle::Importer</a>
+  </ul>
+</div>
+
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-i-CloseKey">#CloseKey</a>
+    <li ><a href="#method-i-CreateKey">#CreateKey</a>
+    <li ><a href="#method-i-DeleteKey">#DeleteKey</a>
+    <li ><a href="#method-i-DeleteValue">#DeleteValue</a>
+    <li ><a href="#method-i-EnumKey">#EnumKey</a>
+    <li ><a href="#method-i-EnumValue">#EnumValue</a>
+    <li ><a href="#method-i-FlushKey">#FlushKey</a>
+    <li ><a href="#method-i-OpenKey">#OpenKey</a>
+    <li ><a href="#method-i-QueryInfoKey">#QueryInfoKey</a>
+    <li ><a href="#method-i-QueryValue">#QueryValue</a>
+    <li ><a href="#method-i-SetValue">#SetValue</a>
+    <li ><a href="#method-i-check">#check</a>
+    <li ><a href="#method-i-make_wstr">#make_wstr</a>
+    <li ><a href="#method-i-packdw">#packdw</a>
+    <li ><a href="#method-i-packhandle">#packhandle</a>
+    <li ><a href="#method-i-packqw">#packqw</a>
+    <li ><a href="#method-i-unpackdw">#unpackdw</a>
+    <li ><a href="#method-i-unpackhandle">#unpackhandle</a>
+    <li ><a href="#method-i-unpackqw">#unpackqw</a>
+    <li ><a href="#method-i-win64-3F">#win64?</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Win32::Registry::API">
+  <h1 id="module-Win32::Registry::API" class="module">
+    module Win32::Registry::API
+  </h1>
+
+  <section class="description">
+    
+<p><a href="../../Win32.html"><code>Win32</code></a> APIs</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-CloseKey" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">CloseKey</span><span
+            class="method-args">(hkey)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="CloseKey-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 347</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">CloseKey</span>(<span class="ruby-identifier ruby-title">hkey</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegCloseKey</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-CreateKey" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">CreateKey</span><span
+            class="method-args">(hkey, name, opt, desired)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="CreateKey-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 293</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">CreateKey</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">desired</span>)
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">packhandle</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">disp</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegCreateKeyExW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">make_wstr</span>(<span class="ruby-identifier">name</span>), <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">desired</span>,
+                             <span class="ruby-value">0</span>, <span class="ruby-identifier">result</span>, <span class="ruby-identifier">disp</span>)
+  [ <span class="ruby-identifier">unpackhandle</span>(<span class="ruby-identifier">result</span>), <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">disp</span>) ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-DeleteKey" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">DeleteKey</span><span
+            class="method-args">(hkey, name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="DeleteKey-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 339</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">DeleteKey</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegDeleteKeyW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">make_wstr</span>(<span class="ruby-identifier">name</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-DeleteValue" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">DeleteValue</span><span
+            class="method-args">(hkey, name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="DeleteValue-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 335</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">DeleteValue</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegDeleteValueW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">make_wstr</span>(<span class="ruby-identifier">name</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-EnumKey" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">EnumKey</span><span
+            class="method-args">(hkey, index)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="EnumKey-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 308</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">EnumKey</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">index</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-constant">WCHAR_NUL</span> <span class="ruby-operator">*</span> <span class="ruby-constant">Constants</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX_KEY_LENGTH</span>
+  <span class="ruby-identifier">size</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-constant">Constants</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX_KEY_LENGTH</span>)
+  <span class="ruby-identifier">wtime</span> = <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegEnumKeyExW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">index</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">size</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">wtime</span>)
+  [ <span class="ruby-identifier">name</span>.<span class="ruby-identifier">byteslice</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">size</span>) <span class="ruby-operator">*</span> <span class="ruby-constant">WCHAR_SIZE</span>), <span class="ruby-identifier">unpackqw</span>(<span class="ruby-identifier">wtime</span>) ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-EnumValue" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">EnumValue</span><span
+            class="method-args">(hkey, index)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="EnumValue-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 301</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">EnumValue</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">index</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-constant">WCHAR_NUL</span> <span class="ruby-operator">*</span> <span class="ruby-constant">Constants</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX_KEY_LENGTH</span>
+  <span class="ruby-identifier">size</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-constant">Constants</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX_KEY_LENGTH</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegEnumValueW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">index</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">size</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)
+  <span class="ruby-identifier">name</span>.<span class="ruby-identifier">byteslice</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">size</span>) <span class="ruby-operator">*</span> <span class="ruby-constant">WCHAR_SIZE</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-FlushKey" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">FlushKey</span><span
+            class="method-args">(hkey)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="FlushKey-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 343</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">FlushKey</span>(<span class="ruby-identifier ruby-title">hkey</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegFlushKey</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-OpenKey" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">OpenKey</span><span
+            class="method-args">(hkey, name, opt, desired)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="OpenKey-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 287</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">OpenKey</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">desired</span>)
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">packhandle</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegOpenKeyExW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">make_wstr</span>(<span class="ruby-identifier">name</span>), <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">desired</span>, <span class="ruby-identifier">result</span>)
+  <span class="ruby-identifier">unpackhandle</span>(<span class="ruby-identifier">result</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-QueryInfoKey" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">QueryInfoKey</span><span
+            class="method-args">(hkey)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="QueryInfoKey-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 351</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">QueryInfoKey</span>(<span class="ruby-identifier ruby-title">hkey</span>)
+  <span class="ruby-identifier">subkeys</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">maxsubkeylen</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">values</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">maxvaluenamelen</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">maxvaluelen</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">secdescs</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">wtime</span> = <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegQueryInfoKey</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">subkeys</span>, <span class="ruby-identifier">maxsubkeylen</span>, <span class="ruby-value">0</span>,
+    <span class="ruby-identifier">values</span>, <span class="ruby-identifier">maxvaluenamelen</span>, <span class="ruby-identifier">maxvaluelen</span>, <span class="ruby-identifier">secdescs</span>, <span class="ruby-identifier">wtime</span>)
+  [ <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">subkeys</span>), <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">maxsubkeylen</span>), <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">values</span>),
+    <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">maxvaluenamelen</span>), <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">maxvaluelen</span>),
+    <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">secdescs</span>), <span class="ruby-identifier">unpackqw</span>(<span class="ruby-identifier">wtime</span>) ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-QueryValue" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">QueryValue</span><span
+            class="method-args">(hkey, name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="QueryValue-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 316</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">QueryValue</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">type</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">size</span> = <span class="ruby-identifier">packdw</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">make_wstr</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegQueryValueExW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">name</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">type</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">size</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-string">&quot;\0&quot;</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-string">&#39;ASCII-8BIT&#39;</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">size</span>)
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegQueryValueExW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">name</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">size</span>)
+  [ <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">type</span>), <span class="ruby-identifier">data</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">size</span>)] ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-SetValue" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">SetValue</span><span
+            class="method-args">(hkey, name, type, data, size)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="SetValue-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 326</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">SetValue</span>(<span class="ruby-identifier ruby-title">hkey</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">size</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-constant">REG_SZ</span>, <span class="ruby-constant">REG_EXPAND_SZ</span>, <span class="ruby-constant">REG_MULTI_SZ</span>
+    <span class="ruby-identifier">data</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-constant">WCHAR</span>)
+    <span class="ruby-identifier">size</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">bytesize</span> <span class="ruby-operator">+</span> <span class="ruby-constant">WCHAR_SIZE</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">check</span> <span class="ruby-constant">RegSetValueExW</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hkey</span>, <span class="ruby-identifier">make_wstr</span>(<span class="ruby-identifier">name</span>), <span class="ruby-value">0</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">size</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-check" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">check</span><span
+            class="method-args">(result)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="check-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check</span>(<span class="ruby-identifier">result</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">result</span>, <span class="ruby-identifier">caller</span>(<span class="ruby-value">1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-make_wstr" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">make_wstr</span><span
+            class="method-args">(str)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="make_wstr-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 283</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_wstr</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-identifier">str</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-constant">WCHAR</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-packdw" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">packdw</span><span
+            class="method-args">(dw)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="packdw-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">packdw</span>(<span class="ruby-identifier">dw</span>)
+  [<span class="ruby-identifier">dw</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;V&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-packhandle" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">packhandle</span><span
+            class="method-args">(h)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="packhandle-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">packhandle</span>(<span class="ruby-identifier">h</span>)
+  <span class="ruby-identifier">win64?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">packqw</span>(<span class="ruby-identifier">h</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">packdw</span>(<span class="ruby-identifier">h</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-packqw" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">packqw</span><span
+            class="method-args">(qw)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="packqw-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 274</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">packqw</span>(<span class="ruby-identifier">qw</span>)
+  [ <span class="ruby-identifier">qw</span> <span class="ruby-operator">&amp;</span> <span class="ruby-value">0xFFFFFFFF</span>, <span class="ruby-identifier">qw</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">32</span> ].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;VV&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-unpackdw" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">unpackdw</span><span
+            class="method-args">(dw)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="unpackdw-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 269</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unpackdw</span>(<span class="ruby-identifier">dw</span>)
+  <span class="ruby-identifier">dw</span> <span class="ruby-operator">+=</span> [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;V&#39;</span>)
+  <span class="ruby-identifier">dw</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-string">&#39;V&#39;</span>)[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-unpackhandle" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">unpackhandle</span><span
+            class="method-args">(h)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="unpackhandle-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 261</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unpackhandle</span>(<span class="ruby-identifier">h</span>)
+  <span class="ruby-identifier">win64?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">unpackqw</span>(<span class="ruby-identifier">h</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">unpackdw</span>(<span class="ruby-identifier">h</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-unpackqw" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">unpackqw</span><span
+            class="method-args">(qw)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="unpackqw-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unpackqw</span>(<span class="ruby-identifier">qw</span>)
+  <span class="ruby-identifier">qw</span> = <span class="ruby-identifier">qw</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-string">&#39;VV&#39;</span>)
+  (<span class="ruby-identifier">qw</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">32</span>) <span class="ruby-operator">|</span> <span class="ruby-identifier">qw</span>[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-win64-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">win64?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="win64-3F-source">
+            <pre><span class="ruby-comment"># File ext/win32/lib/win32/registry.rb, line 253</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">win64?</span>
+  <span class="ruby-regexp">/^(?:x64|x86_64)/</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">RUBY_PLATFORM</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Digest::SHA2 - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="Class.html">Digest::Class</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    <li ><a href="#method-i-block_length">#block_length</a>
+    <li ><a href="#method-i-digest_length">#digest_length</a>
+    <li ><a href="#method-i-reset">#reset</a>
+    <li ><a href="#method-i-update">#update</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Digest::SHA2">
+  <h1 id="class-Digest::SHA2" class="class">
+    class Digest::SHA2
+  </h1>
+
+  <section class="description">
+    
+<p>A meta digest provider class for SHA256, SHA384 and SHA512.</p>
+
+<p>FIPS 180-2 describes <a href="SHA2.html"><code>SHA2</code></a> family of digest algorithms. It defines three algorithms:</p>
+<ul><li>
+<p>one which works on chunks of 512 bits and returns a 256-bit digest (SHA256),</p>
+</li><li>
+<p>one which works on chunks of 1024 bits and returns a 384-bit digest (SHA384),</p>
+</li><li>
+<p>and one which works on chunks of 1024 bits and returns a 512-bit digest (SHA512).</p>
+</li></ul>
+
+<h2 id="class-Digest::SHA2-label-Examples">Examples<span><a href="#class-Digest::SHA2-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;digest&#39;</span>
+
+<span class="ruby-comment"># Compute a complete digest</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;abc&#39;</span>          <span class="ruby-comment"># =&gt; &quot;ba7816bf8...&quot;</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">256</span>).<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;abc&#39;</span> <span class="ruby-comment"># =&gt; &quot;ba7816bf8...&quot;</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;abc&#39;</span>        <span class="ruby-comment"># =&gt; &quot;ba7816bf8...&quot;</span>
+
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">384</span>).<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;abc&#39;</span> <span class="ruby-comment"># =&gt; &quot;cb00753f4...&quot;</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA384</span>.<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;abc&#39;</span>        <span class="ruby-comment"># =&gt; &quot;cb00753f4...&quot;</span>
+
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">512</span>).<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;abc&#39;</span> <span class="ruby-comment"># =&gt; &quot;ddaf35a19...&quot;</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA512</span>.<span class="ruby-identifier">hexdigest</span> <span class="ruby-string">&#39;abc&#39;</span>        <span class="ruby-comment"># =&gt; &quot;ddaf35a19...&quot;</span>
+
+<span class="ruby-comment"># Compute digest by chunks</span>
+<span class="ruby-identifier">sha2</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA2</span>.<span class="ruby-identifier">new</span>               <span class="ruby-comment"># =&gt;#&lt;Digest::SHA2:256&gt;</span>
+<span class="ruby-identifier">sha2</span>.<span class="ruby-identifier">update</span> <span class="ruby-string">&quot;ab&quot;</span>
+<span class="ruby-identifier">sha2</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;c&quot;</span>                           <span class="ruby-comment"># alias for #update</span>
+<span class="ruby-identifier">sha2</span>.<span class="ruby-identifier">hexdigest</span>                        <span class="ruby-comment"># =&gt; &quot;ba7816bf8...&quot;</span>
+
+<span class="ruby-comment"># Use the same object to compute another digest</span>
+<span class="ruby-identifier">sha2</span>.<span class="ruby-identifier">reset</span>
+<span class="ruby-identifier">sha2</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;message&quot;</span>
+<span class="ruby-identifier">sha2</span>.<span class="ruby-identifier">hexdigest</span>                        <span class="ruby-comment"># =&gt; &quot;ab530a13e...&quot;</span>
+</pre>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            Digest::SHA2.new(bitlen = 256) &rarr; digest_obj
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Create a new <a href="SHA2.html"><code>SHA2</code></a> hash object with a given bit length.</p>
+
+<p>Valid bit lengths are 256, 384 and 512.</p>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File ext/digest/sha2/lib/sha2.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">bitlen</span> = <span class="ruby-value">256</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">bitlen</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">256</span>
+    <span class="ruby-ivar">@sha2</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">384</span>
+    <span class="ruby-ivar">@sha2</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA384</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">512</span>
+    <span class="ruby-ivar">@sha2</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA512</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;unsupported bit length: %s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">bitlen</span>.<span class="ruby-identifier">inspect</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@bitlen</span> = <span class="ruby-identifier">bitlen</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-3C-3C" class="method-detail method-alias">
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest_obj &lt;&lt; string &rarr; digest_obj
+          </span>
+        </div>
+
+        <div class="method-description">
+          
+
+        </div>
+
+
+        <div class="aliases">
+          Alias for: <a href="SHA2.html#method-i-update">update</a>
+        </div>
+      </div>
+
+      <div id="method-i-block_length" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            block_length &rarr; Integer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the block length of the digest in bytes.</p>
+
+<pre class="ruby"><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">block_length</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+<span class="ruby-comment"># =&gt; 512</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA384</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">block_length</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+<span class="ruby-comment"># =&gt; 1024</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA512</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">block_length</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+<span class="ruby-comment"># =&gt; 1024</span>
+</pre>
+
+          <div class="method-source-code" id="block_length-source">
+            <pre><span class="ruby-comment"># File ext/digest/sha2/lib/sha2.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">block_length</span>
+  <span class="ruby-ivar">@sha2</span>.<span class="ruby-identifier">block_length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-digest_length" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            digest_length &rarr; Integer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the length of the hash value (the digest) in bytes.</p>
+
+<pre class="ruby"><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">digest_length</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+<span class="ruby-comment"># =&gt; 256</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA384</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">digest_length</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+<span class="ruby-comment"># =&gt; 384</span>
+<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA512</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">digest_length</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span>
+<span class="ruby-comment"># =&gt; 512</span>
+</pre>
+
+<p>For example, digests produced by Digest::SHA256 will always be 32 bytes (256 bits) in size.</p>
+
+          <div class="method-source-code" id="digest_length-source">
+            <pre><span class="ruby-comment"># File ext/digest/sha2/lib/sha2.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">digest_length</span>
+  <span class="ruby-ivar">@sha2</span>.<span class="ruby-identifier">digest_length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-reset" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            reset &rarr; digest_obj
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Reset the digest to the initial state and return self.</p>
+
+          <div class="method-source-code" id="reset-source">
+            <pre><span class="ruby-comment"># File ext/digest/sha2/lib/sha2.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset</span>
+  <span class="ruby-ivar">@sha2</span>.<span class="ruby-identifier">reset</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-update" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            update(string) &rarr; digest_obj
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Update the digest using a given <em>string</em> and return self.</p>
+
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File ext/digest/sha2/lib/sha2.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-ivar">@sha2</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">str</span>)
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+        <div class="aliases">
+          Also aliased as: <a href="SHA2.html#method-i-3C-3C">&lt;&lt;</a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

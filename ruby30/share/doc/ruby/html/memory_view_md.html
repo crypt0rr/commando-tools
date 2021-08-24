@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>memory_view - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-MemoryView">MemoryView</a>
+    <li><a href="#label-Disclaimer">Disclaimer</a>
+    <li><a href="#label-Overview">Overview</a>
+    <li><a href="#label-MemoryView+structure">MemoryView structure</a>
+    <li><a href="#label-The+member+of+MemoryView+structure">The member of MemoryView structure</a>
+    <li><a href="#label-MemoryView+APIs">MemoryView APIs</a>
+    <li><a href="#label-For+consumers">For consumers</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./CONTRIBUTING_md.html">CONTRIBUTING</a>
+    <li><a href="./COPYING.html">COPYING</a>
+    <li><a href="./COPYING_ja.html">COPYING.ja</a>
+    <li><a href="./LEGAL.html">LEGAL</a>
+    <li><a href="./NEWS-1_8_7.html">NEWS-1.8.7</a>
+    <li><a href="./NEWS-1_9_1.html">NEWS-1.9.1</a>
+    <li><a href="./NEWS-1_9_2.html">NEWS-1.9.2</a>
+    <li><a href="./NEWS-1_9_3.html">NEWS-1.9.3</a>
+    <li><a href="./NEWS-2_0_0.html">NEWS-2.0.0</a>
+    <li><a href="./NEWS-2_1_0.html">NEWS-2.1.0</a>
+    <li><a href="./NEWS-2_2_0.html">NEWS-2.2.0</a>
+    <li><a href="./NEWS-2_3_0.html">NEWS-2.3.0</a>
+    <li><a href="./NEWS-2_4_0.html">NEWS-2.4.0</a>
+    <li><a href="./NEWS-2_5_0.html">NEWS-2.5.0</a>
+    <li><a href="./NEWS-2_6_0.html">NEWS-2.6.0</a>
+    <li><a href="./NEWS-2_7_0.html">NEWS-2.7.0</a>
+    <li><a href="./NEWS_md.html">NEWS</a>
+    <li><a href="./README_ja_md.html">README.ja</a>
+    <li><a href="./README_md.html">README</a>
+    <li><a href="./bug_triaging_rdoc.html">bug_triaging</a>
+    <li><a href="./contributing_rdoc.html">contributing</a>
+    <li><a href="./dig_methods_rdoc.html">dig_methods</a>
+    <li><a href="./dtrace_probes_rdoc.html">dtrace_probes</a>
+    <li><a href="./extension_ja_rdoc.html">extension.ja</a>
+    <li><a href="./extension_rdoc.html">extension</a>
+    <li><a href="./fiber_md.html">fiber</a>
+    <li><a href="./globals_rdoc.html">globals</a>
+    <li><a href="./implicit_conversion_rdoc.html">implicit_conversion</a>
+    <li><a href="./keywords_rdoc.html">keywords</a>
+    <li><a href="./lib/racc/rdoc/grammar_en_rdoc.html">grammar.en</a>
+    <li><a href="./maintainers_rdoc.html">maintainers</a>
+    <li><a href="./make_cheatsheet_md.html">make_cheatsheet</a>
+    <li><a href="./marshal_rdoc.html">marshal</a>
+    <li><a href="./memory_view_md.html">memory_view</a>
+    <li><a href="./method_documentation_rdoc.html">method_documentation</a>
+    <li><a href="./ractor_md.html">ractor</a>
+    <li><a href="./regexp_rdoc.html">regexp</a>
+    <li><a href="./security_rdoc.html">security</a>
+    <li><a href="./signals_rdoc.html">signals</a>
+    <li><a href="./standard_library_rdoc.html">standard_library</a>
+    <li><a href="./syntax_rdoc.html">syntax</a>
+    <li><a href="./syntax/assignment_rdoc.html">assignment</a>
+    <li><a href="./syntax/calling_methods_rdoc.html">calling_methods</a>
+    <li><a href="./syntax/comments_rdoc.html">comments</a>
+    <li><a href="./syntax/control_expressions_rdoc.html">control_expressions</a>
+    <li><a href="./syntax/exceptions_rdoc.html">exceptions</a>
+    <li><a href="./syntax/literals_rdoc.html">literals</a>
+    <li><a href="./syntax/methods_rdoc.html">methods</a>
+    <li><a href="./syntax/miscellaneous_rdoc.html">miscellaneous</a>
+    <li><a href="./syntax/modules_and_classes_rdoc.html">modules_and_classes</a>
+    <li><a href="./syntax/pattern_matching_rdoc.html">pattern_matching</a>
+    <li><a href="./syntax/precedence_rdoc.html">precedence</a>
+    <li><a href="./syntax/refinements_rdoc.html">refinements</a>
+    <li><a href="./win32/README_win32.html">README.win32</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page memory_view.md">
+
+<h1 id="label-MemoryView">MemoryView<span><a href="#label-MemoryView">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>MemoryView provides the features to share multidimensional homogeneous arrays of fixed-size element on memory among extension libraries.</p>
+
+<h2 id="label-Disclaimer">Disclaimer<span><a href="#label-Disclaimer">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>This feature is still experimental. The specification described here can be changed in the future.</p>
+</li><li>
+<p>This document is under construction. Please refer the master branch of ruby for the latest version of this document.</p>
+</li></ul>
+
+<h2 id="label-Overview">Overview<span><a href="#label-Overview">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>We sometimes deal with certain kinds of objects that have arrays of the same typed fixed-size elements on a contiguous memory area as its internal representation. Numo::NArray in numo-narray and Magick::Image in rmagick are typical examples of such objects. MemoryView plays the role of the hub to share the internal data of such objects without copy among such libraries.</p>
+
+<p>Copy-less sharing of data is very important in some field such as data analysis, machine learning, and image processing. In these field, people need to handle large amount of on-memory data with several libraries. If we are forced to copy to exchange large data among libraries, a large amount of the data processing time must be occupied by copying data. You can avoid such wasting time by using MemoryView.</p>
+
+<p>MemoryView has two categories of APIs:</p>
+<ol><li>
+<p>Producer API</p>
+
+<p>Classes can register own MemoryView entry which allows objects of that classes to expose their MemoryView</p>
+</li><li>
+<p>Consumer API</p>
+
+<p>Consumer API allows us to obtain and manage the MemoryView of an object</p>
+</li></ol>
+
+<h2 id="label-MemoryView+structure">MemoryView structure<span><a href="#label-MemoryView+structure">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A MemoryView structure, <code>rb_memory_view_t</code>, is used for exporting objects&#39; MemoryView. This structure contains the reference of the object, which is the owner of the MemoryView, the pointer to the head of exported memory, and the metadata that describes the structure of the memory. The metadata can describe multidimensional arrays with strides.</p>
+
+<h3 id="label-The+member+of+MemoryView+structure">The member of MemoryView structure<span><a href="#label-The+member+of+MemoryView+structure">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The MemoryView structure consists of the following members.</p>
+<ul><li>
+<p><code>VALUE obj</code></p>
+
+<p>The reference to the original object that has the memory exported via the MemoryView.</p>
+
+<p><a href="RubyVM.html"><code>RubyVM</code></a> manages the reference count of the MemoryView-exported objects to guard them from the garbage collection. The consumers do not have to struggle to guard this object from <a href="GC.html"><code>GC</code></a>.</p>
+</li><li>
+<p><code>void *data</code></p>
+
+<p>The pointer to the head of the exported memory.</p>
+</li><li>
+<p><code>ssize_t byte_size</code></p>
+
+<p>The numbero f bytes in the memory pointed by <code>data</code>.</p>
+</li><li>
+<p><code>bool readonly</code></p>
+
+<p><code>true</code> for readonly memory, <code>false</code> for writable memory.</p>
+</li><li>
+<p><code>const char *format</code></p>
+
+<p>A string to describeth e format of an element, or NULL for unsigned byte.</p>
+</li><li>
+<p><code>ssize_t item_size</code></p>
+
+<p>The number of bytes in each element.</p>
+</li><li>
+<p><code>const rb_memory_view_item_component_t *item_desc.components</code></p>
+
+<p>The array of the metadata of the component in an element.</p>
+</li><li>
+<p><code>size_t item_desc.length</code></p>
+
+<p>The number of items in <code>item_desc.components</code>.</p>
+</li><li>
+<p><code>ssize_t ndim</code></p>
+
+<p>The number of dimensions.</p>
+</li><li>
+<p><code>const ssize_t *shape</code></p>
+
+<p>A <code>ndim</code> size array indicating the number of elements in each dimension. This can be <code>NULL</code> when <code>ndim</code> is 1.</p>
+</li><li>
+<p><code>const ssize_t *strides</code></p>
+
+<p>A <code>ndim</code> size array indicating the number of bytes to skip to go to the next element in each dimension. This can be <code>NULL</code> when <code>ndim</code> is 1.</p>
+</li><li>
+<p><code>const ssize_t *sub_offsets</code></p>
+
+<p>A <code>ndim</code> size array consisting of the offsets in each dimension when the MemoryView exposes a nested array. This can be <code>NULL</code> when the MemoryView exposes a flat array.</p>
+</li><li>
+<p><code>void *const private</code></p>
+
+<p>The private data that MemoryView provider uses internally. This can be <code>NULL</code> when any private data is unnecessary.</p>
+</li></ul>
+
+<h2 id="label-MemoryView+APIs">MemoryView APIs<span><a href="#label-MemoryView+APIs">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-For+consumers">For consumers<span><a href="#label-For+consumers">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>bool rb_memory_view_available_p(VALUE obj)</code></p>
+
+<p>Return <code>true</code> if <code>obj</code> supports to export a MemoryView. Return <code>false</code> otherwise.</p>
+
+<p>If this function returns <code>true</code>, it doesn&#39;t mean the function <code>rb_memory_view_get</code> will succeed.</p>
+</li><li>
+<p><code>bool rb_memory_view_get(VALUE obj, rb_memory_view_t *view, int flags)</code></p>
+
+<p>If the given <code>obj</code> supports to export a MemoryView that conforms the given <code>flags</code>, this function fills <code>view</code> by the information of the MemoryView and returns <code>true</code>. In this case, the reference count of <code>obj</code> is increased.</p>
+
+<p>If the given combination of <code>obj</code> and <code>flags</code> cannot export a MemoryView, this function returns <code>false</code>. The content of <code>view</code> is not touched in this case.</p>
+
+<p>The exported MemoryView must be released by <code>rb_memory_view_release</code> when the MemoryView is no longer needed.</p>
+</li><li>
+<p><code>bool rb_memory_view_release(rb_memory_view_t *view)</code></p>
+
+<p>Release the given MemoryView <code>view</code> and decrement the reference count of <code>view-&gt;obj</code>.</p>
+
+<p>Consumers must call this function when the MemoryView is no longer needed. Missing to call this function leads memory leak.</p>
+</li><li>
+<p><code>ssize_t rb_memory_view_item_size_from_format(const char *format, const char **err)</code></p>
+
+<p>Calculate the number of bytes occupied by an element.</p>
+
+<p>When the calculation fails, the failed location in <code>format</code> is stored into <code>err</code>, and returns <code>-1</code>.</p>
+</li><li>
+<p><code>void *rb_memory_view_get_item_pointer(rb_memory_view_t *view, const ssize_t *indices)</code></p>
+
+<p>Calculate the location of the item indicated by the given <code>indices</code>. The length of <code>indices</code> must equal to <code>view-&gt;ndim</code>. This function initializes <code>view-&gt;item_desc</code> if needed.</p>
+</li><li>
+<p><code>VALUE rb_memory_view_get_item(rb_memory_view_t *view, const ssize_t *indices)</code></p>
+
+<p>Return the Ruby object representation of the item indicated by the given <code>indices</code>. The length of <code>indices</code> must equal to <code>view-&gt;ndim</code>. This function uses <code>rb_memory_view_get_item_pointer</code>.</p>
+</li><li>
+<p><code>rb_memory_view_init_as_byte_array(rb_memory_view_t *view, VALUE obj, void *data, const ssize_t len, const bool readonly)</code></p>
+</li></ul>
+
+<p>Fill the members of <code>view</code> as an 1-dimensional byte array.</p>
+<ul><li>
+<p><code>void rb_memory_view_fill_contiguous_strides(const ssize_t ndim, const ssize_t item_size, const ssize_t *const shape, const bool row_major_p, ssize_t *const strides)</code></p>
+</li></ul>
+
+<p>Fill the <code>strides</code> array with byte-Strides of a contiguous array of the given shape with the given element size.</p>
+<ul><li>
+<p><code>void rb_memory_view_prepare_item_desc(rb_memory_view_t *view)</code></p>
+</li></ul>
+
+<p>Fill the <code>item_desc</code> member of <code>view</code>.</p>
+<ul><li>
+<p><code>bool rb_memory_view_is_contiguous(const rb_memory_view_t *view)</code></p>
+</li></ul>
+
+<p>Return <code>true</code> if the data in the MemoryView <code>view</code> is row-major or column-major contiguous.</p>
+
+<p>Return <code>false</code> otherwise.</p>
+<ul><li>
+<p><code>bool rb_memory_view_is_row_major_contiguous(const rb_memory_view_t *view)</code></p>
+</li></ul>
+
+<p>Return <code>true</code> if the data in the MemoryView <code>view</code> is row-major contiguous.</p>
+
+<p>Return <code>false</code> otherwise.</p>
+<ul><li>
+<p><code>bool rb_memory_view_is_column_major_contiguous(const rb_memory_view_t *view)</code></p>
+</li></ul>
+
+<p>Return <code>true</code> if the data in the MemoryView <code>view</code> is column-major contiguous.</p>
+
+<p>Return <code>false</code> otherwise.</p>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

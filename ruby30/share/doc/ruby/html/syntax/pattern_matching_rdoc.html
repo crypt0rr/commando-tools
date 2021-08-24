@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>pattern_matching - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Pattern+matching">Pattern matching</a>
+    <li><a href="#label-Patterns">Patterns</a>
+    <li><a href="#label-Variable+binding">Variable binding</a>
+    <li><a href="#label-Variable+pinning">Variable pinning</a>
+    <li><a href="#label-Matching+non-primitive+objects-3A+deconstruct+and+deconstruct_keys">Matching non-primitive objects: <code>deconstruct</code> and <code>deconstruct_keys</code></a>
+    <li><a href="#label-Guard+clauses">Guard clauses</a>
+    <li><a href="#label-Current+feature+status">Current feature status</a>
+    <li><a href="#label-Appendix+A.+Pattern+syntax">Appendix A. Pattern syntax</a>
+    <li><a href="#label-Appendix+B.+Some+undefined+behavior+examples">Appendix B. Some undefined behavior examples</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="../CONTRIBUTING_md.html">CONTRIBUTING</a>
+    <li><a href="../COPYING.html">COPYING</a>
+    <li><a href="../COPYING_ja.html">COPYING.ja</a>
+    <li><a href="../LEGAL.html">LEGAL</a>
+    <li><a href="../NEWS-1_8_7.html">NEWS-1.8.7</a>
+    <li><a href="../NEWS-1_9_1.html">NEWS-1.9.1</a>
+    <li><a href="../NEWS-1_9_2.html">NEWS-1.9.2</a>
+    <li><a href="../NEWS-1_9_3.html">NEWS-1.9.3</a>
+    <li><a href="../NEWS-2_0_0.html">NEWS-2.0.0</a>
+    <li><a href="../NEWS-2_1_0.html">NEWS-2.1.0</a>
+    <li><a href="../NEWS-2_2_0.html">NEWS-2.2.0</a>
+    <li><a href="../NEWS-2_3_0.html">NEWS-2.3.0</a>
+    <li><a href="../NEWS-2_4_0.html">NEWS-2.4.0</a>
+    <li><a href="../NEWS-2_5_0.html">NEWS-2.5.0</a>
+    <li><a href="../NEWS-2_6_0.html">NEWS-2.6.0</a>
+    <li><a href="../NEWS-2_7_0.html">NEWS-2.7.0</a>
+    <li><a href="../NEWS_md.html">NEWS</a>
+    <li><a href="../README_ja_md.html">README.ja</a>
+    <li><a href="../README_md.html">README</a>
+    <li><a href="../bug_triaging_rdoc.html">bug_triaging</a>
+    <li><a href="../contributing_rdoc.html">contributing</a>
+    <li><a href="../dig_methods_rdoc.html">dig_methods</a>
+    <li><a href="../dtrace_probes_rdoc.html">dtrace_probes</a>
+    <li><a href="../extension_ja_rdoc.html">extension.ja</a>
+    <li><a href="../extension_rdoc.html">extension</a>
+    <li><a href="../fiber_md.html">fiber</a>
+    <li><a href="../globals_rdoc.html">globals</a>
+    <li><a href="../implicit_conversion_rdoc.html">implicit_conversion</a>
+    <li><a href="../keywords_rdoc.html">keywords</a>
+    <li><a href="../lib/racc/rdoc/grammar_en_rdoc.html">grammar.en</a>
+    <li><a href="../maintainers_rdoc.html">maintainers</a>
+    <li><a href="../make_cheatsheet_md.html">make_cheatsheet</a>
+    <li><a href="../marshal_rdoc.html">marshal</a>
+    <li><a href="../memory_view_md.html">memory_view</a>
+    <li><a href="../method_documentation_rdoc.html">method_documentation</a>
+    <li><a href="../ractor_md.html">ractor</a>
+    <li><a href="../regexp_rdoc.html">regexp</a>
+    <li><a href="../security_rdoc.html">security</a>
+    <li><a href="../signals_rdoc.html">signals</a>
+    <li><a href="../standard_library_rdoc.html">standard_library</a>
+    <li><a href="../syntax_rdoc.html">syntax</a>
+    <li><a href="../syntax/assignment_rdoc.html">assignment</a>
+    <li><a href="../syntax/calling_methods_rdoc.html">calling_methods</a>
+    <li><a href="../syntax/comments_rdoc.html">comments</a>
+    <li><a href="../syntax/control_expressions_rdoc.html">control_expressions</a>
+    <li><a href="../syntax/exceptions_rdoc.html">exceptions</a>
+    <li><a href="../syntax/literals_rdoc.html">literals</a>
+    <li><a href="../syntax/methods_rdoc.html">methods</a>
+    <li><a href="../syntax/miscellaneous_rdoc.html">miscellaneous</a>
+    <li><a href="../syntax/modules_and_classes_rdoc.html">modules_and_classes</a>
+    <li><a href="../syntax/pattern_matching_rdoc.html">pattern_matching</a>
+    <li><a href="../syntax/precedence_rdoc.html">precedence</a>
+    <li><a href="../syntax/refinements_rdoc.html">refinements</a>
+    <li><a href="../win32/README_win32.html">README.win32</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page syntax/pattern_matching.rdoc">
+
+<h1 id="label-Pattern+matching">Pattern matching<span><a href="#label-Pattern+matching">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>Pattern matching is a feature allowing deep matching of structured values: checking the structure and binding the matched parts to local variables.</p>
+
+<p>Pattern matching in Ruby is implemented with the <code>case</code>/<code>in</code> expression:</p>
+
+<pre>case &lt;expression&gt;
+in &lt;pattern1&gt;
+  ...
+in &lt;pattern2&gt;
+  ...
+in &lt;pattern3&gt;
+  ...
+else
+  ...
+end</pre>
+
+<p>(Note that <code>in</code> and <code>when</code> branches can NOT be mixed in one <code>case</code> expression.)</p>
+
+<p>Or with the <code>=&gt;</code> operator and the <code>in</code> operator, which can be used in a standalone expression:</p>
+
+<pre>&lt;expression&gt; =&gt; &lt;pattern&gt;
+
+&lt;expression&gt; in &lt;pattern&gt;</pre>
+
+<p>The <code>case</code>/<code>in</code> expression is <em>exhaustive</em>: if the value of the expression does not match any branch of the <code>case</code> expression (and the <code>else</code> branch is absent), <code>NoMatchingPatternError</code> is raised.</p>
+
+<p>Therefore, the <code>case</code> expression might be used for conditional matching and unpacking:</p>
+
+<pre class="ruby"><span class="ruby-identifier">config</span> = {<span class="ruby-value">db:</span> {<span class="ruby-value">user:</span> <span class="ruby-string">&#39;admin&#39;</span>, <span class="ruby-value">password:</span> <span class="ruby-string">&#39;abc123&#39;</span>}}
+
+<span class="ruby-keyword">case</span> <span class="ruby-identifier">config</span>
+<span class="ruby-keyword">in</span> <span class="ruby-value">db:</span> {<span class="ruby-value">user:</span>} <span class="ruby-comment"># matches subhash and puts matched value in variable user</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Connect with user &#39;#{user}&#39;&quot;</span>
+<span class="ruby-keyword">in</span> <span class="ruby-value">connection:</span> {<span class="ruby-value">username:</span> }
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Connect with user &#39;#{username}&#39;&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Unrecognized structure of config&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># Prints: &quot;Connect with user &#39;admin&#39;&quot;</span>
+</pre>
+
+<p>whilst the <code>=&gt;</code> operator is most useful when the expected data structure is known beforehand, to just unpack parts of it:</p>
+
+<pre class="ruby"><span class="ruby-identifier">config</span> = {<span class="ruby-value">db:</span> {<span class="ruby-value">user:</span> <span class="ruby-string">&#39;admin&#39;</span>, <span class="ruby-value">password:</span> <span class="ruby-string">&#39;abc123&#39;</span>}}
+
+<span class="ruby-identifier">config</span> <span class="ruby-operator">=&gt;</span> {<span class="ruby-value">db:</span> {<span class="ruby-value">user:</span>}} <span class="ruby-comment"># will raise if the config&#39;s structure is unexpected</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Connect with user &#39;#{user}&#39;&quot;</span>
+<span class="ruby-comment"># Prints: &quot;Connect with user &#39;admin&#39;&quot;</span>
+</pre>
+
+<p><code>&lt;expression&gt; in &lt;pattern&gt;</code> is the same as <code>case &lt;expression&gt;; in &lt;pattern&gt;; true; else false; end</code>. You can use it when you only want to know if a pattern has been matched or not:</p>
+
+<pre class="ruby"><span class="ruby-identifier">users</span> = [{<span class="ruby-value">name:</span> <span class="ruby-string">&quot;Alice&quot;</span>, <span class="ruby-value">age:</span> <span class="ruby-value">12</span>}, {<span class="ruby-value">name:</span> <span class="ruby-string">&quot;Bob&quot;</span>, <span class="ruby-value">age:</span> <span class="ruby-value">23</span>}]
+<span class="ruby-identifier">users</span>.<span class="ruby-identifier">any?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">in</span> {<span class="ruby-value">name:</span> <span class="ruby-regexp">/B/</span>, <span class="ruby-value">age:</span> <span class="ruby-value">20</span><span class="ruby-operator">..</span>} } <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>See below for more examples and explanations of the syntax.</p>
+
+<h2 id="label-Patterns">Patterns<span><a href="#label-Patterns">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Patterns can be:</p>
+<ul><li>
+<p>any Ruby object (matched by the <code>===</code> operator, like in <code>when</code>); (<em>Value pattern</em>)</p>
+</li><li>
+<p>array pattern: <code>[&lt;subpattern&gt;, &lt;subpattern&gt;, &lt;subpattern&gt;, ...]</code>; (<em>Array pattern</em>)</p>
+</li><li>
+<p>find pattern: <code>[*variable, &lt;subpattern&gt;, &lt;subpattern&gt;, &lt;subpattern&gt;, ..., *variable]</code>; (<em>Find pattern</em>)</p>
+</li><li>
+<p>hash pattern: <code>{key: &lt;subpattern&gt;, key: &lt;subpattern&gt;, ...}</code>; (<em>Hash pattern</em>)</p>
+</li><li>
+<p>combination of patterns with <code>|</code>; (<em>Alternative pattern</em>)</p>
+</li><li>
+<p>variable capture: <code>&lt;pattern&gt; =&gt; variable</code> or <code>variable</code>; (<em>As pattern</em>, <em>Variable pattern</em>)</p>
+</li></ul>
+
+<p>Any pattern can be nested inside array/find/hash patterns where <code>&lt;subpattern&gt;</code> is specified.</p>
+
+<p><a href="../Array.html"><code>Array</code></a> patterns and find patterns match arrays, or objects that respond to <code>deconstruct</code> (see below about the latter). <a href="../Hash.html"><code>Hash</code></a> patterns match hashes, or objects that respond to <code>deconstruct_keys</code> (see below about the latter). Note that only symbol keys are supported for hash patterns.</p>
+
+<p>An important difference between array and hash pattern behavior is that arrays match only a <em>whole</em> array:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]
+<span class="ruby-keyword">in</span> [<span class="ruby-constant">Integer</span>, <span class="ruby-constant">Integer</span>]
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;not matched&quot;</span>
+</pre>
+
+<p>while the hash matches even if there are other keys besides the specified part:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> {<span class="ruby-value">a:</span> <span class="ruby-constant">Integer</span>}
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+</pre>
+
+<p><code>{}</code> is the only exclusion from this rule. It matches only if an empty hash is given:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> {}
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;not matched&quot;</span>
+
+<span class="ruby-keyword">case</span> {}
+<span class="ruby-keyword">in</span> {}
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+</pre>
+
+<p>There is also a way to specify there should be no other keys in the matched hash except those explicitly specified by the pattern, with <code>**nil</code>:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>}
+<span class="ruby-keyword">in</span> {<span class="ruby-value">a:</span> <span class="ruby-constant">Integer</span>, <span class="ruby-operator">**</span><span class="ruby-keyword">nil</span>} <span class="ruby-comment"># this will not match the pattern having keys other than a:</span>
+  <span class="ruby-string">&quot;matched a part&quot;</span>
+<span class="ruby-keyword">in</span> {<span class="ruby-value">a:</span> <span class="ruby-constant">Integer</span>, <span class="ruby-value">b:</span> <span class="ruby-constant">Integer</span>, <span class="ruby-operator">**</span><span class="ruby-keyword">nil</span>}
+  <span class="ruby-string">&quot;matched a whole&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched a whole&quot;</span>
+</pre>
+
+<p>Both array and hash patterns support “rest” specification:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]
+<span class="ruby-keyword">in</span> [<span class="ruby-constant">Integer</span>, <span class="ruby-operator">*</span>]
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+
+<span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> {<span class="ruby-value">a:</span> <span class="ruby-constant">Integer</span>, <span class="ruby-operator">**</span>}
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+</pre>
+
+<p>In <code>case</code> (but not in <code>=&gt;</code> and <code>in</code>) expressions, parentheses around both kinds of patterns could be omitted:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-constant">Integer</span>, <span class="ruby-constant">Integer</span>
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+
+<span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> <span class="ruby-value">a:</span> <span class="ruby-constant">Integer</span>
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+</pre>
+
+<p><a href="../Find.html"><code>Find</code></a> pattern is similar to array pattern but it can be used to check if the given object has any elements that match the pattern:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-string">&quot;a&quot;</span>, <span class="ruby-value">1</span>, <span class="ruby-string">&quot;b&quot;</span>, <span class="ruby-string">&quot;c&quot;</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">in</span> [<span class="ruby-operator">*</span>, <span class="ruby-constant">String</span>, <span class="ruby-constant">String</span>, <span class="ruby-operator">*</span>]
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Variable+binding">Variable binding<span><a href="#label-Variable+binding">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Besides deep structural checks, one of the very important features of the pattern matching is the binding of the matched parts to local variables. The basic form of binding is just specifying <code>=&gt; variable_name</code> after the matched (sub)pattern (one might find this similar to storing exceptions in local variables in a <code>rescue ExceptionClass =&gt; var</code> clause):</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-constant">Integer</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">a</span>, <span class="ruby-constant">Integer</span>
+  <span class="ruby-node">&quot;matched: #{a}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+
+<span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> <span class="ruby-value">a:</span> <span class="ruby-constant">Integer</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">m</span>
+  <span class="ruby-node">&quot;matched: #{m}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+</pre>
+
+<p>If no additional check is required, for only binding some part of the data to a variable, a simpler form could be used:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">a</span>, <span class="ruby-constant">Integer</span>
+  <span class="ruby-node">&quot;matched: #{a}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+
+<span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> <span class="ruby-value">a:</span> <span class="ruby-identifier">m</span>
+  <span class="ruby-node">&quot;matched: #{m}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+</pre>
+
+<p>For hash patterns, even a simpler form exists: key-only specification (without any sub-pattern) binds the local variable with the key&#39;s name, too:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> <span class="ruby-value">a:</span>
+  <span class="ruby-node">&quot;matched: #{a}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+</pre>
+
+<p><a href="../Binding.html"><code>Binding</code></a> works for nested patterns as well:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> {<span class="ruby-value">name:</span> <span class="ruby-string">&#39;John&#39;</span>, <span class="ruby-value">friends:</span> [{<span class="ruby-value">name:</span> <span class="ruby-string">&#39;Jane&#39;</span>}, {<span class="ruby-value">name:</span> <span class="ruby-string">&#39;Rajesh&#39;</span>}]}
+<span class="ruby-keyword">in</span> <span class="ruby-value">name:</span>, <span class="ruby-value">friends:</span> [{<span class="ruby-value">name:</span> <span class="ruby-identifier">first_friend</span>}, <span class="ruby-operator">*</span>]
+  <span class="ruby-node">&quot;matched: #{first_friend}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: Jane&quot;</span>
+</pre>
+
+<p>The “rest” part of a pattern also can be bound to a variable:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">a</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">rest</span>
+  <span class="ruby-node">&quot;matched: #{a}, #{rest}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1, [2, 3]&quot;</span>
+
+<span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>, <span class="ruby-value">c:</span> <span class="ruby-value">3</span>}
+<span class="ruby-keyword">in</span> <span class="ruby-value">a:</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">rest</span>
+  <span class="ruby-node">&quot;matched: #{a}, #{rest}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1, {:b=&gt;2, :c=&gt;3}&quot;</span>
+</pre>
+
+<p><a href="../Binding.html"><code>Binding</code></a> to variables currently does NOT work for alternative patterns joined with <code>|</code>:</p>
+
+<pre>case {a: 1, b: 2}
+in {a: } | Array
+  &quot;matched: #{a}&quot;
+else
+  &quot;not matched&quot;
+end
+# SyntaxError (illegal variable in alternative pattern (a))</pre>
+
+<p>Variables that start with <code>_</code> are the only exclusions from this rule:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> {<span class="ruby-value">a:</span> <span class="ruby-value">1</span>, <span class="ruby-value">b:</span> <span class="ruby-value">2</span>}
+<span class="ruby-keyword">in</span> {<span class="ruby-value">a:</span> <span class="ruby-identifier">_</span>, <span class="ruby-value">b:</span> <span class="ruby-identifier">_foo</span>} <span class="ruby-operator">|</span> <span class="ruby-constant">Array</span>
+  <span class="ruby-node">&quot;matched: #{_}, #{_foo}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># =&gt; &quot;matched: 1, 2&quot;</span>
+</pre>
+
+<p>It is, though, not advised to reuse the bound value, as this pattern&#39;s goal is to signify a discarded value.</p>
+
+<h2 id="label-Variable+pinning">Variable pinning<span><a href="#label-Variable+pinning">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Due to the variable binding feature, existing local variable can not be straightforwardly used as a sub-pattern:</p>
+
+<pre class="ruby"><span class="ruby-identifier">expectation</span> = <span class="ruby-value">18</span>
+
+<span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">expectation</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">rest</span>
+  <span class="ruby-node">&quot;matched. expectation was: #{expectation}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-node">&quot;not matched. expectation was: #{expectation}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># expected: &quot;not matched. expectation was: 18&quot;</span>
+<span class="ruby-comment"># real: &quot;matched. expectation was: 1&quot; -- local variable just rewritten</span>
+</pre>
+
+<p>For this case, the pin operator <code>^</code> can be used, to tell Ruby “just use this value as part of the pattern”:</p>
+
+<pre class="ruby"><span class="ruby-identifier">expectation</span> = <span class="ruby-value">18</span>
+<span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-operator">^</span><span class="ruby-identifier">expectation</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">rest</span>
+  <span class="ruby-node">&quot;matched. expectation was: #{expectation}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-node">&quot;not matched. expectation was: #{expectation}&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;not matched. expectation was: 18&quot;</span>
+</pre>
+
+<p>One important usage of variable pinning is specifying that the same value should occur in the pattern several times:</p>
+
+<pre class="ruby"><span class="ruby-identifier">jane</span> = {<span class="ruby-value">school:</span> <span class="ruby-string">&#39;high&#39;</span>, <span class="ruby-value">schools:</span> [{<span class="ruby-value">id:</span> <span class="ruby-value">1</span>, <span class="ruby-value">level:</span> <span class="ruby-string">&#39;middle&#39;</span>}, {<span class="ruby-value">id:</span> <span class="ruby-value">2</span>, <span class="ruby-value">level:</span> <span class="ruby-string">&#39;high&#39;</span>}]}
+<span class="ruby-identifier">john</span> = {<span class="ruby-value">school:</span> <span class="ruby-string">&#39;high&#39;</span>, <span class="ruby-value">schools:</span> [{<span class="ruby-value">id:</span> <span class="ruby-value">1</span>, <span class="ruby-value">level:</span> <span class="ruby-string">&#39;middle&#39;</span>}]}
+
+<span class="ruby-keyword">case</span> <span class="ruby-identifier">jane</span>
+<span class="ruby-keyword">in</span> <span class="ruby-value">school:</span>, <span class="ruby-value">schools:</span> [<span class="ruby-operator">*</span>, {<span class="ruby-value">id:</span>, <span class="ruby-value">level:</span> <span class="ruby-operator">^</span><span class="ruby-identifier">school</span>}] <span class="ruby-comment"># select the last school, level should match</span>
+  <span class="ruby-node">&quot;matched. school: #{id}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched. school: 2&quot;</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-identifier">john</span> <span class="ruby-comment"># the specified school level is &quot;high&quot;, but last school does not match</span>
+<span class="ruby-keyword">in</span> <span class="ruby-value">school:</span>, <span class="ruby-value">schools:</span> [<span class="ruby-operator">*</span>, {<span class="ruby-value">id:</span>, <span class="ruby-value">level:</span> <span class="ruby-operator">^</span><span class="ruby-identifier">school</span>}]
+  <span class="ruby-node">&quot;matched. school: #{id}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;not matched&quot;</span>
+</pre>
+
+<h2 id="label-Matching+non-primitive+objects-3A+deconstruct+and+deconstruct_keys">Matching non-primitive objects: <code>deconstruct</code> and <code>deconstruct_keys</code><span><a href="#label-Matching+non-primitive+objects-3A+deconstruct+and+deconstruct_keys">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>As already mentioned above, array, find, and hash patterns besides literal arrays and hashes will try to match any object implementing <code>deconstruct</code> (for array/find patterns) or <code>deconstruct_keys</code> (for hash patterns).</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Point</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>)
+    <span class="ruby-ivar">@x</span>, <span class="ruby-ivar">@y</span> = <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deconstruct</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;deconstruct called&quot;</span>
+    [<span class="ruby-ivar">@x</span>, <span class="ruby-ivar">@y</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deconstruct_keys</span>(<span class="ruby-identifier">keys</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;deconstruct_keys called with #{keys.inspect}&quot;</span>
+    {<span class="ruby-value">x:</span> <span class="ruby-ivar">@x</span>, <span class="ruby-value">y:</span> <span class="ruby-ivar">@y</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-constant">Point</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">-2</span>)
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">px</span>, <span class="ruby-constant">Integer</span>  <span class="ruby-comment"># sub-patterns and variable binding works</span>
+  <span class="ruby-node">&quot;matched: #{px}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># prints &quot;deconstruct called&quot;</span>
+<span class="ruby-string">&quot;matched: 1&quot;</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-constant">Point</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">-2</span>)
+<span class="ruby-keyword">in</span> <span class="ruby-value">x:</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">px</span>
+  <span class="ruby-node">&quot;matched: #{px}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># prints: deconstruct_keys called with [:x]</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+</pre>
+
+<p><code>keys</code> are passed to <code>deconstruct_keys</code> to provide a room for optimization in the matched class: if calculating a full hash representation is expensive, one may calculate only the necessary subhash. When the <code>**rest</code> pattern is used, <code>nil</code> is passed as a <code>keys</code> value:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> <span class="ruby-constant">Point</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">-2</span>)
+<span class="ruby-keyword">in</span> <span class="ruby-value">x:</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">px</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">rest</span>
+  <span class="ruby-node">&quot;matched: #{px}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment"># prints: deconstruct_keys called with nil</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+</pre>
+
+<p>Additionally, when matching custom classes, the expected class can be specified as part of the pattern and is checked with <code>===</code></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">SuperPoint</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Point</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-constant">Point</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">-2</span>)
+<span class="ruby-keyword">in</span> <span class="ruby-constant">SuperPoint</span>(<span class="ruby-value">x:</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">px</span>)
+  <span class="ruby-node">&quot;matched: #{px}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;not matched&quot;</span>
+
+<span class="ruby-keyword">case</span> <span class="ruby-constant">SuperPoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">-2</span>)
+<span class="ruby-keyword">in</span> <span class="ruby-constant">SuperPoint</span>[<span class="ruby-value">x:</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">px</span>] <span class="ruby-comment"># [] or () parentheses are allowed</span>
+  <span class="ruby-node">&quot;matched: #{px}&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched: 1&quot;</span>
+</pre>
+
+<h2 id="label-Guard+clauses">Guard clauses<span><a href="#label-Guard+clauses">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><code>if</code> can be used to attach an additional condition (guard clause) when the pattern matches. This condition may use bound variables:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">b</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">a</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+
+<span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">b</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">a</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;not matched&quot;</span>
+</pre>
+
+<p><code>unless</code> works, too:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>]
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">b</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">a</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-comment">#=&gt; &quot;matched&quot;</span>
+</pre>
+
+<h2 id="label-Current+feature+status">Current feature status<span><a href="#label-Current+feature+status">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>As of Ruby 3.0, one-line pattern matching and find patterns are considered <em>experimental</em>: its syntax can change in the future. Every time you use these features in code, a warning will be printed:</p>
+
+<pre class="ruby">[<span class="ruby-value">0</span>] <span class="ruby-operator">=&gt;</span> [<span class="ruby-operator">*</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">*</span>]
+<span class="ruby-comment"># warning: Find pattern is experimental, and the behavior may change in future versions of Ruby!</span>
+<span class="ruby-comment"># warning: One-line pattern matching is experimental, and the behavior may change in future versions of Ruby!</span>
+</pre>
+
+<p>To suppress this warning, one may use the <a href="../Warning.html#method-c-5B-5D-3D"><code>Warning::[]=</code></a> method:</p>
+
+<pre class="ruby"><span class="ruby-constant">Warning</span>[<span class="ruby-value">:experimental</span>] = <span class="ruby-keyword">false</span>
+<span class="ruby-identifier">eval</span>(<span class="ruby-string">&#39;[0] =&gt; [*, 0, *]&#39;</span>)
+<span class="ruby-comment"># ...no warning printed...</span>
+</pre>
+
+<p>Note that pattern-matching warnings are raised at compile time, so this will not suppress the warning:</p>
+
+<pre class="ruby"><span class="ruby-constant">Warning</span>[<span class="ruby-value">:experimental</span>] = <span class="ruby-keyword">false</span> <span class="ruby-comment"># At the time this line is evaluated, the parsing happened and warning emitted</span>
+[<span class="ruby-value">0</span>] <span class="ruby-operator">=&gt;</span> [<span class="ruby-operator">*</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">*</span>]
+</pre>
+
+<p>So, only subsequently loaded files or `eval`-ed code is affected by switching the flag.</p>
+
+<p>Alternatively, the command line option <code>-W:no-experimental</code> can be used to turn off “experimental” feature warnings.</p>
+
+<h2 id="label-Appendix+A.+Pattern+syntax">Appendix A. Pattern syntax<span><a href="#label-Appendix+A.+Pattern+syntax">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Approximate syntax is:</p>
+
+<pre>pattern: value_pattern
+       | variable_pattern
+       | alternative_pattern
+       | as_pattern
+       | array_pattern
+       | find_pattern
+       | hash_pattern
+
+value_pattern: literal
+             | Constant
+             | ^variable
+
+variable_pattern: variable
+
+alternative_pattern: pattern | pattern | ...
+
+as_pattern: pattern =&gt; variable
+
+array_pattern: [pattern, ..., *variable]
+             | Constant(pattern, ..., *variable)
+             | Constant[pattern, ..., *variable]
+
+find_pattern: [*variable, pattern, ..., *variable]
+            | Constant(*variable, pattern, ..., *variable)
+            | Constant[*variable, pattern, ..., *variable]
+
+hash_pattern: {key: pattern, key:, ..., **variable}
+            | Constant(key: pattern, key:, ..., **variable)
+            | Constant[key: pattern, key:, ..., **variable]</pre>
+
+<h2 id="label-Appendix+B.+Some+undefined+behavior+examples">Appendix B. Some undefined behavior examples<span><a href="#label-Appendix+B.+Some+undefined+behavior+examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To leave room for optimization in the future, the specification contains some undefined behavior.</p>
+
+<p>Use of a variable in an unmatched pattern:</p>
+
+<pre class="ruby"><span class="ruby-keyword">case</span> [<span class="ruby-value">0</span>, <span class="ruby-value">1</span>]
+<span class="ruby-keyword">in</span> [<span class="ruby-identifier">a</span>, <span class="ruby-value">2</span>]
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">b</span>
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">in</span> <span class="ruby-identifier">c</span>
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">a</span> <span class="ruby-comment">#=&gt; undefined</span>
+<span class="ruby-identifier">c</span> <span class="ruby-comment">#=&gt; undefined</span>
+</pre>
+
+<p>Number of <code>deconstruct</code>, <code>deconstruct_keys</code> method calls:</p>
+
+<pre class="ruby"><span class="ruby-identifier">$i</span> = <span class="ruby-value">0</span>
+<span class="ruby-identifier">ary</span> = [<span class="ruby-value">0</span>]
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ary</span>.<span class="ruby-identifier">deconstruct</span>
+  <span class="ruby-identifier">$i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-keyword">case</span> <span class="ruby-identifier">ary</span>
+<span class="ruby-keyword">in</span> [<span class="ruby-value">0</span>, <span class="ruby-value">1</span>]
+  <span class="ruby-string">&quot;not matched&quot;</span>
+<span class="ruby-keyword">in</span> [<span class="ruby-value">0</span>]
+  <span class="ruby-string">&quot;matched&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">$i</span> <span class="ruby-comment">#=&gt; undefined</span>
+</pre>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Warning - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-5B-5D">::[]</a>
+    <li ><a href="#method-c-5B-5D-3D">::[]=</a>
+    <li ><a href="#method-i-warn">#warn</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Warning">
+  <h1 id="module-Warning" class="module">
+    module Warning
+  </h1>
+
+  <section class="description">
+    
+<p>The <a href="Warning.html"><code>Warning</code></a> module contains a single method named <a href="Warning.html#method-i-warn"><code>warn</code></a>, and the module extends itself, making <a href="Warning.html#method-i-warn"><code>Warning.warn</code></a> available. <a href="Warning.html#method-i-warn"><code>Warning.warn</code></a> is called for all warnings issued by Ruby. By default, warnings are printed to $stderr.</p>
+
+<p>Changing the behavior of <a href="Warning.html#method-i-warn"><code>Warning.warn</code></a> is useful to customize how warnings are handled by Ruby, for instance by filtering some warnings, and/or outputting warnings somewhere other than $stderr.</p>
+
+<p>If you want to change the behavior of <a href="Warning.html#method-i-warn"><code>Warning.warn</code></a> you should use +Warning.extend(MyNewModuleWithWarnMethod)+ and you can use `super` to get the default behavior of printing the warning to $stderr.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">MyWarningFilter</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">warn</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value">category:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">kwargs</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-regexp">/some warning I want to ignore/</span>.<span class="ruby-identifier">matches?</span>(<span class="ruby-identifier">message</span>)
+      <span class="ruby-comment"># ignore</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">super</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-constant">Warning</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">MyWarningFilter</span>
+</pre>
+
+<p>You should never redefine <a href="Warning.html#method-i-warn"><code>Warning#warn</code></a> (the instance method), as that will then no longer provide a way to use the default behavior.</p>
+
+<p>The <code>warning</code> gem provides convenient ways to customize <a href="Warning.html#method-i-warn"><code>Warning.warn</code></a>.</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-5B-5D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            Warning[category]  &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Returns the flag to show the warning messages for <code>category</code>. Supported categories are:</p>
+<dl class="rdoc-list note-list"><dt><code>:deprecated</code> 
+<dd>
+<p>deprecation warnings</p>
+</dd></dl>
+<ul><li>
+<p>assignment of non-nil value to <code>$,</code> and <code>$;</code></p>
+</li><li>
+<p>keyword arguments</p>
+</li><li>
+<p>proc/lambda without block</p>
+</li></ul>
+
+<p>etc.</p>
+<dl class="rdoc-list note-list"><dt><code>:experimental</code> 
+<dd>
+<p>experimental features</p>
+</dd></dl>
+<ul><li>
+<p>Pattern matching</p>
+</li></ul>
+
+          <div class="method-source-code" id="5B-5D-source">
+            <pre>static VALUE
+rb_warning_s_aref(VALUE mod, VALUE category)
+{
+    rb_warning_category_t cat = rb_warning_category_from_name(category);
+    if (rb_warning_category_enabled_p(cat))
+        return Qtrue;
+    return Qfalse;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-5B-5D-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            Warning[category] = flag &rarr; flag
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Sets the warning flags for <code>category</code>. See <a href="Warning.html#method-c-5B-5D"><code>Warning.[]</code></a> for the categories.</p>
+
+          <div class="method-source-code" id="5B-5D-3D-source">
+            <pre>static VALUE
+rb_warning_s_aset(VALUE mod, VALUE category, VALUE flag)
+{
+    unsigned int mask = rb_warning_category_mask(category);
+    unsigned int disabled = warning_disabled_categories;
+    if (!RTEST(flag))
+        disabled |= mask;
+    else
+        disabled &amp;= ~mask;
+    warning_disabled_categories = disabled;
+    return flag;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-warn" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            warn(msg, category: nil)  &rarr; nil
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Writes warning message <code>msg</code> to $stderr. This method is called by Ruby for all emitted warnings. A <code>category</code> may be included with the warning.</p>
+
+<p>See the documentation of the <a href="Warning.html"><code>Warning</code></a> module for how to customize this.</p>
+
+          <div class="method-source-code" id="warn-source">
+            <pre>static VALUE
+rb_warning_s_warn(int argc, VALUE *argv, VALUE mod)
+{
+    VALUE str;
+    VALUE opt;
+    VALUE category = Qnil;
+
+    rb_scan_args(argc, argv, &quot;1:&quot;, &amp;str, &amp;opt);
+    if (!NIL_P(opt)) rb_get_kwargs(opt, &amp;id_category, 0, 1, &amp;category);
+
+    Check_Type(str, T_STRING);
+    rb_must_asciicompat(str);
+    if (!NIL_P(category)) {
+        rb_warning_category_t cat = rb_warning_category_from_name(category);
+        if (!rb_warning_category_enabled_p(cat)) return Qnil;
+    }
+    rb_write_error_str(str);
+    return Qnil;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

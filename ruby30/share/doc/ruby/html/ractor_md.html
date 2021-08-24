@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>ractor - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Ractor+-+Ruby-27s+Actor-like+concurrent+abstraction">Ractor - Ruby&#39;s Actor-like concurrent abstraction</a>
+    <li><a href="#label-Summary">Summary</a>
+    <li><a href="#label-Multiple+Ractors+in+an+interpreter+process">Multiple Ractors in an interpreter process</a>
+    <li><a href="#label-Limited+sharing+between+multiple+ractors">Limited sharing between multiple ractors</a>
+    <li><a href="#label-Two-types+communication+between+Ractors">Two-types communication between Ractors</a>
+    <li><a href="#label-Copy+-26+Move+semantics+to+send+messages">Copy &amp; Move semantics to send messages</a>
+    <li><a href="#label-Thread-safety">Thread-safety</a>
+    <li><a href="#label-Creation+and+termination">Creation and termination</a>
+    <li><a href="#label-Ractor.new"><code>Ractor.new</code></a>
+    <li><a href="#label-Given+block+isolation">Given block isolation</a>
+    <li><a href="#label-An+execution+result+of+given+block">An execution result of given block</a>
+    <li><a href="#label-Communication+between+Ractors">Communication between Ractors</a>
+    <li><a href="#label-Sending-2FReceiving+ports">Sending/Receiving ports</a>
+    <li><a href="#label-Return+value+of+a+block+for+Ractor.new">Return value of a block for <code>Ractor.new</code></a>
+    <li><a href="#label-Wait+for+multiple+Ractors+with+Ractor.select">Wait for multiple Ractors with <code>Ractor.select</code></a>
+    <li><a href="#label-Closing+Ractor-27s+ports">Closing Ractor&#39;s ports</a>
+    <li><a href="#label-Send+a+message+by+copying">Send a message by copying</a>
+    <li><a href="#label-Send+a+message+by+moving">Send a message by moving</a>
+    <li><a href="#label-Shareable+objects">Shareable objects</a>
+    <li><a href="#label-Language+changes+to+isolate+unshareable+objects+between+Ractors">Language changes to isolate unshareable objects between Ractors</a>
+    <li><a href="#label-Global+variables">Global variables</a>
+    <li><a href="#label-Instance+variables+of+shareable+objects">Instance variables of shareable objects</a>
+    <li><a href="#label-Class+variables">Class variables</a>
+    <li><a href="#label-Constants">Constants</a>
+    <li><a href="#label-Implementation+note">Implementation note</a>
+    <li><a href="#label-Examples">Examples</a>
+    <li><a href="#label-Traditional+Ring+example+in+Actor-model">Traditional Ring example in Actor-model</a>
+    <li><a href="#label-Fork-join">Fork-join</a>
+    <li><a href="#label-Worker+pool">Worker pool</a>
+    <li><a href="#label-Pipeline">Pipeline</a>
+    <li><a href="#label-Supervise">Supervise</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./CONTRIBUTING_md.html">CONTRIBUTING</a>
+    <li><a href="./COPYING.html">COPYING</a>
+    <li><a href="./COPYING_ja.html">COPYING.ja</a>
+    <li><a href="./LEGAL.html">LEGAL</a>
+    <li><a href="./NEWS-1_8_7.html">NEWS-1.8.7</a>
+    <li><a href="./NEWS-1_9_1.html">NEWS-1.9.1</a>
+    <li><a href="./NEWS-1_9_2.html">NEWS-1.9.2</a>
+    <li><a href="./NEWS-1_9_3.html">NEWS-1.9.3</a>
+    <li><a href="./NEWS-2_0_0.html">NEWS-2.0.0</a>
+    <li><a href="./NEWS-2_1_0.html">NEWS-2.1.0</a>
+    <li><a href="./NEWS-2_2_0.html">NEWS-2.2.0</a>
+    <li><a href="./NEWS-2_3_0.html">NEWS-2.3.0</a>
+    <li><a href="./NEWS-2_4_0.html">NEWS-2.4.0</a>
+    <li><a href="./NEWS-2_5_0.html">NEWS-2.5.0</a>
+    <li><a href="./NEWS-2_6_0.html">NEWS-2.6.0</a>
+    <li><a href="./NEWS-2_7_0.html">NEWS-2.7.0</a>
+    <li><a href="./NEWS_md.html">NEWS</a>
+    <li><a href="./README_ja_md.html">README.ja</a>
+    <li><a href="./README_md.html">README</a>
+    <li><a href="./bug_triaging_rdoc.html">bug_triaging</a>
+    <li><a href="./contributing_rdoc.html">contributing</a>
+    <li><a href="./dig_methods_rdoc.html">dig_methods</a>
+    <li><a href="./dtrace_probes_rdoc.html">dtrace_probes</a>
+    <li><a href="./extension_ja_rdoc.html">extension.ja</a>
+    <li><a href="./extension_rdoc.html">extension</a>
+    <li><a href="./fiber_md.html">fiber</a>
+    <li><a href="./globals_rdoc.html">globals</a>
+    <li><a href="./implicit_conversion_rdoc.html">implicit_conversion</a>
+    <li><a href="./keywords_rdoc.html">keywords</a>
+    <li><a href="./lib/racc/rdoc/grammar_en_rdoc.html">grammar.en</a>
+    <li><a href="./maintainers_rdoc.html">maintainers</a>
+    <li><a href="./make_cheatsheet_md.html">make_cheatsheet</a>
+    <li><a href="./marshal_rdoc.html">marshal</a>
+    <li><a href="./memory_view_md.html">memory_view</a>
+    <li><a href="./method_documentation_rdoc.html">method_documentation</a>
+    <li><a href="./ractor_md.html">ractor</a>
+    <li><a href="./regexp_rdoc.html">regexp</a>
+    <li><a href="./security_rdoc.html">security</a>
+    <li><a href="./signals_rdoc.html">signals</a>
+    <li><a href="./standard_library_rdoc.html">standard_library</a>
+    <li><a href="./syntax_rdoc.html">syntax</a>
+    <li><a href="./syntax/assignment_rdoc.html">assignment</a>
+    <li><a href="./syntax/calling_methods_rdoc.html">calling_methods</a>
+    <li><a href="./syntax/comments_rdoc.html">comments</a>
+    <li><a href="./syntax/control_expressions_rdoc.html">control_expressions</a>
+    <li><a href="./syntax/exceptions_rdoc.html">exceptions</a>
+    <li><a href="./syntax/literals_rdoc.html">literals</a>
+    <li><a href="./syntax/methods_rdoc.html">methods</a>
+    <li><a href="./syntax/miscellaneous_rdoc.html">miscellaneous</a>
+    <li><a href="./syntax/modules_and_classes_rdoc.html">modules_and_classes</a>
+    <li><a href="./syntax/pattern_matching_rdoc.html">pattern_matching</a>
+    <li><a href="./syntax/precedence_rdoc.html">precedence</a>
+    <li><a href="./syntax/refinements_rdoc.html">refinements</a>
+    <li><a href="./win32/README_win32.html">README.win32</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page ractor.md">
+
+<h1 id="label-Ractor+-+Ruby-27s+Actor-like+concurrent+abstraction"><a href="Ractor.html"><code>Ractor</code></a> - Ruby&#39;s Actor-like concurrent abstraction<span><a href="#label-Ractor+-+Ruby-27s+Actor-like+concurrent+abstraction">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><a href="Ractor.html"><code>Ractor</code></a> is designed to provide a parallel execution feature of Ruby without thread-safety concerns.</p>
+
+<h2 id="label-Summary">Summary<span><a href="#label-Summary">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Multiple+Ractors+in+an+interpreter+process">Multiple Ractors in an interpreter process<span><a href="#label-Multiple+Ractors+in+an+interpreter+process">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>You can make multiple Ractors and they run in parallel.</p>
+<ul><li>
+<p><code>Ractor.new{ expr }</code> creates a new <a href="Ractor.html"><code>Ractor</code></a> and <code>expr</code> is run in parallel on a parallel computer.</p>
+</li><li>
+<p>Interpreter invokes with the first <a href="Ractor.html"><code>Ractor</code></a> (called <em>main Ractor</em>).</p>
+</li><li>
+<p>If main <a href="Ractor.html"><code>Ractor</code></a> terminated, all Ractors receive terminate request like Threads (if main thread (first invoked <a href="Thread.html"><code>Thread</code></a>), Ruby interpreter sends all running threads to terminate execution).</p>
+</li><li>
+<p>Each <a href="Ractor.html"><code>Ractor</code></a> has 1 or more Threads.</p>
+</li><li>
+<p>Threads in a <a href="Ractor.html"><code>Ractor</code></a> shares a Ractor-wide global lock like GIL (GVL in MRI terminology), so they can&#39;t run in parallel (without releasing GVL explicitly in C-level). Threads in different ractors run in parallel.</p>
+</li><li>
+<p>The overhead of creating a <a href="Ractor.html"><code>Ractor</code></a> is similar to overhead of one <a href="Thread.html"><code>Thread</code></a> creation.</p>
+</li></ul>
+
+<h3 id="label-Limited+sharing+between+multiple+ractors">Limited sharing between multiple ractors<span><a href="#label-Limited+sharing+between+multiple+ractors">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Ractors don&#39;t share everything, unlike threads.</p>
+<ul><li>
+<p>Most objects are <em>Unshareable objects</em>, so you don&#39;t need to care about thread-safety problem which is caused by sharing.</p>
+</li><li>
+<p>Some objects are <em>Shareable objects</em>.</p>
+</li><li>
+<p>Immutable objects: frozen objects which don&#39;t refer to unshareable-objects.</p>
+<ul><li>
+<p><code>i = 123</code>: <code>i</code> is an immutable object.</p>
+</li><li>
+<p><code>s = &quot;str&quot;.freeze</code>: <code>s</code> is an immutable object.</p>
+</li><li>
+<p><code>a = [1, [2], 3].freeze</code>: <code>a</code> is not an immutable object because <code>a</code> refers unshareable-object <code>[2]</code> (which is not frozen).</p>
+</li><li>
+<p><code>h = {c: Object}.freeze</code>: <code>h</code> is an immutable object because <code>h</code> refers <a href="Symbol.html"><code>Symbol</code></a> <code>:c</code> and shareable <code>Object</code> class object which is not frozen.</p>
+</li></ul>
+</li><li>
+<p>Class/Module objects</p>
+</li><li>
+<p>Special shareable objects</p>
+<ul><li>
+<p><a href="Ractor.html"><code>Ractor</code></a> object itself.</p>
+</li><li>
+<p>And more…</p>
+</li></ul>
+</li></ul>
+
+<h3 id="label-Two-types+communication+between+Ractors">Two-types communication between Ractors<span><a href="#label-Two-types+communication+between+Ractors">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Ractors communicate with each other and synchronize the execution by message exchanging between Ractors. There are two message exchange protocols: push type (message passing) and pull type.</p>
+<ul><li>
+<p>Push type message passing: <code>Ractor#send(obj)</code> and <code>Ractor.receive()</code> pair.</p>
+</li><li>
+<p>Sender ractor passes the <code>obj</code> to the ractor <code>r</code> by <code>r.send(obj)</code> and receiver ractor receives the message with <code>Ractor.receive</code>.</p>
+</li><li>
+<p>Sender knows the destination <a href="Ractor.html"><code>Ractor</code></a> <code>r</code> and the receiver does not know the sender (accept all message from any ractors).</p>
+</li><li>
+<p>Receiver has infinite queue and sender enqueues the message. Sender doesn&#39;t block to put message into this queue.</p>
+</li><li>
+<p>This type message exchangin is employed by many other Actor-based language.</p>
+</li><li>
+<p><code>Ractor.receive_if{ filter_expr }</code> is a variant of <code>Ractor.receive</code> to select a message.</p>
+</li><li>
+<p>Pull type communication: <code>Ractor.yield(obj)</code> and <code>Ractor#take()</code> pair.</p>
+</li><li>
+<p>Sender ractor declare to yield the <code>obj</code> by <code>Ractor.yield(obj)</code> and receiver <a href="Ractor.html"><code>Ractor</code></a> take it with <code>r.take</code>.</p>
+</li><li>
+<p>Sender doesn&#39;t know a destination <a href="Ractor.html"><code>Ractor</code></a> and receiver knows the sender <a href="Ractor.html"><code>Ractor</code></a> <code>r</code>.</p>
+</li><li>
+<p>Sender or receiver will block if there is no other side.</p>
+</li></ul>
+
+<h3 id="label-Copy+-26+Move+semantics+to+send+messages">Copy &amp; Move semantics to send messages<span><a href="#label-Copy+-26+Move+semantics+to+send+messages">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>To send unshareable objects as messages, objects are copied or moved.</p>
+<ul><li>
+<p>Copy: use deep-copy.</p>
+</li><li>
+<p>Move: move membership.</p>
+</li><li>
+<p>Sender can not access the moved object after moving the object.</p>
+</li><li>
+<p>Guarantee that at least only 1 <a href="Ractor.html"><code>Ractor</code></a> can access the object.</p>
+</li></ul>
+
+<h3 id="label-Thread-safety">Thread-safety<span><a href="#label-Thread-safety">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="Ractor.html"><code>Ractor</code></a> helps to write a thread-safe concurrent program, but we can make thread-unsafe programs with Ractors.</p>
+<ul><li>
+<p>GOOD: Sharing limitation</p>
+</li><li>
+<p>Most objects are unshareable, so we can&#39;t make data-racy and race-conditional programs.</p>
+</li><li>
+<p>Shareable objects are protected by an interpreter or locking mechanism.</p>
+</li><li>
+<p>BAD: Class/Module can violate this assumption</p>
+</li><li>
+<p>To make it compatible with old behavior, classes and modules can introduce data-race and so on.</p>
+</li><li>
+<p>Ruby programmers should take care if they modify class/module objects on multi <a href="Ractor.html"><code>Ractor</code></a> programs.</p>
+</li><li>
+<p>BAD: <a href="Ractor.html"><code>Ractor</code></a> can&#39;t solve all thread-safety problems</p>
+</li><li>
+<p>There are several blocking operations (waiting send, waiting yield and waiting take) so you can make a program which has dead-lock and live-lock issues.</p>
+</li><li>
+<p>Some kind of shareable objects can introduce transactions (STM, for example). However, misusing transactions will generate inconsistent state.</p>
+</li></ul>
+
+<p>Without <a href="Ractor.html"><code>Ractor</code></a>, we need to trace all of state-mutations to debug thread-safety issues. With <a href="Ractor.html"><code>Ractor</code></a>, you can concentrate to suspicious code which are shared with Ractors.</p>
+
+<h2 id="label-Creation+and+termination">Creation and termination<span><a href="#label-Creation+and+termination">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Ractor.new"><code>Ractor.new</code><span><a href="#label-Ractor.new">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>Ractor.new{ expr }</code> generates another <a href="Ractor.html"><code>Ractor</code></a>.</p>
+</li></ul>
+
+<pre class="ruby"><span class="ruby-comment"># Ractor.new with a block creates new Ractor</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-comment"># This block will be run in parallel with other ractors</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># You can name a Ractor with `name:` argument.</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">name:</span> <span class="ruby-string">&#39;test-name&#39;</span> <span class="ruby-keyword">do</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment"># and Ractor#name returns its name.</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">name</span> <span class="ruby-comment">#=&gt; &#39;test-name&#39;</span>
+</pre>
+
+<h3 id="label-Given+block+isolation">Given block isolation<span><a href="#label-Given+block+isolation">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The <a href="Ractor.html"><code>Ractor</code></a> execute given <code>expr</code> in a given block. Given block will be isolated from outer scope by <code>Proc#isolate</code>. To prevent sharing unshareable objects between ractors, block outer-variables, <code>self</code> and other information are isolated.</p>
+
+<p>Given block will be isolated by <code>Proc#isolate</code> method (not exposed yet for Ruby users). <code>Proc#isolate</code> is called at <a href="Ractor.html"><code>Ractor</code></a> creation timing (<code>Ractor.new</code> is called). If given <a href="Proc.html"><code>Proc</code></a> object is not enable to isolate because of outer variables and so on, an error will be raised.</p>
+
+<pre class="ruby"><span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">a</span> <span class="ruby-comment">#=&gt; ArgumentError because this block accesses `a`.</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment"># see later</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>
+<span class="ruby-keyword">end</span>
+</pre>
+<ul><li>
+<p>The <code>self</code> of the given block is <code>Ractor</code> object itself.</p>
+</li></ul>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment">#=&gt; Ractor</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">object_id</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>Passed arguments to <code>Ractor.new()</code> becomes block parameters for the given block. However, an interpreter does not pass the parameter object references, but send them as messages (see below for details).</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;ok&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">msg</span> <span class="ruby-comment">#=&gt; &#39;ok&#39;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; &#39;ok&#39;</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-comment"># almost similar to the last example</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">msg</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&#39;ok&#39;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; &#39;ok&#39;</span>
+</pre>
+
+<h3 id="label-An+execution+result+of+given+block">An execution result of given block<span><a href="#label-An+execution+result+of+given+block">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Return value of the given block becomes an outgoing message (see below for details).</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-string">&#39;ok&#39;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; `ok`</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-comment"># almost similar to the last example</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-string">&#39;ok&#39;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; &#39;ok&#39;</span>
+</pre>
+
+<p>Error in the given block will be propagated to the receiver of an outgoing message.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&#39;ok&#39;</span> <span class="ruby-comment"># exception will be transferred to the receiver</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">cause</span>.<span class="ruby-identifier">class</span>   <span class="ruby-comment">#=&gt; RuntimeError</span>
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">cause</span>.<span class="ruby-identifier">message</span> <span class="ruby-comment">#=&gt; &#39;ok&#39;</span>
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">ractor</span>        <span class="ruby-comment">#=&gt; r</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Communication+between+Ractors">Communication between Ractors<span><a href="#label-Communication+between+Ractors">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Communication between Ractors is achieved by sending and receiving messages. There is two way to communicate each other.</p>
+<ul><li>
+<p>(1) Message sending/receiving</p>
+</li><li>
+<p>(1-1) push type send/receive (sender knows receiver). similar to the Actor model.</p>
+</li><li>
+<p>(1-2) pull type yield/take (receiver knows sender).</p>
+</li><li>
+<p>(2) Using shareable container objects</p>
+</li><li>
+<p>Ractor::TVar gem (<a href="https://github.com/ko1/ractor-tvar">ko1/ractor-tvar</a>)</p>
+</li><li>
+<p>more?</p>
+</li></ul>
+
+<p>Users can control program execution timing with (1), but should not control with (2) (only manage as critical section).</p>
+
+<p>For message sending and receiving, there are two types APIs: push type and pull type.</p>
+<ul><li>
+<p>(1-1) send/receive (push type)</p>
+</li><li>
+<p><code>Ractor#send(obj)</code> (<code>Ractor#&lt;&lt;(obj)</code> is an aliases) send a message to the Ractor&#39;s incoming port. Incoming port is connected to the infinite size incoming queue so <code>Ractor#send</code> will never block.</p>
+</li><li>
+<p><code>Ractor.receive</code> dequeue a message from its own incoming queue. If the incoming queue is empty, <code>Ractor.receive</code> calling will block.</p>
+</li><li>
+<p><code>Ractor.receive_if{|msg| filter_expr }</code> is variant of <code>Ractor.receive</code>. <code>receive_if</code> only receives a message which <code>filter_expr</code> is true (So <code>Ractor.receive</code> is same as <code>Ractor.receive_if{ true }</code>.</p>
+</li><li>
+<p>(1-2) yield/take (pull type)</p>
+</li><li>
+<p><code>Ractor.yield(obj)</code> send an message to a <a href="Ractor.html"><code>Ractor</code></a> which are calling <code>Ractor#take</code> via outgoing port . If no Ractors are waiting for it, the <code>Ractor.yield(obj)</code> will block. If multiple Ractors are waiting for <code>Ractor.yield(obj)</code>, only one <a href="Ractor.html"><code>Ractor</code></a> can receive the message.</p>
+</li><li>
+<p><code>Ractor#take</code> receives a message which is waiting by <code>Ractor.yield(obj)</code> method from the specified <a href="Ractor.html"><code>Ractor</code></a>. If the <a href="Ractor.html"><code>Ractor</code></a> does not call <code>Ractor.yield</code> yet, the <code>Ractor#take</code> call will block.</p>
+</li><li>
+<p><code>Ractor.select()</code> can wait for the success of <code>take</code>, <code>yield</code> and <code>receive</code>.</p>
+</li><li>
+<p>You can close the incoming port or outgoing port.</p>
+</li><li>
+<p>You can close then with <code>Ractor#close_incoming</code> and <code>Ractor#close_outgoing</code>.</p>
+</li><li>
+<p>If the incoming port is closed for a <a href="Ractor.html"><code>Ractor</code></a>, you can&#39;t <code>send</code> to the <a href="Ractor.html"><code>Ractor</code></a>. If <code>Ractor.receive</code> is blocked for the closed incoming port, then it will raise an exception.</p>
+</li><li>
+<p>If the outgoing port is closed for a <a href="Ractor.html"><code>Ractor</code></a>, you can&#39;t call <code>Ractor#take</code> and <code>Ractor.yield</code> on the <a href="Ractor.html"><code>Ractor</code></a>. If ractors are blocking by <code>Ractor#take</code> or <code>Ractor.yield</code>, closing outgoing port will raise an exception on these blocking ractors.</p>
+</li><li>
+<p>When a <a href="Ractor.html"><code>Ractor</code></a> is terminated, the Ractor&#39;s ports are closed.</p>
+</li><li>
+<p>There are 3 way to send an object as a message</p>
+</li><li>
+<p>(1) Send a reference: Sending a shareable object, send only a reference to the object (fast)</p>
+</li><li>
+<p>(2) Copy an object: Sending an unshareable object by copying an object deeply (slow). Note that you can not send an object which is not support deep copy. Some <code>T_DATA</code> objects are not supported.</p>
+</li><li>
+<p>(3) Move an object: Sending an unshareable object reference with a membership. Sender <a href="Ractor.html"><code>Ractor</code></a> can not access moved objects anymore (raise an exception) after moving it. Current implementation makes new object as a moved object for receiver <a href="Ractor.html"><code>Ractor</code></a> and copy references of sending object to moved object.</p>
+</li><li>
+<p>You can choose “Copy” and “Move” by the <code>move:</code> keyword, <code>Ractor#send(obj, move: true/false)</code> and <code>Ractor.yield(obj, move: true/false)</code> (default is <code>false</code> (COPY)).</p>
+</li></ul>
+
+<h3 id="label-Sending-2FReceiving+ports">Sending/Receiving ports<span><a href="#label-Sending-2FReceiving+ports">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Each <a href="Ractor.html"><code>Ractor</code></a> has <em>incoming-port</em> and <em>outgoing-port</em>. Incoming-port is connected to the infinite sized incoming queue.</p>
+
+<pre>Ractor r
+                 +-------------------------------------------+
+                 | incoming                         outgoing |
+                 | port                                 port |
+   r.send(obj) -&gt;*-&gt;[incoming queue]     Ractor.yield(obj) -&gt;*-&gt; r.take
+                 |                |                          |
+                 |                v                          |
+                 |           Ractor.receive                  |
+                 +-------------------------------------------+
+
+
+Connection example: r2.send obj on r1、Ractor.receive on r2
+  +----+     +----+
+  * r1 |----&gt;* r2 *
+  +----+     +----+
+
+
+Connection example: Ractor.yield(obj) on r1, r1.take on r2
+  +----+     +----+
+  * r1 *----&gt;- r2 *
+  +----+     +----+
+
+Connection example: Ractor.yield(obj) on r1 and r2,
+                    and waiting for both simultaneously by Ractor.select(r1, r2)
+
+  +----+
+  * r1 *------+
+  +----+      |
+              +----&gt; Ractor.select(r1, r2)
+  +----+      |
+  * r2 *------|
+  +----+</pre>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-comment"># Receive from r&#39;s incoming queue</span>
+    <span class="ruby-identifier">msg</span> <span class="ruby-comment"># send back msg as block return value</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&#39;ok&#39;</span> <span class="ruby-comment"># Send &#39;ok&#39; to r&#39;s incoming port -&gt; incoming queue</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>      <span class="ruby-comment"># Receive from r&#39;s outgoing port</span>
+</pre>
+
+<p>The last example shows the following ractor network.</p>
+
+<pre>
+  +------+        +---+
+  * main |------&gt; * r *---+
+  +-----+         +---+   |
+      ^                   |
+      +-------------------+</pre>
+
+<p>And this code can be rewrite more simple way by using an argument for <code>Ractor.new</code>.</p>
+
+<pre class="ruby"><span class="ruby-comment"># Actual argument &#39;ok&#39; for `Ractor.new()` will be send to created Ractor.</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;ok&#39;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># Values for formal parameters will be received from incoming queue.</span>
+    <span class="ruby-comment"># Similar to: msg = Ractor.receive</span>
+
+    <span class="ruby-identifier">msg</span> <span class="ruby-comment"># Return value of the given block will be sent via outgoing port</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># receive from the r&#39;s outgoing port.</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; `ok`</span>
+</pre>
+
+<h3 id="label-Return+value+of+a+block+for+Ractor.new">Return value of a block for <code>Ractor.new</code><span><a href="#label-Return+value+of+a+block+for+Ractor.new">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>As already explained, the return value of <code>Ractor.new</code> (an evaluated value of <code>expr</code> in <code>Ractor.new{ expr }</code>) can be taken by <code>Ractor#take</code>.</p>
+
+<pre class="ruby"><span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>{ <span class="ruby-value">42</span> }.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; 42</span>
+</pre>
+
+<p>When the block return value is available, the <a href="Ractor.html"><code>Ractor</code></a> is dead so that no ractors except taken <a href="Ractor.html"><code>Ractor</code></a> can touch the return value, so any values can be sent with this communication path without any modification.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-string">&quot;hello&quot;</span>
+  <span class="ruby-identifier">binding</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>.<span class="ruby-identifier">eval</span>(<span class="ruby-string">&quot;p a&quot;</span>) <span class="ruby-comment">#=&gt; &quot;hello&quot; (other communication path can not send a Binding object directly)</span>
+</pre>
+
+<h3 id="label-Wait+for+multiple+Ractors+with+Ractor.select">Wait for multiple Ractors with <code>Ractor.select</code><span><a href="#label-Wait+for+multiple+Ractors+with+Ractor.select">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>You can wait multiple Ractor&#39;s <code>yield</code> with <code>Ractor.select(*ractors)</code>. The return value of <code>Ractor.select()</code> is <code>[r, msg]</code> where <code>r</code> is yielding <a href="Ractor.html"><code>Ractor</code></a> and <code>msg</code> is yielded message.</p>
+
+<p>Wait for a single ractor (same as <code>Ractor.take</code>):</p>
+
+<pre class="ruby"><span class="ruby-identifier">r1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>{<span class="ruby-string">&#39;r1&#39;</span>}
+
+<span class="ruby-identifier">r</span>, <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">r1</span>)
+<span class="ruby-identifier">r</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">r1</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">obj</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;r1&#39;</span> <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p>Wait for two ractors:</p>
+
+<pre class="ruby"><span class="ruby-identifier">r1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>{<span class="ruby-string">&#39;r1&#39;</span>}
+<span class="ruby-identifier">r2</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>{<span class="ruby-string">&#39;r2&#39;</span>}
+<span class="ruby-identifier">rs</span> = [<span class="ruby-identifier">r1</span>, <span class="ruby-identifier">r2</span>]
+<span class="ruby-identifier">as</span> = []
+
+<span class="ruby-comment"># Wait for r1 or r2&#39;s Ractor.yield</span>
+<span class="ruby-identifier">r</span>, <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>)
+<span class="ruby-identifier">rs</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">r</span>)
+<span class="ruby-identifier">as</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span>
+
+<span class="ruby-comment"># Second try (rs only contain not-closed ractors)</span>
+<span class="ruby-identifier">r</span>, <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>)
+<span class="ruby-identifier">rs</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">r</span>)
+<span class="ruby-identifier">as</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span>
+<span class="ruby-identifier">as</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> [<span class="ruby-string">&#39;r1&#39;</span>, <span class="ruby-string">&#39;r2&#39;</span>] <span class="ruby-comment">#=&gt; true</span>
+</pre>
+
+<p><a href="Complex.html"><code>Complex</code></a> example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">pipe</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">RN</span> = <span class="ruby-value">10</span>
+  <span class="ruby-identifier">rs</span> = <span class="ruby-constant">RN</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">pipe</span>, <span class="ruby-identifier">i</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pipe</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">pipe</span>.<span class="ruby-identifier">take</span>
+      <span class="ruby-identifier">msg</span> <span class="ruby-comment"># ping-pong</span>
+    <span class="ruby-keyword">end</span>
+  }
+  <span class="ruby-constant">RN</span>.<span class="ruby-identifier">times</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">pipe</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span>
+  }
+  <span class="ruby-constant">RN</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">map</span>{
+    <span class="ruby-identifier">r</span>, <span class="ruby-identifier">n</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>)
+    <span class="ruby-identifier">rs</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">r</span>
+    <span class="ruby-identifier">n</span>
+  }.<span class="ruby-identifier">sort</span> <span class="ruby-comment">#=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+</pre>
+
+<p>Multiple Ractors can send to one <a href="Ractor.html"><code>Ractor</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-comment"># Create 10 ractors and they send objects to pipe ractor.</span>
+<span class="ruby-comment"># pipe ractor yield received objects</span>
+
+  <span class="ruby-identifier">pipe</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">RN</span> = <span class="ruby-value">10</span>
+  <span class="ruby-identifier">rs</span> = <span class="ruby-constant">RN</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">pipe</span>, <span class="ruby-identifier">i</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pipe</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">pipe</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span>
+    <span class="ruby-keyword">end</span>
+  }
+
+  <span class="ruby-constant">RN</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">map</span>{
+    <span class="ruby-identifier">pipe</span>.<span class="ruby-identifier">take</span>
+  }.<span class="ruby-identifier">sort</span> <span class="ruby-comment">#=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+</pre>
+
+<p>TODO: Current <code>Ractor.select()</code> has the same issue of <code>select(2)</code>, so this interface should be refined.</p>
+
+<p>TODO: <code>select</code> syntax of go-language uses round-robin technique to make fair scheduling. Now <code>Ractor.select()</code> doesn&#39;t use it.</p>
+
+<h3 id="label-Closing+Ractor-27s+ports">Closing Ractor&#39;s ports<span><a href="#label-Closing+Ractor-27s+ports">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>Ractor#close_incoming/outgoing</code> close incoming/outgoing ports (similar to <code>Queue#close</code>).</p>
+</li><li>
+<p><code>Ractor#close_incoming</code></p>
+</li><li>
+<p><code>r.send(obj)</code> where <code>r</code>&#39;s incoming port is closed, will raise an exception.</p>
+</li><li>
+<p>When the incoming queue is empty and incoming port is closed, <code>Ractor.receive</code> raise an exception. If the incoming queue is not empty, it dequeues an object without exceptions.</p>
+</li><li>
+<p><code>Ractor#close_outgoing</code></p>
+</li><li>
+<p><code>Ractor.yield</code> on a <a href="Ractor.html"><code>Ractor</code></a> which closed the outgoing port, it will raise an exception.</p>
+</li><li>
+<p><code>Ractor#take</code> for a <a href="Ractor.html"><code>Ractor</code></a> which closed the outgoing port, it will raise an exception. If <code>Ractor#take</code> is blocking, it will raise an exception.</p>
+</li><li>
+<p>When a <a href="Ractor.html"><code>Ractor</code></a> terminates, the ports are closed automatically.</p>
+</li><li>
+<p>Return value of the Ractor&#39;s block will be yielded as <code>Ractor.yield(ret_val)</code>, even if the implementation terminates the based native thread.</p>
+</li></ul>
+
+<p>Example (try to take from closed <a href="Ractor.html"><code>Ractor</code></a>):</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-string">&#39;finish&#39;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment"># success (will return &#39;finish&#39;)</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">o</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment"># try to take from closed Ractor</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">ClosedError</span>
+    <span class="ruby-string">&#39;ok&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-node">&quot;ng: #{o}&quot;</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>Example (try to send to closed (terminated) <a href="Ractor.html"><code>Ractor</code></a>):</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment"># wait terminate</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">ClosedError</span>
+    <span class="ruby-string">&#39;ok&#39;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&#39;ng&#39;</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>When multiple Ractors waiting for <code>Ractor.yield()</code>, <code>Ractor#close_outgoing</code> will cancel all blocking by raise an exception (<code>ClosedError</code>).</p>
+
+<h3 id="label-Send+a+message+by+copying">Send a message by copying<span><a href="#label-Send+a+message+by+copying">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><code>Ractor#send(obj)</code> or <code>Ractor.yield(obj)</code> copy <code>obj</code> deeply if <code>obj</code> is an unshareable object.</p>
+
+<pre class="ruby"><span class="ruby-identifier">obj</span> = <span class="ruby-string">&#39;str&#39;</span>.<span class="ruby-identifier">dup</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">obj</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span>
+  <span class="ruby-comment"># return received msg&#39;s object_id</span>
+  <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">object_id</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; false</span>
+</pre>
+
+<p>Some objects are not supported to copy the value, and raise an exception.</p>
+
+<pre class="ruby"><span class="ruby-identifier">obj</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span>{}
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">obj</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">msg</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">TypeError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> <span class="ruby-comment">#=&gt; #&lt;TypeError: allocator undefined for Thread&gt;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-string">&#39;ng&#39;</span> <span class="ruby-comment"># unreachable here</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h3 id="label-Send+a+message+by+moving">Send a message by moving<span><a href="#label-Send+a+message+by+moving">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><code>Ractor#send(obj, move: true)</code> or <code>Ractor.yield(obj, move: true)</code> move <code>obj</code> to the destination <a href="Ractor.html"><code>Ractor</code></a>. If the source <a href="Ractor.html"><code>Ractor</code></a> touches the moved object (for example, call the method like <code>obj.foo()</code>), it will be an error.</p>
+
+<pre class="ruby"><span class="ruby-comment"># move with Ractor#send</span>
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-identifier">obj</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; world&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">str</span> = <span class="ruby-string">&#39;hello&#39;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">str</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">true</span>
+<span class="ruby-identifier">modified</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; &#39;hello world&#39;</span>
+
+<span class="ruby-comment"># str is moved, and accessing str from this Ractor is prohibited</span>
+
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-comment"># Error because it touches moved str.</span>
+  <span class="ruby-identifier">str</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; exception&#39;</span> <span class="ruby-comment"># raise Ractor::MovedError</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">MovedError</span>
+  <span class="ruby-identifier">modified</span> <span class="ruby-comment">#=&gt; &#39;hello world&#39;</span>
+<span class="ruby-keyword">else</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&#39;unreachable&#39;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-comment"># move with Ractor.yield</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">obj</span> = <span class="ruby-string">&#39;hello&#39;</span>
+    <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-identifier">obj</span>, <span class="ruby-value">move:</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">obj</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;world&#39;</span>  <span class="ruby-comment"># raise Ractor::MovedError</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">str</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteError</span>
+    <span class="ruby-identifier">p</span> <span class="ruby-identifier">str</span> <span class="ruby-comment">#=&gt; &quot;hello&quot;</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>Some objects are not supported to move, and an exception will be raise.</p>
+
+<pre class="ruby"><span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span>{}, <span class="ruby-value">move:</span> <span class="ruby-keyword">true</span>) <span class="ruby-comment">#=&gt; allocator undefined for Thread (TypeError)</span>
+</pre>
+
+<p>To achieve the access prohibition for moved objects, <em>class replacement</em> technique is used to implement it.</p>
+
+<h3 id="label-Shareable+objects">Shareable objects<span><a href="#label-Shareable+objects">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The following objects are shareable.</p>
+<ul><li>
+<p>Immutable objects</p>
+</li><li>
+<p>Small integers, some symbols, <code>true</code>, <code>false</code>, <code>nil</code> (a.k.a. <code>SPECIAL_CONST_P()</code> objects in internal)</p>
+</li><li>
+<p>Frozen native objects</p>
+<ul><li>
+<p><a href="Numeric.html"><code>Numeric</code></a> objects: <code>Float</code>, <code>Complex</code>, <code>Rational</code>, big integers (<code>T_BIGNUM</code> in internal)</p>
+</li><li>
+<p>All Symbols.</p>
+</li></ul>
+</li><li>
+<p>Frozen <code>String</code> and <code>Regexp</code> objects (their instance variables should refer only sharble objects)</p>
+</li><li>
+<p><a href="Class.html"><code>Class</code></a>, <a href="Module.html"><code>Module</code></a> objects (<code>T_CLASS</code>, <code>T_MODULE</code> and <code>T_ICLASS</code> in internal)</p>
+</li><li>
+<p><code>Ractor</code> and other special objects which care about synchronization.</p>
+</li></ul>
+
+<p>Implementation: Now shareable objects (<code>RVALUE</code>) have <code>FL_SHAREABLE</code> flag. This flag can be added lazily.</p>
+
+<p>To make sharable objects, <code>Ractor.make_shareable(obj)</code> method is provided. In this case, try to make sharaeble by freezing <code>obj</code> and recursively travasible objects. This method accepts <code>copy:</code> keyword (default value is false).<code>Ractor.make_sharable(obj, copy: true)</code> tries to make a deep copy of <code>obj</code> and make the copied object sharable.</p>
+
+<h2 id="label-Language+changes+to+isolate+unshareable+objects+between+Ractors">Language changes to isolate unshareable objects between Ractors<span><a href="#label-Language+changes+to+isolate+unshareable+objects+between+Ractors">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>To isolate unshareable objects between Ractors, we introduced additional language semantics on multi-Ractor Ruby programs.</p>
+
+<p>Note that without using Ractors, these additional semantics is not needed (100% compatible with Ruby 2).</p>
+
+<h3 id="label-Global+variables">Global variables<span><a href="#label-Global+variables">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Only the main <a href="Ractor.html"><code>Ractor</code></a> (a <a href="Ractor.html"><code>Ractor</code></a> created at starting of interpreter) can access global variables.</p>
+
+<pre class="ruby"><span class="ruby-identifier">$gv</span> = <span class="ruby-value">1</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">$gv</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">cause</span>.<span class="ruby-identifier">message</span> <span class="ruby-comment">#=&gt; &#39;can not access global variables from non-main Ractors&#39;</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>Note that some special global variables are ractor-local, like <code>$stdin</code>, <code>$stdout</code>, <code>$stderr</code>. See <a href="https://bugs.ruby-lang.org/issues/17268">[Bug #17268]</a> for more details.</p>
+
+<h3 id="label-Instance+variables+of+shareable+objects">Instance variables of shareable objects<span><a href="#label-Instance+variables+of+shareable+objects">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Only the main <a href="Ractor.html"><code>Ractor</code></a> can access instance variables of shareable objects.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+    <span class="ruby-ivar">@iv</span> = <span class="ruby-string">&#39;str&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+      <span class="ruby-identifier">p</span> <span class="ruby-ivar">@iv</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment">#=&gt; Ractor::IsolationError</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-identifier">shared</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span>{}
+  <span class="ruby-identifier">shared</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@iv</span>, <span class="ruby-string">&#39;str&#39;</span>)
+
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">shared</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">shared</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">p</span> <span class="ruby-identifier">shared</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-value">:@iv</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">cause</span>.<span class="ruby-identifier">message</span> <span class="ruby-comment">#=&gt; can not access instance variables of shareable objects from non-main Ractors (Ractor::IsolationError)</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>Note that instance variables for class/module objects are also prohibited on Ractors.</p>
+
+<h3 id="label-Class+variables"><a href="Class.html"><code>Class</code></a> variables<span><a href="#label-Class+variables">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Only the main <a href="Ractor.html"><code>Ractor</code></a> can access class variables.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+    <span class="ruby-identifier">@@cv</span> = <span class="ruby-string">&#39;str&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+      <span class="ruby-identifier">p</span> <span class="ruby-identifier">@@cv</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment">#=&gt; Ractor::IsolationError</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<h3 id="label-Constants">Constants<span><a href="#label-Constants">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Only the main <a href="Ractor.html"><code>Ractor</code></a> can read constants which refer to the unshareable object.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+    <span class="ruby-constant">CONST</span> = <span class="ruby-string">&#39;str&#39;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">C</span><span class="ruby-operator">::</span><span class="ruby-constant">CONST</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment">#=&gt; Ractor::IsolationError</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>Only the main <a href="Ractor.html"><code>Ractor</code></a> can define constants which refer to the unshareable object.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">C</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">C</span><span class="ruby-operator">::</span><span class="ruby-constant">CONST</span> = <span class="ruby-string">&#39;str&#39;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">take</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span> <span class="ruby-comment">#=&gt; Ractor::IsolationError</span>
+  <span class="ruby-keyword">end</span>
+</pre>
+
+<p>To make multi-ractor supported library, the constants should only refer sharable objects.</p>
+
+<pre class="ruby"><span class="ruby-constant">TABLE</span> = {<span class="ruby-value">a:</span> <span class="ruby-string">&#39;ko1&#39;</span>, <span class="ruby-value">b:</span> <span class="ruby-string">&#39;ko2&#39;</span>, <span class="ruby-value">c:</span> <span class="ruby-string">&#39;ko3&#39;</span>}
+</pre>
+
+<p>In this case, <code>TABLE</code> reference an unsharable <a href="Hash.html"><code>Hash</code></a> object. So that other ractors can not refer <code>TABLE</code> constant. To make it shareable, we can use <code>Ractor.make_sharable()</code> like that.</p>
+
+<pre class="ruby"><span class="ruby-constant">TABLE</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">make_sharable</span>( {<span class="ruby-value">a:</span> <span class="ruby-string">&#39;ko1&#39;</span>, <span class="ruby-value">b:</span> <span class="ruby-string">&#39;ko2&#39;</span>, <span class="ruby-value">c:</span> <span class="ruby-string">&#39;ko3&#39;</span>} )
+</pre>
+
+<p>To make it easy, Ruby 3.0 introduced new <code>shareable_constant_value</code> Directive.</p>
+
+<pre class="ruby"><span class="ruby-identifier">shareable_constant_value</span><span class="ruby-operator">:</span> <span class="ruby-identifier">literal</span>
+
+<span class="ruby-constant">TABLE</span> = {<span class="ruby-value">a:</span> <span class="ruby-string">&#39;ko1&#39;</span>, <span class="ruby-value">b:</span> <span class="ruby-string">&#39;ko2&#39;</span>, <span class="ruby-value">c:</span> <span class="ruby-string">&#39;ko3&#39;</span>}
+<span class="ruby-comment">#=&gt; Same as: TABLE = Ractor.make_sharable( {a: &#39;ko1&#39;, b: &#39;ko2&#39;, c: &#39;ko3&#39;} )</span>
+</pre>
+
+<p><code>shareable_constant_value</code> directive accepts the following modes (descriptions use the example: <code>CONST = expr</code>):</p>
+<ul><li>
+<p>none: Do nothing. Same as: <code>CONST = expr</code></p>
+</li><li>
+<p>literal:</p>
+</li><li>
+<p>if <code>expr</code> is consites of literals, replaced to <code>CONST = Ractor.make_sharable(expr)</code>.</p>
+</li><li>
+<p>otherwise: replaced to <code>CONST = expr.tap{|o| raise unless Ractor.shareable?}</code>.</p>
+</li><li>
+<p>experimental_everything: replaced to <code>CONST = Ractor.make_sharable(expr)</code>.</p>
+</li><li>
+<p>experimental_copy: replaced to <code>CONST = Ractor.make_sharable(expr, copy: true)</code>.</p>
+</li></ul>
+
+<p>Except the <code>none</code> mode (default), it is guaranteed that the assigned constants refer to only sharable objects.</p>
+
+<p>See <a href="syntax/comment_rdoc.html">doc/syntax/comment.rdoc</a> for more details.</p>
+
+<h2 id="label-Implementation+note">Implementation note<span><a href="#label-Implementation+note">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Each <a href="Ractor.html"><code>Ractor</code></a> has its own thread, it means each <a href="Ractor.html"><code>Ractor</code></a> has at least 1 native thread.</p>
+</li><li>
+<p>Each <a href="Ractor.html"><code>Ractor</code></a> has its own ID (<code>rb_ractor_t::pub::id</code>).</p>
+</li><li>
+<p>On debug mode, all unshareable objects are labeled with current Ractor&#39;s id, and it is checked to detect unshareable object leak (access an object from different <a href="Ractor.html"><code>Ractor</code></a>) in VM.</p>
+</li></ul>
+
+<h2 id="label-Examples">Examples<span><a href="#label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Traditional+Ring+example+in+Actor-model">Traditional Ring example in Actor-model<span><a href="#label-Traditional+Ring+example+in+Actor-model">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-constant">RN</span> = <span class="ruby-value">1_000</span>
+<span class="ruby-constant">CR</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-constant">CR</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">:fin</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">RN</span>.<span class="ruby-identifier">times</span>{
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">next_r</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">next_r</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-keyword">end</span>
+}
+
+<span class="ruby-identifier">p</span> <span class="ruby-value">:setup_ok</span>
+<span class="ruby-identifier">r</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">1</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+</pre>
+
+<h3 id="label-Fork-join">Fork-join<span><a href="#label-Fork-join">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fib</span> <span class="ruby-identifier">n</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+    <span class="ruby-value">1</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">fib</span>(<span class="ruby-identifier">n</span><span class="ruby-value">-2</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">fib</span>(<span class="ruby-identifier">n</span><span class="ruby-value">-1</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">RN</span> = <span class="ruby-value">10</span>
+<span class="ruby-identifier">rs</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">RN</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    [<span class="ruby-identifier">i</span>, <span class="ruby-identifier">fib</span>(<span class="ruby-identifier">i</span>)]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">until</span> <span class="ruby-identifier">rs</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-identifier">r</span>, <span class="ruby-identifier">v</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>)
+  <span class="ruby-identifier">rs</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">r</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-value">answer:</span> <span class="ruby-identifier">v</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h3 id="label-Worker+pool">Worker pool<span><a href="#label-Worker+pool">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;prime&#39;</span>
+
+<span class="ruby-identifier">pipe</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-constant">N</span> = <span class="ruby-value">1000</span>
+<span class="ruby-constant">RN</span> = <span class="ruby-value">10</span>
+<span class="ruby-identifier">workers</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">RN</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">pipe</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">n</span> = <span class="ruby-identifier">pipe</span>.<span class="ruby-identifier">take</span>
+      <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">yield</span> [<span class="ruby-identifier">n</span>, <span class="ruby-identifier">n</span>.<span class="ruby-identifier">prime?</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">N</span>).<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">pipe</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span>
+}
+
+<span class="ruby-identifier">pp</span> (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">N</span>).<span class="ruby-identifier">map</span>{
+  <span class="ruby-identifier">_r</span>, (<span class="ruby-identifier">n</span>, <span class="ruby-identifier">b</span>) = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">workers</span>)
+  [<span class="ruby-identifier">n</span>, <span class="ruby-identifier">b</span>]
+}.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span>(<span class="ruby-identifier">n</span>, <span class="ruby-identifier">b</span>)<span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>}
+</pre>
+
+<h3 id="label-Pipeline">Pipeline<span><a href="#label-Pipeline">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-comment"># pipeline with yield/take</span>
+<span class="ruby-identifier">r1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-string">&#39;r1&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r2</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r1</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r1</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r1</span>.<span class="ruby-identifier">take</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;r2&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r3</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r2</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r2</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r2</span>.<span class="ruby-identifier">take</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;r3&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">p</span> <span class="ruby-identifier">r3</span>.<span class="ruby-identifier">take</span> <span class="ruby-comment">#=&gt; &#39;r1r2r3&#39;</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-comment"># pipeline with send/receive</span>
+
+<span class="ruby-identifier">r3</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cr</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">cr</span>.<span class="ruby-identifier">send</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;r3&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r2</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r3</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r3</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r3</span>.<span class="ruby-identifier">send</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;r2&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r1</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r2</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r2</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r2</span>.<span class="ruby-identifier">send</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;r1&#39;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r1</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;r0&#39;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-comment">#=&gt; &quot;r0r1r2r3&quot;</span>
+</pre>
+
+<h3 id="label-Supervise">Supervise<span><a href="#label-Supervise">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-comment"># ring example again</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>
+(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;r#{i}&quot;</span>
+  <span class="ruby-keyword">end</span>
+}
+
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;r0&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-comment">#=&gt; &quot;r0r10r9r8r7r6r5r4r3r2r1&quot;</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-comment"># ring example with an error</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>
+<span class="ruby-identifier">rs</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-regexp">/e/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">msg</span>
+      <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">msg</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;r#{i}&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+}
+
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;r0&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-comment">#=&gt; &quot;r0r10r9r8r7r6r5r4r3r2r1&quot;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;r0&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>, <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>) <span class="ruby-comment">#=&gt; [:receive, &quot;r0r10r9r8r7r6r5r4r3r2r1&quot;]</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;e0&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>, <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>)
+<span class="ruby-comment">#=&gt;</span>
+<span class="ruby-comment">#&lt;Thread:0x000056262de28bd8 run&gt; terminated with exception (report_on_exception is true):</span>
+<span class="ruby-constant">Traceback</span> (<span class="ruby-identifier">most</span> <span class="ruby-identifier">recent</span> <span class="ruby-identifier">call</span> <span class="ruby-identifier">last</span>)<span class="ruby-operator">:</span>
+        <span class="ruby-value">2</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from</span> <span class="ruby-regexp">/home/ko</span><span class="ruby-value">1</span><span class="ruby-regexp">/src/ruby</span><span class="ruby-operator">/</span><span class="ruby-identifier">trunk</span><span class="ruby-operator">/</span><span class="ruby-identifier">test</span>.<span class="ruby-identifier">rb</span><span class="ruby-value">7</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">`block (2 levels) in &lt;main&gt;&#39;
+        1: from /home/ko1/src/ruby/trunk/test.rb:7:in `</span><span class="ruby-identifier">loop</span><span class="ruby-string">&#39;
+/home/ko1/src/ruby/trunk/test.rb:9:in `block (3 levels) in &lt;main&gt;&#39;</span><span class="ruby-operator">:</span> <span class="ruby-identifier">unhandled</span> <span class="ruby-identifier">exception</span>
+<span class="ruby-constant">Traceback</span> (<span class="ruby-identifier">most</span> <span class="ruby-identifier">recent</span> <span class="ruby-identifier">call</span> <span class="ruby-identifier">last</span>)<span class="ruby-operator">:</span>
+        <span class="ruby-value">2</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from</span> <span class="ruby-regexp">/home/ko</span><span class="ruby-value">1</span><span class="ruby-regexp">/src/ruby</span><span class="ruby-operator">/</span><span class="ruby-identifier">trunk</span><span class="ruby-operator">/</span><span class="ruby-identifier">test</span>.<span class="ruby-identifier">rb</span><span class="ruby-value">7</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">`block (2 levels) in &lt;main&gt;&#39;
+        1: from /home/ko1/src/ruby/trunk/test.rb:7:in `</span><span class="ruby-identifier">loop</span><span class="ruby-string">&#39;
+/home/ko1/src/ruby/trunk/test.rb:9:in `block (3 levels) in &lt;main&gt;&#39;</span><span class="ruby-operator">:</span> <span class="ruby-identifier">unhandled</span> <span class="ruby-identifier">exception</span>
+        <span class="ruby-value">1</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from</span> <span class="ruby-regexp">/home/ko</span><span class="ruby-value">1</span><span class="ruby-regexp">/src/ruby</span><span class="ruby-operator">/</span><span class="ruby-identifier">trunk</span><span class="ruby-operator">/</span><span class="ruby-identifier">test</span>.<span class="ruby-identifier">rb</span><span class="ruby-value">21</span><span class="ruby-operator">:</span><span class="ruby-keyword">in</span> <span class="ruby-string">`&lt;main&gt;&#39;
+&lt;internal:ractor&gt;:69:in `</span><span class="ruby-identifier">select</span><span class="ruby-string">&#39;: thrown by remote Ractor. (Ractor::RemoteError)</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-comment"># resend non-error message</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>
+<span class="ruby-identifier">rs</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-regexp">/e/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">msg</span>
+      <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">msg</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;r#{i}&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+}
+
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;r0&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span> <span class="ruby-comment">#=&gt; &quot;r0r10r9r8r7r6r5r4r3r2r1&quot;</span>
+<span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-string">&quot;r0&quot;</span>
+<span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>, <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>)
+[<span class="ruby-value">:receive</span>, <span class="ruby-string">&quot;r0r10r9r8r7r6r5r4r3r2r1&quot;</span>]
+<span class="ruby-identifier">msg</span> = <span class="ruby-string">&#39;e0&#39;</span>
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">msg</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>, <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteError</span>
+  <span class="ruby-identifier">msg</span> = <span class="ruby-string">&#39;r0&#39;</span>
+  <span class="ruby-keyword">retry</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment">#=&gt; &lt;internal:ractor&gt;:100:in `send&#39;: The incoming-port is already closed (Ractor::ClosedError)</span>
+<span class="ruby-comment"># because r == r[-1] is terminated.</span>
+</pre>
+
+<pre class="ruby"><span class="ruby-comment"># ring example with supervisor and re-start</span>
+
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_ractor</span> <span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span>
+  <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">receive</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-regexp">/e/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">msg</span>
+      <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">msg</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;r#{i}&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">r</span> = <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>
+<span class="ruby-identifier">rs</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">10</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-identifier">make_ractor</span>(<span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span>)
+}
+
+<span class="ruby-identifier">msg</span> = <span class="ruby-string">&#39;e0&#39;</span> <span class="ruby-comment"># error causing message</span>
+<span class="ruby-keyword">begin</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">msg</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">rs</span>, <span class="ruby-constant">Ractor</span>.<span class="ruby-identifier">current</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Ractor</span><span class="ruby-operator">::</span><span class="ruby-constant">RemoteError</span>
+  <span class="ruby-identifier">r</span> = <span class="ruby-identifier">rs</span>[<span class="ruby-value">-1</span>] = <span class="ruby-identifier">make_ractor</span>(<span class="ruby-identifier">rs</span>[<span class="ruby-value">-2</span>], <span class="ruby-identifier">rs</span>.<span class="ruby-identifier">size</span><span class="ruby-value">-1</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-string">&#39;x0&#39;</span>
+  <span class="ruby-keyword">retry</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment">#=&gt; [:receive, &quot;x0r9r9r8r7r6r5r4r3r2r1&quot;]</span>
+</pre>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Gem::Commands::QueryCommand - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="../Command.html">Gem::Command</a>
+</div>
+
+    
+<div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+    <li><a class="include" href="../QueryUtils.html">Gem::QueryUtils</a>
+  </ul>
+</div>
+
+    
+<div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    <li><a class="extend" href="../Deprecate.html">Gem::Deprecate</a>
+  </ul>
+</div>
+
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-deprecation_warning">#deprecation_warning</a>
+    <li ><a href="#method-i-warning_without_suggested_alternatives">#warning_without_suggested_alternatives</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Gem::Commands::QueryCommand">
+  <h1 id="class-Gem::Commands::QueryCommand" class="class">
+    class Gem::Commands::QueryCommand
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(name = &#39;query&#39;, summary = &#39;Query gem information in local or remote repositories&#39;)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="../Command.html#method-c-new"><code>Gem::Command::new</code></a>
+            </div>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/query_command.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">name</span> = <span class="ruby-string">&#39;query&#39;</span>,
+               <span class="ruby-identifier">summary</span> = <span class="ruby-string">&#39;Query gem information in local or remote repositories&#39;</span>)
+  <span class="ruby-keyword">super</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">summary</span>,
+       <span class="ruby-value">:name</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-regexp">//</span>, <span class="ruby-value">:domain</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:local</span>, <span class="ruby-value">:details</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">:versions</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+       <span class="ruby-value">:installed</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">:version</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Requirement</span>.<span class="ruby-identifier">default</span>
+
+  <span class="ruby-identifier">add_option</span>(<span class="ruby-string">&#39;-n&#39;</span>, <span class="ruby-string">&#39;--name-matches REGEXP&#39;</span>,
+             <span class="ruby-string">&#39;Name of gem(s) to query on matches the&#39;</span>,
+             <span class="ruby-string">&#39;provided REGEXP&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>] = <span class="ruby-regexp">/#{value}/i</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">add_query_options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-deprecation_warning" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">deprecation_warning</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="deprecation_warning-source">
+            <pre><span class="ruby-comment"># File lib/rubygems/commands/query_command.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deprecation_warning</span>
+  <span class="ruby-identifier">warning_without_suggested_alternatives</span>
+
+  <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;It is recommended that you use `gem search` or `gem list` instead.\n&quot;</span>
+  <span class="ruby-identifier">alert_warning</span> <span class="ruby-identifier">message</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecate</span>.<span class="ruby-identifier">skip</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+        <div class="aliases">
+          Also aliased as: <a href="QueryCommand.html#method-i-warning_without_suggested_alternatives">warning_without_suggested_alternatives</a>
+        </div>
+
+      </div>
+
+      <div id="method-i-warning_without_suggested_alternatives" class="method-detail method-alias">
+        <div class="method-heading">
+          <span class="method-name">warning_without_suggested_alternatives</span><span
+            class="method-args">()</span>
+        </div>
+
+        <div class="method-description">
+          
+
+        </div>
+
+
+        <div class="aliases">
+          Alias for: <a href="QueryCommand.html#method-i-deprecation_warning">deprecation_warning</a>
+        </div>
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
